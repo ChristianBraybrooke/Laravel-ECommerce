@@ -1,0 +1,70 @@
+<?php
+
+namespace ChrisBraybrooke\ECommerce\Policies;
+
+use App\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class UsersPolicy
+{
+    use HandlesAuthorization;
+
+    /**
+     * Determine whether the user can index the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function index(User $user)
+    {
+        return $user->can('read users');
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function view(User $user, User $model)
+    {
+        return $user->id === $model->id ?: $user->can('read users');
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        return $user->can('create users');
+    }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function update(User $user, User $model)
+    {
+        return $user->id === $model->id ?: $user->can('update users');
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+    public function delete(User $user, User $model)
+    {
+        return $user->id === $model->id ?: $user->can('delete users');
+    }
+}

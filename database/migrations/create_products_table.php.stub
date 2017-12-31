@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateProductsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+            Schema::create('products', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('name')->nullable();
+                $table->string('price')->nullable();
+                $table->integer('variant_id')->unsigned()->nullable();
+                $table->boolean('use_variant_data')->nullable();
+                $table->boolean('use_variant_customisation')->nullable()->default(null);
+                $table->boolean('can_customise')->nullable()->default(null);
+                $table->boolean('list_in_shop')->nullable()->default(null);
+                $table->string('slug')->nullable();
+                $table->timestamp('live_at')->nullable()->default(null);
+                $table->softDeletes();
+                $table->timestamps();
+            });
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+            Schema::dropIfExists('products');
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+    }
+}
