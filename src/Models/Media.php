@@ -3,8 +3,8 @@
 namespace ChrisBraybrooke\ECommerce\Models;
 
 use Spatie\MediaLibrary\Media as BaseMedia;
-use App\Traits\FormatDatesTrait;
-use App\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 use Spatie\Activitylog\Traits\LogsActivity;
 use File;
 use Storage;

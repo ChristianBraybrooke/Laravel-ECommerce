@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\CollectionResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\CollectionResource;
 
 class CollectionsResource extends ResourceCollection
 {

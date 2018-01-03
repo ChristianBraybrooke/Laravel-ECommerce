@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\GalleryResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\GalleryResource;
 
 class GalleriesResource extends ResourceCollection
 {

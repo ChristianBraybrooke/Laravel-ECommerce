@@ -4,10 +4,10 @@ namespace ChrisBraybrooke\ECommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use App\Traits\ResponsableTrait;
-use App\Traits\SluggableTrait;
-use App\Traits\FormatDatesTrait;
-use App\Scopes\LiveScope;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\SluggableTrait;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Collection extends Model
@@ -80,20 +80,20 @@ class Collection extends Model
     /**
      * The collection types within this collection.
      *
-     * @return App\CollectionType
+     * @return ChrisBraybrooke\ECommerce\CollectionType
      */
     public function types()
     {
-        return $this->hasMany('App\CollectionType');
+        return $this->hasMany('ChrisBraybrooke\ECommerce\CollectionType');
     }
 
     /**
      * The media accociated with this collection.
      *
-     * @return App\Media
+     * @return ChrisBraybrooke\ECommerce\Media
      */
     public function media()
     {
-        return $this->morphToMany('App\Media', 'model', 'media_to_models')->withTimestamps();
+        return $this->morphToMany('ChrisBraybrooke\ECommerce\Media', 'model', 'media_to_models')->withTimestamps();
     }
 }

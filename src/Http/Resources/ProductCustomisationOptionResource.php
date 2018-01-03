@@ -3,8 +3,8 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
-use App\Http\Resources\MediaResource;
-use App\Http\Resources\ContentsResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\MediaResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ContentsResource;
 
 class ProductCustomisationOptionResource extends Resource
 {

@@ -3,12 +3,12 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
-use App\Http\Resources\MediaResource;
-use App\Http\Resources\ProductsResource;
-use App\Http\Resources\ProductResource;
-use App\Http\Resources\CollectionTypesResource;
-use App\Http\Resources\ProductCustomisationsResource;
-use App\Product;
+use ChrisBraybrooke\ECommerce\Http\Resources\MediaResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ProductsResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ProductResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypesResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ProductCustomisationsResource;
+use ChrisBraybrooke\ECommerce\Models\Product;
 
 class ProductResource extends Resource
 {

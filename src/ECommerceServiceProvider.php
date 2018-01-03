@@ -5,7 +5,8 @@ namespace ChrisBraybrooke\ECommerce;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Support\Facades\Route;
 
-class ECommerceServiceProvider extends LaravelServiceProvider {
+class ECommerceServiceProvider extends LaravelServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -206,8 +207,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider {
 
         Route::group([
             'prefix' => config('ecommerce.api_uri', 'api/ecommerce'),
-            'namespace' => 'ChrisBraybrooke\ECommerce\Http\Controllers\API',
-            'middleware' => config('ecommerce.api_middleware', 'auth:api'),
+            'namespace' => 'ChrisBraybrooke\ECommerce\Http\Controllers\Api',
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         });

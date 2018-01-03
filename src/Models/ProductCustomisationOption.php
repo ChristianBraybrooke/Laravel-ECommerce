@@ -4,10 +4,10 @@ namespace ChrisBraybrooke\ECommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use App\Traits\ResponsableTrait;
-use App\Traits\FormatDatesTrait;
-use App\Traits\HasMediaAttached;
-use App\Traits\HasContentAttached;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
+use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 
 class ProductCustomisationOption extends Model
 {

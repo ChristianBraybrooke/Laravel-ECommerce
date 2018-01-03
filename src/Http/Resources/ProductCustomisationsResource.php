@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ProductCustomisationResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ProductCustomisationResource;
 
 class ProductCustomisationsResource extends ResourceCollection
 {

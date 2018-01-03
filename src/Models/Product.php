@@ -4,15 +4,15 @@ namespace ChrisBraybrooke\ECommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use App\Traits\ResponsableTrait;
-use App\Traits\SluggableTrait;
-use App\Traits\FormatDatesTrait;
-use App\Traits\HasMediaAttached;
-use App\Traits\HasContentAttached;
-use App\Scopes\LiveScope;
-use App\Collection;
-use App\Events\ProductCreated;
-use App\CollectionType;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\SluggableTrait;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
+use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
+use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
+use ChrisBraybrooke\ECommerce\Collection;
+use ChrisBraybrooke\ECommerce\Events\ProductCreated;
+use ChrisBraybrooke\ECommerce\CollectionType;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
@@ -119,13 +119,13 @@ class Product extends Model
     /**
      * The collection types that this product is associated with.
      *
-     * @return App\CollectionType
+     * @return ChrisBraybrooke\ECommerce\CollectionType
      */
     public function collectionTypes()
     {
         return ($this->variant && $this->use_variant_data) ?
             $this->variant->collectionTypes() :
-            $this->belongsToMany('App\CollectionType')
+            $this->belongsToMany('ChrisBraybrooke\ECommerce\CollectionType')
                  ->with('collection:id,name')
                  ->withTimestamps();
     }
@@ -133,18 +133,18 @@ class Product extends Model
     /**
      * The collection types that this product is associated with.
      *
-     * @return App\ProductCustomisation
+     * @return ChrisBraybrooke\ECommerce\ProductCustomisation
      */
     public function customisations()
     {
-        return $this->hasMany('App\ProductCustomisation');
+        return $this->hasMany('ChrisBraybrooke\ECommerce\ProductCustomisation');
     }
 
     /**
      * Add a scope to pull products that belong to a certain collectiontype
      *
      * @param $query
-     * @param App\CollectionType $collection_type
+     * @param ChrisBraybrooke\ECommerce\CollectionType $collection_type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWhereCollectionType($query, CollectionType $collection_type)
@@ -214,17 +214,17 @@ class Product extends Model
     /**
     * If the pruct is a variant then what is a variant of?
     *
-    * @return App\Product
+    * @return ChrisBraybrooke\ECommerce\Product
     */
     public function variant()
     {
-        return $this->belongsTo('App\Product', 'variant_id', 'id');
+        return $this->belongsTo('ChrisBraybrooke\ECommerce\Product', 'variant_id', 'id');
     }
 
     /**
     * If the pruct is a variant then what is a variant of?
     *
-    * @return App\Product
+    * @return ChrisBraybrooke\ECommerce\Product
     */
     public function getIsVariantAttribute()
     {
@@ -234,10 +234,10 @@ class Product extends Model
     /**
     * Display any variants of this product.
     *
-    * @return App\Product
+    * @return ChrisBraybrooke\ECommerce\Product
     */
     public function variants()
     {
-        return $this->hasMany('App\Product', 'variant_id', 'id');
+        return $this->hasMany('ChrisBraybrooke\ECommerce\Product', 'variant_id', 'id');
     }
 }

@@ -5,13 +5,13 @@ namespace ChrisBraybrooke\ECommerce\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
-use App\Traits\ResponsableTrait;
-use App\Traits\SluggableTrait;
-use App\Traits\FormatDatesTrait;
-use App\Traits\HasMediaAttached;
-use App\Traits\HasContentAttached;
-use App\Scopes\LiveScope;
-use App\Events\PageCreated;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\SluggableTrait;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
+use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
+use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
+use ChrisBraybrooke\ECommerce\Events\PageCreated;
 
 class Page extends Model
 {

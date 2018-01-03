@@ -3,8 +3,8 @@
 namespace ChrisBraybrooke\ECommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\FormatDatesTrait;
-use App\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 
 class Content extends Model
 {

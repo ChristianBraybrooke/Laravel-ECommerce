@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\MediaResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\MediaResource;
 
 class MediasResource extends ResourceCollection
 {

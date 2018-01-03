@@ -12,8 +12,6 @@ return [
   'web_middleware' => env('ECOMMERCE_WEB_MIDDLEWARE', 'web'),
 
 
-  'api_uri' => env('ECOMMERCE_API_URI', 'api/middleware'),
+  'api_uri' => env('ECOMMERCE_API_URI', 'api/ecommerce'),
 
-
-  'api_middleware' => env('ECOMMERCE_API_MIDDLEWARE', 'auth:api'),
 ];
