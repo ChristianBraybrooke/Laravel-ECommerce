@@ -11,7 +11,7 @@ trait HasContentAttached
      */
     public function content()
     {
-        return $this->morphMany('App\Content', 'contentable');
+        return $this->morphMany(config('ecommerce.models.content'), 'contentable');
     }
 
     /**

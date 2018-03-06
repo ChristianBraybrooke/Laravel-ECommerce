@@ -11,7 +11,7 @@ trait HasMediaAttached
      */
     public function media()
     {
-        return $this->morphToMany('App\Media', 'model', 'media_to_models')
+        return $this->morphToMany(config('ecommerce.models.media'), 'model', 'media_to_models')
                     ->withTimestamps()
                     ->withPivot('media_location');
     }

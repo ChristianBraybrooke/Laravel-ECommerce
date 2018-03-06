@@ -4,6 +4,8 @@ namespace ChrisBraybrooke\ECommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 use ChrisBraybrooke\ECommerce\Traits\HasColours;
@@ -13,8 +15,9 @@ use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 use ChrisBraybrooke\ECommerce\Events\CollectionTypeCreated;
+use ChrisBraybrooke\ECommerce\Contracts\CollectionType as CollectionTypeContract;
 
-class CollectionType extends Model
+class CollectionType extends Model implements CollectionTypeContract
 {
 
     use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
@@ -123,9 +126,9 @@ class CollectionType extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function collection()
+    public function collection(): BelongsTo
     {
-        return $this->belongsTo('ChrisBraybrooke\ECommerce\Collection');
+        return $this->belongsTo(config('ecommerce.models.collection'));
     }
 
     /**
@@ -133,9 +136,9 @@ class CollectionType extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function products()
+    public function products(): BelongsToMany
     {
-        return $this->belongsToMany('ChrisBraybrooke\ECommerce\Product');
+        return $this->belongsToMany(config('ecommerce.models.product'));
     }
 
     /**

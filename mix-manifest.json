@@ -1,0 +1,15 @@
+{
+    "/js/chunks/pages.js": "/js/chunks/pages.js",
+    "/js/chunks/products.js": "/js/chunks/products.js",
+    "/js/chunks/collections.js": "/js/chunks/collections.js",
+    "/js/chunks/collectiontypes.js": "/js/chunks/collectiontypes.js",
+    "/js/chunks/account.js": "/js/chunks/account.js",
+    "/js/chunks/users.js": "/js/chunks/users.js",
+    "/js/chunks/config.js": "/js/chunks/config.js",
+    "/js/chunks/orders.js": "/js/chunks/orders.js",
+    "/js/chunks/galleries.js": "/js/chunks/galleries.js",
+    "/js/chunks/not-found.js": "/js/chunks/not-found.js",
+    "/js/chunks/dashboard.js": "/js/chunks/dashboard.js",
+    "/public/js/admin.js": "/public/js/admin.js",
+    "/public/css/admin.css": "/public/css/admin.css"
+}

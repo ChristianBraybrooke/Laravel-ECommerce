@@ -10,15 +10,20 @@ use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
 use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
-use ChrisBraybrooke\ECommerce\Collection;
+use Collection;
 use ChrisBraybrooke\ECommerce\Events\ProductCreated;
 use ChrisBraybrooke\ECommerce\CollectionType;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 
-class Product extends Model
+class Product extends Model implements ProductContract
 {
 
-    use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached, HasContentAttached;
+    use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
+        HasContentAttached;
 
     /**
      * The "booting" method of the model.
@@ -121,11 +126,11 @@ class Product extends Model
      *
      * @return ChrisBraybrooke\ECommerce\CollectionType
      */
-    public function collectionTypes()
+    public function collectionTypes(): BelongsToMany
     {
         return ($this->variant && $this->use_variant_data) ?
             $this->variant->collectionTypes() :
-            $this->belongsToMany('ChrisBraybrooke\ECommerce\CollectionType')
+            $this->belongsToMany(config('ecommerce.models.collection_type'))
                  ->with('collection:id,name')
                  ->withTimestamps();
     }
@@ -135,9 +140,9 @@ class Product extends Model
      *
      * @return ChrisBraybrooke\ECommerce\ProductCustomisation
      */
-    public function customisations()
+    public function customisations(): HasMany
     {
-        return $this->hasMany('ChrisBraybrooke\ECommerce\ProductCustomisation');
+        return $this->hasMany(config('ecommerce.models.product_customisation'));
     }
 
     /**
@@ -216,9 +221,9 @@ class Product extends Model
     *
     * @return ChrisBraybrooke\ECommerce\Product
     */
-    public function variant()
+    public function variant(): BelongsTo
     {
-        return $this->belongsTo('ChrisBraybrooke\ECommerce\Product', 'variant_id', 'id');
+        return $this->belongsTo(config('ecommerce.models.product'), 'variant_id', 'id');
     }
 
     /**
@@ -236,8 +241,8 @@ class Product extends Model
     *
     * @return ChrisBraybrooke\ECommerce\Product
     */
-    public function variants()
+    public function variants(): HasMany
     {
-        return $this->hasMany('ChrisBraybrooke\ECommerce\Product', 'variant_id', 'id');
+        return $this->hasMany(config('ecommerce.models.product'), 'variant_id', 'id');
     }
 }

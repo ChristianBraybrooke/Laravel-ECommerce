@@ -7,12 +7,15 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 use ChrisBraybrooke\ECommerce\Traits\SluggableTrait;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use ChrisBraybrooke\ECommerce\Contracts\Collection as CollectionContract;
 
-class Collection extends Model
+class Collection extends Model implements CollectionContract
 {
-    use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes;
+    use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached;
 
     /**
      * The "booting" method of the model.
@@ -82,18 +85,8 @@ class Collection extends Model
      *
      * @return ChrisBraybrooke\ECommerce\CollectionType
      */
-    public function types()
+    public function types(): HasMany
     {
-        return $this->hasMany('ChrisBraybrooke\ECommerce\CollectionType');
-    }
-
-    /**
-     * The media accociated with this collection.
-     *
-     * @return ChrisBraybrooke\ECommerce\Media
-     */
-    public function media()
-    {
-        return $this->morphToMany('ChrisBraybrooke\ECommerce\Media', 'model', 'media_to_models')->withTimestamps();
+        return $this->hasMany(config('ecommerce.models.collection_type'));
     }
 }

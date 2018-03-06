@@ -4,6 +4,12 @@ namespace ChrisBraybrooke\ECommerce;
 
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Artisan;
+use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
+use ChrisBraybrooke\ECommerce\Contracts\Collection as CollectionContract;
+use ChrisBraybrooke\ECommerce\Contracts\CollectionType as CollectionTypeContract;
+use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\Foundation\AliasLoader;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -25,9 +31,49 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->handleConfigs();
         $this->handleMigrations();
         $this->handleSeeds();
-        // $this->handleViews();
-        // $this->handleTranslations();
+        $this->handleViews();
         $this->handleRoutes();
+        $this->handleTranslations();
+        $this->registerModelBindings();
+
+        // Make public assets available
+        $this->publishes([
+            __DIR__.'/../public' => public_path('vendor/ecommerce'),
+        ], 'ecommerce');
+
+        // If we are in the local env, publish assets automatically
+        if (env('APP_ENV') === 'local') {
+            Artisan::call('vendor:publish', [
+               '--tag' => 'ecommerce',
+               '--force' => true
+            ]);
+        }
+    }
+
+    /**
+     * Register the models and create aliases.
+     *
+     * @return void
+     */
+    protected function registerModelBindings()
+    {
+        $loader = AliasLoader::getInstance();
+        $config = $this->app->config['ecommerce.models'];
+
+        // Product
+        $this->app->bind(ProductContract::class, $config['product']);
+        $loader->alias('Product', $config['product']);
+
+        // Collection
+        $this->app->bind(CollectionContract::class, $config['collection']);
+        $loader->alias('Collection', $config['collection']);
+
+        // CollectionType
+        $this->app->bind(CollectionTypeContract::class, $config['collection_type']);
+        $loader->alias('CollectionType', $config['collection_type']);
+
+        // Shop
+        $loader->alias('Shop', Shop::class);
     }
 
     /**
@@ -37,7 +83,39 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        // Bind any implementations.
+        $this->configure();
+        $this->registerBladeExtensions();
+    }
+
+    /**
+     * Setup the configuration.
+     *
+     * @return void
+     */
+    protected function configure()
+    {
+        Shop::setData([
+            'site_url' => (string)env('APP_URL'),
+            'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
+            'theme_color' => (string)env('THEME_COLOR', '#3db3b9')
+        ]);
+    }
+
+    /**
+     * Register any blade extensions.
+     *
+     * @return void
+     */
+    protected function registerBladeExtensions()
+    {
+        $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
+            $bladeCompiler->directive('ShopDataScript', function () {
+                return "<?php echo '<script>window.ecommerceConfig = '. Shop::dumpData() .'</script>'; ?>";
+            });
+            $bladeCompiler->directive('ShopData', function ($value) {
+                return "<?php echo Shop::dumpData()[$value]; ?>";
+            });
+        });
     }
 
     /**
@@ -81,9 +159,9 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     private function handleViews()
     {
-        $this->loadViewsFrom(__DIR__.'/../views', 'ecommerce');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ecommerce');
 
-        $this->publishes([__DIR__.'/../views' => base_path('resources/views/vendor/ecommerce')]);
+        $this->publishes([__DIR__.'/../resources/views' => base_path('resources/views/vendor/ecommerce')]);
     }
 
     /**

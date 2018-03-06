@@ -46,6 +46,6 @@ class ProductCustomisation extends Model
      */
     public function options()
     {
-        return $this->hasMany('ChrisBraybrooke\ECommerce\ProductCustomisationOption');
+        return $this->hasMany(config('ecommerce.models.product_customisation_option'));
     }
 }

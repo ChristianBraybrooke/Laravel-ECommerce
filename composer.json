@@ -30,7 +30,10 @@
       "laravel": {
           "providers": [
               "ChrisBraybrooke\\ECommerce\\ECommerceServiceProvider"
-          ]
+          ],
+          "aliases": {
+              "Shop": "ChrisBraybrooke\\ECommerce\\Shop"
+          }
       }
   }
 }
