@@ -5,7 +5,7 @@ namespace ChrisBraybrooke\ECommerce\Http\Resources;
 use Illuminate\Http\Resources\Json\Resource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 
-class PageResource extends Resource
+class OrderResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -17,15 +17,19 @@ class PageResource extends Resource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'slug' => $this->slug,
-            'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
-            'live_at' => $this->live_at,
-            'meta' => $this->meta,
-            'in_menu' => $this->in_menu,
-            'content' => new ContentsResource($this->whenLoaded('content')),
+            'status' => $this->status,
+            'invoice' => $this->invoice,
+            'customer' => $this->customer,
+            'use_billing_for_shipping' => $this->use_billing_for_shipping,
+            'billing_address' => $this->billing_address,
+            'shipping_address' => $this->shipping_address,
+            'cart' => $this->cart,
+            'items' => $this->items,
+            'amount' => $this->payment_amount,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'payment_method' => $this->payment_method,
+            'payment_id' => $this->payment_id,
         ];
     }
 
@@ -39,7 +43,8 @@ class PageResource extends Resource
     {
         $shop = new ShopResource($request);
         return [
-            'shop_data' => $shop->toArray($request)
+            'shop_data' => $shop->toArray($request),
+            'statuses' => $this->getStatuses()
         ];
     }
 }

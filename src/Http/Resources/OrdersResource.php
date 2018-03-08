@@ -3,11 +3,12 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use ChrisBraybrooke\ECommerce\Http\Resources\UserResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\OrderResource;
 
-class UsersResource extends ResourceCollection
+class OrdersResource extends ResourceCollection
 {
-    public $collects = UserResource::class;
+    public $collects = OrderResource::class;
 
     /**
      * Transform the resource collection into an array.

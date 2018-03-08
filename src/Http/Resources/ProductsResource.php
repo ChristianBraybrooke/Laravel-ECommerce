@@ -3,6 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ProductResource;
 
 class ProductsResource extends ResourceCollection
@@ -17,8 +18,11 @@ class ProductsResource extends ResourceCollection
      */
     public function toArray($request)
     {
+
+        $shop = new ShopResource($request);
         return [
             'data' => $this->collection,
+            'shop_data' => $shop->toArray($request)
         ];
     }
 }

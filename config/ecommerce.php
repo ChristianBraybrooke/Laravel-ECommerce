@@ -35,6 +35,9 @@ return [
       'media' => ChrisBraybrooke\ECommerce\Models\Media::class,
 
       //
+      'order' => ChrisBraybrooke\ECommerce\Models\Order::class,
+
+      //
       'page' => ChrisBraybrooke\ECommerce\Models\Page::class,
 
       //

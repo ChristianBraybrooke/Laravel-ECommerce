@@ -2,13 +2,13 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use ChrisBraybrooke\ECommerce\Models\CollectionType;
-use ChrisBraybrooke\ECommerce\Models\Collection;
+use App\CollectionType;
+use App\Collection;
 use Illuminate\Http\Request;
-use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
-use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypesResource;
-use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypeResource;
-use ChrisBraybrooke\ECommerce\Http\Requests\CollectionTypeRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CollectionTypesResource;
+use App\Http\Resources\CollectionTypeResource;
+use App\Http\Requests\CollectionTypeRequest;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
@@ -57,7 +57,7 @@ class ApiCollectionTypesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \ChrisBraybrooke\ECommerce\CollectionType  $collectionType
+     * @param  \App\CollectionType  $collectionType
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Collection $collection, CollectionType $type)
@@ -70,16 +70,14 @@ class ApiCollectionTypesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ChrisBraybrooke\ECommerce\CollectionType  $collectionType
+     * @param  \App\CollectionType  $collectionType
      * @return \Illuminate\Http\Response
      */
     public function update(CollectionTypeRequest $request, Collection $collection, CollectionType $type)
     {
         $this->authorize('update', $type);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ?
-        Carbon::now()->subMinute()->toDateTimeString() : null) :
-        $type->live_at['date'];
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $type->live_at['date'];
 
         $type->update([
             'name' => $request->name ?: $type->name,
@@ -98,17 +96,11 @@ class ApiCollectionTypesController extends Controller
             }
         }
 
-        if ($request->filled('main_img')) {
-            if (!empty($request->main_img)) {
-                $main_img = $request->main_img;
-                if (is_array($main_img) && array_key_exists(0, $main_img)) {
-                    $main_img = $request->main_img[0];
-                }
-                $type->media()->sync([$main_img['id'] => ['media_location' => 'main_img']]);
-            } else {
-                $type->media()->location('main_img')->detach();
-            }
-        }
+        $type->syncMedia([
+            'main_img' => $request->main_img,
+            'secondary_img' => $request->secondary_img,
+            'third_img' => $request->third_img,
+        ]);
 
         $type->load($request->with ?: []);
 
@@ -169,7 +161,7 @@ class ApiCollectionTypesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \ChrisBraybrooke\ECommerce\CollectionType  $collectionType
+     * @param  \App\CollectionType  $collectionType
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, Collection $collection, CollectionType $type)

@@ -8,8 +8,10 @@ use Artisan;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 use ChrisBraybrooke\ECommerce\Contracts\Collection as CollectionContract;
 use ChrisBraybrooke\ECommerce\Contracts\CollectionType as CollectionTypeContract;
+use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
+use Product;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -35,6 +37,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->handleRoutes();
         $this->handleTranslations();
         $this->registerModelBindings();
+        $this->registerHelpers();
 
         // Make public assets available
         $this->publishes([
@@ -72,6 +75,10 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->app->bind(CollectionTypeContract::class, $config['collection_type']);
         $loader->alias('CollectionType', $config['collection_type']);
 
+        // Order
+        $this->app->bind(OrderContract::class, $config['order']);
+        $loader->alias('Order', $config['order']);
+
         // Shop
         $loader->alias('Shop', Shop::class);
     }
@@ -88,6 +95,17 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     }
 
     /**
+     * Register helpers file
+     */
+    public function registerHelpers()
+    {
+        // Load the helpers.php
+        if (file_exists($file = __DIR__ . '/helpers.php')) {
+            require $file;
+        }
+    }
+
+    /**
      * Setup the configuration.
      *
      * @return void
@@ -97,7 +115,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         Shop::setData([
             'site_url' => (string)env('APP_URL'),
             'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
-            'theme_color' => (string)env('THEME_COLOR', '#3db3b9')
+            'theme_color' => (string)env('THEME_COLOR', '#409eff')
         ]);
     }
 
@@ -182,6 +200,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/create_products_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_products_table.php'),
+            ], 'migrations');
+        }
+
+        if (! class_exists('CreateOrdersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_orders_table.php.stub' =>
+                database_path('migrations/'.date('Y_m_d_His', time()).'_create_orders_table.php'),
             ], 'migrations');
         }
 
@@ -286,6 +311,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         Route::group([
             'prefix' => config('ecommerce.api_uri', 'api/ecommerce'),
             'namespace' => 'ChrisBraybrooke\ECommerce\Http\Controllers\Api',
+            'middleware' => ['auth:api', 'bindings']
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         });

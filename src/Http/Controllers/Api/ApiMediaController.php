@@ -4,14 +4,14 @@ namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
-use ChrisBraybrooke\ECommerce\Http\Resources\MediaResource;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\MediaResource;
 use Validator;
 use Auth;
 use Image;
-use ChrisBraybrooke\ECommerce\Models\Media;
+use App\Media;
 use Illuminate\Support\Facades\Storage;
-use ChrisBraybrooke\ECommerce\Models\Gallery;
+use App\Gallery;
 
 class ApiMediaController extends Controller
 {

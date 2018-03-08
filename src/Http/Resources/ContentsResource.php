@@ -17,8 +17,10 @@ class ContentsResource extends ResourceCollection
      */
     public function toArray($request)
     {
+        $shop = new ShopResource($request);
         return [
             'data' => $this->collection,
+            'shop_data' => $shop->toArray($request)
         ];
     }
 }

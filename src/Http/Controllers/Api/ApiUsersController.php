@@ -4,16 +4,16 @@ namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use App\User;
 use Illuminate\Http\Request;
-use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
-use ChrisBraybrooke\ECommerce\Http\Resources\UserResource;
-use ChrisBraybrooke\ECommerce\Http\Resources\UsersResource;
-use ChrisBraybrooke\ECommerce\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\UsersResource;
+use App\Http\Requests\UserRequest;
 
 class ApiUsersController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
 
     /**
@@ -23,7 +23,7 @@ class ApiUsersController extends Controller
      */
     public function index(Request $request)
     {
-        // $this->authorize('index', User::class);
+        $this->authorize('index', User::class);
 
         $users = User::with($request->with ?: [])
                     ->withRole($request->withRole)
@@ -73,7 +73,7 @@ class ApiUsersController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ChrisBraybrooke\ECommerce\User  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, User $user)
@@ -89,7 +89,7 @@ class ApiUsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ChrisBraybrooke\ECommerce\User  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request, User $user)
@@ -125,7 +125,7 @@ class ApiUsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \ChrisBraybrooke\ECommerce\User  $user
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

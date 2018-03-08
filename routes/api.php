@@ -18,10 +18,11 @@ Route::apiResource('collections', 'ApiCollectionsController');
 Route::post('collections/bulk', 'ApiCollectionsController@bulkUpdate');
 
 // Collection Types
+Route::apiResource('collection-types', 'ApiTypesController');
 Route::apiResource('collections/{collection}/types', 'ApiCollectionTypesController');
 Route::post('collections/{collection}/types/bulk', 'ApiCollectionTypesController@bulkUpdate');
 
-// Collections
+// Products
 Route::apiResource('products', 'ApiProductsController');
 Route::post('products/bulk', 'ApiProductsController@bulkUpdate');
 
@@ -42,3 +43,7 @@ Route::delete('settings', 'ApiSettingsController@destroy');
 // Users
 Route::apiResource('users', 'ApiUsersController');
 Route::get('user', 'ApiUsersController@authUser');
+
+// Orders
+Route::apiResource('orders', 'ApiOrdersController');
+Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');

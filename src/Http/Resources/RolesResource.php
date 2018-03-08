@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\RoleResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\RoleResource;
 
 class RolesResource extends ResourceCollection
 {
@@ -17,8 +17,10 @@ class RolesResource extends ResourceCollection
      */
     public function toArray($request)
     {
+        $shop = new ShopResource($request);
         return [
             'data' => $this->collection,
+            'shop_data' => $shop->toArray($request)
         ];
     }
 }

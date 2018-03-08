@@ -2,7 +2,7 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use ChrisBraybrooke\ECommerce\Models\Collection;
+use Collection;
 use Illuminate\Http\Request;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
 use ChrisBraybrooke\ECommerce\Http\Resources\CollectionResource;
@@ -56,7 +56,7 @@ class ApiCollectionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \ChrisBraybrooke\ECommerce\Collection  $collection
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
     public function show(Collection $collection)
@@ -68,16 +68,14 @@ class ApiCollectionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ChrisBraybrooke\ECommerce\Collection  $collection
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
     public function update(CollectionRequest $request, Collection $collection)
     {
         $this->authorize('update', $collection);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ?
-        Carbon::now()->subMinute()->toDateTimeString() : null) :
-        $collection->live_at['date'];
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $collection->live_at['date'];
 
         if (is_null($live)) {
             $collection->types()->update([
@@ -161,7 +159,7 @@ class ApiCollectionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \ChrisBraybrooke\ECommerce\Collection  $collection
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
     public function destroy(Collection $collection)

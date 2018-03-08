@@ -64113,6 +64113,462 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
+		}
+
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__("./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/throttle-debounce/debounce.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -79643,8 +80099,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_color__ = __webpack_require__("./resources/assets/admin-spa/utils/color.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign__ = __webpack_require__("./node_modules/object-assign/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_object_assign__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 
 
 
@@ -79658,164 +80112,25 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default.a });
 
-window.site_url = 'www.toiletcubiclesonline.com';
-
 
 __WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
-  computed: {
-    getSiteBaseURL: function getSiteBaseURL(value) {
-      return ( true ? Object({"NODE_ENV":"development"}).MIX_LOCAL_URL : process.env.MIX_BUILD_URL) + '/';
+    computed: {
+        getSiteBaseURL: function getSiteBaseURL(value) {
+            return ecommerceConfig.site_url + '/';
+        }
     }
-  }
 });
 
 
 
 
 var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
-  router: __WEBPACK_IMPORTED_MODULE_3__router___["a" /* default */],
-  mounted: function mounted() {
-    // setTimeout(function(){ this.changeColor(); }.bind(this), 2000);
-  },
-  created: function created() {
-    this.getIndexStyle().then(function () {
-      this.tasks.push({ task: 1 });
-    }.bind(this));
-    this.getSeparatedStyles().then(function () {
-      this.tasks.push({ task: 2 });
-    }.bind(this));
-  },
-
-  el: '#app',
-  store: __WEBPACK_IMPORTED_MODULE_4__store_index_js__["a" /* default */],
-  render: function render(h) {
-    return h(__WEBPACK_IMPORTED_MODULE_5__admin_vue___default.a);
-  },
-  data: function data() {
-    return {
-      colors: {
-        primary: ecommerceConfig.theme_color
-      },
-      originalStylesheetCount: -1,
-      originalStyle: '',
-      primaryColor: '#409eff',
-      styleFiles: [],
-      tasks: []
-    };
-  },
-
-  watch: {
-    tasks: function tasks(value) {
-      if (value.length >= 2) {
-        //
-      }
+    router: __WEBPACK_IMPORTED_MODULE_3__router___["a" /* default */],
+    el: '#app',
+    store: __WEBPACK_IMPORTED_MODULE_4__store_index_js__["a" /* default */],
+    render: function render(h) {
+        return h(__WEBPACK_IMPORTED_MODULE_5__admin_vue___default.a);
     }
-  },
-  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_8_vuex__["b" /* mapActions */])([]), {
-    changeColor: function changeColor() {
-      console.log('Change');
-      this.primaryColor = this.colors.primary;
-      this.colors = __WEBPACK_IMPORTED_MODULE_10_object_assign___default()({}, this.colors, Object(__WEBPACK_IMPORTED_MODULE_9__utils_color__["a" /* default */])(this.colors.primary));
-      this.writeNewStyle();
-    },
-    writeNewStyle: function writeNewStyle() {
-      var _this = this;
-
-      var cssText = this.originalStyle;
-      Object.keys(this.colors).forEach(function (key) {
-        cssText = cssText.replace(new RegExp('(:|\\s+)' + key, 'g'), '$1' + _this.colors[key]);
-      });
-      if (this.originalStylesheetCount === document.styleSheets.length) {
-        var style = document.createElement('style');
-        style.innerText = cssText;
-        document.head.appendChild(style);
-      } else {
-        document.head.lastChild.innerText = cssText;
-      }
-    },
-    getIndexStyle: function getIndexStyle() {
-      var _this2 = this;
-
-      return new Promise(function (resolve, reject) {
-        _this2.getFile('/vendor/ecommerce/css/admin.css').then(function (_ref) {
-          var data = _ref.data;
-
-          _this2.originalStyle = _this2.getStyleTemplate(data);
-          resolve();
-        });
-      });
-    },
-    getStyleTemplate: function getStyleTemplate(data) {
-      var colorMap = {
-        '#3a8ee6': 'shade-1',
-        '#409eff': 'primary',
-        '#53a8ff': 'light-1',
-        '#66b1ff': 'light-2',
-        '#79bbff': 'light-3',
-        '#8cc5ff': 'light-4',
-        '#a0cfff': 'light-5',
-        '#b3d8ff': 'light-6',
-        '#c6e2ff': 'light-7',
-        '#d9ecff': 'light-8',
-        '#ecf5ff': 'light-9'
-      };
-      Object.keys(colorMap).forEach(function (key) {
-        var value = colorMap[key];
-        data = data.replace(new RegExp(key, 'ig'), value);
-      });
-      return data;
-    },
-    getSeparatedStyles: function getSeparatedStyles() {
-      var _this3 = this;
-
-      return new Promise(function (resolve, reject) {
-        _this3.getFile('//unpkg.com/element-ui/lib/theme-chalk/').then(function (_ref2) {
-          var data = _ref2.data;
-
-          return data.match(/href="[\w-]+\.css"/g).map(function (str) {
-            return str.split('"')[1];
-          });
-        }).then(function (styleFiles) {
-          return Promise.all(styleFiles.map(function (file) {
-            return _this3.getFile('//unpkg.com/element-ui/lib/theme-chalk/' + file);
-          }));
-        }).then(function (files) {
-          _this3.styleFiles = files.map(function (file) {
-            return {
-              name: file.url,
-              data: _this3.getStyleTemplate(file.data)
-            };
-          });
-          resolve();
-        });
-      });
-    },
-    getFile: function getFile(url) {
-      var isBlob = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-      return new Promise(function (resolve, reject) {
-        var client = new XMLHttpRequest();
-        client.responseType = isBlob ? 'blob' : '';
-        client.onreadystatechange = function () {
-          if (client.readyState !== 4) {
-            return;
-          }
-          if (client.status === 200) {
-            var urlArr = client.responseURL.split('/');
-            resolve({
-              data: client.response,
-              url: urlArr[urlArr.length - 1]
-            });
-          } else {
-            reject(new Error(client.statusText));
-          }
-        };
-        client.open('GET', url);
-        client.send();
-      });
-    }
-  }),
-  components: {}
 });
 
 /***/ }),
@@ -80597,7 +80912,7 @@ var generateColors = function generateColors(primary) {
   return colors;
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (generateColors);
+/* unused harmony default export */ var _unused_webpack_default_export = (generateColors);
 
 /***/ }),
 

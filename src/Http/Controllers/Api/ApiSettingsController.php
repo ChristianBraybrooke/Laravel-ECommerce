@@ -3,8 +3,9 @@
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Setting;
+use Artisan;
 
 class ApiSettingsController extends Controller
 {
@@ -41,6 +42,8 @@ class ApiSettingsController extends Controller
             Setting::set($key, $setting);
         }
 
+        Artisan::call('view:clear');
+
         return ['data' => Setting::all()];
     }
 
@@ -57,6 +60,8 @@ class ApiSettingsController extends Controller
             'value' => 'required'
         ]);
 
+        Artisan::call('view:clear');
+
         return Setting::set($request->key, $request->value);
     }
 
@@ -71,6 +76,8 @@ class ApiSettingsController extends Controller
         $this->validate($request, [
             'key' => 'required',
         ]);
+
+        Artisan::call('view:clear');
 
         return Setting::forget($request->key);
     }

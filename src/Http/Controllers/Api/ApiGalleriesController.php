@@ -3,12 +3,12 @@
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
-use ChrisBraybrooke\ECommerce\Http\Resources\MediasResource;
-use ChrisBraybrooke\ECommerce\Http\Resources\GalleryResource;
-use ChrisBraybrooke\ECommerce\Http\Resources\GalleriesResource;
-use ChrisBraybrooke\ECommerce\Http\Requests\GalleryRequest;
-use ChrisBraybrooke\ECommerce\Models\Gallery;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\MediasResource;
+use App\Http\Resources\GalleryResource;
+use App\Http\Resources\GalleriesResource;
+use App\Http\Requests\GalleryRequest;
+use App\Gallery;
 
 class ApiGalleriesController extends Controller
 {

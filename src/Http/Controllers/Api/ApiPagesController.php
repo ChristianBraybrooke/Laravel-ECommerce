@@ -2,12 +2,12 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use ChrisBraybrooke\ECommerce\Models\Page;
+use App\Page;
 use Illuminate\Http\Request;
-use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
-use ChrisBraybrooke\ECommerce\Http\Resources\PageResource;
-use ChrisBraybrooke\ECommerce\Http\Resources\PagesResource;
-use ChrisBraybrooke\ECommerce\Http\Requests\PageRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PageResource;
+use App\Http\Resources\PagesResource;
+use App\Http\Requests\PageRequest;
 use Carbon\Carbon;
 
 class ApiPagesController extends Controller
@@ -53,7 +53,7 @@ class ApiPagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \ChrisBraybrooke\ECommerce\Page  $page
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Page $page)
@@ -67,16 +67,14 @@ class ApiPagesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ChrisBraybrooke\ECommerce\Page  $page
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function update(PageRequest $request, Page $page)
     {
         $this->authorize('update', $page);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ?
-        Carbon::now()->subMinute()->toDateTimeString() : null) :
-        $page->live_at['date'];
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $page->live_at['date'];
 
         $page->update([
             'name' => $request->name,
@@ -94,6 +92,10 @@ class ApiPagesController extends Controller
             }
         }
 
+        $page->syncMedia([
+            'main_img' => $request->filled('main_img') ? $request->main_img : null
+        ]);
+
         $page->load($request->with ?: []);
 
         return new PageResource($page);
@@ -102,7 +104,7 @@ class ApiPagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \ChrisBraybrooke\ECommerce\Page  $page
+     * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
     public function destroy(Page $page)

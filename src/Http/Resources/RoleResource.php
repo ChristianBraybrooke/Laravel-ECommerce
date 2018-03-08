@@ -3,6 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 
 class RoleResource extends Resource
 {
@@ -17,6 +18,20 @@ class RoleResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+        ];
+    }
+
+    /**
+     * Get additional data that should be returned with the resource array.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function with($request)
+    {
+        $shop = new ShopResource($request);
+        return [
+            'shop_data' => $shop->toArray($request)
         ];
     }
 }

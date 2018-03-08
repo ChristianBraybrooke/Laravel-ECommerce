@@ -2,16 +2,17 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use ChrisBraybrooke\ECommerce\Models\Product;
+use Product;
 use Illuminate\Http\Request;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
 use ChrisBraybrooke\ECommerce\Http\Resources\ProductResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ProductsResource;
 use ChrisBraybrooke\ECommerce\Http\Requests\ProductRequest;
-use ChrisBraybrooke\ECommerce\Models\ProductCustomisationOption;
-use ChrisBraybrooke\ECommerce\Models\Collection;
-use ChrisBraybrooke\ECommerce\Models\CollectionType;
+use ChrisBraybrooke\ECommerce\ProductCustomisationOption;
+use Collection;
+use CollectionType;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class ApiProductsController extends Controller
 {
@@ -41,7 +42,7 @@ class ApiProductsController extends Controller
      */
     public function store(ProductRequest $request, Product $product)
     {
-        $this->authorize('create', Product::class);
+        // $this->authorize('create', Product::class);
 
         $live = ($request->filled('live') && $request->live) ? Carbon::now()->subMinute()->toDateTimeString() : null;
 
@@ -57,7 +58,7 @@ class ApiProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \ChrisBraybrooke\ECommerce\Product  $product
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Product $product)
@@ -71,19 +72,20 @@ class ApiProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \ChrisBraybrooke\ECommerce\Product  $product
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, Product $product)
     {
         $this->authorize('update products', $product);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ?
-        Carbon::now()->subMinute()->toDateTimeString() : null) :
-        $product->live_at['date'];
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $product->live_at['date'];
 
         $product->update([
             'name' => $request->name,
+            'price' => $request->price,
+            'list_in_shop' => $request->list_in_shop,
+            'featured' => $request->featured,
             'live_at' => $live,
         ]);
 
@@ -148,6 +150,7 @@ class ApiProductsController extends Controller
 
         $product->syncMedia([
             'main_img' => $request->main_img,
+            'gallery' => $request->input('gallery.data'),
             'customisation_base_img' => $request->customisation_base_img
         ]);
 
@@ -162,12 +165,7 @@ class ApiProductsController extends Controller
                         $collection = Collection::find($collectionId);
                         $col = $collection->types->where('name', 'LIKE', $collectionType)->first();
                         if (empty($col)) {
-                            $col = $collection->types()->create([
-                                'name' => $collectionType,
-                                'individual_name' => null,
-                                'slug' => null,
-                                'live_at' => Carbon::now()->toDateTimeString()
-                            ]);
+                            $col = $collection->types()->create(['name' => $collectionType, 'individual_name' => null, 'slug' => null, 'live_at' => Carbon::now()->toDateTimeString()]);
                         }
                         $newCollectionTypeSync[] = $col->id;
                     } elseif (is_int($collectionType)) {
@@ -238,7 +236,7 @@ class ApiProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \ChrisBraybrooke\ECommerce\Product  $product
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
