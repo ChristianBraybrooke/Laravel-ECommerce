@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Policies;
 
 use App\User;
-use App\Page;
+use Page;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Carbon\Carbon;
 

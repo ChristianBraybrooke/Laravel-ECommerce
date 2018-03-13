@@ -2,12 +2,12 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use App\Page;
+use Page;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\PageResource;
-use App\Http\Resources\PagesResource;
-use App\Http\Requests\PageRequest;
+use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Resources\PageResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\PagesResource;
+use ChrisBraybrooke\ECommerce\Http\Requests\PageRequest;
 use Carbon\Carbon;
 
 class ApiPagesController extends Controller
@@ -37,7 +37,7 @@ class ApiPagesController extends Controller
      */
     public function store(PageRequest $request, Page $page)
     {
-        $this->authorize('create', Page::class);
+        $this->authorize('create', get_class($page));
 
         $live = ($request->filled('live') && $request->live) ? Carbon::now()->subMinute()->toDateTimeString() : null;
 

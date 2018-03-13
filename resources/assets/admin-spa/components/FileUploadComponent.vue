@@ -67,7 +67,7 @@ export default {
 
           uploadUrl()
           {
-              const BASE_URL = (process.env.NODE_ENV === 'development' ? process.env.MIX_LOCAL_URL : process.env.MIX_BUILD_URL) + '/' + process.env.MIX_API_PREFIX;
+              const BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/';
               return BASE_URL + 'media/upload';
           },
 

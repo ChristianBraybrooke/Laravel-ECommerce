@@ -12,7 +12,6 @@ use Storage;
 class Media extends BaseMedia
 {
     use LogsActivity, ResponsableTrait, FormatDatesTrait;
-
     /**
      * Santize the original file name provided by the user
      *
@@ -23,7 +22,6 @@ class Media extends BaseMedia
     {
         return strtolower(str_replace(['#', '/', '\\', ' '], '-', $name));
     }
-
     /**
      * Generate the thumbnail file name
      *
@@ -35,7 +33,17 @@ class Media extends BaseMedia
         $name = $name ?: $this->name;
         return $this->sanitizeName($name) . '-thumbnail';
     }
-
+    /**
+     * Generate the square file name
+     *
+     * @param String $name
+     * @return String
+     */
+    public function squareName($name = null)
+    {
+        $name = $name ?: $this->name;
+        return $this->sanitizeName($name) . '-square';
+    }
     /**
      * Generate the header file name
      *
@@ -47,7 +55,6 @@ class Media extends BaseMedia
         $name = $name ?: $this->name;
         return $this->sanitizeName($name) . '-header';
     }
-
     /**
      * Generate the panel file name
      *
@@ -59,7 +66,6 @@ class Media extends BaseMedia
         $name = $name ?: $this->name;
         return $this->sanitizeName($name) . '-panel';
     }
-
     /**
      * Generate the listing file name
      *
@@ -71,7 +77,17 @@ class Media extends BaseMedia
         $name = $name ?: $this->name;
         return $this->sanitizeName($name) . '-listing';
     }
-
+    /**
+     * Generate the advert file name
+     *
+     * @param String $name
+     * @return String
+     */
+    public function advertName($name = null)
+    {
+        $name = $name ?: $this->name;
+        return $this->sanitizeName($name) . '-advert';
+    }
     /**
      * Determine whether the file is an image
      *
@@ -80,10 +96,8 @@ class Media extends BaseMedia
     public function isImage()
     {
         $type = $this->mime_type;
-
         return $type === 'image/pjpeg' || $type === 'image/jpeg' || $type === 'image/png' || $type === 'image/jpg';
     }
-
     /**
      * Get conversion url from a shortened conversion name.
      *
@@ -96,31 +110,30 @@ class Media extends BaseMedia
             case 'header':
                 $mediaConversion = $this->headerName();
                 break;
-
             case 'thumb':
                 $mediaConversion = $this->thumbName();
                 break;
-
+            case 'square':
+                $mediaConversion = $this->squareName();
+                break;
             case 'panel':
                 $mediaConversion = $this->panelName();
                 break;
-
             case 'listing':
                 $mediaConversion = $this->listingName();
                 break;
-
+            case 'advert':
+                $mediaConversion = $this->advertName();
+                break;
             case 'optimised':
                 $mediaConversion = "{$this->name}-web";
                 break;
-
             default:
                 $mediaConversion = $this->headerName();
                 break;
         }
-
         return $this->getConversion($mediaConversion) ?: $this->getUrl();
     }
-
     /**
      * Get the various converstion url's if the exsist in the file system
      *
@@ -132,7 +145,6 @@ class Media extends BaseMedia
         if ($this->isImage()) {
             $type = $type ?: $this->thumbName($this->name);
             $path = $this->getPath($type);
-
             return $this->getUrl($type);
         } elseif ($this->mime_type === 'application/pdf') {
             return Storage::disk('public')->url('pdf_icon.jpg');
@@ -140,7 +152,6 @@ class Media extends BaseMedia
             return Storage::disk('public')->url('file_icon.jpg');
         }
     }
-
     /**
      * Add a location scope to the query
      *

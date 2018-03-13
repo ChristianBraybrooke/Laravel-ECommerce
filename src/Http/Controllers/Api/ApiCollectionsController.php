@@ -39,7 +39,7 @@ class ApiCollectionsController extends Controller
      */
     public function store(CollectionRequest $request, Collection $collection)
     {
-        $this->authorize('create', Collection::class);
+        $this->authorize('create', get_class($collection));
 
         $live = ($request->filled('live') && $request->live) ? Carbon::now()->subMinute()->toDateTimeString() : null;
 
@@ -113,7 +113,7 @@ class ApiCollectionsController extends Controller
      */
     public function bulkUpdate(Request $request)
     {
-        $this->authorize('bulkUpdate', Collection::class);
+        $this->authorize('bulkUpdate', get_class(new Collection()));
 
         $actions = ['delete', 'live', 'draft', 'print_queue'];
 

@@ -42,7 +42,7 @@ class ApiProductsController extends Controller
      */
     public function store(ProductRequest $request, Product $product)
     {
-        // $this->authorize('create', Product::class);
+        $this->authorize('create', get_class($product));
 
         $live = ($request->filled('live') && $request->live) ? Carbon::now()->subMinute()->toDateTimeString() : null;
 
@@ -190,7 +190,7 @@ class ApiProductsController extends Controller
      */
     public function bulkUpdate(Request $request, Collection $collection)
     {
-        $this->authorize('bulkUpdate', CollectionType::class);
+        $this->authorize('bulkUpdate', get_class(new CollectionType()));
 
         $actions = ['delete', 'live', 'draft', 'print_queue'];
 

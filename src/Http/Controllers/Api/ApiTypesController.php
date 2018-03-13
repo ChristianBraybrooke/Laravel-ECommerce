@@ -2,11 +2,11 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use App\CollectionType;
+use CollectionType;
 use Illuminate\Http\Request;
-use App\Http\Resources\CollectionTypesResource;
-use App\Http\Resources\CollectionTypeResource;
-use App\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypesResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypeResource;
+use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
 
 class ApiTypesController extends Controller
 {

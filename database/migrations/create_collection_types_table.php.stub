@@ -26,6 +26,8 @@ class CreateCollectionTypesTable extends Migration
                 $table->integer('collection_id')->unsigned();
                 $table->text('meta')->nullable()->default(null);
                 $table->integer('list_order')->nullable()->default(null);
+                $table->boolean('in_index')->default(true);
+                $table->integer('header_order')->nullable()->default(null);
                 $table->softDeletes();
                 $table->timestamps();
 

@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Policies;
 
 use App\User;
-use App\Product;
+use Product;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProductsPolicy

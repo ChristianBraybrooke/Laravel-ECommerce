@@ -4,10 +4,10 @@ namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use App\Http\Resources\UsersResource;
-use App\Http\Requests\UserRequest;
+use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Resources\UserResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\UsersResource;
+use ChrisBraybrooke\ECommerce\Http\Requests\UserRequest;
 
 class ApiUsersController extends Controller
 {

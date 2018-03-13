@@ -3,11 +3,13 @@
 namespace ChrisBraybrooke\ECommerce\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Contracts\ProductCustomisation as ProductCustomisationContract;
 
-class ProductCustomisation extends Model
+class ProductCustomisation extends Model implements ProductCustomisationContract
 {
     use LogsActivity, ResponsableTrait, FormatDatesTrait;
 
@@ -44,7 +46,7 @@ class ProductCustomisation extends Model
      *
      * @return ChrisBraybrooke\ECommerce\ProductCustomisationOption
      */
-    public function options()
+    public function options(): HasMany
     {
         return $this->hasMany(config('ecommerce.models.product_customisation_option'));
     }

@@ -71,7 +71,7 @@ var replace = __webpack_require__("./node_modules/lodash.replace/index.js");
 
     computed: {
         uploadUrl: function uploadUrl() {
-            var BASE_URL = ( true ? Object({"NODE_ENV":"development"}).MIX_LOCAL_URL : process.env.MIX_BUILD_URL) + '/' + Object({"NODE_ENV":"development"}).MIX_API_PREFIX;
+            var BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/';
             return BASE_URL + 'media/upload';
         },
         uploadHeaders: function uploadHeaders() {

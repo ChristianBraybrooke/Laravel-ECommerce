@@ -14,11 +14,10 @@ class CreateProductsTable extends Migration
     public function up()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-
             Schema::create('products', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('name')->nullable();
-                $table->string('price')->nullable();
+                $table->integer('price')->nullable()->default(null);
                 $table->integer('variant_id')->unsigned()->nullable();
                 $table->boolean('use_variant_data')->nullable();
                 $table->boolean('use_variant_customisation')->nullable()->default(null);
@@ -26,10 +25,17 @@ class CreateProductsTable extends Migration
                 $table->boolean('list_in_shop')->nullable()->default(null);
                 $table->string('slug')->nullable();
                 $table->timestamp('live_at')->nullable()->default(null);
+                $table->boolean('can_customise_width')->default(false);
+                $table->boolean('can_customise_height')->default(false);
+                $table->boolean('can_customise_depth')->default(false);
+                $table->string('measurement_unit')->nullable()->default(null);
+                $table->string('width')->nullable()->default(null);
+                $table->string('height')->nullable()->default(null);
+                $table->string('depth')->nullable()->default(null);
+                $table->boolean('featured')->default(false);
                 $table->softDeletes();
                 $table->timestamps();
             });
-
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 

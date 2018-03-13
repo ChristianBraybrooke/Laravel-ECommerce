@@ -17,7 +17,6 @@ use Carbon\Carbon;
 class Gallery extends Model implements HasMediaConversions
 {
     use LogsActivity, ResponsableTrait, HasMediaTrait, FormatDatesTrait;
-
     /**
      * The "booting" method of the model.
      *
@@ -26,10 +25,8 @@ class Gallery extends Model implements HasMediaConversions
     protected static function boot()
     {
         parent::boot();
-
         static::addGlobalScope(new LiveScope);
     }
-
     /**
      * Register any media converstions that need to happen on upload.
      *
@@ -56,6 +53,13 @@ class Gallery extends Model implements HasMediaConversions
                   ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
                   ->crop(Manipulations::CROP_CENTER, 500, 500);
 
+            $this->addMediaConversion($media->squareName())
+                  ->watermark($watermark)
+                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                  ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
+                  ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
+                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                  ->crop(Manipulations::CROP_CENTER, 800, 800);
 
             $this->addMediaConversion($media->headerName())
                   ->watermark($watermark)
@@ -63,7 +67,7 @@ class Gallery extends Model implements HasMediaConversions
                   ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
                   ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
                   ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                  ->crop(Manipulations::CROP_CENTER, 1770, 600);
+                  ->focalCrop(1770, 800, 0, 57);
 
             $this->addMediaConversion($media->panelName())
                   ->watermark($watermark)
@@ -80,9 +84,11 @@ class Gallery extends Model implements HasMediaConversions
                   ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
                   ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
                   ->crop(Manipulations::CROP_CENTER, 1000, 667);
+                  
+            $this->addMediaConversion($media->advertName())
+                  ->crop(Manipulations::CROP_CENTER, 1600, 300);
         }
     }
-
     /**
      * The attributes to log when changes are made.
      *
@@ -91,7 +97,6 @@ class Gallery extends Model implements HasMediaConversions
     protected static $logAttributes = [
         'id', 'name', 'public', 'default'
     ];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -100,7 +105,6 @@ class Gallery extends Model implements HasMediaConversions
     protected $fillable = [
         'name', 'public'
     ];
-
     /**
      * The attributes that should be mutated to dates.
      *
@@ -109,7 +113,6 @@ class Gallery extends Model implements HasMediaConversions
     protected $dates = [
         'public'
     ];
-
     /**
      * The attributes that should be cast to native types.
      *
@@ -118,7 +121,6 @@ class Gallery extends Model implements HasMediaConversions
     protected $casts = [
         'default' => 'boolean',
     ];
-
     /**
      * Set default event log message.
      *

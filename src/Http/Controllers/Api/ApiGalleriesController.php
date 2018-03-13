@@ -3,12 +3,12 @@
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\MediasResource;
-use App\Http\Resources\GalleryResource;
-use App\Http\Resources\GalleriesResource;
-use App\Http\Requests\GalleryRequest;
-use App\Gallery;
+use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Resources\MediasResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\GalleryResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\GalleriesResource;
+use ChrisBraybrooke\ECommerce\Http\Requests\GalleryRequest;
+use Gallery;
 
 class ApiGalleriesController extends Controller
 {
@@ -37,7 +37,7 @@ class ApiGalleriesController extends Controller
      */
     public function store(GalleryRequest $request, Gallery $gallery)
     {
-        $this->authorize('create', Gallery::class);
+        $this->authorize('create', get_class($gallery));
 
         $gallery = $gallery->create([
             'name' => $request->name,

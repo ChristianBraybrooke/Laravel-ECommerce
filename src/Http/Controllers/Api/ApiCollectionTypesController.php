@@ -2,13 +2,13 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use App\CollectionType;
-use App\Collection;
+use CollectionType;
+use Collection;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\CollectionTypesResource;
-use App\Http\Resources\CollectionTypeResource;
-use App\Http\Requests\CollectionTypeRequest;
+use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypesResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\CollectionTypeResource;
+use ChrisBraybrooke\ECommerce\Http\Requests\CollectionTypeRequest;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
@@ -40,7 +40,7 @@ class ApiCollectionTypesController extends Controller
      */
     public function store(CollectionTypeRequest $request, Collection $collection)
     {
-        $this->authorize('create', CollectionType::class);
+        $this->authorize('create', get_class(new CollectionType()));
 
         $live = ($request->filled('live') && $request->live) ? Carbon::now()->subMinute()->toDateTimeString() : null;
 
@@ -115,7 +115,7 @@ class ApiCollectionTypesController extends Controller
      */
     public function bulkUpdate(Request $request, Collection $collection)
     {
-        $this->authorize('bulkUpdate', CollectionType::class);
+        $this->authorize('bulkUpdate', get_class(new CollectionType()));
 
         $actions = ['delete', 'live', 'draft', 'print_queue'];
 

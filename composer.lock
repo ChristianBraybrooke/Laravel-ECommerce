@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c628fbc9363d932eb6c794d56677d300",
+    "content-hash": "f9ad2f9b51868dab66457e868c1e0c91",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -112,6 +112,51 @@
             ],
             "description": "Persistent settings in Laravel.",
             "time": "2017-11-08T18:16:13+00:00"
+        },
+        {
+            "name": "bjeavons/zxcvbn-php",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bjeavons/zxcvbn-php.git",
+                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bjeavons/zxcvbn-php/zipball/331a88932d1a399c989967d3399a4a40eb182fd5",
+                "reference": "331a88932d1a399c989967d3399a4a40eb182fd5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "satooshi/php-coveralls": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ZxcvbnPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://github.com/bjeavons/zxcvbn-php"
+                }
+            ],
+            "description": "Realistic password strength estimation PHP library based on Zxcvbn JS",
+            "homepage": "https://github.com/bjeavons/zxcvbn-php",
+            "keywords": [
+                "password",
+                "zxcvbn"
+            ],
+            "time": "2017-01-06T15:43:33+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -933,6 +978,69 @@
                 "time"
             ],
             "time": "2018-02-28T09:22:05+00:00"
+        },
+        {
+            "name": "olssonm/l5-zxcvbn",
+            "version": "v3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/olssonm/l5-zxcvbn.git",
+                "reference": "2a2473f84c44a440a297aa1e9acfa0d5c57af6b6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/olssonm/l5-zxcvbn/zipball/2a2473f84c44a440a297aa1e9acfa0d5c57af6b6",
+                "reference": "2a2473f84c44a440a297aa1e9acfa0d5c57af6b6",
+                "shasum": ""
+            },
+            "require": {
+                "bjeavons/zxcvbn-php": "0.3.0",
+                "illuminate/support": "~5.3|~5.4|~5.5|~5.6",
+                "php": ">=5.6.0|>=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.3|~3.4|~3.5|~3.6",
+                "phpunit/phpunit": "5.7.*|~6.0|~7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Olssonm\\Zxcvbn\\ZxcvbnServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Olssonm\\Zxcvbn\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Olsson",
+                    "email": "contact@marcusolsson.me",
+                    "homepage": "https://marcusolsson.me"
+                }
+            ],
+            "description": "Implementation of the zxcvbn project by @dropbox for Laravel 5. Uses zxcvbn-php by @bjeavons.",
+            "homepage": "https://github.com/olssonm/l5-zxcvbn",
+            "keywords": [
+                "laravel",
+                "olssonm",
+                "passwords",
+                "security",
+                "staple horse battery",
+                "validation",
+                "zxcvbn"
+            ],
+            "time": "2018-02-14T09:12:03+00:00"
         },
         {
             "name": "paragonie/random_compat",

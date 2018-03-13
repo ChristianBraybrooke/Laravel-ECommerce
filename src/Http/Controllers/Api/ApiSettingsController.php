@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
 use Setting;
 use Artisan;
 

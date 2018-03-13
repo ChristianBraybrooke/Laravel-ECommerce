@@ -21,7 +21,6 @@ use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 
 class Product extends Model implements ProductContract
 {
-
     use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
         HasContentAttached;
 
@@ -35,6 +34,19 @@ class Product extends Model implements ProductContract
         parent::boot();
 
         static::addGlobalScope(new LiveScope);
+    }
+
+    /**
+     * Which collumns to use for search.
+     *
+     * @return array
+     */
+    private function responsableOrderByAlias()
+    {
+        return [
+          'name' => 'name',
+          'price' => 'price',
+        ];
     }
 
     /**
@@ -79,7 +91,8 @@ class Product extends Model implements ProductContract
      */
     protected $fillable = [
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
-        'list_in_shop'
+        'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
+        'measurement_unit', 'width', 'height', 'depth'
     ];
 
     /**
@@ -89,7 +102,8 @@ class Product extends Model implements ProductContract
      */
     protected static $logAttributes = [
         'id', 'name', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
-        'list_in_shop'
+        'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
+        'measurement_unit', 'width', 'height', 'depth'
     ];
 
     /**
@@ -99,7 +113,12 @@ class Product extends Model implements ProductContract
      */
     protected $casts = [
         'use_variant_data' => 'boolean',
-        'use_variant_customisation' => 'boolean'
+        'list_in_shop' => 'boolean',
+        'featured' => 'boolean',
+        'use_variant_customisation' => 'boolean',
+        'can_customise_width' => 'boolean',
+        'can_customise_height' => 'boolean',
+        'can_customise_depth' => 'boolean',
     ];
 
     /**
@@ -110,6 +129,36 @@ class Product extends Model implements ProductContract
     protected $dates = [
         'live_at'
     ];
+
+    /**
+     * Get the identifier of the Buyable item.
+     *
+     * @return int|string
+     */
+    public function getBuyableIdentifier($options = null)
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the description or title of the Buyable item.
+     *
+     * @return string
+     */
+    public function getBuyableDescription($options = null)
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get the price of the Buyable item.
+     *
+     * @return float
+     */
+    public function getBuyablePrice($options = null)
+    {
+        return $this->price;
+    }
 
     /**
      * Set default event log message.
@@ -124,7 +173,7 @@ class Product extends Model implements ProductContract
     /**
      * The collection types that this product is associated with.
      *
-     * @return ChrisBraybrooke\ECommerce\CollectionType
+     * @return App\CollectionType
      */
     public function collectionTypes(): BelongsToMany
     {
@@ -138,7 +187,7 @@ class Product extends Model implements ProductContract
     /**
      * The collection types that this product is associated with.
      *
-     * @return ChrisBraybrooke\ECommerce\ProductCustomisation
+     * @return App\ProductCustomisation
      */
     public function customisations(): HasMany
     {
@@ -149,7 +198,7 @@ class Product extends Model implements ProductContract
      * Add a scope to pull products that belong to a certain collectiontype
      *
      * @param $query
-     * @param ChrisBraybrooke\ECommerce\CollectionType $collection_type
+     * @param App\CollectionType $collection_type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWhereCollectionType($query, CollectionType $collection_type)
@@ -219,7 +268,7 @@ class Product extends Model implements ProductContract
     /**
     * If the pruct is a variant then what is a variant of?
     *
-    * @return ChrisBraybrooke\ECommerce\Product
+    * @return App\Product
     */
     public function variant(): BelongsTo
     {
@@ -229,7 +278,7 @@ class Product extends Model implements ProductContract
     /**
     * If the pruct is a variant then what is a variant of?
     *
-    * @return ChrisBraybrooke\ECommerce\Product
+    * @return App\Product
     */
     public function getIsVariantAttribute()
     {
@@ -237,12 +286,63 @@ class Product extends Model implements ProductContract
     }
 
     /**
+    * Return the price attribute in the correct format.
+    *
+    * @return App\Product
+    */
+    public function getPriceAttribute($value)
+    {
+        return is_null($value) ? null : priceFormatter(($value / 100));
+    }
+
+    /**
+    * Return the price attribute in the correct format.
+    *
+    * @return App\Product
+    */
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = (int)number_format(((int)$value * 100), 0, '', '');
+    }
+
+    /**
+    * Can the product be customised?
+    *
+    * @return App\Product
+    */
+    public function getCanCustomiseAttribute($value)
+    {
+        return $this->use_variant_customisation ? $this->variant->can_customise : $value;
+    }
+
+    /**
     * Display any variants of this product.
     *
-    * @return ChrisBraybrooke\ECommerce\Product
+    * @return App\Product
     */
     public function variants(): HasMany
     {
         return $this->hasMany(config('ecommerce.models.product'), 'variant_id', 'id');
+    }
+
+    /**
+    * Display google tag manager array.
+    *
+    * @param $key
+    * @return array
+    */
+    public function gtm($key = null, $extra = [])
+    {
+        $default = [
+            'name' => $this->variant ? $this->variant->name : $this->name,
+            'id' => $this->id,
+            'price' => $this->price,
+            // 'category': 'Apparel',
+            'variant' => $this->variant ?  $this->name : '',
+            // 'list': 'Search Results',
+            'position' => $key
+        ];
+
+        return array_merge($default, $extra);
     }
 }

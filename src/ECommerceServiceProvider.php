@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Artisan;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
+use ChrisBraybrooke\ECommerce\Contracts\ProductCustomisation as ProductCustomisationContract;
 use ChrisBraybrooke\ECommerce\Contracts\Collection as CollectionContract;
 use ChrisBraybrooke\ECommerce\Contracts\CollectionType as CollectionTypeContract;
 use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
@@ -39,6 +40,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->registerModelBindings();
         $this->registerHelpers();
 
+        $this->app->register('ChrisBraybrooke\ECommerce\AuthServiceProvider');
+
         // Make public assets available
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/ecommerce'),
@@ -63,10 +66,6 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $loader = AliasLoader::getInstance();
         $config = $this->app->config['ecommerce.models'];
 
-        // Product
-        $this->app->bind(ProductContract::class, $config['product']);
-        $loader->alias('Product', $config['product']);
-
         // Collection
         $this->app->bind(CollectionContract::class, $config['collection']);
         $loader->alias('Collection', $config['collection']);
@@ -75,9 +74,30 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->app->bind(CollectionTypeContract::class, $config['collection_type']);
         $loader->alias('CollectionType', $config['collection_type']);
 
+        // Content
+        $loader->alias('Content', $config['content']);
+
+        // Gallery
+        $loader->alias('Gallery', $config['gallery']);
+
+        // Product
+        $this->app->bind(ProductContract::class, $config['product']);
+        $loader->alias('Product', $config['product']);
+
+        // ProductCustomisation
+        $this->app->bind(ProductCustomisationContract::class, $config['product_customisation']);
+        $loader->alias('ProductCustomisation', $config['product_customisation']);
+
+        // ProductCustomisationOption
+        $this->app->bind(ProductCustomisationOption::class, $config['product_customisation_option']);
+        $loader->alias('ProductCustomisationOption', $config['product_customisation_option']);
+
         // Order
         $this->app->bind(OrderContract::class, $config['order']);
         $loader->alias('Order', $config['order']);
+
+        // Page
+        $loader->alias('Page', $config['page']);
 
         // Shop
         $loader->alias('Shop', Shop::class);
@@ -143,7 +163,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     public function provides()
     {
-        return [];
+        return [
+        ];
     }
 
     /**
@@ -193,6 +214,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/update_roles_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_update_roles_table.php'),
+            ], 'migrations');
+        }
+
+        if (! class_exists('UpdateUsersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/update_users_table.php.stub' =>
+                database_path('migrations/'.date('Y_m_d_His', time()).'_update_users_table.php'),
             ], 'migrations');
         }
 
