@@ -2,7 +2,7 @@
       <div v-loading="loading">
 
           <el-row align="middle">
-            <el-col :span="24"><h1 class="page_title">Account - {{ user.first_name + ' ' + user.last_name }}</h1></el-col>
+            <el-col :span="24"><h1 class="page_title">Account - {{ user.name.full }}</h1></el-col>
           </el-row>
 
           <hr class="page_hr">
@@ -15,13 +15,13 @@
 
                       <el-row :gutter="20">
                           <el-col :md="12" :sm="24">
-                              <el-form-item label="First Name" prop="first_name">
-                                  <el-input :autofocus="true" v-model="user.first_name"></el-input>
+                              <el-form-item label="First Name" prop="name.first">
+                                  <el-input :autofocus="true" v-model="user.name.first"></el-input>
                               </el-form-item>
                           </el-col>
                           <el-col :md="12" :sm="24">
-                              <el-form-item label="Last Name" prop="last_name">
-                                  <el-input v-model="user.last_name"></el-input>
+                              <el-form-item label="Last Name" prop="name.last">
+                                  <el-input v-model="user.name.last"></el-input>
                               </el-form-item>
                           </el-col>
                       </el-row>
@@ -86,7 +86,7 @@ export default {
                   var errorMsg = validator.feedback.warning ? validator.feedback.warning : validator.feedback.suggestions.join(' ');
                   return callback(new Error(errorMsg));
               } else if (!value) {
-                  return callback(new Error('Password is required'));
+                  return callback();
               } else {
                   callback();
               }

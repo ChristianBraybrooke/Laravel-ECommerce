@@ -88,7 +88,7 @@ export default {
                           resizable: true
                       },
                       {
-                          prop: 'name',
+                          prop: 'name.full',
                           sortable: true,
                           label: 'Name',
                           align: 'left',

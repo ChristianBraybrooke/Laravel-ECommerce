@@ -26,8 +26,8 @@ class ApiUsersController extends Controller
         $this->authorize('index', User::class);
 
         $users = User::with($request->with ?: [])
-                    ->withRole($request->withRole)
-                    ->basicResponse();
+                     ->withRole($request->withRole)
+                     ->basicResponse();
 
         return new UsersResource($users);
     }

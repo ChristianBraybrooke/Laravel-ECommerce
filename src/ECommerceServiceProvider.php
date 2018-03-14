@@ -13,6 +13,7 @@ use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
 use Product;
+use Illuminate\Support\Facades\View;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -41,6 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->registerHelpers();
 
         $this->app->register('ChrisBraybrooke\ECommerce\AuthServiceProvider');
+        $this->app->register('ChrisBraybrooke\ECommerce\EventServiceProvider');
 
         // Make public assets available
         $this->publishes([
@@ -201,6 +203,11 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'ecommerce');
 
         $this->publishes([__DIR__.'/../resources/views' => base_path('resources/views/vendor/ecommerce')]);
+
+        View::composer('ecommerce::pdfs.*', function ($view) {
+            $logo = getMediaFromSetting('Website Logo');
+            $view->with(compact(['logo']));
+        });
     }
 
     /**
@@ -337,9 +344,17 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         });
 
         Route::group([
+            'prefix' => 'ecommerce-templates',
+            'namespace' => 'ChrisBraybrooke\ECommerce\Http\Controllers',
+            'middleware' => ['web', 'auth']
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/templates.php');
+        });
+
+        Route::group([
             'prefix' => config('ecommerce.api_uri', 'api/ecommerce'),
             'namespace' => 'ChrisBraybrooke\ECommerce\Http\Controllers\Api',
-            'middleware' => ['auth:api', 'bindings']
+            'middleware' => ['bindings']
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
         });

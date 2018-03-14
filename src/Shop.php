@@ -23,6 +23,11 @@ class Shop
      */
     public static function dumpData()
     {
-        return self::$data ? collect(self::$data) : collect([]);
+        $additional_data = config('ecommerce.shopData');
+        return self::$data ? collect(
+            is_array($additional_data) ?
+            array_merge(self::$data, $additional_data) :
+            self::$data
+        ) : collect([]);
     }
 }

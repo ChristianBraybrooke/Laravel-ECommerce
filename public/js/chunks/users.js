@@ -81,7 +81,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
                     align: 'left',
                     resizable: true
                 }, {
-                    prop: 'name',
+                    prop: 'name.full',
                     sortable: true,
                     label: 'Name',
                     align: 'left',

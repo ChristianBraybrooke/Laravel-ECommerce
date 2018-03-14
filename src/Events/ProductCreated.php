@@ -9,7 +9,6 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use ChrisBraybrooke\ECommerce\Models\Product;
 
 class ProductCreated
 {
@@ -22,7 +21,7 @@ class ProductCreated
      *
      * @return void
      */
-    public function __construct(Product $product)
+    public function __construct($product)
     {
         $this->model = $product;
     }

@@ -9,7 +9,6 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use ChrisBraybrooke\ECommerce\Models\CollectionType;
 
 class CollectionTypeCreated
 {
@@ -22,7 +21,7 @@ class CollectionTypeCreated
      *
      * @return void
      */
-    public function __construct(CollectionType $collectionType)
+    public function __construct($collectionType)
     {
         $this->model = $collectionType;
     }

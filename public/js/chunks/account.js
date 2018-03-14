@@ -98,7 +98,7 @@ var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
                 var errorMsg = validator.feedback.warning ? validator.feedback.warning : validator.feedback.suggestions.join(' ');
                 return callback(new Error(errorMsg));
             } else if (!value) {
-                return callback(new Error('Password is required'));
+                return callback();
             } else {
                 callback();
             }
@@ -212,10 +212,7 @@ var render = function() {
         [
           _c("el-col", { attrs: { span: 24 } }, [
             _c("h1", { staticClass: "page_title" }, [
-              _vm._v(
-                "Account - " +
-                  _vm._s(_vm.user.first_name + " " + _vm.user.last_name)
-              )
+              _vm._v("Account - " + _vm._s(_vm.user.name.full))
             ])
           ])
         ],
@@ -270,17 +267,17 @@ var render = function() {
                           _c(
                             "el-form-item",
                             {
-                              attrs: { label: "First Name", prop: "first_name" }
+                              attrs: { label: "First Name", prop: "name.first" }
                             },
                             [
                               _c("el-input", {
                                 attrs: { autofocus: true },
                                 model: {
-                                  value: _vm.user.first_name,
+                                  value: _vm.user.name.first,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.user, "first_name", $$v)
+                                    _vm.$set(_vm.user.name, "first", $$v)
                                   },
-                                  expression: "user.first_name"
+                                  expression: "user.name.first"
                                 }
                               })
                             ],
@@ -297,16 +294,16 @@ var render = function() {
                           _c(
                             "el-form-item",
                             {
-                              attrs: { label: "Last Name", prop: "last_name" }
+                              attrs: { label: "Last Name", prop: "name.last" }
                             },
                             [
                               _c("el-input", {
                                 model: {
-                                  value: _vm.user.last_name,
+                                  value: _vm.user.name.last,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.user, "last_name", $$v)
+                                    _vm.$set(_vm.user.name, "last", $$v)
                                   },
-                                  expression: "user.last_name"
+                                  expression: "user.name.last"
                                 }
                               })
                             ],

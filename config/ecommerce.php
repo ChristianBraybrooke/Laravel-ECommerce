@@ -54,6 +54,10 @@ return [
 
       //
       'role' => ChrisBraybrooke\ECommerce\Models\Role::class,
-  ]
+  ],
+
+  'shopData' => [
+
+  ],
 
 ];

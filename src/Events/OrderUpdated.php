@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PageCreated
+class OrderUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -21,9 +21,9 @@ class PageCreated
      *
      * @return void
      */
-    public function __construct($page)
+    public function __construct($order)
     {
-        $this->model = $page;
+        $this->model = $order;
     }
 
     /**

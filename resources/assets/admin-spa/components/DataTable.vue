@@ -79,12 +79,13 @@
             <el-table-column
                 label="Actions">
                 <template slot-scope="scope">
-                    <el-button
-                      v-if="tableOptions.viewText"
-                      size="mini"
-                      class="action_btn view_btn"
-                      @click="handleView(scope.$index, scope.row)">{{ tableOptions.viewText }}
-                    </el-button>
+
+                    <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="tableOptions.viewText">
+                        <el-button
+                          size="mini"
+                          class="action_btn view_btn">{{ tableOptions.viewText }}
+                        </el-button>
+                    </router-link>
 
                     <el-button
                       v-if="tableOptions.deleteText"
@@ -370,6 +371,11 @@ export default {
           return true
       },
 
+      editPathFormated()
+      {
+          return this.editPath ? this.editPath : this.typeNamePlural;
+      },
+
       queueModalTitle()
       {
           if(this.bulkOptionValue) {
@@ -507,23 +513,7 @@ export default {
             this.loading = false;
         }.bind(this))
     },
-
-    /**
-     * Route the user the the "view" page.
-     *
-     * @param Int index
-     * @param Object row
-     * @return void
-     */
-    handleView(index, row)
-    {
-        var path = this.editPath ? this.editPath : this.typeNamePlural;
-
-        router.push({
-            path: '/'+ path +'/' + row.id
-        });
-    },
-
+    
     /**
      * Delete data on the server.
      *

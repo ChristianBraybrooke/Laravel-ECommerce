@@ -259,7 +259,7 @@ export default {
                                 ids.push(sep + 'reports[' + key + ']=' + value.id);
                             }.bind(this));
 
-                            var url = shopData.url + '/templates/invoice' + ids.join('');
+                            var url = shopData.url + '/ecommerce-templates/invoice' + ids.join('');
 
                             this.printUrl = url;
                         }.bind(this)
