@@ -10,7 +10,7 @@
           mode="horizontal"
           :default-active="currentPage"
           :router="true">
-            <el-menu-item class="menu_right" index="/account">{{ user.name.first ? user.name.first : 'Account'  }}</el-menu-item>
+            <el-menu-item v-if="user.name" class="menu_right" index="/account">{{ user.name.first ? user.name.first : 'Account'  }}</el-menu-item>
         </el-menu>
       </div>
     </el-header>
