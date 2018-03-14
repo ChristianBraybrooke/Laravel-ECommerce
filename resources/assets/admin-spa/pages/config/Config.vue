@@ -38,8 +38,9 @@
                                           <el-form-item v-if="settings" label="Admin Notifications" prop="Admin Notifications">
                                               <el-select class="config_select" v-model="settings['Admin Notifications']" placeholder="Select" multiple filterable>
                                                   <el-option v-for="user in users"
-                                                             :key="user.name"
-                                                             :label="user.first_name + ' ' + user.last_name"
+                                                             v-if="user.name"
+                                                             :key="user.name.full"
+                                                             :label="user.name.full"
                                                              :value="user.id">
                                                   </el-option>
                                               </el-select>
