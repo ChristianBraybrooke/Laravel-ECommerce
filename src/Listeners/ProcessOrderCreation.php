@@ -38,9 +38,11 @@ class ProcessOrderCreation implements ShouldQueue
         }
 
         $admin_ids = Setting::get('Admin Notifications');
-        $admins = User::whereIn('id', $admin_ids)->get();
+        if ($admin_ids) {
+            $admins = User::whereIn('id', $admin_ids)->get();
 
-        Notification::route('mail', $admins)
-                    ->notify(new SendAdminOrderNotification($event->model));
+            Notification::route('mail', $admins)
+                        ->notify(new SendAdminOrderNotification($event->model));
+        }
     }
 }

@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
                 $table->string('user_last_name')->nullable()->default(null);
                 $table->string('user_email')->nullable()->default(null);
                 $table->string('user_phone')->nullable()->default(null);
+                $table->string('user_company')->nullable()->default(null);
 
                 $table->string('billing_address_line1')->nullable()->default(null);
                 $table->string('billing_address_line2')->nullable()->default(null);

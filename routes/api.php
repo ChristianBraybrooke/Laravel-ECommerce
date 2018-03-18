@@ -24,6 +24,7 @@ Route::post('collections/{collection}/types/bulk', 'ApiCollectionTypesController
 
 // Products
 Route::apiResource('products', 'ApiProductsController');
+Route::get('products/{product}/variants', 'ApiProductsController@variants');
 Route::post('products/bulk', 'ApiProductsController@bulkUpdate');
 
 // Media

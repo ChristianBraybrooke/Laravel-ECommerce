@@ -59,13 +59,6 @@ class Product extends Model implements ProductContract
     ];
 
     /**
-     * The default relations to load
-     *
-     * @var array
-     */
-    protected $with = ['content'];
-
-    /**
      * The default meta to create on creation
      *
      * @var array

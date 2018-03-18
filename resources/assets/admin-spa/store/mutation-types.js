@@ -10,3 +10,7 @@ export const GET_SHOP_DATA_ERRORS = 'GET_SHOP_DATA_ERRORS';
 export const UPDATE_USER = 'UPDATE_USER';
 export const UPDATE_USER_ERRORS = 'UPDATE_USER_ERRORS';
 export const USER_LAST_FETCHED = 'USER_LAST_FETCHED';
+
+// Order
+export const SET_ORDER = 'SET_ORDER';
+export const GET_ORDER = 'GET_ORDER';

@@ -9,6 +9,11 @@
                     :create-form="ordersCreateForm"
                     v-on:createNew="handleCreateNew"
                     :create-form-rules="createFormRules">
+          <template slot="createButton">
+              <router-link :to="{ name: 'orders.step1'}">
+                  <el-button class="create_btn" type="primary" plain>New Order</el-button>
+              </router-link>
+          </template>
 
           <template slot="createForm"
                     slot-scope="props">

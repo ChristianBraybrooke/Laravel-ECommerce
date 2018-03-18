@@ -110,3 +110,18 @@ function checkoutInputHelper($field, $type, $user, $order, $order_prefix = '', $
         return $user->{$field};
     }
 }
+
+/**
+ * Determine what is in the include section of the request.
+ *
+ * @param string $key
+ * @return bool
+ */
+function requestIncludes($key)
+{
+    $include = request()->include;
+    if (!is_array($include)) {
+        $include = explode(',', str_replace(' ', '', $include));
+    }
+    return in_array($key, $include);
+}

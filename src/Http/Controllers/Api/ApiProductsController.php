@@ -29,7 +29,11 @@ class ApiProductsController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with($request->with ?: [])->basicResponse();
+        $products = Product::with($request->with ?: [])
+                           ->when($request->no_variants, function ($query) {
+                              return $query->whereNull('variant_id');
+                           })
+                           ->basicResponse();
 
         return new ProductsResource($products);
     }
@@ -85,7 +89,7 @@ class ApiProductsController extends Controller
             'name' => $request->name,
             'price' => $request->price,
             'list_in_shop' => $request->list_in_shop,
-            'featured' => $request->featured,
+            'featured' => $request->has('featured') ? $request->featured : $product->featured,
             'live_at' => $live,
         ]);
 
@@ -231,6 +235,22 @@ class ApiProductsController extends Controller
             'errors' => [],
             'message' => 'Successfully updated ' . count($ids) . ' collections.'
         ];
+    }
+
+    /**
+     * Return the product variants.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function variants(Request $request, Product $product)
+    {
+        $variants = $product->variants()
+                            ->with($request->with ?: [])
+                            ->basicResponse();
+
+        return new ProductsResource($variants);
     }
 
     /**

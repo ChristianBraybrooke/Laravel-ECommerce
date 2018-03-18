@@ -128,12 +128,12 @@ class Order extends Model implements OrderContract
     {
         return [
             'Name' => $this->customer['full_name'],
-            'Line 1' => ucfirst($this->{$type . '_address_line1'}),
-            'Line 2' => ucfirst($this->{$type . '_address_line2'}),
-            'Town' => ucfirst($this->{$type . '_address_town'}),
-            'County' => ucfirst($this->{$type . '_address_county'}),
-            'Postcode' => ucwords($this->{$type . '_address_postcode'}),
-            'Country' => ucfirst($this->{$type . '_address_country'}),
+            'line_1' => ucfirst($this->{$type . '_address_line1'}),
+            'line_2' => ucfirst($this->{$type . '_address_line2'}),
+            'town' => ucfirst($this->{$type . '_address_town'}),
+            'county' => ucfirst($this->{$type . '_address_county'}),
+            'postcode' => ucwords($this->{$type . '_address_postcode'}),
+            'country' => ucfirst($this->{$type . '_address_country'}),
         ];
     }
 

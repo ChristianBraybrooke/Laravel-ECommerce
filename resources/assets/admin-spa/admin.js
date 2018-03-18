@@ -14,11 +14,23 @@ Vue.use(Element, {locale});
 
 import { mapActions, mapGetters } from 'vuex';
 Vue.mixin({
-  computed: {
-    getSiteBaseURL(value) {
-        return ecommerceConfig.site_url + '/';
+    computed: {
+        getSiteBaseURL(value) {
+            return ecommerceConfig.site_url + '/';
+        },
     },
-  }
+});
+
+Vue.mixin({
+    methods: {
+        capitalize(str)
+        {
+            var lower = str.toLowerCase();
+            return lower.replace(/(^| )(\w)/g, function(x) {
+              return x.toUpperCase();
+            });
+        },
+    }
 });
 
 import generateColors from './utils/color';

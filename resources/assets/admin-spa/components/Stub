@@ -1,0 +1,50 @@
+<template lang="html">
+    <div v-loading="loading">
+
+        <el-breadcrumb class="breadcrumbs" separator-class="el-icon-arrow-right">
+          <el-breadcrumb-item :to="{ name: 'orders' }">Orders</el-breadcrumb-item>
+          <el-breadcrumb-item>New Order</el-breadcrumb-item>
+        </el-breadcrumb>
+
+    </div>
+</template>
+
+<script>
+export default {
+
+      name: 'NewOrderStepOne',
+
+      components: {
+          Errors: () => import('../../components/Errors.vue'),
+      },
+
+      props: {
+
+      },
+
+      data () {
+          return {
+              loading: false,
+          }
+      },
+
+      computed: {
+
+      },
+
+      watch: {
+
+      },
+
+      mounted () {
+          console.log('.vue Mounted');
+      },
+
+      methods: {
+
+      }
+}
+</script>
+
+<style lang="css">
+</style>
