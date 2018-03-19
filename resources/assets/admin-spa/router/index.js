@@ -19,11 +19,14 @@ const ViewProductCustomisations = () => import(/* webpackChunkName: "view-produc
 const ViewProductImages = () => import(/* webpackChunkName: "view-product-images" */ '../pages/products/ViewProductImages.vue');
 const ViewProductPricing = () => import(/* webpackChunkName: "view-product-pricing" */ '../pages/products/ViewProductPricing.vue');
 const ViewProductVariants = () => import(/* webpackChunkName: "view-product-variants" */ '../pages/products/ViewProductVariants.vue');
+const ViewProductOrdering = () => import(/* webpackChunkName: "view-product-ordering" */ '../pages/products/ViewProductOrdering.vue');
 const Galleries = () => import(/* webpackChunkName: "galleries" */ '../pages/galleries/Galleries.vue');
 const Pages = () => import(/* webpackChunkName: "pages" */ '../pages/pages/Pages.vue');
 const ViewPage = () => import(/* webpackChunkName: "pages" */ '../pages/pages/ViewPage.vue');
 const Users = () => import(/* webpackChunkName: "users" */ '../pages/users/Users.vue');
 const Config = () => import(/* webpackChunkName: "config" */ '../pages/config/Config.vue');
+const Forms = () => import(/* webpackChunkName: "forms" */ '../pages/forms/Forms.vue');
+const ViewForm = () => import(/* webpackChunkName: "view-form" */ '../pages/forms/ViewForm.vue');
 const NotFound = () => import(/* webpackChunkName: "not-found" */ '../pages/NotFound.vue');
 
 const router = new Router({
@@ -129,6 +132,13 @@ const router = new Router({
             meta: {title: 'Admin: Product Variants'}
         },
         {
+            path: '/products/:productId/ordering',
+            component: ViewProductOrdering,
+            props: true,
+            name: 'products.view.ordering',
+            meta: {title: 'Admin: Product Ordering'}
+        },
+        {
             path: '/galleries',
             component: Galleries,
             name: 'galleries',
@@ -152,6 +162,19 @@ const router = new Router({
             component: Users,
             name: 'users',
             meta: {title: 'Admin: Users'}
+        },
+        {
+            path: '/forms',
+            component: Forms,
+            name: 'forms',
+            meta: {title: 'Admin: Forms'}
+        },
+        {
+            path: '/forms/:formId',
+            component: ViewForm,
+            props: true,
+            name: 'forms.view',
+            meta: {title: 'Admin: Forms'}
         },
         {
             path: '/config',

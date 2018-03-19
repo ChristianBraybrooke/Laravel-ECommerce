@@ -45,6 +45,9 @@ Route::delete('settings', 'ApiSettingsController@destroy');
 Route::apiResource('users', 'ApiUsersController');
 Route::get('user', 'ApiUsersController@authUser');
 
+// Forms
+Route::apiResource('forms', 'ApiFormsController');
+
 // Orders
 Route::apiResource('orders', 'ApiOrdersController');
 Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');

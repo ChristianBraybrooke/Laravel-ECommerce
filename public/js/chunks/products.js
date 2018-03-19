@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([12],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/products/Products.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -29,7 +29,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(13/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+            return __webpack_require__.e/* import() */(21/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
         }
     },
 

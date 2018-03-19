@@ -8,34 +8,30 @@
             </el-col>
             <el-col :lg="5" :md="24">
                 <el-form-item label="Selector Img" prop="selector_img">
-                    <el-button type="info" plain size="mini" @click="displayFilePicker('customisationSelectorFile')">Select File <i class="el-icon-document"></i></el-button>
 
-                    <file-picker-modal v-if="productCustomisationOption.selector_img || productCustomisationOption.selector_img === null"
-                                       ref="customisationSelectorFile"
+                    <file-picker-modal ref="customisationSelectorFile"
                                        :current-files="productCustomisationOption.selector_img ? [productCustomisationOption.selector_img] : undefined"
                                        v-on:filesChosen="handleFilesChosen"
                                        v-on:filesUnChosen="handleFilesUnChosen"
-                                       name="Selector Img"
+                                       :name="productCustomisationOption + ' Selector Img'"
                                        :selectable="1"
-                                       picker-id="selector_img"
-                                       :open-on-mount="false">
+                                       :show-btn="true"
+                                       picker-id="selector_img">
                     </file-picker-modal>
 
                 </el-form-item>
             </el-col>
             <el-col :lg="5" :md="24">
                 <el-form-item label="Main Img" prop="main_img">
-                    <el-button type="info" plain size="mini" @click="displayFilePicker('customisationOptionFile')">Select File <i class="el-icon-document"></i></el-button>
 
-                    <file-picker-modal v-if="productCustomisationOption.main_img || productCustomisationOption.main_img === null"
-                                       ref="customisationOptionFile"
+                    <file-picker-modal ref="customisationOptionFile"
                                        :current-files="productCustomisationOption.main_img ? [productCustomisationOption.main_img] : undefined"
                                        v-on:filesChosen="handleFilesChosen"
                                        v-on:filesUnChosen="handleFilesUnChosen"
-                                       name="Main Img"
+                                       :name="productCustomisationOption + ' Main Img'"
                                        :selectable="1"
                                        picker-id="main_img"
-                                       :open-on-mount="false">
+                                       :show-btn="true">
                     </file-picker-modal>
 
                 </el-form-item>

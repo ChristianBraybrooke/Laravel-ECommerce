@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'sometimes|required',
             'collections.data.collection_types_sync' => 'array',
             'collections.data.collection_types_sync.*' => 'array',
             'content.data' => 'array',

@@ -1,4 +1,4 @@
-webpackJsonp([5],{
+webpackJsonp([4],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/Account.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -81,10 +81,10 @@ var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(11/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(12/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+            return __webpack_require__.e/* import() */(18/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
         }
     },
 

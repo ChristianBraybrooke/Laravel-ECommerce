@@ -116,10 +116,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(11/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         AddressForm: function AddressForm() {
-            return __webpack_require__.e/* import() */(22).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
+            return __webpack_require__.e/* import() */(29).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
         }
     },
 
@@ -313,7 +313,7 @@ var last = __webpack_require__("./node_modules/lodash.last/index.js");
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(11/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
     },
 
@@ -635,7 +635,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
     components: {
         DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(14/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+            return __webpack_require__.e/* import() */(24/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
         }
     },
 
@@ -974,7 +974,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(11/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
     },
 

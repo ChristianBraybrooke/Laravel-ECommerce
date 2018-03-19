@@ -1,21 +1,32 @@
 <template lang="html">
-    <div v-loading="loading">
-        <product-page-layout :product="product"
+    <div>
+        <product-page-layout :product-id="productId"
                              :current-page="'/products/' + productId + '/customisations'"
-                             :page-errors="productErrors">
-            <template slot="page_content">
+                             :request-with="['customisations.options']">
 
+            <template slot="product_page"
+                      slot-scope="props">
+                <template v-if="props.productForm.customisations">
+                    <el-card :class="customisation.minimise ? 'product_variant_card box-card' : 'product_variant_card minimised box-card'" v-for="customisation in orderedCusomisations(props.productForm.customisations.data)" :key="customisation.id">
+                        <div slot="header" class="clearfix">
+                          <span>{{ customisation.name ? customisation.name : 'New Customisation' }}</span>
+                          <el-button style="float: right; padding: 4px 8px; margin-left: 5px;" @click="minimiseCustomisationCard(customisation, props.productForm.customisations.data)" type="primary">
+                          {{ customisation.minimise ? 'Minimise' : 'Maximise' }}</el-button>
+                          <el-button style="float: right; padding: 4px 8px" @click="deleteCustomisation(customisation, props.productForm.customisations.data)" type="danger">Delete</el-button>
+                          <el-input-number style="float: right; margin-top: -2px;" v-model="customisation.order" size="mini"></el-input-number>
+                        </div>
+                        <product-customisation-component v-if="customisation.minimise ? true : false" :model="customisation"></product-customisation-component>
 
+                    </el-card>
+                </template>
+
+                <el-button type="primary" icon="el-icon-plus" @click="addCustomisation(props.productForm.customisations.data)" plain>Add Customisation</el-button>
             </template>
         </product-page-layout>
     </div>
 </template>
 
 <script>
-import api from "../../services/api-service.js";
-var find = require('lodash.find');
-var forEach = require('lodash.foreach');
-var has = require('lodash.has');
 var orderBy = require('lodash.orderby');
 
 export default {
@@ -24,8 +35,6 @@ export default {
 
       components: {
           ProductPageLayout: () => import('./ProductPageLayout.vue'),
-          FilePickerModal: () => import('../../components/FilePickerModal.vue'),
-          ProductVariantComponent: () => import('../../components/ProductVariantComponent'),
           ProductCustomisationComponent: () => import('../../components/ProductCustomisationComponent'),
       },
 
@@ -38,33 +47,12 @@ export default {
 
       data () {
           return {
-              loading: false,
-              product: {},
-              productErrors: {},
-              collections: {},
-              shopData: {},
-              collectionErrors: {},
-              productCollections: {},
+              //
           }
       },
 
       computed: {
-          productFormRules()
-          {
-              return {
-                  name: [
-                    { required: true, message: 'The '+ this.product.name +' name field is required', trigger: 'blur' },
-                  ],
-                  slug: [
-                    { required: true, message: 'The '+ this.product.name +' slug field is required', trigger: 'blur' },
-                  ],
-              };
-          },
-
-          orderedCusomisations()
-          {
-              return orderBy(this.product.customisations.data, ['order'], ['asc']);
-          }
+          //
       },
 
       watch: {
@@ -72,140 +60,31 @@ export default {
       },
 
       mounted () {
-          console.log('ViewProduct.vue mounted');
-          this.getProduct();
-          this.getCollections();
+          console.log('ViewProductCustomisations.vue mounted');
       },
 
       methods: {
 
           /**
-           * Get the product information from the server.
+           * List the customisations in the order specified by the user
            *
-           * @return void
+           * @param Array customisations
+           * @return Array
            */
-          getProduct()
+          orderedCusomisations(customisations)
           {
-              this.productErrors = {};
-              this.loading = true;
-
-              api.get({
-                  path: 'products/' + this.productId,
-                  params: {
-                      with: ['media', 'variants.media', 'collectionTypes', 'customisations.options'],
-                      include: ['live_at', 'slug']
-                  }
-              })
-              .then(function (data) {
-                  this.loading = false;
-                  this.product = data.data;
-                  this.shopData = data.shop_data;
-              }.bind(this))
-              .catch(function (error) {
-                  this.loading = false;
-                  this.productErrors = error;
-              }.bind(this));
+              return customisations.length >= 1 ? orderBy(customisations, ['order'], ['asc']) : [];
           },
 
           /**
-           * Get the collections with their types from the server.
+           * Add a customisation to the customisations
            *
+           * @param Array customisations
            * @return void
            */
-           getCollections()
-           {
-               api.get({
-                   path: 'collections',
-                   params: {
-                     with: 'types'
-                   }
-               })
-               .then(function (data) {
-                   this.collections = data.data;
-               }.bind(this))
-               .catch(function (error) {
-                   this.collectionErrors = error;
-               }.bind(this));
-           },
-
-          /**
-           * Validate the form and submit to the server.
-           *
-           * @return void
-           */
-          submitForm(formName)
+          addCustomisation(customisations)
           {
-              this.productErrors = {};
-              this.loading = true;
-              this.product.with = ['variants', 'collectionTypes', 'customisations.options'];
-              this.product.include = ['live_at', 'slug'];
-
-              this.$refs[formName].validate((valid) => {
-                if (valid) {
-                    api.persist('put', {
-                        path: 'products/' + this.productId,
-                        object: this.product,
-                    })
-                    .then(function (data) {
-                        this.loading = false;
-                        this.product = data.data;
-                        this.getCollections();
-                    }.bind(this))
-                    .catch(function (error) {
-                        this.loading = false;
-                        this.productErrors = error;
-                    }.bind(this));
-                } else {
-                    this.loading = false;
-                    return false;
-                }
-              });
-          },
-
-          inCollection(needle, haystack)
-          {
-              var found = find(haystack, function(o) {
-                  return o.id === needle;
-              });
-
-              return found ? true : false;
-          },
-
-          displayFilePicker(filePicker)
-          {
-              if(this.$refs[filePicker]) {
-                  this.$refs[filePicker].openModal();
-              }
-          },
-
-          handleFilesChosen(data)
-          {
-              this.$set(this.product, data.id, data.files);
-          },
-
-          handleFilesUnChosen(data)
-          {
-              this.$set(this.product, data.id, data.files);
-          },
-
-          handleGalleryFilesChosen(data)
-          {
-              this.$set(this.product[data.id], 'data', data.files);
-          },
-
-          handleGalleryFilesUnChosen(data)
-          {
-              this.$set(this.product[data.id], 'data', data.files);
-          },
-
-          addVariant()
-          {
-              this.product.variants.data.push({});
-          },
-
-          addCustomisation()
-          {
-              this.product.customisations.data.push({
+              customisations.push({
                 options: {
                   data: [
                   ]
@@ -213,27 +92,32 @@ export default {
               });
           },
 
-          objectHas(haystack, needle)
+          /**
+           * Delete a customisation from the customisations
+           *
+           * @param Object customisation
+           * @param Array customisations
+           * @return void
+           */
+          deleteCustomisation(customisation, customisations)
           {
-              return has(haystack, needle);
+              customisations.splice(customisations.indexOf(customisation), 1);
           },
 
-          deleteCustomisation(customisation)
+          /**
+           * Maximise or minimise the customisation card
+           *
+           * @param Object customisation
+           * @param Array customisations
+           * @return void
+           */
+          minimiseCustomisationCard(customisation, customisations)
           {
-              if (customisation.id) {
+            var index = customisations.indexOf(customisation);
 
-              } else {
-                  this.product.customisations.data.splice(this.product.customisations.data.indexOf(customisation), 1);
-              }
-          },
+            var value = customisations[index].minimise ? false : true;
 
-          minimiseCustomisationCard(customisation)
-          {
-            var index = this.product.customisations.data.indexOf(customisation);
-
-            var value = this.product.customisations.data[index].minimise ? false : true;
-
-            this.$set(this.product.customisations.data[index], 'minimise', value);
+            this.$set(customisations[index], 'minimise', value);
           },
       },
 
@@ -241,13 +125,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.collection_type_select {
-    width: 100%;
-}
-.product_variant_card {
-    margin: 30px 0px;
-}
-.product_variant_card.minimised .el-card__body {
-    padding: 0px!important;
-}
+    .product_variant_card {
+        margin: 30px 0px;
+    }
+    .product_variant_card.minimised .el-card__body {
+        padding: 0px!important;
+    }
 </style>

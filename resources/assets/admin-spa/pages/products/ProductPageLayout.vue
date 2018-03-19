@@ -2,16 +2,14 @@
     <div v-loading="loading">
         <el-breadcrumb class="breadcrumbs" separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ name: 'products' }">Products</el-breadcrumb-item>
-            <el-breadcrumb-item>{{ product.name }}</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ productForm.name }}</el-breadcrumb-item>
         </el-breadcrumb>
 
         <el-row align="middle" type="flex">
-            <el-col :span="12"><h1 class="page_title">{{ product.name }}</h1></el-col>
+            <el-col :span="12"><h1 class="page_title">{{ productForm.name }}</h1></el-col>
         </el-row>
 
-        <errors v-if="Object.keys(productErrors).length > 0" :errors="productErrors"></errors>
-
-        <page-layout :page-errors="pageErrors"
+        <page-layout :page-errors="productErrors"
                      :current-page="currentPage"
                      :pages="[
                         {
@@ -33,6 +31,10 @@
                         {
                           name: 'Variants',
                           index: '/products/' + productId + '/variants',
+                        },
+                        {
+                          name: 'Order Information',
+                          index: '/products/' + productId + '/ordering',
                         },
                      ]">
 
@@ -80,20 +82,9 @@ export default {
       },
 
       props: {
-          product: {
-              type: Object,
-              required: true,
-          },
           productId: {
               type: String,
               required: true,
-          },
-          pageErrors: {
-              required: false,
-              type: Object,
-              default() {
-                  return {}
-              }
           },
           currentPage: {
               required: true,

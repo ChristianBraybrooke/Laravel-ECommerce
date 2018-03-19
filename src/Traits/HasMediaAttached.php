@@ -7,7 +7,7 @@ trait HasMediaAttached
     /**
      * Setup the relationship between media and the object
      *
-     * @return App\Media
+     * @return ChrisBraybrooke\ECommerce\Models\Media
      */
     public function media()
     {
@@ -20,7 +20,7 @@ trait HasMediaAttached
      * Setup the relationship between media and the object
      *
      * @param String $location
-     * @return App\Media
+     * @return ChrisBraybrooke\ECommerce\Models\Media
      */
     public function mediaByLocation($location)
     {

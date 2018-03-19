@@ -7,9 +7,13 @@ use Illuminate\Support\Facades\Route;
 use Artisan;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 use ChrisBraybrooke\ECommerce\Contracts\ProductCustomisation as ProductCustomisationContract;
+use ChrisBraybrooke\ECommerce\Contracts\ProductCustomisationOption as ProductCustomisationOptionContract;
 use ChrisBraybrooke\ECommerce\Contracts\Collection as CollectionContract;
 use ChrisBraybrooke\ECommerce\Contracts\CollectionType as CollectionTypeContract;
 use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
+use ChrisBraybrooke\ECommerce\Contracts\Form as FormContract;
+use ChrisBraybrooke\ECommerce\Contracts\FormField as FormFieldContract;
+use ChrisBraybrooke\ECommerce\Contracts\FormSection as FormSectionContract;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
 use Product;
@@ -91,7 +95,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $loader->alias('ProductCustomisation', $config['product_customisation']);
 
         // ProductCustomisationOption
-        $this->app->bind(ProductCustomisationOption::class, $config['product_customisation_option']);
+        $this->app->bind(ProductCustomisationOptionContract::class, $config['product_customisation_option']);
         $loader->alias('ProductCustomisationOption', $config['product_customisation_option']);
 
         // Order
@@ -103,6 +107,18 @@ class ECommerceServiceProvider extends LaravelServiceProvider
 
         // Shop
         $loader->alias('Shop', Shop::class);
+
+        // Form
+        $this->app->bind(FormContract::class, $config['form']);
+        $loader->alias('Form', $config['form']);
+
+        // FormField
+        $this->app->bind(FormFieldContract::class, $config['form_field']);
+        $loader->alias('FormField', $config['form_field']);
+
+        // FormSection
+        $this->app->bind(FormSectionContract::class, $config['form_section']);
+        $loader->alias('FormSection', $config['form_section']);
     }
 
     /**

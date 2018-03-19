@@ -9,6 +9,7 @@ use ChrisBraybrooke\ECommerce\Traits\SluggableTrait;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
 use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
+use ChrisBraybrooke\ECommerce\Traits\HasFormsTrait;
 use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 use Collection;
 use ChrisBraybrooke\ECommerce\Events\ProductCreated;
@@ -22,7 +23,7 @@ use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 class Product extends Model implements ProductContract
 {
     use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
-        HasContentAttached;
+        HasContentAttached, HasFormsTrait;
 
     /**
      * The "booting" method of the model.

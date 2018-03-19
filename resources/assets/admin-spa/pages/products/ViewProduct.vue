@@ -1,18 +1,16 @@
 <template lang="html">
-    <div v-loading="loading">
-        <product-page-layout :product="product"
-                             :product-id="productId"
+    <div>
+        <product-page-layout :product-id="productId"
                              :current-page="'/products/' + productId"
-                             :form="productForm"
                              :request-with="['collectionTypes', 'content']"
                              :request-includes="['live_at', 'slug', 'list_in_shop', 'featured']"
-                             :page-errors="productErrors">
+                             :form-rules="productFormRules">
             <template slot="product_page"
                       slot-scope="props">
 
                 <el-row type="flex">
                     <el-col :span="4">
-                        <el-form-item v-if="props.productForm.live_at" label="Live" prop="live_at.live">
+                        <el-form-item v-if="props.productForm.live_at" label="Live" prop="live_at.live" size="small">
                             <el-switch v-model="props.productForm.live_at.live"
                                        active-color="#13ce66"
                                        inactive-color="#ff4949">
@@ -20,7 +18,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="4">
-                        <el-form-item label="List In Shop" prop="list_in_shop">
+                        <el-form-item label="List In Shop" prop="list_in_shop" size="small">
                             <el-switch v-model="props.productForm.list_in_shop"
                                        active-color="#13ce66"
                                        inactive-color="#ff4949">
@@ -28,7 +26,7 @@
                         </el-form-item>
                     </el-col>
                     <el-col :span="4">
-                        <el-form-item label="Featured" prop="featured">
+                        <el-form-item label="Featured" prop="featured" size="small">
                             <el-switch v-model="props.productForm.featured"
                                        active-color="#13ce66"
                                        inactive-color="#ff4949">
@@ -39,12 +37,12 @@
 
                 <el-row :gutter="20">
                     <el-col :lg="12" :md="24">
-                        <el-form-item label="Name" prop="name">
+                        <el-form-item label="Name" prop="name" size="small">
                             <el-input :autofocus="true" v-model="props.productForm.name"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :lg="12" :md="24">
-                        <el-form-item label="Slug / Url" prop="slug">
+                        <el-form-item label="Slug / Url" prop="slug" size="small">
                             <el-input v-model="props.productForm.slug">
                                 <template slot="prepend">{{ getSiteBaseURL }}products/</template>
                             </el-input>
@@ -55,7 +53,7 @@
                 <el-row v-if="props.productForm.content" :gutter="20">
                     <template v-for="content in props.productForm.content.data">
                         <el-col :lg="12" :md="24">
-                            <el-form-item :label="content.content_name" :prop="content.content_name">
+                            <el-form-item :label="content.content_name" :prop="content.content_name" size="small">
                                 <el-input type="textarea" :autosize="{ minRows: 5 }" :autofocus="true" v-model="content.content"></el-input>
                             </el-form-item>
                         </el-col>
@@ -67,8 +65,8 @@
                 <el-row :gutter="20">
                     <template v-for="collection in collections">
                         <el-col :md="6" :sm="12" :xs="24">
-                            <el-form-item v-if="props.productForm.collections" :label="collection.name" :prop="'collections.data.collection_types_sync' + [collection.id]">
-                                <el-select class="collection_type_select" v-model="props.productForm.collections.data.collection_types_sync[collection.id]" filterable multiple allow-create placeholder="Select">
+                            <el-form-item v-if="props.productForm.collections && collections" :label="collection.name" :prop="'collections.data.collection_types_sync' + [(collection.id - 1)]" size="small">
+                                <el-select class="collection_type_select" v-model="props.productForm.collections.data.collection_types_sync[(collection.id - 1)]" filterable multiple allow-create placeholder="Select">
                                     <el-option v-for="type in collection.types.data"
                                                :key="type.name"
                                                :label="type.name"
@@ -79,7 +77,6 @@
                         </el-col>
                     </template>
                 </el-row>
-
             </template>
         </product-page-layout>
     </div>
@@ -87,10 +84,6 @@
 
 <script>
 import api from "../../services/api-service.js";
-var find = require('lodash.find');
-var forEach = require('lodash.foreach');
-var has = require('lodash.has');
-var orderBy = require('lodash.orderby');
 
 export default {
 
@@ -98,9 +91,6 @@ export default {
 
       components: {
           ProductPageLayout: () => import('./ProductPageLayout.vue'),
-          FilePickerModal: () => import('../../components/FilePickerModal.vue'),
-          ProductVariantComponent: () => import('../../components/ProductVariantComponent'),
-          ProductCustomisationComponent: () => import('../../components/ProductCustomisationComponent'),
       },
 
       props: {
@@ -112,15 +102,8 @@ export default {
 
       data () {
           return {
-              loading: false,
-              product: {},
-              productForm: {},
-              productErrors: {},
               collections: {},
-              shopData: {},
               collectionErrors: {},
-              productCollections: {},
-              currentTab: 'basic',
           }
       },
 
@@ -129,64 +112,25 @@ export default {
           {
               return {
                   name: [
-                    { required: true, message: 'The '+ this.product.name +' name field is required', trigger: 'blur' },
+                    { required: true, message: 'The product name field is required', trigger: 'blur' },
                   ],
                   slug: [
-                    { required: true, message: 'The '+ this.product.name +' slug field is required', trigger: 'blur' },
+                    { required: true, message: 'The product slug field is required', trigger: 'blur' },
                   ],
               };
           },
-
-          orderedCusomisations()
-          {
-              return orderBy(this.product.customisations.data, ['order'], ['asc']);
-          }
       },
 
       watch: {
-          productForm: {
-              handler: function(productForm) {
-                  this.productForm = productForm;
-              },
-              deep: true
-          },
+          //
       },
 
       mounted () {
           console.log('ViewProduct.vue mounted');
-          // this.getProduct();
           this.getCollections();
       },
 
       methods: {
-
-          /**
-           * Get the product information from the server.
-           *
-           * @return void
-           */
-          getProduct()
-          {
-              this.productErrors = {};
-              this.loading = true;
-
-              api.get({
-                  path: 'products/' + this.productId,
-                  params: {
-                      with: ['collectionTypes', 'content'],
-                      include: ['live_at', 'slug', 'list_in_shop', 'featured']
-                  }
-              })
-              .then(function (data) {
-                  this.loading = false;
-                  this.product = data.data;
-                  this.shopData = data.shop_data;
-              }.bind(this))
-              .catch(function (error) {
-                  this.loading = false;
-                  this.productErrors = error;
-              }.bind(this));
-          },
 
           /**
            * Get the collections with their types from the server.
@@ -208,114 +152,6 @@ export default {
                    this.collectionErrors = error;
                }.bind(this));
            },
-
-          /**
-           * Validate the form and submit to the server.
-           *
-           * @return void
-           */
-          submitForm(formName)
-          {
-              this.productErrors = {};
-              this.loading = true;
-              this.product.with = ['variants', 'collectionTypes', 'customisations.options'];
-              this.product.include = ['live_at', 'slug'];
-
-              this.$refs[formName].validate((valid) => {
-                if (valid) {
-                    api.persist('put', {
-                        path: 'products/' + this.productId,
-                        object: this.product,
-                    })
-                    .then(function (data) {
-                        this.loading = false;
-                        this.product = data.data;
-                        this.getCollections();
-                    }.bind(this))
-                    .catch(function (error) {
-                        this.loading = false;
-                        this.productErrors = error;
-                    }.bind(this));
-                } else {
-                    this.loading = false;
-                    return false;
-                }
-              });
-          },
-
-          inCollection(needle, haystack)
-          {
-              var found = find(haystack, function(o) {
-                  return o.id === needle;
-              });
-
-              return found ? true : false;
-          },
-
-          displayFilePicker(filePicker)
-          {
-              if(this.$refs[filePicker]) {
-                  this.$refs[filePicker].openModal();
-              }
-          },
-
-          handleFilesChosen(data)
-          {
-              this.$set(this.product, data.id, data.files);
-          },
-
-          handleFilesUnChosen(data)
-          {
-              this.$set(this.product, data.id, data.files);
-          },
-
-          handleGalleryFilesChosen(data)
-          {
-              this.$set(this.product[data.id], 'data', data.files);
-          },
-
-          handleGalleryFilesUnChosen(data)
-          {
-              this.$set(this.product[data.id], 'data', data.files);
-          },
-
-          addVariant()
-          {
-              this.product.variants.data.push({});
-          },
-
-          addCustomisation()
-          {
-              this.product.customisations.data.push({
-                options: {
-                  data: [
-                  ]
-                }
-              });
-          },
-
-          objectHas(haystack, needle)
-          {
-              return has(haystack, needle);
-          },
-
-          deleteCustomisation(customisation)
-          {
-              if (customisation.id) {
-
-              } else {
-                  this.product.customisations.data.splice(this.product.customisations.data.indexOf(customisation), 1);
-              }
-          },
-
-          minimiseCustomisationCard(customisation)
-          {
-            var index = this.product.customisations.data.indexOf(customisation);
-
-            var value = this.product.customisations.data[index].minimise ? false : true;
-
-            this.$set(this.product.customisations.data[index], 'minimise', value);
-          },
       },
 
 }
