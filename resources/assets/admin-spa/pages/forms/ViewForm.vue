@@ -10,11 +10,41 @@
             <el-col :span="12"><h1 class="page_title">{{ form.name }}</h1></el-col>
         </el-row>
 
+        <el-form :model="form" label-position="top">
+
+            <el-row :gutter="20">
+                <el-col :lg="12" :md="24">
+                    <el-form-item label="Form Name" size="small" prop="name">
+                        <el-input :autofocus="true" v-model="form.name"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <template v-if="form.sections">
+                <el-card :class="section.minimise ? 'product_variant_card box-card' : 'product_variant_card minimised box-card'" v-for="section in orderedSections()" :key="section.id">
+                    <div slot="header" class="clearfix">
+                        <span>{{ section.name ? section.name : 'New Section' }}</span>
+                      <el-button style="float: right; padding: 4px 8px; margin-left: 5px;" @click="minimiseSectionCard(section)" type="primary">
+                      {{ section.minimise ? 'Minimise' : 'Maximise' }}</el-button>
+                      <el-button style="float: right; padding: 4px 8px" @click="deleteSection(section)" type="danger">Delete</el-button>
+                      <el-input-number style="float: right; margin-top: -2px;" v-model="section.order" size="mini"></el-input-number>
+                    </div>
+                    <form-section-component v-if="section.minimise ? true : false" :model="section"></form-section-component>
+
+                </el-card>
+            </template>
+
+            <el-button type="primary" size="small" icon="el-icon-plus" @click="addSection()" plain>Add Section</el-button>
+
+        </el-form>
+
     </div>
 </template>
 
 <script>
 import api from "../../services/api-service.js";
+var orderBy = require('lodash.orderby');
+
 
 export default {
 
@@ -22,6 +52,7 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
+          FormSectionComponent: () => import('../../components/FormSectionComponent.vue')
       },
 
       props: {
@@ -67,7 +98,8 @@ export default {
               api.get({
                     path: "forms/" + this.formId,
                     params: {
-                        with: ['sections.fields']
+                        with: ['sections.fields'],
+                        include: ['order', 'rules']
                     }
                 })
                 .then(function (data) {
@@ -115,10 +147,45 @@ export default {
                   }
               });
           },
+
+          addSection()
+          {
+              this.form.sections.data.push({
+                fields: {
+                  data: [
+                  ]
+                }
+              });
+          },
+
+          orderedSections()
+          {
+              return this.form.sections.data.length >= 1 ? orderBy(this.form.sections.data, ['order'], ['asc']) : [];
+          },
+
+          minimiseSectionCard(section)
+          {
+              var index = this.form.sections.data.indexOf(section);
+
+              var value = this.form.sections.data[index].minimise ? false : true;
+
+              this.$set(this.form.sections.data[index], 'minimise', value);
+          },
+
+          deleteSection(section)
+          {
+              this.form.sections.data.splice(this.form.sections.data.indexOf(section), 1);
+          }
       },
 
 }
 </script>
 
 <style lang="css">
+.product_variant_card {
+    margin: 30px 0px;
+}
+.product_variant_card.minimised .el-card__body {
+    padding: 0px!important;
+}
 </style>

@@ -64402,6 +64402,12 @@ strong {
   z-index: 800;
 }
 
+.ecom_version {
+  color: #b1c1d8;
+  text-align: right;
+  font-size: 11px;
+}
+
 .cb_menu_horizontal {
   padding: 0px 20px;
   background: #f5f7fa;

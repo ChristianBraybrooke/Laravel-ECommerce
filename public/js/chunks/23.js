@@ -93,7 +93,7 @@ var find = __webpack_require__("./node_modules/lodash.find/index.js");
             return __webpack_require__.e/* import() */(25).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleryComponent.vue"));
         },
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
     },
 

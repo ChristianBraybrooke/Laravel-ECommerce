@@ -1,4 +1,4 @@
-webpackJsonp([8],{
+webpackJsonp([5],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/products/ViewProductCustomisations.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -42,10 +42,10 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 
     components: {
         ProductPageLayout: function ProductPageLayout() {
-            return __webpack_require__.e/* import() */(32).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
+            return __webpack_require__.e/* import() */(26).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
         },
         ProductCustomisationComponent: function ProductCustomisationComponent() {
-            return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
+            return __webpack_require__.e/* import() */(31).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
         }
     },
 

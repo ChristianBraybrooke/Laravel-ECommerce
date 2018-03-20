@@ -1,3 +1,5 @@
+window.ecommerceConfig.web_version = '0.0.12';
+
 import 'babel-polyfill';
 
 import Vue from 'vue';
@@ -10,7 +12,6 @@ import locale from 'element-ui/lib/locale/lang/en';
 import './axios.js';
 
 Vue.use(Element, {locale});
-
 
 import { mapActions, mapGetters } from 'vuex';
 Vue.mixin({

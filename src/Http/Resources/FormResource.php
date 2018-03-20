@@ -18,6 +18,9 @@ class FormResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            $this->mergeWhen($this->relationLoaded('sections'), [
+                'sections' => new FormSectionsResource($this->sections)
+            ]),
             'created_at' => $this->created_at
         ];
     }

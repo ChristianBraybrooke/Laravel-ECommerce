@@ -84,6 +84,7 @@
       </el-aside>
       <el-main>
       <slot></slot>
+      <p class="ecom_version">API Version: <strong>{{ config.api_version }}</strong> SPA Version: <strong>{{ config.web_version }}</strong></p>
       </el-main>
     </el-container>
   </el-container>
@@ -147,6 +148,11 @@ export default {
         'userErrors',
         'shopData'
       ]),
+
+      config()
+      {
+          return ecommerceConfig;
+      }
   },
 
   methods: {

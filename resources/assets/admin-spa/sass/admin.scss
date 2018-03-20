@@ -26,6 +26,11 @@ p, a, span, li, div, h1, h2, h3, h4, h4, small, strong {
     background: $--background-color-menu;
     z-index: 800;
 }
+.ecom_version {
+    color: darken($--background-color-menu, 20);
+    text-align: right;
+    font-size: 11px;
+}
 .cb_menu_horizontal{
   padding: 0px 20px;
   background: $--background-color-menu;

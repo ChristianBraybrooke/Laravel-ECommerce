@@ -117,10 +117,10 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
 
     components: {
         FileUploadComponent: function FileUploadComponent() {
-            return __webpack_require__.e/* import() */(26).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FileUploadComponent.vue"));
+            return __webpack_require__.e/* import() */(27).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FileUploadComponent.vue"));
         },
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
     },
 

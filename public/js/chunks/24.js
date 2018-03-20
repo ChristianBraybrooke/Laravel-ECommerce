@@ -195,7 +195,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(16/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
     },
 

@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		30: 0
+/******/ 		33: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"orders","1":"pages","2":"collections","3":"collectiontypes","4":"account","5":"view-product-variants","6":"view-product-pricing","7":"view-product-images","8":"view-product-customisations","9":"view-product","10":"users","11":"config","12":"products","13":"galleries","14":"not-found","15":"dashboard","17":"view-product-ordering","19":"forms","22":"view-form"}[chunkId]||chunkId) + ".js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"orders","1":"pages","2":"collections","3":"collectiontypes","4":"account","5":"view-product-customisations","6":"users","7":"forms","8":"config","9":"view-product-variants","10":"view-product-pricing","11":"view-product-ordering","12":"view-product-images","13":"view-product","14":"products","15":"galleries","16":"view-form","17":"not-found","18":"dashboard"}[chunkId]||chunkId) + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -3317,6 +3317,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 var startsWith = __webpack_require__("./node_modules/lodash.startswith/index.js");
 
@@ -3370,7 +3371,11 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['user', 'userErrors', 'shopData'])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['user', 'userErrors', 'shopData']), {
+        config: function config() {
+            return ecommerceConfig;
+        }
+    }),
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(['getUser', 'updateUser', 'updateUserModel']), {
 
@@ -64965,7 +64970,20 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("el-main", [_vm._t("default")], 2)
+          _c(
+            "el-main",
+            [
+              _vm._t("default"),
+              _vm._v(" "),
+              _c("p", { staticClass: "ecom_version" }, [
+                _vm._v("API Version: "),
+                _c("strong", [_vm._v(_vm._s(_vm.config.api_version))]),
+                _vm._v(" SPA Version: "),
+                _c("strong", [_vm._v(_vm._s(_vm.config.web_version))])
+              ])
+            ],
+            2
+          )
         ],
         1
       )
@@ -79713,6 +79731,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_color__ = __webpack_require__("./resources/assets/admin-spa/utils/color.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign__ = __webpack_require__("./node_modules/object-assign/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_object_assign__);
+window.ecommerceConfig.web_version = '0.0.12';
+
 
 
 
@@ -79899,7 +79919,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
 // Pages
 var Dashboard = function Dashboard() {
-    return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
+    return __webpack_require__.e/* import() */(18).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
 };
 var Account = function Account() {
     return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Account.vue"));
@@ -79926,28 +79946,28 @@ var ViewCollectionType = function ViewCollectionType() {
     return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collection-types/ViewCollectionType.vue"));
 };
 var Products = function Products() {
-    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/Products.vue"));
+    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/Products.vue"));
 };
 var ViewProduct = function ViewProduct() {
-    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProduct.vue"));
+    return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProduct.vue"));
 };
 var ViewProductCustomisations = function ViewProductCustomisations() {
-    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductCustomisations.vue"));
+    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductCustomisations.vue"));
 };
 var ViewProductImages = function ViewProductImages() {
-    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductImages.vue"));
+    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductImages.vue"));
 };
 var ViewProductPricing = function ViewProductPricing() {
-    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductPricing.vue"));
+    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductPricing.vue"));
 };
 var ViewProductVariants = function ViewProductVariants() {
-    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductVariants.vue"));
+    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductVariants.vue"));
 };
 var ViewProductOrdering = function ViewProductOrdering() {
-    return __webpack_require__.e/* import() */(17).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductOrdering.vue"));
+    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductOrdering.vue"));
 };
 var Galleries = function Galleries() {
-    return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/galleries/Galleries.vue"));
+    return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/galleries/Galleries.vue"));
 };
 var Pages = function Pages() {
     return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/Pages.vue"));
@@ -79956,19 +79976,19 @@ var ViewPage = function ViewPage() {
     return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/ViewPage.vue"));
 };
 var Users = function Users() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/users/Users.vue"));
+    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/users/Users.vue"));
 };
 var Config = function Config() {
-    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/config/Config.vue"));
+    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/config/Config.vue"));
 };
 var Forms = function Forms() {
-    return __webpack_require__.e/* import() */(19).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/forms/Forms.vue"));
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/forms/Forms.vue"));
 };
 var ViewForm = function ViewForm() {
-    return __webpack_require__.e/* import() */(22).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/forms/ViewForm.vue"));
+    return __webpack_require__.e/* import() */(16).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/forms/ViewForm.vue"));
 };
 var NotFound = function NotFound() {
-    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
+    return __webpack_require__.e/* import() */(17).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
 };
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
