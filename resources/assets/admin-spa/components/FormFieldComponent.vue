@@ -2,12 +2,17 @@
     <div>
 
         <el-row :gutter="20">
-            <el-col :md="6">
+            <el-col :md="4">
                 <el-form-item label="Name" size="small" prop="name">
                     <el-input :autofocus="true" v-model="model.name"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :md="6">
+                <el-form-item label="Description" size="small" prop="description">
+                    <el-input :autofocus="true" v-model="model.description"></el-input>
+                </el-form-item>
+            </el-col>
+            <el-col :md="4">
                 <el-form-item label="Type" size="small" prop="type">
                     <el-select v-model="model.type" placeholder="Type">
                         <el-option
@@ -19,14 +24,19 @@
                     </el-select>
                 </el-form-item>
             </el-col>
-            <el-col :md="4">
-                <el-form-item label="Rules" size="small" prop="rules">
+            <el-col :md="2">
+                <el-form-item label="" size="small" prop="rules">
                     <el-button plain @click="showRulesModal = true" size="mini" type="primary">Show Rules</el-button>
                 </el-form-item>
             </el-col>
-            <el-col :md="4" v-if="needsOptions">
-                <el-form-item label="Options" size="small" prop="options">
+            <el-col :md="2" v-if="needsOptions">
+                <el-form-item label="" size="small" prop="options">
                     <el-button plain @click="showOptionsModal = true" size="mini" type="primary">Show Options</el-button>
+                </el-form-item>
+            </el-col>
+            <el-col :md="2">
+                <el-form-item label="" size="small" prop="delete">
+                    <el-button @click="deleteField(model)" size="mini" type="danger">Delete</el-button>
                 </el-form-item>
             </el-col>
         </el-row>
@@ -121,6 +131,10 @@ export default {
 
       methods: {
 
+          deleteField(field)
+          {
+              //
+          }
       }
 }
 </script>

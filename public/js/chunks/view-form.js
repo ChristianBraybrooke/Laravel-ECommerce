@@ -1,4 +1,4 @@
-webpackJsonp([16],{
+webpackJsonp([6],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/forms/ViewForm.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -6,6 +6,19 @@ webpackJsonp([16],{
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62,7 +75,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
             return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FormSectionComponent: function FormSectionComponent() {
-            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormSectionComponent.vue"));
+            return __webpack_require__.e/* import() */(32).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormSectionComponent.vue"));
         }
     },
 
@@ -132,6 +145,8 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
                 if (valid) {
                     _this.loading = true;
                     _this.formErrors = {};
+                    _this.form.with = ['sections.fields'];
+                    _this.form.include = ['order', 'rules'];
 
                     __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("put", {
                         path: "forms/" + _this.formId,
@@ -154,6 +169,9 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
         },
         addSection: function addSection() {
             this.form.sections.data.push({
+                name: 'New Section',
+                order: 1,
+                minimise: true,
                 fields: {
                     data: []
                 }
@@ -2727,7 +2745,7 @@ var render = function() {
         "el-row",
         { attrs: { align: "middle", type: "flex" } },
         [
-          _c("el-col", { attrs: { span: 12 } }, [
+          _c("el-col", { attrs: { span: 24 } }, [
             _c("h1", { staticClass: "page_title" }, [
               _vm._v(_vm._s(_vm.form.name))
             ])
@@ -2736,9 +2754,20 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      Object.keys(_vm.formErrors).length > 0
+        ? _c("errors", { attrs: { errors: _vm.formErrors } })
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "el-form",
-        { attrs: { model: _vm.form, "label-position": "top" } },
+        {
+          ref: "formForm",
+          attrs: {
+            model: _vm.form,
+            "label-position": "left",
+            "label-width": "120px"
+          }
+        },
         [
           _c(
             "el-row",
@@ -2793,11 +2822,17 @@ var render = function() {
                         slot: "header"
                       },
                       [
-                        _c("span", [
-                          _vm._v(
-                            _vm._s(section.name ? section.name : "New Section")
-                          )
-                        ]),
+                        _c("el-input", {
+                          staticStyle: { width: "200px" },
+                          attrs: { size: "mini", autofocus: true },
+                          model: {
+                            value: section.name,
+                            callback: function($$v) {
+                              _vm.$set(section, "name", $$v)
+                            },
+                            expression: "section.name"
+                          }
+                        }),
                         _vm._v(" "),
                         _c(
                           "el-button",
@@ -2868,7 +2903,7 @@ var render = function() {
             "el-button",
             {
               attrs: {
-                type: "primary",
+                type: "info",
                 size: "small",
                 icon: "el-icon-plus",
                 plain: ""
@@ -2880,6 +2915,39 @@ var render = function() {
               }
             },
             [_vm._v("Add Section")]
+          ),
+          _vm._v(" "),
+          _c("hr", { staticClass: "page_hr" }),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
+            [
+              _c(
+                "el-col",
+                { attrs: { sm: 24 } },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: {
+                        plain: "",
+                        type: "success",
+                        loading: _vm.loading
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.submitForm("formForm")
+                        }
+                      }
+                    },
+                    [_vm._v("Update")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
           )
         ],
         2

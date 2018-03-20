@@ -3,6 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Form;
+use FormSection;
 use Illuminate\Http\Request;
 use ChrisBraybrooke\ECommerce\Http\Requests\FormRequest;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
@@ -38,7 +39,7 @@ class ApiFormsController extends Controller
      */
     public function store(FormRequest $request, Form $form)
     {
-        $form->create([
+        $form = $form->create([
             'name' => $request->name,
         ]);
 
@@ -69,7 +70,55 @@ class ApiFormsController extends Controller
      */
     public function update(Request $request, Form $form)
     {
-        //
+        $form->update([
+            'name' => $request->has('name') ? $request->name : $form->name
+        ]);
+
+        if ($request->has('sections.data')) {
+            $new_sections = [];
+
+            foreach ($request->input('sections.data') as $key => $section) {
+                if (!isset($section['id'])) {
+                    $new_sections[] = [
+                        'name' => isset($section['name']) ? $section['name'] : null,
+                        'order' => isset($section['order']) ? $section['order'] : null,
+                    ];
+                } elseif (!empty($section['id'])) {
+                    $update_section = FormSection::find($section['id']);
+                    $update_section->update([
+                        'name' => isset($section['name']) ? $section['name'] : null,
+                        'order' => isset($section['order']) ? $section['order'] : null,
+                    ]);
+
+                    $new_fields = [];
+
+                    if (isset($section['fields']['data'])) {
+                        foreach ($section['fields']['data'] as $key => $field) {
+                            if (!isset($field['id'])) {
+                                $new_fields[] = [
+                                    'name' => isset($field['name']) ? $field['name'] : null,
+                                    'type' => isset($field['type']) ? $field['type'] : null,
+                                    'rules' => isset($field['rules']) ? $field['rules'] : null,
+                                ];
+                            } elseif (!empty($field['id'])) {
+                                //
+                            }
+                        }
+                    }
+
+                    if ($new_fields) {
+                        $update_section->fields()->createMany($new_fields);
+                    }
+                }
+            }
+            if ($new_sections) {
+                $form->sections()->createMany($new_sections);
+            }
+        }
+
+        $form->load($request->with ?: []);
+
+        return new FormResource($form);
     }
 
     /**

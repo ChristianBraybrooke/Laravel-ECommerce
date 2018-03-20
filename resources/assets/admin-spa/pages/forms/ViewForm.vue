@@ -7,10 +7,15 @@
         </el-breadcrumb>
 
         <el-row align="middle" type="flex">
-            <el-col :span="12"><h1 class="page_title">{{ form.name }}</h1></el-col>
+            <el-col :span="24"><h1 class="page_title">{{ form.name }}</h1></el-col>
         </el-row>
 
-        <el-form :model="form" label-position="top">
+        <errors v-if="Object.keys(formErrors).length > 0" :errors="formErrors"></errors>
+
+        <el-form :model="form"
+                 label-position="left"
+                 ref="formForm"
+                 label-width="120px">
 
             <el-row :gutter="20">
                 <el-col :lg="12" :md="24">
@@ -23,7 +28,7 @@
             <template v-if="form.sections">
                 <el-card :class="section.minimise ? 'product_variant_card box-card' : 'product_variant_card minimised box-card'" v-for="section in orderedSections()" :key="section.id">
                     <div slot="header" class="clearfix">
-                        <span>{{ section.name ? section.name : 'New Section' }}</span>
+                        <el-input size="mini" style="width: 200px;" :autofocus="true" v-model="section.name"></el-input>
                       <el-button style="float: right; padding: 4px 8px; margin-left: 5px;" @click="minimiseSectionCard(section)" type="primary">
                       {{ section.minimise ? 'Minimise' : 'Maximise' }}</el-button>
                       <el-button style="float: right; padding: 4px 8px" @click="deleteSection(section)" type="danger">Delete</el-button>
@@ -34,7 +39,15 @@
                 </el-card>
             </template>
 
-            <el-button type="primary" size="small" icon="el-icon-plus" @click="addSection()" plain>Add Section</el-button>
+            <el-button type="info" size="small" icon="el-icon-plus" @click="addSection()" plain>Add Section</el-button>
+
+            <hr class="page_hr">
+
+            <el-row :gutter="20">
+                <el-col :sm="24">
+                    <el-button plain type="success" :loading="loading" @click="submitForm('formForm')">Update</el-button>
+                </el-col>
+            </el-row>
 
         </el-form>
 
@@ -124,6 +137,8 @@ export default {
                   if (valid) {
                       this.loading = true;
                       this.formErrors = {};
+                      this.form.with = ['sections.fields'];
+                      this.form.include = ['order', 'rules'];
 
                       api.persist("put", {
                             path: "forms/" + this.formId,
@@ -151,6 +166,9 @@ export default {
           addSection()
           {
               this.form.sections.data.push({
+                name: 'New Section',
+                order: 1,
+                minimise: true,
                 fields: {
                   data: [
                   ]
