@@ -25,4 +25,12 @@ class Form extends Model implements FormContract
     {
         return $this->HasMany(config('ecommerce.models.form_section'));
     }
+
+    /**
+     * Get all of the posts for the country.
+     */
+    public function fields()
+    {
+        return $this->hasManyThrough(config('ecommerce.models.form_field'), config('ecommerce.models.form_section'));
+    }
 }

@@ -57,7 +57,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.model.fields.data.push({
                 rules: {
                     required: false
-                }
+                },
+                options: {}
             });
         }
     }
@@ -73,7 +74,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -94,7 +95,7 @@ var render = function() {
         ? _vm._l(_vm.model.fields.data, function(field) {
             return _c("form-field-component", {
               key: field.id,
-              attrs: { model: field }
+              attrs: { model: field, section: _vm.model }
             })
           })
         : _vm._e(),

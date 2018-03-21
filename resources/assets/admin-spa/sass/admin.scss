@@ -311,3 +311,12 @@ section.el-container.is-vertical {
     height: 400px!important;
     scroll-behavior: auto;
 }
+
+.form_field_row {
+    margin-bottom: 10px;
+    background: $--background-color-base;
+    padding-top: 18px;
+}
+.form_field_row.required {
+    background: $--color-danger-lighter;
+}

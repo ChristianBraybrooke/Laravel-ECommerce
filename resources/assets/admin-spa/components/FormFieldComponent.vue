@@ -1,7 +1,7 @@
 <template lang="html">
     <div>
 
-        <el-row :gutter="20">
+        <el-row :gutter="20" :class="'form_field_row ' +  (model.rules.required ? 'required' : '')">
             <el-col :md="4">
                 <el-form-item label="Name" size="small" prop="name">
                     <el-input :autofocus="true" v-model="model.name"></el-input>
@@ -48,7 +48,7 @@
 
              <el-row type="flex">
                 <el-col :span="24">
-                    <el-form-item label="Required" prop="rules.required">
+                    <el-form-item label="Required" prop="required">
                         <el-switch v-model="model.rules.required"
                                    active-color="#13ce66"
                                    inactive-color="#ff4949">
@@ -57,12 +57,44 @@
                 </el-col>
              </el-row>
 
+             <span slot="footer" class="dialog-footer">
+               <el-button type="primary" @click="showRulesModal = false">Done</el-button>
+             </span>
+
         </el-dialog>
 
         <el-dialog :title="model.name + ' Options'"
                    v-if="showOptionsModal"
                    :visible.sync="showOptionsModal"
                    width="70%">
+
+
+
+            <el-row v-if="model.options" class="form_field_row" :gutter="20" v-for="option in model.options" :key="option.id">
+               <el-col :md="4">
+                   <el-form-item label="Label" size="small" prop="label">
+                       <el-input :autofocus="true" v-model="option.name"></el-input>
+                   </el-form-item>
+               </el-col>
+               <el-col :md="4">
+                   <el-form-item label="Value" size="small" prop="value">
+                       <el-input :autofocus="true" v-model="option.value"></el-input>
+                   </el-form-item>
+               </el-col>
+               <el-col :md="2">
+                   <el-form-item label="" size="small" prop="delete">
+                       <el-button @click="deleteOption(option, model.options)" size="mini" type="danger">Delete</el-button>
+                   </el-form-item>
+               </el-col>
+            </el-row>
+
+            <el-button type="info" size="mini" icon="el-icon-plus" plain @click="addOption">Add Option</el-button>
+
+
+
+            <span slot="footer" class="dialog-footer">
+             <el-button type="primary" @click="showOptionsModal = false">Done</el-button>
+            </span>
 
         </el-dialog>
 
@@ -84,6 +116,10 @@ export default {
               type: Object,
               required: true,
           },
+          section: {
+              type: Object,
+              required: true,
+          },
       },
 
       data () {
@@ -92,6 +128,10 @@ export default {
                   {
                       label: 'Text',
                       value: 'text',
+                  },
+                  {
+                      label: 'Number',
+                      value: 'number',
                   },
                   {
                       label: 'Radio',
@@ -133,8 +173,20 @@ export default {
 
           deleteField(field)
           {
-              //
-          }
+              this.section.fields.data.splice(this.section.fields.data.indexOf(field), 1);
+          },
+
+          addOption()
+          {
+              this.model.options.push({
+
+              });
+          },
+
+          deleteOption(option, options)
+          {
+              options.splice(options.indexOf(option), 1);
+          },
       }
 }
 </script>

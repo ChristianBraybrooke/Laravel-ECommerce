@@ -120,7 +120,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
                 path: "forms/" + this.formId,
                 params: {
                     with: ['sections.fields'],
-                    include: ['order', 'rules']
+                    include: ['order', 'rules', 'type', 'options']
                 }
             }).then(function (data) {
                 this.loading = false;
@@ -146,7 +146,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
                     _this.loading = true;
                     _this.formErrors = {};
                     _this.form.with = ['sections.fields'];
-                    _this.form.include = ['order', 'rules'];
+                    _this.form.include = ['order', 'rules', 'type', 'options'];
 
                     __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("put", {
                         path: "forms/" + _this.formId,
@@ -2780,7 +2780,14 @@ var render = function() {
                   _c(
                     "el-form-item",
                     {
-                      attrs: { label: "Form Name", size: "small", prop: "name" }
+                      attrs: {
+                        label: "Form Name",
+                        size: "small",
+                        prop: "name",
+                        rules: [
+                          { required: true, message: "Form name is required" }
+                        ]
+                      }
                     },
                     [
                       _c("el-input", {

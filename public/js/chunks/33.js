@@ -76,6 +76,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -88,6 +120,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         model: {
             type: Object,
             required: true
+        },
+        section: {
+            type: Object,
+            required: true
         }
     },
 
@@ -96,6 +132,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             fieldOptions: [{
                 label: 'Text',
                 value: 'text'
+            }, {
+                label: 'Number',
+                value: 'number'
             }, {
                 label: 'Radio',
                 value: 'radio'
@@ -130,7 +169,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         deleteField: function deleteField(field) {
-            //
+            this.section.fields.data.splice(this.section.fields.data.indexOf(field), 1);
+        },
+        addOption: function addOption() {
+            this.model.options.push({});
+        },
+        deleteOption: function deleteOption(option, options) {
+            options.splice(options.indexOf(option), 1);
         }
     }
 });
@@ -145,7 +190,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -164,7 +209,11 @@ var render = function() {
     [
       _c(
         "el-row",
-        { attrs: { gutter: 20 } },
+        {
+          class:
+            "form_field_row " + (_vm.model.rules.required ? "required" : ""),
+          attrs: { gutter: 20 }
+        },
         [
           _c(
             "el-col",
@@ -368,9 +417,7 @@ var render = function() {
                     [
                       _c(
                         "el-form-item",
-                        {
-                          attrs: { label: "Required", prop: "rules.required" }
-                        },
+                        { attrs: { label: "Required", prop: "required" } },
                         [
                           _c("el-switch", {
                             attrs: {
@@ -393,6 +440,30 @@ var render = function() {
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "dialog-footer",
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.showRulesModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Done")]
+                  )
+                ],
+                1
               )
             ],
             1
@@ -400,18 +471,174 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.showOptionsModal
-        ? _c("el-dialog", {
-            attrs: {
-              title: _vm.model.name + " Options",
-              visible: _vm.showOptionsModal,
-              width: "70%"
-            },
-            on: {
-              "update:visible": function($event) {
-                _vm.showOptionsModal = $event
+        ? _c(
+            "el-dialog",
+            {
+              attrs: {
+                title: _vm.model.name + " Options",
+                visible: _vm.showOptionsModal,
+                width: "70%"
+              },
+              on: {
+                "update:visible": function($event) {
+                  _vm.showOptionsModal = $event
+                }
               }
-            }
-          })
+            },
+            [
+              _vm._l(_vm.model.options, function(option) {
+                return _vm.model.options
+                  ? _c(
+                      "el-row",
+                      {
+                        key: option.id,
+                        staticClass: "form_field_row",
+                        attrs: { gutter: 20 }
+                      },
+                      [
+                        _c(
+                          "el-col",
+                          { attrs: { md: 4 } },
+                          [
+                            _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "Label",
+                                  size: "small",
+                                  prop: "label"
+                                }
+                              },
+                              [
+                                _c("el-input", {
+                                  attrs: { autofocus: true },
+                                  model: {
+                                    value: option.name,
+                                    callback: function($$v) {
+                                      _vm.$set(option, "name", $$v)
+                                    },
+                                    expression: "option.name"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-col",
+                          { attrs: { md: 4 } },
+                          [
+                            _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "Value",
+                                  size: "small",
+                                  prop: "value"
+                                }
+                              },
+                              [
+                                _c("el-input", {
+                                  attrs: { autofocus: true },
+                                  model: {
+                                    value: option.value,
+                                    callback: function($$v) {
+                                      _vm.$set(option, "value", $$v)
+                                    },
+                                    expression: "option.value"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-col",
+                          { attrs: { md: 2 } },
+                          [
+                            _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "",
+                                  size: "small",
+                                  prop: "delete"
+                                }
+                              },
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: { size: "mini", type: "danger" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.deleteOption(
+                                          option,
+                                          _vm.model.options
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Delete")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: {
+                    type: "info",
+                    size: "mini",
+                    icon: "el-icon-plus",
+                    plain: ""
+                  },
+                  on: { click: _vm.addOption }
+                },
+                [_vm._v("Add Option")]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "dialog-footer",
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.showOptionsModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Done")]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          )
         : _vm._e()
     ],
     1

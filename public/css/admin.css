@@ -64783,3 +64783,13 @@ section.el-container.is-vertical {
   scroll-behavior: auto;
 }
 
+.form_field_row {
+  margin-bottom: 10px;
+  background: #f5f7fa;
+  padding-top: 18px;
+}
+
+.form_field_row.required {
+  background: #fef0f0;
+}
+

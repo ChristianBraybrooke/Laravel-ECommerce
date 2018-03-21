@@ -2,7 +2,7 @@
     <div>
 
       <template v-if="model.fields">
-          <form-field-component v-for="field in model.fields.data" :model="field" :key="field.id"></form-field-component>
+          <form-field-component v-for="field in model.fields.data" :model="field" :section="model" :key="field.id"></form-field-component>
       </template>
 
       <el-button type="info" size="mini" icon="el-icon-plus" plain @click="addField">Add Field</el-button>
@@ -52,6 +52,9 @@ export default {
               this.model.fields.data.push({
                   rules: {
                       required: false,
+                  },
+                  options: {
+
                   }
               });
           },

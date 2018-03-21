@@ -19,7 +19,7 @@
 
             <el-row :gutter="20">
                 <el-col :lg="12" :md="24">
-                    <el-form-item label="Form Name" size="small" prop="name">
+                    <el-form-item label="Form Name" size="small" prop="name" :rules="[{ required: true, message: 'Form name is required'}]">
                         <el-input :autofocus="true" v-model="form.name"></el-input>
                     </el-form-item>
                 </el-col>
@@ -112,7 +112,7 @@ export default {
                     path: "forms/" + this.formId,
                     params: {
                         with: ['sections.fields'],
-                        include: ['order', 'rules']
+                        include: ['order', 'rules', 'type', 'options']
                     }
                 })
                 .then(function (data) {
@@ -138,7 +138,7 @@ export default {
                       this.loading = true;
                       this.formErrors = {};
                       this.form.with = ['sections.fields'];
-                      this.form.include = ['order', 'rules'];
+                      this.form.include = ['order', 'rules', 'type', 'options'];
 
                       api.persist("put", {
                             path: "forms/" + this.formId,
