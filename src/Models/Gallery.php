@@ -38,7 +38,7 @@ class Gallery extends Model implements HasMediaConversions
             $watermark_file = getMediaFromSetting('Website Watermark');
             $watermark = null;
             if ($watermark_file) {
-                $watermark = $watermark_file->getPath();
+                $watermark = $watermark_file->disk === 's3' ? $watermark_file->getUrl() : $watermark_file->getPath();
             }
 
             if ($watermark) {
