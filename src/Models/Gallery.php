@@ -35,56 +35,89 @@ class Gallery extends Model implements HasMediaConversions
     public function registerMediaConversions(Media $media = null)
     {
         if ($media->isImage()) {
-            $watermark = Storage::disk('public')->path('tco-watermark.png');
+            $watermark_file = getMediaFromSetting('Website Watermark');
+            $watermark = null;
+            if ($watermark_file) {
+                $watermark = $watermark_file->getPath();
+            }
 
-            $this->addMediaConversion("{$media->name}-web")
-                  ->watermark($watermark)
-                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                  ->watermarkHeight(13, Manipulations::UNIT_PERCENT)
-                  ->watermarkWidth(20, Manipulations::UNIT_PERCENT)
-                  ->watermarkFit(Manipulations::FIT_FILL)
-                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT);
+            if ($watermark) {
+                $this->addMediaConversion("{$media->name}-web")
+                     ->watermark($watermark)
+                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                     ->watermarkHeight(13, Manipulations::UNIT_PERCENT)
+                     ->watermarkWidth(20, Manipulations::UNIT_PERCENT)
+                     ->watermarkFit(Manipulations::FIT_FILL)
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT);
+            } else {
+                $this->addMediaConversion("{$media->name}-web");
+            }
 
-            $this->addMediaConversion($media->thumbName())
-                  ->watermark($watermark)
-                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                  ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
-                  ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
-                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                  ->crop(Manipulations::CROP_CENTER, 500, 500);
+            if ($watermark) {
+                $this->addMediaConversion($media->thumbName())
+                     ->watermark($watermark)
+                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                     ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
+                     ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                     ->crop(Manipulations::CROP_CENTER, 500, 500);
+            } else {
+                $this->addMediaConversion($media->thumbName())
+                     ->crop(Manipulations::CROP_CENTER, 500, 500);
+            }
 
-            $this->addMediaConversion($media->squareName())
-                  ->watermark($watermark)
-                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                  ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
-                  ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
-                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                  ->crop(Manipulations::CROP_CENTER, 800, 800);
+            if ($watermark) {
+                $this->addMediaConversion($media->squareName())
+                     ->watermark($watermark)
+                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                     ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
+                     ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                     ->crop(Manipulations::CROP_CENTER, 800, 800);
+            } else {
+                $this->addMediaConversion($media->squareName())
+                     ->crop(Manipulations::CROP_CENTER, 800, 800);
+            }
 
-            $this->addMediaConversion($media->headerName())
-                  ->watermark($watermark)
-                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                  ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
-                  ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
-                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                  ->focalCrop(1770, 800, 0, 57);
+            if ($watermark) {
+                $this->addMediaConversion($media->headerName())
+                     ->watermark($watermark)
+                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                     ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
+                     ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                     ->focalCrop(1770, 800, 0, 57);
+            } else {
+                $this->addMediaConversion($media->headerName())
+                     ->focalCrop(1770, 800, 0, 57);
+            }
 
-            $this->addMediaConversion($media->panelName())
-                  ->watermark($watermark)
-                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                  ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
-                  ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
-                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                  ->crop(Manipulations::CROP_CENTER, 1300, 390);
+            if ($watermark) {
+                $this->addMediaConversion($media->panelName())
+                     ->watermark($watermark)
+                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                     ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
+                     ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                     ->crop(Manipulations::CROP_CENTER, 1300, 390);
+            } else {
+                $this->addMediaConversion($media->panelName())
+                     ->crop(Manipulations::CROP_CENTER, 1300, 390);
+            }
 
-            $this->addMediaConversion($media->listingName())
-                  ->watermark($watermark)
-                  ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
-                  ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
-                  ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
-                  ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                  ->crop(Manipulations::CROP_CENTER, 1000, 667);
-                  
+            if ($watermark) {
+                $this->addMediaConversion($media->listingName())
+                     ->watermark($watermark)
+                     ->watermarkPosition(Manipulations::POSITION_TOP_LEFT)
+                     ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
+                     ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                     ->crop(Manipulations::CROP_CENTER, 1000, 667);
+            } else {
+                $this->addMediaConversion($media->listingName())
+                     ->crop(Manipulations::CROP_CENTER, 1000, 667);
+            }
+
             $this->addMediaConversion($media->advertName())
                   ->crop(Manipulations::CROP_CENTER, 1600, 300);
         }
