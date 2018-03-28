@@ -73,6 +73,17 @@
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16"><g class="nc-icon-wrapper"><path d="M13.2,5.2l-2.4-2.4l2.4-2.4C12.7,0.1,12.1,0,11.5,0C9,0,7,2,7,4.5C7,5,7.1,5.4,7.2,5.9l-6.6,4.9 c-0.8,0.6-0.8,1.7-0.2,2.4l2.3,2.4c0.7,0.7,1.8,0.6,2.4-0.2l4.9-6.6C10.5,8.9,11,9,11.5,9C14,9,16,7,16,4.5c0-0.6-0.1-1.2-0.3-1.7 L13.2,5.2z"></path></g></svg>
             <span slot="title">Config</span>
           </el-menu-item>
+
+          <el-submenu index="3">
+            <template slot="title">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path fill="#000000" d="M4,1v11H1c-0.552,0-1,0.448-1,1v8c0,1.657,1.343,3,3,3h1h17c1.657,0,3-1.343,3-3V1c0-0.552-0.448-1-1-1H5 C4.448,0,4,0.448,4,1z M8,5h6v6H8V5z M3,22c-0.552,0-1-0.449-1-1v-7h2v7C4,21.551,3.552,22,3,22z M20,19H8v-2h12V19z M20,15H8v-2h12 V15z M20,11h-4V9h4V11z M20,7h-4V5h4V7z"></path></g></svg>
+              <span slot="title">Reports</span>
+            </template>
+
+              <el-menu-item index="/import-export">Import / Export</el-menu-item>
+
+          </el-submenu>
+
         </el-menu>
       </el-aside>
       <el-main>

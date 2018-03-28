@@ -47,3 +47,6 @@ Route::get('user', 'ApiUsersController@authUser');
 // Orders
 Route::apiResource('orders', 'ApiOrdersController');
 Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');
+
+// Import / Export
+Route::post('import', 'ApiImportController@import');
