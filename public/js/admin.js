@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		22: 0
+/******/ 		23: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"pages","1":"products","2":"orders","3":"collections","4":"collectiontypes","5":"account","6":"users","7":"config","8":"galleries","9":"not-found","10":"dashboard","23":"import-export"}[chunkId]||chunkId) + ".js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"pages","1":"products","2":"orders","3":"collections","4":"collectiontypes","5":"account","6":"users","7":"config","8":"import-export","9":"galleries","10":"not-found","11":"dashboard"}[chunkId]||chunkId) + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -79897,7 +79897,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
 // Pages
 var Dashboard = function Dashboard() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
+    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
 };
 var Account = function Account() {
     return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Account.vue"));
@@ -79924,7 +79924,7 @@ var ViewProduct = function ViewProduct() {
     return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProduct.vue"));
 };
 var Galleries = function Galleries() {
-    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/galleries/Galleries.vue"));
+    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/galleries/Galleries.vue"));
 };
 var Pages = function Pages() {
     return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/Pages.vue"));
@@ -79939,10 +79939,10 @@ var Config = function Config() {
     return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/config/Config.vue"));
 };
 var NotFound = function NotFound() {
-    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
+    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
 };
 var ImportExport = function ImportExport() {
-    return __webpack_require__.e/* import() */(23).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/reports/ImportExport.vue"));
+    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/reports/ImportExport.vue"));
 };
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({

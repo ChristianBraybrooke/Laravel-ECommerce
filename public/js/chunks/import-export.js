@@ -1,4 +1,4 @@
-webpackJsonp([23],{
+webpackJsonp([8],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/reports/ImportExport.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -6,6 +6,34 @@ webpackJsonp([23],{
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -72,10 +100,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(11/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(12/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(12/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+            return __webpack_require__.e/* import() */(13/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
         }
     },
 
@@ -86,7 +114,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loading: false,
             ImportExportErrors: {},
             currentTab: 'import',
-            importForm: {}
+            importForm: {},
+            imports: []
         };
     },
 
@@ -97,6 +126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         console.log('ImportExport.vue Mounted.');
+        this.getImports();
     },
 
 
@@ -106,6 +136,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         handleFilesUnChosen: function handleFilesUnChosen(data) {
             this.$set(this.importForm, data.id, data.files);
+        },
+        getImports: function getImports() {
+            this.loading = true;
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+                path: 'imports'
+            }).then(function (data) {
+                this.loading = false;
+                this.imports = data.data;
+            }.bind(this)).catch(function (error) {
+                this.loading = false;
+                this.ImportExportErrors = error;
+            }.bind(this));
         },
         submitForm: function submitForm(ref, path) {
             var _this = this;
@@ -117,9 +159,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("post", {
                         path: path,
-                        object: {
-                            data: _this.importForm
-                        }
+                        object: _this.importForm
                     }).then(function (data) {
                         this.loading = false;
                         this.importForm = {};
@@ -144,7 +184,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -203,6 +243,56 @@ var render = function() {
             { attrs: { label: "Import", name: "import" } },
             [
               _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c(
+                        "el-table",
+                        {
+                          staticStyle: { "margin-bottom": "50px" },
+                          attrs: {
+                            data: _vm.imports,
+                            size: "mini",
+                            stripe: true
+                          }
+                        },
+                        [
+                          _c("el-table-column", {
+                            attrs: { prop: "id", label: "ID" }
+                          }),
+                          _vm._v(" "),
+                          _c("el-table-column", {
+                            attrs: { prop: "import_to", label: "Import To" }
+                          }),
+                          _vm._v(" "),
+                          _c("el-table-column", {
+                            attrs: { prop: "status", label: "Status" }
+                          }),
+                          _vm._v(" "),
+                          _c("el-table-column", {
+                            attrs: { prop: "rows_added", label: "Rows Added" }
+                          }),
+                          _vm._v(" "),
+                          _c("el-table-column", {
+                            attrs: {
+                              prop: "created_at.human",
+                              label: "Created At"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
                 "el-form",
                 {
                   ref: "importForm",
@@ -244,7 +334,7 @@ var render = function() {
                         },
                         [
                           _c("el-option", {
-                            attrs: { label: "Products", value: "products" }
+                            attrs: { label: "Products", value: "App\\Product" }
                           })
                         ],
                         1
@@ -297,7 +387,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          _vm.submitForm("importForm", "import")
+                          _vm.submitForm("importForm", "imports")
                         }
                       }
                     },

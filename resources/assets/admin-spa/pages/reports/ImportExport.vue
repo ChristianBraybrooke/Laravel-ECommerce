@@ -11,6 +11,36 @@
         <el-tabs v-model="currentTab">
             <el-tab-pane label="Import" name="import">
 
+                <el-row>
+                    <el-col :span="12">
+                        <el-table :data="imports"
+                                  size="mini"
+                                  style="margin-bottom:50px;"
+                                  :stripe="true">
+                            <el-table-column
+                              prop="id"
+                              label="ID">
+                            </el-table-column>
+                            <el-table-column
+                              prop="import_to"
+                              label="Import To">
+                            </el-table-column>
+                            <el-table-column
+                              prop="status"
+                              label="Status">
+                            </el-table-column>
+                            <el-table-column
+                              prop="rows_added"
+                              label="Rows Added">
+                            </el-table-column>
+                            <el-table-column
+                              prop="created_at.human"
+                              label="Created At">
+                            </el-table-column>
+
+                        </el-table>
+                    </el-col>
+                </el-row>
 
                 <el-form label-position="left"
                          :model="importForm"
@@ -20,7 +50,7 @@
                     <el-form-item label="Import Into" prop="import_into" :rules="[{ required: true, message: 'Import into field is required', trigger: 'blur' }]">
                         <el-select class="config_select" v-model="importForm.import_into" placeholder="Select" size="small">
                             <el-option label="Products"
-                                       value="products">
+                                       value="App\Product">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -38,12 +68,10 @@
 
                     </el-form-item>
 
-                    <el-button plain type="success" :loading="loading" @click="submitForm('importForm', 'import')">Import</el-button>
+                    <el-button plain type="success" :loading="loading" @click="submitForm('importForm', 'imports')">Import</el-button>
 
 
                 </el-form>
-
-
 
             </el-tab-pane>
             <el-tab-pane label="Export" name="export">
@@ -76,7 +104,8 @@ export default {
               loading: false,
               ImportExportErrors: {},
               currentTab: 'import',
-              importForm: {}
+              importForm: {},
+              imports: []
           }
       },
 
@@ -89,7 +118,8 @@ export default {
       },
 
       mounted () {
-          console.log('ImportExport.vue Mounted.')
+          console.log('ImportExport.vue Mounted.');
+          this.getImports();
       },
 
       methods: {
@@ -102,6 +132,23 @@ export default {
         {
             this.$set(this.importForm, data.id, data.files);
         },
+
+        getImports()
+        {
+            this.loading = true;
+            api.get({
+                  path: 'imports',
+              })
+              .then(function (data) {
+                  this.loading = false;
+                  this.imports = data.data;
+              }.bind(this))
+              .catch(function (error) {
+                  this.loading = false;
+                  this.ImportExportErrors = error;
+              }.bind(this));
+        },
+
         submitForm(ref, path)
         {
             this.$refs[ref].validate((valid) => {
@@ -111,9 +158,7 @@ export default {
 
                     api.persist("post", {
                           path: path,
-                          object: {
-                              data: this.importForm
-                          }
+                          object: this.importForm
                       })
                       .then(function (data) {
                           this.loading = false;
