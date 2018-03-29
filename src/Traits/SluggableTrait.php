@@ -12,9 +12,28 @@ trait SluggableTrait
      */
     public function setSlugAttribute($value)
     {
-        $value = str_slug($value ?: $this->attributes['name']);
+        $this->attributes['slug'] = $this->formatSlug($value ?: $this->attributes['name']);
+    }
 
-        $this->attributes['slug'] = $value;
+    /**
+     * Format the slug and check if unique.
+     *
+     * @param  string  $value
+     * @return String
+     */
+    public function formatSlug($value)
+    {
+        $slug = str_slug($value);
+
+        $other_slugs = self::withoutGlobalScopes()
+                           ->where('slug', 'like', $slug . '%')
+                           ->get();
+
+        if ($other_slugs->count() >= 1) {
+            $slug = $slug . '-' . ($other_slugs->count() + 1);
+        }
+
+        return $slug;
     }
 
     /**

@@ -334,7 +334,7 @@ var render = function() {
                         },
                         [
                           _c("el-option", {
-                            attrs: { label: "Products", value: "App\\Product" }
+                            attrs: { label: "Products", value: "Product" }
                           })
                         ],
                         1

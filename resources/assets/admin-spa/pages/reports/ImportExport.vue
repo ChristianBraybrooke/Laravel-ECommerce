@@ -50,7 +50,7 @@
                     <el-form-item label="Import Into" prop="import_into" :rules="[{ required: true, message: 'Import into field is required', trigger: 'blur' }]">
                         <el-select class="config_select" v-model="importForm.import_into" placeholder="Select" size="small">
                             <el-option label="Products"
-                                       value="App\Product">
+                                       value="Product">
                             </el-option>
                         </el-select>
                     </el-form-item>

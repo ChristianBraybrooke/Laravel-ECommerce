@@ -8,6 +8,8 @@ use ChrisBraybrooke\ECommerce\Models\Import;
 use ChrisBraybrooke\ECommerce\Http\Resources\ImportsResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ImportResource;
 use Auth;
+use \Illuminate\Validation\ValidationException;
+use ChrisBraybrooke\ECommerce\Jobs\ProcessImport;
 
 class ApiImportsController extends Controller
 {
@@ -25,6 +27,11 @@ class ApiImportsController extends Controller
      */
     public function import(Request $request, Import $import)
     {
+        if (isset($request->import_files[0]['file_type']) && $request->import_files[0]['file_type'] !== 'text/plain') {
+            throw ValidationException::withMessages(['Invalid file type.']);
+        } elseif (!isset($request->import_files[0]['file_type'])) {
+            throw ValidationException::withMessages(['No file.']);
+        }
         $import = $import->create([
             'import_to' => $request->import_into,
             'user_id' => Auth::id(),
@@ -34,6 +41,8 @@ class ApiImportsController extends Controller
         $import->syncMedia([
             'import_file' => $request->import_files,
         ]);
+
+        ProcessImport::dispatch($import);
 
         return new ImportResource($import);
     }
