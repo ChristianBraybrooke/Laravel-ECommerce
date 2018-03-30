@@ -10,11 +10,17 @@
 
         <el-tabs v-model="currentTab">
             <el-tab-pane label="Import" name="import">
+                <el-row>
+                    <el-col :lg="24">
+                        <el-button class="" @click="getImports" type="info" size="small" plain><i class="el-icon-refresh"></i></el-button>
+                    </el-col>
+                </el-row>
 
                 <el-row>
-                    <el-col :span="12">
+                    <el-col :lg="12">
                         <el-table :data="imports"
                                   size="mini"
+                                  :row-class-name="tableRowClassName"
                                   style="margin-bottom:50px;"
                                   :stripe="true">
                             <el-table-column
@@ -85,6 +91,7 @@
 
 <script>
 import api from "../../services/api-service.js";
+var throttle = require('lodash.throttle');
 
 export default {
 
@@ -105,7 +112,7 @@ export default {
               ImportExportErrors: {},
               currentTab: 'import',
               importForm: {},
-              imports: []
+              imports: [],
           }
       },
 
@@ -128,12 +135,21 @@ export default {
             this.$set(this.importForm, data.id, data.files);
         },
 
+        tableRowClassName({row, rowIndex}) {
+            if (row.status === 'Failed') {
+                return 'danger-row';
+            } else if (row.status === 'Pending') {
+                return 'warning-row';
+            }
+            return '';
+        },
+
         handleFilesUnChosen(data)
         {
             this.$set(this.importForm, data.id, data.files);
         },
 
-        getImports()
+        getImports: throttle(function ()
         {
             this.loading = true;
             api.get({
@@ -147,7 +163,7 @@ export default {
                   this.loading = false;
                   this.ImportExportErrors = error;
               }.bind(this));
-        },
+        }),
 
         submitForm(ref, path)
         {
@@ -162,6 +178,7 @@ export default {
                       })
                       .then(function (data) {
                           this.loading = false;
+                          this.imports.unshift(data.data);
                           this.importForm = {};
                       }.bind(this))
                       .catch(function (error) {
@@ -178,5 +195,13 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+    @import "../../sass/variables";
+
+    .danger-row, .danger-row td {
+        background: $--color-danger-light!important;
+    }
+    .warning-row, .warning-row td {
+        background: $--color-warning-light!important;
+    }
 </style>

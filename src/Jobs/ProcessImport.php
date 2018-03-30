@@ -94,9 +94,7 @@ class ProcessImport implements ShouldQueue
      */
     public function failed(\Exception $exception)
     {
-        if ($this->import_class) {
-            $this->import_class::where('meta->__import', $this->import->id)->delete();
-        }
+        $this->import->deleteAllModels();
         $this->import->update([
             'status' => 'Failed',
             'rows_added' => 0,

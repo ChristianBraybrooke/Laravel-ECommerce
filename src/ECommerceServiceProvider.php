@@ -320,6 +320,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'migrations');
         }
+
+        if (! class_exists('CreateImportToModelsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_import_to_models_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_import_to_models_table.php'
+                ),
+            ], 'migrations');
+        }
     }
 
     /**
