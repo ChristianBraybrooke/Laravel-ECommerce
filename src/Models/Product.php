@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
+use Carbon\Carbon;
 
 class Product extends Model implements ProductContract
 {
