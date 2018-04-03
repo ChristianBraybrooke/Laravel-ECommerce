@@ -26,32 +26,32 @@
 
           <el-row :gutter="20">
               <el-col :md="{span:8, offset: 4}">
-                  <el-form-item label="Customer Company" size="small" prop="customer.company">
-                      <div class="stripe_input" ref="cardNumber"></div>
+                  <el-form-item label="Cardholder Name" size="small" prop="customer.company" :required="true">
+                      <el-input v-model="order.customer.first_name" placeholder=""></el-input>
                   </el-form-item>
               </el-col>
-
 
               <el-col :md="8">
-                  <el-form-item label="Customer Company" size="small" prop="customer.company">
-                      <el-input v-model="order.customer.company" placeholder=""></el-input>
+                  <el-form-item label="Card Number" size="small" prop="card_number" :required="true">
+                      <div class="stripe_input small" ref="cardNumber"></div>
+                      <div class="el-form-item__error">
+                              card_number is required
+                            </div>
                   </el-form-item>
               </el-col>
           </el-row>
 
 
           <el-row :gutter="20">
-              <el-col :md="{span:16, offset: 4}">
-                  <el-form-item label="Customer Company" size="small" prop="customer.company">
-                      <div class="stripe_input" ref="cardExpiry"></div>
+              <el-col :md="{span:8, offset: 4}">
+                  <el-form-item label="Card Expiry" size="small" prop="customer.company">
+                      <div class="stripe_input small" ref="cardExpiry"></div>
                   </el-form-item>
               </el-col>
-          </el-row>
 
-          <el-row :gutter="20">
-              <el-col :md="{span:16, offset: 4}">
-                  <el-form-item label="Customer Company" size="small" prop="customer.company">
-                      <div class="stripe_input" ref="cardCvc"></div>
+              <el-col :md="8">
+                  <el-form-item label="Card CVC" size="small" prop="customer.company">
+                      <div class="stripe_input small" ref="cardCvc"></div>
                   </el-form-item>
               </el-col>
           </el-row>
@@ -125,15 +125,24 @@ export default {
 
           setupStripe()
           {
-              // card = elements.create('card');
-              // card.mount(this.$refs.card);
+              var is_mini = this.$refs.cardNumber.className.includes('mini');
+              var is_small = this.$refs.cardNumber.className.includes('small');
+              var is_medium = this.$refs.cardNumber.className.includes('medium');
+              var color = '#606266';
+              var placeholder_color = '#c0c4cc';
 
               var style = {
                   base: {
-                      border: '1px solid #dcdfe6'
+                    fontSize: is_mini ? '12px' : is_small ? '13px' : is_medium ? '14px' : '14px',
+                    color: color,
+                    fontSmoothing: 'antialiased',
+                    fontFamily: 'Helvetica Neue',
+                    '::placeholder': {
+                      color: placeholder_color
+                    },
                   },
                   'invalid': {
-                      'color': '#212529',
+                      'color': color,
                   },
               };
 
@@ -284,24 +293,63 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+@import '../../sass/_variables.scss';
+
+@function stripe-padding-calc($height, $font-size){
+  @return (($height - $font-size) / 2) - 1
+}
+
 .stripe_input {
-  -webkit-appearance: none;
-  background-color: #fff;
-  background-image: none;
-  border-radius: 4px;
-  border: 1px solid #dcdfe6;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #606266;
-  display: inline-block;
-  font-size: inherit;
-  height: 32px;
-  line-height: 1;
-  outline: none;
-  padding: 0 15px;
-  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-  width: 100%;
+    -webkit-appearance: none;
+    background-color: $--input-fill;
+    background-image: none;
+    border-radius: $--input-border-radius;
+    border: $--input-border;
+    border-color: $--input-border-color;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: $--input-font-size;
+    line-height: 1;
+    outline: none;
+    padding: stripe-padding-calc($--input-height, $--input-font-size) 15px;
+    -webkit-transition: $--border-transition-base;
+    transition: $--border-transition-base;
+    width: 100%;
+    height: $--input-height;
+}
+.stripe_input:hover {
+    cursor: text;
+    border: $--input-border;
+    border-color: $--input-border-color-hover;
+}
+.stripe_input.StripeElement--focus {
+    border: $--input-border;
+    border-color: $--input-focus-border;
+}
+.stripe_input.StripeElement--invalid {
+    border: $--input-border;
+    border-color: $--color-danger;
+}
+.stripe_input.StripeElement--complete {
+    border: $--input-border;
+    border-color: $--color-success;
+}
+
+.stripe_input.medium {
+    font-size: $--input-medium-font-size;
+    height: $--input-medium-height;
+    padding: stripe-padding-calc($--input-medium-height, $--input-medium-font-size) 15px;
+}
+.stripe_input.small {
+    font-size: $--input-small-font-size;
+    height: $--input-small-height;
+    padding: stripe-padding-calc($--input-small-height, $--input-small-font-size) 15px;
+}
+.stripe_input.mini {
+    font-size: $--input-mini-font-size;
+    height: $--input-mini-height;
+    padding: stripe-padding-calc($--input-mini-height, $--input-mini-font-size) 15px;
 }
 </style>
