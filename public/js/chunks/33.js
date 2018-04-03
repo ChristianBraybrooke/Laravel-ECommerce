@@ -217,7 +217,7 @@ var render = function() {
         [
           _c(
             "el-col",
-            { attrs: { md: 4 } },
+            { attrs: { lg: 12, xl: 4 } },
             [
               _c(
                 "el-form-item",
@@ -242,7 +242,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-col",
-            { attrs: { md: 6 } },
+            { attrs: { lg: 12, xl: 6 } },
             [
               _c(
                 "el-form-item",
@@ -273,7 +273,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-col",
-            { attrs: { md: 4 } },
+            { attrs: { lg: 10, xl: 4 } },
             [
               _c(
                 "el-form-item",
@@ -307,7 +307,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-col",
-            { attrs: { md: 2 } },
+            { attrs: { lg: 4, xl: 2 } },
             [
               _c(
                 "el-form-item",
@@ -335,7 +335,7 @@ var render = function() {
           _vm.needsOptions
             ? _c(
                 "el-col",
-                { attrs: { md: 2 } },
+                { attrs: { lg: 4, xl: 2 } },
                 [
                   _c(
                     "el-form-item",
@@ -363,7 +363,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-col",
-            { attrs: { md: 2 } },
+            { attrs: { lg: 4, xl: 2 } },
             [
               _c(
                 "el-form-item",
@@ -493,12 +493,12 @@ var render = function() {
                       {
                         key: option.id,
                         staticClass: "form_field_row",
-                        attrs: { gutter: 20 }
+                        attrs: { type: "flex", gutter: 20 }
                       },
                       [
                         _c(
                           "el-col",
-                          { attrs: { md: 4 } },
+                          { attrs: { lg: 8, xl: 4 } },
                           [
                             _c(
                               "el-form-item",
@@ -529,7 +529,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "el-col",
-                          { attrs: { md: 4 } },
+                          { attrs: { lg: 8, xl: 4 } },
                           [
                             _c(
                               "el-form-item",
@@ -560,7 +560,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "el-col",
-                          { attrs: { md: 2 } },
+                          { attrs: { lg: 4, xl: 2 } },
                           [
                             _c(
                               "el-form-item",

@@ -62,7 +62,7 @@ class ApiOrdersController extends Controller
           'shipping_address_postcode' => !$use_billing_for_shipping ? $request->input('shipping_address.postcode') : null,
           'shipping_address_country' => !$use_billing_for_shipping ? $request->input('shipping_address.country') : null,
 
-          'status' => 'Draft',
+          'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->setStatusFromName('Draft'),
         ]);
 
         $order->load($request->with ?: []);
@@ -95,7 +95,7 @@ class ApiOrdersController extends Controller
     {
 
         $order->update([
-            'status' => $request->status,
+            'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->getAttributes()['status'],
 
             'user_first_name' => $request->input('customer.first_name'),
             'user_last_name' => $request->input('customer.last_name'),

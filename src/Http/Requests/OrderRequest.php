@@ -55,8 +55,8 @@ class OrderRequest extends FormRequest
         }
         $all = [
             'status' => [
-                'required',
-                Rule::in(array_keys($this->order->getStatuses())),
+                // 'required',
+                // Rule::in(array_keys($this->order->getStatuses())),
             ],
         ];
         return array_merge($customer, $address, $all);

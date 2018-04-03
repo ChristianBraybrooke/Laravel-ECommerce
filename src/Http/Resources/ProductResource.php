@@ -44,6 +44,9 @@ class ProductResource extends Resource
             $this->mergeWhen($this->relationLoaded('variant'), [
                 'variant' => new ProductResource($this->whenLoaded('variant'))
             ]),
+            $this->mergeWhen($this->relationLoaded('orderForm'), [
+                'order_form' => new FormResource($this->whenLoaded('orderForm'))
+            ]),
             'customisations' => new ProductCustomisationsResource($this->whenLoaded('customisations')),
             'is_variant' => $this->when(requestIncludes('is_variant'), $this->is_variant),
             'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),

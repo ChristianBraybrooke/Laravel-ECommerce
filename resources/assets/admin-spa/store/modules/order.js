@@ -8,7 +8,8 @@ const state = {
       shipping_address: {},
       items: [],
       cart: {},
-      use_billing_for_shipping: true
+      use_billing_for_shipping: true,
+      status: 'STATUS_DRAFT'
   },
 }
 
@@ -33,6 +34,10 @@ const mutations = {
 
   [types.SET_ORDER] (state, order) {
     state.order = order;
+  },
+
+  [types.ADD_PRODUCT_TO_ORDER] (state, product) {
+    state.order.items.push(product);
   },
 
 }

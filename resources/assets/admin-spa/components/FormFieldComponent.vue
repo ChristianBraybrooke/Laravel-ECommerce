@@ -2,17 +2,17 @@
     <div>
 
         <el-row :gutter="20" :class="'form_field_row ' +  (model.rules.required ? 'required' : '')">
-            <el-col :md="4">
+            <el-col :lg="12" :xl="4">
                 <el-form-item label="Name" size="small" prop="name">
                     <el-input :autofocus="true" v-model="model.name"></el-input>
                 </el-form-item>
             </el-col>
-            <el-col :md="6">
+            <el-col :lg="12" :xl="6">
                 <el-form-item label="Description" size="small" prop="description">
                     <el-input :autofocus="true" v-model="model.description"></el-input>
                 </el-form-item>
             </el-col>
-            <el-col :md="4">
+            <el-col :lg="10" :xl="4">
                 <el-form-item label="Type" size="small" prop="type">
                     <el-select v-model="model.type" placeholder="Type">
                         <el-option
@@ -24,17 +24,17 @@
                     </el-select>
                 </el-form-item>
             </el-col>
-            <el-col :md="2">
+            <el-col :lg="4" :xl="2">
                 <el-form-item label="" size="small" prop="rules">
                     <el-button plain @click="showRulesModal = true" size="mini" type="primary">Show Rules</el-button>
                 </el-form-item>
             </el-col>
-            <el-col :md="2" v-if="needsOptions">
+            <el-col :lg="4" :xl="2" v-if="needsOptions">
                 <el-form-item label="" size="small" prop="options">
                     <el-button plain @click="showOptionsModal = true" size="mini" type="primary">Show Options</el-button>
                 </el-form-item>
             </el-col>
-            <el-col :md="2">
+            <el-col :lg="4" :xl="2">
                 <el-form-item label="" size="small" prop="delete">
                     <el-button @click="deleteField(model)" size="mini" type="danger">Delete</el-button>
                 </el-form-item>
@@ -70,18 +70,18 @@
 
 
 
-            <el-row v-if="model.options" class="form_field_row" :gutter="20" v-for="option in model.options" :key="option.id">
-               <el-col :md="4">
+            <el-row v-if="model.options" class="form_field_row" type="flex" :gutter="20" v-for="option in model.options" :key="option.id">
+               <el-col :lg="8" :xl="4">
                    <el-form-item label="Label" size="small" prop="label">
                        <el-input :autofocus="true" v-model="option.name"></el-input>
                    </el-form-item>
                </el-col>
-               <el-col :md="4">
+               <el-col :lg="8" :xl="4">
                    <el-form-item label="Value" size="small" prop="value">
                        <el-input :autofocus="true" v-model="option.value"></el-input>
                    </el-form-item>
                </el-col>
-               <el-col :md="2">
+               <el-col :lg="4" :xl="2">
                    <el-form-item label="" size="small" prop="delete">
                        <el-button @click="deleteOption(option, model.options)" size="mini" type="danger">Delete</el-button>
                    </el-form-item>

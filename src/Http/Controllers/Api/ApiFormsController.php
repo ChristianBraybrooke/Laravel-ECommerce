@@ -27,7 +27,7 @@ class ApiFormsController extends Controller
     public function index(Request $request)
     {
         $forms = Form::with($request->with ?: [])
-                    ->basicResponse();
+                     ->basicResponse();
 
         return new FormsResource($forms);
     }

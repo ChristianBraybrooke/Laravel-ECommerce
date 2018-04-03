@@ -165,7 +165,7 @@
           </div>
         </el-popover>
 
-        <el-button style="margin-top: 40px;" v-popover:deleteOrderPop type="danger">Delete</el-button>
+        <el-button style="margin-top: 40px;" size="small" plain v-popover:deleteOrderPop type="danger">Delete</el-button>
 
 
 

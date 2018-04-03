@@ -5,6 +5,7 @@ webpackJsonp([12],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 //
 //
 //
@@ -21,6 +22,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -42,7 +60,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            //
+            forms: {},
+            formErrors: {}
         };
     },
 
@@ -57,11 +76,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         console.log('ViewProductOrdering.vue mounted');
+        this.getForms();
     },
 
 
     methods: {
-        //
+        getForms: function getForms() {
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+                path: 'forms'
+            }).then(function (data) {
+                this.forms = data.data;
+            }.bind(this)).catch(function (error) {
+                this.formErrors = error;
+            }.bind(this));
+        }
     }
 
 });
@@ -76,7 +104,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -96,13 +124,75 @@ var render = function() {
       _c("product-page-layout", {
         attrs: {
           "product-id": _vm.productId,
-          "current-page": "/products/" + _vm.productId + "/ordering"
+          "current-page": "/products/" + _vm.productId + "/ordering",
+          "request-with": ["orderForm"]
         },
         scopedSlots: _vm._u([
           {
             key: "product_page",
             fn: function(props) {
-              return undefined
+              return [
+                _c(
+                  "el-row",
+                  { attrs: { gutter: 20 } },
+                  [
+                    _c(
+                      "el-col",
+                      { attrs: { md: 6, sm: 12, xs: 24 } },
+                      [
+                        props.productForm.order_form
+                          ? _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "Order Form",
+                                  prop: "order_form.id",
+                                  size: "small"
+                                }
+                              },
+                              [
+                                _c(
+                                  "el-select",
+                                  {
+                                    staticClass: "collection_type_select",
+                                    attrs: {
+                                      filterable: "",
+                                      placeholder: "Select"
+                                    },
+                                    model: {
+                                      value: props.productForm.order_form.id,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          props.productForm.order_form,
+                                          "id",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "props.productForm.order_form.id"
+                                    }
+                                  },
+                                  _vm._l(_vm.forms, function(form) {
+                                    return _c("el-option", {
+                                      key: form.id,
+                                      attrs: {
+                                        label: form.name,
+                                        value: form.id
+                                      }
+                                    })
+                                  })
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ]
             }
           }
         ])

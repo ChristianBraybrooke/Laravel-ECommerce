@@ -22,6 +22,7 @@ class Order extends Model implements OrderContract
 
     protected $statuses = [
       'STATUS_DRAFT' => 'Draft',
+      'STATUS_PROFORMA' => 'Pro-Forma',
       'STATUS_PROCESSING' => 'Processing',
       'STATUS_COMPLETED' => 'Completed',
       'STATUS_CANCELLED' => 'Canceled',
@@ -45,6 +46,24 @@ class Order extends Model implements OrderContract
             return array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
         }
         return $this->statuses;
+    }
+
+    /**
+     * Get the order status key from it's value.
+     *
+     * @var array
+     */
+    public function setStatusFromName($name = 'Draft')
+    {
+        $filtered = array_where($this->statuses, function ($value, $key) use ($name) {
+            return $value === $name;
+        });
+
+        if ($filtered) {
+            return implode(array_keys($filtered));
+        } else {
+           return $this->setStatusFromName();
+        }
     }
 
     /**

@@ -49,32 +49,81 @@
 
                 <el-form label-position="top" ref="addProductForm" :model="addProductForm" @submit.native.prevent>
 
-                    <el-row :gutter="20">
-                        <el-col :md="12">
-                            <h5>Product Type</h5>
-                        </el-col>
-                    </el-row>
+                    <div class="form_option_section">
+                        <el-row :gutter="20">
+                            <el-col :md="12">
+                                <h5>Product Type</h5>
+                            </el-col>
+                        </el-row>
 
-                    <el-row :gutter="20">
-                        <el-col :md="{span:16, offset: 4}">
-                            <el-form-item label="Choose Product" size="small" prop="product">
-                                <el-cascader :options="products"
-                                             style="width: 100%;"
-                                             @change="handleProductChange"
-                                             @active-item-change="requestProductVariants"
-                                             :props="productProps">
-                                </el-cascader>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
+                        <el-row :gutter="20">
+                            <el-col :md="{span:16, offset: 4}">
+                                <el-form-item label="Choose Product" size="small" prop="product">
+                                    <el-cascader :options="products"
+                                                 style="width: 100%;"
+                                                 @change="handleProductChange"
+                                                 @active-item-change="requestProductVariants"
+                                                 :props="productProps">
+                                    </el-cascader>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </div>
 
-                    <hr>
+                    <template v-if="addProductForm.product.options && addProductForm.product.order_form">
+
+                        <template v-if="addProductForm.product.order_form.sections" v-for="section in addProductForm.product.order_form.sections.data">
+                            <template v-if="section.fields">
+                                <el-row :gutter="20" v-if="section.fields.data.length > 0">
+                                    <el-col :md="12">
+                                        <h5>{{ section.name }}</h5>
+                                    </el-col>
+                                </el-row>
+
+                                <div v-if="section.fields.data.length > 0" class="form_option_section">
+                                    <el-row :gutter="20" v-for="field in section.fields.data" :key="field.id">
+                                        <el-col :md="{span:16, offset: 4}">
+                                            <el-form-item :label="field.name" size="small" :prop="'product.options[' + field.name + ']'">
+                                                <el-input v-if="field.type === 'text'" v-model="addProductForm.product.options[field.name]"></el-input>
+                                                <el-select v-if="field.type === 'select'" v-model="addProductForm.product.options[field.name]">
+                                                    <el-option v-for="option in field.options"
+                                                               :key="option.id"
+                                                               :value="option.value"
+                                                               :label="option.name"></el-option>
+                                                </el-select>
+
+                                            </el-form-item>
+                                        </el-col>
+                                    </el-row>
+                                </div>
+
+                            </template>
+                        </template>
+                    </template>
+
+                    <div v-if="addProductForm.product.id" class="form_option_section">
+                        <el-row :gutter="20">
+                            <el-col :md="12">
+                                <h5>Quantity</h5>
+                            </el-col>
+                        </el-row>
+
+                        <el-row :gutter="20">
+                            <el-col :md="{span:16, offset: 4}">
+                                <el-form-item label="Quantity" size="small" prop="product.options.quantity">
+                                    <el-select v-model="addProductForm.product.options.quantity">
+                                        <el-option v-for="range in quantityRange" :key="range" :value="range"></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </div>
 
                 </el-form>
 
                 <span slot="footer" class="dialog-footer">
                   <el-button v-on:click="closeAndClearModal(null)">Cancel</el-button>
-                  <el-button type="primary" v-on:click="">Add Product</el-button>
+                  <el-button type="primary" v-on:click="addProductToTable()">Add Product</el-button>
                 </span>
 
             </div>
@@ -90,6 +139,7 @@ var findIndex = require('lodash.findindex');
 var forEach = require('lodash.foreach');
 var throttle = require('lodash.throttle');
 var last = require('lodash.last');
+var range = require('lodash.range');
 
 export default {
 
@@ -108,7 +158,7 @@ export default {
               loading: false,
               showProductModal: false,
               addProductForm: {
-                  product: null
+                  product: {},
               },
               productAddErrors: {},
               products: [],
@@ -124,6 +174,11 @@ export default {
           ...mapGetters([
             'order',
           ]),
+
+          quantityRange()
+          {
+              return range(10);
+          }
       },
 
       watch: {
@@ -170,8 +225,9 @@ export default {
            */
           handleProductChange(val)
           {
-              this.addProductForm.product = last(val);
-              console.log(this.findProductById(last(val)));
+              var chosenProduct = this.findProductById(last(val));
+              this.addProductForm.product = chosenProduct;
+              this.$set(this.addProductForm.product, 'options', {});
           },
 
           /**
@@ -187,7 +243,8 @@ export default {
               api.get({
                   path: 'products/' + val + '/variants',
                   params: {
-                      include: ['blank_variants']
+                      include: ['blank_variants', 'type', 'options', 'price'],
+                      with: ['orderForm.sections.fields']
                   }
               })
               .then(function (data) {
@@ -213,7 +270,8 @@ export default {
                   path: 'products',
                   params: {
                       no_variants: true,
-                      include: ['blank_variants']
+                      include: ['blank_variants', 'type', 'options', 'price'],
+                      with: ['orderForm.sections.fields']
                   }
               })
               .then(function (data) {
@@ -255,9 +313,22 @@ export default {
               }
               return product;
           },
+
+          addProductToTable()
+          {
+              this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
+              this.showProductModal = false;
+          },
       }
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+  @import '../../sass/_variables.scss';
+
+  .form_option_section {
+      border-bottom: dashed 2px $--border-color-light;
+      padding: 10px 0px;
+      margin-bottom: 10px;
+  }
 </style>

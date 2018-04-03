@@ -366,6 +366,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'migrations');
         }
+
+        if (! class_exists('AddOrderFormFieldToProductsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_order_form_field_to_products_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_add_order_form_field_to_products_table.php'
+                ),
+            ], 'migrations');
+        }
     }
 
     /**

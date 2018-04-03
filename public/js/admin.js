@@ -80358,12 +80358,12 @@ var state = {
 
       __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* GET_COLLECTIONS */], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTION_ERRORS */], []);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTIONS */], response.data);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_COLLECTION_ERRORS */], []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTION_ERRORS */], error);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_COLLECTION_ERRORS */], error);
         reject(error);
       }.bind(_this));
     });
@@ -80371,9 +80371,9 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* GET_COLLECTIONS */], function (state, collections) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTIONS */], function (state, collections) {
   state.collections = collections;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTION_ERRORS */], function (state, error) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_COLLECTION_ERRORS */], function (state, error) {
   state.collectionErrors = error;
 }), _mutations);
 
@@ -80391,6 +80391,8 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+var _mutations;
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -80403,7 +80405,8 @@ var state = {
     shipping_address: {},
     items: [],
     cart: {},
-    use_billing_for_shipping: true
+    use_billing_for_shipping: true,
+    status: 'STATUS_DRAFT'
   }
 
   // getters
@@ -80420,14 +80423,16 @@ var state = {
     var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     console.log('Vuex: Set Order');
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* SET_ORDER */], data);
+    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* SET_ORDER */], data);
   }
 };
 
 // mutations
-var mutations = _defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* SET_ORDER */], function (state, order) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* SET_ORDER */], function (state, order) {
   state.order = order;
-});
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_PRODUCT_TO_ORDER */], function (state, product) {
+  state.order.items.push(product);
+}), _mutations);
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   state: state,
@@ -80488,12 +80493,12 @@ var state = {
 
       __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_SHOP_DATA */], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], []);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA */], response.data);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA_ERRORS */], []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], error);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA_ERRORS */], error);
         reject(error);
       }.bind(_this));
     });
@@ -80504,15 +80509,15 @@ var state = {
     var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     console.log('Vuex: Set Shop Data');
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_SHOP_DATA */], data);
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], []);
+    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA */], data);
+    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA_ERRORS */], []);
   }
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_SHOP_DATA */], function (state, shopData) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA */], function (state, shopData) {
   state.shopData = shopData;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], function (state, error) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA_ERRORS */], function (state, error) {
   state.shopDataErrors = error;
 }), _mutations);
 
@@ -80577,12 +80582,12 @@ var state = {
     return new Promise(function (resolve, reject) {
       if (!state.user.created_at || Date.now() - state.userLastFetched > FETCH_BUFFER) {
         __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* USER_LAST_FETCHED */], Date.now());
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER */], response.data);
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER_ERRORS */], []);
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* USER_LAST_FETCHED */], Date.now());
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER */], response.data);
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER_ERRORS */], []);
           resolve(response.data);
         }.bind(_this)).catch(function (error) {
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER_ERRORS */], error);
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER_ERRORS */], error);
           reject(error);
         }.bind(_this));
       } else {
@@ -80611,12 +80616,12 @@ var state = {
 
     return new Promise(function (resolve, reject) {
       __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].persist('put', data).then(function (response) {
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* USER_LAST_FETCHED */], Date.now());
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER */], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER_ERRORS */], []);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* USER_LAST_FETCHED */], Date.now());
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER */], response.data);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER_ERRORS */], []);
         resolve(response.data);
       }.bind(_this2)).catch(function (error) {
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER_ERRORS */], error);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER_ERRORS */], error);
         reject(error);
       }.bind(_this2));
     });
@@ -80624,11 +80629,11 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER */], function (state, user) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER */], function (state, user) {
   state.user = user;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* UPDATE_USER_ERRORS */], function (state, error) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER_ERRORS */], function (state, error) {
   state.userErrors = error;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* USER_LAST_FETCHED */], function (state, data) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* USER_LAST_FETCHED */], function (state, data) {
   state.userLastFetched = data;
 }), _defineProperty(_mutations, 'updateUserForm', function updateUserForm(state, data) {
   state.user[data.key] = data.value;
@@ -80647,15 +80652,16 @@ var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GET_COLLECTIONS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return GET_COLLECTION_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GET_SHOP_DATA; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GET_SHOP_DATA_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_USER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_USER_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return USER_LAST_FETCHED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return SET_ORDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return GET_COLLECTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GET_COLLECTION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GET_SHOP_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return GET_SHOP_DATA_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return UPDATE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_USER_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return USER_LAST_FETCHED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return SET_ORDER; });
 /* unused harmony export GET_ORDER */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ADD_PRODUCT_TO_ORDER; });
 // Collections
 var GET_COLLECTIONS = 'GET_COLLECTIONS';
 var GET_COLLECTION_ERRORS = 'GET_COLLECTION_ERRORS';
@@ -80672,6 +80678,7 @@ var USER_LAST_FETCHED = 'USER_LAST_FETCHED';
 // Order
 var SET_ORDER = 'SET_ORDER';
 var GET_ORDER = 'GET_ORDER';
+var ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER';
 
 /***/ }),
 
