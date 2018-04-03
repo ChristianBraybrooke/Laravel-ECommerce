@@ -62,6 +62,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
@@ -120,7 +139,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
                 path: "forms/" + this.formId,
                 params: {
                     with: ['sections.fields'],
-                    include: ['order', 'rules', 'type', 'options']
+                    include: ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price']
                 }
             }).then(function (data) {
                 this.loading = false;
@@ -146,7 +165,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
                     _this.loading = true;
                     _this.formErrors = {};
                     _this.form.with = ['sections.fields'];
-                    _this.form.include = ['order', 'rules', 'type', 'options'];
+                    _this.form.include = ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price'];
 
                     __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("put", {
                         path: "forms/" + _this.formId,
@@ -2771,6 +2790,83 @@ var render = function() {
         [
           _c(
             "el-row",
+            { attrs: { type: "flex" } },
+            [
+              _c(
+                "el-col",
+                { attrs: { span: 4 } },
+                [
+                  _c(
+                    "el-form-item",
+                    {
+                      attrs: {
+                        label: "Order Form",
+                        prop: "is_order_form",
+                        size: "small"
+                      }
+                    },
+                    [
+                      _c("el-switch", {
+                        attrs: {
+                          "active-color": "#13ce66",
+                          "inactive-color": "#ff4949"
+                        },
+                        model: {
+                          value: _vm.form.is_order_form,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "is_order_form", $$v)
+                          },
+                          expression: "form.is_order_form"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { span: 4 } },
+                [
+                  _vm.form.is_order_form
+                    ? _c(
+                        "el-form-item",
+                        {
+                          attrs: {
+                            label: "Effects Price",
+                            prop: "effects_price",
+                            size: "small"
+                          }
+                        },
+                        [
+                          _c("el-switch", {
+                            attrs: {
+                              "active-color": "#13ce66",
+                              "inactive-color": "#ff4949"
+                            },
+                            model: {
+                              value: _vm.form.effects_price,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "effects_price", $$v)
+                              },
+                              expression: "form.effects_price"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
             { attrs: { gutter: 20 } },
             [
               _c(
@@ -2897,7 +2993,7 @@ var render = function() {
                     _vm._v(" "),
                     (section.minimise ? true : false)
                       ? _c("form-section-component", {
-                          attrs: { model: section }
+                          attrs: { model: section, form: _vm.form }
                         })
                       : _vm._e()
                   ],

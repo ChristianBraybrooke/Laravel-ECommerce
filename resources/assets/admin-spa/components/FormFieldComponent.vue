@@ -70,15 +70,28 @@
 
 
 
-            <el-row v-if="model.options" class="form_field_row" type="flex" :gutter="20" v-for="option in model.options" :key="option.id">
-               <el-col :lg="8" :xl="4">
+            <el-row v-if="model.options" class="form_field_row" :gutter="20" v-for="option in model.options" :key="option.id">
+               <el-col :lg="12" :xl="4">
                    <el-form-item label="Label" size="small" prop="label">
                        <el-input :autofocus="true" v-model="option.name"></el-input>
                    </el-form-item>
                </el-col>
-               <el-col :lg="8" :xl="4">
+               <el-col :lg="12" :xl="4">
                    <el-form-item label="Value" size="small" prop="value">
                        <el-input :autofocus="true" v-model="option.value"></el-input>
+                   </el-form-item>
+               </el-col>
+               <el-col v-if="form.effects_price" :lg="12" :xl="4">
+                   <el-form-item label="Price Mutator" size="small" prop="price_mutator">
+                      <el-select v-model="option.price_mutator" placeholder="">
+                          <el-option value="+"></el-option>
+                          <el-option value="-"></el-option>
+                      </el-select>
+                   </el-form-item>
+               </el-col>
+               <el-col v-if="form.effects_price" :lg="12" :xl="4">
+                   <el-form-item label="Price Value" size="small" prop="price_value">
+                      <el-input v-model="option.price_value" type="number"></el-input>
                    </el-form-item>
                </el-col>
                <el-col :lg="4" :xl="2">
@@ -112,6 +125,10 @@ export default {
       },
 
       props: {
+          form: {
+              type: Object,
+              required: true,
+          },
           model: {
               type: Object,
               required: true,

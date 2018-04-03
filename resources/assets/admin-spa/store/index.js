@@ -18,6 +18,6 @@ export default new Vuex.Store({
  },
  plugins: [createPersistedState({
    key: 'admin_storage',
-   paths: ['user', 'shopData'],
+   paths: ['user', 'shopData', 'order'],
  })],
 });

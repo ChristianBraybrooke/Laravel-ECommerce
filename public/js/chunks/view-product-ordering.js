@@ -38,6 +38,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -81,6 +82,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        formLoaded: function formLoaded(data) {
+            if (!data.order_form) {
+                this.$set(data, 'order_form', {});
+            }
+        },
         getForms: function getForms() {
             __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: 'forms'
@@ -104,7 +110,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -125,6 +131,7 @@ var render = function() {
         attrs: {
           "product-id": _vm.productId,
           "current-page": "/products/" + _vm.productId + "/ordering",
+          "form-loaded": _vm.formLoaded,
           "request-with": ["orderForm"]
         },
         scopedSlots: _vm._u([

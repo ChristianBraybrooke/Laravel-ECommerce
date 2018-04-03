@@ -99,6 +99,13 @@ export default {
                   }
               }
           },
+          formLoaded: {
+              type: Function,
+              required: false,
+              default() {
+                  return function (data) {}
+              }
+          },
           formRules: {
               type: Object,
               required: false,
@@ -167,6 +174,7 @@ export default {
               .then(function (data) {
                   this.loading = false;
                   this.productForm = data.data;
+                  this.formLoaded(data.data);
               }.bind(this))
               .catch(function (error) {
                   this.loading = false;

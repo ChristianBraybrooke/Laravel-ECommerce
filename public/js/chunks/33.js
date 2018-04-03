@@ -108,6 +108,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -117,6 +130,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {},
 
     props: {
+        form: {
+            type: Object,
+            required: true
+        },
         model: {
             type: Object,
             required: true
@@ -190,7 +207,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -493,12 +510,12 @@ var render = function() {
                       {
                         key: option.id,
                         staticClass: "form_field_row",
-                        attrs: { type: "flex", gutter: 20 }
+                        attrs: { gutter: 20 }
                       },
                       [
                         _c(
                           "el-col",
-                          { attrs: { lg: 8, xl: 4 } },
+                          { attrs: { lg: 12, xl: 4 } },
                           [
                             _c(
                               "el-form-item",
@@ -529,7 +546,7 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "el-col",
-                          { attrs: { lg: 8, xl: 4 } },
+                          { attrs: { lg: 12, xl: 4 } },
                           [
                             _c(
                               "el-form-item",
@@ -557,6 +574,89 @@ var render = function() {
                           ],
                           1
                         ),
+                        _vm._v(" "),
+                        _vm.form.effects_price
+                          ? _c(
+                              "el-col",
+                              { attrs: { lg: 12, xl: 4 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: {
+                                      label: "Price Mutator",
+                                      size: "small",
+                                      prop: "price_mutator"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "el-select",
+                                      {
+                                        attrs: { placeholder: "" },
+                                        model: {
+                                          value: option.price_mutator,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              option,
+                                              "price_mutator",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "option.price_mutator"
+                                        }
+                                      },
+                                      [
+                                        _c("el-option", {
+                                          attrs: { value: "+" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("el-option", {
+                                          attrs: { value: "-" }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.effects_price
+                          ? _c(
+                              "el-col",
+                              { attrs: { lg: 12, xl: 4 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: {
+                                      label: "Price Value",
+                                      size: "small",
+                                      prop: "price_value"
+                                    }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: { type: "number" },
+                                      model: {
+                                        value: option.price_value,
+                                        callback: function($$v) {
+                                          _vm.$set(option, "price_value", $$v)
+                                        },
+                                        expression: "option.price_value"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _c(
                           "el-col",

@@ -18,6 +18,8 @@ class FormResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'is_order_form' => $this->when(requestIncludes('is_order_form'), $this->is_order_form),
+            'effects_price' => $this->when(requestIncludes('effects_price'), $this->effects_price),
             $this->mergeWhen($this->relationLoaded('sections'), [
                 'sections' => new FormSectionsResource($this->sections)
             ]),

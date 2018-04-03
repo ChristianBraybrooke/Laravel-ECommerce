@@ -8,6 +8,10 @@
           <el-breadcrumb-item>Step 2</el-breadcrumb-item>
         </el-breadcrumb>
 
+        <el-row align="middle" type="flex">
+            <el-col :span="12"><h1 class="page_title">New Order <span v-if="order.id"> - #{{ order.id }}</span></h1></el-col>
+        </el-row>
+
         <el-row v-if="order.items" :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
             <el-col :span="24">
                 <el-button size="small" @click="handleAddProductBtnClick" type="primary">Add Product(s)</el-button>
@@ -19,25 +23,73 @@
                 <el-table :data="order.items"
                           style="width: 100%">
                     <el-table-column prop="name"
-                                     label="Product">
+                                     label="Product"
+                                     :formatter="itemRowNameFormatter">
                     </el-table-column>
                     <el-table-column prop="price"
-                                     :formatter="function(row, column, cellValue) { return order.cart.currency + row.price }"
+                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Base Price'] : 0) }"
                                      label="Price">
                     </el-table-column>
                     <el-table-column prop="qty"
+                                     :formatter="function(row, column, cellValue) { return row.quantity ? row.quantity : 1 }"
                                      label="Quantity">
                     </el-table-column>
                     <el-table-column prop="subtotal"
-                                     :formatter="function(row, column, cellValue) { return order.cart.currency + row.price }"
+                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Sub-Total'] : 0) }"
+                                     label="Sub-Total">
+                    </el-table-column>
+                    <el-table-column prop="total"
+                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Extras'] : 0) }"
+                                     label="Extras">
+                    </el-table-column>
+                    <el-table-column prop="total"
+                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Total'] : 0) }"
                                      label="Total">
+                    </el-table-column>
+                    <el-table-column
+                        label="Actions">
+                        <template slot-scope="scope">
+                            <el-button size="mini"
+                                       plain
+                                       type="primary"
+                                       class="action_btn"
+                                       @click="editRow(scope.$index, scope.row)">Edit
+                            </el-button>
+                            <el-button size="mini"
+                                       type="danger"
+                                       class="action_btn delete_btn"
+                                       @click="deleteRow(scope.$index, scope.row)">Delete
+                            </el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+
+
+                <el-table :data="orderTotals"
+                          style="width: 100%">
+                    <el-table-column>
+                    </el-table-column>
+                    <el-table-column>
+                    </el-table-column>
+                    <el-table-column>
+                    </el-table-column>
+                    <el-table-column>
+                    </el-table-column>
+                    <el-table-column>
+                    </el-table-column>
+                    <el-table-column prop="total"
+                                     label="">
+                    </el-table-column>
+                    <el-table-column prop="value"
+                                    label=""
+                                    :formatter="function(row, column, cellValue) { return shopData.currency + cellValue }">
                     </el-table-column>
                 </el-table>
 
             </el-col>
         </el-row>
 
-        <el-dialog title="Add Product"
+        <el-dialog :title="(addProductForm.edit ? 'Edit' : 'Add') + ' Product'"
                    :close-on-click-modal="false"
                    :before-close="closeAndClearModal"
                    :visible.sync="showProductModal"
@@ -49,7 +101,7 @@
 
                 <el-form label-position="top" ref="addProductForm" :model="addProductForm" @submit.native.prevent>
 
-                    <div class="form_option_section">
+                    <div class="form_option_section" v-if="!addProductForm.edit">
                         <el-row :gutter="20">
                             <el-col :md="12">
                                 <h5>Product Type</h5>
@@ -88,8 +140,8 @@
                                                 <el-select v-if="field.type === 'select'" v-model="addProductForm.product.options[field.name]">
                                                     <el-option v-for="option in field.options"
                                                                :key="option.id"
-                                                               :value="option.value"
-                                                               :label="option.name"></el-option>
+                                                               :value="option"
+                                                               :label="optionLabel(option)"></el-option>
                                                 </el-select>
 
                                             </el-form-item>
@@ -110,8 +162,8 @@
 
                         <el-row :gutter="20">
                             <el-col :md="{span:16, offset: 4}">
-                                <el-form-item label="Quantity" size="small" prop="product.options.quantity">
-                                    <el-select v-model="addProductForm.product.options.quantity">
+                                <el-form-item label="Quantity" size="small" prop="product.quantity">
+                                    <el-select v-model="addProductForm.product.quantity">
                                         <el-option v-for="range in quantityRange" :key="range" :value="range"></el-option>
                                     </el-select>
                                 </el-form-item>
@@ -119,11 +171,26 @@
                         </el-row>
                     </div>
 
+                    <div v-if="addProductForm.product.id" class="form_option_section">
+                        <el-row :gutter="20">
+                            <el-col :md="12">
+                                <h5>Price</h5>
+                            </el-col>
+                        </el-row>
+
+                        <el-row :gutter="20">
+                            <el-col :md="{span:16, offset: 4}">
+                                <p v-for="(value, key) in formattedPrice(addProductForm.product)"><strong>{{ key }}:</strong> {{ shopData.currency }}{{ value }}</p>
+                            </el-col>
+                        </el-row>
+                    </div>
+
                 </el-form>
 
                 <span slot="footer" class="dialog-footer">
-                  <el-button v-on:click="closeAndClearModal(null)">Cancel</el-button>
-                  <el-button type="primary" v-on:click="addProductToTable()">Add Product</el-button>
+                  <el-button v-on:click="closeAndClearModal(null)">{{ addProductForm.edit ? 'Discard Changes' : 'Cancel' }}</el-button>
+                  <el-button v-if="!addProductForm.edit" type="primary" v-on:click="addProductToTable()">Add Product</el-button>
+                  <el-button v-if="addProductForm.edit" type="primary" v-on:click="editProductOnTable()">Save Changes</el-button>
                 </span>
 
             </div>
@@ -158,9 +225,16 @@ export default {
               loading: false,
               showProductModal: false,
               addProductForm: {
-                  product: {},
+                  edit: false,
+                  product: {
+                    quantity: 1,
+                  },
               },
               productAddErrors: {},
+              operators: {
+                  '+': function(a, b) { return parseInt(a) + parseInt(b) },
+                  '-': function(a, b) { return parseInt(a) - parseInt(b) },
+              },
               products: [],
               productProps: {
                   value: 'id',
@@ -173,12 +247,14 @@ export default {
       computed: {
           ...mapGetters([
             'order',
+            'shopData',
+            'orderTotals'
           ]),
 
           quantityRange()
           {
-              return range(10);
-          }
+              return range(1,251);
+          },
       },
 
       watch: {
@@ -196,6 +272,34 @@ export default {
 
       methods: {
 
+          ...mapActions([
+              'deleteOrderItem',
+              'editOrderItem'
+          ]),
+
+          formattedPrice(product)
+          {
+              var base_price = parseInt(product.price);
+              var base_with_extras = base_price;
+              var extras = 0;
+              forEach(product.options, function(option) {
+                  if (option.price_mutator && option.price_value) {
+                      base_with_extras = this.operators[option.price_mutator](base_with_extras, option.price_value);
+                      extras = this.operators[option.price_mutator](extras, option.price_value);
+                  }
+              }.bind(this));
+
+              var quantity = product.quantity ? product.quantity : 1;
+              var total = base_with_extras * quantity;
+              extras = extras * quantity;
+              return {
+                  'Base Price': base_price,
+                  'Sub-Total': base_price * quantity,
+                  'Extras':  extras,
+                  'Total': total
+              };
+          },
+
           /**
            * Check the user wants to close the modal and then clear everything
            *
@@ -208,6 +312,12 @@ export default {
                 .then(_ => {
                     this.productAddErrors = {};
                     this.$refs.addProductForm.resetFields();
+                    this.addProductForm = {
+                        edit: false,
+                        product: {
+                          quantity: 1,
+                        },
+                    }
                     if (done) {
                         done();
                     } else {
@@ -243,7 +353,7 @@ export default {
               api.get({
                   path: 'products/' + val + '/variants',
                   params: {
-                      include: ['blank_variants', 'type', 'options', 'price'],
+                      include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
                       with: ['orderForm.sections.fields']
                   }
               })
@@ -270,7 +380,7 @@ export default {
                   path: 'products',
                   params: {
                       no_variants: true,
-                      include: ['blank_variants', 'type', 'options', 'price'],
+                      include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
                       with: ['orderForm.sections.fields']
                   }
               })
@@ -319,6 +429,50 @@ export default {
               this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
               this.showProductModal = false;
           },
+
+          editProductOnTable()
+          {
+              this.editOrderItem(this.addProductForm.product);
+              this.showProductModal = false;
+          },
+
+          deleteRow(index, row)
+          {
+              this.deleteOrderItem(row);
+          },
+
+          editRow(index, row)
+          {
+              this.addProductForm.edit = true;
+              this.addProductForm.product = row;
+              this.showProductModal = true;
+          },
+
+          optionLabel(option)
+          {
+              if (option.price_mutator && option.price_value) {
+                return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')'
+              }
+              return option.name;
+          },
+
+          itemRowNameFormatter(row, column, cellValue)
+          {
+              var row_name = <p>{row.variant.name ? (row.variant.name + ' / ') : ''}<strong>{row.name}</strong></p>;
+
+              if (row.options) {
+                var items = [];
+                forEach(row.options, function(value, key) {
+                    var new_value = value.name ? value.name : value;
+                    items.push(<li>{key}: {new_value}</li>);
+                });
+
+                return <div>{row_name} <ul class="order_item_options">{items}</ul></div>
+              }
+              return <div>{row_name}</div>;
+          },
+
+
       }
 }
 </script>
@@ -330,5 +484,10 @@ export default {
       border-bottom: dashed 2px $--border-color-light;
       padding: 10px 0px;
       margin-bottom: 10px;
+  }
+  ul.order_item_options {
+      list-style: circle;
+      font-size: 13px;
+      padding: 0px 25px;
   }
 </style>

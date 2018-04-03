@@ -41,6 +41,8 @@ class ApiFormsController extends Controller
     public function store(FormRequest $request, Form $form)
     {
         $form = $form->create([
+            'effects_price' => $request->filled('effects_price') ? $request->effects_price : false,
+            'is_order_form' => $request->filled('is_order_form') ? $request->is_order_form : false,
             'name' => $request->name,
         ]);
 
@@ -72,7 +74,9 @@ class ApiFormsController extends Controller
     public function update(FormRequest $request, Form $form)
     {
         $form->update([
-            'name' => $request->has('name') ? $request->name : $form->name
+            'name' => $request->has('name') ? $request->name : $form->name,
+            'effects_price' => $request->filled('effects_price') ? $request->effects_price : $form->effects_price,
+            'is_order_form' => $request->filled('is_order_form') ? $request->is_order_form : $form->is_order_form,
         ]);
 
         if ($request->has('sections.data')) {

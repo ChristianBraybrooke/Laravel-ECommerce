@@ -205,6 +205,281 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+var stripe = Stripe('pk_test_uAzfSI4OCDnMzvadYJWuFpfZ'),
+    elements = stripe.elements(),
+    card = undefined;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    name: 'orderStepThree',
+
+    components: {
+        Errors: function Errors() {
+            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+        }
+    },
+
+    props: {},
+
+    data: function data() {
+        return {
+            loading: false,
+            orderErrors: {},
+            formRules: {},
+            cardNumberElement: undefined,
+            cardExpiryElement: undefined,
+            cardCvcElement: undefined
+        };
+    },
+
+
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['order'])),
+
+    watch: {
+        order: {
+            handler: function handler(order) {
+                this.$store.commit('SET_ORDER', order);
+            },
+            deep: true
+        }
+    },
+
+    mounted: function mounted() {
+        console.log('orderStepThree.vue Mounted');
+        this.setupStripe();
+    },
+
+
+    methods: {
+        setupStripe: function setupStripe() {
+            // card = elements.create('card');
+            // card.mount(this.$refs.card);
+
+            var style = {
+                base: {
+                    border: '1px solid #dcdfe6'
+                },
+                'invalid': {
+                    'color': '#212529'
+                }
+            };
+
+            // Create the card number element.
+            this.cardNumberElement = elements.create('cardNumber', {
+                style: style
+            });
+            this.cardNumberElement.mount(this.$refs.cardNumber);
+
+            // Create the expiry date element.
+            this.cardExpiryElement = elements.create('cardExpiry', {
+                style: style
+            });
+            this.cardExpiryElement.mount(this.$refs.cardExpiry);
+
+            // Create the cvc element.
+            this.cardCvcElement = elements.create('cardCvc', {
+                style: style
+            });
+            this.cardCvcElement.mount(this.$refs.cardCvc);
+
+            // Card number change event.
+            this.cardNumberElement.on('change', function (event) {
+                // Switch brand logo.
+                if (event.brand) {
+                    this.setBrandIcon(event.brand);
+                }
+
+                // Focus on next element.
+                if (event.complete) {
+                    this.cardExpiryElement.focus();
+                }
+
+                this.setOutcome(event, 'number_change');
+            }.bind(this));
+
+            // Card expiry change event.
+            this.cardExpiryElement.on('change', function (event) {
+                // Focus on next element.
+                if (event.complete) {
+                    this.cardCvcElement.focus();
+                }
+
+                this.setOutcome(event, 'expiry_change');
+            }.bind(this));
+
+            // Card cvc change event.
+            this.cardCvcElement.on('change', function (event) {
+                // Focus on next element.
+                if (event.complete) {
+                    // $payment_submit.focus();
+                }
+
+                this.setOutcome(event, 'cvc_change');
+            }.bind(this));
+        },
+        setBrandIcon: function setBrandIcon(brand) {
+            //
+        },
+        setOutcome: function setOutcome(result) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            console.log(result);
+            // $successElement.hide();
+            // $errorElement.hide();
+
+            // $payment_submit.removeClass('disabled');
+
+            // Hide card number error elements.
+            if (type == 'number_change') {
+                this.orderErrors = {};
+            }
+
+            // Hide card expiry error elements.
+            if (type == 'expiry_change') {
+                this.orderErrors = {};
+            }
+
+            // Hide card cvc error elements.
+            if (type == 'cvc_change') {
+                this.orderErrors = {};
+            }
+
+            if (result.token) {
+                // Insert the token ID into the form so it gets submitted to the server.
+                console.log(result.token);
+
+                // Submit the form:
+                this.loading = false;
+            } else if (result.error) {
+                // Re-enable the submit button.
+                this.loading = false;
+
+                // Display error
+                this.handleError(result.error);
+            }
+        },
+        handleError: function handleError(error) {
+            console.log(error);
+            // The error was a validation_error
+            if (error.type === 'validation_error' && error.code) {
+
+                var code = error.code;
+
+                this.orderErrors = {
+                    message: 'There were payment errors.',
+                    errors: {
+                        'Payment': [error.message]
+                    },
+                    code: error.code
+                };
+
+                // Card Number error has occured.
+                if (~code.indexOf("number")) {}
+
+                // Expiry error has occured.
+                if (~code.indexOf("expiry")) {}
+
+                // CVC error has occured.
+                if (~code.indexOf("cvc")) {}
+            } else {
+                // Another type of error occured.
+
+            }
+        },
+        processSubmit: function processSubmit(ref) {
+            this.loading = true;
+            stripe.createToken(this.cardNumberElement, {
+                name: 'Christian Braybrooke'
+            }).then(this.setOutcome);
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepTwo.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -214,6 +489,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -374,9 +716,20 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
             loading: false,
             showProductModal: false,
             addProductForm: {
-                product: {}
+                edit: false,
+                product: {
+                    quantity: 1
+                }
             },
             productAddErrors: {},
+            operators: {
+                '+': function _(a, b) {
+                    return parseInt(a) + parseInt(b);
+                },
+                '-': function _(a, b) {
+                    return parseInt(a) - parseInt(b);
+                }
+            },
             products: [],
             productProps: {
                 value: 'id',
@@ -387,9 +740,9 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['order']), {
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['order', 'shopData', 'orderTotals']), {
         quantityRange: function quantityRange() {
-            return range(10);
+            return range(1, 251);
         }
     }),
 
@@ -407,7 +760,29 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
     },
 
 
-    methods: {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(['deleteOrderItem', 'editOrderItem']), {
+        formattedPrice: function formattedPrice(product) {
+            var base_price = parseInt(product.price);
+            var base_with_extras = base_price;
+            var extras = 0;
+            forEach(product.options, function (option) {
+                if (option.price_mutator && option.price_value) {
+                    base_with_extras = this.operators[option.price_mutator](base_with_extras, option.price_value);
+                    extras = this.operators[option.price_mutator](extras, option.price_value);
+                }
+            }.bind(this));
+
+            var quantity = product.quantity ? product.quantity : 1;
+            var total = base_with_extras * quantity;
+            extras = extras * quantity;
+            return {
+                'Base Price': base_price,
+                'Sub-Total': base_price * quantity,
+                'Extras': extras,
+                'Total': total
+            };
+        },
+
 
         /**
          * Check the user wants to close the modal and then clear everything
@@ -421,6 +796,12 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
             this.$confirm('Are you sure to close the product selector?').then(function (_) {
                 _this.productAddErrors = {};
                 _this.$refs.addProductForm.resetFields();
+                _this.addProductForm = {
+                    edit: false,
+                    product: {
+                        quantity: 1
+                    }
+                };
                 if (done) {
                     done();
                 } else {
@@ -455,7 +836,7 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
             __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: 'products/' + val + '/variants',
                 params: {
-                    include: ['blank_variants', 'type', 'options', 'price'],
+                    include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
                     with: ['orderForm.sections.fields']
                 }
             }).then(function (data) {
@@ -479,7 +860,7 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
                 path: 'products',
                 params: {
                     no_variants: true,
-                    include: ['blank_variants', 'type', 'options', 'price'],
+                    include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
                     with: ['orderForm.sections.fields']
                 }
             }).then(function (data) {
@@ -519,8 +900,66 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
         addProductToTable: function addProductToTable() {
             this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
             this.showProductModal = false;
+        },
+        editProductOnTable: function editProductOnTable() {
+            this.editOrderItem(this.addProductForm.product);
+            this.showProductModal = false;
+        },
+        deleteRow: function deleteRow(index, row) {
+            this.deleteOrderItem(row);
+        },
+        editRow: function editRow(index, row) {
+            this.addProductForm.edit = true;
+            this.addProductForm.product = row;
+            this.showProductModal = true;
+        },
+        optionLabel: function optionLabel(option) {
+            if (option.price_mutator && option.price_value) {
+                return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')';
+            }
+            return option.name;
+        },
+        itemRowNameFormatter: function itemRowNameFormatter(row, column, cellValue) {
+            var h = this.$createElement;
+
+            var row_name = h(
+                'p',
+                null,
+                [row.variant.name ? row.variant.name + ' / ' : '', h(
+                    'strong',
+                    null,
+                    [row.name]
+                )]
+            );
+
+            if (row.options) {
+                var items = [];
+                forEach(row.options, function (value, key) {
+                    var new_value = value.name ? value.name : value;
+                    items.push(h(
+                        'li',
+                        null,
+                        [key, ': ', new_value]
+                    ));
+                });
+
+                return h(
+                    'div',
+                    null,
+                    [row_name, ' ', h(
+                        'ul',
+                        { 'class': 'order_item_options' },
+                        [items]
+                    )]
+                );
+            }
+            return h(
+                'div',
+                null,
+                [row_name]
+            );
         }
-    }
+    })
 });
 
 /***/ }),
@@ -1221,7 +1660,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Colors\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Background\n-------------------------- */\n/* Border\n-------------------------- */\n/* Box-shadow\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Font\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* Message Box\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Break-point\n--------------------------*/\n/* Custom */\n/* Menu\n-------------------------- */\n.form_option_section {\n  border-bottom: dashed 2px #e4e7ed;\n  padding: 10px 0px;\n  margin-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Colors\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Background\n-------------------------- */\n/* Border\n-------------------------- */\n/* Box-shadow\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Font\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* Message Box\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Break-point\n--------------------------*/\n/* Custom */\n/* Menu\n-------------------------- */\n.form_option_section {\n  border-bottom: dashed 2px #e4e7ed;\n  padding: 10px 0px;\n  margin-bottom: 10px;\n}\nul.order_item_options {\n  list-style: circle;\n  font-size: 13px;\n  padding: 0px 25px;\n}\n", ""]);
 
 // exports
 
@@ -1237,6 +1676,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ef0a62\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.stripe_input {\n  -webkit-appearance: none;\n  background-color: #fff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  color: #606266;\n  display: inline-block;\n  font-size: inherit;\n  height: 32px;\n  line-height: 1;\n  outline: none;\n  padding: 0 15px;\n  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -3645,578 +4099,6 @@ module.exports = findIndex;
 
 /***/ }),
 
-/***/ "./node_modules/lodash.foreach/index.js":
-/***/ (function(module, exports) {
-
-/**
- * lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize exports="npm" -o ./`
- * Copyright jQuery Foundation and other contributors <https://jquery.org/>
- * Released under MIT license <https://lodash.com/license>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- */
-
-/** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
-
-/** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]';
-
-/** Used to detect unsigned integer values. */
-var reIsUint = /^(?:0|[1-9]\d*)$/;
-
-/**
- * A specialized version of `_.forEach` for arrays without support for
- * iteratee shorthands.
- *
- * @private
- * @param {Array} [array] The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns `array`.
- */
-function arrayEach(array, iteratee) {
-  var index = -1,
-      length = array ? array.length : 0;
-
-  while (++index < length) {
-    if (iteratee(array[index], index, array) === false) {
-      break;
-    }
-  }
-  return array;
-}
-
-/**
- * The base implementation of `_.times` without support for iteratee shorthands
- * or max array length checks.
- *
- * @private
- * @param {number} n The number of times to invoke `iteratee`.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the array of results.
- */
-function baseTimes(n, iteratee) {
-  var index = -1,
-      result = Array(n);
-
-  while (++index < n) {
-    result[index] = iteratee(index);
-  }
-  return result;
-}
-
-/**
- * Creates a unary function that invokes `func` with its argument transformed.
- *
- * @private
- * @param {Function} func The function to wrap.
- * @param {Function} transform The argument transform.
- * @returns {Function} Returns the new function.
- */
-function overArg(func, transform) {
-  return function(arg) {
-    return func(transform(arg));
-  };
-}
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objectToString = objectProto.toString;
-
-/** Built-in value references. */
-var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeKeys = overArg(Object.keys, Object);
-
-/**
- * Creates an array of the enumerable property names of the array-like `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @param {boolean} inherited Specify returning inherited property names.
- * @returns {Array} Returns the array of property names.
- */
-function arrayLikeKeys(value, inherited) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  // Safari 9 makes `arguments.length` enumerable in strict mode.
-  var result = (isArray(value) || isArguments(value))
-    ? baseTimes(value.length, String)
-    : [];
-
-  var length = result.length,
-      skipIndexes = !!length;
-
-  for (var key in value) {
-    if ((inherited || hasOwnProperty.call(value, key)) &&
-        !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * The base implementation of `_.forEach` without support for iteratee shorthands.
- *
- * @private
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array|Object} Returns `collection`.
- */
-var baseEach = createBaseEach(baseForOwn);
-
-/**
- * The base implementation of `baseForOwn` which iterates over `object`
- * properties returned by `keysFunc` and invokes `iteratee` for each property.
- * Iteratee functions may exit iteration early by explicitly returning `false`.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @param {Function} keysFunc The function to get the keys of `object`.
- * @returns {Object} Returns `object`.
- */
-var baseFor = createBaseFor();
-
-/**
- * The base implementation of `_.forOwn` without support for iteratee shorthands.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Object} Returns `object`.
- */
-function baseForOwn(object, iteratee) {
-  return object && baseFor(object, iteratee, keys);
-}
-
-/**
- * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- */
-function baseKeys(object) {
-  if (!isPrototype(object)) {
-    return nativeKeys(object);
-  }
-  var result = [];
-  for (var key in Object(object)) {
-    if (hasOwnProperty.call(object, key) && key != 'constructor') {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * Creates a `baseEach` or `baseEachRight` function.
- *
- * @private
- * @param {Function} eachFunc The function to iterate over a collection.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Function} Returns the new base function.
- */
-function createBaseEach(eachFunc, fromRight) {
-  return function(collection, iteratee) {
-    if (collection == null) {
-      return collection;
-    }
-    if (!isArrayLike(collection)) {
-      return eachFunc(collection, iteratee);
-    }
-    var length = collection.length,
-        index = fromRight ? length : -1,
-        iterable = Object(collection);
-
-    while ((fromRight ? index-- : ++index < length)) {
-      if (iteratee(iterable[index], index, iterable) === false) {
-        break;
-      }
-    }
-    return collection;
-  };
-}
-
-/**
- * Creates a base function for methods like `_.forIn` and `_.forOwn`.
- *
- * @private
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Function} Returns the new base function.
- */
-function createBaseFor(fromRight) {
-  return function(object, iteratee, keysFunc) {
-    var index = -1,
-        iterable = Object(object),
-        props = keysFunc(object),
-        length = props.length;
-
-    while (length--) {
-      var key = props[fromRight ? length : ++index];
-      if (iteratee(iterable[key], key, iterable) === false) {
-        break;
-      }
-    }
-    return object;
-  };
-}
-
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-function isIndex(value, length) {
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return !!length &&
-    (typeof value == 'number' || reIsUint.test(value)) &&
-    (value > -1 && value % 1 == 0 && value < length);
-}
-
-/**
- * Checks if `value` is likely a prototype object.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
- */
-function isPrototype(value) {
-  var Ctor = value && value.constructor,
-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
-
-  return value === proto;
-}
-
-/**
- * Iterates over elements of `collection` and invokes `iteratee` for each element.
- * The iteratee is invoked with three arguments: (value, index|key, collection).
- * Iteratee functions may exit iteration early by explicitly returning `false`.
- *
- * **Note:** As with other "Collections" methods, objects with a "length"
- * property are iterated like arrays. To avoid this behavior use `_.forIn`
- * or `_.forOwn` for object iteration.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @alias each
- * @category Collection
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} [iteratee=_.identity] The function invoked per iteration.
- * @returns {Array|Object} Returns `collection`.
- * @see _.forEachRight
- * @example
- *
- * _([1, 2]).forEach(function(value) {
- *   console.log(value);
- * });
- * // => Logs `1` then `2`.
- *
- * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
- *   console.log(key);
- * });
- * // => Logs 'a' then 'b' (iteration order is not guaranteed).
- */
-function forEach(collection, iteratee) {
-  var func = isArray(collection) ? arrayEach : baseEach;
-  return func(collection, typeof iteratee == 'function' ? iteratee : identity);
-}
-
-/**
- * Checks if `value` is likely an `arguments` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an `arguments` object,
- *  else `false`.
- * @example
- *
- * _.isArguments(function() { return arguments; }());
- * // => true
- *
- * _.isArguments([1, 2, 3]);
- * // => false
- */
-function isArguments(value) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
-    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
-}
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-
-/**
- * Checks if `value` is array-like. A value is considered array-like if it's
- * not a function and has a `value.length` that's an integer greater than or
- * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
- * @example
- *
- * _.isArrayLike([1, 2, 3]);
- * // => true
- *
- * _.isArrayLike(document.body.children);
- * // => true
- *
- * _.isArrayLike('abc');
- * // => true
- *
- * _.isArrayLike(_.noop);
- * // => false
- */
-function isArrayLike(value) {
-  return value != null && isLength(value.length) && !isFunction(value);
-}
-
-/**
- * This method is like `_.isArrayLike` except that it also checks if `value`
- * is an object.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array-like object,
- *  else `false`.
- * @example
- *
- * _.isArrayLikeObject([1, 2, 3]);
- * // => true
- *
- * _.isArrayLikeObject(document.body.children);
- * // => true
- *
- * _.isArrayLikeObject('abc');
- * // => false
- *
- * _.isArrayLikeObject(_.noop);
- * // => false
- */
-function isArrayLikeObject(value) {
-  return isObjectLike(value) && isArrayLike(value);
-}
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 8-9 which returns 'object' for typed array and other constructors.
-  var tag = isObject(value) ? objectToString.call(value) : '';
-  return tag == funcTag || tag == genTag;
-}
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- * @example
- *
- * _.isLength(3);
- * // => true
- *
- * _.isLength(Number.MIN_VALUE);
- * // => false
- *
- * _.isLength(Infinity);
- * // => false
- *
- * _.isLength('3');
- * // => false
- */
-function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return !!value && typeof value == 'object';
-}
-
-/**
- * Creates an array of the own enumerable property names of `object`.
- *
- * **Note:** Non-object values are coerced to objects. See the
- * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
- * for more details.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Object
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- *   this.b = 2;
- * }
- *
- * Foo.prototype.c = 3;
- *
- * _.keys(new Foo);
- * // => ['a', 'b'] (iteration order is not guaranteed)
- *
- * _.keys('hi');
- * // => ['0', '1']
- */
-function keys(object) {
-  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
-}
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = forEach;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash.last/index.js":
 /***/ (function(module, exports) {
 
@@ -5845,6 +5727,22 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c(
+        "el-row",
+        { attrs: { align: "middle", type: "flex" } },
+        [
+          _c("el-col", { attrs: { span: 12 } }, [
+            _c("h1", { staticClass: "page_title" }, [
+              _vm._v("New Order "),
+              _vm.order.id
+                ? _c("span", [_vm._v(" - #" + _vm._s(_vm.order.id))])
+                : _vm._e()
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
       _vm.order.items
         ? _c(
             "el-row",
@@ -5890,30 +5788,158 @@ var render = function() {
                     },
                     [
                       _c("el-table-column", {
-                        attrs: { prop: "name", label: "Product" }
+                        attrs: {
+                          prop: "name",
+                          label: "Product",
+                          formatter: _vm.itemRowNameFormatter
+                        }
                       }),
                       _vm._v(" "),
                       _c("el-table-column", {
                         attrs: {
                           prop: "price",
                           formatter: function(row, column, cellValue) {
-                            return _vm.order.cart.currency + row.price
+                            return (
+                              _vm.shopData.currency +
+                              (_vm.formattedPrice(row)
+                                ? _vm.formattedPrice(row)["Base Price"]
+                                : 0)
+                            )
                           },
                           label: "Price"
                         }
                       }),
                       _vm._v(" "),
                       _c("el-table-column", {
-                        attrs: { prop: "qty", label: "Quantity" }
+                        attrs: {
+                          prop: "qty",
+                          formatter: function(row, column, cellValue) {
+                            return row.quantity ? row.quantity : 1
+                          },
+                          label: "Quantity"
+                        }
                       }),
                       _vm._v(" "),
                       _c("el-table-column", {
                         attrs: {
                           prop: "subtotal",
                           formatter: function(row, column, cellValue) {
-                            return _vm.order.cart.currency + row.price
+                            return (
+                              _vm.shopData.currency +
+                              (_vm.formattedPrice(row)
+                                ? _vm.formattedPrice(row)["Sub-Total"]
+                                : 0)
+                            )
+                          },
+                          label: "Sub-Total"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: {
+                          prop: "total",
+                          formatter: function(row, column, cellValue) {
+                            return (
+                              _vm.shopData.currency +
+                              (_vm.formattedPrice(row)
+                                ? _vm.formattedPrice(row)["Extras"]
+                                : 0)
+                            )
+                          },
+                          label: "Extras"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: {
+                          prop: "total",
+                          formatter: function(row, column, cellValue) {
+                            return (
+                              _vm.shopData.currency +
+                              (_vm.formattedPrice(row)
+                                ? _vm.formattedPrice(row)["Total"]
+                                : 0)
+                            )
                           },
                           label: "Total"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { label: "Actions" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(scope) {
+                              return [
+                                _c(
+                                  "el-button",
+                                  {
+                                    staticClass: "action_btn",
+                                    attrs: {
+                                      size: "mini",
+                                      plain: "",
+                                      type: "primary"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.editRow(scope.$index, scope.row)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Edit\n                        ")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "el-button",
+                                  {
+                                    staticClass: "action_btn delete_btn",
+                                    attrs: { size: "mini", type: "danger" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.deleteRow(scope.$index, scope.row)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Delete\n                        ")]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-table",
+                    {
+                      staticStyle: { width: "100%" },
+                      attrs: { data: _vm.orderTotals }
+                    },
+                    [
+                      _c("el-table-column"),
+                      _vm._v(" "),
+                      _c("el-table-column"),
+                      _vm._v(" "),
+                      _c("el-table-column"),
+                      _vm._v(" "),
+                      _c("el-table-column"),
+                      _vm._v(" "),
+                      _c("el-table-column"),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: { prop: "total", label: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("el-table-column", {
+                        attrs: {
+                          prop: "value",
+                          label: "",
+                          formatter: function(row, column, cellValue) {
+                            return _vm.shopData.currency + cellValue
+                          }
                         }
                       })
                     ],
@@ -5931,7 +5957,7 @@ var render = function() {
         "el-dialog",
         {
           attrs: {
-            title: "Add Product",
+            title: (_vm.addProductForm.edit ? "Edit" : "Add") + " Product",
             "close-on-click-modal": false,
             "before-close": _vm.closeAndClearModal,
             visible: _vm.showProductModal,
@@ -5973,51 +5999,55 @@ var render = function() {
                   }
                 },
                 [
-                  _c(
-                    "div",
-                    { staticClass: "form_option_section" },
-                    [
-                      _c(
-                        "el-row",
-                        { attrs: { gutter: 20 } },
-                        [
-                          _c("el-col", { attrs: { md: 12 } }, [
-                            _c("h5", [_vm._v("Product Type")])
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        { attrs: { gutter: 20 } },
+                  !_vm.addProductForm.edit
+                    ? _c(
+                        "div",
+                        { staticClass: "form_option_section" },
                         [
                           _c(
-                            "el-col",
-                            { attrs: { md: { span: 16, offset: 4 } } },
+                            "el-row",
+                            { attrs: { gutter: 20 } },
+                            [
+                              _c("el-col", { attrs: { md: 12 } }, [
+                                _c("h5", [_vm._v("Product Type")])
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-row",
+                            { attrs: { gutter: 20 } },
                             [
                               _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Choose Product",
-                                    size: "small",
-                                    prop: "product"
-                                  }
-                                },
+                                "el-col",
+                                { attrs: { md: { span: 16, offset: 4 } } },
                                 [
-                                  _c("el-cascader", {
-                                    staticStyle: { width: "100%" },
-                                    attrs: {
-                                      options: _vm.products,
-                                      props: _vm.productProps
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "Choose Product",
+                                        size: "small",
+                                        prop: "product"
+                                      }
                                     },
-                                    on: {
-                                      change: _vm.handleProductChange,
-                                      "active-item-change":
-                                        _vm.requestProductVariants
-                                    }
-                                  })
+                                    [
+                                      _c("el-cascader", {
+                                        staticStyle: { width: "100%" },
+                                        attrs: {
+                                          options: _vm.products,
+                                          props: _vm.productProps
+                                        },
+                                        on: {
+                                          change: _vm.handleProductChange,
+                                          "active-item-change":
+                                            _vm.requestProductVariants
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -6027,9 +6057,7 @@ var render = function() {
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.addProductForm.product.options &&
                   _vm.addProductForm.product.order_form
@@ -6179,10 +6207,10 @@ var render = function() {
                                                                             key:
                                                                               option.id,
                                                                             attrs: {
-                                                                              value:
-                                                                                option.value,
-                                                                              label:
-                                                                                option.name
+                                                                              value: option,
+                                                                              label: _vm.optionLabel(
+                                                                                option
+                                                                              )
                                                                             }
                                                                           }
                                                                         )
@@ -6242,7 +6270,7 @@ var render = function() {
                                       attrs: {
                                         label: "Quantity",
                                         size: "small",
-                                        prop: "product.options.quantity"
+                                        prop: "product.quantity"
                                       }
                                     },
                                     [
@@ -6251,18 +6279,17 @@ var render = function() {
                                         {
                                           model: {
                                             value:
-                                              _vm.addProductForm.product.options
+                                              _vm.addProductForm.product
                                                 .quantity,
                                             callback: function($$v) {
                                               _vm.$set(
-                                                _vm.addProductForm.product
-                                                  .options,
+                                                _vm.addProductForm.product,
                                                 "quantity",
                                                 $$v
                                               )
                                             },
                                             expression:
-                                              "addProductForm.product.options.quantity"
+                                              "addProductForm.product.quantity"
                                           }
                                         },
                                         _vm._l(_vm.quantityRange, function(
@@ -6279,6 +6306,53 @@ var render = function() {
                                   )
                                 ],
                                 1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.addProductForm.product.id
+                    ? _c(
+                        "div",
+                        { staticClass: "form_option_section" },
+                        [
+                          _c(
+                            "el-row",
+                            { attrs: { gutter: 20 } },
+                            [
+                              _c("el-col", { attrs: { md: 12 } }, [
+                                _c("h5", [_vm._v("Price")])
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-row",
+                            { attrs: { gutter: 20 } },
+                            [
+                              _c(
+                                "el-col",
+                                { attrs: { md: { span: 16, offset: 4 } } },
+                                _vm._l(
+                                  _vm.formattedPrice(
+                                    _vm.addProductForm.product
+                                  ),
+                                  function(value, key) {
+                                    return _c("p", [
+                                      _c("strong", [_vm._v(_vm._s(key) + ":")]),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(_vm.shopData.currency) +
+                                          _vm._s(value)
+                                      )
+                                    ])
+                                  }
+                                )
                               )
                             ],
                             1
@@ -6308,21 +6382,44 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Cancel")]
+                    [
+                      _vm._v(
+                        _vm._s(
+                          _vm.addProductForm.edit ? "Discard Changes" : "Cancel"
+                        )
+                      )
+                    ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "el-button",
-                    {
-                      attrs: { type: "primary" },
-                      on: {
-                        click: function($event) {
-                          _vm.addProductToTable()
-                        }
-                      }
-                    },
-                    [_vm._v("Add Product")]
-                  )
+                  !_vm.addProductForm.edit
+                    ? _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary" },
+                          on: {
+                            click: function($event) {
+                              _vm.addProductToTable()
+                            }
+                          }
+                        },
+                        [_vm._v("Add Product")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.addProductForm.edit
+                    ? _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary" },
+                          on: {
+                            click: function($event) {
+                              _vm.editProductOnTable()
+                            }
+                          }
+                        },
+                        [_vm._v("Save Changes")]
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -7205,6 +7302,267 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-48ef0a62\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ]
+    },
+    [
+      _c(
+        "el-breadcrumb",
+        {
+          staticClass: "breadcrumbs",
+          attrs: { "separator-class": "el-icon-arrow-right" }
+        },
+        [
+          _c("el-breadcrumb-item", { attrs: { to: { name: "orders" } } }, [
+            _vm._v("Orders")
+          ]),
+          _vm._v(" "),
+          _c("el-breadcrumb-item", [_vm._v("New Order")]),
+          _vm._v(" "),
+          _c(
+            "el-breadcrumb-item",
+            { attrs: { to: { name: "orders.step1" } } },
+            [_vm._v("Step 1")]
+          ),
+          _vm._v(" "),
+          _c(
+            "el-breadcrumb-item",
+            { attrs: { to: { name: "orders.step2" } } },
+            [_vm._v("Step 2")]
+          ),
+          _vm._v(" "),
+          _c("el-breadcrumb-item", [_vm._v("Step 3")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { attrs: { align: "middle", type: "flex" } },
+        [
+          _c("el-col", { attrs: { span: 12 } }, [
+            _c("h1", { staticClass: "page_title" }, [
+              _vm._v("New Order "),
+              _vm.order.id
+                ? _c("span", [_vm._v(" - #" + _vm._s(_vm.order.id))])
+                : _vm._e()
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      Object.keys(_vm.orderErrors).length > 0
+        ? _c("errors", { attrs: { errors: _vm.orderErrors } })
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "el-form",
+        {
+          ref: "paymentForm",
+          attrs: {
+            rules: _vm.formRules,
+            "label-position": "top",
+            model: _vm.order
+          },
+          nativeOn: {
+            submit: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [
+          _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
+            [
+              _c("el-col", { attrs: { md: 12 } }, [
+                _c("h5", [_vm._v("Payment Information")])
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
+            [
+              _c(
+                "el-col",
+                { attrs: { md: { span: 8, offset: 4 } } },
+                [
+                  _c(
+                    "el-form-item",
+                    {
+                      attrs: {
+                        label: "Customer Company",
+                        size: "small",
+                        prop: "customer.company"
+                      }
+                    },
+                    [
+                      _c("div", {
+                        ref: "cardNumber",
+                        staticClass: "stripe_input"
+                      })
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-col",
+                { attrs: { md: 8 } },
+                [
+                  _c(
+                    "el-form-item",
+                    {
+                      attrs: {
+                        label: "Customer Company",
+                        size: "small",
+                        prop: "customer.company"
+                      }
+                    },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "" },
+                        model: {
+                          value: _vm.order.customer.company,
+                          callback: function($$v) {
+                            _vm.$set(_vm.order.customer, "company", $$v)
+                          },
+                          expression: "order.customer.company"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
+            [
+              _c(
+                "el-col",
+                { attrs: { md: { span: 16, offset: 4 } } },
+                [
+                  _c(
+                    "el-form-item",
+                    {
+                      attrs: {
+                        label: "Customer Company",
+                        size: "small",
+                        prop: "customer.company"
+                      }
+                    },
+                    [
+                      _c("div", {
+                        ref: "cardExpiry",
+                        staticClass: "stripe_input"
+                      })
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
+            [
+              _c(
+                "el-col",
+                { attrs: { md: { span: 16, offset: 4 } } },
+                [
+                  _c(
+                    "el-form-item",
+                    {
+                      attrs: {
+                        label: "Customer Company",
+                        size: "small",
+                        prop: "customer.company"
+                      }
+                    },
+                    [_c("div", { ref: "cardCvc", staticClass: "stripe_input" })]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-row",
+            { staticStyle: { "margin-top": "40px" }, attrs: { gutter: 20 } },
+            [
+              _c(
+                "el-col",
+                { attrs: { md: { span: 24 } } },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "success", plain: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.processSubmit("paymentForm")
+                        }
+                      }
+                    },
+                    [_vm._v("Complete Payment")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-48ef0a62", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-03d271d7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepOne.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7313,6 +7671,33 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ef0a62\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ef0a62\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("b2ea05e2", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ef0a62\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./NewOrderStepThree.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ef0a62\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./NewOrderStepThree.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/module.js":
 /***/ (function(module, exports) {
 
@@ -7384,6 +7769,59 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-03d271d7", Component.options)
   } else {
     hotAPI.reload("data-v-03d271d7", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-48ef0a62\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-48ef0a62\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue")
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-48ef0a62", Component.options)
+  } else {
+    hotAPI.reload("data-v-48ef0a62", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

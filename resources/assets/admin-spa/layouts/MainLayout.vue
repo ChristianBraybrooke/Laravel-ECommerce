@@ -43,7 +43,7 @@
           </el-menu-item>
           <el-submenu index="1">
             <template slot="title">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M12.994,12.839l10.022-5.988L11.504,0.136c-0.315-0.184-0.706-0.181-1.019,0.007L0.993,5.838 L12.994,12.839z"></path> <path fill="#000000" d="M12,14.575l-12-7V16c0,0.355,0.189,0.685,0.496,0.864L12,23.575V14.575z"></path> <path fill="#000000" d="M14,14.567v8.953l9.573-6.701C23.841,16.632,24,16.326,24,16V8.592L14,14.567z"></path></g></svg>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M12.994,12.839l10.022-5.988L11.504,0.136c-0.315-0.184-0.706-0.181-1.019,0.007L0.993,5.838 L12.994,12.839z"></path> <path fill="#000000" d="M12,14.575l-12-7V16c0,0.355,0.189,0.685,0.496,0.864L12,23.575V14.575z"></path> <path fill="#000000" d="M14,14.567v8.953l9.573-6.701C23.841,16.632,24,16.326,24,16V8.592L14,14.567z"></path></g></svg>
               <span slot="title">Products</span>
             </template>
 
@@ -54,7 +54,7 @@
 
           <el-submenu index="2">
             <template slot="title">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M4,4V1H1C0.448,1,0,1.447,0,2v2H4z"></path> <path fill="#000000" d="M0,6v16c0,0.553,0.448,1,1,1h22c0.552,0,1-0.447,1-1V6H0z M11,18H3v-8h8V18z M18,16h-5v-2h5V16z M21,12h-8 v-2h8V12z"></path> <path data-color="color-2" fill="#000000" d="M24,4V2c0-0.553-0.448-1-1-1H6v3H24z"></path></g></svg>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><polygon fill="#444444" points="12,0 24,7 12,14 0,7 "></polygon> <polygon data-color="color-2" fill="#444444" points="12,21.315 2.301,15.658 0,17 12,24 24,17 21.699,15.658 "></polygon> <polygon data-color="color-2" fill="#444444" points="12,16.315 2.301,10.658 0,12 12,19 24,12 21.699,10.658 "></polygon></g></svg>
               <span>Content</span>
             </template>
 
@@ -64,9 +64,7 @@
           </el-submenu>
 
           <el-menu-item index="/forms">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><circle data-color="color-2" fill="#000000" cx="9" cy="8" r="2"></circle>
-            <path fill="#000000" d="M23,1H1C0.448,1,0,1.447,0,2v20c0,0.553,0.448,1,1,1h22c0.552,0,1-0.447,1-1V2C24,1.447,23.552,1,23,1z
-            	 M22,3v12l-5-5l-6,7l-5-4l-4,4V3H22z"></path></g></svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><path fill="#444444" d="M21,3h-2v5H5V3H3C2.447,3,2,3.447,2,4v19c0,0.553,0.447,1,1,1h18c0.553,0,1-0.447,1-1V4 C22,3.447,21.553,3,21,3z M18,19H6v-2h12V19z M18,14H6v-2h12V14z"></path> <path data-color="color-2" fill="#444444" d="M14,2c0-1.105-0.895-2-2-2s-2,0.895-2,2H7v4h10V2H14z"></path></g></svg>
             <span slot="title">Forms</span>
           </el-menu-item>
 
@@ -77,7 +75,7 @@
             <span slot="title">Files</span>
           </el-menu-item>
           <el-menu-item index="/config">
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve" width="16" height="16"><g class="nc-icon-wrapper"><path d="M13.2,5.2l-2.4-2.4l2.4-2.4C12.7,0.1,12.1,0,11.5,0C9,0,7,2,7,4.5C7,5,7.1,5.4,7.2,5.9l-6.6,4.9 c-0.8,0.6-0.8,1.7-0.2,2.4l2.3,2.4c0.7,0.7,1.8,0.6,2.4-0.2l4.9-6.6C10.5,8.9,11,9,11.5,9C14,9,16,7,16,4.5c0-0.6-0.1-1.2-0.3-1.7 L13.2,5.2z"></path></g></svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><path fill="#444444" d="M23,14v-4h-3.262c-0.189-0.732-0.477-1.422-0.852-2.058l2.306-2.306l-2.828-2.828l-2.306,2.306 C15.422,4.739,14.732,4.451,14,4.262V1h-4v3.262C9.268,4.451,8.578,4.739,7.942,5.114L5.636,2.808L2.808,5.636l2.306,2.306 C4.739,8.578,4.451,9.268,4.262,10H1v4h3.262c0.189,0.732,0.477,1.422,0.852,2.058l-2.306,2.306l2.828,2.828l2.306-2.306 c0.635,0.375,1.326,0.663,2.058,0.852V23h4v-3.262c0.732-0.189,1.422-0.477,2.058-0.852l2.306,2.306l2.828-2.828l-2.306-2.306 c0.375-0.635,0.663-1.326,0.852-2.058H23z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z"></path></g></svg>
             <span slot="title">Config</span>
           </el-menu-item>
         </el-menu>

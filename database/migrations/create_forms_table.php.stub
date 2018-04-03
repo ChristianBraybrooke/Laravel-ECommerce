@@ -16,6 +16,8 @@ class CreateFormsTable extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->boolean('is_order_form')->default(false);
+            $table->boolean('effects_price')->default(false);
             $table->timestamps();
         });
     }

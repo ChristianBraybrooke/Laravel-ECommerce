@@ -9,6 +9,7 @@ const Account = () => import(/* webpackChunkName: "account" */ '../pages/Account
 const Orders = () => import(/* webpackChunkName: "orders" */ '../pages/orders/Orders.vue');
 const NewOrderStepOne = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepOne.vue');
 const NewOrderStepTwo = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepTwo.vue');
+const NewOrderStepThree = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepThree.vue');
 const ViewOrder = () => import(/* webpackChunkName: "orders" */ '../pages/orders/ViewOrder.vue');
 const Collections = () => import(/* webpackChunkName: "collections" */ '../pages/collections/Collections.vue');
 const ViewCollection = () => import(/* webpackChunkName: "collections" */ '../pages/collections/ViewCollection.vue');
@@ -62,6 +63,12 @@ const router = new Router({
             component: NewOrderStepTwo,
             name: 'orders.step2',
             meta: {title: 'Admin: New Order - Step 2'}
+        },
+        {
+            path: '/orders/new/payment',
+            component: NewOrderStepThree,
+            name: 'orders.step3',
+            meta: {title: 'Admin: New Order - Step 3'}
         },
         {
             path: '/orders/:orderId',

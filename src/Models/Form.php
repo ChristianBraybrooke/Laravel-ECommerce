@@ -18,7 +18,17 @@ class Form extends Model implements FormContract
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'is_order_form', 'effects_price'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_order_form' => 'boolean',
+        'effects_price' => 'boolean',
     ];
 
     public function sections(): HasMany

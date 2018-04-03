@@ -3,6 +3,7 @@
 
         <product-page-layout :product-id="productId"
                              :current-page="'/products/' + productId + '/ordering'"
+                             :form-loaded="formLoaded"
                              :request-with="['orderForm']">
 
             <template slot="product_page"
@@ -69,6 +70,12 @@ export default {
       },
 
       methods: {
+
+          formLoaded(data) {
+              if (!data.order_form) {
+                  this.$set(data, 'order_form', {});
+              }
+          },
 
           getForms()
           {

@@ -17,6 +17,25 @@
                  ref="formForm"
                  label-width="120px">
 
+            <el-row type="flex">
+               <el-col :span="4">
+                   <el-form-item label="Order Form" prop="is_order_form" size="small">
+                       <el-switch v-model="form.is_order_form"
+                                  active-color="#13ce66"
+                                  inactive-color="#ff4949">
+                       </el-switch>
+                   </el-form-item>
+               </el-col>
+               <el-col :span="4">
+                   <el-form-item v-if="form.is_order_form" label="Effects Price" prop="effects_price" size="small">
+                       <el-switch v-model="form.effects_price"
+                                  active-color="#13ce66"
+                                  inactive-color="#ff4949">
+                       </el-switch>
+                   </el-form-item>
+               </el-col>
+            </el-row>
+
             <el-row :gutter="20">
                 <el-col :lg="12" :md="24">
                     <el-form-item label="Form Name" size="small" prop="name" :rules="[{ required: true, message: 'Form name is required'}]">
@@ -34,7 +53,7 @@
                       <el-button style="float: right; padding: 4px 8px" @click="deleteSection(section)" type="danger">Delete</el-button>
                       <el-input-number style="float: right; margin-top: -2px;" v-model="section.order" size="mini"></el-input-number>
                     </div>
-                    <form-section-component v-if="section.minimise ? true : false" :model="section"></form-section-component>
+                    <form-section-component v-if="section.minimise ? true : false" :model="section" :form="form"></form-section-component>
 
                 </el-card>
             </template>
@@ -112,7 +131,7 @@ export default {
                     path: "forms/" + this.formId,
                     params: {
                         with: ['sections.fields'],
-                        include: ['order', 'rules', 'type', 'options']
+                        include: ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price']
                     }
                 })
                 .then(function (data) {
@@ -138,7 +157,7 @@ export default {
                       this.loading = true;
                       this.formErrors = {};
                       this.form.with = ['sections.fields'];
-                      this.form.include = ['order', 'rules', 'type', 'options'];
+                      this.form.include = ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price'];
 
                       api.persist("put", {
                             path: "forms/" + this.formId,
