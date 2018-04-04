@@ -1,14 +1,10 @@
-webpackJsonp([1],{
+webpackJsonp([0],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/pages/Pages.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -20,13 +16,13 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'Pages',
 
     components: {
         DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(24/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+            return __webpack_require__.e/* import() */(17/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
         }
     },
 
@@ -72,7 +68,15 @@ exports.default = {
                     label: 'Live',
                     align: 'left',
                     formatter: function formatter(row, column, cellValue) {
-                        return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
+                        return row.live_at.live ? h(
+                            'i',
+                            { 'class': 'el-icon-check' },
+                            []
+                        ) : h(
+                            'i',
+                            { 'class': 'el-icon-close' },
+                            []
+                        );
                     },
                     resizable: true
                 }, {
@@ -81,7 +85,15 @@ exports.default = {
                     label: 'In Menu',
                     align: 'left',
                     formatter: function formatter(row, column, cellValue) {
-                        return row.in_menu ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
+                        return row.in_menu ? h(
+                            'i',
+                            { 'class': 'el-icon-check' },
+                            []
+                        ) : h(
+                            'i',
+                            { 'class': 'el-icon-close' },
+                            []
+                        );
                     },
                     resizable: true
                 }],
@@ -117,35 +129,25 @@ exports.default = {
 
     methods: {}
 
-};
+});
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/pages/ViewPage.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-__webpack_require__("./node_modules/quill/dist/quill.core.css");
-
-__webpack_require__("./node_modules/quill/dist/quill.snow.css");
-
-__webpack_require__("./node_modules/quill/dist/quill.bubble.css");
-
-var _vueQuillEditor = __webpack_require__("./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js"); //
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_quill_dist_quill_core_css__ = __webpack_require__("./node_modules/quill/dist/quill.core.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_quill_dist_quill_core_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_quill_dist_quill_core_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_quill_dist_quill_snow_css__ = __webpack_require__("./node_modules/quill/dist/quill.snow.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_quill_dist_quill_snow_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_quill_dist_quill_snow_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css__ = __webpack_require__("./node_modules/quill/dist/quill.bubble.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__ = __webpack_require__("./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__);
+//
 //
 //
 //
@@ -248,20 +250,28 @@ var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 //
 //
 
+
+var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
-exports.default = {
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'ViewPage',
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(12/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+            return __webpack_require__.e/* import() */(13/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
         },
-        quillEditor: _vueQuillEditor.quillEditor
+        quillEditor: __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__["quillEditor"]
     },
 
     props: {
@@ -304,7 +314,7 @@ exports.default = {
             this.loading = true;
             this.pageErrors = {};
 
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: "pages/" + this.pageId
             }).then(function (data) {
                 this.loading = false;
@@ -322,7 +332,7 @@ exports.default = {
                     _this.loading = true;
                     _this.pageErrors = {};
 
-                    _apiService2.default.persist("put", {
+                    __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("put", {
                         path: "pages/" + _this.pageId,
                         object: _this.page
                     }).then(function (data) {
@@ -367,7 +377,7 @@ exports.default = {
         }
     }
 
-};
+});
 
 /***/ }),
 

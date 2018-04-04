@@ -41,6 +41,7 @@ class ApiSettingsController extends Controller
         foreach ($request->settings as $key => $setting) {
             Setting::set($key, $setting);
         }
+        Setting::save();
 
         Artisan::call('view:clear');
 
@@ -60,9 +61,13 @@ class ApiSettingsController extends Controller
             'value' => 'required'
         ]);
 
+        $setting = Setting::set($request->key, $request->value);
+
+        Setting::save();
+
         Artisan::call('view:clear');
 
-        return Setting::set($request->key, $request->value);
+        return $setting;
     }
 
     /**
@@ -77,8 +82,12 @@ class ApiSettingsController extends Controller
             'key' => 'required',
         ]);
 
+        $settings = Setting::forget($request->key);
+
+        Setting::save();
+
         Artisan::call('view:clear');
 
-        return Setting::forget($request->key);
+        return $settings;
     }
 }

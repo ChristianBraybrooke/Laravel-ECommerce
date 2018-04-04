@@ -348,6 +348,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             ], 'migrations');
         }
 
+        if (! class_exists('CreateImportsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_imports_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_imports_table.php'
+                ),
+            ], 'migrations');
+        }
+
         if (! class_exists('CreateFormSectionsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_form_sections_table.php.stub' =>
@@ -380,6 +389,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/add_order_form_field_to_products_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_add_order_form_field_to_products_table.php'
+                ),
+            ], 'migrations');
+        }
+        
+        if (! class_exists('CreateImportToModelsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_import_to_models_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_import_to_models_table.php'
                 ),
             ], 'migrations');
         }

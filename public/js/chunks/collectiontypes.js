@@ -1,30 +1,20 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/collection-types/ViewCollectionType.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-__webpack_require__("./node_modules/quill/dist/quill.core.css");
-
-__webpack_require__("./node_modules/quill/dist/quill.snow.css");
-
-__webpack_require__("./node_modules/quill/dist/quill.bubble.css");
-
-var _vueQuillEditor = __webpack_require__("./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var has = __webpack_require__("./node_modules/lodash.has/index.js"); //
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_quill_dist_quill_core_css__ = __webpack_require__("./node_modules/quill/dist/quill.core.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_quill_dist_quill_core_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_quill_dist_quill_core_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_quill_dist_quill_snow_css__ = __webpack_require__("./node_modules/quill/dist/quill.snow.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_quill_dist_quill_snow_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_quill_dist_quill_snow_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css__ = __webpack_require__("./node_modules/quill/dist/quill.bubble.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_quill_dist_quill_bubble_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__ = __webpack_require__("./node_modules/vue-quill-editor/dist/vue-quill-editor.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__);
+//
 //
 //
 //
@@ -252,18 +242,26 @@ var has = __webpack_require__("./node_modules/lodash.has/index.js"); //
 //
 //
 
-exports.default = {
+
+
+
+
+
+
+var has = __webpack_require__("./node_modules/lodash.has/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: '',
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(12/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+            return __webpack_require__.e/* import() */(13/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
         },
-        quillEditor: _vueQuillEditor.quillEditor
+        quillEditor: __WEBPACK_IMPORTED_MODULE_4_vue_quill_editor__["quillEditor"]
     },
 
     props: {
@@ -321,7 +319,7 @@ exports.default = {
             this.loading = true;
             this.collectionTypeErrors = {};
 
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: 'collections/' + this.collectionId + '/types/' + this.typeId,
                 params: {
                     with: 'collection'
@@ -353,7 +351,7 @@ exports.default = {
 
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
-                    _apiService2.default.persist('put', {
+                    __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('put', {
                         path: 'collections/' + _this.collectionId + '/types/' + _this.typeId,
                         object: _this.collectionType
                     }).then(function (data) {
@@ -423,7 +421,7 @@ exports.default = {
         }
     }
 
-};
+});
 
 /***/ }),
 

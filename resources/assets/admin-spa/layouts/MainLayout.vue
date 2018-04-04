@@ -78,6 +78,17 @@
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><path fill="#444444" d="M23,14v-4h-3.262c-0.189-0.732-0.477-1.422-0.852-2.058l2.306-2.306l-2.828-2.828l-2.306,2.306 C15.422,4.739,14.732,4.451,14,4.262V1h-4v3.262C9.268,4.451,8.578,4.739,7.942,5.114L5.636,2.808L2.808,5.636l2.306,2.306 C4.739,8.578,4.451,9.268,4.262,10H1v4h3.262c0.189,0.732,0.477,1.422,0.852,2.058l-2.306,2.306l2.828,2.828l2.306-2.306 c0.635,0.375,1.326,0.663,2.058,0.852V23h4v-3.262c0.732-0.189,1.422-0.477,2.058-0.852l2.306,2.306l2.828-2.828l-2.306-2.306 c0.375-0.635,0.663-1.326,0.852-2.058H23z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z"></path></g></svg>
             <span slot="title">Config</span>
           </el-menu-item>
+
+          <el-submenu index="3">
+            <template slot="title">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path fill="#000000" d="M4,1v11H1c-0.552,0-1,0.448-1,1v8c0,1.657,1.343,3,3,3h1h17c1.657,0,3-1.343,3-3V1c0-0.552-0.448-1-1-1H5 C4.448,0,4,0.448,4,1z M8,5h6v6H8V5z M3,22c-0.552,0-1-0.449-1-1v-7h2v7C4,21.551,3.552,22,3,22z M20,19H8v-2h12V19z M20,15H8v-2h12 V15z M20,11h-4V9h4V11z M20,7h-4V5h4V7z"></path></g></svg>
+              <span slot="title">Reports</span>
+            </template>
+
+              <el-menu-item index="/import-export">Import / Export</el-menu-item>
+
+          </el-submenu>
+
         </el-menu>
       </el-aside>
       <el-main>

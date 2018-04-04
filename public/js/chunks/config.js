@@ -1,22 +1,12 @@
-webpackJsonp([9],{
+webpackJsonp([7],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/config/Config.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"); //
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+//
 //
 //
 //
@@ -279,16 +269,19 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
 //
 //
 
-exports.default = {
+
+var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'Config',
 
     components: {
         Errors: function Errors() {
-            return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+            return __webpack_require__.e/* import() */(12/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+            return __webpack_require__.e/* import() */(13/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
         }
     },
 
@@ -297,7 +290,7 @@ exports.default = {
     data: function data() {
         return {
             loading: false,
-            settings: {},
+            settings: null,
             settingsErrors: {},
             settingsForm: {},
             collections: {},
@@ -308,13 +301,9 @@ exports.default = {
     },
 
 
-    computed: {
-        //
-    },
+    computed: {},
 
-    watch: {
-        //
-    },
+    watch: {},
 
     mounted: function mounted() {
         console.log('Config.vue mounted');
@@ -349,15 +338,11 @@ exports.default = {
             this.loading = true;
             this.settingsErrors = {};
 
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: 'settings'
             }).then(function (data) {
                 this.loading = false;
                 this.settings = data.data;
-                if (!this.settings['Admin Notifications']) {
-                    this.settings['Admin Notifications'] = [];
-                }
-
                 this.getFeaturedProductCollectionTypes();
             }.bind(this)).catch(function (error) {
                 this.loading = false;
@@ -365,7 +350,7 @@ exports.default = {
             }.bind(this));
         },
         getCollections: function getCollections() {
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: 'collections'
             }).then(function (data) {
                 this.collections = data.data;
@@ -376,7 +361,7 @@ exports.default = {
         getFeaturedProductCollectionTypes: function getFeaturedProductCollectionTypes() {
 
             if (this.settings['Home Featured Product Collection']) {
-                _apiService2.default.get({
+                __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                     path: 'collections/' + this.settings['Home Featured Product Collection'] + '/types'
                 }).then(function (data) {
                     this.featured_product_types = data.data;
@@ -388,7 +373,7 @@ exports.default = {
             }
         },
         getUsers: function getUsers() {
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
                 path: 'users',
                 params: {
                     withRole: 'admin'
@@ -403,7 +388,7 @@ exports.default = {
             this.loading = true;
             this.settingsErrors = {};
 
-            _apiService2.default.persist('post', {
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('post', {
                 path: 'settings',
                 object: {
                     settings: this.settings
@@ -429,7 +414,7 @@ exports.default = {
         }
     }
 
-};
+});
 
 /***/ }),
 
@@ -859,7 +844,6 @@ var render = function() {
                                         },
                                         [
                                           _c("el-input", {
-                                            attrs: { disabled: "" },
                                             model: {
                                               value: _vm.settings["url"],
                                               callback: function($$v) {

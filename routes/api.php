@@ -52,3 +52,7 @@ Route::apiResource('forms', 'ApiFormsController');
 Route::apiResource('orders', 'ApiOrdersController');
 Route::post('orders/{order}/payment', 'ApiOrdersController@payment');
 Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');
+
+// Import / Export
+Route::post('imports', 'ApiImportsController@import');
+Route::get('imports', 'ApiImportsController@index');

@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		36: 0
+/******/ 		23: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"orders","1":"pages","2":"collections","3":"collectiontypes","4":"account","5":"view-product-customisations","6":"view-form","7":"users","8":"forms","9":"config","10":"view-product-variants","11":"view-product-pricing","12":"view-product-ordering","13":"view-product-images","14":"view-product","15":"products","16":"galleries","17":"not-found","18":"dashboard"}[chunkId]||chunkId) + ".js";
+/******/ 		script.src = __webpack_require__.p + "js/chunks/" + ({"0":"pages","1":"products","2":"orders","3":"collections","4":"collectiontypes","5":"account","6":"users","7":"config","8":"import-export","9":"galleries","10":"not-found","11":"dashboard"}[chunkId]||chunkId) + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -3175,8 +3175,8 @@ module.exports = function mergeJSXProps (objs) {
 
 function mergeFn (a, b) {
   return function () {
-    a && a.apply(this, arguments)
-    b && b.apply(this, arguments)
+    a.apply(this, arguments)
+    b.apply(this, arguments)
   }
 }
 
@@ -3184,24 +3184,18 @@ function mergeFn (a, b) {
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/admin.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout__ = __webpack_require__("./resources/assets/admin-spa/layouts/MainLayout.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout__);
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _MainLayout = __webpack_require__("./resources/assets/admin-spa/layouts/MainLayout.vue");
-
-var _MainLayout2 = _interopRequireDefault(_MainLayout);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Admin',
-    components: { Layout: _MainLayout2.default },
+    components: { Layout: __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout___default.a },
     mounted: function mounted() {
         document.title = this.$route.meta.title ? this.$route.meta.title : 'Admin: ' + this.$route.name;
         console.log('Admin.vue mounted.');
@@ -3217,30 +3211,25 @@ exports.default = {
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
         }
     }
-};
+});
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/layouts/MainLayout.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _elementUi = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
-
-var _elementUi2 = _interopRequireDefault(_elementUi);
-
-var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3336,7 +3325,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var startsWith = __webpack_require__("./node_modules/lodash.startswith/index.js");
 
 var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
-exports.default = {
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
     components: {},
 
     data: function data() {
@@ -3367,9 +3358,6 @@ exports.default = {
             if (startsWith(value.path, '/orders')) {
                 path = '/orders';
             }
-            if (startsWith(value.path, '/forms')) {
-                path = '/forms';
-            }
             this.currentPage = path;
         }
     },
@@ -3383,20 +3371,16 @@ exports.default = {
     },
 
 
-    computed: _extends({}, (0, _vuex.mapGetters)(['user', 'userErrors', 'shopData']), {
-        config: function config() {
-            return ecommerceConfig;
-        }
-    }),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['user', 'userErrors', 'shopData'])),
 
-    methods: _extends({}, (0, _vuex.mapActions)(['getUser', 'updateUser', 'updateUserModel']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(['getUser', 'updateUser', 'updateUserModel']), {
 
         getWindowWidth: throttle(function (evt) {
             this.width = document.documentElement.clientWidth;
         }, 500)
     })
 
-};
+});
 
 /***/ }),
 
@@ -60991,578 +60975,6 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 
-/***/ "./node_modules/lodash.foreach/index.js":
-/***/ (function(module, exports) {
-
-/**
- * lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize exports="npm" -o ./`
- * Copyright jQuery Foundation and other contributors <https://jquery.org/>
- * Released under MIT license <https://lodash.com/license>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- */
-
-/** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
-
-/** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]';
-
-/** Used to detect unsigned integer values. */
-var reIsUint = /^(?:0|[1-9]\d*)$/;
-
-/**
- * A specialized version of `_.forEach` for arrays without support for
- * iteratee shorthands.
- *
- * @private
- * @param {Array} [array] The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns `array`.
- */
-function arrayEach(array, iteratee) {
-  var index = -1,
-      length = array ? array.length : 0;
-
-  while (++index < length) {
-    if (iteratee(array[index], index, array) === false) {
-      break;
-    }
-  }
-  return array;
-}
-
-/**
- * The base implementation of `_.times` without support for iteratee shorthands
- * or max array length checks.
- *
- * @private
- * @param {number} n The number of times to invoke `iteratee`.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the array of results.
- */
-function baseTimes(n, iteratee) {
-  var index = -1,
-      result = Array(n);
-
-  while (++index < n) {
-    result[index] = iteratee(index);
-  }
-  return result;
-}
-
-/**
- * Creates a unary function that invokes `func` with its argument transformed.
- *
- * @private
- * @param {Function} func The function to wrap.
- * @param {Function} transform The argument transform.
- * @returns {Function} Returns the new function.
- */
-function overArg(func, transform) {
-  return function(arg) {
-    return func(transform(arg));
-  };
-}
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objectToString = objectProto.toString;
-
-/** Built-in value references. */
-var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeKeys = overArg(Object.keys, Object);
-
-/**
- * Creates an array of the enumerable property names of the array-like `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @param {boolean} inherited Specify returning inherited property names.
- * @returns {Array} Returns the array of property names.
- */
-function arrayLikeKeys(value, inherited) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  // Safari 9 makes `arguments.length` enumerable in strict mode.
-  var result = (isArray(value) || isArguments(value))
-    ? baseTimes(value.length, String)
-    : [];
-
-  var length = result.length,
-      skipIndexes = !!length;
-
-  for (var key in value) {
-    if ((inherited || hasOwnProperty.call(value, key)) &&
-        !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * The base implementation of `_.forEach` without support for iteratee shorthands.
- *
- * @private
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array|Object} Returns `collection`.
- */
-var baseEach = createBaseEach(baseForOwn);
-
-/**
- * The base implementation of `baseForOwn` which iterates over `object`
- * properties returned by `keysFunc` and invokes `iteratee` for each property.
- * Iteratee functions may exit iteration early by explicitly returning `false`.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @param {Function} keysFunc The function to get the keys of `object`.
- * @returns {Object} Returns `object`.
- */
-var baseFor = createBaseFor();
-
-/**
- * The base implementation of `_.forOwn` without support for iteratee shorthands.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Object} Returns `object`.
- */
-function baseForOwn(object, iteratee) {
-  return object && baseFor(object, iteratee, keys);
-}
-
-/**
- * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- */
-function baseKeys(object) {
-  if (!isPrototype(object)) {
-    return nativeKeys(object);
-  }
-  var result = [];
-  for (var key in Object(object)) {
-    if (hasOwnProperty.call(object, key) && key != 'constructor') {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * Creates a `baseEach` or `baseEachRight` function.
- *
- * @private
- * @param {Function} eachFunc The function to iterate over a collection.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Function} Returns the new base function.
- */
-function createBaseEach(eachFunc, fromRight) {
-  return function(collection, iteratee) {
-    if (collection == null) {
-      return collection;
-    }
-    if (!isArrayLike(collection)) {
-      return eachFunc(collection, iteratee);
-    }
-    var length = collection.length,
-        index = fromRight ? length : -1,
-        iterable = Object(collection);
-
-    while ((fromRight ? index-- : ++index < length)) {
-      if (iteratee(iterable[index], index, iterable) === false) {
-        break;
-      }
-    }
-    return collection;
-  };
-}
-
-/**
- * Creates a base function for methods like `_.forIn` and `_.forOwn`.
- *
- * @private
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {Function} Returns the new base function.
- */
-function createBaseFor(fromRight) {
-  return function(object, iteratee, keysFunc) {
-    var index = -1,
-        iterable = Object(object),
-        props = keysFunc(object),
-        length = props.length;
-
-    while (length--) {
-      var key = props[fromRight ? length : ++index];
-      if (iteratee(iterable[key], key, iterable) === false) {
-        break;
-      }
-    }
-    return object;
-  };
-}
-
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-function isIndex(value, length) {
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return !!length &&
-    (typeof value == 'number' || reIsUint.test(value)) &&
-    (value > -1 && value % 1 == 0 && value < length);
-}
-
-/**
- * Checks if `value` is likely a prototype object.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
- */
-function isPrototype(value) {
-  var Ctor = value && value.constructor,
-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
-
-  return value === proto;
-}
-
-/**
- * Iterates over elements of `collection` and invokes `iteratee` for each element.
- * The iteratee is invoked with three arguments: (value, index|key, collection).
- * Iteratee functions may exit iteration early by explicitly returning `false`.
- *
- * **Note:** As with other "Collections" methods, objects with a "length"
- * property are iterated like arrays. To avoid this behavior use `_.forIn`
- * or `_.forOwn` for object iteration.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @alias each
- * @category Collection
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} [iteratee=_.identity] The function invoked per iteration.
- * @returns {Array|Object} Returns `collection`.
- * @see _.forEachRight
- * @example
- *
- * _([1, 2]).forEach(function(value) {
- *   console.log(value);
- * });
- * // => Logs `1` then `2`.
- *
- * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
- *   console.log(key);
- * });
- * // => Logs 'a' then 'b' (iteration order is not guaranteed).
- */
-function forEach(collection, iteratee) {
-  var func = isArray(collection) ? arrayEach : baseEach;
-  return func(collection, typeof iteratee == 'function' ? iteratee : identity);
-}
-
-/**
- * Checks if `value` is likely an `arguments` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an `arguments` object,
- *  else `false`.
- * @example
- *
- * _.isArguments(function() { return arguments; }());
- * // => true
- *
- * _.isArguments([1, 2, 3]);
- * // => false
- */
-function isArguments(value) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
-    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
-}
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-
-/**
- * Checks if `value` is array-like. A value is considered array-like if it's
- * not a function and has a `value.length` that's an integer greater than or
- * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
- * @example
- *
- * _.isArrayLike([1, 2, 3]);
- * // => true
- *
- * _.isArrayLike(document.body.children);
- * // => true
- *
- * _.isArrayLike('abc');
- * // => true
- *
- * _.isArrayLike(_.noop);
- * // => false
- */
-function isArrayLike(value) {
-  return value != null && isLength(value.length) && !isFunction(value);
-}
-
-/**
- * This method is like `_.isArrayLike` except that it also checks if `value`
- * is an object.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array-like object,
- *  else `false`.
- * @example
- *
- * _.isArrayLikeObject([1, 2, 3]);
- * // => true
- *
- * _.isArrayLikeObject(document.body.children);
- * // => true
- *
- * _.isArrayLikeObject('abc');
- * // => false
- *
- * _.isArrayLikeObject(_.noop);
- * // => false
- */
-function isArrayLikeObject(value) {
-  return isObjectLike(value) && isArrayLike(value);
-}
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 8-9 which returns 'object' for typed array and other constructors.
-  var tag = isObject(value) ? objectToString.call(value) : '';
-  return tag == funcTag || tag == genTag;
-}
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- * @example
- *
- * _.isLength(3);
- * // => true
- *
- * _.isLength(Number.MIN_VALUE);
- * // => false
- *
- * _.isLength(Infinity);
- * // => false
- *
- * _.isLength('3');
- * // => false
- */
-function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return !!value && typeof value == 'object';
-}
-
-/**
- * Creates an array of the own enumerable property names of `object`.
- *
- * **Note:** Non-object values are coerced to objects. See the
- * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
- * for more details.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Object
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- *   this.b = 2;
- * }
- *
- * Foo.prototype.c = 3;
- *
- * _.keys(new Foo);
- * // => ['a', 'b'] (iteration order is not guaranteed)
- *
- * _.keys('hi');
- * // => ['0', '1']
- */
-function keys(object) {
-  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
-}
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = forEach;
-
-
-/***/ }),
-
 /***/ "./node_modules/lodash.has/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -65359,31 +64771,31 @@ var render = function() {
                                     "g",
                                     {
                                       staticClass: "nc-icon-wrapper",
-                                      attrs: { fill: "#444444" }
+                                      attrs: { fill: "#000000" }
                                     },
                                     [
-                                      _c("polygon", {
+                                      _c("path", {
                                         attrs: {
-                                          fill: "#444444",
-                                          points: "12,0 24,7 12,14 0,7 "
+                                          "data-color": "color-2",
+                                          fill: "#000000",
+                                          d: "M4,4V1H1C0.448,1,0,1.447,0,2v2H4z"
                                         }
                                       }),
                                       _vm._v(" "),
-                                      _c("polygon", {
+                                      _c("path", {
                                         attrs: {
-                                          "data-color": "color-2",
-                                          fill: "#444444",
-                                          points:
-                                            "12,21.315 2.301,15.658 0,17 12,24 24,17 21.699,15.658 "
+                                          fill: "#000000",
+                                          d:
+                                            "M0,6v16c0,0.553,0.448,1,1,1h22c0.552,0,1-0.447,1-1V6H0z M11,18H3v-8h8V18z M18,16h-5v-2h5V16z M21,12h-8 v-2h8V12z"
                                         }
                                       }),
                                       _vm._v(" "),
-                                      _c("polygon", {
+                                      _c("path", {
                                         attrs: {
                                           "data-color": "color-2",
-                                          fill: "#444444",
-                                          points:
-                                            "12,16.315 2.301,10.658 0,12 12,19 24,12 21.699,10.658 "
+                                          fill: "#000000",
+                                          d:
+                                            "M24,4V2c0-0.553-0.448-1-1-1H6v3H24z"
                                         }
                                       })
                                     ]
@@ -65405,58 +64817,6 @@ var render = function() {
                         ],
                         2
                       ),
-                      _vm._v(" "),
-                      _c("el-menu-item", { attrs: { index: "/forms" } }, [
-                        _c(
-                          "svg",
-                          {
-                            attrs: {
-                              version: "1.1",
-                              xmlns: "http://www.w3.org/2000/svg",
-                              "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                              x: "0px",
-                              y: "0px",
-                              viewBox: "0 0 24 24",
-                              "xml:space": "preserve",
-                              width: "24",
-                              height: "24"
-                            }
-                          },
-                          [
-                            _c(
-                              "g",
-                              {
-                                staticClass: "nc-icon-wrapper",
-                                attrs: { fill: "#444444" }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    fill: "#444444",
-                                    d:
-                                      "M21,3h-2v5H5V3H3C2.447,3,2,3.447,2,4v19c0,0.553,0.447,1,1,1h18c0.553,0,1-0.447,1-1V4 C22,3.447,21.553,3,21,3z M18,19H6v-2h12V19z M18,14H6v-2h12V14z"
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("path", {
-                                  attrs: {
-                                    "data-color": "color-2",
-                                    fill: "#444444",
-                                    d:
-                                      "M14,2c0-1.105-0.895-2-2-2s-2,0.895-2,2H7v4h10V2H14z"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          { attrs: { slot: "title" }, slot: "title" },
-                          [_vm._v("Forms")]
-                        )
-                      ]),
                       _vm._v(" "),
                       _c("el-menu-item", { attrs: { index: "/galleries" } }, [
                         _c(
@@ -65496,7 +64856,7 @@ var render = function() {
                                   attrs: {
                                     fill: "#000000",
                                     d:
-                                      "M23,1H1C0.448,1,0,1.447,0,2v20c0,0.553,0.448,1,1,1h22c0.552,0,1-0.447,1-1V2C24,1.447,23.552,1,23,1z\n          \t M22,3v12l-5-5l-6,7l-5-4l-4,4V3H22z"
+                                      "M23,1H1C0.448,1,0,1.447,0,2v20c0,0.553,0.448,1,1,1h22c0.552,0,1-0.447,1-1V2C24,1.447,23.552,1,23,1z\n            \t M22,3v12l-5-5l-6,7l-5-4l-4,4V3H22z"
                                   }
                                 })
                               ]
@@ -65521,29 +64881,21 @@ var render = function() {
                               "xmlns:xlink": "http://www.w3.org/1999/xlink",
                               x: "0px",
                               y: "0px",
-                              viewBox: "0 0 24 24",
+                              viewBox: "0 0 16 16",
                               "xml:space": "preserve",
-                              width: "24",
-                              height: "24"
+                              width: "16",
+                              height: "16"
                             }
                           },
                           [
-                            _c(
-                              "g",
-                              {
-                                staticClass: "nc-icon-wrapper",
-                                attrs: { fill: "#444444" }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    fill: "#444444",
-                                    d:
-                                      "M23,14v-4h-3.262c-0.189-0.732-0.477-1.422-0.852-2.058l2.306-2.306l-2.828-2.828l-2.306,2.306 C15.422,4.739,14.732,4.451,14,4.262V1h-4v3.262C9.268,4.451,8.578,4.739,7.942,5.114L5.636,2.808L2.808,5.636l2.306,2.306 C4.739,8.578,4.451,9.268,4.262,10H1v4h3.262c0.189,0.732,0.477,1.422,0.852,2.058l-2.306,2.306l2.828,2.828l2.306-2.306 c0.635,0.375,1.326,0.663,2.058,0.852V23h4v-3.262c0.732-0.189,1.422-0.477,2.058-0.852l2.306,2.306l2.828-2.828l-2.306-2.306 c0.375-0.635,0.663-1.326,0.852-2.058H23z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z"
-                                  }
-                                })
-                              ]
-                            )
+                            _c("g", { staticClass: "nc-icon-wrapper" }, [
+                              _c("path", {
+                                attrs: {
+                                  d:
+                                    "M13.2,5.2l-2.4-2.4l2.4-2.4C12.7,0.1,12.1,0,11.5,0C9,0,7,2,7,4.5C7,5,7.1,5.4,7.2,5.9l-6.6,4.9 c-0.8,0.6-0.8,1.7-0.2,2.4l2.3,2.4c0.7,0.7,1.8,0.6,2.4-0.2l4.9-6.6C10.5,8.9,11,9,11.5,9C14,9,16,7,16,4.5c0-0.6-0.1-1.2-0.3-1.7 L13.2,5.2z"
+                                }
+                              })
+                            ])
                           ]
                         ),
                         _vm._v(" "),
@@ -65552,7 +64904,68 @@ var render = function() {
                           { attrs: { slot: "title" }, slot: "title" },
                           [_vm._v("Config")]
                         )
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "el-submenu",
+                        { attrs: { index: "3" } },
+                        [
+                          _c(
+                            "template",
+                            { attrs: { slot: "title" }, slot: "title" },
+                            [
+                              _c(
+                                "svg",
+                                {
+                                  attrs: {
+                                    version: "1.1",
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    "xmlns:xlink":
+                                      "http://www.w3.org/1999/xlink",
+                                    x: "0px",
+                                    y: "0px",
+                                    viewBox: "0 0 24 24",
+                                    "xml:space": "preserve",
+                                    width: "24",
+                                    height: "24"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    {
+                                      staticClass: "nc-icon-wrapper",
+                                      attrs: { fill: "#000000" }
+                                    },
+                                    [
+                                      _c("path", {
+                                        attrs: {
+                                          fill: "#000000",
+                                          d:
+                                            "M4,1v11H1c-0.552,0-1,0.448-1,1v8c0,1.657,1.343,3,3,3h1h17c1.657,0,3-1.343,3-3V1c0-0.552-0.448-1-1-1H5 C4.448,0,4,0.448,4,1z M8,5h6v6H8V5z M3,22c-0.552,0-1-0.449-1-1v-7h2v7C4,21.551,3.552,22,3,22z M20,19H8v-2h12V19z M20,15H8v-2h12 V15z M20,11h-4V9h4V11z M20,7h-4V5h4V7z"
+                                        }
+                                      })
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                { attrs: { slot: "title" }, slot: "title" },
+                                [_vm._v("Reports")]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            { attrs: { index: "/import-export" } },
+                            [_vm._v("Import / Export")]
+                          )
+                        ],
+                        2
+                      )
                     ],
                     1
                   )
@@ -65561,20 +64974,7 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "el-main",
-            [
-              _vm._t("default"),
-              _vm._v(" "),
-              _c("p", { staticClass: "ecom_version" }, [
-                _vm._v("API Version: "),
-                _c("strong", [_vm._v(_vm._s(_vm.config.api_version))]),
-                _vm._v(" SPA Version: "),
-                _c("strong", [_vm._v(_vm._s(_vm.config.web_version))])
-              ])
-            ],
-            2
-          )
+          _c("el-main", [_vm._t("default")], 2)
         ],
         1
       )
@@ -65630,7 +65030,6 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
   * vue-router v3.0.1
   * (c) 2017 Evan You
@@ -68253,7 +67652,7 @@ if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (VueRouter);
+/* harmony default export */ __webpack_exports__["a"] = (VueRouter);
 
 
 /***/ }),
@@ -79142,7 +78541,6 @@ module.exports = Vue$3;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var isMergeableObject = function isMergeableObject(value) {
 	return isNonNullObject(value)
 		&& !isSpecial(value)
@@ -79321,7 +78719,7 @@ var index = function(options, storage, key) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (index);
+/* harmony default export */ __webpack_exports__["a"] = (index);
 //# sourceMappingURL=vuex-persistedstate.es.js.map
 
 
@@ -79331,14 +78729,13 @@ var index = function(options, storage, key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/* unused harmony export Store */
+/* unused harmony export install */
+/* unused harmony export mapState */
+/* unused harmony export mapMutations */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapActions; });
+/* unused harmony export createNamespacedHelpers */
 /**
  * vuex v3.0.1
  * (c) 2017 Evan You
@@ -80269,7 +79666,7 @@ var index_esm = {
 };
 
 
-/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+/* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
 
 /***/ }),
@@ -80303,56 +79700,43 @@ module.exports = g;
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/admin.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill__ = __webpack_require__("./node_modules/babel-polyfill/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_polyfill__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__router___ = __webpack_require__("./resources/assets/admin-spa/router/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_index_js__ = __webpack_require__("./resources/assets/admin-spa/store/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_vue__ = __webpack_require__("./resources/assets/admin-spa/admin.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__admin_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en__ = __webpack_require__("./node_modules/element-ui/lib/locale/lang/en.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__axios_js__ = __webpack_require__("./resources/assets/admin-spa/axios.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__axios_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__axios_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_color__ = __webpack_require__("./resources/assets/admin-spa/utils/color.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign__ = __webpack_require__("./node_modules/object-assign/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_object_assign__);
 
 
-__webpack_require__("./node_modules/babel-polyfill/lib/index.js");
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
-var _vue2 = _interopRequireDefault(_vue);
 
-var _elementUi = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
 
-var _elementUi2 = _interopRequireDefault(_elementUi);
 
-var _router = __webpack_require__("./resources/assets/admin-spa/router/index.js");
 
-var _router2 = _interopRequireDefault(_router);
 
-var _index = __webpack_require__("./resources/assets/admin-spa/store/index.js");
 
-var _index2 = _interopRequireDefault(_index);
 
-var _admin = __webpack_require__("./resources/assets/admin-spa/admin.vue");
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default.a });
 
-var _admin2 = _interopRequireDefault(_admin);
 
-var _en = __webpack_require__("./node_modules/element-ui/lib/locale/lang/en.js");
-
-var _en2 = _interopRequireDefault(_en);
-
-__webpack_require__("./resources/assets/admin-spa/axios.js");
-
-var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-
-var _color = __webpack_require__("./resources/assets/admin-spa/utils/color.js");
-
-var _color2 = _interopRequireDefault(_color);
-
-var _objectAssign = __webpack_require__("./node_modules/object-assign/index.js");
-
-var _objectAssign2 = _interopRequireDefault(_objectAssign);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-window.ecommerceConfig.web_version = '0.0.12';
-
-_vue2.default.use(_elementUi2.default, { locale: _en2.default });
-
-_vue2.default.mixin({
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
     computed: {
         getSiteBaseURL: function getSiteBaseURL(value) {
             return ecommerceConfig.site_url + '/';
@@ -80360,23 +79744,15 @@ _vue2.default.mixin({
     }
 });
 
-_vue2.default.mixin({
-    methods: {
-        capitalize: function capitalize(str) {
-            var lower = str.toLowerCase();
-            return lower.replace(/(^| )(\w)/g, function (x) {
-                return x.toUpperCase();
-            });
-        }
-    }
-});
 
-var app = new _vue2.default({
-    router: _router2.default,
+
+
+var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
+    router: __WEBPACK_IMPORTED_MODULE_3__router___["a" /* default */],
     el: '#app',
-    store: _index2.default,
+    store: __WEBPACK_IMPORTED_MODULE_4__store_index_js__["a" /* default */],
     render: function render(h) {
-        return h(_admin2.default);
+        return h(__WEBPACK_IMPORTED_MODULE_5__admin_vue___default.a);
     }
 });
 
@@ -80437,9 +79813,6 @@ module.exports = Component.exports
 
 /***/ "./resources/assets/admin-spa/axios.js":
 /***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 window.axios = __webpack_require__("./node_modules/axios/index.js");
 
@@ -80511,105 +79884,68 @@ module.exports = Component.exports
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/router/index.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-
-var _vue2 = _interopRequireDefault(_vue);
-
-var _vueRouter = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
-
-var _vueRouter2 = _interopRequireDefault(_vueRouter);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(_vueRouter2.default);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 // Pages
 var Dashboard = function Dashboard() {
-    return __webpack_require__.e/* import() */(18).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
+    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
 };
 var Account = function Account() {
-    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Account.vue"));
+    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Account.vue"));
 };
 var Orders = function Orders() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/Orders.vue"));
-};
-var NewOrderStepOne = function NewOrderStepOne() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/NewOrderStepOne.vue"));
-};
-var NewOrderStepTwo = function NewOrderStepTwo() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/NewOrderStepTwo.vue"));
-};
-var NewOrderStepThree = function NewOrderStepThree() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue"));
+    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/Orders.vue"));
 };
 var ViewOrder = function ViewOrder() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/ViewOrder.vue"));
+    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/orders/ViewOrder.vue"));
 };
 var Collections = function Collections() {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collections/Collections.vue"));
+    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collections/Collections.vue"));
 };
 var ViewCollection = function ViewCollection() {
-    return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collections/ViewCollection.vue"));
+    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collections/ViewCollection.vue"));
 };
 var ViewCollectionType = function ViewCollectionType() {
-    return __webpack_require__.e/* import() */(3).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collection-types/ViewCollectionType.vue"));
+    return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/collection-types/ViewCollectionType.vue"));
 };
 var Products = function Products() {
-    return __webpack_require__.e/* import() */(15).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/Products.vue"));
+    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/Products.vue"));
 };
 var ViewProduct = function ViewProduct() {
-    return __webpack_require__.e/* import() */(14).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProduct.vue"));
-};
-var ViewProductCustomisations = function ViewProductCustomisations() {
-    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductCustomisations.vue"));
-};
-var ViewProductImages = function ViewProductImages() {
-    return __webpack_require__.e/* import() */(13).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductImages.vue"));
-};
-var ViewProductPricing = function ViewProductPricing() {
-    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductPricing.vue"));
-};
-var ViewProductVariants = function ViewProductVariants() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductVariants.vue"));
-};
-var ViewProductOrdering = function ViewProductOrdering() {
-    return __webpack_require__.e/* import() */(12).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProductOrdering.vue"));
+    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ViewProduct.vue"));
 };
 var Galleries = function Galleries() {
-    return __webpack_require__.e/* import() */(16).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/galleries/Galleries.vue"));
+    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/galleries/Galleries.vue"));
 };
 var Pages = function Pages() {
-    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/Pages.vue"));
+    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/Pages.vue"));
 };
 var ViewPage = function ViewPage() {
-    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/ViewPage.vue"));
+    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/pages/ViewPage.vue"));
 };
 var Users = function Users() {
-    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/users/Users.vue"));
+    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/users/Users.vue"));
 };
 var Config = function Config() {
-    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/config/Config.vue"));
-};
-var Forms = function Forms() {
-    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/forms/Forms.vue"));
-};
-var ViewForm = function ViewForm() {
-    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/forms/ViewForm.vue"));
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/config/Config.vue"));
 };
 var NotFound = function NotFound() {
-    return __webpack_require__.e/* import() */(17).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
+    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
+};
+var ImportExport = function ImportExport() {
+    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/reports/ImportExport.vue"));
 };
 
-var router = new _vueRouter2.default({
+var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     mode: 'history',
     base: '/admin/',
     routes: [{
@@ -80627,21 +79963,6 @@ var router = new _vueRouter2.default({
         component: Orders,
         name: 'orders',
         meta: { title: 'Admin: Orders' }
-    }, {
-        path: '/orders/new',
-        component: NewOrderStepOne,
-        name: 'orders.step1',
-        meta: { title: 'Admin: New Order - Step 1' }
-    }, {
-        path: '/orders/new/products',
-        component: NewOrderStepTwo,
-        name: 'orders.step2',
-        meta: { title: 'Admin: New Order - Step 2' }
-    }, {
-        path: '/orders/new/payment',
-        component: NewOrderStepThree,
-        name: 'orders.step3',
-        meta: { title: 'Admin: New Order - Step 3' }
     }, {
         path: '/orders/:orderId',
         component: ViewOrder,
@@ -80677,36 +79998,6 @@ var router = new _vueRouter2.default({
         name: 'products.view',
         meta: { title: 'Admin: Product' }
     }, {
-        path: '/products/:productId/pricing',
-        component: ViewProductPricing,
-        props: true,
-        name: 'products.view.pricing',
-        meta: { title: 'Admin: Product Pricing' }
-    }, {
-        path: '/products/:productId/images',
-        component: ViewProductImages,
-        props: true,
-        name: 'products.view.images',
-        meta: { title: 'Admin: Product Images' }
-    }, {
-        path: '/products/:productId/customisations',
-        component: ViewProductCustomisations,
-        props: true,
-        name: 'products.view.customisations',
-        meta: { title: 'Admin: Product Customisations' }
-    }, {
-        path: '/products/:productId/variants',
-        component: ViewProductVariants,
-        props: true,
-        name: 'products.view.variants',
-        meta: { title: 'Admin: Product Variants' }
-    }, {
-        path: '/products/:productId/ordering',
-        component: ViewProductOrdering,
-        props: true,
-        name: 'products.view.ordering',
-        meta: { title: 'Admin: Product Ordering' }
-    }, {
         path: '/galleries',
         component: Galleries,
         name: 'galleries',
@@ -80728,21 +80019,15 @@ var router = new _vueRouter2.default({
         name: 'users',
         meta: { title: 'Admin: Users' }
     }, {
-        path: '/forms',
-        component: Forms,
-        name: 'forms',
-        meta: { title: 'Admin: Forms' }
-    }, {
-        path: '/forms/:formId',
-        component: ViewForm,
-        props: true,
-        name: 'forms.view',
-        meta: { title: 'Admin: Forms' }
-    }, {
         path: '/config',
         component: Config,
         name: 'config',
         meta: { title: 'Admin: Config' }
+    }, {
+        path: '/import-export',
+        component: ImportExport,
+        name: 'import-export',
+        meta: { title: 'Admin: Import / Export' }
     }, {
         path: '*',
         component: NotFound,
@@ -80755,7 +80040,7 @@ router.beforeEach(function (to, from, next) {
     next();
 });
 
-exports.default = router;
+/* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
 
@@ -80767,15 +80052,9 @@ exports.default = router;
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/services/api-service.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
@@ -80783,7 +80062,7 @@ var BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/'
 var SERVER_ERROR_MESSAGE = "We could not access the server at this time. Please try again. If the issue persists, please open a support ticket.";
 var SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are not authorised to do so.";
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["a"] = ({
     get: function get(data) {
         if (!has(data, 'params')) {
             data.params = {};
@@ -80895,92 +80174,57 @@ exports.default = {
             code: error.status
         };
     }
-};
+});
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/index.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__ = __webpack_require__("./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_collections__ = __webpack_require__("./resources/assets/admin-spa/store/modules/collections.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_user__ = __webpack_require__("./resources/assets/admin-spa/store/modules/user.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_shop_data__ = __webpack_require__("./resources/assets/admin-spa/store/modules/shop-data.js");
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
-var _vue2 = _interopRequireDefault(_vue);
 
-var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 
-var _vuex2 = _interopRequireDefault(_vuex);
 
-var _vuexPersistedstate = __webpack_require__("./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
 
-var _vuexPersistedstate2 = _interopRequireDefault(_vuexPersistedstate);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
-var _collections = __webpack_require__("./resources/assets/admin-spa/store/modules/collections.js");
-
-var _collections2 = _interopRequireDefault(_collections);
-
-var _user = __webpack_require__("./resources/assets/admin-spa/store/modules/user.js");
-
-var _user2 = _interopRequireDefault(_user);
-
-var _shopData = __webpack_require__("./resources/assets/admin-spa/store/modules/shop-data.js");
-
-var _shopData2 = _interopRequireDefault(_shopData);
-
-var _order = __webpack_require__("./resources/assets/admin-spa/store/modules/order.js");
-
-var _order2 = _interopRequireDefault(_order);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_vue2.default.use(_vuex2.default);
-
-exports.default = new _vuex2.default.Store({
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   modules: {
-    collections: _collections2.default,
-    user: _user2.default,
-    shopData: _shopData2.default,
-    order: _order2.default
+    collections: __WEBPACK_IMPORTED_MODULE_3__modules_collections__["a" /* default */],
+    user: __WEBPACK_IMPORTED_MODULE_4__modules_user__["a" /* default */],
+    shopData: __WEBPACK_IMPORTED_MODULE_5__modules_shop_data__["a" /* default */]
   },
-  plugins: [(0, _vuexPersistedstate2.default)({
+  plugins: [Object(__WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__["a" /* default */])({
     key: 'admin_storage',
-    paths: ['user', 'shopData', 'order']
+    paths: ['user', 'shopData']
   })]
-});
+}));
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/collections.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 var _mutations;
 
-var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-
-var types = _interopRequireWildcard(_mutationTypes);
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 // initial state
 var state = {
@@ -81017,14 +80261,14 @@ var state = {
 
     return new Promise(function (resolve, reject) {
 
-      _apiService2.default.get(data).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
 
-        commit(types.GET_COLLECTIONS, response.data);
-        commit(types.GET_COLLECTION_ERRORS, []);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* GET_COLLECTIONS */], response.data);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTION_ERRORS */], []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(types.GET_COLLECTION_ERRORS, error);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTION_ERRORS */], error);
         reject(error);
       }.bind(_this));
     });
@@ -81032,196 +80276,33 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, types.GET_COLLECTIONS, function (state, collections) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* GET_COLLECTIONS */], function (state, collections) {
   state.collections = collections;
-}), _defineProperty(_mutations, types.GET_COLLECTION_ERRORS, function (state, error) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* GET_COLLECTION_ERRORS */], function (state, error) {
   state.collectionErrors = error;
 }), _mutations);
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-};
-
-/***/ }),
-
-/***/ "./resources/assets/admin-spa/store/modules/order.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
 });
-
-var _mutations;
-
-var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-
-var types = _interopRequireWildcard(_mutationTypes);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
-
-// initial state
-var state = {
-    order: {
-        customer: {},
-        shipping_rate: 60,
-        billing_address: {},
-        shipping_address: {},
-        items: [],
-        cart: {},
-        use_billing_for_shipping: true,
-        status: 'STATUS_DRAFT'
-    }
-
-    // getters
-};var getters = {
-    order: function order(state) {
-        return state.order;
-    },
-    orderTotals: function orderTotals(state) {
-
-        var operators = {
-            '+': function _(a, b) {
-                return parseInt(a) + parseInt(b);
-            },
-            '-': function _(a, b) {
-                return parseInt(a) - parseInt(b);
-            }
-        };
-
-        var shipping = state.order.shipping_rate;
-        var sub_total = 0;
-        var extras = 0;
-        forEach(state.order.items, function (item, key) {
-            var quantity = item.quantity ? item.quantity : 1;
-            sub_total = sub_total + parseInt(item.price) * quantity;
-
-            forEach(item.options, function (option) {
-                if (option.price_mutator && option.price_value) {
-                    extras = extras + operators[option.price_mutator](extras, option.price_value) * quantity;
-                }
-            });
-        });
-
-        var vat = (sub_total + extras + shipping) * 0.2;
-        return [{
-            total: 'Sub-Total',
-            value: sub_total
-        }, {
-            total: 'Extras',
-            value: extras
-        }, {
-            total: 'Shipping',
-            value: shipping
-        }, {
-            total: 'VAT',
-            value: vat
-        }, {
-            total: 'Total',
-            value: sub_total + extras + shipping + vat
-        }];
-    }
-};
-
-// actions
-var actions = {
-    setOrder: function setOrder(_ref) {
-        var commit = _ref.commit,
-            dispatch = _ref.dispatch;
-        var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-        console.log('Vuex: Set Order');
-        commit(types.SET_ORDER, data);
-    },
-    resetOrder: function resetOrder(_ref2) {
-        var state = _ref2.state,
-            commit = _ref2.commit,
-            dispatch = _ref2.dispatch;
-
-        console.log('Vuex: Reset Order');
-        commit(types.RESET_ORDER);
-    },
-    deleteOrderItem: function deleteOrderItem(_ref3, item) {
-        var commit = _ref3.commit,
-            dispatch = _ref3.dispatch;
-
-        console.log('Vuex: Delete Order Item');
-        commit(types.DELETE_ITEM, item);
-    },
-    editOrderItem: function editOrderItem(_ref4, item) {
-        var state = _ref4.state,
-            commit = _ref4.commit,
-            dispatch = _ref4.dispatch;
-
-        console.log('Vuex: Update Order Item');
-        var item_index = state.order.items.indexOf(item);
-        state.order.items[item_index] = item;
-    }
-};
-
-// mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, types.SET_ORDER, function (state, order) {
-    state.order = order;
-}), _defineProperty(_mutations, types.RESET_ORDER, function (state) {
-    state.order = {
-        customer: {},
-        shipping_rate: 60,
-        billing_address: {},
-        shipping_address: {},
-        items: [],
-        cart: {},
-        use_billing_for_shipping: true,
-        status: 'STATUS_DRAFT'
-    };
-}), _defineProperty(_mutations, types.ADD_PRODUCT_TO_ORDER, function (state, product) {
-    state.order.items.push(product);
-}), _defineProperty(_mutations, types.DELETE_ITEM, function (state, item) {
-    state.order.items.splice(state.order.items.indexOf(item), 1);
-}), _mutations);
-
-exports.default = {
-    state: state,
-    getters: getters,
-    actions: actions,
-    mutations: mutations
-};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/shop-data.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 var _mutations;
 
-var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-
-var types = _interopRequireWildcard(_mutationTypes);
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 // initial state
 var state = {
@@ -81258,14 +80339,14 @@ var state = {
 
     return new Promise(function (resolve, reject) {
 
-      _apiService2.default.get(data).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
 
-        commit(types.GET_SHOP_DATA, response.data);
-        commit(types.GET_SHOP_DATA_ERRORS, []);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_SHOP_DATA */], response.data);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(types.GET_SHOP_DATA_ERRORS, error);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], error);
         reject(error);
       }.bind(_this));
     });
@@ -81276,52 +80357,37 @@ var state = {
     var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     console.log('Vuex: Set Shop Data');
-    commit(types.GET_SHOP_DATA, data);
-    commit(types.GET_SHOP_DATA_ERRORS, []);
+    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_SHOP_DATA */], data);
+    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], []);
   }
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, types.GET_SHOP_DATA, function (state, shopData) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_SHOP_DATA */], function (state, shopData) {
   state.shopData = shopData;
-}), _defineProperty(_mutations, types.GET_SHOP_DATA_ERRORS, function (state, error) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_SHOP_DATA_ERRORS */], function (state, error) {
   state.shopDataErrors = error;
 }), _mutations);
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-};
+});
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/user.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 var _mutations;
 
-var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-
-var types = _interopRequireWildcard(_mutationTypes);
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
@@ -81363,13 +80429,13 @@ var state = {
 
     return new Promise(function (resolve, reject) {
       if (!state.user.created_at || Date.now() - state.userLastFetched > FETCH_BUFFER) {
-        _apiService2.default.get(data).then(function (response) {
-          commit(types.USER_LAST_FETCHED, Date.now());
-          commit(types.UPDATE_USER, response.data);
-          commit(types.UPDATE_USER_ERRORS, []);
+        __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* USER_LAST_FETCHED */], Date.now());
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_USER */], response.data);
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER_ERRORS */], []);
           resolve(response.data);
         }.bind(_this)).catch(function (error) {
-          commit(types.UPDATE_USER_ERRORS, error);
+          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER_ERRORS */], error);
           reject(error);
         }.bind(_this));
       } else {
@@ -81397,13 +80463,13 @@ var state = {
     }
 
     return new Promise(function (resolve, reject) {
-      _apiService2.default.persist('put', data).then(function (response) {
-        commit(types.USER_LAST_FETCHED, Date.now());
-        commit(types.UPDATE_USER, response.data);
-        commit(types.UPDATE_USER_ERRORS, []);
+      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].persist('put', data).then(function (response) {
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* USER_LAST_FETCHED */], Date.now());
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_USER */], response.data);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER_ERRORS */], []);
         resolve(response.data);
       }.bind(_this2)).catch(function (error) {
-        commit(types.UPDATE_USER_ERRORS, error);
+        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER_ERRORS */], error);
         reject(error);
       }.bind(_this2));
     });
@@ -81411,87 +80477,73 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, types.UPDATE_USER, function (state, user) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* UPDATE_USER */], function (state, user) {
   state.user = user;
-}), _defineProperty(_mutations, types.UPDATE_USER_ERRORS, function (state, error) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* UPDATE_USER_ERRORS */], function (state, error) {
   state.userErrors = error;
-}), _defineProperty(_mutations, types.USER_LAST_FETCHED, function (state, data) {
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* USER_LAST_FETCHED */], function (state, data) {
   state.userLastFetched = data;
 }), _defineProperty(_mutations, 'updateUserForm', function updateUserForm(state, data) {
   state.user[data.key] = data.value;
 }), _mutations);
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["a"] = ({
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-};
+});
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/mutation-types.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GET_COLLECTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return GET_COLLECTION_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GET_SHOP_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GET_SHOP_DATA_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UPDATE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return UPDATE_USER_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return USER_LAST_FETCHED; });
 // Collections
-var GET_COLLECTIONS = exports.GET_COLLECTIONS = 'GET_COLLECTIONS';
-var GET_COLLECTION_ERRORS = exports.GET_COLLECTION_ERRORS = 'GET_COLLECTION_ERRORS';
+var GET_COLLECTIONS = 'GET_COLLECTIONS';
+var GET_COLLECTION_ERRORS = 'GET_COLLECTION_ERRORS';
 
 // Shop Data
-var GET_SHOP_DATA = exports.GET_SHOP_DATA = 'GET_SHOP_DATA';
-var GET_SHOP_DATA_ERRORS = exports.GET_SHOP_DATA_ERRORS = 'GET_SHOP_DATA_ERRORS';
+var GET_SHOP_DATA = 'GET_SHOP_DATA';
+var GET_SHOP_DATA_ERRORS = 'GET_SHOP_DATA_ERRORS';
 
 // User
-var UPDATE_USER = exports.UPDATE_USER = 'UPDATE_USER';
-var UPDATE_USER_ERRORS = exports.UPDATE_USER_ERRORS = 'UPDATE_USER_ERRORS';
-var USER_LAST_FETCHED = exports.USER_LAST_FETCHED = 'USER_LAST_FETCHED';
-
-// Order
-var SET_ORDER = exports.SET_ORDER = 'SET_ORDER';
-var RESET_ORDER = exports.RESET_ORDER = 'RESET_ORDER';
-var GET_ORDER = exports.GET_ORDER = 'GET_ORDER';
-var ADD_PRODUCT_TO_ORDER = exports.ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER';
-var DELETE_ITEM = exports.DELETE_ITEM = 'DELETE_ITEM';
+var UPDATE_USER = 'UPDATE_USER';
+var UPDATE_USER_ERRORS = 'UPDATE_USER_ERRORS';
+var USER_LAST_FETCHED = 'USER_LAST_FETCHED';
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/utils/color.js":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_css_color_function__ = __webpack_require__("./node_modules/css-color-function/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_css_color_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_css_color_function__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formula_json__ = __webpack_require__("./resources/assets/admin-spa/utils/formula.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formula_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formula_json__);
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _cssColorFunction = __webpack_require__("./node_modules/css-color-function/lib/index.js");
-
-var _cssColorFunction2 = _interopRequireDefault(_cssColorFunction);
-
-var _formula = __webpack_require__("./resources/assets/admin-spa/utils/formula.json");
-
-var _formula2 = _interopRequireDefault(_formula);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var generateColors = function generateColors(primary) {
   var colors = {};
 
-  Object.keys(_formula2.default).forEach(function (key) {
-    var value = _formula2.default[key].replace(/primary/g, primary);
-    colors[key] = _cssColorFunction2.default.convert(value);
+  Object.keys(__WEBPACK_IMPORTED_MODULE_1__formula_json___default.a).forEach(function (key) {
+    var value = __WEBPACK_IMPORTED_MODULE_1__formula_json___default.a[key].replace(/primary/g, primary);
+    colors[key] = __WEBPACK_IMPORTED_MODULE_0_css_color_function___default.a.convert(value);
   });
   return colors;
 };
 
-exports.default = generateColors;
+/* unused harmony default export */ var _unused_webpack_default_export = (generateColors);
 
 /***/ }),
 

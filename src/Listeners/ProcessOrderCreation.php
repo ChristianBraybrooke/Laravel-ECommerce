@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Notification;
 use ChrisBraybrooke\ECommerce\Notifications\SendAdminOrderNotification;
 use ChrisBraybrooke\ECommerce\Notifications\SendOrderNotification;
-use ChrisBraybrooke\ECommerce\CreateOrderInvoicePdf;
+use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
 use Setting;
 use App\User;
 

@@ -327,7 +327,7 @@ export default {
 
           preparePrint()
           {
-              this.printUrl = this.shopData.url + '/templates/invoice?reports=' + this.order.id;
+              this.printUrl = this.shopData.url + '/ecommerce-templates/invoice?reports=' + this.order.id;
           },
 
           printInvoice()

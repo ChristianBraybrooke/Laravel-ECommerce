@@ -29,6 +29,7 @@ const Config = () => import(/* webpackChunkName: "config" */ '../pages/config/Co
 const Forms = () => import(/* webpackChunkName: "forms" */ '../pages/forms/Forms.vue');
 const ViewForm = () => import(/* webpackChunkName: "view-form" */ '../pages/forms/ViewForm.vue');
 const NotFound = () => import(/* webpackChunkName: "not-found" */ '../pages/NotFound.vue');
+const ImportExport = () => import(/* webpackChunkName: "import-export" */ '../pages/reports/ImportExport.vue');
 
 const router = new Router({
     mode: 'history',
@@ -188,6 +189,12 @@ const router = new Router({
             component: Config,
             name: 'config',
             meta: {title: 'Admin: Config'}
+        },
+        {
+            path: '/import-export',
+            component: ImportExport,
+            name: 'import-export',
+            meta: {title: 'Admin: Import / Export'}
         },
         {
           path: '*',

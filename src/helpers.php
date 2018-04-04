@@ -24,7 +24,7 @@ function instantiateMediaFromResource($resource)
           'file_name' => $resource['file_name'],
           'name' => $resource['name'],
           'mime_type' => $resource['file_type'],
-          'url' =>$resource['url'],
+          'url' => $resource['url'],
           'disk' => $resource['disk'],
           'model_type' => $resource['parent_type']
         ]);
