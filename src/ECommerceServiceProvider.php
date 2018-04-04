@@ -30,7 +30,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.12';
+    const VERSION = '0.0.16';
 
     /**
      * Bootstrap the application events.
@@ -392,7 +392,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'migrations');
         }
-        
+
         if (! class_exists('CreateImportToModelsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_import_to_models_table.php.stub' =>
