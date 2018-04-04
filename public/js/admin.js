@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		35: 0
+/******/ 		36: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -3175,8 +3175,8 @@ module.exports = function mergeJSXProps (objs) {
 
 function mergeFn (a, b) {
   return function () {
-    a.apply(this, arguments)
-    b.apply(this, arguments)
+    a && a.apply(this, arguments)
+    b && b.apply(this, arguments)
   }
 }
 
@@ -3184,18 +3184,24 @@ function mergeFn (a, b) {
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/admin.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout__ = __webpack_require__("./resources/assets/admin-spa/layouts/MainLayout.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout__);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+var _MainLayout = __webpack_require__("./resources/assets/admin-spa/layouts/MainLayout.vue");
+
+var _MainLayout2 = _interopRequireDefault(_MainLayout);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
     name: 'Admin',
-    components: { Layout: __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout___default.a },
+    components: { Layout: _MainLayout2.default },
     mounted: function mounted() {
         document.title = this.$route.meta.title ? this.$route.meta.title : 'Admin: ' + this.$route.name;
         console.log('Admin.vue mounted.');
@@ -3211,19 +3217,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
         }
     }
-});
+};
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/layouts/MainLayout.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_element_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _elementUi = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
+
+var _elementUi2 = _interopRequireDefault(_elementUi);
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //
 //
@@ -3320,9 +3336,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var startsWith = __webpack_require__("./node_modules/lodash.startswith/index.js");
 
 var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
     components: {},
 
     data: function data() {
@@ -3369,20 +3383,20 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['user', 'userErrors', 'shopData']), {
+    computed: _extends({}, (0, _vuex.mapGetters)(['user', 'userErrors', 'shopData']), {
         config: function config() {
             return ecommerceConfig;
         }
     }),
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(['getUser', 'updateUser', 'updateUserModel']), {
+    methods: _extends({}, (0, _vuex.mapActions)(['getUser', 'updateUser', 'updateUserModel']), {
 
         getWindowWidth: throttle(function (evt) {
             this.width = document.documentElement.clientWidth;
         }, 500)
     })
 
-});
+};
 
 /***/ }),
 
@@ -65616,6 +65630,7 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
   * vue-router v3.0.1
   * (c) 2017 Evan You
@@ -68238,7 +68253,7 @@ if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (VueRouter);
+/* harmony default export */ __webpack_exports__["default"] = (VueRouter);
 
 
 /***/ }),
@@ -79127,6 +79142,7 @@ module.exports = Vue$3;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var isMergeableObject = function isMergeableObject(value) {
 	return isNonNullObject(value)
 		&& !isSpecial(value)
@@ -79305,7 +79321,7 @@ var index = function(options, storage, key) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (index);
+/* harmony default export */ __webpack_exports__["default"] = (index);
 //# sourceMappingURL=vuex-persistedstate.es.js.map
 
 
@@ -79315,13 +79331,14 @@ var index = function(options, storage, key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export Store */
-/* unused harmony export install */
-/* unused harmony export mapState */
-/* unused harmony export mapMutations */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return mapGetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapActions; });
-/* unused harmony export createNamespacedHelpers */
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
 /**
  * vuex v3.0.1
  * (c) 2017 Evan You
@@ -80252,7 +80269,7 @@ var index_esm = {
 };
 
 
-/* harmony default export */ __webpack_exports__["a"] = (index_esm);
+/* harmony default export */ __webpack_exports__["default"] = (index_esm);
 
 
 /***/ }),
@@ -80286,45 +80303,56 @@ module.exports = g;
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/admin.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill__ = __webpack_require__("./node_modules/babel-polyfill/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_polyfill__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__router___ = __webpack_require__("./resources/assets/admin-spa/router/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_index_js__ = __webpack_require__("./resources/assets/admin-spa/store/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_vue__ = __webpack_require__("./resources/assets/admin-spa/admin.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__admin_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en__ = __webpack_require__("./node_modules/element-ui/lib/locale/lang/en.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__axios_js__ = __webpack_require__("./resources/assets/admin-spa/axios.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__axios_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__axios_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_color__ = __webpack_require__("./resources/assets/admin-spa/utils/color.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign__ = __webpack_require__("./node_modules/object-assign/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_object_assign___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_object_assign__);
+
+
+__webpack_require__("./node_modules/babel-polyfill/lib/index.js");
+
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _elementUi = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
+
+var _elementUi2 = _interopRequireDefault(_elementUi);
+
+var _router = __webpack_require__("./resources/assets/admin-spa/router/index.js");
+
+var _router2 = _interopRequireDefault(_router);
+
+var _index = __webpack_require__("./resources/assets/admin-spa/store/index.js");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _admin = __webpack_require__("./resources/assets/admin-spa/admin.vue");
+
+var _admin2 = _interopRequireDefault(_admin);
+
+var _en = __webpack_require__("./node_modules/element-ui/lib/locale/lang/en.js");
+
+var _en2 = _interopRequireDefault(_en);
+
+__webpack_require__("./resources/assets/admin-spa/axios.js");
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+var _color = __webpack_require__("./resources/assets/admin-spa/utils/color.js");
+
+var _color2 = _interopRequireDefault(_color);
+
+var _objectAssign = __webpack_require__("./node_modules/object-assign/index.js");
+
+var _objectAssign2 = _interopRequireDefault(_objectAssign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 window.ecommerceConfig.web_version = '0.0.12';
 
+_vue2.default.use(_elementUi2.default, { locale: _en2.default });
 
-
-
-
-
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default.a });
-
-
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
+_vue2.default.mixin({
     computed: {
         getSiteBaseURL: function getSiteBaseURL(value) {
             return ecommerceConfig.site_url + '/';
@@ -80332,7 +80360,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
     }
 });
 
-__WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
+_vue2.default.mixin({
     methods: {
         capitalize: function capitalize(str) {
             var lower = str.toLowerCase();
@@ -80343,15 +80371,12 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
     }
 });
 
-
-
-
-var app = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
-    router: __WEBPACK_IMPORTED_MODULE_3__router___["a" /* default */],
+var app = new _vue2.default({
+    router: _router2.default,
     el: '#app',
-    store: __WEBPACK_IMPORTED_MODULE_4__store_index_js__["a" /* default */],
+    store: _index2.default,
     render: function render(h) {
-        return h(__WEBPACK_IMPORTED_MODULE_5__admin_vue___default.a);
+        return h(_admin2.default);
     }
 });
 
@@ -80412,6 +80437,9 @@ module.exports = Component.exports
 
 /***/ "./resources/assets/admin-spa/axios.js":
 /***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 window.axios = __webpack_require__("./node_modules/axios/index.js");
 
@@ -80483,16 +80511,26 @@ module.exports = Component.exports
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/router/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _vueRouter = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
+
+var _vueRouter2 = _interopRequireDefault(_vueRouter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue2.default.use(_vueRouter2.default);
 
 // Pages
 var Dashboard = function Dashboard() {
@@ -80571,7 +80609,7 @@ var NotFound = function NotFound() {
     return __webpack_require__.e/* import() */(17).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/NotFound.vue"));
 };
 
-var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
+var router = new _vueRouter2.default({
     mode: 'history',
     base: '/admin/',
     routes: [{
@@ -80717,7 +80755,7 @@ router.beforeEach(function (to, from, next) {
     next();
 });
 
-/* harmony default export */ __webpack_exports__["a"] = (router);
+exports.default = router;
 
 /***/ }),
 
@@ -80729,9 +80767,15 @@ router.beforeEach(function (to, from, next) {
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/services/api-service.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
@@ -80739,7 +80783,7 @@ var BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/'
 var SERVER_ERROR_MESSAGE = "We could not access the server at this time. Please try again. If the issue persists, please open a support ticket.";
 var SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are not authorised to do so.";
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
     get: function get(data) {
         if (!has(data, 'params')) {
             data.params = {};
@@ -80851,60 +80895,92 @@ var SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are 
             code: error.status
         };
     }
-});
+};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__ = __webpack_require__("./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_collections__ = __webpack_require__("./resources/assets/admin-spa/store/modules/collections.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_user__ = __webpack_require__("./resources/assets/admin-spa/store/modules/user.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_shop_data__ = __webpack_require__("./resources/assets/admin-spa/store/modules/shop-data.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_order__ = __webpack_require__("./resources/assets/admin-spa/store/modules/order.js");
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
+var _vue2 = _interopRequireDefault(_vue);
 
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 
+var _vuex2 = _interopRequireDefault(_vuex);
 
+var _vuexPersistedstate = __webpack_require__("./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
 
+var _vuexPersistedstate2 = _interopRequireDefault(_vuexPersistedstate);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+var _collections = __webpack_require__("./resources/assets/admin-spa/store/modules/collections.js");
 
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+var _collections2 = _interopRequireDefault(_collections);
+
+var _user = __webpack_require__("./resources/assets/admin-spa/store/modules/user.js");
+
+var _user2 = _interopRequireDefault(_user);
+
+var _shopData = __webpack_require__("./resources/assets/admin-spa/store/modules/shop-data.js");
+
+var _shopData2 = _interopRequireDefault(_shopData);
+
+var _order = __webpack_require__("./resources/assets/admin-spa/store/modules/order.js");
+
+var _order2 = _interopRequireDefault(_order);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_vue2.default.use(_vuex2.default);
+
+exports.default = new _vuex2.default.Store({
   modules: {
-    collections: __WEBPACK_IMPORTED_MODULE_3__modules_collections__["a" /* default */],
-    user: __WEBPACK_IMPORTED_MODULE_4__modules_user__["a" /* default */],
-    shopData: __WEBPACK_IMPORTED_MODULE_5__modules_shop_data__["a" /* default */],
-    order: __WEBPACK_IMPORTED_MODULE_6__modules_order__["a" /* default */]
+    collections: _collections2.default,
+    user: _user2.default,
+    shopData: _shopData2.default,
+    order: _order2.default
   },
-  plugins: [Object(__WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__["a" /* default */])({
+  plugins: [(0, _vuexPersistedstate2.default)({
     key: 'admin_storage',
     paths: ['user', 'shopData', 'order']
   })]
-}));
+});
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/collections.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _mutations;
 
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
 
 // initial state
 var state = {
@@ -80941,14 +81017,14 @@ var state = {
 
     return new Promise(function (resolve, reject) {
 
-      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
+      _apiService2.default.get(data).then(function (response) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_COLLECTIONS */], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_COLLECTION_ERRORS */], []);
+        commit(types.GET_COLLECTIONS, response.data);
+        commit(types.GET_COLLECTION_ERRORS, []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_COLLECTION_ERRORS */], error);
+        commit(types.GET_COLLECTION_ERRORS, error);
         reject(error);
       }.bind(_this));
     });
@@ -80956,30 +81032,40 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_COLLECTIONS */], function (state, collections) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.GET_COLLECTIONS, function (state, collections) {
   state.collections = collections;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_COLLECTION_ERRORS */], function (state, error) {
+}), _defineProperty(_mutations, types.GET_COLLECTION_ERRORS, function (state, error) {
   state.collectionErrors = error;
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-});
+};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/order.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _mutations;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
 
+var types = _interopRequireWildcard(_mutationTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
@@ -80987,6 +81073,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 var state = {
     order: {
         customer: {},
+        shipping_rate: 60,
         billing_address: {},
         shipping_address: {},
         items: [],
@@ -81011,6 +81098,7 @@ var state = {
             }
         };
 
+        var shipping = state.order.shipping_rate;
         var sub_total = 0;
         var extras = 0;
         forEach(state.order.items, function (item, key) {
@@ -81024,7 +81112,7 @@ var state = {
             });
         });
 
-        var vat = (sub_total + extras) * 0.2;
+        var vat = (sub_total + extras + shipping) * 0.2;
         return [{
             total: 'Sub-Total',
             value: sub_total
@@ -81032,11 +81120,14 @@ var state = {
             total: 'Extras',
             value: extras
         }, {
+            total: 'Shipping',
+            value: shipping
+        }, {
             total: 'VAT',
             value: vat
         }, {
             total: 'Total',
-            value: sub_total + extras + vat
+            value: sub_total + extras + shipping + vat
         }];
     }
 };
@@ -81049,19 +81140,27 @@ var actions = {
         var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
         console.log('Vuex: Set Order');
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* SET_ORDER */], data);
+        commit(types.SET_ORDER, data);
     },
-    deleteOrderItem: function deleteOrderItem(_ref2, item) {
-        var commit = _ref2.commit,
+    resetOrder: function resetOrder(_ref2) {
+        var state = _ref2.state,
+            commit = _ref2.commit,
             dispatch = _ref2.dispatch;
 
-        console.log('Vuex: Delete Order Item');
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* DELETE_ITEM */], item);
+        console.log('Vuex: Reset Order');
+        commit(types.RESET_ORDER);
     },
-    editOrderItem: function editOrderItem(_ref3, item) {
-        var state = _ref3.state,
-            commit = _ref3.commit,
+    deleteOrderItem: function deleteOrderItem(_ref3, item) {
+        var commit = _ref3.commit,
             dispatch = _ref3.dispatch;
+
+        console.log('Vuex: Delete Order Item');
+        commit(types.DELETE_ITEM, item);
+    },
+    editOrderItem: function editOrderItem(_ref4, item) {
+        var state = _ref4.state,
+            commit = _ref4.commit,
+            dispatch = _ref4.dispatch;
 
         console.log('Vuex: Update Order Item');
         var item_index = state.order.items.indexOf(item);
@@ -81070,35 +81169,59 @@ var actions = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["g" /* SET_ORDER */], function (state, order) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.SET_ORDER, function (state, order) {
     state.order = order;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["a" /* ADD_PRODUCT_TO_ORDER */], function (state, product) {
+}), _defineProperty(_mutations, types.RESET_ORDER, function (state) {
+    state.order = {
+        customer: {},
+        shipping_rate: 60,
+        billing_address: {},
+        shipping_address: {},
+        items: [],
+        cart: {},
+        use_billing_for_shipping: true,
+        status: 'STATUS_DRAFT'
+    };
+}), _defineProperty(_mutations, types.ADD_PRODUCT_TO_ORDER, function (state, product) {
     state.order.items.push(product);
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["b" /* DELETE_ITEM */], function (state, item) {
+}), _defineProperty(_mutations, types.DELETE_ITEM, function (state, item) {
     state.order.items.splice(state.order.items.indexOf(item), 1);
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
     state: state,
     getters: getters,
     actions: actions,
     mutations: mutations
-});
+};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/shop-data.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _mutations;
 
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
 
 // initial state
 var state = {
@@ -81135,14 +81258,14 @@ var state = {
 
     return new Promise(function (resolve, reject) {
 
-      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
+      _apiService2.default.get(data).then(function (response) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA */], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* GET_SHOP_DATA_ERRORS */], []);
+        commit(types.GET_SHOP_DATA, response.data);
+        commit(types.GET_SHOP_DATA_ERRORS, []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* GET_SHOP_DATA_ERRORS */], error);
+        commit(types.GET_SHOP_DATA_ERRORS, error);
         reject(error);
       }.bind(_this));
     });
@@ -81153,37 +81276,52 @@ var state = {
     var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     console.log('Vuex: Set Shop Data');
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA */], data);
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* GET_SHOP_DATA_ERRORS */], []);
+    commit(types.GET_SHOP_DATA, data);
+    commit(types.GET_SHOP_DATA_ERRORS, []);
   }
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA */], function (state, shopData) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.GET_SHOP_DATA, function (state, shopData) {
   state.shopData = shopData;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* GET_SHOP_DATA_ERRORS */], function (state, error) {
+}), _defineProperty(_mutations, types.GET_SHOP_DATA_ERRORS, function (state, error) {
   state.shopDataErrors = error;
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-});
+};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/user.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _mutations;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
 
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
@@ -81225,13 +81363,13 @@ var state = {
 
     return new Promise(function (resolve, reject) {
       if (!state.user.created_at || Date.now() - state.userLastFetched > FETCH_BUFFER) {
-        __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].get(data).then(function (response) {
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* USER_LAST_FETCHED */], Date.now());
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER */], response.data);
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER_ERRORS */], []);
+        _apiService2.default.get(data).then(function (response) {
+          commit(types.USER_LAST_FETCHED, Date.now());
+          commit(types.UPDATE_USER, response.data);
+          commit(types.UPDATE_USER_ERRORS, []);
           resolve(response.data);
         }.bind(_this)).catch(function (error) {
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER_ERRORS */], error);
+          commit(types.UPDATE_USER_ERRORS, error);
           reject(error);
         }.bind(_this));
       } else {
@@ -81259,13 +81397,13 @@ var state = {
     }
 
     return new Promise(function (resolve, reject) {
-      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["a" /* default */].persist('put', data).then(function (response) {
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* USER_LAST_FETCHED */], Date.now());
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER */], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER_ERRORS */], []);
+      _apiService2.default.persist('put', data).then(function (response) {
+        commit(types.USER_LAST_FETCHED, Date.now());
+        commit(types.UPDATE_USER, response.data);
+        commit(types.UPDATE_USER_ERRORS, []);
         resolve(response.data);
       }.bind(_this2)).catch(function (error) {
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER_ERRORS */], error);
+        commit(types.UPDATE_USER_ERRORS, error);
         reject(error);
       }.bind(_this2));
     });
@@ -81273,83 +81411,87 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["h" /* UPDATE_USER */], function (state, user) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.UPDATE_USER, function (state, user) {
   state.user = user;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER_ERRORS */], function (state, error) {
+}), _defineProperty(_mutations, types.UPDATE_USER_ERRORS, function (state, error) {
   state.userErrors = error;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* USER_LAST_FETCHED */], function (state, data) {
+}), _defineProperty(_mutations, types.USER_LAST_FETCHED, function (state, data) {
   state.userLastFetched = data;
 }), _defineProperty(_mutations, 'updateUserForm', function updateUserForm(state, data) {
   state.user[data.key] = data.value;
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["a"] = ({
+exports.default = {
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-});
+};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/mutation-types.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GET_COLLECTIONS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return GET_COLLECTION_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return GET_SHOP_DATA; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return GET_SHOP_DATA_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return UPDATE_USER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return UPDATE_USER_ERRORS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return USER_LAST_FETCHED; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return SET_ORDER; });
-/* unused harmony export GET_ORDER */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ADD_PRODUCT_TO_ORDER; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return DELETE_ITEM; });
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 // Collections
-var GET_COLLECTIONS = 'GET_COLLECTIONS';
-var GET_COLLECTION_ERRORS = 'GET_COLLECTION_ERRORS';
+var GET_COLLECTIONS = exports.GET_COLLECTIONS = 'GET_COLLECTIONS';
+var GET_COLLECTION_ERRORS = exports.GET_COLLECTION_ERRORS = 'GET_COLLECTION_ERRORS';
 
 // Shop Data
-var GET_SHOP_DATA = 'GET_SHOP_DATA';
-var GET_SHOP_DATA_ERRORS = 'GET_SHOP_DATA_ERRORS';
+var GET_SHOP_DATA = exports.GET_SHOP_DATA = 'GET_SHOP_DATA';
+var GET_SHOP_DATA_ERRORS = exports.GET_SHOP_DATA_ERRORS = 'GET_SHOP_DATA_ERRORS';
 
 // User
-var UPDATE_USER = 'UPDATE_USER';
-var UPDATE_USER_ERRORS = 'UPDATE_USER_ERRORS';
-var USER_LAST_FETCHED = 'USER_LAST_FETCHED';
+var UPDATE_USER = exports.UPDATE_USER = 'UPDATE_USER';
+var UPDATE_USER_ERRORS = exports.UPDATE_USER_ERRORS = 'UPDATE_USER_ERRORS';
+var USER_LAST_FETCHED = exports.USER_LAST_FETCHED = 'USER_LAST_FETCHED';
 
 // Order
-var SET_ORDER = 'SET_ORDER';
-var GET_ORDER = 'GET_ORDER';
-var ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER';
-var DELETE_ITEM = 'DELETE_ITEM';
+var SET_ORDER = exports.SET_ORDER = 'SET_ORDER';
+var RESET_ORDER = exports.RESET_ORDER = 'RESET_ORDER';
+var GET_ORDER = exports.GET_ORDER = 'GET_ORDER';
+var ADD_PRODUCT_TO_ORDER = exports.ADD_PRODUCT_TO_ORDER = 'ADD_PRODUCT_TO_ORDER';
+var DELETE_ITEM = exports.DELETE_ITEM = 'DELETE_ITEM';
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/utils/color.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_css_color_function__ = __webpack_require__("./node_modules/css-color-function/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_css_color_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_css_color_function__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formula_json__ = __webpack_require__("./resources/assets/admin-spa/utils/formula.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formula_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formula_json__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _cssColorFunction = __webpack_require__("./node_modules/css-color-function/lib/index.js");
+
+var _cssColorFunction2 = _interopRequireDefault(_cssColorFunction);
+
+var _formula = __webpack_require__("./resources/assets/admin-spa/utils/formula.json");
+
+var _formula2 = _interopRequireDefault(_formula);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var generateColors = function generateColors(primary) {
   var colors = {};
 
-  Object.keys(__WEBPACK_IMPORTED_MODULE_1__formula_json___default.a).forEach(function (key) {
-    var value = __WEBPACK_IMPORTED_MODULE_1__formula_json___default.a[key].replace(/primary/g, primary);
-    colors[key] = __WEBPACK_IMPORTED_MODULE_0_css_color_function___default.a.convert(value);
+  Object.keys(_formula2.default).forEach(function (key) {
+    var value = _formula2.default[key].replace(/primary/g, primary);
+    colors[key] = _cssColorFunction2.default.convert(value);
   });
   return colors;
 };
 
-/* unused harmony default export */ var _unused_webpack_default_export = (generateColors);
+exports.default = generateColors;
 
 /***/ }),
 

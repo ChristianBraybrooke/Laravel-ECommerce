@@ -1,10 +1,14 @@
 webpackJsonp([27],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/FileUploadComponent.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 //
 //
 //
@@ -41,7 +45,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var replace = __webpack_require__("./node_modules/lodash.replace/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'FileUploadComponent',
 
@@ -125,7 +129,7 @@ var replace = __webpack_require__("./node_modules/lodash.replace/index.js");
         handleBeforeUpload: function handleBeforeUpload(file) {}
     }
 
-});
+};
 
 /***/ }),
 

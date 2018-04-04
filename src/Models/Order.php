@@ -188,13 +188,13 @@ class Order extends Model implements OrderContract
         if (isset($this->cart_data['items'])) {
             foreach ($this->cart_data['items'] as $key => $item) {
                 $items[] = [
-                    'id' => $item['id'],
-                    'name' => $item['name'],
-                    'qty' => $item['qty'],
-                    'price' => priceFormatter($item['price']),
-                    'options' => $item['options'],
-                    'tax' => priceFormatter($item['tax']),
-                    'subtotal' => priceFormatter($item['subtotal'])
+                    'id' => $item['id'] ?? null,
+                    'name' => $item['name'] ?? null,
+                    'qty' => $item['qty'] ?? null,
+                    'price' => priceFormatter($item['price'] ?? 0),
+                    'options' => $item['options'] ?? null,
+                    'tax' => priceFormatter($item['tax'] ?? 0),
+                    'subtotal' => priceFormatter($item['subtotal'] ?? 0)
                 ];
             }
         }
@@ -210,14 +210,17 @@ class Order extends Model implements OrderContract
     public function getCartAttribute()
     {
         $cart = $this->cart_data;
+
+        $totals = [
+            'Sub Total' => priceFormatter($cart['sub_total'] ?? 0),
+            'Extras' => priceFormatter($cart['extras'] ?? 0),
+            'Shipping' => priceFormatter($cart['shipping'] ?? 0),
+            'Tax' => priceFormatter($cart['tax'] ?? 0),
+            'Total' => priceFormatter($cart['total'] ?? 0),
+        ];
         return [
-            'currency' => $cart['currency'],
-            'totals' => [
-                'Sub Total' => priceFormatter($cart['sub_total']),
-                'Shipping' => priceFormatter($cart['shipping']),
-                'Tax' => priceFormatter($cart['tax']),
-                'Total' => priceFormatter($cart['total']),
-            ],
+            'currency' => $cart['currency'] ?? Setting::get('Currency'),
+            'totals' => $totals,
         ];
     }
 

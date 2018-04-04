@@ -1,12 +1,22 @@
 webpackJsonp([21,26],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/products/ProductPageLayout.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-//
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var find = __webpack_require__("./node_modules/lodash.find/index.js"); //
 //
 //
 //
@@ -75,13 +85,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
-var find = __webpack_require__("./node_modules/lodash.find/index.js");
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
 var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'ViewProductPageLayout',
 
@@ -171,7 +179,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
             this.productErrors = {};
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'products/' + this.productId,
                 params: {
                     with: this.requestWith,
@@ -203,7 +211,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
-                    __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('put', {
+                    _apiService2.default.persist('put', {
                         path: 'products/' + _this.productId,
                         object: _this.productForm
                     }).then(function (data) {
@@ -222,7 +230,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
         }
     }
 
-});
+};
 
 /***/ }),
 

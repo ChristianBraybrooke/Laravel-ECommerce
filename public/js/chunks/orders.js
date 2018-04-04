@@ -1,116 +1,125 @@
 webpackJsonp([0],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepOne.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
 
     name: 'orderStepOne',
 
@@ -119,7 +128,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         AddressForm: function AddressForm() {
-            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
+            return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
         }
     },
 
@@ -139,7 +148,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['order'])),
+    computed: _extends({}, (0, _vuex.mapGetters)(['order'])),
 
     watch: {
         order: {
@@ -155,7 +164,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
 
-    methods: {
+    methods: _extends({}, (0, _vuex.mapActions)(['resetOrder']), {
 
         /**
          * Process the form submission and determine what to do next
@@ -171,24 +180,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 if (valid) {
                     _this.loading = true;
                     if (_this.order.id) {
-                        __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('put', {
+                        _apiService2.default.persist('put', {
                             path: 'orders/' + _this.order.id,
                             object: _this.order
                         }).then(function (data) {
                             this.loading = false;
-                            this.$store.commit('SET_ORDER', data.data);
-                            this.$router.push({ name: 'orders.step2' });
+                            // this.$store.commit('SET_ORDER', data.data);
+                            if (toNextPage) {
+                                this.$router.push({ name: 'orders.step2' });
+                            }
                         }.bind(_this)).catch(function (error) {
                             this.loading = false;
                             this.orderErrors = error;
                         }.bind(_this));
                     } else {
-                        __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('post', {
+                        _apiService2.default.persist('post', {
                             path: 'orders',
                             object: _this.order
                         }).then(function (data) {
                             this.loading = false;
-                            this.$store.commit('SET_ORDER', data.data);
+                            this.$set(this.order, 'id', data.data.id);
+                            // this.$store.commit('SET_ORDER', data.data);
                             this.$router.push({ name: 'orders.step2' });
                         }.bind(_this)).catch(function (error) {
                             this.loading = false;
@@ -200,72 +212,78 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 }
             });
         }
-    }
-});
+    })
+};
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepThree.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
 
     name: 'orderStepThree',
 
     components: {
         CardPaymentForm: function CardPaymentForm() {
-            return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
+            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
         },
         Errors: function Errors() {
             return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
@@ -282,7 +300,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['order'])),
+    computed: _extends({}, (0, _vuex.mapGetters)(['order'])),
 
     watch: {
         order: {
@@ -313,237 +331,259 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         onTokenCreation: function onTokenCreation(has_error, token_object, error_object) {
             if (!has_error && this.order.id) {
-                __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("post", {
+                _apiService2.default.persist("post", {
                     path: "orders/" + this.order.id + "/payment",
                     object: this.order
                 }).then(function (data) {
                     this.loading = false;
-                    console.log(data);
+                    this.$router.push({ path: 'orders.view', params: { orderId: this.order.id } });
                     // this.data = data.data;
                 }.bind(this)).catch(function (error) {
                     this.loading = false;
-                    console.log(error);
                     // this.errors = error;
                 }.bind(this));
             }
         }
     }
-});
+};
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/NewOrderStepTwo.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
@@ -551,7 +591,7 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
 var last = __webpack_require__("./node_modules/lodash.last/index.js");
 var range = __webpack_require__("./node_modules/lodash.range/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'NewOrderStepTwo',
 
@@ -592,9 +632,12 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['order', 'shopData', 'orderTotals']), {
+    computed: _extends({}, (0, _vuex.mapGetters)(['order', 'shopData', 'orderTotals']), {
         quantityRange: function quantityRange() {
             return range(1, 251);
+        },
+        shippingRange: function shippingRange() {
+            return range(0, 250, 10);
         }
     }),
 
@@ -612,7 +655,7 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
     },
 
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(['deleteOrderItem', 'editOrderItem']), {
+    methods: _extends({}, (0, _vuex.mapActions)(['deleteOrderItem', 'editOrderItem']), {
         formattedPrice: function formattedPrice(product) {
             var base_price = parseInt(product.price);
             var base_with_extras = base_price;
@@ -685,7 +728,7 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
         requestProductVariants: throttle(function (val) {
             var productIndex = this.getIndexFromId(val);
             this.loading = true;
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'products/' + val + '/variants',
                 params: {
                     include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
@@ -708,7 +751,7 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
             this.showProductModal = true;
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'products',
                 params: {
                     no_variants: true,
@@ -774,54 +817,60 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
         itemRowNameFormatter: function itemRowNameFormatter(row, column, cellValue) {
             var h = this.$createElement;
 
-            var row_name = h(
-                'p',
-                null,
-                [row.variant.name ? row.variant.name + ' / ' : '', h(
-                    'strong',
-                    null,
-                    [row.name]
-                )]
-            );
+            var row_name = h('p', [row.variant.name ? row.variant.name + ' / ' : '', h('strong', [row.name])]);
 
             if (row.options) {
                 var items = [];
                 forEach(row.options, function (value, key) {
                     var new_value = value.name ? value.name : value;
-                    items.push(h(
-                        'li',
-                        null,
-                        [key, ': ', new_value]
-                    ));
+                    items.push(h('li', [key, ': ', new_value]));
                 });
 
-                return h(
-                    'div',
-                    null,
-                    [row_name, ' ', h(
-                        'ul',
-                        { 'class': 'order_item_options' },
-                        [items]
-                    )]
-                );
+                return h('div', [row_name, ' ', h(
+                    'ul',
+                    { 'class': 'order_item_options' },
+                    [items]
+                )]);
             }
-            return h(
-                'div',
-                null,
-                [row_name]
-            );
+            return h('div', [row_name]);
+        },
+        processSubmit: function processSubmit() {
+            var navigate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+            this.loading = true;
+            _apiService2.default.persist('put', {
+                path: "orders/" + this.order.id,
+                object: this.order
+            }).then(function (data) {
+                this.loading = false;
+                if (navigate) {
+                    this.$router.push({ name: 'orders.step3' });
+                }
+            }.bind(this)).catch(function (error) {
+                this.loading = false;
+            }.bind(this));
         }
     })
-});
+};
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/Orders.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 //
 //
 //
@@ -979,9 +1028,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'Orders',
 
@@ -1114,7 +1161,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
         handleCreateNew: function handleCreateNew(data) {
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'products',
                 params: {
                     limit: '1000'
@@ -1128,199 +1175,206 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
         }
     }
 
-});
+};
 
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/orders/ViewOrder.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'ViewOrder',
 
@@ -1378,7 +1432,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     },
 
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(['setShopData']), {
+    methods: _extends({}, (0, _vuex.mapActions)(['setShopData']), {
 
         /**
          * Get the order information from the server.
@@ -1389,7 +1443,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
             this.orderErrors = {};
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'orders/' + this.orderId,
                 params: {}
             }).then(function (data) {
@@ -1414,7 +1468,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
             this.orderErrors = {};
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('put', {
+            _apiService2.default.persist('put', {
                 path: 'orders/' + this.orderId,
                 object: this.order
             }).then(function (data) {
@@ -1439,7 +1493,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
          */
         deleteOrder: function deleteOrder() {
             this.loading = true;
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].delete({
+            _apiService2.default.delete({
                 path: 'orders/' + this.order.id
             }).then(function () {
                 this.loading = false;
@@ -1470,7 +1524,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
         }
     })
 
-});
+};
 
 /***/ }),
 
@@ -1482,7 +1536,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -4497,19 +4551,35 @@ var render = function() {
         "el-row",
         { attrs: { align: "middle", type: "flex" } },
         [
-          _c("el-col", { attrs: { span: 12 } }, [
-            _c("h1", { staticClass: "page_title" }, [
-              _vm._v("New Order "),
-              _vm.order.first_name && _vm.order.last_name
-                ? _c("span", [
-                    _vm._v(
-                      " - " +
-                        _vm._s(_vm.order.first_name + " " + _vm.order.last_name)
-                    )
-                  ])
-                : _vm._e()
-            ])
-          ])
+          _c(
+            "el-col",
+            { attrs: { span: 12 } },
+            [
+              _c("h1", { staticClass: "page_title" }, [
+                _vm._v("New Order "),
+                _vm.order.first_name && _vm.order.last_name
+                  ? _c("span", [
+                      _vm._v(
+                        " - " +
+                          _vm._s(
+                            _vm.order.first_name + " " + _vm.order.last_name
+                          )
+                      )
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "danger", plain: "", size: "mini" },
+                  on: { click: _vm.resetOrder }
+                },
+                [_vm._v("Reset Order")]
+              )
+            ],
+            1
+          )
         ],
         1
       ),
@@ -4795,18 +4865,20 @@ var render = function() {
                 "el-col",
                 { attrs: { md: { span: 24 } } },
                 [
-                  _c(
-                    "el-button",
-                    {
-                      attrs: { type: "primary", plain: "" },
-                      on: {
-                        click: function($event) {
-                          _vm.processSubmit("orderForm", false)
-                        }
-                      }
-                    },
-                    [_vm._v("Save as Draft")]
-                  ),
+                  _vm.order.id
+                    ? _c(
+                        "el-button",
+                        {
+                          attrs: { type: "primary", plain: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.processSubmit("orderForm", false)
+                            }
+                          }
+                        },
+                        [_vm._v("Save Changes")]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "el-button",
@@ -5422,7 +5494,7 @@ var render = function() {
                             attrs: {
                               prop: "subtotal",
                               formatter: function(row, column, cellValue) {
-                                return _vm.order.cart.currency + row.price
+                                return _vm.order.cart.currency + row.subtotal
                               },
                               label: "Total"
                             }
@@ -5605,7 +5677,7 @@ var render = function() {
             [
               _c(
                 "el-col",
-                { attrs: { span: 24 } },
+                { attrs: { span: 12 } },
                 [
                   _c(
                     "el-button",
@@ -5614,6 +5686,47 @@ var render = function() {
                       on: { click: _vm.handleAddProductBtnClick }
                     },
                     [_vm._v("Add Product(s)")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-form",
+                { attrs: { model: _vm.order } },
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Shipping Rate" } },
+                        [
+                          _c(
+                            "el-select",
+                            {
+                              attrs: { size: "mini" },
+                              model: {
+                                value: _vm.order.shipping_rate,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.order, "shipping_rate", $$v)
+                                },
+                                expression: "order.shipping_rate"
+                              }
+                            },
+                            _vm._l(_vm.shippingRange, function(range) {
+                              return _c("el-option", {
+                                key: range,
+                                attrs: { value: range }
+                              })
+                            })
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
                   )
                 ],
                 1
@@ -6279,6 +6392,46 @@ var render = function() {
             1
           )
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { staticStyle: { "margin-top": "40px" }, attrs: { gutter: 20 } },
+        [
+          _c(
+            "el-col",
+            { attrs: { md: { span: 24 } } },
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary", plain: "" },
+                  on: {
+                    click: function($event) {
+                      _vm.processSubmit(false)
+                    }
+                  }
+                },
+                [_vm._v("Save Changes")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.processSubmit()
+                    }
+                  }
+                },
+                [_vm._v("Process Payment")]
+              )
+            ],
+            1
+          )
+        ],
+        1
       )
     ],
     1

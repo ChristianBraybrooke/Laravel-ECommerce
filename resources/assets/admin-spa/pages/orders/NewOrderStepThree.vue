@@ -106,12 +106,11 @@ export default {
                     })
                     .then(function (data) {
                         this.loading = false;
-                        console.log(data)
+                        this.$router.push({path: 'orders.view', params: { orderId: this.order.id }})
                         // this.data = data.data;
                     }.bind(this))
                     .catch(function (error) {
                         this.loading = false;
-                        console.log(error)
                         // this.errors = error;
                     }.bind(this));
               }

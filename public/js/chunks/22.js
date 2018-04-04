@@ -1,196 +1,205 @@
 webpackJsonp([22,24],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/DataTable.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__("./resources/assets/admin-spa/router/index.js");
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+var _router = __webpack_require__("./resources/assets/admin-spa/router/index.js");
+
+var _router2 = _interopRequireDefault(_router);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
 var bind = __webpack_require__("./node_modules/lodash.bind/index.js");
 var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
     name: 'DataTable',
 
     components: {
@@ -302,15 +311,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
                         label: 'Live',
                         align: 'left',
                         formatter: function formatter(row, column, cellValue) {
-                            return row.live_at.live ? h(
-                                'i',
-                                { 'class': 'el-icon-check' },
-                                []
-                            ) : h(
-                                'i',
-                                { 'class': 'el-icon-close' },
-                                []
-                            );
+                            return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
                         },
                         resizable: true
                     }],
@@ -419,7 +420,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
         }
     },
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(['setShopData']), {
+    methods: _extends({}, (0, _vuex.mapActions)(['setShopData']), {
 
         /**
          * Retrieve the data from the server.
@@ -430,7 +431,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
             this.loading = true;
             this.dataErrors = {};
 
-            __WEBPACK_IMPORTED_MODULE_1__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: this.baseUrl ? this.baseUrl : this.typeName,
                 params: {
                     with: this.requestWith,
@@ -467,7 +468,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
         updateData: function updateData(object, modal) {
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_1__services_api_service_js__["a" /* default */].persist('post', {
+            _apiService2.default.persist('post', {
                 path: this.bulkUpdateUrl ? this.bulkUpdateUrl : this.typeName + '/bulk',
                 object: {
                     data: object,
@@ -504,7 +505,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
         deleteData: function deleteData(index, row) {
             this.dataErrors = {};
 
-            __WEBPACK_IMPORTED_MODULE_1__services_api_service_js__["a" /* default */].delete({
+            _apiService2.default.delete({
                 path: (this.baseUrl ? this.baseUrl : this.typeName) + '/' + row.id
             }).then(function () {
                 this.Data.splice(this.Data.indexOf(row), 1);
@@ -545,7 +546,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
             this.$refs.createForm.validate(function (valid) {
                 if (valid) {
 
-                    __WEBPACK_IMPORTED_MODULE_1__services_api_service_js__["a" /* default */].persist('post', {
+                    _apiService2.default.persist('post', {
                         path: _this.baseUrl ? _this.baseUrl : _this.typeName,
                         object: _this.createFormData
                     }).then(function (data) {
@@ -682,7 +683,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
             this.$emit('createNew', this.Data);
         }
     })
-});
+};
 
 /***/ }),
 

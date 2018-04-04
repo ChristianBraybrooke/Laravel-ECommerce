@@ -8,7 +8,10 @@
         </el-breadcrumb>
 
         <el-row align="middle" type="flex">
-            <el-col :span="12"><h1 class="page_title">New Order <span v-if="order.first_name && order.last_name"> - {{ order.first_name + ' ' + order.last_name }}</span></h1></el-col>
+            <el-col :span="12">
+              <h1 class="page_title">New Order <span v-if="order.first_name && order.last_name"> - {{ order.first_name + ' ' + order.last_name }}</span></h1>
+              <el-button type="danger" plain size="mini" @click="resetOrder">Reset Order</el-button>
+            </el-col>
         </el-row>
 
         <hr class="page_hr">
@@ -85,7 +88,7 @@
 
             <el-row :gutter="20" style="margin-top: 40px;">
                 <el-col :md="{span:24}">
-                    <el-button @click="processSubmit('orderForm', false)" type="primary" plain>Save as Draft</el-button>
+                    <el-button v-if="order.id" @click="processSubmit('orderForm', false)" type="primary" plain>Save Changes</el-button>
                     <el-button @click="processSubmit('orderForm', true)" type="primary">Choose Products</el-button>
                 </el-col>
             </el-row>
@@ -155,6 +158,10 @@ export default {
 
       methods: {
 
+          ...mapActions([
+              'resetOrder'
+          ]),
+
           /**
            * Process the form submission and determine what to do next
            *
@@ -174,8 +181,10 @@ export default {
                         })
                         .then(function (data) {
                             this.loading = false;
-                            this.$store.commit('SET_ORDER', data.data);
-                            this.$router.push({ name: 'orders.step2'});
+                            // this.$store.commit('SET_ORDER', data.data);
+                            if (toNextPage) {
+                                this.$router.push({ name: 'orders.step2'});
+                            }
                         }.bind(this))
                         .catch(function (error) {
                             this.loading = false;
@@ -188,7 +197,8 @@ export default {
                         })
                         .then(function (data) {
                             this.loading = false;
-                            this.$store.commit('SET_ORDER', data.data);
+                            this.$set(this.order, 'id', data.data.id);
+                            // this.$store.commit('SET_ORDER', data.data);
                             this.$router.push({ name: 'orders.step2'});
 
                         }.bind(this))

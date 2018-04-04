@@ -132,7 +132,7 @@
                                          label="Quantity">
                         </el-table-column>
                         <el-table-column prop="subtotal"
-                                         :formatter="function(row, column, cellValue) { return order.cart.currency + row.price }"
+                                         :formatter="function(row, column, cellValue) { return order.cart.currency + row.subtotal }"
                                          label="Total">
                         </el-table-column>
                     </el-table>

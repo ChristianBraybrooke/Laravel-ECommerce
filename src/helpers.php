@@ -125,3 +125,20 @@ function requestIncludes($key)
     }
     return in_array($key, $include);
 }
+
+/**
+ * Dynamically work out a sum.
+ *
+ * @param String $op
+ * @param Int $a
+ * @param Int $b
+ * @return Int
+ */
+function operators($op, $a, $b)
+{
+    $operators = [
+        '+' => (int)($a) + (int)($b),
+        '-' => (int)($a) - (int)($b)
+    ];
+    return $operators[$op];
+}

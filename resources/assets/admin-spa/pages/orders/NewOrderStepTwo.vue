@@ -13,9 +13,18 @@
         </el-row>
 
         <el-row v-if="order.items" :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
-            <el-col :span="24">
+            <el-col :span="12">
                 <el-button size="small" @click="handleAddProductBtnClick" type="primary">Add Product(s)</el-button>
             </el-col>
+            <el-form :model="order">
+                <el-col :span="12">
+                    <el-form-item label="Shipping Rate">
+                        <el-select v-model="order.shipping_rate" size="mini">
+                            <el-option v-for="range in shippingRange" :key="range" :value="range"></el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-col>
+            </el-form>
         </el-row>
 
         <el-row v-if="order.items" :gutter="20">
@@ -196,6 +205,13 @@
             </div>
         </el-dialog>
 
+        <el-row :gutter="20" style="margin-top: 40px;">
+            <el-col :md="{span:24}">
+                <el-button @click="processSubmit(false)" type="primary" plain>Save Changes</el-button>
+                <el-button @click="processSubmit()" type="primary">Process Payment</el-button>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 
@@ -254,6 +270,11 @@ export default {
           quantityRange()
           {
               return range(1,251);
+          },
+
+          shippingRange()
+          {
+              return range(0,250, 10);
           },
       },
 
@@ -470,6 +491,24 @@ export default {
                 return <div>{row_name} <ul class="order_item_options">{items}</ul></div>
               }
               return <div>{row_name}</div>;
+          },
+
+          processSubmit(navigate = true)
+          {
+              this.loading = true;
+              api.persist('put', {
+                  path: "orders/" + this.order.id,
+                  object: this.order,
+              })
+              .then(function(data) {
+                  this.loading = false;
+                  if (navigate) {
+                      this.$router.push({name: 'orders.step3'});
+                  }
+              }.bind(this))
+              .catch(function(error) {
+                  this.loading = false;
+              }.bind(this))
           },
 
 

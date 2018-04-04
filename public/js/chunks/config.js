@@ -1,12 +1,22 @@
 webpackJsonp([9],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/config/Config.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-//
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"); //
 //
 //
 //
@@ -269,10 +279,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
-var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js");
-
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'Config',
 
@@ -342,7 +349,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
             this.loading = true;
             this.settingsErrors = {};
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'settings'
             }).then(function (data) {
                 this.loading = false;
@@ -358,7 +365,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
             }.bind(this));
         },
         getCollections: function getCollections() {
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'collections'
             }).then(function (data) {
                 this.collections = data.data;
@@ -369,7 +376,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
         getFeaturedProductCollectionTypes: function getFeaturedProductCollectionTypes() {
 
             if (this.settings['Home Featured Product Collection']) {
-                __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+                _apiService2.default.get({
                     path: 'collections/' + this.settings['Home Featured Product Collection'] + '/types'
                 }).then(function (data) {
                     this.featured_product_types = data.data;
@@ -381,7 +388,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
             }
         },
         getUsers: function getUsers() {
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].get({
+            _apiService2.default.get({
                 path: 'users',
                 params: {
                     withRole: 'admin'
@@ -396,7 +403,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
             this.loading = true;
             this.settingsErrors = {};
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist('post', {
+            _apiService2.default.persist('post', {
                 path: 'settings',
                 object: {
                     settings: this.settings
@@ -422,7 +429,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
         }
     }
 
-});
+};
 
 /***/ }),
 

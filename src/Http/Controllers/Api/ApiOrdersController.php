@@ -94,6 +94,45 @@ class ApiOrdersController extends Controller
      */
     public function update(OrderRequest $request, Order $order)
     {
+        $items = [];
+        $order_extras = 0;
+        $order_subtotal = 0;
+        $order_vat = 0;
+        $order_shipping = (int)$request->shipping_rate;
+
+        if ($request->filled('items')) {
+            foreach ($request->items as $key => $item) {
+                $quantity = $item['quantity'] ?? 1;
+                $price = (int)$item['price'];
+                $order_subtotal = $order_subtotal + ($price * $quantity);
+
+                $options = [];
+                foreach ($item['options'] as $key => $option) {
+                    if (isset($option['price_mutator']) && isset($option['price_value']) && $option['price_mutator'] && $option['price_value']) {
+                        $order_extras = $order_extras + (operators($option['price_mutator'], $order_extras, $option['price_value']) * $quantity);
+                    }
+                    $options[$key] = $option['name'] ?? $option;
+                }
+
+                $items[] = [
+                    'id' => $item['id'],
+                    'name' => $item['name'],
+                    'qty' => $quantity,
+                    'price' => $price,
+                    'options' => $options,
+                    'subtotal' => ($price * $quantity),
+                ];
+            }
+            $order_vat = ($order_subtotal + $order_extras + $order_shipping) * 0.2;
+        }
+        $cart_data = [
+            'items' => $items,
+            'extras' => $order_extras,
+            'sub_total' => $order_subtotal,
+            'shipping' => $order_shipping,
+            'tax' => $order_vat,
+            'total' => $order_subtotal + $order_extras + $order_shipping + $order_vat
+        ];
 
         $order->update([
             'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->getAttributes()['status'],
@@ -118,6 +157,8 @@ class ApiOrdersController extends Controller
             'shipping_address_country' => $request->filled('shipping_address.country') ? $request->input('shipping_address.country') : $order->shipping_address_country,
 
             'use_billing_for_shipping' => $request->use_billing_for_shipping,
+
+            'cart_data' => $cart_data
         ]);
 
         $order->load($request->with ?: []);
@@ -170,7 +211,7 @@ class ApiOrdersController extends Controller
             ]);
         }
 
-        dd($payment);
+        return true;
     }
 
     /**
