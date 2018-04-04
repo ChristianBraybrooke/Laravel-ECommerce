@@ -105,7 +105,7 @@
                                     </ul>
                                 @else
                                     <ul>
-                                        <li class="cart_option">{{ $option }}</li>
+                                        <li class="cart_option">{{ $options }}</li>
                                     </ul>
                                 @endif
                             @endforeach

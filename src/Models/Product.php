@@ -89,7 +89,7 @@ class Product extends Model implements ProductContract
     protected $fillable = [
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id
+        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id'
     ];
 
     /**

@@ -64402,6 +64402,12 @@ strong {
   z-index: 800;
 }
 
+.ecom_version {
+  color: #b1c1d8;
+  text-align: right;
+  font-size: 11px;
+}
+
 .cb_menu_horizontal {
   padding: 0px 20px;
   background: #f5f7fa;
@@ -64757,6 +64763,11 @@ section.el-container.is-vertical {
   margin-top: 30px;
 }
 
+.el-dialog__header {
+  background: #f5f7fa;
+  padding-bottom: 20px;
+}
+
 .ql-toolbar.ql-snow {
   border-radius: 4px 4px 0px 0px;
   border: 1px solid #d8dce5 !important;
@@ -64770,5 +64781,15 @@ section.el-container.is-vertical {
 .ql-editor {
   height: 400px !important;
   scroll-behavior: auto;
+}
+
+.form_field_row {
+  margin-bottom: 10px;
+  background: #f5f7fa;
+  padding-top: 18px;
+}
+
+.form_field_row.required {
+  background: #fef0f0;
 }
 

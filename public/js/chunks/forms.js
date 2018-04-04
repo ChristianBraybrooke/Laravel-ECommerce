@@ -39,7 +39,7 @@ exports.default = {
 
     components: {
         DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(22/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+            return __webpack_require__.e/* import() */(23/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
         }
     },
 

@@ -109,7 +109,7 @@ export default {
                     })
                     .then(function (data) {
                         this.loading = false;
-                        this.$router.push({path: 'orders.view', params: { orderId: this.order.id }})
+                        this.$router.push({name: 'orders.view', params: { orderId: this.order.id }})
                         // this.data = data.data;
                     }.bind(this))
                     .catch(function (error) {
