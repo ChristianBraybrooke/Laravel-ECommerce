@@ -313,6 +313,9 @@ exports.default = {
 
     mounted: function mounted() {
         console.log('orderStepThree.vue Mounted');
+        if (!this.order.id) {
+            this.$router.push({ name: 'orders.step1' });
+        }
     },
 
 
@@ -652,6 +655,9 @@ exports.default = {
 
     mounted: function mounted() {
         console.log('NewOrderStepTwo.vue Mounted');
+        if (!this.order.id) {
+            this.$router.push({ name: 'orders.step1' });
+        }
     },
 
 

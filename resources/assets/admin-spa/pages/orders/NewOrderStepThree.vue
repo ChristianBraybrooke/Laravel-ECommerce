@@ -80,6 +80,9 @@ export default {
 
       mounted () {
           console.log('orderStepThree.vue Mounted');
+          if (!this.order.id) {
+              this.$router.push({name: 'orders.step1'});
+          }
       },
 
       methods: {
