@@ -14,6 +14,7 @@ use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use ChrisBraybrooke\ECommerce\Contracts\Form as FormContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormField as FormFieldContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormSection as FormSectionContract;
+use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
 use Product;
@@ -132,6 +133,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     {
         $this->configure();
         $this->registerBladeExtensions();
+
+        $this->app->bind(PaymentService::class, function ($app) {
+            return new PaymentService(
+                env('APP_ENV') === 'local' ? env('TEST_STRIPE_SECRET') : env('STRIPE_SECRET'),
+                env('APP_ENV') === 'local' ? env('TEST_STRIPE_KEY') : env('STRIPE_KEY')
+            );
+        });
     }
 
     /**

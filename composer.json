@@ -17,7 +17,8 @@
     "spatie/laravel-activitylog": "^2.3",
     "spatie/laravel-medialibrary": "^6.0.0",
     "anlutro/l4-settings": "^0.6.0",
-    "olssonm/l5-zxcvbn": "^3.1"
+    "olssonm/l5-zxcvbn": "^3.1",
+    "stripe/stripe-php": "^6.4"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0"

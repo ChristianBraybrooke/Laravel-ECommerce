@@ -10,6 +10,7 @@ use ChrisBraybrooke\ECommerce\Http\Resources\OrderResource;
 use ChrisBraybrooke\ECommerce\Http\Requests\CheckoutRequest;
 use ChrisBraybrooke\ECommerce\Http\Requests\OrderUpdateRequest;
 use ChrisBraybrooke\ECommerce\Http\Requests\OrderRequest;
+use ChrisBraybrooke\ECommerce\Services\PaymentService;
 
 class ApiOrdersController extends Controller
 {
@@ -133,6 +134,43 @@ class ApiOrdersController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
+    }
+
+    /**
+     * Create a payment for the order.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function payment(Request $request, Order $order, PaymentService $payment)
+    {
+        $payment = $payment->createCharge([
+            'token' => $request->payment_token,
+            'amount' => 2000,
+            'currency' => 'GBP',
+            'order' => $order,
+        ]);
+
+        if ($payment) {
+            $order->update([
+                'status' => 'STATUS_PROCESSING',
+
+                'payment_method' => 'stripe',
+                'payment_id' => isset($payment->id) ? $payment->id : null,
+                'payment_currency' => isset($payment->currency) ? $payment->currency : null,
+                'payment_amount' => isset($payment->amount) ? $payment->amount : null,
+                'payment_fee' => isset($payment->application_fee) ? $payment->application_fee : null,
+                'payment_source_id' => isset($payment->source->id) ? $payment->source->id : null,
+                'payment_source_brand' => isset($payment->source->brand) ? $payment->source->brand : null,
+                'payment_source_country' => isset($payment->source->country) ? $payment->source->country : null,
+                'payment_source_last4' => isset($payment->source->last4) ? $payment->source->last4 : null,
+                'payment_source_exp_month' => isset($payment->source->exp_month) ? $payment->source->exp_month : null,
+                'payment_source_exp_year' => isset($payment->source->exp_year) ? $payment->source->exp_year : null,
+            ]);
+        }
+
+        dd($payment);
     }
 
     /**

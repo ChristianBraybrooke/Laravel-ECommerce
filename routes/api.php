@@ -50,4 +50,5 @@ Route::apiResource('forms', 'ApiFormsController');
 
 // Orders
 Route::apiResource('orders', 'ApiOrdersController');
+Route::post('orders/{order}/payment', 'ApiOrdersController@payment');
 Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');

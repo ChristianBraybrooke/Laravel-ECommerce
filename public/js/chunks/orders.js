@@ -255,48 +255,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
-
-var stripe = Stripe('pk_test_uAzfSI4OCDnMzvadYJWuFpfZ'),
-    elements = stripe.elements(),
-    card = undefined;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'orderStepThree',
 
     components: {
+        CardPaymentForm: function CardPaymentForm() {
+            return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
+        },
         Errors: function Errors() {
             return __webpack_require__.e/* import() */(19/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
@@ -307,11 +277,7 @@ var stripe = Stripe('pk_test_uAzfSI4OCDnMzvadYJWuFpfZ'),
     data: function data() {
         return {
             loading: false,
-            orderErrors: {},
-            formRules: {},
-            cardNumberElement: undefined,
-            cardExpiryElement: undefined,
-            cardCvcElement: undefined
+            orderErrors: {}
         };
     },
 
@@ -329,160 +295,37 @@ var stripe = Stripe('pk_test_uAzfSI4OCDnMzvadYJWuFpfZ'),
 
     mounted: function mounted() {
         console.log('orderStepThree.vue Mounted');
-        this.setupStripe();
     },
 
 
     methods: {
-        setupStripe: function setupStripe() {
-            var is_mini = this.$refs.cardNumber.className.includes('mini');
-            var is_small = this.$refs.cardNumber.className.includes('small');
-            var is_medium = this.$refs.cardNumber.className.includes('medium');
-            var color = '#606266';
-            var placeholder_color = '#c0c4cc';
-
-            var style = {
-                base: {
-                    fontSize: is_mini ? '12px' : is_small ? '13px' : is_medium ? '14px' : '14px',
-                    color: color,
-                    fontSmoothing: 'antialiased',
-                    fontFamily: 'Helvetica Neue',
-                    '::placeholder': {
-                        color: placeholder_color
-                    }
-                },
-                'invalid': {
-                    'color': color
-                }
-            };
-
-            // Create the card number element.
-            this.cardNumberElement = elements.create('cardNumber', {
-                style: style
-            });
-            this.cardNumberElement.mount(this.$refs.cardNumber);
-
-            // Create the expiry date element.
-            this.cardExpiryElement = elements.create('cardExpiry', {
-                style: style
-            });
-            this.cardExpiryElement.mount(this.$refs.cardExpiry);
-
-            // Create the cvc element.
-            this.cardCvcElement = elements.create('cardCvc', {
-                style: style
-            });
-            this.cardCvcElement.mount(this.$refs.cardCvc);
-
-            // Card number change event.
-            this.cardNumberElement.on('change', function (event) {
-                // Switch brand logo.
-                if (event.brand) {
-                    this.setBrandIcon(event.brand);
-                }
-
-                // Focus on next element.
-                if (event.complete) {
-                    this.cardExpiryElement.focus();
-                }
-
-                this.setOutcome(event, 'number_change');
-            }.bind(this));
-
-            // Card expiry change event.
-            this.cardExpiryElement.on('change', function (event) {
-                // Focus on next element.
-                if (event.complete) {
-                    this.cardCvcElement.focus();
-                }
-
-                this.setOutcome(event, 'expiry_change');
-            }.bind(this));
-
-            // Card cvc change event.
-            this.cardCvcElement.on('change', function (event) {
-                // Focus on next element.
-                if (event.complete) {
-                    // $payment_submit.focus();
-                }
-
-                this.setOutcome(event, 'cvc_change');
-            }.bind(this));
-        },
-        setBrandIcon: function setBrandIcon(brand) {
-            //
-        },
-        setOutcome: function setOutcome(result) {
-            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-            console.log(result);
-            // $successElement.hide();
-            // $errorElement.hide();
-
-            // $payment_submit.removeClass('disabled');
-
-            // Hide card number error elements.
-            if (type == 'number_change') {
-                this.orderErrors = {};
-            }
-
-            // Hide card expiry error elements.
-            if (type == 'expiry_change') {
-                this.orderErrors = {};
-            }
-
-            // Hide card cvc error elements.
-            if (type == 'cvc_change') {
-                this.orderErrors = {};
-            }
-
-            if (result.token) {
-                // Insert the token ID into the form so it gets submitted to the server.
-                console.log(result.token);
-
-                // Submit the form:
-                this.loading = false;
-            } else if (result.error) {
-                // Re-enable the submit button.
-                this.loading = false;
-
-                // Display error
-                this.handleError(result.error);
-            }
-        },
-        handleError: function handleError(error) {
-            console.log(error);
-            // The error was a validation_error
-            if (error.type === 'validation_error' && error.code) {
-
-                var code = error.code;
-
-                this.orderErrors = {
-                    message: 'There were payment errors.',
-                    errors: {
-                        'Payment': [error.message]
-                    },
-                    code: error.code
-                };
-
-                // Card Number error has occured.
-                if (~code.indexOf("number")) {}
-
-                // Expiry error has occured.
-                if (~code.indexOf("expiry")) {}
-
-                // CVC error has occured.
-                if (~code.indexOf("cvc")) {}
-            } else {
-                // Another type of error occured.
-
-            }
-        },
         processSubmit: function processSubmit(ref) {
-            this.loading = true;
-            stripe.createToken(this.cardNumberElement, {
-                name: 'Christian Braybrooke'
-            }).then(this.setOutcome);
+            var _this = this;
+
+            this.$refs[ref].validate(function (valid) {
+                if (valid) {
+                    _this.loading = true;
+                    _this.$refs.paymentForm.createToken();
+                } else {
+                    return false;
+                }
+            });
+        },
+        onTokenCreation: function onTokenCreation(has_error, token_object, error_object) {
+            if (!has_error && this.order.id) {
+                __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["a" /* default */].persist("post", {
+                    path: "orders/" + this.order.id + "/payment",
+                    object: this.order
+                }).then(function (data) {
+                    this.loading = false;
+                    console.log(data);
+                    // this.data = data.data;
+                }.bind(this)).catch(function (error) {
+                    this.loading = false;
+                    console.log(error);
+                    // this.errors = error;
+                }.bind(this));
+            }
         }
     }
 });
@@ -1699,7 +1542,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Colors\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Background\n-------------------------- */\n/* Border\n-------------------------- */\n/* Box-shadow\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Font\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* Message Box\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Break-point\n--------------------------*/\n/* Custom */\n/* Menu\n-------------------------- */\n.stripe_input {\n  -webkit-appearance: none;\n  background-color: #fff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  border-color: #dcdfe6;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  display: inline-block;\n  font-size: 14px;\n  line-height: 1;\n  outline: none;\n  padding: 12px 15px;\n  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n  height: 40px;\n}\n.stripe_input:hover {\n  cursor: text;\n  border: 1px solid #dcdfe6;\n  border-color: #c0c4cc;\n}\n.stripe_input.StripeElement--focus {\n  border: 1px solid #dcdfe6;\n  border-color: #409eff;\n}\n.stripe_input.StripeElement--invalid {\n  border: 1px solid #dcdfe6;\n  border-color: #f56c6c;\n}\n.stripe_input.StripeElement--complete {\n  border: 1px solid #dcdfe6;\n  border-color: #67c23a;\n}\n.stripe_input.medium {\n  font-size: 14px;\n  height: 36px;\n  padding: 10px 15px;\n}\n.stripe_input.small {\n  font-size: 13px;\n  height: 32px;\n  padding: 8.5px 15px;\n}\n.stripe_input.mini {\n  font-size: 12px;\n  height: 28px;\n  padding: 7px 15px;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -7384,12 +7227,8 @@ var render = function() {
       _c(
         "el-form",
         {
-          ref: "paymentForm",
-          attrs: {
-            rules: _vm.formRules,
-            "label-position": "top",
-            model: _vm.order
-          },
+          ref: "orderForm",
+          attrs: { "label-position": "top", model: _vm.order },
           nativeOn: {
             submit: function($event) {
               $event.preventDefault()
@@ -7408,130 +7247,14 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "el-row",
-            { attrs: { gutter: 20 } },
-            [
-              _c(
-                "el-col",
-                { attrs: { md: { span: 8, offset: 4 } } },
-                [
-                  _c(
-                    "el-form-item",
-                    {
-                      attrs: {
-                        label: "Cardholder Name",
-                        size: "small",
-                        prop: "customer.company",
-                        required: true
-                      }
-                    },
-                    [
-                      _c("el-input", {
-                        attrs: { placeholder: "" },
-                        model: {
-                          value: _vm.order.customer.first_name,
-                          callback: function($$v) {
-                            _vm.$set(_vm.order.customer, "first_name", $$v)
-                          },
-                          expression: "order.customer.first_name"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-col",
-                { attrs: { md: 8 } },
-                [
-                  _c(
-                    "el-form-item",
-                    {
-                      attrs: {
-                        label: "Card Number",
-                        size: "small",
-                        prop: "card_number",
-                        required: true
-                      }
-                    },
-                    [
-                      _c("div", {
-                        ref: "cardNumber",
-                        staticClass: "stripe_input small"
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "el-form-item__error" }, [
-                        _vm._v(
-                          "\n                          card_number is required\n                        "
-                        )
-                      ])
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-row",
-            { attrs: { gutter: 20 } },
-            [
-              _c(
-                "el-col",
-                { attrs: { md: { span: 8, offset: 4 } } },
-                [
-                  _c(
-                    "el-form-item",
-                    {
-                      attrs: {
-                        label: "Card Expiry",
-                        size: "small",
-                        prop: "customer.company"
-                      }
-                    },
-                    [
-                      _c("div", {
-                        ref: "cardExpiry",
-                        staticClass: "stripe_input small"
-                      })
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "el-col",
-                { attrs: { md: 8 } },
-                [
-                  _c(
-                    "el-form-item",
-                    {
-                      attrs: {
-                        label: "Card CVC",
-                        size: "small",
-                        prop: "customer.company"
-                      }
-                    },
-                    [
-                      _c("div", {
-                        ref: "cardCvc",
-                        staticClass: "stripe_input small"
-                      })
-                    ]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
+          _c("card-payment-form", {
+            ref: "paymentForm",
+            attrs: {
+              form: _vm.order,
+              loading: _vm.loading,
+              "on-token-creation": _vm.onTokenCreation
+            }
+          }),
           _vm._v(" "),
           _c(
             "el-row",
@@ -7547,7 +7270,7 @@ var render = function() {
                       attrs: { type: "success", plain: "" },
                       on: {
                         click: function($event) {
-                          _vm.processSubmit("paymentForm")
+                          _vm.processSubmit("orderForm")
                         }
                       }
                     },
