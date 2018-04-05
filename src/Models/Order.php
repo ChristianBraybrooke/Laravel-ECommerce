@@ -39,13 +39,20 @@ class Order extends Model implements OrderContract
      */
     public function getStatuses()
     {
+        $statuses = $this->statuses;
+
         if ($this->status === $this->statuses['STATUS_PROCESSING']) {
-            return array_except($this->statuses, ['STATUS_DRAFT']);
+            $statuses = array_except($this->statuses, ['STATUS_DRAFT']);
         }
         if ($this->status === $this->statuses['STATUS_COMPLETED']) {
-            return array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
+            $statuses = array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
         }
-        return $this->statuses;
+
+        $clean_statuses = [];
+        foreach ($statuses as $key => $status) {
+          $clean_statuses[$status] = $status;
+        }
+        return $clean_statuses;
     }
 
     /**
