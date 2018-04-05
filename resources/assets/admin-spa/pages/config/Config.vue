@@ -24,7 +24,7 @@
                                       <el-col :lg="12" :md="24">
 
                                           <el-form-item v-if="settings" label="Site Url" prop="url">
-                                              <el-input v-model="settings['url']"></el-input>
+                                              <el-input disabled v-model="settings['url']"></el-input>
                                           </el-form-item>
 
                                           <el-form-item v-if="settings" label="Contact Phone" prop="Contact Phone">
@@ -280,7 +280,7 @@ export default {
       data () {
           return {
               loading: false,
-              settings: null,
+              settings: {},
               settingsErrors: {},
               settingsForm: {},
               collections: {},
@@ -291,11 +291,11 @@ export default {
       },
 
       computed: {
-
+          //
       },
 
       watch: {
-
+          //
       },
 
       mounted () {
@@ -343,6 +343,10 @@ export default {
             .then(function (data) {
                 this.loading = false;
                 this.settings = data.data;
+                if (!this.settings['Admin Notifications']) {
+                    this.settings['Admin Notifications'] = [];
+                }
+
                 this.getFeaturedProductCollectionTypes();
             }.bind(this))
             .catch(function (error) {

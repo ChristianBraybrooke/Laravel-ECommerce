@@ -1,3 +1,5 @@
+window.ecommerceConfig.web_version = '0.0.16';
+
 import 'babel-polyfill';
 
 import Vue from 'vue';
@@ -11,14 +13,25 @@ import './axios.js';
 
 Vue.use(Element, {locale});
 
-
 import { mapActions, mapGetters } from 'vuex';
 Vue.mixin({
-  computed: {
-    getSiteBaseURL(value) {
-        return ecommerceConfig.site_url + '/';
+    computed: {
+        getSiteBaseURL(value) {
+            return ecommerceConfig.site_url + '/';
+        },
     },
-  }
+});
+
+Vue.mixin({
+    methods: {
+        capitalize(str)
+        {
+            var lower = str.toLowerCase();
+            return lower.replace(/(^| )(\w)/g, function(x) {
+              return x.toUpperCase();
+            });
+        },
+    }
 });
 
 import generateColors from './utils/color';

@@ -22,6 +22,7 @@ class Order extends Model implements OrderContract
 
     protected $statuses = [
       'STATUS_DRAFT' => 'Draft',
+      'STATUS_PROFORMA' => 'Pro-Forma',
       'STATUS_PROCESSING' => 'Processing',
       'STATUS_COMPLETED' => 'Completed',
       'STATUS_CANCELLED' => 'Canceled',
@@ -38,13 +39,38 @@ class Order extends Model implements OrderContract
      */
     public function getStatuses()
     {
+        $statuses = $this->statuses;
+
         if ($this->status === $this->statuses['STATUS_PROCESSING']) {
-            return array_except($this->statuses, ['STATUS_DRAFT']);
+            $statuses = array_except($this->statuses, ['STATUS_DRAFT']);
         }
         if ($this->status === $this->statuses['STATUS_COMPLETED']) {
-            return array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
+            $statuses = array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
         }
-        return $this->statuses;
+
+        $clean_statuses = [];
+        foreach ($statuses as $key => $status) {
+          $clean_statuses[$status] = $status;
+        }
+        return $clean_statuses;
+    }
+
+    /**
+     * Get the order status key from it's value.
+     *
+     * @var array
+     */
+    public function setStatusFromName($name = 'Draft')
+    {
+        $filtered = array_where($this->statuses, function ($value, $key) use ($name) {
+            return $value === $name;
+        });
+
+        if ($filtered) {
+            return implode(array_keys($filtered));
+        } else {
+           return $this->setStatusFromName();
+        }
     }
 
     /**
@@ -128,12 +154,12 @@ class Order extends Model implements OrderContract
     {
         return [
             'Name' => $this->customer['full_name'],
-            'Line 1' => ucfirst($this->{$type . '_address_line1'}),
-            'Line 2' => ucfirst($this->{$type . '_address_line2'}),
-            'Town' => ucfirst($this->{$type . '_address_town'}),
-            'County' => ucfirst($this->{$type . '_address_county'}),
-            'Postcode' => ucwords($this->{$type . '_address_postcode'}),
-            'Country' => ucfirst($this->{$type . '_address_country'}),
+            'line_1' => ucfirst($this->{$type . '_address_line1'}),
+            'line_2' => ucfirst($this->{$type . '_address_line2'}),
+            'town' => ucfirst($this->{$type . '_address_town'}),
+            'county' => ucfirst($this->{$type . '_address_county'}),
+            'postcode' => ucwords($this->{$type . '_address_postcode'}),
+            'country' => ucfirst($this->{$type . '_address_country'}),
         ];
     }
 
@@ -169,13 +195,13 @@ class Order extends Model implements OrderContract
         if (isset($this->cart_data['items'])) {
             foreach ($this->cart_data['items'] as $key => $item) {
                 $items[] = [
-                    'id' => $item['id'],
-                    'name' => $item['name'],
-                    'qty' => $item['qty'],
-                    'price' => priceFormatter($item['price']),
-                    'options' => $item['options'],
-                    'tax' => priceFormatter($item['tax']),
-                    'subtotal' => priceFormatter($item['subtotal'])
+                    'id' => $item['id'] ?? null,
+                    'name' => $item['name'] ?? null,
+                    'qty' => $item['qty'] ?? null,
+                    'price' => priceFormatter($item['price'] ?? 0),
+                    'options' => $item['options'] ?? null,
+                    'tax' => priceFormatter($item['tax'] ?? 0),
+                    'subtotal' => priceFormatter($item['subtotal'] ?? 0)
                 ];
             }
         }
@@ -191,14 +217,17 @@ class Order extends Model implements OrderContract
     public function getCartAttribute()
     {
         $cart = $this->cart_data;
+
+        $totals = [
+            'Sub Total' => priceFormatter($cart['sub_total'] ?? 0),
+            'Extras' => priceFormatter($cart['extras'] ?? 0),
+            'Shipping' => priceFormatter($cart['shipping'] ?? 0),
+            'Tax' => priceFormatter($cart['tax'] ?? 0),
+            'Total' => priceFormatter($cart['total'] ?? 0),
+        ];
         return [
-            'currency' => $cart['currency'],
-            'totals' => [
-                'Sub Total' => priceFormatter($cart['sub_total']),
-                'Shipping' => priceFormatter($cart['shipping']),
-                'Tax' => priceFormatter($cart['tax']),
-                'Total' => priceFormatter($cart['total']),
-            ],
+            'currency' => $cart['currency'] ?? Setting::get('Currency'),
+            'totals' => $totals,
         ];
     }
 

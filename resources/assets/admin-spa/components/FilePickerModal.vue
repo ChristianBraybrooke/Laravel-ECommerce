@@ -3,9 +3,10 @@
 
         <el-button v-if="showBtn" type="info" plain size="mini" @click="dialogVisible = true;">Select File <i class="el-icon-document"></i></el-button>
         <el-dialog :title="'File Picker: ' + name"
-                  class="file_picker_window"
+                   class="file_picker_window"
                    :visible.sync="dialogVisible"
-                   width="50%"
+                   width="70%"
+                   :close-on-click-modal="false"
                    top="7vh"
                    :before-close="handleClose">
 
@@ -181,6 +182,7 @@ export default {
           handleFileChoose()
           {
               this.dialogVisible = false;
+              this.$emit('update:files', this.files);
               this.$emit('filesChosen', { files: this.files, id: this.pickerId });
           },
 
@@ -202,6 +204,7 @@ export default {
           deleteFile(file)
           {
               this.files.splice(this.files.indexOf(file), 1);
+              this.$emit('update:files', this.files);
               this.$emit('filesUnChosen', { files: this.files, id: this.pickerId });
           },
 

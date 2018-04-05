@@ -1,6 +1,7 @@
 <template lang="html">
     <data-table type-name="product"
                 bulk-update-url="products/bulk"
+                :request-includes="['live_at', 'created_at']"
                 :create-form="productsCreateForm">
 
       <template slot="createForm"

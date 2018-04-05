@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{{ mix('css/normalize.css', 'vendor/ecommerce') }}">
     <link rel="stylesheet" href="{{ mix('css/admin.css', 'vendor/ecommerce') }}">
+    <script src="https://js.stripe.com/v3/"></script>
 
   </head>
   <a class="admin_banner" href="/" style="background: @ShopData('theme_color')">Website</a>

@@ -110,3 +110,35 @@ function checkoutInputHelper($field, $type, $user, $order, $order_prefix = '', $
         return $user->{$field};
     }
 }
+
+/**
+ * Determine what is in the include section of the request.
+ *
+ * @param string $key
+ * @return bool
+ */
+function requestIncludes($key)
+{
+    $include = request()->include;
+    if (!is_array($include)) {
+        $include = explode(',', str_replace(' ', '', $include));
+    }
+    return in_array($key, $include);
+}
+
+/**
+ * Dynamically work out a sum.
+ *
+ * @param String $op
+ * @param Int $a
+ * @param Int $b
+ * @return Int
+ */
+function operators($op, $a, $b)
+{
+    $operators = [
+        '+' => (int)($a) + (int)($b),
+        '-' => (int)($a) - (int)($b)
+    ];
+    return $operators[$op];
+}

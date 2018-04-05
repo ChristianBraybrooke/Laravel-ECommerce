@@ -54,6 +54,15 @@ return [
 
       //
       'role' => ChrisBraybrooke\ECommerce\Models\Role::class,
+
+      //
+      'form' => ChrisBraybrooke\ECommerce\Models\Form::class,
+
+      //
+      'form_field' => ChrisBraybrooke\ECommerce\Models\FormField::class,
+
+      //
+      'form_section' => ChrisBraybrooke\ECommerce\Models\FormSection::class,
   ],
 
   'shopData' => [

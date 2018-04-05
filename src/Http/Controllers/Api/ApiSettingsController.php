@@ -23,7 +23,7 @@ class ApiSettingsController extends Controller
      */
     public function index(Request $request)
     {
-        return ['data' => Setting::all()];
+        return ['data' => Setting::all() ?: ['url' => env('APP_URL', 'https://www.example.com')]];
     }
 
     /**
@@ -45,7 +45,7 @@ class ApiSettingsController extends Controller
 
         Artisan::call('view:clear');
 
-        return ['data' => Setting::all()];
+        return ['data' => Setting::all() ?: ['url' => env('APP_URL', 'https://www.example.com')]];
     }
 
     /**

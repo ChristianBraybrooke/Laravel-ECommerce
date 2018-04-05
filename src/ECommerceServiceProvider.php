@@ -7,9 +7,14 @@ use Illuminate\Support\Facades\Route;
 use Artisan;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 use ChrisBraybrooke\ECommerce\Contracts\ProductCustomisation as ProductCustomisationContract;
+use ChrisBraybrooke\ECommerce\Contracts\ProductCustomisationOption as ProductCustomisationOptionContract;
 use ChrisBraybrooke\ECommerce\Contracts\Collection as CollectionContract;
 use ChrisBraybrooke\ECommerce\Contracts\CollectionType as CollectionTypeContract;
 use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
+use ChrisBraybrooke\ECommerce\Contracts\Form as FormContract;
+use ChrisBraybrooke\ECommerce\Contracts\FormField as FormFieldContract;
+use ChrisBraybrooke\ECommerce\Contracts\FormSection as FormSectionContract;
+use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
 use Product;
@@ -24,6 +29,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      * @var bool
      */
     protected $defer = false;
+
+    const VERSION = '0.0.16';
 
     /**
      * Bootstrap the application events.
@@ -91,7 +98,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $loader->alias('ProductCustomisation', $config['product_customisation']);
 
         // ProductCustomisationOption
-        $this->app->bind(ProductCustomisationOption::class, $config['product_customisation_option']);
+        $this->app->bind(ProductCustomisationOptionContract::class, $config['product_customisation_option']);
         $loader->alias('ProductCustomisationOption', $config['product_customisation_option']);
 
         // Order
@@ -103,6 +110,18 @@ class ECommerceServiceProvider extends LaravelServiceProvider
 
         // Shop
         $loader->alias('Shop', Shop::class);
+
+        // Form
+        $this->app->bind(FormContract::class, $config['form']);
+        $loader->alias('Form', $config['form']);
+
+        // FormField
+        $this->app->bind(FormFieldContract::class, $config['form_field']);
+        $loader->alias('FormField', $config['form_field']);
+
+        // FormSection
+        $this->app->bind(FormSectionContract::class, $config['form_section']);
+        $loader->alias('FormSection', $config['form_section']);
     }
 
     /**
@@ -114,6 +133,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     {
         $this->configure();
         $this->registerBladeExtensions();
+
+        $this->app->bind(PaymentService::class, function ($app) {
+            return new PaymentService(
+                env('APP_ENV') === 'local' ? env('TEST_STRIPE_SECRET') : env('STRIPE_SECRET'),
+                env('APP_ENV') === 'local' ? env('TEST_STRIPE_KEY') : env('STRIPE_KEY')
+            );
+        });
     }
 
     /**
@@ -137,7 +163,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         Shop::setData([
             'site_url' => (string)env('APP_URL'),
             'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
-            'theme_color' => (string)env('THEME_COLOR', '#409eff')
+            'theme_color' => (string)env('THEME_COLOR', '#409eff'),
+            'api_version' => self::VERSION
         ]);
     }
 
@@ -312,11 +339,56 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             ], 'migrations');
         }
 
+        if (! class_exists('CreateFormsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_forms_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_forms_table.php'
+                ),
+            ], 'migrations');
+        }
+
         if (! class_exists('CreateImportsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_imports_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_imports_table.php'
+                ),
+            ], 'migrations');
+        }
+
+        if (! class_exists('CreateFormSectionsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_form_sections_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_form_sections_table.php'
+                ),
+            ], 'migrations');
+        }
+
+        if (! class_exists('CreateFormFieldsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_form_fields_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_form_fields_table.php'
+                ),
+            ], 'migrations');
+        }
+
+        if (! class_exists('CreateFormToModelsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_form_to_models_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_form_to_models_table.php'
+                ),
+            ], 'migrations');
+        }
+
+        if (! class_exists('AddOrderFormFieldToProductsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_order_form_field_to_products_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_add_order_form_field_to_products_table.php'
                 ),
             ], 'migrations');
         }

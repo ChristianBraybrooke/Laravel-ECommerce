@@ -29,7 +29,11 @@ class ApiProductsController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with($request->with ?: [])->basicResponse();
+        $products = Product::with($request->with ?: [])
+                           ->when($request->no_variants, function ($query) {
+                              return $query->whereNull('variant_id');
+                           })
+                           ->basicResponse();
 
         return new ProductsResource($products);
     }
@@ -82,14 +86,15 @@ class ApiProductsController extends Controller
         $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $product->live_at['date'];
 
         $product->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'list_in_shop' => $request->list_in_shop,
-            'featured' => $request->featured,
+            'name' => $request->has('name') ? $request->name : $product->name,
+            'price' => $request->has('price') ? $request->price : $product->price,
+            'list_in_shop' => $request->has('list_in_shop') ? $request->list_in_shop : $product->list_in_shop,
+            'featured' => $request->has('featured') ? $request->featured : $product->featured,
             'live_at' => $live,
+            'order_form_id' => $request->has('order_form.id') ? $request->input('order_form.id') : $product->order_form_id,
         ]);
 
-        if ($request->filled('content.data')) {
+        if ($request->has('content.data')) {
             foreach ($request->input('content.data') as $key => $content) {
                 $product->content()->updateOrCreate(
                     ['content_name' => $content['content_name']],
@@ -98,7 +103,7 @@ class ApiProductsController extends Controller
             }
         }
 
-        if ($request->filled('variants.data')) {
+        if ($request->has('variants.data')) {
             foreach ($request->input('variants.data') as $key => $variant) {
                 $new_variant = $product->variants()->updateOrCreate(
                     ['name' => $variant['name']],
@@ -119,7 +124,7 @@ class ApiProductsController extends Controller
             }
         }
 
-        if ($request->filled('customisations.data')) {
+        if ($request->has('customisations.data')) {
             foreach ($request->input('customisations.data') as $key => $customisation) {
                 $new_customisation = $product->customisations()->updateOrCreate(
                     ['id' => isset($customisation['id']) ? $customisation['id'] : null],
@@ -148,11 +153,13 @@ class ApiProductsController extends Controller
             }
         }
 
-        $product->syncMedia([
-            'main_img' => $request->main_img,
-            'gallery' => $request->input('gallery.data'),
-            'customisation_base_img' => $request->customisation_base_img
-        ]);
+        if ($request->has('gallery.data')) {
+            $product->syncMedia([
+                'main_img' => $request->main_img,
+                'gallery' => $request->input('gallery.data'),
+                'customisation_base_img' => $request->customisation_base_img
+            ]);
+        }
 
         if (!empty($request->input('collections.data.collection_types_sync'))) {
             $collectionTypesSync = $request->input('collections.data.collection_types_sync.*.*');
@@ -231,6 +238,22 @@ class ApiProductsController extends Controller
             'errors' => [],
             'message' => 'Successfully updated ' . count($ids) . ' collections.'
         ];
+    }
+
+    /**
+     * Return the product variants.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function variants(Request $request, Product $product)
+    {
+        $variants = $product->variants()
+                            ->with($request->with ?: [])
+                            ->basicResponse();
+
+        return new ProductsResource($variants);
     }
 
     /**

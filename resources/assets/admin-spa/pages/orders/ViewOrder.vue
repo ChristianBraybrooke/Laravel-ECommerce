@@ -132,7 +132,7 @@
                                          label="Quantity">
                         </el-table-column>
                         <el-table-column prop="subtotal"
-                                         :formatter="function(row, column, cellValue) { return order.cart.currency + row.price }"
+                                         :formatter="function(row, column, cellValue) { return order.cart.currency + row.subtotal }"
                                          label="Total">
                         </el-table-column>
                     </el-table>
@@ -154,6 +154,19 @@
                </el-card>
             </el-col>
         </el-row>
+
+        <el-popover ref="deleteOrderPop"
+                    placement="top"
+                    width="160">
+          <p>Delete Order?</p>
+          <div style="text-align: right; margin: 0">
+            <el-button type="primary" size="mini" @click="$refs.deleteOrderPop.doClose()" plain>cancel</el-button>
+            <el-button type="danger" size="mini" @click="deleteOrder()">confirm</el-button>
+          </div>
+        </el-popover>
+
+        <el-button style="margin-top: 40px;" size="small" plain v-popover:deleteOrderPop type="danger">Delete</el-button>
+
 
 
     </div>
@@ -282,6 +295,33 @@ export default {
               .catch(function (error) {
                   this.loading = false;
                   this.orderErrors = error;
+              }.bind(this));
+          },
+
+          /**
+           * Delete the order.
+           *
+           * @return void
+           */
+          deleteOrder()
+          {
+              this.loading = true;
+              api.delete({
+                  path: 'orders/' + this.order.id,
+              })
+              .then(function () {
+                  this.loading = false;
+
+                  this.$message({
+                    message: 'Successfully deleted order',
+                    type: 'success',
+                    showClose: true,
+                  });
+
+                  this.$router.push({ name: 'orders'});
+              }.bind(this))
+              .catch(function () {
+                  this.loading = false;
               }.bind(this));
           },
 

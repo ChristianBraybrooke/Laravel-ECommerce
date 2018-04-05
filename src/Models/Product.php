@@ -10,12 +10,14 @@ use ChrisBraybrooke\ECommerce\Traits\SluggableTrait;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
 use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
+use ChrisBraybrooke\ECommerce\Traits\HasFormsTrait;
 use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 use Collection;
 use ChrisBraybrooke\ECommerce\Events\ProductCreated;
 use ChrisBraybrooke\ECommerce\CollectionType;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
@@ -24,7 +26,7 @@ use Carbon\Carbon;
 class Product extends Model implements ProductContract
 {
     use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
-        HasContentAttached, Importable;
+        HasContentAttached, HasFormsTrait, Importable;
 
     /**
      * The "booting" method of the model.
@@ -61,13 +63,6 @@ class Product extends Model implements ProductContract
     ];
 
     /**
-     * The default relations to load
-     *
-     * @var array
-     */
-    protected $with = ['content'];
-
-    /**
      * The default meta to create on creation
      *
      * @var array
@@ -94,7 +89,7 @@ class Product extends Model implements ProductContract
     protected $fillable = [
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'variant_id'
+        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id'
     ];
 
     /**
@@ -105,7 +100,7 @@ class Product extends Model implements ProductContract
     protected static $logAttributes = [
         'id', 'name', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth'
+        'measurement_unit', 'width', 'height', 'depth', 'order_form_id'
     ];
 
     /**
@@ -325,6 +320,16 @@ class Product extends Model implements ProductContract
     public function variants(): HasMany
     {
         return $this->hasMany(config('ecommerce.models.product'), 'variant_id', 'id');
+    }
+
+    /**
+    * Display any variants of this product.
+    *
+    * @return App\Product
+    */
+    public function orderForm(): HasOne
+    {
+        return $this->hasOne(config('ecommerce.models.form'), 'id', 'order_form_id');
     }
 
     /**

@@ -4,7 +4,7 @@
 
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>Welcome, <strong>{{ user.first_name }}</strong></span>
+            <span v-if="user.name">Welcome, <strong>{{ user.name.first }}</strong></span>
             <!-- <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button> -->
           </div>
 

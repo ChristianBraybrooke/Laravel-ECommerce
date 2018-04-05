@@ -7,17 +7,27 @@ Vue.use(Router);
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */ '../pages/Dashboard.vue');
 const Account = () => import(/* webpackChunkName: "account" */ '../pages/Account.vue');
 const Orders = () => import(/* webpackChunkName: "orders" */ '../pages/orders/Orders.vue');
+const NewOrderStepOne = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepOne.vue');
+const NewOrderStepTwo = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepTwo.vue');
+const NewOrderStepThree = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepThree.vue');
 const ViewOrder = () => import(/* webpackChunkName: "orders" */ '../pages/orders/ViewOrder.vue');
 const Collections = () => import(/* webpackChunkName: "collections" */ '../pages/collections/Collections.vue');
 const ViewCollection = () => import(/* webpackChunkName: "collections" */ '../pages/collections/ViewCollection.vue');
 const ViewCollectionType = () => import(/* webpackChunkName: "collectiontypes" */ '../pages/collection-types/ViewCollectionType.vue');
 const Products = () => import(/* webpackChunkName: "products" */ '../pages/products/Products.vue');
-const ViewProduct = () => import(/* webpackChunkName: "products" */ '../pages/products/ViewProduct.vue');
+const ViewProduct = () => import(/* webpackChunkName: "view-product" */ '../pages/products/ViewProduct.vue');
+const ViewProductCustomisations = () => import(/* webpackChunkName: "view-product-customisations" */ '../pages/products/ViewProductCustomisations.vue');
+const ViewProductImages = () => import(/* webpackChunkName: "view-product-images" */ '../pages/products/ViewProductImages.vue');
+const ViewProductPricing = () => import(/* webpackChunkName: "view-product-pricing" */ '../pages/products/ViewProductPricing.vue');
+const ViewProductVariants = () => import(/* webpackChunkName: "view-product-variants" */ '../pages/products/ViewProductVariants.vue');
+const ViewProductOrdering = () => import(/* webpackChunkName: "view-product-ordering" */ '../pages/products/ViewProductOrdering.vue');
 const Galleries = () => import(/* webpackChunkName: "galleries" */ '../pages/galleries/Galleries.vue');
 const Pages = () => import(/* webpackChunkName: "pages" */ '../pages/pages/Pages.vue');
 const ViewPage = () => import(/* webpackChunkName: "pages" */ '../pages/pages/ViewPage.vue');
 const Users = () => import(/* webpackChunkName: "users" */ '../pages/users/Users.vue');
 const Config = () => import(/* webpackChunkName: "config" */ '../pages/config/Config.vue');
+const Forms = () => import(/* webpackChunkName: "forms" */ '../pages/forms/Forms.vue');
+const ViewForm = () => import(/* webpackChunkName: "view-form" */ '../pages/forms/ViewForm.vue');
 const NotFound = () => import(/* webpackChunkName: "not-found" */ '../pages/NotFound.vue');
 const ImportExport = () => import(/* webpackChunkName: "import-export" */ '../pages/reports/ImportExport.vue');
 
@@ -42,6 +52,24 @@ const router = new Router({
             component: Orders,
             name: 'orders',
             meta: {title: 'Admin: Orders'}
+        },
+        {
+            path: '/orders/new',
+            component: NewOrderStepOne,
+            name: 'orders.step1',
+            meta: {title: 'Admin: New Order - Step 1'}
+        },
+        {
+            path: '/orders/new/products',
+            component: NewOrderStepTwo,
+            name: 'orders.step2',
+            meta: {title: 'Admin: New Order - Step 2'}
+        },
+        {
+            path: '/orders/new/payment',
+            component: NewOrderStepThree,
+            name: 'orders.step3',
+            meta: {title: 'Admin: New Order - Step 3'}
         },
         {
             path: '/orders/:orderId',
@@ -84,6 +112,41 @@ const router = new Router({
             meta: {title: 'Admin: Product'}
         },
         {
+            path: '/products/:productId/pricing',
+            component: ViewProductPricing,
+            props: true,
+            name: 'products.view.pricing',
+            meta: {title: 'Admin: Product Pricing'}
+        },
+        {
+            path: '/products/:productId/images',
+            component: ViewProductImages,
+            props: true,
+            name: 'products.view.images',
+            meta: {title: 'Admin: Product Images'}
+        },
+        {
+            path: '/products/:productId/customisations',
+            component: ViewProductCustomisations,
+            props: true,
+            name: 'products.view.customisations',
+            meta: {title: 'Admin: Product Customisations'}
+        },
+        {
+            path: '/products/:productId/variants',
+            component: ViewProductVariants,
+            props: true,
+            name: 'products.view.variants',
+            meta: {title: 'Admin: Product Variants'}
+        },
+        {
+            path: '/products/:productId/ordering',
+            component: ViewProductOrdering,
+            props: true,
+            name: 'products.view.ordering',
+            meta: {title: 'Admin: Product Ordering'}
+        },
+        {
             path: '/galleries',
             component: Galleries,
             name: 'galleries',
@@ -107,6 +170,19 @@ const router = new Router({
             component: Users,
             name: 'users',
             meta: {title: 'Admin: Users'}
+        },
+        {
+            path: '/forms',
+            component: Forms,
+            name: 'forms',
+            meta: {title: 'Admin: Forms'}
+        },
+        {
+            path: '/forms/:formId',
+            component: ViewForm,
+            props: true,
+            name: 'forms.view',
+            meta: {title: 'Admin: Forms'}
         },
         {
             path: '/config',

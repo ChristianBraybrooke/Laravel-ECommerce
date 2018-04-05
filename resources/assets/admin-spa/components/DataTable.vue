@@ -14,7 +14,9 @@
                   </el-input>
               </el-col>
               <el-col :sm="tableOptions.showTitle ? 12 : 24">
-                <el-button v-if="tableOptions.showNewBtn" @click="handleCreateData" class="create_btn" type="primary" plain>New {{ capitalTypeName }}</el-button>
+                <slot name="createButton">
+                    <el-button v-if="tableOptions.showNewBtn" @click="handleCreateData" class="create_btn" type="primary" plain>New {{ capitalTypeName }}</el-button>
+                </slot>
                 <el-button v-if="tableOptions.showRefreshBtn" class="refresh_btn" @click="getData" type="info" plain><i class="el-icon-refresh"></i></el-button>
               </el-col>
             </el-row>
@@ -115,7 +117,7 @@
         <el-dialog
             :title="'Create New ' + capitalTypeName"
             :visible.sync="dialogVisible"
-            :width="fullModal ? '100%' : '40%'"
+            :width="fullModal ? '100%' : '70%'"
             :fullscreen="fullModal">
 
             <errors v-if="Object.keys(createErrors).length > 0" :errors="createErrors"></errors>
@@ -213,6 +215,13 @@ export default {
           required: false,
           default () {
 
+          }
+      },
+      requestIncludes: {
+          type: Array,
+          required: false,
+          default () {
+              return [];
           }
       },
       baseUrl: {
@@ -428,14 +437,6 @@ export default {
         'setShopData',
     ]),
 
-    capitalize(str)
-    {
-        var lower = str.toLowerCase();
-        return lower.replace(/(^| )(\w)/g, function(x) {
-          return x.toUpperCase();
-        });
-    },
-
     /**
      * Retrieve the data from the server.
      *
@@ -450,6 +451,7 @@ export default {
           path: this.baseUrl ? this.baseUrl : this.typeName,
           params: {
             with: this.requestWith,
+            include: this.requestIncludes,
             limit: this.paginationMeta.perPage,
             ascending: this.paginationMeta.ascending,
             orderBy: this.paginationMeta.orderBy,
@@ -513,7 +515,7 @@ export default {
             this.loading = false;
         }.bind(this))
     },
-    
+
     /**
      * Delete data on the server.
      *
