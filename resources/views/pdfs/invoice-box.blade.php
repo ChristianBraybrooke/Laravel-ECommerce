@@ -1,5 +1,5 @@
 <div class="invoice-box">
-    <h1 style="text-align: center;">Invoice</h1>
+    <h1 style="text-align: center;">{{ $order->invoiceName() }}</h1>
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
             <td colspan="4">

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Print Invoice</title>
+    <title>Print</title>
     @component('ecommerce::pdfs.invoice-styling')
     @endcomponent
 </head>
