@@ -29,6 +29,7 @@ class Order extends Model implements OrderContract
       'STATUS_REFUNDED' => 'Refunded',
       'STATUS_AWAITING_PAYMENT' => 'Awaiting Payment',
       'STATUS_PAYMENT_FAILED' => 'Failed Payment',
+      'STATUS_ESTIMATE' => 'Estimate'
     ];
 
 
@@ -40,12 +41,16 @@ class Order extends Model implements OrderContract
     public function getStatuses()
     {
         $statuses = $this->statuses;
+<<<<<<< HEAD
 
+=======
+>>>>>>> new-order
         if ($this->status === $this->statuses['STATUS_PROCESSING']) {
             $statuses = array_except($this->statuses, ['STATUS_DRAFT']);
         }
         if ($this->status === $this->statuses['STATUS_COMPLETED']) {
             $statuses = array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
+<<<<<<< HEAD
         }
 
         $clean_statuses = [];
@@ -53,6 +58,15 @@ class Order extends Model implements OrderContract
           $clean_statuses[$status] = $status;
         }
         return $clean_statuses;
+=======
+        }
+
+        $only_values = [];
+        foreach ($statuses as $key => $status) {
+            $only_values[$status] = $status;
+        }
+        return $only_values;
+>>>>>>> new-order
     }
 
     /**
@@ -284,5 +298,15 @@ class Order extends Model implements OrderContract
     public function getStatusAttribute($value)
     {
         return isset($this->statuses[$value]) ? $this->statuses[$value] : null;
+    }
+
+    /**
+     * Get the name for the invoice.
+     *
+     * @return string
+     */
+    public function invoiceName()
+    {
+        return ($this->status === $this->statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === $this->statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
     }
 }

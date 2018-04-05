@@ -306,12 +306,16 @@ export default {
               var base_price = parseInt(product.price);
               var base_with_extras = base_price;
               var extras = 0;
-              forEach(product.options, function(option) {
-                  if (option.price_mutator && option.price_value) {
-                      base_with_extras = this.operators[option.price_mutator](base_with_extras, option.price_value);
-                      extras = this.operators[option.price_mutator](extras, option.price_value);
-                  }
-              }.bind(this));
+              if (product.options) {
+                  forEach(product.options, function(option) {
+                      if (option) {
+                          if (option.price_mutator && option.price_value) {
+                              base_with_extras = this.operators[option.price_mutator](base_with_extras, option.price_value);
+                              extras = this.operators[option.price_mutator](extras, option.price_value);
+                          }
+                      }
+                  }.bind(this));
+              }
 
               var quantity = product.quantity ? product.quantity : 1;
               var total = base_with_extras * quantity;
@@ -335,18 +339,13 @@ export default {
               this.$confirm('Are you sure to close the product selector?')
                 .then(_ => {
                     this.productAddErrors = {};
-                    this.$refs.addProductForm.resetFields();
                     this.addProductForm = {
                         edit: false,
                         product: {
                           quantity: 1,
                         },
                     }
-                    if (done) {
-                        done();
-                    } else {
-                        this.showProductModal = false;
-                    }
+                    this.showProductModal = false;
                 })
                 .catch(_ => {});
           },
@@ -474,8 +473,10 @@ export default {
 
           optionLabel(option)
           {
-              if (option.price_mutator && option.price_value) {
-                return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')'
+              if (option) {
+                  if (option.price_mutator && option.price_value) {
+                    return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')'
+                  }
               }
               return option.name;
           },
