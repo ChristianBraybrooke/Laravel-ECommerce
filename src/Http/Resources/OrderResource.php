@@ -34,6 +34,8 @@ class OrderResource extends Resource
             'amount_paid' => $this->amount_paid,
             'delivery_cost' => $this->delivery_cost,
             'delivery_date' => $this->delivery_date,
+            'thank_you_email_sent' => $this->thank_you_email_sent,
+            'shipping_email_sent' => $this->shipping_email_sent,
         ];
     }
 

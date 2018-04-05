@@ -108,7 +108,7 @@ class Order extends Model implements OrderContract
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date'
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent'
     ];
 
     /**
@@ -124,7 +124,7 @@ class Order extends Model implements OrderContract
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date'
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent'
     ];
 
     /**
@@ -134,8 +134,8 @@ class Order extends Model implements OrderContract
      */
     protected $casts = [
         'cart_data' => 'collection',
-        'use_billing_for_shipping' => 'boolean'
-        'send_auto_emails' => 'boolean'
+        'use_billing_for_shipping' => 'boolean',
+        'send_auto_emails' => 'boolean',
     ];
 
     /**
@@ -277,6 +277,17 @@ class Order extends Model implements OrderContract
     {
         return $value === 'stripe' ?
         $this->payment_source_brand . ' **** **** **** ' . $this->payment_source_last4 : ucfirst($value);
+    }
+
+    /**
+     * Format the amount paid
+     *
+     * @param $value
+     * @return string
+     */
+    public function getAmountPaidAttribute($value)
+    {
+        return is_null($value) ? null : priceFormatter(($value / 100));
     }
 
     /**

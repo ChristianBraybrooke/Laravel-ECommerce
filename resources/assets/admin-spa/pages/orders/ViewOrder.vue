@@ -11,7 +11,8 @@
                 <h1 v-if="order.invoice" class="page_title">Order: {{ order.invoice.number }} <el-tag v-if="order.status" type="info" size="large">{{ order.status }}</el-tag></h1>
             </el-col>
             <el-col :sm="24" :lg="12">
-                <el-button @click="preparePrint" style="float:right; margin-bottom:20px" type="success" plain>Print Invoice</el-button>
+                <el-button @click="preparePrint" size="small" style="float:right; margin-bottom:20px;" type="success" plain>Send Invoice</el-button>
+                <el-button @click="preparePrint" size="small" style="float:right; margin-bottom:20px; margin-right:10px" type="success">Print Invoice</el-button>
 
                 <iframe @load="printInvoice" v-if="!loading && printUrl" id="printLinkIframe" name="printLinkIframe" :src='printUrl' style="position:absolute;top:-9999px;left:-9999px;border:0px;overfow:none; z-index:-1"></iframe>
             </el-col>
@@ -35,6 +36,97 @@
                       <el-button type="primary" size="small" :loading="loading" @click="updateOrder()">Save</el-button>
                     </el-form-item>
                 </el-form>
+            </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+            <el-col :lg="12" style="margin-bottom: 50px;">
+                <el-card>
+                    <div slot="header" class="clearfix">
+                        Shipping Information
+                    </div>
+
+                    <el-form ref="shipmentInformationForm" :model="order" label-width="120px" size="mini">
+
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item label="Cost" prop="delivery_cost">
+                                    <el-input :autofocus="true" v-model="order.delivery_cost"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item label="Date" prop="delivery_date">
+                                    <el-date-picker v-model="order.delivery_date"
+                                                    type="date"
+                                                    style="width: 100%;"
+                                                    placeholder="Pick a day"
+                                                    format="dd/MM/yyyy"
+                                                    value-format="dd-mm-yyyy"
+                                                    :picker-options="deliveryDateOptions">
+                                    </el-date-picker>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item>
+                                    <el-button type="primary" :loading="loading" @click="updateOrder()">Save</el-button>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+                    </el-form>
+
+                </el-card>
+            </el-col>
+            <el-col :lg="12" style="margin-bottom: 50px;">
+                <el-card>
+                    <div slot="header" class="clearfix">
+                        <span>Payment Information</span>
+                        <a :href="'https://dashboard.stripe.com/payments/' + order.payment_id" target="_blank" v-if="order.payment_id" class="el-button el-button--text" style="float: right; padding: 3px 0; text-decoration: none;">View In Stripe</a>
+                    </div>
+
+                    <el-form ref="paymentInformationForm" :model="order" label-width="120px" size="mini">
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item label="Payment Id" prop="payment_id">
+                                    <el-input :disabled="true" :autofocus="true" v-model="order.payment_id"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item label="Payment Method" prop="payment_method">
+                                    <el-input :disabled="true" :autofocus="true" v-model="order.payment_method"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item label="Amount Paid" prop="amount_paid">
+                                    <el-input :disabled="true" :autofocus="true" v-model="order.amount_paid"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :xl="12">
+                                <el-form-item>
+                                    <!-- <el-button type="primary" :loading="loading" @click="updateOrder()">Save</el-button> -->
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+                    </el-form>
+                </el-card>
             </el-col>
         </el-row>
 
@@ -204,6 +296,16 @@ export default {
               invoiceLoaded: false,
               orderStatuses: {},
               printUrl: null,
+              deliveryDateOptions: {
+                shortcuts: [
+                    {
+                      text: 'Today',
+                      onClick(picker) {
+                        picker.$emit('pick', new Date());
+                      }
+                    }
+                ]
+              },
           }
       },
 
