@@ -134,7 +134,7 @@ class Order extends Model implements OrderContract
      */
     protected $casts = [
         'cart_data' => 'collection',
-        'use_billing_for_shipping' => 'boolean'
+        'use_billing_for_shipping' => 'boolean',
         'send_auto_emails' => 'boolean'
     ];
 
