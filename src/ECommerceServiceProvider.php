@@ -19,6 +19,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
 use Product;
 use Illuminate\Support\Facades\View;
+use Illuminate\Filesystem\Filesystem;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -30,7 +31,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.16';
+    const VERSION = '0.0.17';
 
     /**
      * Bootstrap the application events.
@@ -40,7 +41,9 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     public function boot()
     {
         $this->handleConfigs();
-        $this->handleMigrations();
+        if (env('APP_ENV') === 'local') {
+            $this->handleMigrations();
+        }
         $this->handleSeeds();
         $this->handleViews();
         $this->handleRoutes();
@@ -54,12 +57,12 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         // Make public assets available
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/ecommerce'),
-        ], 'ecommerce');
+        ], 'ecommerce-admin');
 
         // If we are in the local env, publish assets automatically
         if (env('APP_ENV') === 'local') {
             Artisan::call('vendor:publish', [
-               '--tag' => 'ecommerce',
+               '--tag' => 'ecommerce-admin',
                '--force' => true
             ]);
         }
@@ -205,7 +208,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     {
         $configPath = __DIR__ . '/../config/ecommerce.php';
 
-        $this->publishes([$configPath => config_path('ecommerce.php')], 'config');
+        $this->publishes([$configPath => config_path('ecommerce.php')], 'ecommerce-config');
 
         $this->mergeConfigFrom($configPath, 'ecommerce');
     }
@@ -229,7 +232,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'ecommerce');
 
-        $this->publishes([__DIR__.'/../resources/views' => base_path('resources/views/vendor/ecommerce')]);
+        $this->publishes([__DIR__.'/../resources/views' => base_path('resources/views/vendor/ecommerce')], 'ecommerce-views');
 
         View::composer('ecommerce::pdfs.*', function ($view) {
             $logo = getMediaFromSetting('Website Logo');
@@ -244,39 +247,44 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     private function handleMigrations()
     {
+        $files = new FileSystem();
+        foreach ($files->glob('database/migrations/*_*.php') as $key => $file) {
+            $files->requireOnce($file);
+        }
+
         if (! class_exists('UpdateRolesTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/update_roles_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_update_roles_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('UpdateUsersTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/update_users_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_update_users_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateProductsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_products_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_products_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateOrdersTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_orders_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_orders_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateProductCustomisationsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_product_customisations_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_product_customisations_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateProductCustomisationOptionsTable')) {
@@ -285,49 +293,49 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/' . date('Y_m_d_His', time()) . '_create_product_customisation_options_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreatePagesTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_pages_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_pages_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateMediaToModelsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_media_to_models_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_media_to_models_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateGalleriesTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_galleries_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_galleries_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateContentsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_contents_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_contents_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateCollectionsTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_collections_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_collections_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateCollectionTypesTable')) {
             $this->publishes([
                 __DIR__.'/../database/migrations/create_collection_types_table.php.stub' =>
                 database_path('migrations/'.date('Y_m_d_His', time()).'_create_collection_types_table.php'),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateCollectionTypeProductTable')) {
@@ -336,7 +344,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_collection_type_product_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateFormsTable')) {
@@ -345,7 +353,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_forms_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateImportsTable')) {
@@ -354,7 +362,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_imports_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateFormSectionsTable')) {
@@ -363,7 +371,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_form_sections_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateFormFieldsTable')) {
@@ -372,7 +380,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_form_fields_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateFormToModelsTable')) {
@@ -381,7 +389,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_form_to_models_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('AddOrderFormFieldToProductsTable')) {
@@ -390,7 +398,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_add_order_form_field_to_products_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
         }
 
         if (! class_exists('CreateImportToModelsTable')) {
@@ -399,7 +407,16 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_import_to_models_table.php'
                 ),
-            ], 'migrations');
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddDetailFieldsToOrdersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_detail_fields_to_orders_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_add_detail_fields_to_orders_table.php'
+                ),
+            ], 'ecommerce-migrations');
         }
     }
 
@@ -410,11 +427,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     private function handleSeeds()
     {
+        $files = new FileSystem();
+        foreach ($files->glob('database/seeds/*_*.php') as $key => $file) {
+            $files->requireOnce($file);
+        }
         if (! class_exists('RolesAndPermissionsSeeder')) {
             $this->publishes([
                 __DIR__.'/../database/seeds/RolesAndPermissionsSeeder.php.stub' =>
                 database_path('seeds/RolesAndPermissionsSeeder.php'),
-            ], 'seeds');
+            ], 'ecommerce-seeds');
         }
     }
 

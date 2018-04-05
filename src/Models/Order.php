@@ -41,24 +41,12 @@ class Order extends Model implements OrderContract
     public function getStatuses()
     {
         $statuses = $this->statuses;
-<<<<<<< HEAD
 
-=======
->>>>>>> new-order
         if ($this->status === $this->statuses['STATUS_PROCESSING']) {
             $statuses = array_except($this->statuses, ['STATUS_DRAFT']);
         }
         if ($this->status === $this->statuses['STATUS_COMPLETED']) {
             $statuses = array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
-<<<<<<< HEAD
-        }
-
-        $clean_statuses = [];
-        foreach ($statuses as $key => $status) {
-          $clean_statuses[$status] = $status;
-        }
-        return $clean_statuses;
-=======
         }
 
         $only_values = [];
@@ -66,7 +54,6 @@ class Order extends Model implements OrderContract
             $only_values[$status] = $status;
         }
         return $only_values;
->>>>>>> new-order
     }
 
     /**
@@ -120,7 +107,8 @@ class Order extends Model implements OrderContract
         'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'shipping_address_country',
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
-        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data'
+        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
+        'delivery_cost', 'delivery_date'
     ];
 
     /**
@@ -135,7 +123,8 @@ class Order extends Model implements OrderContract
         'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'shipping_address_country',
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
-        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data'
+        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
+        'delivery_cost', 'delivery_date'
     ];
 
     /**
@@ -146,6 +135,7 @@ class Order extends Model implements OrderContract
     protected $casts = [
         'cart_data' => 'collection',
         'use_billing_for_shipping' => 'boolean'
+        'send_auto_emails' => 'boolean'
     ];
 
     /**

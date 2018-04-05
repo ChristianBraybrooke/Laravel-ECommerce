@@ -30,6 +30,10 @@ class OrderResource extends Resource
             'updated_at' => $this->updated_at,
             'payment_method' => $this->payment_method,
             'payment_id' => $this->payment_id,
+            'send_auto_emails' => $this->send_auto_emails,
+            'amount_paid' => $this->amount_paid,
+            'delivery_cost' => $this->delivery_cost,
+            'delivery_date' => $this->delivery_date,
         ];
     }
 

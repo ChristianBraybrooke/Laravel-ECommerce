@@ -1,4 +1,4 @@
-window.ecommerceConfig.web_version = '0.0.16';
+window.ecommerceConfig.web_version = '0.0.17';
 
 import 'babel-polyfill';
 

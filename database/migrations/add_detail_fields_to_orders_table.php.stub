@@ -14,7 +14,10 @@ class AddDetailFieldsToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('level');
+            $table->boolean('send_auto_emails')->nullable()->default(null);
+            $table->integer('amount_paid')->nullable()->default(null);
+            $table->integer('delivery_cost')->nullable()->default(null);
+            $table->date('delivery_date')->nullable()->default(null);
         });
     }
 
@@ -26,7 +29,10 @@ class AddDetailFieldsToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('level');
+            $table->dropColumn('send_auto_emails');
+            $table->dropColumn('amount_paid');
+            $table->dropColumn('delivery_cost');
+            $table->dropColumn('delivery_date');
         });
     }
 }
