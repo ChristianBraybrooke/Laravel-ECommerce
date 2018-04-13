@@ -17,11 +17,13 @@ php artisan vendor:publish --tag=ecommerce-admin
 php artisan vendor:publish --tag=migration
 
 php artisan migrate
-
-php artisan passport:install
 ```
 
-We use Laravel Passport under the hood, so make sure this middleware is in your web group.
+We use Laravel Passport under the hood, so make sure this middleware is in your web group and you install passport.
+
+```sh
+php artisan passport:install
+```
 
 ```sh
 'web' => [
