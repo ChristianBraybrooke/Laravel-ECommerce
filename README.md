@@ -14,4 +14,18 @@ Setup:
 php artisan vendor:publish --tag=ecommerce-config
 php artisan vendor:publish --tag=ecommerce-migrations
 php artisan vendor:publish --tag=ecommerce-admin
+php artisan vendor:publish --tag=migration
+
+php artisan migrate
+
+php artisan passport:install
+```
+
+We use Laravel Passport under the hood, so make sure this middleware is in your web group.
+
+```sh
+'web' => [
+    // Other middleware...
+    \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+],
 ```
