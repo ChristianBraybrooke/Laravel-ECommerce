@@ -152,7 +152,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     {
         // Load the helpers.php
         if (file_exists($file = __DIR__ . '/helpers.php')) {
-            require $file;
+            include_once($file);
         }
     }
 
@@ -369,7 +369,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/create_form_sections_table.php.stub' =>
                 database_path(
-                    'migrations/'.date('Y_m_d_His', time()).'_create_form_sections_table.php'
+                    'migrations/'.date('Y_m_d_His', time() + 1).'_create_form_sections_table.php'
                 ),
             ], 'ecommerce-migrations');
         }
@@ -378,7 +378,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/create_form_fields_table.php.stub' =>
                 database_path(
-                    'migrations/'.date('Y_m_d_His', time()).'_create_form_fields_table.php'
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_create_form_fields_table.php'
                 ),
             ], 'ecommerce-migrations');
         }
@@ -396,7 +396,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/add_order_form_field_to_products_table.php.stub' =>
                 database_path(
-                    'migrations/'.date('Y_m_d_His', time()).'_add_order_form_field_to_products_table.php'
+                    'migrations/'.date('Y_m_d_His', time() + 1).'_add_order_form_field_to_products_table.php'
                 ),
             ], 'ecommerce-migrations');
         }
@@ -414,7 +414,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations/add_detail_fields_to_orders_table.php.stub' =>
                 database_path(
-                    'migrations/'.date('Y_m_d_His', time()).'_add_detail_fields_to_orders_table.php'
+                    'migrations/'.date('Y_m_d_His', time() + 1).'_add_detail_fields_to_orders_table.php'
                 ),
             ], 'ecommerce-migrations');
         }
