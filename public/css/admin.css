@@ -64384,6 +64384,7 @@ strong {
   position: fixed;
   width: 200px;
   background: #f5f7fa;
+  overflow: scroll;
 }
 
 .cb_menu_vertical.el-menu--collapse {

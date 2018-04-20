@@ -2,6 +2,8 @@
 
 namespace ChrisBraybrooke\ECommerce\Traits;
 
+use App;
+
 trait HasContentAttached
 {
     /**
@@ -20,11 +22,15 @@ trait HasContentAttached
      * @param String $type
      * @return App\Content
      */
-    public function contentByName($type)
+    public function contentByName($type, $lang = null)
     {
+        if (!$lang) {
+            $lang = App::getLocale();
+        }
         $content = $this->content
-                    ->where('content_name', $type)
-                    ->first();
+                        ->where('lang', $lang)
+                        ->where('content_name', $type)
+                        ->first();
 
         return $content ? $content->content : null;
     }

@@ -78,7 +78,7 @@ class ApiPagesController extends Controller
 
         $page->update([
             'name' => $request->name,
-            'slug' => $request->slug ?: $page->slug,
+            'slug' => $request->has('slug') ? $request->slug : $page->slug,
             'live_at' => $live,
             'in_menu' => $request->in_menu ?: $page->in_menu
         ]);
@@ -86,7 +86,10 @@ class ApiPagesController extends Controller
         if ($request->filled('content.data')) {
             foreach ($request->input('content.data') as $key => $content) {
                 $page->content()->updateOrCreate(
-                    ['content_name' => $content['content_name']],
+                    [
+                        'content_name' => $content['content_name'],
+                        'lang' => $content['language']
+                    ],
                     ['content' => $content['content']]
                 );
             }

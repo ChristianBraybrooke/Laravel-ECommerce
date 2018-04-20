@@ -12,7 +12,7 @@ trait SluggableTrait
      */
     public function setSlugAttribute($value)
     {
-        $this->attributes['slug'] = $this->formatSlug($value ?: $this->attributes['name']);
+        $this->attributes['slug'] = $this->formatSlug($value);
     }
 
     /**
@@ -23,11 +23,19 @@ trait SluggableTrait
      */
     public function formatSlug($value)
     {
-        $slug = str_slug($value);
+        $slug = $value ? str_slug($value) : '';
 
-        $other_slugs = self::withoutGlobalScopes()
-                           ->where('slug', 'like', $slug . '%')
-                           ->get();
+        if ($slug) {
+            $other_slugs = self::withoutGlobalScopes()
+                               ->where('slug', 'like', $slug . '%')
+                               ->where('id', '!==', $this->id)
+                               ->get();
+        } else {
+            $other_slugs = self::withoutGlobalScopes()
+                               ->whereNull('slug')
+                               ->where('id', '!==', $this->id)
+                               ->get();
+        }
 
         if ($other_slugs->count() >= 1) {
             $slug = $slug . '-' . ($other_slugs->count() + 1);

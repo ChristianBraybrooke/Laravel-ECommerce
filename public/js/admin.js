@@ -3184,18 +3184,24 @@ function mergeFn (a, b) {
 /***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/admin.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout__ = __webpack_require__("./resources/assets/admin-spa/layouts/MainLayout.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout__);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+var _MainLayout = __webpack_require__("./resources/assets/admin-spa/layouts/MainLayout.vue");
+
+var _MainLayout2 = _interopRequireDefault(_MainLayout);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
     name: 'Admin',
-    components: { Layout: __WEBPACK_IMPORTED_MODULE_0__layouts_MainLayout___default.a },
+    components: { Layout: _MainLayout2.default },
     mounted: function mounted() {
         document.title = this.$route.meta.title ? this.$route.meta.title : 'Admin: ' + this.$route.name;
         console.log('Admin.vue mounted.');
@@ -3211,7 +3217,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
         }
     }
-});
+};
 
 /***/ }),
 
@@ -80504,6 +80510,9 @@ module.exports = Component.exports
 /***/ "./resources/assets/admin-spa/axios.js":
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 window.axios = __webpack_require__("./node_modules/axios/index.js");
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -80838,10 +80847,15 @@ exports.default = router;
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/services/api-service.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
@@ -80849,7 +80863,7 @@ var BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/'
 var SERVER_ERROR_MESSAGE = "We could not access the server at this time. Please try again. If the issue persists, please open a support ticket.";
 var SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are not authorised to do so.";
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
     get: function get(data) {
         if (!has(data, 'params')) {
             data.params = {};
@@ -80961,7 +80975,7 @@ var SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are 
             code: error.status
         };
     }
-});
+};
 
 /***/ }),
 
@@ -81023,19 +81037,30 @@ exports.default = new _vuex2.default.Store({
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/collections.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__mutation_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _mutations;
 
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
 
 // initial state
 var state = {
@@ -81072,14 +81097,14 @@ var state = {
 
     return new Promise(function (resolve, reject) {
 
-      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["default"].get(data).then(function (response) {
+      _apiService2.default.get(data).then(function (response) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_COLLECTIONS"], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_COLLECTION_ERRORS"], []);
+        commit(types.GET_COLLECTIONS, response.data);
+        commit(types.GET_COLLECTION_ERRORS, []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_COLLECTION_ERRORS"], error);
+        commit(types.GET_COLLECTION_ERRORS, error);
         reject(error);
       }.bind(_this));
     });
@@ -81087,18 +81112,18 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_COLLECTIONS"], function (state, collections) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.GET_COLLECTIONS, function (state, collections) {
   state.collections = collections;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_COLLECTION_ERRORS"], function (state, error) {
+}), _defineProperty(_mutations, types.GET_COLLECTION_ERRORS, function (state, error) {
   state.collectionErrors = error;
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-});
+};
 
 /***/ }),
 
@@ -81253,19 +81278,30 @@ exports.default = {
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/shop-data.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__mutation_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _mutations;
 
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
+
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
 
 // initial state
 var state = {
@@ -81302,14 +81338,14 @@ var state = {
 
     return new Promise(function (resolve, reject) {
 
-      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["default"].get(data).then(function (response) {
+      _apiService2.default.get(data).then(function (response) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA"], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA_ERRORS"], []);
+        commit(types.GET_SHOP_DATA, response.data);
+        commit(types.GET_SHOP_DATA_ERRORS, []);
         resolve(response);
       }.bind(_this)).catch(function (error) {
 
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA_ERRORS"], error);
+        commit(types.GET_SHOP_DATA_ERRORS, error);
         reject(error);
       }.bind(_this));
     });
@@ -81320,39 +81356,52 @@ var state = {
     var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     console.log('Vuex: Set Shop Data');
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA"], data);
-    commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA_ERRORS"], []);
+    commit(types.GET_SHOP_DATA, data);
+    commit(types.GET_SHOP_DATA_ERRORS, []);
   }
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA"], function (state, shopData) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.GET_SHOP_DATA, function (state, shopData) {
   state.shopData = shopData;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["GET_SHOP_DATA_ERRORS"], function (state, error) {
+}), _defineProperty(_mutations, types.GET_SHOP_DATA_ERRORS, function (state, error) {
   state.shopDataErrors = error;
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-});
+};
 
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/store/modules/user.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types__ = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mutation_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__mutation_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _mutations;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _mutationTypes = __webpack_require__("./resources/assets/admin-spa/store/mutation-types.js");
 
+var types = _interopRequireWildcard(_mutationTypes);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
@@ -81394,13 +81443,13 @@ var state = {
 
     return new Promise(function (resolve, reject) {
       if (!state.user.created_at || Date.now() - state.userLastFetched > FETCH_BUFFER) {
-        __WEBPACK_IMPORTED_MODULE_1__services_api_service__["default"].get(data).then(function (response) {
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["USER_LAST_FETCHED"], Date.now());
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER"], response.data);
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER_ERRORS"], []);
+        _apiService2.default.get(data).then(function (response) {
+          commit(types.USER_LAST_FETCHED, Date.now());
+          commit(types.UPDATE_USER, response.data);
+          commit(types.UPDATE_USER_ERRORS, []);
           resolve(response.data);
         }.bind(_this)).catch(function (error) {
-          commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER_ERRORS"], error);
+          commit(types.UPDATE_USER_ERRORS, error);
           reject(error);
         }.bind(_this));
       } else {
@@ -81428,13 +81477,13 @@ var state = {
     }
 
     return new Promise(function (resolve, reject) {
-      __WEBPACK_IMPORTED_MODULE_1__services_api_service__["default"].persist('put', data).then(function (response) {
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["USER_LAST_FETCHED"], Date.now());
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER"], response.data);
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER_ERRORS"], []);
+      _apiService2.default.persist('put', data).then(function (response) {
+        commit(types.USER_LAST_FETCHED, Date.now());
+        commit(types.UPDATE_USER, response.data);
+        commit(types.UPDATE_USER_ERRORS, []);
         resolve(response.data);
       }.bind(_this2)).catch(function (error) {
-        commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER_ERRORS"], error);
+        commit(types.UPDATE_USER_ERRORS, error);
         reject(error);
       }.bind(_this2));
     });
@@ -81442,22 +81491,22 @@ var state = {
 };
 
 // mutations
-var mutations = (_mutations = {}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER"], function (state, user) {
+var mutations = (_mutations = {}, _defineProperty(_mutations, types.UPDATE_USER, function (state, user) {
   state.user = user;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["UPDATE_USER_ERRORS"], function (state, error) {
+}), _defineProperty(_mutations, types.UPDATE_USER_ERRORS, function (state, error) {
   state.userErrors = error;
-}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_0__mutation_types__["USER_LAST_FETCHED"], function (state, data) {
+}), _defineProperty(_mutations, types.USER_LAST_FETCHED, function (state, data) {
   state.userLastFetched = data;
 }), _defineProperty(_mutations, 'updateUserForm', function updateUserForm(state, data) {
   state.user[data.key] = data.value;
 }), _mutations);
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
   state: state,
   getters: getters,
   actions: actions,
   mutations: mutations
-});
+};
 
 /***/ }),
 
@@ -81493,28 +81542,36 @@ var DELETE_ITEM = exports.DELETE_ITEM = 'DELETE_ITEM';
 /***/ }),
 
 /***/ "./resources/assets/admin-spa/utils/color.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_css_color_function__ = __webpack_require__("./node_modules/css-color-function/lib/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_css_color_function___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_css_color_function__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formula_json__ = __webpack_require__("./resources/assets/admin-spa/utils/formula.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__formula_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__formula_json__);
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _cssColorFunction = __webpack_require__("./node_modules/css-color-function/lib/index.js");
+
+var _cssColorFunction2 = _interopRequireDefault(_cssColorFunction);
+
+var _formula = __webpack_require__("./resources/assets/admin-spa/utils/formula.json");
+
+var _formula2 = _interopRequireDefault(_formula);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var generateColors = function generateColors(primary) {
   var colors = {};
 
-  Object.keys(__WEBPACK_IMPORTED_MODULE_1__formula_json___default.a).forEach(function (key) {
-    var value = __WEBPACK_IMPORTED_MODULE_1__formula_json___default.a[key].replace(/primary/g, primary);
-    colors[key] = __WEBPACK_IMPORTED_MODULE_0_css_color_function___default.a.convert(value);
+  Object.keys(_formula2.default).forEach(function (key) {
+    var value = _formula2.default[key].replace(/primary/g, primary);
+    colors[key] = _cssColorFunction2.default.convert(value);
   });
   return colors;
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (generateColors);
+exports.default = generateColors;
 
 /***/ }),
 

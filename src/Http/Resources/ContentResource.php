@@ -19,6 +19,9 @@ class ContentResource extends Resource
             'id' => $this->id,
             'content_name' => $this->content_name,
             'content' => $this->content,
+            'language' => $this->lang,
+            'type' => $this->type,
+            'order' => $this->order,
         ];
     }
 

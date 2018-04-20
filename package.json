@@ -72,6 +72,7 @@
         "lodash.findkey": "^4.6.0",
         "lodash.findlastkey": "^4.7.0",
         "lodash.foreach": "^4.5.0",
+        "lodash.groupby": "^4.6.0",
         "lodash.has": "^4.5.2",
         "lodash.head": "^4.0.1",
         "lodash.last": "^3.0.0",

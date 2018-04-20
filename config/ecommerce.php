@@ -63,6 +63,12 @@ return [
 
       //
       'form_section' => ChrisBraybrooke\ECommerce\Models\FormSection::class,
+
+      //
+      'language' => ChrisBraybrooke\ECommerce\Models\Language::class,
+
+      //
+      'currency' => ChrisBraybrooke\ECommerce\Models\Currency::class,
   ],
 
   'shopData' => [

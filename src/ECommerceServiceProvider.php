@@ -125,6 +125,12 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         // FormSection
         $this->app->bind(FormSectionContract::class, $config['form_section']);
         $loader->alias('FormSection', $config['form_section']);
+
+        // Language
+        $loader->alias('Language', $config['language']);
+
+        // Currency
+        $loader->alias('Currency', $config['currency']);
     }
 
     /**
@@ -415,6 +421,33 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/add_detail_fields_to_orders_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 1).'_add_detail_fields_to_orders_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddLangCollumnToContentsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_lang_collumn_to_contents_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 1).'_add_lang_collumn_to_contents_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('CreateLanguagesTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_languages_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 1).'_create_languages_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('CreateCurrenciesTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_currencies_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_create_currencies_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

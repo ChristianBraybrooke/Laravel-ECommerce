@@ -56,11 +56,6 @@
 
                   <el-row :gutter="20">
                       <el-col :md="12" :sm="24">
-                          <el-form-item label="Name" prop="name">
-                              <el-input :autofocus="true" v-model="page.name"></el-input>
-                          </el-form-item>
-                      </el-col>
-                      <el-col :md="12" :sm="24">
                           <el-form-item label="Slug / Url" prop="slug">
                               <el-input v-model="page.slug">
                                   <template slot="prepend">{{ getSiteBaseURL }}</template>
@@ -69,16 +64,7 @@
                       </el-col>
                   </el-row>
 
-                  <el-row :gutter="20">
-                      <el-col :sm="24">
-                          <el-form-item v-if="hasContent('Main Content')" label="Main Content" prop="content.data[findContentIndexFromName(Main Content)]">
-                              <quill-editor v-model="page.content.data[findContentIndexFromName('Main Content')].content"
-                                            ref="myQuillEditor"
-                                            :options="editorOption">
-                              </quill-editor>
-                          </el-form-item>
-                      </el-col>
-                  </el-row>
+                  <content-component v-if="page.content" :content="page.content"/>
 
                   </el-form-item>
 
@@ -104,12 +90,7 @@
 import api from "../../services/api-service.js";
 var findIndex = require('lodash.findindex');
 var has = require('lodash.has');
-
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-
-import { quillEditor } from 'vue-quill-editor';
+var filter = require('lodash.filter');
 
 export default {
 
@@ -117,8 +98,8 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
+          ContentComponent: () => import('../../components/ContentComponent.vue'),
           FilePickerModal: () => import('../../components/FilePickerModal.vue'),
-          quillEditor
       },
 
       props: {
@@ -132,22 +113,6 @@ export default {
           return {
               loading: false,
               page: {},
-              editorOption: {
-                modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],
-                      ['blockquote'],
-
-                      [{ 'header': 1 }, { 'header': 2 }],
-
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-
-                      [{ 'align': [] }],
-                      ['clean'],
-                      ['link', 'video']
-                  ]
-                }
-              },
               pageErrors: {},
               pageFormRules: {},
           }

@@ -12,6 +12,7 @@ p, a, span, li, div, h1, h2, h3, h4, h4, small, strong {
     position: fixed;
     width: 200px;
     background: $--background-color-menu;
+    overflow: scroll;
 }
 .cb_menu_vertical.el-menu--collapse {
     width: 65px;
