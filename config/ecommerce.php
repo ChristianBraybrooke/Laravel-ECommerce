@@ -65,8 +65,13 @@ return [
       'form_section' => ChrisBraybrooke\ECommerce\Models\FormSection::class,
   ],
 
-  'shopData' => [
+  'shop_data' => [
 
+      //
+      'collection_mappings' => ['Home Header Collection', 'Home Panels Collection'],
+
+      //
+      'site_images' => ['Website Logo', 'Website Logo Inverse']
   ],
 
 ];

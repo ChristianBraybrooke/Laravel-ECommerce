@@ -4,6 +4,7 @@ namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
+use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 use Setting;
 use Artisan;
 
@@ -23,7 +24,12 @@ class ApiSettingsController extends Controller
      */
     public function index(Request $request)
     {
-        return ['data' => Setting::all() ?: ['url' => env('APP_URL', 'https://www.example.com')]];
+        $data = ['data' => Setting::all() ?: ['url' => env('APP_URL', 'https://www.example.com')]];
+
+        $shop = new ShopResource($request);
+        $data['shop_data'] = $shop->toArray($request);
+
+        return $data;
     }
 
     /**

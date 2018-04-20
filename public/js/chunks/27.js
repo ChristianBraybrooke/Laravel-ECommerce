@@ -91,7 +91,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 
 exports.default = {
 
-    name: 'ViewProductPageLayout',
+    name: 'ProductPageLayout',
 
     components: {
         PageLayout: function PageLayout() {

@@ -689,7 +689,7 @@ var render = function() {
                 attrs: {
                   "type-name": _vm.collectionName,
                   "table-options": _vm.tableOptions,
-                  "edit-path": "collections/" + _vm.collectionId + "/types",
+                  "edit-path": "/collections/" + _vm.collectionId + "/types",
                   "create-form-rules": _vm.createFormRules,
                   "base-url": "collections/" + _vm.collectionId + "/types",
                   "bulk-update-url":

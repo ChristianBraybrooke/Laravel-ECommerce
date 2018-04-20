@@ -58,6 +58,9 @@
                             <el-option label="Products"
                                        value="Product">
                             </el-option>
+                            <el-option label="CollectionTypes"
+                                       value="CollectionType">
+                            </el-option>
                         </el-select>
                     </el-form-item>
 

@@ -75,7 +75,7 @@ var orderBy = require('lodash.orderby');
 
 export default {
 
-      name: 'ViewProductPageLayout',
+      name: 'ProductPageLayout',
 
       components: {
           PageLayout: () => import('../PageLayout.vue'),
