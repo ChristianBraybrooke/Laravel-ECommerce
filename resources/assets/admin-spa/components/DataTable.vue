@@ -461,7 +461,7 @@ export default {
         })
         .then(function (data) {
             this.Data = data.data;
-            this.setShopData(data.shop_data)
+            this.setShopData(data.shop_data);
             this.shopData = data.shop_data;
             this.paginationMeta = {
                 total: data.meta.total,

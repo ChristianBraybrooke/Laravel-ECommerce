@@ -10,275 +10,252 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 
 var _apiService2 = _interopRequireDefault(_apiService);
 
+var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
+var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js");
 exports.default = {
 
     name: 'Config',
@@ -301,6 +278,7 @@ exports.default = {
             settingsErrors: {},
             settingsForm: {},
             collections: {},
+            shopData: {},
             featured_product_types: {},
             users: {},
             currentTab: 'general'
@@ -324,7 +302,7 @@ exports.default = {
     },
 
 
-    methods: {
+    methods: _extends({}, (0, _vuex.mapActions)(['setShopData']), {
         p: function p(path) {
             var segments = path.split('.');
             return function () {
@@ -339,12 +317,6 @@ exports.default = {
         ucFirst: function ucFirst(value) {
             return upperFirst(value);
         },
-        shouldShowInput: function shouldShowInput(key) {
-            if (key === 'Admin Notifications' || key === 'Home Header Collection' || key === 'Home Panels Collection') {
-                return false;
-            }
-            return true;
-        },
         getSettings: function getSettings() {
             this.loading = true;
             this.settingsErrors = {};
@@ -354,6 +326,8 @@ exports.default = {
             }).then(function (data) {
                 this.loading = false;
                 this.settings = data.data;
+                this.setShopData(data.shop_data);
+                this.shopData = data.shop_data;
                 if (!this.settings['Admin Notifications']) {
                     this.settings['Admin Notifications'] = [];
                 }
@@ -427,7 +401,7 @@ exports.default = {
         handleFilesUnChosen: function handleFilesUnChosen(data) {
             this.$set(this.settings, data.id, data.files);
         }
-    }
+    })
 
 };
 
@@ -845,695 +819,604 @@ var render = function() {
                             { attrs: { label: "General", name: "general" } },
                             [
                               _c(
-                                "el-col",
-                                { attrs: { lg: 12, md: 24 } },
+                                "el-row",
+                                { attrs: { gutter: 20 } },
                                 [
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Site Url",
-                                            prop: "url"
-                                          }
-                                        },
-                                        [
-                                          _c("el-input", {
-                                            attrs: { disabled: "" },
-                                            model: {
-                                              value: _vm.settings["url"],
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.settings,
-                                                  "url",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "settings['url']"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Contact Phone",
-                                            prop: "Contact Phone"
-                                          }
-                                        },
-                                        [
-                                          _c("el-input", {
-                                            model: {
-                                              value:
-                                                _vm.settings["Contact Phone"],
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.settings,
-                                                  "Contact Phone",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "settings['Contact Phone']"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Contact Email",
-                                            prop: "Contact Email"
-                                          }
-                                        },
-                                        [
-                                          _c("el-input", {
-                                            model: {
-                                              value:
-                                                _vm.settings["Contact Email"],
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.settings,
-                                                  "Contact Email",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "settings['Contact Email']"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Admin Notifications",
-                                            prop: "Admin Notifications"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: {
-                                                placeholder: "Select",
-                                                multiple: "",
-                                                filterable: ""
-                                              },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Admin Notifications"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Admin Notifications",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Admin Notifications']"
-                                              }
-                                            },
-                                            _vm._l(_vm.users, function(user) {
-                                              return user.name
-                                                ? _c("el-option", {
-                                                    key: user.name.full,
-                                                    attrs: {
-                                                      label: user.name.full,
-                                                      value: user.id
-                                                    }
-                                                  })
-                                                : _vm._e()
-                                            })
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Invoice Number Prefix",
-                                            prop: "Invoice Number Prefix"
-                                          }
-                                        },
-                                        [
-                                          _c("el-input", {
-                                            model: {
-                                              value:
-                                                _vm.settings[
-                                                  "Invoice Number Prefix"
-                                                ],
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.settings,
-                                                  "Invoice Number Prefix",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "settings['Invoice Number Prefix']"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Currency",
-                                            prop: "Currency"
-                                          }
-                                        },
-                                        [
-                                          _c("el-input", {
-                                            model: {
-                                              value: _vm.settings["Currency"],
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.settings,
-                                                  "Currency",
-                                                  $$v
-                                                )
-                                              },
-                                              expression: "settings['Currency']"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Price Thousand Seperator",
-                                            prop: "Price Thousand Seperator"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Price Thousand Seperator"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Price Thousand Seperator",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Price Thousand Seperator']"
-                                              }
-                                            },
-                                            [
-                                              _c("el-option", {
-                                                key: 0,
-                                                attrs: {
-                                                  label: ",",
-                                                  value: ","
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("el-option", {
-                                                key: 1,
-                                                attrs: { label: "", value: "" }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Price Decimal Seperator",
-                                            prop: "Price Decimal Seperator"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Price Decimal Seperator"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Price Decimal Seperator",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Price Decimal Seperator']"
-                                              }
-                                            },
-                                            [
-                                              _c("el-option", {
-                                                key: 0,
-                                                attrs: {
-                                                  label: ",",
-                                                  value: ","
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("el-option", {
-                                                key: 1,
-                                                attrs: {
-                                                  label: ".",
-                                                  value: "."
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("el-option", {
-                                                key: 2,
-                                                attrs: {
-                                                  label: ":",
-                                                  value: ":"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Price Numer of Decimals",
-                                            prop: "Price Numer of Decimals"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Price Numer of Decimals"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Price Numer of Decimals",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Price Numer of Decimals']"
-                                              }
-                                            },
-                                            [
-                                              _c("el-option", {
-                                                key: 0,
-                                                attrs: { label: 0, value: 0 }
-                                              }),
-                                              _vm._v(" "),
-                                              _c("el-option", {
-                                                key: 2,
-                                                attrs: { label: 2, value: 2 }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Shipping Rate",
-                                            prop: "Shipping Rate"
-                                          }
-                                        },
-                                        [
-                                          _c("el-input", {
-                                            model: {
-                                              value:
-                                                _vm.settings["Shipping Rate"],
-                                              callback: function($$v) {
-                                                _vm.$set(
-                                                  _vm.settings,
-                                                  "Shipping Rate",
-                                                  $$v
-                                                )
-                                              },
-                                              expression:
-                                                "settings['Shipping Rate']"
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Advert Collection",
-                                            prop: "Advert Collection"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Advert Collection"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Advert Collection",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Advert Collection']"
-                                              }
-                                            },
-                                            _vm._l(_vm.collections, function(
-                                              type
-                                            ) {
-                                              return _c("el-option", {
-                                                key: type.name,
-                                                attrs: {
-                                                  label: type.name,
-                                                  value: type.id
-                                                }
-                                              })
-                                            })
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e()
+                                  _c("el-col", { attrs: { md: 12 } }, [
+                                    _c("h5", [_vm._v("Site Information")])
+                                  ])
                                 ],
                                 1
                               ),
                               _vm._v(" "),
                               _c(
-                                "el-col",
-                                { attrs: { lg: 12, md: 24 } },
+                                "el-row",
+                                { attrs: { gutter: 20 } },
                                 [
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Website Logo",
-                                            prop: "Website Logo"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-button",
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
                                             {
                                               attrs: {
-                                                type: "info",
-                                                plain: "",
-                                                size: "mini"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.displayFilePicker(
-                                                    "websiteLogoPicker"
-                                                  )
-                                                }
+                                                label: "Site Url",
+                                                size: "small",
+                                                prop: "url"
                                               }
                                             },
                                             [
-                                              _vm._v("Select File "),
-                                              _c("i", {
-                                                staticClass: "el-icon-document"
+                                              _c("el-input", {
+                                                attrs: { disabled: "" },
+                                                model: {
+                                                  value: _vm.settings["url"],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      "url",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "settings['url']"
+                                                }
                                               })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("file-picker-modal", {
-                                            ref: "websiteLogoPicker",
-                                            attrs: {
-                                              "current-files":
-                                                _vm.settings["Website Logo"] &&
-                                                _vm.settings["Website Logo"][0]
-                                                  ? [
-                                                      _vm.settings[
-                                                        "Website Logo"
-                                                      ][0]
-                                                    ]
-                                                  : undefined,
-                                              name: "Website Logo",
-                                              selectable: 1,
-                                              "picker-id": "Website Logo",
-                                              "open-on-mount": false
-                                            },
-                                            on: {
-                                              filesChosen:
-                                                _vm.handleFilesChosen,
-                                              filesUnChosen:
-                                                _vm.handleFilesUnChosen
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Website Logo White",
-                                            prop: "Website Logo White"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-button",
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
                                             {
                                               attrs: {
-                                                type: "info",
-                                                plain: "",
-                                                size: "mini"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.displayFilePicker(
-                                                    "websiteLogoWhitePicker"
-                                                  )
-                                                }
+                                                label: "Contact Phone",
+                                                size: "small",
+                                                prop: "Contact Phone"
                                               }
                                             },
                                             [
-                                              _vm._v("Select File "),
-                                              _c("i", {
-                                                staticClass: "el-icon-document"
+                                              _c("el-input", {
+                                                model: {
+                                                  value:
+                                                    _vm.settings[
+                                                      "Contact Phone"
+                                                    ],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      "Contact Phone",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "settings['Contact Phone']"
+                                                }
                                               })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("file-picker-modal", {
-                                            ref: "websiteLogoWhitePicker",
-                                            attrs: {
-                                              "current-files":
-                                                _vm.settings[
-                                                  "Website Logo White"
-                                                ] &&
-                                                _vm.settings[
-                                                  "Website Logo White"
-                                                ][0]
-                                                  ? [
-                                                      _vm.settings[
-                                                        "Website Logo White"
-                                                      ][0]
-                                                    ]
-                                                  : undefined,
-                                              name: "Website Logo White",
-                                              selectable: 1,
-                                              "picker-id": "Website Logo White",
-                                              "open-on-mount": false
-                                            },
-                                            on: {
-                                              filesChosen:
-                                                _vm.handleFilesChosen,
-                                              filesUnChosen:
-                                                _vm.handleFilesUnChosen
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
                                   _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Website Watermark",
-                                            prop: "Website Watermark"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-button",
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
                                             {
                                               attrs: {
-                                                type: "info",
-                                                plain: "",
-                                                size: "mini"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.displayFilePicker(
-                                                    "websiteWatermarkPicker"
-                                                  )
-                                                }
+                                                label: "Contact Email",
+                                                size: "small",
+                                                prop: "Contact Email"
                                               }
                                             },
                                             [
-                                              _vm._v("Select File "),
-                                              _c("i", {
-                                                staticClass: "el-icon-document"
+                                              _c("el-input", {
+                                                model: {
+                                                  value:
+                                                    _vm.settings[
+                                                      "Contact Email"
+                                                    ],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      "Contact Email",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "settings['Contact Email']"
+                                                }
                                               })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("file-picker-modal", {
-                                            ref: "websiteWatermarkPicker",
-                                            attrs: {
-                                              "current-files":
-                                                _vm.settings[
-                                                  "Website Watermark"
-                                                ] &&
-                                                _vm.settings[
-                                                  "Website Watermark"
-                                                ][0]
-                                                  ? [
-                                                      _vm.settings[
-                                                        "Website Watermark"
-                                                      ][0]
-                                                    ]
-                                                  : undefined,
-                                              name: "Website Watermark",
-                                              selectable: 1,
-                                              "picker-id": "Website Watermark",
-                                              "open-on-mount": false
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "form_hr" }),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c("el-col", { attrs: { md: 12 } }, [
+                                    _c("h5", [_vm._v("Admin Notifications")])
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: "Admin Notifications",
+                                                prop: "Admin Notifications",
+                                                size: "small"
+                                              }
                                             },
-                                            on: {
-                                              filesChosen:
-                                                _vm.handleFilesChosen,
-                                              filesUnChosen:
-                                                _vm.handleFilesUnChosen
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
+                                            [
+                                              _c(
+                                                "el-select",
+                                                {
+                                                  staticClass: "config_select",
+                                                  attrs: {
+                                                    placeholder: "Select",
+                                                    multiple: "",
+                                                    filterable: ""
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.settings[
+                                                        "Admin Notifications"
+                                                      ],
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.settings,
+                                                        "Admin Notifications",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "settings['Admin Notifications']"
+                                                  }
+                                                },
+                                                _vm._l(_vm.users, function(
+                                                  user
+                                                ) {
+                                                  return user.name
+                                                    ? _c("el-option", {
+                                                        key: user.name.full,
+                                                        attrs: {
+                                                          label: user.name.full,
+                                                          value: user.id
+                                                        }
+                                                      })
+                                                    : _vm._e()
+                                                })
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "form_hr" }),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c("el-col", { attrs: { md: 12 } }, [
+                                    _c("h5", [_vm._v("Order Information")])
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: "Invoice Number Prefix",
+                                                prop: "Invoice Number Prefix",
+                                                size: "small"
+                                              }
+                                            },
+                                            [
+                                              _c("el-input", {
+                                                model: {
+                                                  value:
+                                                    _vm.settings[
+                                                      "Invoice Number Prefix"
+                                                    ],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      "Invoice Number Prefix",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "settings['Invoice Number Prefix']"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: "Currency",
+                                                prop: "Currency",
+                                                size: "small"
+                                              }
+                                            },
+                                            [
+                                              _c("el-input", {
+                                                model: {
+                                                  value:
+                                                    _vm.settings["Currency"],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      "Currency",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "settings['Currency']"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 5, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label:
+                                                  "Price Thousand Seperator",
+                                                prop:
+                                                  "Price Thousand Seperator",
+                                                size: "small"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "el-select",
+                                                {
+                                                  staticClass: "config_select",
+                                                  attrs: {
+                                                    placeholder: "Select"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.settings[
+                                                        "Price Thousand Seperator"
+                                                      ],
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.settings,
+                                                        "Price Thousand Seperator",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "settings['Price Thousand Seperator']"
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-option", {
+                                                    key: 0,
+                                                    attrs: {
+                                                      label: ",",
+                                                      value: ","
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-option", {
+                                                    key: 1,
+                                                    attrs: {
+                                                      label: "",
+                                                      value: ""
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
                                   _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Brochure File",
-                                            prop: "Brochure File"
-                                          }
-                                        },
-                                        [
-                                          _c("file-picker-modal", {
-                                            ref: "brochurePicker",
-                                            attrs: {
-                                              "current-files":
-                                                _vm.settings["Brochure File"] &&
-                                                _vm.settings["Brochure File"][0]
-                                                  ? [
-                                                      _vm.settings[
-                                                        "Brochure File"
-                                                      ][0]
-                                                    ]
-                                                  : undefined,
-                                              name: "Brochure File",
-                                              selectable: 1,
-                                              "picker-id": "Brochure File",
-                                              "show-btn": true,
-                                              "open-on-mount": false
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 5 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label:
+                                                  "Price Decimal Seperator",
+                                                prop: "Price Decimal Seperator",
+                                                size: "small"
+                                              }
                                             },
-                                            on: {
-                                              filesChosen:
-                                                _vm.handleFilesChosen,
-                                              filesUnChosen:
-                                                _vm.handleFilesUnChosen
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e()
+                                            [
+                                              _c(
+                                                "el-select",
+                                                {
+                                                  staticClass: "config_select",
+                                                  attrs: {
+                                                    placeholder: "Select"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.settings[
+                                                        "Price Decimal Seperator"
+                                                      ],
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.settings,
+                                                        "Price Decimal Seperator",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "settings['Price Decimal Seperator']"
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-option", {
+                                                    key: 0,
+                                                    attrs: {
+                                                      label: ",",
+                                                      value: ","
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-option", {
+                                                    key: 1,
+                                                    attrs: {
+                                                      label: ".",
+                                                      value: "."
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-option", {
+                                                    key: 2,
+                                                    attrs: {
+                                                      label: ":",
+                                                      value: ":"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 5 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label:
+                                                  "Price Numer of Decimals",
+                                                prop: "Price Numer of Decimals",
+                                                size: "small"
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "el-select",
+                                                {
+                                                  staticClass: "config_select",
+                                                  attrs: {
+                                                    placeholder: "Select"
+                                                  },
+                                                  model: {
+                                                    value:
+                                                      _vm.settings[
+                                                        "Price Numer of Decimals"
+                                                      ],
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.settings,
+                                                        "Price Numer of Decimals",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "settings['Price Numer of Decimals']"
+                                                  }
+                                                },
+                                                [
+                                                  _c("el-option", {
+                                                    key: 0,
+                                                    attrs: {
+                                                      label: 0,
+                                                      value: 0
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c("el-option", {
+                                                    key: 2,
+                                                    attrs: {
+                                                      label: 2,
+                                                      value: 2
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("hr", { staticClass: "form_hr" }),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c("el-col", { attrs: { md: 12 } }, [
+                                    _c("h5", [_vm._v("Order Information")])
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 8, offset: 4 } } },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: "Shipping Rate",
+                                                prop: "Shipping Rate",
+                                                size: "small"
+                                              }
+                                            },
+                                            [
+                                              _c("el-input", {
+                                                model: {
+                                                  value:
+                                                    _vm.settings[
+                                                      "Shipping Rate"
+                                                    ],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      "Shipping Rate",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "settings['Shipping Rate']"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               )
@@ -1543,198 +1426,110 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "el-tab-pane",
-                            { attrs: { label: "Home Page", name: "home" } },
+                            {
+                              attrs: {
+                                label: "Site Images",
+                                name: "site_images"
+                              }
+                            },
                             [
                               _c(
                                 "el-col",
                                 { attrs: { lg: 12, md: 24 } },
-                                [
-                                  _vm.settings
+                                _vm._l(_vm.shopData.site_images, function(
+                                  image
+                                ) {
+                                  return _vm.settings
                                     ? _c(
                                         "el-form-item",
                                         {
-                                          attrs: {
-                                            label: "Home Header Collection",
-                                            prop: "Home Header Collection"
-                                          }
+                                          key: image,
+                                          attrs: { label: image, prop: image }
                                         },
                                         [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Home Header Collection"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Home Header Collection",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Home Header Collection']"
-                                              }
-                                            },
-                                            _vm._l(_vm.collections, function(
-                                              type
-                                            ) {
-                                              return _c("el-option", {
-                                                key: type.name,
+                                          _vm.settings
+                                            ? _c("file-picker-modal", {
                                                 attrs: {
-                                                  label: type.name,
-                                                  value: type.id
+                                                  "current-files":
+                                                    _vm.settings[image] &&
+                                                    _vm.settings[image][0]
+                                                      ? [_vm.settings[image][0]]
+                                                      : undefined,
+                                                  "show-btn": true,
+                                                  name: image,
+                                                  selectable: 1,
+                                                  "picker-id": image
+                                                },
+                                                on: {
+                                                  "update:files": function(
+                                                    val
+                                                  ) {
+                                                    return (_vm.settings[
+                                                      image
+                                                    ] = val)
+                                                  }
                                                 }
                                               })
-                                            })
-                                          )
+                                            : _vm._e()
                                         ],
                                         1
                                       )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Home Panels Collection",
-                                            prop: "Home Panels Collection"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Home Panels Collection"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Home Panels Collection",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Home Panels Collection']"
-                                              }
-                                            },
-                                            _vm._l(_vm.collections, function(
-                                              type
-                                            ) {
-                                              return _c("el-option", {
-                                                key: type.name,
+                                    : _vm._e()
+                                })
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-tab-pane",
+                            {
+                              attrs: {
+                                label: "Collection Mappings",
+                                name: "collection_mappings"
+                              }
+                            },
+                            [
+                              _c(
+                                "el-col",
+                                { attrs: { lg: 12, md: 24 } },
+                                _vm._l(
+                                  _vm.shopData.collection_mappings,
+                                  function(mapping) {
+                                    return _vm.settings
+                                      ? _c(
+                                          "el-form-item",
+                                          {
+                                            key: mapping,
+                                            attrs: {
+                                              label: mapping,
+                                              prop: mapping
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "el-select",
+                                              {
+                                                staticClass: "config_select",
                                                 attrs: {
-                                                  label: type.name,
-                                                  value: type.id
-                                                }
-                                              })
-                                            })
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label:
-                                              "Home Featured Product Collection",
-                                            prop:
-                                              "Home Featured Product Collection"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: { placeholder: "Select" },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Home Featured Product Collection"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Home Featured Product Collection",
-                                                    $$v
-                                                  )
+                                                  placeholder: "Select"
                                                 },
-                                                expression:
-                                                  "settings['Home Featured Product Collection']"
-                                              }
-                                            },
-                                            _vm._l(_vm.collections, function(
-                                              type
-                                            ) {
-                                              return _c("el-option", {
-                                                key: type.name,
-                                                attrs: {
-                                                  label: type.name,
-                                                  value: type.id
+                                                model: {
+                                                  value: _vm.settings[mapping],
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.settings,
+                                                      mapping,
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "settings[mapping]"
                                                 }
-                                              })
-                                            })
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label:
-                                              "Home Featured Product Collection Types",
-                                            prop:
-                                              "Home Featured Product Collection Types"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-select",
-                                            {
-                                              staticClass: "config_select",
-                                              attrs: {
-                                                placeholder: "Select",
-                                                multiple: "",
-                                                filterable: ""
                                               },
-                                              model: {
-                                                value:
-                                                  _vm.settings[
-                                                    "Home Featured Product Collection Types"
-                                                  ],
-                                                callback: function($$v) {
-                                                  _vm.$set(
-                                                    _vm.settings,
-                                                    "Home Featured Product Collection Types",
-                                                    $$v
-                                                  )
-                                                },
-                                                expression:
-                                                  "settings['Home Featured Product Collection Types']"
-                                              }
-                                            },
-                                            _vm._l(
-                                              _vm.featured_product_types,
-                                              function(type) {
+                                              _vm._l(_vm.collections, function(
+                                                type
+                                              ) {
                                                 return _c("el-option", {
                                                   key: type.name,
                                                   attrs: {
@@ -1742,83 +1537,14 @@ var render = function() {
                                                     value: type.id
                                                   }
                                                 })
-                                              }
-                                            )
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Product Video Placeholder",
-                                            prop: "Product Video Placeholder"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "el-button",
-                                            {
-                                              attrs: {
-                                                type: "info",
-                                                plain: "",
-                                                size: "mini"
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.displayFilePicker(
-                                                    "productVideoPicker"
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v("Select File "),
-                                              _c("i", {
-                                                staticClass: "el-icon-document"
                                               })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c("file-picker-modal", {
-                                            ref: "productVideoPicker",
-                                            attrs: {
-                                              "current-files":
-                                                _vm.settings[
-                                                  "Product Video Placeholder"
-                                                ] &&
-                                                _vm.settings[
-                                                  "Product Video Placeholder"
-                                                ][0]
-                                                  ? [
-                                                      _vm.settings[
-                                                        "Product Video Placeholder"
-                                                      ][0]
-                                                    ]
-                                                  : undefined,
-                                              name: "Product Video Placeholder",
-                                              selectable: 1,
-                                              "picker-id":
-                                                "Product Video Placeholder",
-                                              "open-on-mount": false
-                                            },
-                                            on: {
-                                              filesChosen:
-                                                _vm.handleFilesChosen,
-                                              filesUnChosen:
-                                                _vm.handleFilesUnChosen
-                                            }
-                                          })
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e()
-                                ],
-                                1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e()
+                                  }
+                                )
                               )
                             ],
                             1

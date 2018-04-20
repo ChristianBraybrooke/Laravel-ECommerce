@@ -502,18 +502,18 @@ var render = function() {
                                           value:
                                             props.productForm.collections.data
                                               .collection_types_sync[
-                                              collection.id - 1
+                                              collection.id
                                             ],
                                           callback: function($$v) {
                                             _vm.$set(
                                               props.productForm.collections.data
                                                 .collection_types_sync,
-                                              collection.id - 1,
+                                              collection.id,
                                               $$v
                                             )
                                           },
                                           expression:
-                                            "props.productForm.collections.data.collection_types_sync[(collection.id - 1)]"
+                                            "props.productForm.collections.data.collection_types_sync[collection.id]"
                                         }
                                       },
                                       _vm._l(collection.types.data, function(

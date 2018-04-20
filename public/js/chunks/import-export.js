@@ -107,6 +107,9 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js"); /
 //
 //
 //
+//
+//
+//
 
 exports.default = {
 
@@ -387,6 +390,13 @@ var render = function() {
                         [
                           _c("el-option", {
                             attrs: { label: "Products", value: "Product" }
+                          }),
+                          _vm._v(" "),
+                          _c("el-option", {
+                            attrs: {
+                              label: "CollectionTypes",
+                              value: "CollectionType"
+                            }
                           })
                         ],
                         1

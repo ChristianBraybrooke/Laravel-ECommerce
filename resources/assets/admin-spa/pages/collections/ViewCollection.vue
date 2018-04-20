@@ -80,7 +80,7 @@
             <el-col :sm="24" :md="24" :lg="12" class="half_table_col">
                 <data-table :type-name="collectionName"
                             :table-options="tableOptions"
-                            :edit-path="'collections/' + collectionId + '/types'"
+                            :edit-path="'/collections/' + collectionId + '/types'"
                             :create-form-rules="createFormRules"
                             :base-url="'collections/' + collectionId + '/types'"
                             :bulk-update-url="'collections/' + collectionId + '/types/bulk'">

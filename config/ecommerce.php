@@ -71,8 +71,13 @@ return [
       'currency' => ChrisBraybrooke\ECommerce\Models\Currency::class,
   ],
 
-  'shopData' => [
+  'shop_data' => [
 
+      //
+      'collection_mappings' => ['Home Header Collection', 'Home Panels Collection'],
+
+      //
+      'site_images' => ['Website Logo', 'Website Logo Inverse']
   ],
 
 ];

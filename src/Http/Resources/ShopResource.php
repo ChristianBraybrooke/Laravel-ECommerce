@@ -25,6 +25,12 @@ class ShopResource extends Resource
           'orders' => $this->when(Auth::guard('api')->check(), function () {
               return Order::processing()->get()->count();
           }),
+          'collection_mappings' => $this->when(Auth::guard('api')->check(), function () {
+              return config('ecommerce.shop_data.collection_mappings');
+          }),
+          'site_images' => $this->when(Auth::guard('api')->check(), function () {
+              return config('ecommerce.shop_data.site_images');
+          }),
         ];
     }
 }
