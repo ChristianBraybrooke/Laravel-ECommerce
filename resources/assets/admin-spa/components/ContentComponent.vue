@@ -1,9 +1,9 @@
 <template lang="html">
     <el-tabs v-model="activeContentTab" v-if="content">
-        <el-tab-pane v-for="(content, key) in groupedByLangContent" :key="key" :label="key" :name="key">
+        <el-tab-pane v-for="(content, key) in groupedByLangContent" :key="key" :label="(key ? key : 'Content')" :name="(key ? key : 'Content')">
             <el-row :gutter="20" v-if="key === activeContentTab">
                 <el-col :sm="24" v-for="content in content" :key="content.id">
-                    <el-form-item :label="content.content_name + ' (' + content.language + ')'" :prop="content.content_name">
+                    <el-form-item :label="content.content_name + ' (' + (content.language ? content.language : '') + ')'" :prop="content.content_name">
                         <quill-editor v-model="content.content"
                                       v-if="content.type === 'quill'"
                                       :ref="'quillEditor' + content.content_name"

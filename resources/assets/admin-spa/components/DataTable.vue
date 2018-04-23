@@ -34,7 +34,7 @@
                   v-for="item in tableOptions.bulkOptions"
                   :key="item.value"
                   :label="item.label"
-                  :value="item">
+                  :value="item.value">
                 </el-option>
               </el-select>
             </el-col>

@@ -28,6 +28,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 exports.default = {
 
@@ -47,8 +48,67 @@ exports.default = {
         console.log('Products.vue Mounted.');
     },
     data: function data() {
+        var h = this.$createElement;
+
         return {
-            productsCreateForm: {}
+            productsCreateForm: {},
+            tableOptions: {
+                border: true,
+                stripe: true,
+                showSearch: true,
+                showHeader: true,
+                showNewBtn: true,
+                showRefreshBtn: true,
+                showHeadHr: true,
+                showTitle: true,
+                viewText: 'View',
+                deleteText: 'Delete',
+                collumns: [{
+                    prop: 'id',
+                    sortable: true,
+                    label: 'ID',
+                    align: 'left',
+                    resizable: true
+                }, {
+                    prop: 'name',
+                    sortable: true,
+                    label: 'Name',
+                    align: 'left',
+                    formatter: function formatter(row, column, cellValue) {
+                        if (!row.variant) {
+                            return h('strong', [row.name]);
+                        } else {
+                            return h('span', [h('strong', [row.name]), ' / ', row.variant.name]);
+                        }
+                    },
+                    resizable: true
+                }, {
+                    prop: 'created_at.human',
+                    sortable: true,
+                    label: 'Created',
+                    align: 'left',
+                    resizable: true
+                }, {
+                    prop: 'live_at.live',
+                    sortable: true,
+                    label: 'Live',
+                    align: 'left',
+                    formatter: function formatter(row, column, cellValue) {
+                        return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
+                    },
+                    resizable: true
+                }],
+                bulkOptions: [{
+                    value: 'delete',
+                    label: 'Delete'
+                }, {
+                    value: 'draft',
+                    label: 'Mark Draft'
+                }, {
+                    value: 'live',
+                    label: 'Mark Live'
+                }]
+            }
         };
     }
 };
@@ -63,7 +123,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -81,6 +141,7 @@ var render = function() {
     attrs: {
       "type-name": "product",
       "bulk-update-url": "products/bulk",
+      "table-options": _vm.tableOptions,
       "request-includes": ["live_at", "created_at"],
       "create-form": _vm.productsCreateForm
     },

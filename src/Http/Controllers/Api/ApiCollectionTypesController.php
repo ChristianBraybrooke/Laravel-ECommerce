@@ -46,7 +46,7 @@ class ApiCollectionTypesController extends Controller
 
         $collectionType = $collection->types()->create([
           'name' => $request->name,
-          'slug' => $request->filled('slug') ? $request->slug : null,
+          'slug' => $request->has('slug') ? $request->slug : $request->name,
           'individual_name' => $request->filled('individual_name') ? $request->individual_name : null,
           'live_at' => $live
         ]);

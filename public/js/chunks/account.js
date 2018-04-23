@@ -1,16 +1,14 @@
 webpackJsonp([4],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/Account.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
 //
 //
 //
@@ -74,11 +72,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 
-var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 
 var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'Account',
 
@@ -116,7 +113,7 @@ exports.default = {
     },
 
 
-    computed: _extends({}, (0, _vuex.mapGetters)(['user', 'userErrors'])),
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])(['user', 'userErrors'])),
 
     watch: {
         user: {
@@ -138,7 +135,7 @@ exports.default = {
     },
 
 
-    methods: _extends({}, (0, _vuex.mapActions)(['getUser', 'updateUser', 'updateUserModel']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])(['getUser', 'updateUser', 'updateUserModel']), {
 
         /**
          * Show or hide the password.
@@ -170,7 +167,7 @@ exports.default = {
         }
     })
 
-};
+});
 
 /***/ }),
 

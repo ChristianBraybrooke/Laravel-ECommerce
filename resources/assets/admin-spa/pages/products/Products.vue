@@ -1,6 +1,7 @@
 <template lang="html">
     <data-table type-name="product"
                 bulk-update-url="products/bulk"
+                :table-options="tableOptions"
                 :request-includes="['live_at', 'created_at']"
                 :create-form="productsCreateForm">
 
@@ -38,7 +39,74 @@ export default {
     return {
         productsCreateForm: {
 
-        }
+        },
+        tableOptions: {
+            border: true,
+            stripe: true,
+            showSearch: true,
+            showHeader: true,
+            showNewBtn: true,
+            showRefreshBtn: true,
+            showHeadHr: true,
+            showTitle: true,
+            viewText: 'View',
+            deleteText: 'Delete',
+            collumns: [
+                {
+                    prop: 'id',
+                    sortable: true,
+                    label: 'ID',
+                    align: 'left',
+                    resizable: true
+                },
+                {
+                    prop: 'name',
+                    sortable: true,
+                    label: 'Name',
+                    align: 'left',
+                    formatter: function(row, column, cellValue) {
+                        if (!row.variant) {
+                            return <strong>{row.name}</strong>;
+                        } else {
+                          return <span><strong>{row.name}</strong> / {row.variant.name}</span>
+                        }
+
+                    },
+                    resizable: true
+                },
+                {
+                    prop: 'created_at.human',
+                    sortable: true,
+                    label: 'Created',
+                    align: 'left',
+                    resizable: true
+                },
+                {
+                    prop: 'live_at.live',
+                    sortable: true,
+                    label: 'Live',
+                    align: 'left',
+                    formatter: function(row, column, cellValue) {
+                        return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>;
+                    },
+                    resizable: true
+                },
+            ],
+            bulkOptions: [
+                {
+                  value: 'delete',
+                  label: 'Delete'
+                },
+                {
+                  value: 'draft',
+                  label: 'Mark Draft'
+                },
+                {
+                  value: 'live',
+                  label: 'Mark Live'
+                },
+            ],
+        },
     }
   },
 

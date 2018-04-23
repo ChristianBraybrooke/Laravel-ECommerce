@@ -52,7 +52,7 @@ class ApiProductsController extends Controller
 
         $product = $product->create([
             'name' => $request->name,
-            'slug' => $request->filled('slug') ? $request->slug : null,
+            'slug' => $request->has('slug') ? $request->slug : $request->name,
             'live_at' => $live
         ]);
 
@@ -107,7 +107,7 @@ class ApiProductsController extends Controller
             foreach ($request->input('variants.data') as $key => $variant) {
                 $new_variant = $product->variants()->updateOrCreate(
                     ['name' => $variant['name']],
-                    ['slug' => $variant['slug'], 'live_at' => $live]
+                    ['slug' => !empty($variant['slug'] ?? null) ? $variant['slug'] : $variant['name'], 'live_at' => $live]
                 );
 
                 if (isset($variant['main_img'])) {
@@ -172,7 +172,7 @@ class ApiProductsController extends Controller
                         $collection = Collection::find($collectionId);
                         $col = $collection->types->where('name', 'LIKE', $collectionType)->first();
                         if (empty($col)) {
-                            $col = $collection->types()->create(['name' => $collectionType, 'individual_name' => null, 'slug' => null, 'live_at' => Carbon::now()->toDateTimeString()]);
+                            $col = $collection->types()->create(['name' => $collectionType, 'individual_name' => null, 'slug' => $collectionType, 'live_at' => Carbon::now()->toDateTimeString()]);
                         }
                         $newCollectionTypeSync[] = $col->id;
                     } elseif (is_int($collectionType)) {

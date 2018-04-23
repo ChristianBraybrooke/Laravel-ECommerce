@@ -43,8 +43,8 @@ class ApiPagesController extends Controller
 
         $page = $page->create([
             'name' => $request->name,
-            'slug' => $request->slug,
-            'live' => $request->live
+            'slug' => $request->has('slug') ? $request->slug : $request->name,
+            'live' => $live
         ]);
 
         return new PageResource($page);

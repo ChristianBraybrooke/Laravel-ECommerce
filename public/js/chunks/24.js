@@ -1,22 +1,12 @@
 webpackJsonp([24],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/GalleriesComponent.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js"); //
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+//
 //
 //
 //
@@ -89,10 +79,12 @@ var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 //
 //
 
+
+var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 var head = __webpack_require__("./node_modules/lodash.head/index.js");
 var find = __webpack_require__("./node_modules/lodash.find/index.js");
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'GalleriesComponent',
 
@@ -174,7 +166,7 @@ exports.default = {
          */
         getGalleries: function getGalleries() {
             this.loading = true;
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].get({
                 path: 'galleries'
             }).then(function (data) {
                 this.galleries = data.data;
@@ -195,7 +187,7 @@ exports.default = {
                 this.loading = true;
                 this.$set(this.showGallery, gallery.id, { show: false });
 
-                _apiService2.default.get({
+                __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].get({
                     path: 'galleries/' + gallery.id + '/media',
                     params: {
                         limit: 24,
@@ -228,7 +220,7 @@ exports.default = {
             this.createGalleryRules = { name: [{ required: true, message: 'Gallery name is required' }] };
             this.$refs.createGallery.validate(function (valid) {
                 if (valid) {
-                    _apiService2.default.persist('post', {
+                    __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].persist('post', {
                         path: 'galleries',
                         object: _this.createGalleryForm
                     }).then(function (data) {
@@ -250,7 +242,7 @@ exports.default = {
             var gallery = this.getGalleryFromTabIndex(tabIndex);
 
             if (gallery) {
-                _apiService2.default.delete({
+                __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].delete({
                     path: 'galleries/' + gallery.id
                 }).then(function () {
                     this.galleries.splice(this.galleries.indexOf(gallery), 1);
@@ -313,7 +305,7 @@ exports.default = {
             this.errors = {};
         },
         handleFileUploadError: function handleFileUploadError(data) {
-            this.errors = _apiService2.default.errorAdapter(data.error);
+            this.errors = __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].errorAdapter(data.error);
             setTimeout(function () {
                 this.files[data.gallery].splice(this.files[data.gallery].indexOf(data.file), 1);
                 this.errors = {};
@@ -328,7 +320,7 @@ exports.default = {
         }
     }
 
-};
+});
 
 /***/ }),
 

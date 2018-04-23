@@ -1,22 +1,12 @@
 webpackJsonp([27],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/GalleryComponent.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-
-var _apiService2 = _interopRequireDefault(_apiService);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var chunk = __webpack_require__("./node_modules/lodash.chunk/index.js"); //
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+//
 //
 //
 //
@@ -111,6 +101,8 @@ var chunk = __webpack_require__("./node_modules/lodash.chunk/index.js"); //
 //
 //
 
+
+var chunk = __webpack_require__("./node_modules/lodash.chunk/index.js");
 var find = __webpack_require__("./node_modules/lodash.find/index.js");
 var last = __webpack_require__("./node_modules/lodash.last/index.js");
 var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
@@ -119,7 +111,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
 var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
 var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'GalleryComponent',
 
@@ -146,7 +138,7 @@ exports.default = {
         },
         meta: {
             type: Object,
-            required: !undefined.getGalleryFiles
+            required: !this.getGalleryFiles
         },
         getGalleryFiles: {
             type: Boolean,
@@ -157,7 +149,7 @@ exports.default = {
         },
         galleryFiles: {
             type: Array,
-            required: !undefined.getGalleryFiles
+            required: !this.getGalleryFiles
         },
         selectable: {
             type: Number,
@@ -249,7 +241,7 @@ exports.default = {
             this.errors = {};
             var search = this.galleryMeta.search ? this.galleryMeta.search : '';
 
-            _apiService2.default.get({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].get({
                 path: 'galleries/' + this.galleryId + '/media?page=' + page,
                 params: {
                     limit: limit,
@@ -288,7 +280,7 @@ exports.default = {
             this.loading = true;
             this.errors = {};
 
-            _apiService2.default.delete({
+            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].delete({
                 path: 'media/' + file.id
             }).then(function (data) {
                 this.loading = false;
@@ -399,7 +391,7 @@ exports.default = {
         }
     }
 
-};
+});
 
 /***/ }),
 

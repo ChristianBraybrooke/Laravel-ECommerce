@@ -4432,7 +4432,7 @@ var render = function() {
                     _vm._l(_vm.tableOptions.bulkOptions, function(item) {
                       return _c("el-option", {
                         key: item.value,
-                        attrs: { label: item.label, value: item }
+                        attrs: { label: item.label, value: item.value }
                       })
                     })
                   )

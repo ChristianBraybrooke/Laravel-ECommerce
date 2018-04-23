@@ -43,13 +43,33 @@ trait Importable
         foreach ($row as $key => $field) {
             if (starts_with($key, $starts_with)) {
                 $new_key = str_replace_first($starts_with, '', $key);
-                if (str_contains($new_key, '_')) {
-                    $meta[str_before($new_key, '_')][str_after($new_key, '_')] = $field;
-                } else {
-                    $meta[$new_key] = $field;
-                }
+                $meta[ucwords(str_replace('_', ' ', $new_key))] = $field;
             }
         }
         return $meta;
+    }
+
+    /**
+    * Format the content being added to the object.
+    *
+    * @var Array $contents
+    * @return array
+    */
+    public function formatImportContent($contents)
+    {
+        $formatted_contents = [];
+        $i = count($this->defaultContent ?? []);
+        foreach ($contents as $name => $content) {
+            $i++;
+            $content_is_array = is_array($content) ? true :  false;
+            $formatted_contents[] = [
+                'content_name' => ucfirst($name),
+                'content' => $content_is_array ? json_encode($content) : $content,
+                'lang' => $row['language'] ?? 'en',
+                'type' => $content_is_array ? 'meta' : 'text',
+                'order' => $i
+            ];
+        }
+        return $formatted_contents;
     }
 }

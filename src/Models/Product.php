@@ -390,6 +390,7 @@ class Product extends Model implements ProductContract
     public function importCreate($row, $import)
     {
         $meta = $this->formatImportMeta($row, $import);
+        $content = $this->formatImportContent($meta);
 
         $variant = $row['variant_id'] ?? null;
 
@@ -412,6 +413,8 @@ class Product extends Model implements ProductContract
             }
 
             $variant_meta = $this->formatImportMeta($row, $import, 'variant_meta_');
+            $variant_content = $this->formatImportContent($variant_meta);
+
             if (!empty($variant_meta)) {
                 $lookup_array['meta'] = json_encode($variant_meta);
             }
@@ -420,7 +423,7 @@ class Product extends Model implements ProductContract
                 'name' => $row['variant_name'],
                 'live_at' => $live_at,
                 'price' => $row['variant_price'] ?? null,
-                'slug' => $row['variant_slug'] ?? null,
+                'slug' => $row['variant_slug'] ?? $row['variant_name'],
                 'list_in_shop' => $row['variant_list_in_shop'] ?? false,
                 'width' => $row['variant_width'] ?? null,
                 'height' => $row['variant_height'] ?? null,
@@ -430,6 +433,7 @@ class Product extends Model implements ProductContract
             ]);
 
             if ($parent->wasRecentlyCreated) {
+                $parent->content()->createMany($variant_content);
                 $parent->update(['meta' => $variant_meta]);
                 $parent->collectionTypes()->sync($collection_types);
                 $import->models('product')->attach($parent->id);
@@ -443,15 +447,17 @@ class Product extends Model implements ProductContract
             'variant_id' => $variant,
             'live_at' => $live_at,
             'price' => $row['price'] ?? null,
-            'slug' => $row['slug'] ?? null,
+            'slug' => $row['slug'] ?? $row['name'],
             'list_in_shop' => $row['list_in_shop'] ?? false,
             'width' => $row['width'] ?? null,
             'height' => $row['height'] ?? null,
             'depth' => $row['depth'] ?? null,
             'featured' => $row['featured'] ?? false,
+            'sku' => $row['sku'] ?? null,
             'meta' => $meta,
         ]);
 
+        $product->content()->createMany($content);
         $import->models('product')->attach($product->id);
         $product->collectionTypes()->sync($collection_types);
 
@@ -477,19 +483,19 @@ class Product extends Model implements ProductContract
                 $collection = Collection::firstOrCreate(['name' => $collection_name], [
                     'name' => $collection_name,
                     'individual_name' => null,
-                    'slug' => null,
+                    'slug' => $collection_name,
                     'live_at' => Carbon::now()->toDateTimeString(),
                 ]);
                 if ($collection->wasRecentlyCreated) {
                     $import->models('collection')->attach($collection->id);
                 }
 
-                $collection_types = explode(',', str_replace(' ', '', $field));
+                $collection_types = explode(',', $field);
                 foreach ($collection_types as $key => $type_name) {
                     $type = $collection->types()->firstOrCreate(['name' => $type_name], [
-                        'name' => ucwords(str_replace('_', ' ', $new_key)),
+                        'name' => ucwords(str_replace('_', ' ', $type_name)),
                         'individual_name' => null,
-                        'slug' => null,
+                        'slug' => str_replace('_', ' ', $type_name),
                         'live_at' => Carbon::now()->toDateTimeString(),
                     ]);
                     if ($type->wasRecentlyCreated) {

@@ -1,14 +1,10 @@
 webpackJsonp([7],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/users/Users.vue":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -46,7 +42,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js");
 
-exports.default = {
+/* harmony default export */ __webpack_exports__["default"] = ({
 
     name: 'Users',
 
@@ -143,7 +139,7 @@ exports.default = {
 
     methods: {}
 
-};
+});
 
 /***/ }),
 

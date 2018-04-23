@@ -16967,7 +16967,13 @@ var render = function() {
         _vm._l(_vm.groupedByLangContent, function(content, key) {
           return _c(
             "el-tab-pane",
-            { key: key, attrs: { label: key, name: key } },
+            {
+              key: key,
+              attrs: {
+                label: key ? key : "Content",
+                name: key ? key : "Content"
+              }
+            },
             [
               key === _vm.activeContentTab
                 ? _c(
@@ -16985,7 +16991,7 @@ var render = function() {
                                 label:
                                   content.content_name +
                                   " (" +
-                                  content.language +
+                                  (content.language ? content.language : "") +
                                   ")",
                                 prop: content.content_name
                               }
