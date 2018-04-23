@@ -1,6 +1,6 @@
 webpackJsonp([35],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60,14 +60,76 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-var stripe = Stripe('pk_test_uAzfSI4OCDnMzvadYJWuFpfZ'),
-    elements = stripe.elements(),
-    card = undefined;
 
 exports.default = {
 
-    name: 'CardPaymentForm',
+    name: 'FormFieldComponent',
 
     components: {},
 
@@ -76,249 +138,72 @@ exports.default = {
             type: Object,
             required: true
         },
-        onTokenCreation: {
-            type: Function,
-            required: false,
-            default: function _default() {
-                return function (has_error, token_object, error_object) {};
-            }
+        model: {
+            type: Object,
+            required: true
         },
-        size: {
-            type: String,
-            required: false,
-            default: function _default() {
-                return '';
-            }
+        section: {
+            type: Object,
+            required: true
         }
     },
 
     data: function data() {
         return {
-            cardErrors: {
-                number: null,
-                date: null,
-                cvc: null
-            },
-            loading: false,
-            cardNumberElement: undefined,
-            cardExpiryElement: undefined,
-            cardCvcElement: undefined
+            fieldOptions: [{
+                label: 'Text',
+                value: 'text'
+            }, {
+                label: 'Number',
+                value: 'number'
+            }, {
+                label: 'Radio',
+                value: 'radio'
+            }, {
+                label: 'Select',
+                value: 'select'
+            }],
+            showRulesModal: false,
+            showOptionsModal: false
         };
     },
 
 
-    computed: {},
+    computed: {
+        needsOptions: function needsOptions() {
+            if (this.model.type === 'radio') {
+                return true;
+            }
+            if (this.model.type === 'select') {
+                return true;
+            }
+            return false;
+        }
+    },
 
     watch: {},
 
     mounted: function mounted() {
-        console.log('CardPaymentForm.vue Mounted');
-        this.setupStripe();
+        console.log('FormFieldComponent.vue Mounted');
     },
 
 
     methods: {
-
-        /**
-         * Setup the stripe element on the page.
-         *
-         * @return void
-         */
-        setupStripe: function setupStripe() {
-            var is_mini = this.size.includes('mini');
-            var is_small = this.size.includes('small');
-            var is_medium = this.size.includes('medium');
-            var color = '#606266';
-            var placeholder_color = '#c0c4cc';
-
-            var style = {
-                base: {
-                    fontSize: is_mini ? '12px' : is_small ? '13px' : is_medium ? '14px' : '14px',
-                    color: color,
-                    fontSmoothing: 'antialiased',
-                    fontFamily: 'Helvetica Neue',
-                    '::placeholder': {
-                        color: placeholder_color
-                    }
-                },
-                'invalid': {
-                    'color': color
-                }
-            };
-
-            // Create the card number element.
-            this.cardNumberElement = elements.create('cardNumber', {
-                style: style
-            });
-            this.cardNumberElement.mount(this.$refs.cardNumber);
-
-            // Create the expiry date element.
-            this.cardExpiryElement = elements.create('cardExpiry', {
-                style: style
-            });
-            this.cardExpiryElement.mount(this.$refs.cardExpiry);
-
-            // Create the cvc element.
-            this.cardCvcElement = elements.create('cardCvc', {
-                style: style
-            });
-            this.cardCvcElement.mount(this.$refs.cardCvc);
-
-            this.listenForEvents();
+        deleteField: function deleteField(field) {
+            this.section.fields.data.splice(this.section.fields.data.indexOf(field), 1);
         },
-
-
-        /**
-         * Listen for stripe events.
-         *
-         * @return void
-         */
-        listenForEvents: function listenForEvents() {
-            // Card number change event.
-            this.cardNumberElement.on('change', function (event, value) {
-                // Switch brand logo.
-                if (event.brand) {
-                    this.setBrandIcon(event.brand);
-                }
-
-                console.log(event);
-                console.log(this.cardNumberElement);
-                if (!event.empty) {
-                    this.$set(this.form, 'card_number', '4444');
-                } else {
-                    this.$set(this.form, 'card_number', null);
-                }
-
-                // Focus on next element.
-                if (event.complete) {
-                    this.cardExpiryElement.focus();
-                }
-
-                this.setOutcome(event, 'number_change');
-            }.bind(this));
-
-            // Card expiry change event.
-            this.cardExpiryElement.on('change', function (event) {
-                // Focus on next element.
-                if (event.complete) {
-                    this.cardCvcElement.focus();
-                }
-
-                this.setOutcome(event, 'expiry_change');
-            }.bind(this));
-
-            // Card cvc change event.
-            this.cardCvcElement.on('change', function (event) {
-                // Focus on next element.
-                if (event.complete) {
-                    // $payment_submit.focus();
-                }
-
-                this.setOutcome(event, 'cvc_change');
-            }.bind(this));
+        addOption: function addOption() {
+            this.model.options.push({});
         },
-
-
-        /**
-         * Set the card brand icon.
-         *
-         * @var string brand
-         * @return void
-         */
-        setBrandIcon: function setBrandIcon(brand) {
-            console.log(brand);
-        },
-
-
-        /**
-         * Determine what happens on events.
-         *
-         * @var Object result
-         * @var Mixed type
-         * @return void
-         */
-        setOutcome: function setOutcome(result) {
-            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-            // Hide card number error elements.
-            if (type == 'number_change') {
-                this.cardErrors.number = null;
-            }
-
-            // Hide card expiry error elements.
-            if (type == 'expiry_change') {
-                this.cardErrors.date = null;
-            }
-
-            // Hide card cvc error elements.
-            if (type == 'cvc_change') {
-                this.cardErrors.cvc = null;
-            }
-
-            if (result.token) {
-                // Tell the parent that a token has been created.
-                this.onTokenCreation(false, result.token, {});
-                this.$set(this.form, 'payment_token', result.token.id);
-
-                // Submit the form:
-                this.loading = false;
-            } else if (result.error) {
-                // Tell the parent that a token hasn't been created.
-                this.onTokenCreation(true, {}, result.error);
-
-                // Re-enable the submit button.
-                this.loading = false;
-
-                // Display error
-                this.handleError(result.error);
-            }
-        },
-
-
-        /**
-         * Determine what happens on error.
-         *
-         * @var Object error
-         * @return void
-         */
-        handleError: function handleError(error) {
-            // The error was a validation_error
-            if (error.type === 'validation_error' && error.code) {
-
-                var code = error.code;
-
-                // Card Number error has occured.
-                if (~code.indexOf("number")) {
-                    this.cardErrors.number = error.message;
-                }
-
-                // Expiry error has occured.
-                if (~code.indexOf("expiry")) {
-                    this.cardErrors.date = error.message;
-                }
-
-                // CVC error has occured.
-                if (~code.indexOf("cvc")) {
-                    this.cardErrors.cvc = error.message;
-                }
-            } else {
-                // Another type of error occured.
-
-            }
-        },
-        createToken: function createToken() {
-            this.loading = true;
-            stripe.createToken(this.cardNumberElement, {
-                name: 'Christian Braybrooke'
-            }).then(this.setOutcome);
+        deleteOption: function deleteOption(option, options) {
+            options.splice(options.indexOf(option), 1);
         }
     }
-
 };
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fc530fea\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fca07c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
@@ -326,14 +211,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Colors\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Background\n-------------------------- */\n/* Border\n-------------------------- */\n/* Box-shadow\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Font\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* Message Box\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Break-point\n--------------------------*/\n/* Custom */\n/* Menu\n-------------------------- */\n.stripe_input[data-v-fc530fea] {\n  -webkit-appearance: none;\n  background-color: #fff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  border-color: #dcdfe6;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  display: inherit;\n  font-size: 14px;\n  line-height: 1;\n  outline: none;\n  padding: 12px 15px;\n  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n  height: 40px;\n}\n.stripe_input[data-v-fc530fea]:hover {\n  cursor: text;\n  border: 1px solid #dcdfe6;\n  border-color: #c0c4cc;\n}\n.stripe_input.StripeElement--focus[data-v-fc530fea] {\n  border: 1px solid #dcdfe6;\n  border-color: #409eff;\n}\n.stripe_input.StripeElement--invalid[data-v-fc530fea] {\n  border: 1px solid #dcdfe6;\n  border-color: #f56c6c;\n}\n.stripe_input.StripeElement--complete[data-v-fc530fea] {\n  border: 1px solid #dcdfe6;\n  border-color: #67c23a;\n}\n.stripe_input.medium[data-v-fc530fea] {\n  font-size: 14px;\n  height: 36px;\n  padding: 10px 15px;\n}\n.stripe_input.small[data-v-fc530fea] {\n  font-size: 13px;\n  height: 32px;\n  padding: 8.5px 15px;\n}\n.stripe_input.mini[data-v-fc530fea] {\n  font-size: 12px;\n  height: 28px;\n  padding: 7px 15px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-fc530fea\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3fca07c6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -342,51 +227,31 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      directives: [
-        {
-          name: "loading",
-          rawName: "v-loading",
-          value: _vm.loading,
-          expression: "loading"
-        }
-      ],
-      staticClass: "card_payment_form"
-    },
     [
       _c(
         "el-row",
-        { attrs: { gutter: 20 } },
+        {
+          class:
+            "form_field_row " + (_vm.model.rules.required ? "required" : ""),
+          attrs: { gutter: 20 }
+        },
         [
           _c(
             "el-col",
-            { attrs: { md: { span: 8, offset: 4 } } },
+            { attrs: { lg: 12, xl: 4 } },
             [
               _c(
                 "el-form-item",
-                {
-                  attrs: {
-                    label: "Cardholder Name",
-                    size: "small",
-                    prop: "cardholder_name",
-                    rules: [
-                      {
-                        required: true,
-                        message: "Cardholder name is required.",
-                        trigger: "blur,change"
-                      }
-                    ]
-                  }
-                },
+                { attrs: { label: "Name", size: "small", prop: "name" } },
                 [
                   _c("el-input", {
-                    attrs: { placeholder: "" },
+                    attrs: { autofocus: true },
                     model: {
-                      value: _vm.form.cardholder_name,
+                      value: _vm.model.name,
                       callback: function($$v) {
-                        _vm.$set(_vm.form, "cardholder_name", $$v)
+                        _vm.$set(_vm.model, "name", $$v)
                       },
-                      expression: "form.cardholder_name"
+                      expression: "model.name"
                     }
                   })
                 ],
@@ -398,41 +263,145 @@ var render = function() {
           _vm._v(" "),
           _c(
             "el-col",
-            { attrs: { md: 8 } },
+            { attrs: { lg: 12, xl: 6 } },
             [
               _c(
                 "el-form-item",
                 {
                   attrs: {
-                    label: "Card Number",
+                    label: "Description",
                     size: "small",
-                    prop: "card_number",
-                    rules: [
-                      {
-                        required: true,
-                        message: "Card Number is required.",
-                        trigger: "blur,change"
-                      }
-                    ]
+                    prop: "description"
                   }
                 },
                 [
-                  _c("div", {
-                    ref: "cardNumber",
-                    staticClass: "stripe_input small"
-                  }),
-                  _vm._v(" "),
-                  _c("transition", { attrs: { name: "el-zoom-in-top" } }, [
-                    _vm.cardErrors.number
-                      ? _c("div", { staticClass: "el-form-item__error" }, [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.cardErrors.number) +
-                              "\n                    "
-                          )
-                        ])
-                      : _vm._e()
-                  ])
+                  _c("el-input", {
+                    attrs: { autofocus: true },
+                    model: {
+                      value: _vm.model.description,
+                      callback: function($$v) {
+                        _vm.$set(_vm.model, "description", $$v)
+                      },
+                      expression: "model.description"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { lg: 10, xl: 4 } },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { label: "Type", size: "small", prop: "type" } },
+                [
+                  _c(
+                    "el-select",
+                    {
+                      attrs: { placeholder: "Type" },
+                      model: {
+                        value: _vm.model.type,
+                        callback: function($$v) {
+                          _vm.$set(_vm.model, "type", $$v)
+                        },
+                        expression: "model.type"
+                      }
+                    },
+                    _vm._l(_vm.fieldOptions, function(option) {
+                      return _c("el-option", {
+                        key: option.value,
+                        attrs: { label: option.label, value: option.value }
+                      })
+                    })
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { lg: 4, xl: 2 } },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { label: "", size: "small", prop: "rules" } },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { plain: "", size: "mini", type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.showRulesModal = true
+                        }
+                      }
+                    },
+                    [_vm._v("Show Rules")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.needsOptions
+            ? _c(
+                "el-col",
+                { attrs: { lg: 4, xl: 2 } },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "", size: "small", prop: "options" } },
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          attrs: { plain: "", size: "mini", type: "primary" },
+                          on: {
+                            click: function($event) {
+                              _vm.showOptionsModal = true
+                            }
+                          }
+                        },
+                        [_vm._v("Show Options")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "el-col",
+            { attrs: { lg: 4, xl: 2 } },
+            [
+              _c(
+                "el-form-item",
+                { attrs: { label: "", size: "small", prop: "delete" } },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { size: "mini", type: "danger" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteField(_vm.model)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete")]
+                  )
                 ],
                 1
               )
@@ -443,86 +412,338 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "el-row",
-        { attrs: { gutter: 20 } },
-        [
-          _c(
-            "el-col",
-            { attrs: { md: { span: 8, offset: 4 } } },
+      _vm.showRulesModal
+        ? _c(
+            "el-dialog",
+            {
+              attrs: {
+                title: _vm.model.name + " Rules",
+                visible: _vm.showRulesModal,
+                width: "70%"
+              },
+              on: {
+                "update:visible": function($event) {
+                  _vm.showRulesModal = $event
+                }
+              }
+            },
             [
               _c(
-                "el-form-item",
-                {
-                  attrs: {
-                    label: "Card Expiry",
-                    size: "small",
-                    prop: "customer.company"
-                  }
-                },
+                "el-row",
+                { attrs: { type: "flex" } },
                 [
-                  _c("div", {
-                    ref: "cardExpiry",
-                    staticClass: "stripe_input small"
-                  }),
-                  _vm._v(" "),
-                  _c("transition", { attrs: { name: "el-zoom-in-top" } }, [
-                    _vm.cardErrors.date
-                      ? _c("div", { staticClass: "el-form-item__error" }, [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.cardErrors.date) +
-                              "\n                    "
-                          )
-                        ])
-                      : _vm._e()
-                  ])
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c(
+                        "el-form-item",
+                        { attrs: { label: "Required", prop: "required" } },
+                        [
+                          _c("el-switch", {
+                            attrs: {
+                              "active-color": "#13ce66",
+                              "inactive-color": "#ff4949"
+                            },
+                            model: {
+                              value: _vm.model.rules.required,
+                              callback: function($$v) {
+                                _vm.$set(_vm.model.rules, "required", $$v)
+                              },
+                              expression: "model.rules.required"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-col",
-            { attrs: { md: 8 } },
-            [
+              ),
+              _vm._v(" "),
               _c(
-                "el-form-item",
+                "span",
                 {
-                  attrs: {
-                    label: "Card CVC",
-                    size: "small",
-                    prop: "customer.company"
-                  }
+                  staticClass: "dialog-footer",
+                  attrs: { slot: "footer" },
+                  slot: "footer"
                 },
                 [
-                  _c("div", {
-                    ref: "cardCvc",
-                    staticClass: "stripe_input small"
-                  }),
-                  _vm._v(" "),
-                  _c("transition", { attrs: { name: "el-zoom-in-top" } }, [
-                    _vm.cardErrors.cvc
-                      ? _c("div", { staticClass: "el-form-item__error" }, [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.cardErrors.cvc) +
-                              "\n                    "
-                          )
-                        ])
-                      : _vm._e()
-                  ])
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.showRulesModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Done")]
+                  )
                 ],
                 1
               )
             ],
             1
           )
-        ],
-        1
-      )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showOptionsModal
+        ? _c(
+            "el-dialog",
+            {
+              attrs: {
+                title: _vm.model.name + " Options",
+                visible: _vm.showOptionsModal,
+                width: "70%"
+              },
+              on: {
+                "update:visible": function($event) {
+                  _vm.showOptionsModal = $event
+                }
+              }
+            },
+            [
+              _vm._l(_vm.model.options, function(option) {
+                return _vm.model.options
+                  ? _c(
+                      "el-row",
+                      {
+                        key: option.id,
+                        staticClass: "form_field_row",
+                        attrs: { gutter: 20 }
+                      },
+                      [
+                        _c(
+                          "el-col",
+                          { attrs: { lg: 12, xl: 4 } },
+                          [
+                            _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "Label",
+                                  size: "small",
+                                  prop: "label"
+                                }
+                              },
+                              [
+                                _c("el-input", {
+                                  attrs: { autofocus: true },
+                                  model: {
+                                    value: option.name,
+                                    callback: function($$v) {
+                                      _vm.$set(option, "name", $$v)
+                                    },
+                                    expression: "option.name"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "el-col",
+                          { attrs: { lg: 12, xl: 4 } },
+                          [
+                            _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "Value",
+                                  size: "small",
+                                  prop: "value"
+                                }
+                              },
+                              [
+                                _c("el-input", {
+                                  attrs: { autofocus: true },
+                                  model: {
+                                    value: option.value,
+                                    callback: function($$v) {
+                                      _vm.$set(option, "value", $$v)
+                                    },
+                                    expression: "option.value"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm.form.effects_price
+                          ? _c(
+                              "el-col",
+                              { attrs: { lg: 12, xl: 4 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: {
+                                      label: "Price Mutator",
+                                      size: "small",
+                                      prop: "price_mutator"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "el-select",
+                                      {
+                                        attrs: { placeholder: "" },
+                                        model: {
+                                          value: option.price_mutator,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              option,
+                                              "price_mutator",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "option.price_mutator"
+                                        }
+                                      },
+                                      [
+                                        _c("el-option", {
+                                          attrs: { value: "+" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("el-option", {
+                                          attrs: { value: "-" }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.form.effects_price
+                          ? _c(
+                              "el-col",
+                              { attrs: { lg: 12, xl: 4 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: {
+                                      label: "Price Value",
+                                      size: "small",
+                                      prop: "price_value"
+                                    }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: { type: "number" },
+                                      model: {
+                                        value: option.price_value,
+                                        callback: function($$v) {
+                                          _vm.$set(option, "price_value", $$v)
+                                        },
+                                        expression: "option.price_value"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "el-col",
+                          { attrs: { lg: 4, xl: 2 } },
+                          [
+                            _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "",
+                                  size: "small",
+                                  prop: "delete"
+                                }
+                              },
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: { size: "mini", type: "danger" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.deleteOption(
+                                          option,
+                                          _vm.model.options
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Delete")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: {
+                    type: "info",
+                    size: "mini",
+                    icon: "el-icon-plus",
+                    plain: ""
+                  },
+                  on: { click: _vm.addOption }
+                },
+                [_vm._v("Add Option")]
+              ),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "dialog-footer",
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.showOptionsModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Done")]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          )
+        : _vm._e()
     ],
     1
   )
@@ -533,29 +754,29 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-fc530fea", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3fca07c6", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fc530fea\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fca07c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fc530fea\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fca07c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("ea433fda", content, false);
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("30efd716", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fc530fea\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./CardPaymentForm.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fc530fea\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./CardPaymentForm.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fca07c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./FormFieldComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fca07c6\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./FormFieldComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -566,25 +787,25 @@ if(false) {
 
 /***/ }),
 
-/***/ "./resources/assets/admin-spa/components/CardPaymentForm.vue":
+/***/ "./resources/assets/admin-spa/components/FormFieldComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fc530fea\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/sass-loader/lib/loader.js!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue")
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fca07c6\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue")
 }
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-fc530fea\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/CardPaymentForm.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-3fca07c6\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/FormFieldComponent.vue")
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-fc530fea"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -595,7 +816,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/admin-spa/components/CardPaymentForm.vue"
+Component.options.__file = "resources/assets/admin-spa/components/FormFieldComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -605,9 +826,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-fc530fea", Component.options)
+    hotAPI.createRecord("data-v-3fca07c6", Component.options)
   } else {
-    hotAPI.reload("data-v-fc530fea", Component.options)
+    hotAPI.reload("data-v-3fca07c6", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true

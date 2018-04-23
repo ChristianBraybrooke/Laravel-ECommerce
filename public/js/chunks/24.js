@@ -98,7 +98,7 @@ exports.default = {
 
     components: {
         GalleryComponent: function GalleryComponent() {
-            return __webpack_require__.e/* import() */(26).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleryComponent.vue"));
+            return __webpack_require__.e/* import() */(27).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleryComponent.vue"));
         },
         Errors: function Errors() {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));

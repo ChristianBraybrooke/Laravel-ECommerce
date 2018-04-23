@@ -128,7 +128,7 @@ exports.default = {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         AddressForm: function AddressForm() {
-            return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
+            return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
         }
     },
 
@@ -283,7 +283,7 @@ exports.default = {
 
     components: {
         CardPaymentForm: function CardPaymentForm() {
-            return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
+            return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
         },
         Errors: function Errors() {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));

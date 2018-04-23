@@ -54,7 +54,7 @@
 
           <el-submenu index="2">
             <template slot="title">
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><polygon fill="#444444" points="12,0 24,7 12,14 0,7 "></polygon> <polygon data-color="color-2" fill="#444444" points="12,21.315 2.301,15.658 0,17 12,24 24,17 21.699,15.658 "></polygon> <polygon data-color="color-2" fill="#444444" points="12,16.315 2.301,10.658 0,12 12,19 24,12 21.699,10.658 "></polygon></g></svg>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><polygon fill="#000000" points="12,0 24,7 12,14 0,7 "></polygon> <polygon data-color="color-2" fill="#000000" points="12,21.315 2.301,15.658 0,17 12,24 24,17 21.699,15.658 "></polygon> <polygon data-color="color-2" fill="#000000" points="12,16.315 2.301,10.658 0,12 12,19 24,12 21.699,10.658 "></polygon></g></svg>
               <span>Content</span>
             </template>
 
@@ -64,7 +64,7 @@
           </el-submenu>
 
           <el-menu-item index="/forms">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><path fill="#444444" d="M21,3h-2v5H5V3H3C2.447,3,2,3.447,2,4v19c0,0.553,0.447,1,1,1h18c0.553,0,1-0.447,1-1V4 C22,3.447,21.553,3,21,3z M18,19H6v-2h12V19z M18,14H6v-2h12V14z"></path> <path data-color="color-2" fill="#444444" d="M14,2c0-1.105-0.895-2-2-2s-2,0.895-2,2H7v4h10V2H14z"></path></g></svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path fill="#000000" d="M21,3h-2v5H5V3H3C2.447,3,2,3.447,2,4v19c0,0.553,0.447,1,1,1h18c0.553,0,1-0.447,1-1V4 C22,3.447,21.553,3,21,3z M18,19H6v-2h12V19z M18,14H6v-2h12V14z"></path> <path data-color="color-2" fill="#000000" d="M14,2c0-1.105-0.895-2-2-2s-2,0.895-2,2H7v4h10V2H14z"></path></g></svg>
             <span slot="title">Forms</span>
           </el-menu-item>
 
@@ -75,7 +75,7 @@
             <span slot="title">Files</span>
           </el-menu-item>
           <el-menu-item index="/config">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#444444"><path fill="#444444" d="M23,14v-4h-3.262c-0.189-0.732-0.477-1.422-0.852-2.058l2.306-2.306l-2.828-2.828l-2.306,2.306 C15.422,4.739,14.732,4.451,14,4.262V1h-4v3.262C9.268,4.451,8.578,4.739,7.942,5.114L5.636,2.808L2.808,5.636l2.306,2.306 C4.739,8.578,4.451,9.268,4.262,10H1v4h3.262c0.189,0.732,0.477,1.422,0.852,2.058l-2.306,2.306l2.828,2.828l2.306-2.306 c0.635,0.375,1.326,0.663,2.058,0.852V23h4v-3.262c0.732-0.189,1.422-0.477,2.058-0.852l2.306,2.306l2.828-2.828l-2.306-2.306 c0.375-0.635,0.663-1.326,0.852-2.058H23z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z"></path></g></svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path fill="#000000" d="M23,14v-4h-3.262c-0.189-0.732-0.477-1.422-0.852-2.058l2.306-2.306l-2.828-2.828l-2.306,2.306 C15.422,4.739,14.732,4.451,14,4.262V1h-4v3.262C9.268,4.451,8.578,4.739,7.942,5.114L5.636,2.808L2.808,5.636l2.306,2.306 C4.739,8.578,4.451,9.268,4.262,10H1v4h3.262c0.189,0.732,0.477,1.422,0.852,2.058l-2.306,2.306l2.828,2.828l2.306-2.306 c0.635,0.375,1.326,0.663,2.058,0.852V23h4v-3.262c0.732-0.189,1.422-0.477,2.058-0.852l2.306,2.306l2.828-2.828l-2.306-2.306 c0.375-0.635,0.663-1.326,0.852-2.058H23z M12,15c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z"></path></g></svg>
             <span slot="title">Config</span>
           </el-menu-item>
 

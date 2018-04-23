@@ -238,7 +238,7 @@ exports.default = {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         ContentComponent: function ContentComponent() {
-            return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ContentComponent.vue"));
+            return __webpack_require__.e/* import() */(26).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ContentComponent.vue"));
         },
         FilePickerModal: function FilePickerModal() {
             return __webpack_require__.e/* import() */(21/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));

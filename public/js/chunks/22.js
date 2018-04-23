@@ -1,4 +1,4 @@
-webpackJsonp([22,27],{
+webpackJsonp([22,28],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/pages/products/ProductPageLayout.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -95,7 +95,7 @@ exports.default = {
 
     components: {
         PageLayout: function PageLayout() {
-            return __webpack_require__.e/* import() */(29).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/PageLayout.vue"));
+            return __webpack_require__.e/* import() */(30).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/PageLayout.vue"));
         }
     },
 
