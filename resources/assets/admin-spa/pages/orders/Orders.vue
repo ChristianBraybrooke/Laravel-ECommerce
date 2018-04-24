@@ -5,6 +5,7 @@
 
         <data-table type-name="order"
                     :full-modal="true"
+                    request-with="content"
                     :table-options="tableOptions"
                     :create-form="ordersCreateForm"
                     v-on:createNew="handleCreateNew"
@@ -15,139 +16,23 @@
               </router-link>
           </template>
 
-          <template slot="createForm"
-                    slot-scope="props">
+          <template slot="actionButtons" slot-scope="props">
+              <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }" v-if="tableOptions.viewText">
+                  <el-button
+                    size="mini"
+                    class="action_btn view_btn">{{ tableOptions.viewText }}
+                  </el-button>
+              </router-link>
 
-                    <el-row :gutter="20">
-                        <el-col :md="12">
-                            <el-form-item label="Customer First Name" prop="first_name">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.first_name" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :md="12">
-                            <el-form-item label="Customer Last Name" prop="last_name">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.last_name" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
-                    <el-row :gutter="20">
-                        <el-col :md="12">
-                            <el-form-item label="Customer Email" prop="email">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.email" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col :md="12">
-                            <el-form-item label="Customer Phone" prop="phone">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.phone" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
-                    <el-row :gutter="20" style="margin-top:50px;">
-
-                        <el-col :md="12">
-                            <el-form-item label="Billing Address Line 1" prop="billing_address_line1">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.billing_address_line1" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col :md="12">
-                            <el-form-item label="Billing Address Line 2" prop="billing_address_line2">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.billing_address_line2" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col :md="12">
-                            <el-form-item label="Billing Address Town" prop="billing_address_town">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.billing_address_town" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col :md="12">
-                            <el-form-item label="Billing Address County" prop="billing_address_county">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.billing_address_county" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col :md="12">
-                            <el-form-item label="Billing Address Postcode" prop="billing_address_postcode">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.billing_address_postcode" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col :md="12">
-                            <el-form-item label="Billing Address Country" prop="billing_address_country">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.billing_address_country" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                    </el-row>
-
-                    <el-row :gutter="20" style="margin-top:50px;">
-                        <el-col :md="24">
-                            <el-form-item label="Shipping Address Same As Billing" prop="same_shipping_address">
-                                <el-switch v-model="ordersCreateForm.same_shipping_address"
-                                           active-color="#13ce66"
-                                           inactive-color="#ff4949">
-                                </el-switch>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col v-if="!ordersCreateForm.same_shipping_address" :md="12">
-                            <el-form-item label="Shipping Address Line 1" prop="shipping_address_line1">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.shipping_address_line1" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col v-if="!ordersCreateForm.same_shipping_address" :md="12">
-                            <el-form-item label="Shipping Address Line 2" prop="shipping_address_line2">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.shipping_address_line2" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col v-if="!ordersCreateForm.same_shipping_address" :md="12">
-                            <el-form-item label="Shipping Address Town" prop="shipping_address_town">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.shipping_address_town" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col v-if="!ordersCreateForm.same_shipping_address" :md="12">
-                            <el-form-item label="Shipping Address County" prop="shipping_address_county">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.shipping_address_county" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col v-if="!ordersCreateForm.same_shipping_address" :md="12">
-                            <el-form-item label="Shipping Address Postcode" prop="shipping_address_postcode">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.shipping_address_postcode" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                        <el-col v-if="!ordersCreateForm.same_shipping_address" :md="12">
-                            <el-form-item label="Shipping Address Country" prop="shipping_address_country">
-                              <el-input :autofocus="true" v-model="ordersCreateForm.shipping_address_country" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-
-                    </el-row>
-
-                    <el-row :gutter="20" style="margin-top:50px;">
-                        <el-col :md="12">
-                            <el-form-item v-if="products" label="Products" prop="products">
-                                <el-select style="width:100%;" class="collection_type_select" v-model="ordersCreateForm.products" filterable multiple allow-create placeholder="Select">
-                                    <el-option v-for="product in products"
-                                               :key="product.id"
-                                               :label="product.name"
-                                               :value="product.id">
-                                    </el-option>
-                                </el-select>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
+              <a :href="'/ecommerce-templates/invoice-download?reports=' + props.row.id" target="_blank">
+                  <el-button
+                    size="mini"
+                    type="success"
+                    class="action_btn view_btn">Download PDF
+                  </el-button>
+              </a>
           </template>
+
 
         </data-table>
     </div>
@@ -220,19 +105,35 @@ export default {
                           resizable: true
                       },
                       {
+                          prop: 'created_at.date',
+                          sortable: true,
+                          label: 'Order Placed',
+                          align: 'left',
+                          resizable: true
+                      },
+                      {
+                          prop: 'items',
+                          sortable: true,
+                          label: 'Order Summary',
+                          align: 'left',
+                          resizable: true,
+                          formatter: function(row, column, cellValue) {
+                              var items = [];
+                              forEach(row.items, function (item) {
+                                  items.push(<li>{item.qty + ' * ' + item.name}</li>);
+                              });
+
+                              return <ul>{items}</ul>
+
+                          },
+                      },
+                      {
                           prop: 'amount',
                           sortable: true,
                           label: 'Total',
                           formatter: function(row, column, cellValue) {
                               return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
                           },
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'created_at.human',
-                          sortable: true,
-                          label: 'Order Placed',
                           align: 'left',
                           resizable: true
                       },

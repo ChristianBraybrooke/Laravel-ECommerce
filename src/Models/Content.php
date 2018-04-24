@@ -18,4 +18,14 @@ class Content extends Model
     protected $fillable = [
         'content_name', 'content', 'lang', 'type', 'order'
     ];
+
+    public function getContentAttribute($value)
+    {
+      return $this->type === 'json' ? json_decode($value) : $value;
+    }
+
+    public function setContentAttribute($value)
+    {
+        $this->attributes['content'] = ($this->type === 'json' ? json_encode($value) : $value);
+    }
 }

@@ -82,20 +82,22 @@
                 label="Actions">
                 <template slot-scope="scope">
 
-                    <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="tableOptions.viewText">
-                        <el-button
-                          size="mini"
-                          class="action_btn view_btn">{{ tableOptions.viewText }}
-                        </el-button>
-                    </router-link>
+                    <slot name="actionButtons" :row="scope.row" :edit-path-formated="editPathFormated">
+                        <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="tableOptions.viewText">
+                            <el-button
+                              size="mini"
+                              class="action_btn view_btn">{{ tableOptions.viewText }}
+                            </el-button>
+                        </router-link>
 
-                    <el-button
-                      v-if="tableOptions.deleteText"
-                      size="mini"
-                      type="danger"
-                      class="action_btn delete_btn"
-                      @click="deleteData(scope.$index, scope.row)">{{ tableOptions.deleteText }}
-                    </el-button>
+                        <el-button
+                          v-if="tableOptions.deleteText"
+                          size="mini"
+                          type="danger"
+                          class="action_btn delete_btn"
+                          @click="deleteData(scope.$index, scope.row)">{{ tableOptions.deleteText }}
+                        </el-button>
+                    </slot>
                 </template>
             </el-table-column>
         </el-table>

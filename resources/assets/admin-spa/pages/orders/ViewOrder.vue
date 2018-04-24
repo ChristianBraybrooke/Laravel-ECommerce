@@ -40,29 +40,24 @@
         </el-row>
 
         <el-row :gutter="20">
-            <el-col :lg="12" style="margin-bottom: 50px;">
+            <el-col :lg="12" style="margin-bottom: 50px;" v-for="(content, key) in formattedContent" :key="content.id">
                 <el-card>
                     <div slot="header" class="clearfix">
-                        Shipping Information
+                        {{ content.content_name }}
                     </div>
 
-                    <el-form ref="shipmentInformationForm" :model="order" label-width="120px" size="mini">
+                    <el-form :model="order" label-width="120px" size="mini">
 
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item label="Cost" prop="delivery_cost">
-                                    <el-input :autofocus="true" v-model="order.delivery_cost"></el-input>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
+                        <el-row v-if="content.type === 'json'">
+                            <el-col :md="12" v-for="(jsonContent, k) in content.content" :key="k">
+                                <el-form-item :label="capitalize(k)" :prop="k">
+                                    <el-input v-if="k !== 'date'" v-model="order.content.data[key].content[k]"></el-input>
 
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item label="Date" prop="delivery_date">
-                                    <el-date-picker v-model="order.delivery_date"
+                                    <el-date-picker v-if="k === 'date'"
+                                                    v-model="order.content.data[key].content[k]"
                                                     type="date"
                                                     style="width: 100%;"
-                                                    placeholder="Pick a day"
+                                                    placeholder="Pick a date"
                                                     format="dd/MM/yyyy"
                                                     value-format="dd-mm-yyyy"
                                                     :picker-options="deliveryDateOptions">
@@ -71,7 +66,6 @@
                             </el-col>
                         </el-row>
 
-
                         <el-row>
                             <el-col :xl="12">
                                 <el-form-item>
@@ -79,7 +73,6 @@
                                 </el-form-item>
                             </el-col>
                         </el-row>
-
 
                     </el-form>
 
@@ -130,7 +123,18 @@
             </el-col>
         </el-row>
 
-        <el-row :gutter="20">
+        <el-row :gutter="20" style="margin-bottom: 30px;">
+            <el-col :md="12">
+                <div>
+                    <el-radio-group v-model="order.needs_address" size="small">
+                        <el-radio-button :label="true">Needs Address</el-radio-button>
+                        <el-radio-button :label="false">No Address</el-radio-button>
+                    </el-radio-group>
+                </div>
+            </el-col>
+        </el-row>
+
+        <el-row :gutter="20" v-if="order.needs_address">
             <el-col :md="24" :lg="12" style="margin-bottom: 50px;">
                 <el-card class="box-card">
                   <div slot="header" class="clearfix">
@@ -139,7 +143,7 @@
                   </div>
 
                   <div v-if="!edit_shipping" v-for="(line, key) in order.shipping_address" :key="line" class="text item">
-                      <strong>{{ key }}:</strong> {{ line }}
+                      <strong>{{ formatAddressLabel(key) }}:</strong> {{ line }}
                   </div>
 
                   <el-form v-if="edit_shipping" ref="editShippingForm" :model="order" label-width="120px" size="mini">
@@ -150,13 +154,14 @@
                           </el-switch>
                       </el-form-item>
 
-                      <el-form-item :label="key" :key="line" :prop="order[key]" v-for="(line, key) in order.shipping_address">
-                          <el-input :disabled="order.use_billing_for_shipping" :autofocus="true" v-model="order.shipping_address[key]"></el-input>
+                      <el-form-item :label="formatAddressLabel(key)" :key="line" :prop="order[key]" v-for="(line, key) in order.shipping_address">
+                          <el-input :disabled="order.use_billing_for_shipping" v-model="order.shipping_address[key]" auto-complete="off" clearable></el-input>
                       </el-form-item>
 
                       <el-form-item>
                         <el-button type="primary" :loading="loading" @click="updateOrder()">Save</el-button>
                       </el-form-item>
+
                   </el-form>
 
                 </el-card>
@@ -169,12 +174,12 @@
                   </div>
 
                   <div v-if="!edit_billing" v-for="(line, key) in order.billing_address" :key="line" class="text item">
-                      <strong>{{ key }}:</strong> {{ line }}
+                      <strong>{{ formatAddressLabel(key) }}:</strong> {{ line }}
                   </div>
 
                   <el-form v-if="edit_billing" ref="editShippingForm" :model="order.billing_address" label-width="120px" size="mini">
-                      <el-form-item :label="key" :key="line" :prop="key" v-for="(line, key) in order.billing_address">
-                          <el-input :autofocus="true" v-model="order.billing_address[key]"></el-input>
+                      <el-form-item :label="formatAddressLabel(key)" :key="line" :prop="key" v-for="(line, key) in order.billing_address">
+                          <el-input :autofocus="true" v-model="order.billing_address[key]" auto-complete="off" clearable></el-input>
                       </el-form-item>
 
                       <el-form-item>
@@ -268,6 +273,7 @@
 import api from "../../services/api-service.js";
 import { mapActions, mapGetters } from 'vuex';
 var forEach = require('lodash.foreach');
+var filter = require('lodash.filter');
 
 export default {
 
@@ -314,6 +320,14 @@ export default {
               return this.shopData.currency + this.order.amount / 100;
           },
 
+          formattedContent()
+          {
+              if (this.objectHas(this.order, 'content.data')) {
+                  return filter(this.order.content.data, ['language', 'en']);
+              }
+              return [];
+          },
+
           orderTotals() {
               var totals = [];
               forEach(this.order.cart.totals, function(value, key) {
@@ -342,6 +356,11 @@ export default {
               'setShopData',
           ]),
 
+          formatAddressLabel(val)
+          {
+            return this.capitalize(val.replace(/_/g, " "));
+          },
+
           /**
            * Get the order information from the server.
            *
@@ -355,7 +374,7 @@ export default {
               api.get({
                   path: 'orders/' + this.orderId,
                   params: {
-
+                      with: ['content'],
                   }
               })
               .then(function (data) {
@@ -380,6 +399,7 @@ export default {
           {
               this.orderErrors = {};
               this.loading = true;
+              this.order.with = ['content'];
 
               api.persist('put', {
                   path: 'orders/' + this.orderId,
