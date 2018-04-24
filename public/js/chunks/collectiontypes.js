@@ -252,7 +252,7 @@ exports.default = {
             return __webpack_require__.e/* import() */(21/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
         },
         ContentComponent: function ContentComponent() {
-            return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ContentComponent.vue"));
+            return __webpack_require__.e/* import() */(28).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ContentComponent.vue"));
         },
         quillEditor: _vueQuillEditor.quillEditor
     },

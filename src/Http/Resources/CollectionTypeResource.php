@@ -7,6 +7,7 @@ use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\MediaResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\MediasResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ContentsResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ProductsResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\CollectionResource;
 
 class CollectionTypeResource extends Resource
@@ -28,6 +29,7 @@ class CollectionTypeResource extends Resource
             'secondary_img' => new MediaResource($this->mediaByLocation('secondary_img')->first()),
             'third_img' => new MediaResource($this->mediaByLocation('third_img')->first()),
             'gallery' => new MediasResource($this->mediaByLocation('gallery')),
+            'products' => new ProductsResource($this->whenLoaded('products')),
             'live_at' => $this->live_at,
             'meta' => $this->meta,
             'collection' => new CollectionResource($this->whenLoaded('collection')),

@@ -68,7 +68,7 @@ export default {
                         if (!row.variant) {
                             return <strong>{row.name}</strong>;
                         } else {
-                          return <span><strong>{row.name}</strong> / {row.variant.name}</span>
+                          return <span><strong>{row.variant.name}</strong> / {row.name}</span>
                         }
 
                     },

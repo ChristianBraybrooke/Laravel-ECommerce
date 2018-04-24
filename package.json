@@ -13,7 +13,8 @@
         ],
         "plugins": [
             "transform-vue-jsx",
-            "syntax-dynamic-import"
+            "syntax-dynamic-import",
+            "jsx-v-model"
         ]
     },
     "scripts": {
@@ -29,6 +30,7 @@
         "axios": "^0.16.2",
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
         "babel-plugin-component": "^0.10.1",
+        "babel-plugin-jsx-v-model": "^2.0.3",
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "babel-plugin-syntax-jsx": "^6.18.0",
         "babel-plugin-transform-vue-jsx": "^3.7.0",

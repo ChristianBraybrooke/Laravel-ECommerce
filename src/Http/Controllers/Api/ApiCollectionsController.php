@@ -59,8 +59,10 @@ class ApiCollectionsController extends Controller
      * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function show(Collection $collection)
+    public function show(Request $request, Collection $collection)
     {
+        $collection->load($request->with ?: []);
+
         return new CollectionResource($collection);
     }
 

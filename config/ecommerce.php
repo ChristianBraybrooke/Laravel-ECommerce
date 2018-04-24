@@ -74,7 +74,7 @@ return [
   'shop_data' => [
 
       //
-      'collection_mappings' => ['Home Header Collection', 'Home Panels Collection'],
+      'collection_mappings' => ['Home Header Collection', 'Home Panels Collection', 'Product Categories Collection'],
 
       //
       'site_images' => ['Website Logo', 'Website Logo Inverse']

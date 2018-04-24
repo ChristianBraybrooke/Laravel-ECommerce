@@ -11,7 +11,8 @@ const state = {
       items: [],
       cart: {},
       use_billing_for_shipping: true,
-      status: 'STATUS_DRAFT'
+      status: 'STATUS_DRAFT',
+      needs_address: 'Needs Address'
   },
 }
 
@@ -34,7 +35,7 @@ const getters = {
 
           forEach(item.options, function(option) {
               if (option.price_mutator && option.price_value) {
-                  extras = extras + (operators[option.price_mutator](extras, option.price_value) * quantity);
+                  extras = extras + (operators[option.price_mutator](0, option.price_value) * parseInt(quantity));
               }
           });
       });

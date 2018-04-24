@@ -46,10 +46,10 @@ exports.default = {
 
     components: {
         ProductPageLayout: function ProductPageLayout() {
-            return __webpack_require__.e/* import() */(28).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
+            return __webpack_require__.e/* import() */(29).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
         },
         ProductCustomisationComponent: function ProductCustomisationComponent() {
-            return __webpack_require__.e/* import() */(33).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
+            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
         }
     },
 

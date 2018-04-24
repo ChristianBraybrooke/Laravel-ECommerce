@@ -16,15 +16,6 @@
             <el-col :span="12">
                 <el-button size="small" @click="handleAddProductBtnClick" type="primary">Add Product(s)</el-button>
             </el-col>
-            <el-form :model="order">
-                <el-col :span="12">
-                    <el-form-item label="Shipping Rate">
-                        <el-select v-model="order.shipping_rate" size="mini">
-                            <el-option v-for="range in shippingRange" :key="range" :value="range"></el-option>
-                        </el-select>
-                    </el-form-item>
-                </el-col>
-            </el-form>
         </el-row>
 
         <el-row v-if="order.items" :gutter="20">
@@ -91,7 +82,7 @@
                     </el-table-column>
                     <el-table-column prop="value"
                                     label=""
-                                    :formatter="function(row, column, cellValue) { return shopData.currency + cellValue }">
+                                    :formatter="function(row, column, cellValue) { return formatTotalRow(row, column, cellValue) }">
                     </el-table-column>
                 </el-table>
 
@@ -110,7 +101,7 @@
 
                 <el-form label-position="top" ref="addProductForm" :model="addProductForm" @submit.native.prevent>
 
-                    <div class="form_option_section" v-if="!addProductForm.edit">
+                    <div class="form_option_section" v-if="!addProductForm.edit" v-loading="loadingProductCategories">
                         <el-row :gutter="20">
                             <el-col :md="12">
                                 <h5>Product Type</h5>
@@ -119,22 +110,49 @@
 
                         <el-row :gutter="20">
                             <el-col :md="{span:16, offset: 4}">
-                                <el-form-item label="Choose Product" size="small" prop="product">
-                                    <el-cascader :options="products"
-                                                 style="width: 100%;"
-                                                 @change="handleProductChange"
-                                                 @active-item-change="requestProductVariants"
-                                                 :props="productProps">
-                                    </el-cascader>
+                                <el-form-item label="Choose Category" size="small" prop="product">
+                                    <div v-if="productTypes.types">
+                                        <el-radio-group v-model="addProductForm.productCategory" size="small" @change="handleProductCategoryChange">
+                                            <el-radio-button v-for="cat in productTypes.types.data" :label="cat" :key="cat.id">{{cat.name}}</el-radio-button>
+                                        </el-radio-group>
+                                    </div>
                                 </el-form-item>
                             </el-col>
                         </el-row>
+
+                        <el-row :gutter="20" v-if="topLevelProductsToShow.length >= 1">
+                            <el-col :md="{span:16, offset: 4}">
+                                <el-form-item label="Choose Product" size="small" prop="product">
+                                    <div>
+                                        <el-radio-group v-model="addProductForm.productHighLevel" size="small">
+                                            <el-radio-button v-for="prod in topLevelProductsToShow" :label="prod" :key="prod.id">{{prod.name}}</el-radio-button>
+                                        </el-radio-group>
+                                    </div>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+                        <template v-if="objectHas(addProductForm, 'productHighLevel.variants.data')">
+                            <el-row :gutter="20" v-if="addProductForm.productHighLevel.variants.data.length >= 1 && topLevelProductsToShow.length >= 1">
+                                <el-col :md="{span:16, offset: 4}">
+                                    <el-form-item :label="'Choose ' + addProductForm.productHighLevel.name + ' Variant'" size="small" prop="product">
+                                        <div>
+                                            <el-radio-group v-model="addProductForm.productSecondLevel" size="small">
+                                                <el-radio-button v-for="prod in addProductForm.productHighLevel.variants.data" :label="prod" :key="prod.id">{{prod.name}}</el-radio-button>
+                                            </el-radio-group>
+                                        </div>
+                                    </el-form-item>
+                                </el-col>
+                            </el-row>
+                        </template>
+
+
                     </div>
 
-                    <template v-if="addProductForm.product.options && addProductForm.product.order_form">
-
+                    <template v-if="objectHas(addProductForm, 'product.order_form.sections') && productSelected">
                         <template v-if="addProductForm.product.order_form.sections" v-for="section in addProductForm.product.order_form.sections.data">
-                            <template v-if="section.fields">
+                            <template v-if="objectHas(section, 'fields.data')">
                                 <el-row :gutter="20" v-if="section.fields.data.length > 0">
                                     <el-col :md="12">
                                         <h5>{{ section.name }}</h5>
@@ -146,12 +164,18 @@
                                         <el-col :md="{span:16, offset: 4}">
                                             <el-form-item :label="field.name" size="small" :prop="'product.options[' + field.name + ']'">
                                                 <el-input v-if="field.type === 'text'" v-model="addProductForm.product.options[field.name]"></el-input>
+                                                <el-input-number v-if="field.type === 'number'" v-model="addProductForm.product.options[field.name]"></el-input-number>
                                                 <el-select v-if="field.type === 'select'" v-model="addProductForm.product.options[field.name]">
                                                     <el-option v-for="option in field.options"
                                                                :key="option.id"
                                                                :value="option"
                                                                :label="optionLabel(option)"></el-option>
                                                 </el-select>
+                                                <div v-if="field.type === 'radio'">
+                                                    <el-radio-group v-model="addProductForm.product.options[field.name]" size="small">
+                                                        <el-radio-button v-for="option in field.options" :label="option" :key="option.id">{{optionLabel(option)}}</el-radio-button>
+                                                    </el-radio-group>
+                                                </div>
 
                                             </el-form-item>
                                         </el-col>
@@ -162,7 +186,7 @@
                         </template>
                     </template>
 
-                    <div v-if="addProductForm.product.id" class="form_option_section">
+                    <div v-if="objectHas(addProductForm, 'product.id') && productSelected">
                         <el-row :gutter="20">
                             <el-col :md="12">
                                 <h5>Quantity</h5>
@@ -180,7 +204,7 @@
                         </el-row>
                     </div>
 
-                    <div v-if="addProductForm.product.id" class="form_option_section">
+                    <div v-if="objectHas(addProductForm, 'product.id') && productSelected">
                         <el-row :gutter="20">
                             <el-col :md="12">
                                 <h5>Price</h5>
@@ -223,6 +247,8 @@ var forEach = require('lodash.foreach');
 var throttle = require('lodash.throttle');
 var last = require('lodash.last');
 var range = require('lodash.range');
+var find = require('lodash.find');
+var filter = require('lodash.filter');
 
 export default {
 
@@ -239,6 +265,7 @@ export default {
       data () {
           return {
               loading: false,
+              loadingProductCategories: false,
               showProductModal: false,
               addProductForm: {
                   edit: false,
@@ -252,6 +279,7 @@ export default {
                   '-': function(a, b) { return parseInt(a) - parseInt(b) },
               },
               products: [],
+              productTypes: {},
               productProps: {
                   value: 'id',
                   label: 'name',
@@ -276,6 +304,23 @@ export default {
           {
               return range(0,250, 10);
           },
+
+          topLevelProductsToShow()
+          {
+              if (this.objectHas(this.addProductForm.productCategory, 'products.data')) {
+                  return filter(this.addProductForm.productCategory.products.data, ['variant', null]);
+              }
+
+              return [];
+          },
+
+          productSelected()
+          {
+              if (this.addProductForm.edit) {
+                  return true;
+              }
+              return this.addProductForm.productHighLevel && this.topLevelProductsToShow.length >= 1;
+          }
       },
 
       watch: {
@@ -285,6 +330,24 @@ export default {
               },
               deep: true
           },
+          'addProductForm.productHighLevel': function(value) {
+              if (value) {
+                  if (!this.productHasVariants(value)) {
+                      this.$set(value, 'options', {});
+                      this.$set(value, 'quantity', 1);
+                      this.$set(this.addProductForm, 'product', value);
+                  } else {
+                      this.$set(this.addProductForm, 'product', {});
+                  }
+              }
+          },
+          'addProductForm.productSecondLevel': function(value) {
+              if (value) {
+                  this.$set(value, 'options', {});
+                  this.$set(value, 'quantity', 1);
+                  this.$set(this.addProductForm, 'product', value);
+              }
+          },
       },
 
       mounted () {
@@ -292,6 +355,7 @@ export default {
           if (!this.order.id) {
               this.$router.push({name: 'orders.step1'});
           }
+          this.getProductTypesCollection();
       },
 
       methods: {
@@ -300,6 +364,43 @@ export default {
               'deleteOrderItem',
               'editOrderItem'
           ]),
+
+          handleProductCategoryChange(val)
+          {
+              this.$set(this.addProductForm, 'productHighLevel', {});
+          },
+
+          productHasVariants(product)
+          {
+              if (this.objectHas(product, 'variants.data')) {
+                return product.variants.data.length >= 1;
+              }
+              return false;
+          },
+
+          getProductTypesCollection()
+          {
+              if (this.shopData.collection_mappings_values) {
+                  var product_category_id = this.shopData.collection_mappings_values['Product Category Collection'];
+                  this.loadingProductCategories = true;
+                  api.get({
+                        path: "collections/" + product_category_id,
+                        params: {
+                            include: ['type', 'options', 'price', 'effects_price'],
+                            with: ['types.products.variants.orderForm.sections.fields']
+                        }
+                    })
+                    .then(function (data) {
+                        this.productTypes = data.data;
+                        this.loadingProductCategories = false;
+                    }.bind(this))
+                    .catch(function (error) {
+                        this.loadingProductCategories = false;
+                        // this.errors = error;
+                    }.bind(this));
+
+              }
+          },
 
           formattedPrice(product)
           {
@@ -397,23 +498,6 @@ export default {
           handleAddProductBtnClick()
           {
               this.showProductModal = true;
-              this.loading = true;
-
-              api.get({
-                  path: 'products',
-                  params: {
-                      no_variants: true,
-                      include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
-                      with: ['orderForm.sections.fields']
-                  }
-              })
-              .then(function (data) {
-                  this.loading = false;
-                  this.products = data.data;
-              }.bind(this))
-              .catch(function (error) {
-                  this.loading = false;
-              }.bind(this))
           },
 
           getIndexFromId(id)
@@ -450,12 +534,26 @@ export default {
           addProductToTable()
           {
               this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
+              this.productAddErrors = {};
+              this.addProductForm = {
+                  edit: false,
+                  product: {
+                    quantity: 1,
+                  },
+              }
               this.showProductModal = false;
           },
 
           editProductOnTable()
           {
               this.editOrderItem(this.addProductForm.product);
+              this.productAddErrors = {};
+              this.addProductForm = {
+                  edit: false,
+                  product: {
+                    quantity: 1,
+                  },
+              }
               this.showProductModal = false;
           },
 
@@ -513,6 +611,19 @@ export default {
               .catch(function(error) {
                   this.loading = false;
               }.bind(this))
+          },
+
+          formatTotalRow(row, column, cellValue)
+          {
+              if (row.total === 'Shipping') {
+                  var options = [];
+                  forEach(this.shippingRange, function (range) {
+                      options.push(<el-option key={range} value={range}></el-option>);
+                  });
+
+                  return <div>{this.shopData.currency} <el-select v-model={this.order.shipping_rate} size="mini" style="max-width: 85px;">{options}</el-select></div>
+              }
+              return this.shopData.currency + cellValue;
           },
 
 

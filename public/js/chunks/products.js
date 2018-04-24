@@ -78,7 +78,7 @@ exports.default = {
                         if (!row.variant) {
                             return h('strong', [row.name]);
                         } else {
-                            return h('span', [h('strong', [row.name]), ' / ', row.variant.name]);
+                            return h('span', [h('strong', [row.variant.name]), ' / ', row.name]);
                         }
                     },
                     resizable: true

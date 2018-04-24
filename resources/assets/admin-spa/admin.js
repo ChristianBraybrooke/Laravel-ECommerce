@@ -11,6 +11,7 @@ import locale from 'element-ui/lib/locale/lang/en';
 
 import './axios.js';
 
+
 Vue.use(Element, {locale});
 
 import { mapActions, mapGetters } from 'vuex';
@@ -22,8 +23,15 @@ Vue.mixin({
     },
 });
 
+var has = require('lodash.has');
+
 Vue.mixin({
     methods: {
+        objectHas(object, value)
+        {
+            return has(object, value);
+        },
+
         capitalize(str)
         {
             var lower = str.toLowerCase();

@@ -107,7 +107,7 @@ class ApiOrdersController extends Controller
                 $order_subtotal = $order_subtotal + ($price * $quantity);
 
                 $options = [];
-                foreach ($item['options'] as $key => $option) {
+                foreach (($item['options'] ?? []) as $key => $option) {
                     if (isset($option['price_mutator']) && isset($option['price_value']) && $option['price_mutator'] && $option['price_value']) {
                         $order_extras = $order_extras + (operators($option['price_mutator'], $order_extras, $option['price_value']) * $quantity);
                     }

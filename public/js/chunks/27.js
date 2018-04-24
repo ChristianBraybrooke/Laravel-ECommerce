@@ -1,12 +1,22 @@
 webpackJsonp([27],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/GalleryComponent.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
-//
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var chunk = __webpack_require__("./node_modules/lodash.chunk/index.js"); //
 //
 //
 //
@@ -101,8 +111,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
-var chunk = __webpack_require__("./node_modules/lodash.chunk/index.js");
 var find = __webpack_require__("./node_modules/lodash.find/index.js");
 var last = __webpack_require__("./node_modules/lodash.last/index.js");
 var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
@@ -111,13 +119,13 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
 var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
 var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
     name: 'GalleryComponent',
 
     components: {
         FileUploadComponent: function FileUploadComponent() {
-            return __webpack_require__.e/* import() */(29).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FileUploadComponent.vue"));
+            return __webpack_require__.e/* import() */(30).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FileUploadComponent.vue"));
         },
         Errors: function Errors() {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
@@ -138,7 +146,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
         },
         meta: {
             type: Object,
-            required: !this.getGalleryFiles
+            required: !undefined.getGalleryFiles
         },
         getGalleryFiles: {
             type: Boolean,
@@ -149,7 +157,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
         },
         galleryFiles: {
             type: Array,
-            required: !this.getGalleryFiles
+            required: !undefined.getGalleryFiles
         },
         selectable: {
             type: Number,
@@ -241,7 +249,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
             this.errors = {};
             var search = this.galleryMeta.search ? this.galleryMeta.search : '';
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].get({
+            _apiService2.default.get({
                 path: 'galleries/' + this.galleryId + '/media?page=' + page,
                 params: {
                     limit: limit,
@@ -280,7 +288,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
             this.loading = true;
             this.errors = {};
 
-            __WEBPACK_IMPORTED_MODULE_0__services_api_service_js__["default"].delete({
+            _apiService2.default.delete({
                 path: 'media/' + file.id
             }).then(function (data) {
                 this.loading = false;
@@ -391,7 +399,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
         }
     }
 
-});
+};
 
 /***/ }),
 
