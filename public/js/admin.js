@@ -81192,8 +81192,10 @@ var state = {
             sub_total = sub_total + parseInt(item.price) * quantity;
 
             forEach(item.options, function (option) {
-                if (option.price_mutator && option.price_value) {
-                    extras = extras + operators[option.price_mutator](0, option.price_value) * parseInt(quantity);
+                if (option) {
+                    if (option.price_mutator && option.price_value) {
+                        extras = extras + operators[option.price_mutator](0, option.price_value) * parseInt(quantity);
+                    }
                 }
             });
         });

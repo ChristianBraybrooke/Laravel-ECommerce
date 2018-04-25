@@ -111,7 +111,7 @@
                         <el-row :gutter="20">
                             <el-col :md="{span:16, offset: 4}">
                                 <el-form-item label="Choose Category" size="small" prop="product">
-                                    <div v-if="productTypes.types">
+                                    <div v-show="productTypes.types">
                                         <el-radio-group v-model="addProductForm.productCategory" size="small" @change="handleProductCategoryChange">
                                             <el-radio-button v-for="cat in productTypes.types.data" :label="cat" :key="cat.id">{{cat.name}}</el-radio-button>
                                         </el-radio-group>
@@ -120,7 +120,7 @@
                             </el-col>
                         </el-row>
 
-                        <el-row :gutter="20" v-if="topLevelProductsToShow.length >= 1">
+                        <el-row :gutter="20" v-show="topLevelProductsToShow.length >= 1">
                             <el-col :md="{span:16, offset: 4}">
                                 <el-form-item label="Choose Product" size="small" prop="product">
                                     <div>
@@ -133,8 +133,8 @@
                         </el-row>
 
 
-                        <template v-if="objectHas(addProductForm, 'productHighLevel.variants.data')">
-                            <el-row :gutter="20" v-if="addProductForm.productHighLevel.variants.data.length >= 1 && topLevelProductsToShow.length >= 1">
+                        <template v-show="objectHas(addProductForm, 'productHighLevel.variants.data')">
+                            <el-row :gutter="20" v-show="addProductForm.productHighLevel.variants.data && topLevelProductsToShow.length >= 1">
                                 <el-col :md="{span:16, offset: 4}">
                                     <el-form-item :label="'Choose ' + addProductForm.productHighLevel.name + ' Variant'" size="small" prop="product">
                                         <div>
@@ -250,6 +250,17 @@ var range = require('lodash.range');
 var find = require('lodash.find');
 var filter = require('lodash.filter');
 
+var productFormTemplate = {
+    edit: false,
+    product: {
+      quantity: 1,
+
+    },
+    productHighLevel: {
+      variants: [],
+    },
+};
+
 export default {
 
       name: 'NewOrderStepTwo',
@@ -267,19 +278,18 @@ export default {
               loading: false,
               loadingProductCategories: false,
               showProductModal: false,
-              addProductForm: {
-                  edit: false,
-                  product: {
-                    quantity: 1,
-                  },
-              },
+              addProductForm: productFormTemplate,
               productAddErrors: {},
               operators: {
                   '+': function(a, b) { return parseInt(a) + parseInt(b) },
                   '-': function(a, b) { return parseInt(a) - parseInt(b) },
               },
               products: [],
-              productTypes: {},
+              productTypes: {
+                types: {
+                    data: []
+                }
+              },
               productProps: {
                   value: 'id',
                   label: 'name',
@@ -367,7 +377,7 @@ export default {
 
           handleProductCategoryChange(val)
           {
-              this.$set(this.addProductForm, 'productHighLevel', {});
+              this.$set(this.addProductForm, 'productHighLevel', {variants: []});
           },
 
           productHasVariants(product)
@@ -440,12 +450,7 @@ export default {
               this.$confirm('Are you sure to close the product selector?')
                 .then(_ => {
                     this.productAddErrors = {};
-                    this.addProductForm = {
-                        edit: false,
-                        product: {
-                          quantity: 1,
-                        },
-                    }
+                    this.addProductForm = productFormTemplate;
                     this.showProductModal = false;
                 })
                 .catch(_ => {});
@@ -533,14 +538,10 @@ export default {
 
           addProductToTable()
           {
+              console.log(this.addProductForm.product);
               this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
               this.productAddErrors = {};
-              this.addProductForm = {
-                  edit: false,
-                  product: {
-                    quantity: 1,
-                  },
-              }
+              this.addProductForm = productFormTemplate;
               this.showProductModal = false;
           },
 
@@ -548,12 +549,7 @@ export default {
           {
               this.editOrderItem(this.addProductForm.product);
               this.productAddErrors = {};
-              this.addProductForm = {
-                  edit: false,
-                  product: {
-                    quantity: 1,
-                  },
-              }
+              this.addProductForm = productFormTemplate;
               this.showProductModal = false;
           },
 
@@ -575,8 +571,9 @@ export default {
                   if (option.price_mutator && option.price_value) {
                     return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')'
                   }
+                  return option.name;
               }
-              return option.name;
+              return '';
           },
 
           itemRowNameFormatter(row, column, cellValue)
@@ -586,7 +583,7 @@ export default {
               if (row.options) {
                 var items = [];
                 forEach(row.options, function(value, key) {
-                    var new_value = value.name ? value.name : value;
+                    var new_value = value ? value.name : value;
                     items.push(<li>{key}: {new_value}</li>);
                 });
 

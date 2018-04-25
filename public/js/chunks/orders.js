@@ -656,6 +656,17 @@ var range = __webpack_require__("./node_modules/lodash.range/index.js");
 var find = __webpack_require__("./node_modules/lodash.find/index.js");
 var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
 
+var productFormTemplate = {
+    edit: false,
+    product: {
+        quantity: 1
+
+    },
+    productHighLevel: {
+        variants: []
+    }
+};
+
 exports.default = {
 
     name: 'NewOrderStepTwo',
@@ -673,12 +684,7 @@ exports.default = {
             loading: false,
             loadingProductCategories: false,
             showProductModal: false,
-            addProductForm: {
-                edit: false,
-                product: {
-                    quantity: 1
-                }
-            },
+            addProductForm: productFormTemplate,
             productAddErrors: {},
             operators: {
                 '+': function _(a, b) {
@@ -689,7 +695,11 @@ exports.default = {
                 }
             },
             products: [],
-            productTypes: {},
+            productTypes: {
+                types: {
+                    data: []
+                }
+            },
             productProps: {
                 value: 'id',
                 label: 'name',
@@ -759,7 +769,7 @@ exports.default = {
 
     methods: _extends({}, (0, _vuex.mapActions)(['deleteOrderItem', 'editOrderItem']), {
         handleProductCategoryChange: function handleProductCategoryChange(val) {
-            this.$set(this.addProductForm, 'productHighLevel', {});
+            this.$set(this.addProductForm, 'productHighLevel', { variants: [] });
         },
         productHasVariants: function productHasVariants(product) {
             if (this.objectHas(product, 'variants.data')) {
@@ -824,12 +834,7 @@ exports.default = {
 
             this.$confirm('Are you sure to close the product selector?').then(function (_) {
                 _this.productAddErrors = {};
-                _this.addProductForm = {
-                    edit: false,
-                    product: {
-                        quantity: 1
-                    }
-                };
+                _this.addProductForm = productFormTemplate;
                 _this.showProductModal = false;
             }).catch(function (_) {});
         },
@@ -907,25 +912,16 @@ exports.default = {
             return product;
         },
         addProductToTable: function addProductToTable() {
+            console.log(this.addProductForm.product);
             this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
             this.productAddErrors = {};
-            this.addProductForm = {
-                edit: false,
-                product: {
-                    quantity: 1
-                }
-            };
+            this.addProductForm = productFormTemplate;
             this.showProductModal = false;
         },
         editProductOnTable: function editProductOnTable() {
             this.editOrderItem(this.addProductForm.product);
             this.productAddErrors = {};
-            this.addProductForm = {
-                edit: false,
-                product: {
-                    quantity: 1
-                }
-            };
+            this.addProductForm = productFormTemplate;
             this.showProductModal = false;
         },
         deleteRow: function deleteRow(index, row) {
@@ -941,8 +937,9 @@ exports.default = {
                 if (option.price_mutator && option.price_value) {
                     return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')';
                 }
+                return option.name;
             }
-            return option.name;
+            return '';
         },
         itemRowNameFormatter: function itemRowNameFormatter(row, column, cellValue) {
             var h = this.$createElement;
@@ -952,7 +949,7 @@ exports.default = {
             if (row.options) {
                 var items = [];
                 forEach(row.options, function (value, key) {
-                    var new_value = value.name ? value.name : value;
+                    var new_value = value ? value.name : value;
                     items.push(h('li', [key, ': ', new_value]));
                 });
 
@@ -11539,51 +11536,59 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _vm.productTypes.types
-                                        ? _c(
-                                            "div",
-                                            [
-                                              _c(
-                                                "el-radio-group",
-                                                {
-                                                  attrs: { size: "small" },
-                                                  on: {
-                                                    change:
-                                                      _vm.handleProductCategoryChange
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.addProductForm
-                                                        .productCategory,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.addProductForm,
-                                                        "productCategory",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "addProductForm.productCategory"
-                                                  }
+                                      _c(
+                                        "div",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: _vm.productTypes.types,
+                                              expression: "productTypes.types"
+                                            }
+                                          ]
+                                        },
+                                        [
+                                          _c(
+                                            "el-radio-group",
+                                            {
+                                              attrs: { size: "small" },
+                                              on: {
+                                                change:
+                                                  _vm.handleProductCategoryChange
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.addProductForm
+                                                    .productCategory,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.addProductForm,
+                                                    "productCategory",
+                                                    $$v
+                                                  )
                                                 },
-                                                _vm._l(
-                                                  _vm.productTypes.types.data,
-                                                  function(cat) {
-                                                    return _c(
-                                                      "el-radio-button",
-                                                      {
-                                                        key: cat.id,
-                                                        attrs: { label: cat }
-                                                      },
-                                                      [_vm._v(_vm._s(cat.name))]
-                                                    )
-                                                  }
+                                                expression:
+                                                  "addProductForm.productCategory"
+                                              }
+                                            },
+                                            _vm._l(
+                                              _vm.productTypes.types.data,
+                                              function(cat) {
+                                                return _c(
+                                                  "el-radio-button",
+                                                  {
+                                                    key: cat.id,
+                                                    attrs: { label: cat }
+                                                  },
+                                                  [_vm._v(_vm._s(cat.name))]
                                                 )
-                                              )
-                                            ],
-                                            1
+                                              }
+                                            )
                                           )
-                                        : _vm._e()
+                                        ],
+                                        1
+                                      )
                                     ]
                                   )
                                 ],
@@ -11593,176 +11598,170 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _vm.topLevelProductsToShow.length >= 1
-                            ? _c(
-                                "el-row",
-                                { attrs: { gutter: 20 } },
+                          _c(
+                            "el-row",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.topLevelProductsToShow.length >= 1,
+                                  expression:
+                                    "topLevelProductsToShow.length >= 1"
+                                }
+                              ],
+                              attrs: { gutter: 20 }
+                            },
+                            [
+                              _c(
+                                "el-col",
+                                { attrs: { md: { span: 16, offset: 4 } } },
                                 [
                                   _c(
-                                    "el-col",
-                                    { attrs: { md: { span: 16, offset: 4 } } },
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "Choose Product",
+                                        size: "small",
+                                        prop: "product"
+                                      }
+                                    },
                                     [
                                       _c(
-                                        "el-form-item",
-                                        {
-                                          attrs: {
-                                            label: "Choose Product",
-                                            size: "small",
-                                            prop: "product"
-                                          }
-                                        },
+                                        "div",
                                         [
                                           _c(
-                                            "div",
-                                            [
-                                              _c(
-                                                "el-radio-group",
-                                                {
-                                                  attrs: { size: "small" },
-                                                  model: {
-                                                    value:
-                                                      _vm.addProductForm
-                                                        .productHighLevel,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.addProductForm,
-                                                        "productHighLevel",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "addProductForm.productHighLevel"
-                                                  }
+                                            "el-radio-group",
+                                            {
+                                              attrs: { size: "small" },
+                                              model: {
+                                                value:
+                                                  _vm.addProductForm
+                                                    .productHighLevel,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.addProductForm,
+                                                    "productHighLevel",
+                                                    $$v
+                                                  )
                                                 },
-                                                _vm._l(
-                                                  _vm.topLevelProductsToShow,
-                                                  function(prod) {
-                                                    return _c(
-                                                      "el-radio-button",
-                                                      {
-                                                        key: prod.id,
-                                                        attrs: { label: prod }
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          _vm._s(prod.name)
-                                                        )
-                                                      ]
-                                                    )
-                                                  }
+                                                expression:
+                                                  "addProductForm.productHighLevel"
+                                              }
+                                            },
+                                            _vm._l(
+                                              _vm.topLevelProductsToShow,
+                                              function(prod) {
+                                                return _c(
+                                                  "el-radio-button",
+                                                  {
+                                                    key: prod.id,
+                                                    attrs: { label: prod }
+                                                  },
+                                                  [_vm._v(_vm._s(prod.name))]
                                                 )
-                                              )
-                                            ],
-                                            1
+                                              }
+                                            )
                                           )
-                                        ]
+                                        ],
+                                        1
                                       )
-                                    ],
-                                    1
+                                    ]
                                   )
                                 ],
                                 1
                               )
-                            : _vm._e(),
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
-                          _vm.objectHas(
-                            _vm.addProductForm,
-                            "productHighLevel.variants.data"
-                          )
-                            ? [
-                                _vm.addProductForm.productHighLevel.variants
-                                  .data.length >= 1 &&
-                                _vm.topLevelProductsToShow.length >= 1
-                                  ? _c(
-                                      "el-row",
-                                      { attrs: { gutter: 20 } },
+                          [
+                            _c(
+                              "el-row",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value:
+                                      _vm.addProductForm.productHighLevel
+                                        .variants.data &&
+                                      _vm.topLevelProductsToShow.length >= 1,
+                                    expression:
+                                      "addProductForm.productHighLevel.variants.data && topLevelProductsToShow.length >= 1"
+                                  }
+                                ],
+                                attrs: { gutter: 20 }
+                              },
+                              [
+                                _c(
+                                  "el-col",
+                                  { attrs: { md: { span: 16, offset: 4 } } },
+                                  [
+                                    _c(
+                                      "el-form-item",
+                                      {
+                                        attrs: {
+                                          label:
+                                            "Choose " +
+                                            _vm.addProductForm.productHighLevel
+                                              .name +
+                                            " Variant",
+                                          size: "small",
+                                          prop: "product"
+                                        }
+                                      },
                                       [
                                         _c(
-                                          "el-col",
-                                          {
-                                            attrs: {
-                                              md: { span: 16, offset: 4 }
-                                            }
-                                          },
+                                          "div",
                                           [
                                             _c(
-                                              "el-form-item",
+                                              "el-radio-group",
                                               {
-                                                attrs: {
-                                                  label:
-                                                    "Choose " +
+                                                attrs: { size: "small" },
+                                                model: {
+                                                  value:
                                                     _vm.addProductForm
-                                                      .productHighLevel.name +
-                                                    " Variant",
-                                                  size: "small",
-                                                  prop: "product"
+                                                      .productSecondLevel,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.addProductForm,
+                                                      "productSecondLevel",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression:
+                                                    "addProductForm.productSecondLevel"
                                                 }
                                               },
-                                              [
-                                                _c(
-                                                  "div",
-                                                  [
-                                                    _c(
-                                                      "el-radio-group",
-                                                      {
-                                                        attrs: {
-                                                          size: "small"
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.addProductForm
-                                                              .productSecondLevel,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.addProductForm,
-                                                              "productSecondLevel",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "addProductForm.productSecondLevel"
-                                                        }
-                                                      },
-                                                      _vm._l(
-                                                        _vm.addProductForm
-                                                          .productHighLevel
-                                                          .variants.data,
-                                                        function(prod) {
-                                                          return _c(
-                                                            "el-radio-button",
-                                                            {
-                                                              key: prod.id,
-                                                              attrs: {
-                                                                label: prod
-                                                              }
-                                                            },
-                                                            [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  prod.name
-                                                                )
-                                                              )
-                                                            ]
-                                                          )
-                                                        }
-                                                      )
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ]
+                                              _vm._l(
+                                                _vm.addProductForm
+                                                  .productHighLevel.variants
+                                                  .data,
+                                                function(prod) {
+                                                  return _c(
+                                                    "el-radio-button",
+                                                    {
+                                                      key: prod.id,
+                                                      attrs: { label: prod }
+                                                    },
+                                                    [_vm._v(_vm._s(prod.name))]
+                                                  )
+                                                }
+                                              )
                                             )
                                           ],
                                           1
                                         )
-                                      ],
-                                      1
+                                      ]
                                     )
-                                  : _vm._e()
-                              ]
-                            : _vm._e()
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
                         ],
                         2
                       )
