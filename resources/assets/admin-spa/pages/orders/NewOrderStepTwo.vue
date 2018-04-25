@@ -95,138 +95,15 @@
                    :visible.sync="showProductModal"
                    width="70%">
 
-            <div v-loading="loading">
 
-                <errors v-if="Object.keys(productAddErrors).length > 0" :errors="productAddErrors"></errors>
+            <product-add-form :product-collection="productTypes"/>
 
-                <el-form label-position="top" ref="addProductForm" :model="addProductForm" @submit.native.prevent>
+            <span slot="footer" class="dialog-footer">
+              <el-button v-on:click="closeAndClearModal(null)">{{ addProductForm.edit ? 'Discard Changes' : 'Cancel' }}</el-button>
+              <el-button v-if="!addProductForm.edit" type="primary" v-on:click="addProductToTable()">Add Product</el-button>
+              <el-button v-if="addProductForm.edit" type="primary" v-on:click="editProductOnTable()">Save Changes</el-button>
+            </span>
 
-                    <div class="form_option_section" v-if="!addProductForm.edit" v-loading="loadingProductCategories">
-                        <el-row :gutter="20">
-                            <el-col :md="12">
-                                <h5>Product Type</h5>
-                            </el-col>
-                        </el-row>
-
-                        <el-row :gutter="20">
-                            <el-col :md="{span:16, offset: 4}">
-                                <el-form-item label="Choose Category" size="small" prop="product">
-                                    <div v-show="productTypes.types">
-                                        <el-radio-group v-model="addProductForm.productCategory" size="small" @change="handleProductCategoryChange">
-                                            <el-radio-button v-for="cat in productTypes.types.data" :label="cat" :key="cat.id">{{cat.name}}</el-radio-button>
-                                        </el-radio-group>
-                                    </div>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                        <el-row :gutter="20" v-show="topLevelProductsToShow.length >= 1">
-                            <el-col :md="{span:16, offset: 4}">
-                                <el-form-item label="Choose Product" size="small" prop="product">
-                                    <div>
-                                        <el-radio-group v-model="addProductForm.productHighLevel" size="small">
-                                            <el-radio-button v-for="prod in topLevelProductsToShow" :label="prod" :key="prod.id">{{prod.name}}</el-radio-button>
-                                        </el-radio-group>
-                                    </div>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-
-                        <template v-show="objectHas(addProductForm, 'productHighLevel.variants.data')">
-                            <el-row :gutter="20" v-show="addProductForm.productHighLevel.variants.data && topLevelProductsToShow.length >= 1">
-                                <el-col :md="{span:16, offset: 4}">
-                                    <el-form-item :label="'Choose ' + addProductForm.productHighLevel.name + ' Variant'" size="small" prop="product">
-                                        <div>
-                                            <el-radio-group v-model="addProductForm.productSecondLevel" size="small">
-                                                <el-radio-button v-for="prod in addProductForm.productHighLevel.variants.data" :label="prod" :key="prod.id">{{prod.name}}</el-radio-button>
-                                            </el-radio-group>
-                                        </div>
-                                    </el-form-item>
-                                </el-col>
-                            </el-row>
-                        </template>
-
-
-                    </div>
-
-                    <template v-if="objectHas(addProductForm, 'product.order_form.sections') && productSelected">
-                        <template v-if="addProductForm.product.order_form.sections" v-for="section in addProductForm.product.order_form.sections.data">
-                            <template v-if="objectHas(section, 'fields.data')">
-                                <el-row :gutter="20" v-if="section.fields.data.length > 0">
-                                    <el-col :md="12">
-                                        <h5>{{ section.name }}</h5>
-                                    </el-col>
-                                </el-row>
-
-                                <div v-if="section.fields.data.length > 0" class="form_option_section">
-                                    <el-row :gutter="20" v-for="field in section.fields.data" :key="field.id">
-                                        <el-col :md="{span:16, offset: 4}">
-                                            <el-form-item :label="field.name" size="small" :prop="'product.options[' + field.name + ']'">
-                                                <el-input v-if="field.type === 'text'" v-model="addProductForm.product.options[field.name]"></el-input>
-                                                <el-input-number v-if="field.type === 'number'" v-model="addProductForm.product.options[field.name]"></el-input-number>
-                                                <el-select v-if="field.type === 'select'" v-model="addProductForm.product.options[field.name]">
-                                                    <el-option v-for="option in field.options"
-                                                               :key="option.id"
-                                                               :value="option"
-                                                               :label="optionLabel(option)"></el-option>
-                                                </el-select>
-                                                <div v-if="field.type === 'radio'">
-                                                    <el-radio-group v-model="addProductForm.product.options[field.name]" size="small">
-                                                        <el-radio-button v-for="option in field.options" :label="option" :key="option.id">{{optionLabel(option)}}</el-radio-button>
-                                                    </el-radio-group>
-                                                </div>
-
-                                            </el-form-item>
-                                        </el-col>
-                                    </el-row>
-                                </div>
-
-                            </template>
-                        </template>
-                    </template>
-
-                    <div v-if="objectHas(addProductForm, 'product.id') && productSelected">
-                        <el-row :gutter="20">
-                            <el-col :md="12">
-                                <h5>Quantity</h5>
-                            </el-col>
-                        </el-row>
-
-                        <el-row :gutter="20">
-                            <el-col :md="{span:16, offset: 4}">
-                                <el-form-item label="Quantity" size="small" prop="product.quantity">
-                                    <el-select v-model="addProductForm.product.quantity">
-                                        <el-option v-for="range in quantityRange" :key="range" :value="range"></el-option>
-                                    </el-select>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-                    </div>
-
-                    <div v-if="objectHas(addProductForm, 'product.id') && productSelected">
-                        <el-row :gutter="20">
-                            <el-col :md="12">
-                                <h5>Price</h5>
-                            </el-col>
-                        </el-row>
-
-                        <el-row :gutter="20">
-                            <el-col :md="{span:16, offset: 4}">
-                                <p v-for="(value, key) in formattedPrice(addProductForm.product)"><strong>{{ key }}:</strong> {{ shopData.currency }}{{ value }}</p>
-                            </el-col>
-                        </el-row>
-                    </div>
-
-                </el-form>
-
-                <span slot="footer" class="dialog-footer">
-                  <el-button v-on:click="closeAndClearModal(null)">{{ addProductForm.edit ? 'Discard Changes' : 'Cancel' }}</el-button>
-                  <el-button v-if="!addProductForm.edit" type="primary" v-on:click="addProductToTable()">Add Product</el-button>
-                  <el-button v-if="addProductForm.edit" type="primary" v-on:click="editProductOnTable()">Save Changes</el-button>
-                </span>
-
-            </div>
         </el-dialog>
 
         <el-row :gutter="20" style="margin-top: 40px;">
@@ -259,11 +136,8 @@ var productFormTemplate = {
     productHighLevel: {
       variants: [],
     },
-    productCategory: {
-      products: {
-          data: []
-      }
-    },
+    productCategory: '',
+    productCategory: {products: { data: [] }},
 };
 
 export default {
@@ -272,6 +146,7 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
+          ProductAddForm: () => import('../../components/ProductAddForm.vue'),
       },
 
       props: {
@@ -322,9 +197,16 @@ export default {
 
           topLevelProductsToShow()
           {
-              if (this.objectHas(this.addProductForm.productCategory, 'products.data')) {
-                  return filter(this.addProductForm.productCategory.products.data, ['variant', null]);
+
+              if (this.addProductForm.productCategory) {
+                  return this.addProductForm.productCategory.products.data;
               }
+
+              return [];
+          },
+
+          secondLevelProductsToShow()
+          {
 
               return [];
           },
@@ -380,11 +262,6 @@ export default {
               'editOrderItem'
           ]),
 
-          handleProductCategoryChange(val)
-          {
-              this.$set(this.addProductForm, 'productHighLevel', {variants: []});
-          },
-
           productHasVariants(product)
           {
               if (this.objectHas(product, 'variants.data')) {
@@ -407,7 +284,7 @@ export default {
                     })
                     .then(function (data) {
 
-                        this.productTypes.types.data = data.data.types.data;
+                        this.productTypes = data.data;
 
                         this.loadingProductCategories = false;
                     }.bind(this))

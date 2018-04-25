@@ -1,10 +1,116 @@
 webpackJsonp([40],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue":
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -28,58 +134,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+exports.default = {
 
-    name: 'ProductCustomisationComponent',
+    name: 'ProductAddForm',
 
     components: {
-        ProductCustomisationOptionComponent: function ProductCustomisationOptionComponent() {
-            return __webpack_require__.e/* import() */(31).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationOptionComponent.vue"));
+        Errors: function Errors() {
+            return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         }
     },
 
     props: {
-        model: {
+        productCollection: {
             type: Object,
             required: true
+        },
+        form: {
+            type: Object,
+            required: false,
+            default: function _default() {
+                return {};
+            }
+        },
+        editForm: {
+            type: Boolean,
+            required: false,
+            default: function _default() {
+                return false;
+            }
         }
     },
 
     data: function data() {
         return {
-            productCustomisation: {}
+            loading: false
         };
     },
 
 
-    computed: {},
+    computed: {
+        productsToShow: function productsToShow() {
+            if (this.form.productCategory) {
+                return this.form.productCategory.products.data;
+            }
+            return [];
+        },
+        productVariantsToShow: function productVariantsToShow() {
+            if (this.form.productFirst) {
+                return this.form.productFirst.variants.data;
+            }
+            return [];
+        }
+    },
 
     watch: {},
 
     mounted: function mounted() {
-        console.log('ProductCustomisationComponent.vue mounted');
-        this.productCustomisation = this.model;
+        console.log('ProductAddForm.vue Mounted');
     },
 
 
-    methods: {
-        addOption: function addOption() {
-            this.productCustomisation.options.data.push({
-                name: ''
-            });
-        },
-        handleOptionDeleted: function handleOptionDeleted(option) {
-            if (option.id) {} else {
-                this.productCustomisation.options.data.splice(this.productCustomisation.options.data.indexOf(option), 1);
-            }
-        }
-    }
-
-});
+    methods: {}
+};
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-508dd803\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue":
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c7e0456\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
@@ -87,14 +207,14 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-508dd803\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1c7e0456\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -103,78 +223,174 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ]
+    },
     [
       _c(
-        "el-row",
-        { attrs: { gutter: 20 } },
+        "el-form",
+        {
+          ref: "addProductForm",
+          attrs: { "label-position": "top", model: _vm.form },
+          nativeOn: {
+            submit: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
         [
-          _c(
-            "el-col",
-            { attrs: { lg: 12, md: 24 } },
-            [
-              _c(
-                "el-form-item",
-                { attrs: { label: "Name", prop: "name" } },
+          !_vm.editForm
+            ? _c(
+                "div",
+                { staticClass: "form_option_section" },
                 [
-                  _c("el-input", {
-                    attrs: { autofocus: true },
-                    model: {
-                      value: _vm.productCustomisation.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.productCustomisation, "name", $$v)
-                      },
-                      expression: "productCustomisation.name"
-                    }
-                  })
+                  _c(
+                    "el-row",
+                    { attrs: { gutter: 20 } },
+                    [
+                      _c("el-col", { attrs: { md: 12 } }, [
+                        _c("h5", [_vm._v("Product Type")])
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-row",
+                    { attrs: { gutter: 20 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { md: { span: 16, offset: 4 } } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Choose Category",
+                                size: "small",
+                                prop: "productCategory"
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                [
+                                  _c(
+                                    "el-radio-group",
+                                    {
+                                      attrs: { size: "small" },
+                                      model: {
+                                        value: _vm.form.productCategory,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.form,
+                                            "productCategory",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "form.productCategory"
+                                      }
+                                    },
+                                    _vm._l(
+                                      _vm.productCollection.types.data,
+                                      function(type) {
+                                        return _c(
+                                          "el-radio-button",
+                                          {
+                                            key: type.id,
+                                            attrs: { label: type }
+                                          },
+                                          [_vm._v(_vm._s(type.name))]
+                                        )
+                                      }
+                                    )
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-row",
+                    { attrs: { gutter: 20 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { md: { span: 16, offset: 4 } } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Choose Product",
+                                size: "small",
+                                prop: "productFirst"
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                [
+                                  _c(
+                                    "el-radio-group",
+                                    {
+                                      attrs: { size: "small" },
+                                      model: {
+                                        value: _vm.form.productFirst,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.form,
+                                            "productFirst",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "form.productFirst"
+                                      }
+                                    },
+                                    _vm._l(_vm.productsToShow, function(
+                                      product
+                                    ) {
+                                      return _c(
+                                        "el-radio-button",
+                                        {
+                                          key: product.id,
+                                          attrs: { label: product }
+                                        },
+                                        [_vm._v(_vm._s(product.name))]
+                                      )
+                                    })
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
                 ],
                 1
               )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-row",
-        { attrs: { gutter: 20 } },
-        [
-          _vm.productCustomisation.options
-            ? _c(
-                "el-col",
-                { attrs: { lg: 24, md: 24 } },
-                [
-                  _vm._l(_vm.productCustomisation.options.data, function(
-                    option
-                  ) {
-                    return [
-                      _c("product-customisation-option-component", {
-                        attrs: { model: option },
-                        on: { optionDeleted: _vm.handleOptionDeleted }
-                      })
-                    ]
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "el-button",
-                    {
-                      attrs: {
-                        type: "primary",
-                        icon: "el-icon-plus",
-                        plain: ""
-                      },
-                      on: { click: _vm.addOption }
-                    },
-                    [_vm._v("Add Option")]
-                  )
-                ],
-                2
-              )
             : _vm._e()
-        ],
-        1
+        ]
       )
     ],
     1
@@ -186,29 +402,29 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-508dd803", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1c7e0456", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-508dd803\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue":
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c7e0456\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-508dd803\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue");
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c7e0456\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue");
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("58a49910", content, false);
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("3f8ea5cd", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-508dd803\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductCustomisationComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-508dd803\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductCustomisationComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c7e0456\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductAddForm.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c7e0456\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./ProductAddForm.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -219,19 +435,19 @@ if(false) {
 
 /***/ }),
 
-/***/ "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue":
+/***/ "./resources/assets/admin-spa/components/ProductAddForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-508dd803\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue")
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c7e0456\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue")
 }
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-508dd803\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1c7e0456\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/admin-spa/components/ProductAddForm.vue")
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -248,7 +464,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/admin-spa/components/ProductCustomisationComponent.vue"
+Component.options.__file = "resources/assets/admin-spa/components/ProductAddForm.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -258,9 +474,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-508dd803", Component.options)
+    hotAPI.createRecord("data-v-1c7e0456", Component.options)
   } else {
-    hotAPI.reload("data-v-508dd803", Component.options)
+    hotAPI.reload("data-v-1c7e0456", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
