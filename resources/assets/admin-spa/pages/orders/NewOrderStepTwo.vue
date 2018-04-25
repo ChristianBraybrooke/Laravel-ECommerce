@@ -168,11 +168,6 @@ export default {
             'orderTotals'
           ]),
 
-          quantityRange()
-          {
-              return range(1,251);
-          },
-
           shippingRange()
           {
               return range(0,250, 10);

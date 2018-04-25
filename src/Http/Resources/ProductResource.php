@@ -57,7 +57,6 @@ class ProductResource extends Resource
             'width' => $this->when(requestIncludes('width'), $this->width),
             'height' => $this->when(requestIncludes('height'), $this->height),
             'depth' => $this->when(requestIncludes('depth'), $this->depth),
-            'variants' => $this->when(requestIncludes('blank_variants'), $this->variants->count() >= 1 ? [] : null),
         ];
     }
 
