@@ -34,8 +34,6 @@ class ProductResource extends Resource
             $this->mergeWhen($this->relationLoaded('media'), [
                 'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
                 'gallery' => new MediasResource($this->mediaByLocation('gallery')),
-            ]),
-            $this->mergeWhen($this->relationLoaded('collectionTypes'), [
                 'customisation_base_img' => new MediaResource($this->mediaByLocation('customisation_base_img')->first())
             ]),
             $this->mergeWhen($this->relationLoaded('variants'), [
@@ -77,9 +75,12 @@ class ProductResource extends Resource
      */
     public function with($request)
     {
-        $shop = new ShopResource($request);
-        return [
-            'shop_data' => $shop->toArray($request)
-        ];
+        if (!requestIncludes('no_shop_data')) {
+            $shop = new ShopResource($request);
+            return [
+                'shop_data' => $shop->toArray($request)
+            ];
+        }
+        return [];
     }
 }

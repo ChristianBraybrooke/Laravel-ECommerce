@@ -101,7 +101,7 @@ exports.default = {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         FormSectionComponent: function FormSectionComponent() {
-            return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormSectionComponent.vue"));
+            return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormSectionComponent.vue"));
         }
     },
 

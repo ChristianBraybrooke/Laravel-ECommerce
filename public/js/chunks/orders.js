@@ -156,7 +156,7 @@ exports.default = {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         AddressForm: function AddressForm() {
-            return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
+            return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
         }
     },
 
@@ -371,7 +371,7 @@ exports.default = {
 
     components: {
         CardPaymentForm: function CardPaymentForm() {
-            return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
+            return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
         },
         Errors: function Errors() {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
@@ -632,7 +632,7 @@ exports.default = {
             return __webpack_require__.e/* import() */(20/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
         },
         ProductAddForm: function ProductAddForm() {
-            return __webpack_require__.e/* import() */(40).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductAddForm.vue"));
+            return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductAddForm.vue"));
         }
     },
 
@@ -745,7 +745,7 @@ exports.default = {
                 _apiService2.default.get({
                     path: "collections/" + product_category_id,
                     params: {
-                        include: ['type', 'options', 'price', 'effects_price'],
+                        include: ['type', 'options', 'price', 'effects_price', 'no_shop_data'],
                         with: ['types.products.variants.orderForm.sections.fields']
                     }
                 }).then(function (data) {

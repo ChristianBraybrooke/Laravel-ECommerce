@@ -47,12 +47,6 @@ class CollectionType extends Model implements CollectionTypeContract
         'created' => CollectionTypeCreated::class,
     ];
 
-    /**
-     * The default relations to load
-     *
-     * @var array
-     */
-    protected $with = ['content'];
 
     /**
      * The default meta to create on creation

@@ -278,7 +278,7 @@ export default {
                   api.get({
                         path: "collections/" + product_category_id,
                         params: {
-                            include: ['type', 'options', 'price', 'effects_price'],
+                            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data'],
                             with: ['types.products.variants.orderForm.sections.fields']
                         }
                     })
