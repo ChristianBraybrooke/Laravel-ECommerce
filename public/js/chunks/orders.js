@@ -300,6 +300,62 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 
@@ -327,12 +383,13 @@ exports.default = {
     data: function data() {
         return {
             loading: false,
-            orderErrors: {}
+            orderErrors: {},
+            activePaymentTab: 'card'
         };
     },
 
 
-    computed: _extends({}, (0, _vuex.mapGetters)(['order'])),
+    computed: _extends({}, (0, _vuex.mapGetters)(['order', 'orderTotals', 'shopData'])),
 
     watch: {
         order: {
@@ -351,27 +408,46 @@ exports.default = {
     },
 
 
-    methods: {
+    methods: _extends({}, (0, _vuex.mapActions)(['resetOrder']), {
         processSubmit: function processSubmit(ref) {
             var _this = this;
 
+            this.loading = true;
+
             this.$refs[ref].validate(function (valid) {
-                if (valid) {
-                    _this.loading = true;
+                if (valid && _this.activePaymentTab === 'card') {
                     _this.$refs.paymentForm.createToken();
+                } else if (_this.activePaymentTab !== 'card') {
+
+                    _this.order.payment_method = _this.order.payment_method ? _this.order.payment_method : _this.activePaymentTab;
+                    _apiService2.default.persist("post", {
+                        path: "orders/" + _this.order.id + "/payment",
+                        object: _this.order
+                    }).then(function (data) {
+                        this.loading = false;
+                        this.$router.push({ name: 'orders.view', params: { orderId: this.order.id.toString() } });
+                        this.resetOrder();
+                        // this.data = data.data;
+                    }.bind(_this)).catch(function (error) {
+                        this.loading = false;
+                        // this.errors = error;
+                    }.bind(_this));
                 } else {
                     return false;
+                    _this.loading = false;
                 }
             });
         },
         onTokenCreation: function onTokenCreation(has_error, token_object, error_object) {
             if (!has_error && this.order.id) {
+                this.order.payment_method = 'stripe';
                 _apiService2.default.persist("post", {
                     path: "orders/" + this.order.id + "/payment",
                     object: this.order
                 }).then(function (data) {
                     this.loading = false;
-                    this.$router.push({ name: 'orders.view', params: { orderId: this.order.id } });
+                    this.$router.push({ name: 'orders.view', params: { orderId: this.order.id.toString() } });
+                    this.resetOrder();
                     // this.data = data.data;
                 }.bind(this)).catch(function (error) {
                     this.loading = false;
@@ -379,7 +455,7 @@ exports.default = {
                 }.bind(this));
             }
         }
-    }
+    })
 };
 
 /***/ }),
@@ -793,7 +869,9 @@ exports.default = {
                         with: ['types.products.variants.orderForm.sections.fields']
                     }
                 }).then(function (data) {
-                    this.productTypes = data.data;
+
+                    this.productTypes.types.data = data.data.types.data;
+
                     this.loadingProductCategories = false;
                 }.bind(this)).catch(function (error) {
                     this.loadingProductCategories = false;
@@ -12516,6 +12594,16 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c(
+        "ul",
+        _vm._l(_vm.orderTotals, function(total, key) {
+          return _c("li", { key: key }, [
+            _c("strong", [_vm._v(_vm._s(total.total))]),
+            _vm._v(" " + _vm._s(_vm.shopData.currency) + _vm._s(total.value))
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
         "el-form",
         {
           ref: "orderForm",
@@ -12538,14 +12626,249 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("card-payment-form", {
-            ref: "paymentForm",
-            attrs: {
-              form: _vm.order,
-              loading: _vm.loading,
-              "on-token-creation": _vm.onTokenCreation
-            }
-          }),
+          _c(
+            "el-tabs",
+            {
+              model: {
+                value: _vm.activePaymentTab,
+                callback: function($$v) {
+                  _vm.activePaymentTab = $$v
+                },
+                expression: "activePaymentTab"
+              }
+            },
+            [
+              _c(
+                "el-tab-pane",
+                { attrs: { label: "Card", name: "card" } },
+                [
+                  _c("card-payment-form", {
+                    ref: "paymentForm",
+                    attrs: {
+                      form: _vm.order,
+                      loading: _vm.loading,
+                      "on-token-creation": _vm.onTokenCreation
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-tab-pane",
+                { attrs: { label: "BACS", name: "bacs" } },
+                [
+                  _c(
+                    "el-row",
+                    { attrs: { gutter: 20 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { md: { span: 8, offset: 4 } } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Amount",
+                                size: "small",
+                                prop: "payment_amount"
+                              }
+                            },
+                            [
+                              _c("el-input", {
+                                attrs: {
+                                  autofocus: true,
+                                  "auto-complete": "off"
+                                },
+                                model: {
+                                  value: _vm.order.payment_amount,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.order, "payment_amount", $$v)
+                                  },
+                                  expression: "order.payment_amount"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { md: 8 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Reference",
+                                size: "small",
+                                prop: "payment_reference"
+                              }
+                            },
+                            [
+                              _c("el-input", {
+                                attrs: {
+                                  autofocus: true,
+                                  "auto-complete": "off"
+                                },
+                                model: {
+                                  value: _vm.order.payment_reference,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.order,
+                                      "payment_reference",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "order.payment_reference"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-tab-pane",
+                { attrs: { label: "Other", name: "other" } },
+                [
+                  _c(
+                    "el-row",
+                    { attrs: { gutter: 20 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { md: { span: 8, offset: 4 } } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Payment Method",
+                                size: "small",
+                                prop: "payment_method"
+                              }
+                            },
+                            [
+                              _c("el-input", {
+                                attrs: {
+                                  autofocus: true,
+                                  "auto-complete": "off"
+                                },
+                                model: {
+                                  value: _vm.order.payment_method,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.order, "payment_method", $$v)
+                                  },
+                                  expression: "order.payment_method"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-row",
+                    { attrs: { gutter: 20 } },
+                    [
+                      _c(
+                        "el-col",
+                        { attrs: { md: { span: 8, offset: 4 } } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Amount",
+                                size: "small",
+                                prop: "payment_amount"
+                              }
+                            },
+                            [
+                              _c("el-input", {
+                                attrs: {
+                                  autofocus: true,
+                                  "auto-complete": "off"
+                                },
+                                model: {
+                                  value: _vm.order.payment_amount,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.order, "payment_amount", $$v)
+                                  },
+                                  expression: "order.payment_amount"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "el-col",
+                        { attrs: { md: 8 } },
+                        [
+                          _c(
+                            "el-form-item",
+                            {
+                              attrs: {
+                                label: "Reference",
+                                size: "small",
+                                prop: "payment_reference"
+                              }
+                            },
+                            [
+                              _c("el-input", {
+                                attrs: {
+                                  autofocus: true,
+                                  "auto-complete": "off"
+                                },
+                                model: {
+                                  value: _vm.order.payment_reference,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.order,
+                                      "payment_reference",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "order.payment_reference"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "el-row",

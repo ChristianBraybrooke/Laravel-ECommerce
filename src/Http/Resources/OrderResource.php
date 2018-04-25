@@ -34,7 +34,7 @@ class OrderResource extends Resource
             'payment_method' => $this->payment_method,
             'payment_id' => $this->payment_id,
             'send_auto_emails' => $this->send_auto_emails,
-            'amount_paid' => $this->amount_paid,
+            'amount_paid' => $this->payment_amount,
             'delivery_cost' => $this->delivery_cost,
             'delivery_date' => $this->delivery_date,
             'thank_you_email_sent' => $this->thank_you_email_sent,

@@ -406,7 +406,9 @@ export default {
                         }
                     })
                     .then(function (data) {
-                        this.productTypes = data.data;
+
+                        this.productTypes.types.data = data.data.types.data;
+
                         this.loadingProductCategories = false;
                     }.bind(this))
                     .catch(function (error) {
