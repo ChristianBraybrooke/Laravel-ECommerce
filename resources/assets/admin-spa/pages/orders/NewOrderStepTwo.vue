@@ -12,9 +12,9 @@
             <el-col :span="12"><h1 class="page_title">New Order <span v-if="order.id"> - #{{ order.id }}</span></h1></el-col>
         </el-row>
 
-        <el-row v-if="order.items" :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
+        <el-row :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
             <el-col :span="12">
-                <el-button size="small" @click="handleAddProductBtnClick" type="primary">Add Product(s)</el-button>
+                <product-add-form/>
             </el-col>
         </el-row>
 
@@ -88,23 +88,6 @@
 
             </el-col>
         </el-row>
-
-        <el-dialog :title="(addProductForm.edit ? 'Edit' : 'Add') + ' Product'"
-                   :close-on-click-modal="false"
-                   :before-close="closeAndClearModal"
-                   :visible.sync="showProductModal"
-                   width="70%">
-
-
-            <product-add-form :product-collection="productTypes"/>
-
-            <span slot="footer" class="dialog-footer">
-              <el-button v-on:click="closeAndClearModal(null)">{{ addProductForm.edit ? 'Discard Changes' : 'Cancel' }}</el-button>
-              <el-button v-if="!addProductForm.edit" type="primary" v-on:click="addProductToTable()">Add Product</el-button>
-              <el-button v-if="addProductForm.edit" type="primary" v-on:click="editProductOnTable()">Save Changes</el-button>
-            </span>
-
-        </el-dialog>
 
         <el-row :gutter="20" style="margin-top: 40px;">
             <el-col :md="{span:24}">
@@ -252,7 +235,6 @@ export default {
           if (!this.order.id) {
               this.$router.push({name: 'orders.step1'});
           }
-          this.getProductTypesCollection();
       },
 
       methods: {
