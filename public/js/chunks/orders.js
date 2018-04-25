@@ -664,6 +664,11 @@ var productFormTemplate = {
     },
     productHighLevel: {
         variants: []
+    },
+    productCategory: {
+        products: {
+            data: []
+        }
     }
 };
 
