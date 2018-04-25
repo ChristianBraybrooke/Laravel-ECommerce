@@ -109,7 +109,7 @@ class ApiOrdersController extends Controller
                 $options = [];
                 foreach (($item['options'] ?? []) as $key => $option) {
                     if (isset($option['price_mutator']) && isset($option['price_value']) && $option['price_mutator'] && $option['price_value']) {
-                        $order_extras = $order_extras + (operators($option['price_mutator'], $order_extras, $option['price_value']) * $quantity);
+                        $order_extras = $order_extras + (operators($option['price_mutator'], 0, $option['price_value']) * $quantity);
                     }
                     $options[$key] = $option['name'] ?? $option;
                 }
@@ -160,6 +160,19 @@ class ApiOrdersController extends Controller
 
             'cart_data' => $cart_data
         ]);
+
+        if ($request->filled('content.data')) {
+            foreach ($request->input('content.data') as $key => $content) {
+                $order->content()->updateOrCreate(
+                    [
+                        'content_name' => $content['content_name'],
+                        'lang' => $content['language'] ?? null,
+                        'type' => $content['type'] ?? null,
+                    ],
+                    ['content' => $content['content']]
+                );
+            }
+        }
 
         $order->load($request->with ?: []);
 

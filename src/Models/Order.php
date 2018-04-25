@@ -96,6 +96,17 @@ class Order extends Model implements OrderContract
     ];
 
     /**
+     * The default content to create on creation
+     *
+     * @var array
+     */
+    public $defaultContent = [
+        ['content_name' => 'Shipping Information', 'content' => ['paid' => '', 'cost' => '', 'date' => '', 'reference' => ''], 'type' => 'json', 'order' => 1],
+        ['content_name' => 'Spec Completed', 'content' => ['date' => ''], 'type' => 'json', 'order' => 2],
+        ['content_name' => 'Materials Ordered', 'content' => ['date' => ''], 'type' => 'json', 'order' => 3],
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -309,5 +320,22 @@ class Order extends Model implements OrderContract
     public function invoiceName()
     {
         return ($this->status === $this->statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === $this->statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
+    }
+
+    public function getNeedsAddressAttribute()
+    {
+        foreach ($this->billing_address as $key => $address) {
+            if (!empty(str_replace(" ", "", $address))) {
+                return true;
+            }
+        }
+
+        foreach ($this->shipping_address as $key => $address) {
+            if (!empty(str_replace(" ", "", $address))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

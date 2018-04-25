@@ -391,7 +391,7 @@ export default {
           getProductTypesCollection()
           {
               if (this.shopData.collection_mappings_values) {
-                  var product_category_id = this.shopData.collection_mappings_values['Product Category Collection'];
+                  var product_category_id = this.shopData.collection_mappings_values['Product Categories Collection'];
                   this.loadingProductCategories = true;
                   api.get({
                         path: "collections/" + product_category_id,
@@ -578,7 +578,11 @@ export default {
 
           itemRowNameFormatter(row, column, cellValue)
           {
-              var row_name = <p>{row.variant.name ? (row.variant.name + ' / ') : ''}<strong>{row.name}</strong></p>;
+              if (this.objectHas(row, 'variant.name')) {
+                  var row_name = <p><strong>{(row.variant.name + ' / ')}</strong>{row.name}</p>;
+              } else {
+                  var row_name = <p><strong>{row.name}</strong></p>;
+              }
 
               if (row.options) {
                 var items = [];
