@@ -779,7 +779,7 @@ exports.default = {
         },
         getProductTypesCollection: function getProductTypesCollection() {
             if (this.shopData.collection_mappings_values) {
-                var product_category_id = this.shopData.collection_mappings_values['Product Category Collection'];
+                var product_category_id = this.shopData.collection_mappings_values['Product Categories Collection'];
                 this.loadingProductCategories = true;
                 _apiService2.default.get({
                     path: "collections/" + product_category_id,
@@ -944,7 +944,11 @@ exports.default = {
         itemRowNameFormatter: function itemRowNameFormatter(row, column, cellValue) {
             var h = this.$createElement;
 
-            var row_name = h('p', [row.variant.name ? row.variant.name + ' / ' : '', h('strong', [row.name])]);
+            if (this.objectHas(row, 'variant.name')) {
+                var row_name = h('p', [h('strong', [row.variant.name + ' / ']), row.name]);
+            } else {
+                var row_name = h('p', [h('strong', [row.name])]);
+            }
 
             if (row.options) {
                 var items = [];
@@ -1074,121 +1078,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 exports.default = {
@@ -1244,18 +1133,32 @@ exports.default = {
                     align: 'left',
                     resizable: true
                 }, {
+                    prop: 'created_at.date',
+                    sortable: true,
+                    label: 'Order Placed',
+                    align: 'left',
+                    resizable: true
+                }, {
+                    prop: 'items',
+                    sortable: true,
+                    label: 'Order Summary',
+                    align: 'left',
+                    resizable: true,
+                    formatter: function formatter(row, column, cellValue) {
+                        var items = [];
+                        forEach(row.items, function (item) {
+                            items.push(h('li', [item.qty + ' * ' + item.name]));
+                        });
+
+                        return h('ul', [items]);
+                    }
+                }, {
                     prop: 'amount',
                     sortable: true,
                     label: 'Total',
                     formatter: function formatter(row, column, cellValue) {
                         return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
                     },
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'created_at.human',
-                    sortable: true,
-                    label: 'Order Placed',
                     align: 'left',
                     resizable: true
                 }, {
@@ -1618,6 +1521,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 
@@ -1628,6 +1536,7 @@ var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
+var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
 
 exports.default = {
 
@@ -1674,6 +1583,12 @@ exports.default = {
         orderAmount: function orderAmount() {
             return this.shopData.currency + this.order.amount / 100;
         },
+        formattedContent: function formattedContent() {
+            if (this.objectHas(this.order, 'content.data')) {
+                return filter(this.order.content.data, ['language', 'en']);
+            }
+            return [];
+        },
         orderTotals: function orderTotals() {
             var totals = [];
             forEach(this.order.cart.totals, function (value, key) {
@@ -1696,6 +1611,10 @@ exports.default = {
 
 
     methods: _extends({}, (0, _vuex.mapActions)(['setShopData']), {
+        formatAddressLabel: function formatAddressLabel(val) {
+            return this.capitalize(val.replace(/_/g, " "));
+        },
+
 
         /**
          * Get the order information from the server.
@@ -1708,7 +1627,9 @@ exports.default = {
 
             _apiService2.default.get({
                 path: 'orders/' + this.orderId,
-                params: {}
+                params: {
+                    with: ['content']
+                }
             }).then(function (data) {
                 this.loading = false;
                 this.order = data.data;
@@ -1730,6 +1651,7 @@ exports.default = {
         updateOrder: function updateOrder() {
             this.orderErrors = {};
             this.loading = true;
+            this.order.with = ['content'];
 
             _apiService2.default.persist('put', {
                 path: 'orders/' + this.orderId,
@@ -1814,7 +1736,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1844,7 +1766,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10308,168 +10230,163 @@ var render = function() {
         "el-row",
         { attrs: { gutter: 20 } },
         [
-          _c(
-            "el-col",
-            { staticStyle: { "margin-bottom": "50px" }, attrs: { lg: 12 } },
-            [
-              _c(
-                "el-card",
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "clearfix",
-                      attrs: { slot: "header" },
-                      slot: "header"
-                    },
-                    [
-                      _vm._v(
-                        "\n                    Shipping Information\n                "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-form",
-                    {
-                      ref: "shipmentInformationForm",
-                      attrs: {
-                        model: _vm.order,
-                        "label-width": "120px",
-                        size: "mini"
-                      }
-                    },
-                    [
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { xl: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Cost",
-                                    prop: "delivery_cost"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: { autofocus: true },
-                                    model: {
-                                      value: _vm.order.delivery_cost,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.order,
-                                          "delivery_cost",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "order.delivery_cost"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { xl: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Date",
-                                    prop: "delivery_date"
-                                  }
-                                },
-                                [
-                                  _c("el-date-picker", {
-                                    staticStyle: { width: "100%" },
-                                    attrs: {
-                                      type: "date",
-                                      placeholder: "Pick a day",
-                                      format: "dd/MM/yyyy",
-                                      "value-format": "dd-mm-yyyy",
-                                      "picker-options": _vm.deliveryDateOptions
-                                    },
-                                    model: {
-                                      value: _vm.order.delivery_date,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.order,
-                                          "delivery_date",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "order.delivery_date"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-row",
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { xl: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                [
-                                  _c(
-                                    "el-button",
-                                    {
-                                      attrs: {
-                                        type: "primary",
-                                        loading: _vm.loading
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.updateOrder()
+          _vm._l(_vm.formattedContent, function(content, key) {
+            return _c(
+              "el-col",
+              {
+                key: content.id,
+                staticStyle: { "margin-bottom": "50px" },
+                attrs: { lg: 12 }
+              },
+              [
+                _c(
+                  "el-card",
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "clearfix",
+                        attrs: { slot: "header" },
+                        slot: "header"
+                      },
+                      [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(content.content_name) +
+                            "\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-form",
+                      {
+                        attrs: {
+                          model: _vm.order,
+                          "label-width": "120px",
+                          size: "mini"
+                        }
+                      },
+                      [
+                        content.type === "json"
+                          ? _c(
+                              "el-row",
+                              _vm._l(content.content, function(jsonContent, k) {
+                                return _c(
+                                  "el-col",
+                                  { key: k, attrs: { md: 12 } },
+                                  [
+                                    _c(
+                                      "el-form-item",
+                                      {
+                                        attrs: {
+                                          label: _vm.capitalize(k),
+                                          prop: k
                                         }
-                                      }
-                                    },
-                                    [_vm._v("Save")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
+                                      },
+                                      [
+                                        k !== "date"
+                                          ? _c("el-input", {
+                                              model: {
+                                                value:
+                                                  _vm.order.content.data[key]
+                                                    .content[k],
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.order.content.data[key]
+                                                      .content,
+                                                    k,
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "order.content.data[key].content[k]"
+                                              }
+                                            })
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        k === "date"
+                                          ? _c("el-date-picker", {
+                                              staticStyle: { width: "100%" },
+                                              attrs: {
+                                                type: "date",
+                                                placeholder: "Pick a date",
+                                                format: "dd/MM/yyyy",
+                                                "value-format": "dd-mm-yyyy",
+                                                "picker-options":
+                                                  _vm.deliveryDateOptions
+                                              },
+                                              model: {
+                                                value:
+                                                  _vm.order.content.data[key]
+                                                    .content[k],
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.order.content.data[key]
+                                                      .content,
+                                                    k,
+                                                    $$v
+                                                  )
+                                                },
+                                                expression:
+                                                  "order.content.data[key].content[k]"
+                                              }
+                                            })
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              })
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "el-row",
+                          [
+                            _c(
+                              "el-col",
+                              { attrs: { xl: 12 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  [
+                                    _c(
+                                      "el-button",
+                                      {
+                                        attrs: {
+                                          type: "primary",
+                                          loading: _vm.loading
+                                        },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.updateOrder()
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Save")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          }),
           _vm._v(" "),
           _c(
             "el-col",
@@ -10656,299 +10573,372 @@ var render = function() {
             1
           )
         ],
-        1
+        2
       ),
       _vm._v(" "),
       _c(
         "el-row",
-        { attrs: { gutter: 20 } },
+        { staticStyle: { "margin-bottom": "30px" }, attrs: { gutter: 20 } },
         [
-          _c(
-            "el-col",
-            {
-              staticStyle: { "margin-bottom": "50px" },
-              attrs: { md: 24, lg: 12 }
-            },
+          _c("el-col", { attrs: { md: 12 } }, [
+            _c(
+              "div",
+              [
+                _c(
+                  "el-radio-group",
+                  {
+                    attrs: { size: "small" },
+                    model: {
+                      value: _vm.order.needs_address,
+                      callback: function($$v) {
+                        _vm.$set(_vm.order, "needs_address", $$v)
+                      },
+                      expression: "order.needs_address"
+                    }
+                  },
+                  [
+                    _c("el-radio-button", { attrs: { label: true } }, [
+                      _vm._v("Needs Address")
+                    ]),
+                    _vm._v(" "),
+                    _c("el-radio-button", { attrs: { label: false } }, [
+                      _vm._v("No Address")
+                    ])
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.order.needs_address
+        ? _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
             [
               _c(
-                "el-card",
-                { staticClass: "box-card" },
+                "el-col",
+                {
+                  staticStyle: { "margin-bottom": "50px" },
+                  attrs: { md: 24, lg: 12 }
+                },
                 [
                   _c(
-                    "div",
-                    {
-                      staticClass: "clearfix",
-                      attrs: { slot: "header" },
-                      slot: "header"
-                    },
+                    "el-card",
+                    { staticClass: "box-card" },
                     [
                       _c(
-                        "span",
-                        [
-                          _vm._v("Shipping Address "),
-                          _vm.order.use_billing_for_shipping
-                            ? _c("el-tag", { attrs: { size: "mini" } }, [
-                                _vm._v("Using Billing")
-                              ])
-                            : _vm._e()
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-button",
+                        "div",
                         {
-                          staticStyle: { float: "right", padding: "3px 0" },
-                          attrs: { type: "text" },
-                          on: {
-                            click: function($event) {
-                              _vm.edit_shipping = !_vm.edit_shipping
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.edit_shipping ? "Cancel" : "Edit"))]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.order.shipping_address, function(line, key) {
-                    return !_vm.edit_shipping
-                      ? _c("div", { key: line, staticClass: "text item" }, [
-                          _c("strong", [_vm._v(_vm._s(key) + ":")]),
-                          _vm._v(" " + _vm._s(line) + "\n              ")
-                        ])
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _vm.edit_shipping
-                    ? _c(
-                        "el-form",
-                        {
-                          ref: "editShippingForm",
-                          attrs: {
-                            model: _vm.order,
-                            "label-width": "120px",
-                            size: "mini"
-                          }
+                          staticClass: "clearfix",
+                          attrs: { slot: "header" },
+                          slot: "header"
                         },
                         [
                           _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Use Billing Address",
-                                prop: "use_billing_for_shipping"
-                              }
-                            },
+                            "span",
                             [
-                              _c("el-switch", {
-                                attrs: {
-                                  "active-color": "#13ce66",
-                                  "inactive-color": "#ff4949"
-                                },
-                                model: {
-                                  value: _vm.order.use_billing_for_shipping,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.order,
-                                      "use_billing_for_shipping",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "order.use_billing_for_shipping"
-                                }
-                              })
+                              _vm._v("Shipping Address "),
+                              _vm.order.use_billing_for_shipping
+                                ? _c("el-tag", { attrs: { size: "mini" } }, [
+                                    _vm._v("Using Billing")
+                                  ])
+                                : _vm._e()
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _vm._l(_vm.order.shipping_address, function(
-                            line,
-                            key
-                          ) {
-                            return _c(
-                              "el-form-item",
-                              {
-                                key: line,
-                                attrs: { label: key, prop: _vm.order[key] }
-                              },
-                              [
-                                _c("el-input", {
-                                  attrs: {
-                                    disabled:
-                                      _vm.order.use_billing_for_shipping,
-                                    autofocus: true
-                                  },
-                                  model: {
-                                    value: _vm.order.shipping_address[key],
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        _vm.order.shipping_address,
-                                        key,
-                                        $$v
-                                      )
-                                    },
-                                    expression: "order.shipping_address[key]"
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          }),
-                          _vm._v(" "),
                           _c(
-                            "el-form-item",
+                            "el-button",
+                            {
+                              staticStyle: { float: "right", padding: "3px 0" },
+                              attrs: { type: "text" },
+                              on: {
+                                click: function($event) {
+                                  _vm.edit_shipping = !_vm.edit_shipping
+                                }
+                              }
+                            },
                             [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: {
-                                    type: "primary",
-                                    loading: _vm.loading
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.updateOrder()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Save")]
+                              _vm._v(
+                                _vm._s(_vm.edit_shipping ? "Cancel" : "Edit")
                               )
-                            ],
-                            1
+                            ]
                           )
                         ],
-                        2
-                      )
-                    : _vm._e()
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.order.shipping_address, function(line, key) {
+                        return !_vm.edit_shipping
+                          ? _c("div", { key: line, staticClass: "text item" }, [
+                              _c("strong", [
+                                _vm._v(
+                                  _vm._s(_vm.formatAddressLabel(key)) + ":"
+                                )
+                              ]),
+                              _vm._v(" " + _vm._s(line) + "\n              ")
+                            ])
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm.edit_shipping
+                        ? _c(
+                            "el-form",
+                            {
+                              ref: "editShippingForm",
+                              attrs: {
+                                model: _vm.order,
+                                "label-width": "120px",
+                                size: "mini"
+                              }
+                            },
+                            [
+                              _c(
+                                "el-form-item",
+                                {
+                                  attrs: {
+                                    label: "Use Billing Address",
+                                    prop: "use_billing_for_shipping"
+                                  }
+                                },
+                                [
+                                  _c("el-switch", {
+                                    attrs: {
+                                      "active-color": "#13ce66",
+                                      "inactive-color": "#ff4949"
+                                    },
+                                    model: {
+                                      value: _vm.order.use_billing_for_shipping,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.order,
+                                          "use_billing_for_shipping",
+                                          $$v
+                                        )
+                                      },
+                                      expression:
+                                        "order.use_billing_for_shipping"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.order.shipping_address, function(
+                                line,
+                                key
+                              ) {
+                                return _c(
+                                  "el-form-item",
+                                  {
+                                    key: line,
+                                    attrs: {
+                                      label: _vm.formatAddressLabel(key),
+                                      prop: _vm.order[key]
+                                    }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: {
+                                        disabled:
+                                          _vm.order.use_billing_for_shipping,
+                                        "auto-complete": "off",
+                                        clearable: ""
+                                      },
+                                      model: {
+                                        value: _vm.order.shipping_address[key],
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.order.shipping_address,
+                                            key,
+                                            $$v
+                                          )
+                                        },
+                                        expression:
+                                          "order.shipping_address[key]"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      attrs: {
+                                        type: "primary",
+                                        loading: _vm.loading
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.updateOrder()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            2
+                          )
+                        : _vm._e()
+                    ],
+                    2
+                  )
                 ],
-                2
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "el-col",
-            {
-              staticStyle: { "margin-bottom": "50px" },
-              attrs: { md: 24, lg: 12 }
-            },
-            [
+                1
+              ),
+              _vm._v(" "),
               _c(
-                "el-card",
-                { staticClass: "box-card" },
+                "el-col",
+                {
+                  staticStyle: { "margin-bottom": "50px" },
+                  attrs: { md: 24, lg: 12 }
+                },
                 [
                   _c(
-                    "div",
-                    {
-                      staticClass: "clearfix",
-                      attrs: { slot: "header" },
-                      slot: "header"
-                    },
+                    "el-card",
+                    { staticClass: "box-card" },
                     [
-                      _c("span", [_vm._v("Billing Address")]),
-                      _vm._v(" "),
                       _c(
-                        "el-button",
+                        "div",
                         {
-                          staticStyle: { float: "right", padding: "3px 0" },
-                          attrs: { type: "text" },
-                          on: {
-                            click: function($event) {
-                              _vm.edit_billing = !_vm.edit_billing
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.edit_billing ? "Cancel" : "Edit"))]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.order.billing_address, function(line, key) {
-                    return !_vm.edit_billing
-                      ? _c("div", { key: line, staticClass: "text item" }, [
-                          _c("strong", [_vm._v(_vm._s(key) + ":")]),
-                          _vm._v(" " + _vm._s(line) + "\n              ")
-                        ])
-                      : _vm._e()
-                  }),
-                  _vm._v(" "),
-                  _vm.edit_billing
-                    ? _c(
-                        "el-form",
-                        {
-                          ref: "editShippingForm",
-                          attrs: {
-                            model: _vm.order.billing_address,
-                            "label-width": "120px",
-                            size: "mini"
-                          }
+                          staticClass: "clearfix",
+                          attrs: { slot: "header" },
+                          slot: "header"
                         },
                         [
-                          _vm._l(_vm.order.billing_address, function(
-                            line,
-                            key
-                          ) {
-                            return _c(
-                              "el-form-item",
-                              { key: line, attrs: { label: key, prop: key } },
-                              [
-                                _c("el-input", {
-                                  attrs: { autofocus: true },
-                                  model: {
-                                    value: _vm.order.billing_address[key],
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        _vm.order.billing_address,
-                                        key,
-                                        $$v
-                                      )
-                                    },
-                                    expression: "order.billing_address[key]"
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          }),
+                          _c("span", [_vm._v("Billing Address")]),
                           _vm._v(" "),
                           _c(
-                            "el-form-item",
+                            "el-button",
+                            {
+                              staticStyle: { float: "right", padding: "3px 0" },
+                              attrs: { type: "text" },
+                              on: {
+                                click: function($event) {
+                                  _vm.edit_billing = !_vm.edit_billing
+                                }
+                              }
+                            },
                             [
-                              _c(
-                                "el-button",
-                                {
-                                  attrs: {
-                                    type: "primary",
-                                    loading: _vm.loading
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.updateOrder()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Save")]
+                              _vm._v(
+                                _vm._s(_vm.edit_billing ? "Cancel" : "Edit")
                               )
-                            ],
-                            1
+                            ]
                           )
                         ],
-                        2
-                      )
-                    : _vm._e()
+                        1
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.order.billing_address, function(line, key) {
+                        return !_vm.edit_billing
+                          ? _c("div", { key: line, staticClass: "text item" }, [
+                              _c("strong", [
+                                _vm._v(
+                                  _vm._s(_vm.formatAddressLabel(key)) + ":"
+                                )
+                              ]),
+                              _vm._v(" " + _vm._s(line) + "\n              ")
+                            ])
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm.edit_billing
+                        ? _c(
+                            "el-form",
+                            {
+                              ref: "editShippingForm",
+                              attrs: {
+                                model: _vm.order.billing_address,
+                                "label-width": "120px",
+                                size: "mini"
+                              }
+                            },
+                            [
+                              _vm._l(_vm.order.billing_address, function(
+                                line,
+                                key
+                              ) {
+                                return _c(
+                                  "el-form-item",
+                                  {
+                                    key: line,
+                                    attrs: {
+                                      label: _vm.formatAddressLabel(key),
+                                      prop: key
+                                    }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: {
+                                        autofocus: true,
+                                        "auto-complete": "off",
+                                        clearable: ""
+                                      },
+                                      model: {
+                                        value: _vm.order.billing_address[key],
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.order.billing_address,
+                                            key,
+                                            $$v
+                                          )
+                                        },
+                                        expression: "order.billing_address[key]"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "el-form-item",
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      attrs: {
+                                        type: "primary",
+                                        loading: _vm.loading
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.updateOrder()
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Save")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            2
+                          )
+                        : _vm._e()
+                    ],
+                    2
+                  )
                 ],
-                2
+                1
               )
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "el-row",
@@ -12341,6 +12331,7 @@ var render = function() {
           attrs: {
             "type-name": "order",
             "full-modal": true,
+            "request-with": "content",
             "table-options": _vm.tableOptions,
             "create-form": _vm.ordersCreateForm,
             "create-form-rules": _vm.createFormRules
@@ -12348,761 +12339,56 @@ var render = function() {
           on: { createNew: _vm.handleCreateNew },
           scopedSlots: _vm._u([
             {
-              key: "createForm",
+              key: "actionButtons",
               fn: function(props) {
                 return [
-                  _c(
-                    "el-row",
-                    { attrs: { gutter: 20 } },
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
+                  _vm.tableOptions.viewText
+                    ? _c(
+                        "router-link",
+                        {
+                          attrs: {
+                            to: {
+                              path: props.editPathFormated + "/" + props.row.id
+                            }
+                          }
+                        },
                         [
                           _c(
-                            "el-form-item",
+                            "el-button",
                             {
-                              attrs: {
-                                label: "Customer First Name",
-                                prop: "first_name"
-                              }
+                              staticClass: "action_btn view_btn",
+                              attrs: { size: "mini" }
                             },
                             [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.ordersCreateForm.first_name,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "first_name",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "ordersCreateForm.first_name"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Customer Last Name",
-                                prop: "last_name"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.ordersCreateForm.last_name,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "last_name",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "ordersCreateForm.last_name"
-                                }
-                              })
-                            ],
-                            1
+                              _vm._v(
+                                _vm._s(_vm.tableOptions.viewText) +
+                                  "\n              "
+                              )
+                            ]
                           )
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
-                    "el-row",
-                    { attrs: { gutter: 20 } },
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: { label: "Customer Email", prop: "email" }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.ordersCreateForm.email,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.ordersCreateForm, "email", $$v)
-                                  },
-                                  expression: "ordersCreateForm.email"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: { label: "Customer Phone", prop: "phone" }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value: _vm.ordersCreateForm.phone,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.ordersCreateForm, "phone", $$v)
-                                  },
-                                  expression: "ordersCreateForm.phone"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
+                    "a",
                     {
-                      staticStyle: { "margin-top": "50px" },
-                      attrs: { gutter: 20 }
+                      attrs: {
+                        href:
+                          "/ecommerce-templates/invoice-download?reports=" +
+                          props.row.id,
+                        target: "_blank"
+                      }
                     },
                     [
                       _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Billing Address Line 1",
-                                prop: "billing_address_line1"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm.billing_address_line1,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "billing_address_line1",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.billing_address_line1"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Billing Address Line 2",
-                                prop: "billing_address_line2"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm.billing_address_line2,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "billing_address_line2",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.billing_address_line2"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Billing Address Town",
-                                prop: "billing_address_town"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm.billing_address_town,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "billing_address_town",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.billing_address_town"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Billing Address County",
-                                prop: "billing_address_county"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm.billing_address_county,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "billing_address_county",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.billing_address_county"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Billing Address Postcode",
-                                prop: "billing_address_postcode"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm
-                                      .billing_address_postcode,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "billing_address_postcode",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.billing_address_postcode"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Billing Address Country",
-                                prop: "billing_address_country"
-                              }
-                            },
-                            [
-                              _c("el-input", {
-                                attrs: {
-                                  autofocus: true,
-                                  "auto-complete": "off"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm
-                                      .billing_address_country,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "billing_address_country",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.billing_address_country"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    {
-                      staticStyle: { "margin-top": "50px" },
-                      attrs: { gutter: 20 }
-                    },
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { md: 24 } },
-                        [
-                          _c(
-                            "el-form-item",
-                            {
-                              attrs: {
-                                label: "Shipping Address Same As Billing",
-                                prop: "same_shipping_address"
-                              }
-                            },
-                            [
-                              _c("el-switch", {
-                                attrs: {
-                                  "active-color": "#13ce66",
-                                  "inactive-color": "#ff4949"
-                                },
-                                model: {
-                                  value:
-                                    _vm.ordersCreateForm.same_shipping_address,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.ordersCreateForm,
-                                      "same_shipping_address",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "ordersCreateForm.same_shipping_address"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      !_vm.ordersCreateForm.same_shipping_address
-                        ? _c(
-                            "el-col",
-                            { attrs: { md: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Shipping Address Line 1",
-                                    prop: "shipping_address_line1"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      autofocus: true,
-                                      "auto-complete": "off"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.ordersCreateForm
-                                          .shipping_address_line1,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.ordersCreateForm,
-                                          "shipping_address_line1",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "ordersCreateForm.shipping_address_line1"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.ordersCreateForm.same_shipping_address
-                        ? _c(
-                            "el-col",
-                            { attrs: { md: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Shipping Address Line 2",
-                                    prop: "shipping_address_line2"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      autofocus: true,
-                                      "auto-complete": "off"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.ordersCreateForm
-                                          .shipping_address_line2,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.ordersCreateForm,
-                                          "shipping_address_line2",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "ordersCreateForm.shipping_address_line2"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.ordersCreateForm.same_shipping_address
-                        ? _c(
-                            "el-col",
-                            { attrs: { md: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Shipping Address Town",
-                                    prop: "shipping_address_town"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      autofocus: true,
-                                      "auto-complete": "off"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.ordersCreateForm
-                                          .shipping_address_town,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.ordersCreateForm,
-                                          "shipping_address_town",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "ordersCreateForm.shipping_address_town"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.ordersCreateForm.same_shipping_address
-                        ? _c(
-                            "el-col",
-                            { attrs: { md: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Shipping Address County",
-                                    prop: "shipping_address_county"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      autofocus: true,
-                                      "auto-complete": "off"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.ordersCreateForm
-                                          .shipping_address_county,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.ordersCreateForm,
-                                          "shipping_address_county",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "ordersCreateForm.shipping_address_county"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.ordersCreateForm.same_shipping_address
-                        ? _c(
-                            "el-col",
-                            { attrs: { md: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Shipping Address Postcode",
-                                    prop: "shipping_address_postcode"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      autofocus: true,
-                                      "auto-complete": "off"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.ordersCreateForm
-                                          .shipping_address_postcode,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.ordersCreateForm,
-                                          "shipping_address_postcode",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "ordersCreateForm.shipping_address_postcode"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e(),
-                      _vm._v(" "),
-                      !_vm.ordersCreateForm.same_shipping_address
-                        ? _c(
-                            "el-col",
-                            { attrs: { md: 12 } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
-                                    label: "Shipping Address Country",
-                                    prop: "shipping_address_country"
-                                  }
-                                },
-                                [
-                                  _c("el-input", {
-                                    attrs: {
-                                      autofocus: true,
-                                      "auto-complete": "off"
-                                    },
-                                    model: {
-                                      value:
-                                        _vm.ordersCreateForm
-                                          .shipping_address_country,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.ordersCreateForm,
-                                          "shipping_address_country",
-                                          $$v
-                                        )
-                                      },
-                                      expression:
-                                        "ordersCreateForm.shipping_address_country"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        : _vm._e()
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "el-row",
-                    {
-                      staticStyle: { "margin-top": "50px" },
-                      attrs: { gutter: 20 }
-                    },
-                    [
-                      _c(
-                        "el-col",
-                        { attrs: { md: 12 } },
-                        [
-                          _vm.products
-                            ? _c(
-                                "el-form-item",
-                                {
-                                  attrs: { label: "Products", prop: "products" }
-                                },
-                                [
-                                  _c(
-                                    "el-select",
-                                    {
-                                      staticClass: "collection_type_select",
-                                      staticStyle: { width: "100%" },
-                                      attrs: {
-                                        filterable: "",
-                                        multiple: "",
-                                        "allow-create": "",
-                                        placeholder: "Select"
-                                      },
-                                      model: {
-                                        value: _vm.ordersCreateForm.products,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.ordersCreateForm,
-                                            "products",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "ordersCreateForm.products"
-                                      }
-                                    },
-                                    _vm._l(_vm.products, function(product) {
-                                      return _c("el-option", {
-                                        key: product.id,
-                                        attrs: {
-                                          label: product.name,
-                                          value: product.id
-                                        }
-                                      })
-                                    })
-                                  )
-                                ],
-                                1
-                              )
-                            : _vm._e()
-                        ],
-                        1
+                        "el-button",
+                        {
+                          staticClass: "action_btn view_btn",
+                          attrs: { size: "mini", type: "success" }
+                        },
+                        [_vm._v("Download PDF\n              ")]
                       )
                     ],
                     1
