@@ -26,10 +26,10 @@ class CollectionTypeResource extends Resource
             'individual_name' => $this->when(requestIncludes('individual_name'), $this->individual_name),
             'slug' => $this->when(requestIncludes('slug'), $this->slug),
             $this->mergeWhen($this->relationLoaded('media'), [
-                'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
-                'secondary_img' => new MediaResource($this->mediaByLocation('secondary_img')->first()),
-                'third_img' => new MediaResource($this->mediaByLocation('third_img')->first()),
-                'gallery' => new MediasResource($this->mediaByLocation('gallery'))
+                'main_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('main_img')->first()) : null,
+                'secondary_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('secondary_img')->first()) : null,
+                'third_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('third_img')->first()) : null,
+                'gallery' => $this->relationLoaded('media') ? new MediasResource($this->mediaByLocation('gallery')) : null
             ]),
             'products' => new ProductsResource($this->whenLoaded('products')),
             'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),

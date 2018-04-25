@@ -22,7 +22,7 @@ class CollectionResource extends Resource
             'name' => $this->name,
             'individual_name' => $this->when(requestIncludes('individual_name'), $this->individual_name),
             $this->mergeWhen($this->relationLoaded('media'), [
-                'header_img' => new MediaResource($this->media()->location('header_img')->first())
+                'header_img' => $this->relationLoaded('media') ? new MediaResource($this->media()->location('header_img')->first()) : null
             ]),
             'types' => new CollectionTypesResource($this->whenLoaded('types')),
             'slug' => $this->when(requestIncludes('slug'), $this->slug),

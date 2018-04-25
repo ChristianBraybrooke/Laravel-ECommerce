@@ -28,23 +28,17 @@ class ProductResource extends Resource
             'collections' =>
             $this->when(
                 $this->relationLoaded('collectionTypes'),
-                ['data' => $this->groupedCollectionTypes()]
+                ['data' => $this->relationLoaded('collectionTypes') ? $this->groupedCollectionTypes() : null]
             ),
             'content' => new ContentsResource($this->whenLoaded('content')),
             $this->mergeWhen($this->relationLoaded('media'), [
-                'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
-                'gallery' => new MediasResource($this->mediaByLocation('gallery')),
-                'customisation_base_img' => new MediaResource($this->mediaByLocation('customisation_base_img')->first())
+                'main_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('main_img')->first()) : null,
+                'gallery' => $this->relationLoaded('media') ? new MediasResource($this->mediaByLocation('gallery')) : null,
+                'customisation_base_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('customisation_base_img')->first()) : null
             ]),
-            $this->mergeWhen($this->relationLoaded('variants'), [
-                'variants' => new ProductsResource($this->whenLoaded('variants'))
-            ]),
-            $this->mergeWhen($this->relationLoaded('variant'), [
-                'variant' => new ProductResource($this->whenLoaded('variant'))
-            ]),
-            $this->mergeWhen($this->relationLoaded('orderForm'), [
-                'order_form' => new FormResource($this->whenLoaded('orderForm'))
-            ]),
+            'variants' => new ProductsResource($this->whenLoaded('variants')),
+            'variant' => new ProductResource($this->whenLoaded('variant')),
+            'order_form' => new FormResource($this->whenLoaded('orderForm')),
             'customisations' => new ProductCustomisationsResource($this->whenLoaded('customisations')),
             'is_variant' => $this->when(requestIncludes('is_variant'), $this->is_variant),
             'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),

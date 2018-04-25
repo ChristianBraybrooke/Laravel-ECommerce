@@ -17,11 +17,11 @@ class CollectionTypesResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        $shop = new ShopResource($request);
+        $shop = requestIncludes('no_shop_data') ? null : new ShopResource($request);
         return [
             'data' => $this->collection,
              $this->mergeWhen(!requestIncludes('no_shop_data'), [
-                'shop_data' => $shop->toArray($request)
+               'shop_data' => requestIncludes('no_shop_data') ? null : $shop->toArray($request)
             ])
         ];
     }
