@@ -192,6 +192,28 @@ class Product extends Model implements ProductContract
     }
 
     /**
+     * Add a scope to pull only variants
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOnlyVariants($query)
+    {
+        return $query->whereNotNull('variant_id');
+    }
+
+    /**
+     * Add a scope to pull only parents
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNoVariants($query)
+    {
+        return $query->whereNull('variant_id');
+    }
+
+    /**
      * Add a scope to pull products that belong to a certain collectiontype
      *
      * @param $query

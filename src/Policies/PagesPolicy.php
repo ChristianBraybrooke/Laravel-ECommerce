@@ -52,6 +52,17 @@ class PagesPolicy
     }
 
     /**
+     * Determine whether the user can update many pages.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function bulkUpdate(User $user)
+    {
+        return $user->can('update pages');
+    }
+
+    /**
      * Determine whether the user can delete the page.
      *
      * @param  \App\User  $user

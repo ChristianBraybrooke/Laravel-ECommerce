@@ -13,6 +13,7 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 use Spatie\Image\Manipulations;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use File;
 
 class Gallery extends Model implements HasMediaConversions
 {
@@ -39,6 +40,9 @@ class Gallery extends Model implements HasMediaConversions
             $watermark = null;
             if ($watermark_file) {
                 $watermark = $watermark_file->disk === 's3' ? $watermark_file->getUrl() : $watermark_file->getPath();
+            }
+            if (!File::exists($watermark)) {
+                $watermark = null;
             }
 
             if ($watermark) {

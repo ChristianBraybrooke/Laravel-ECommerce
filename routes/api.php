@@ -12,6 +12,7 @@
 
 // Pages
 Route::apiResource('pages', 'ApiPagesController');
+Route::post('pages/bulk', 'ApiPagesController@bulkUpdate');
 
 // Collections
 Route::apiResource('collections', 'ApiCollectionsController');

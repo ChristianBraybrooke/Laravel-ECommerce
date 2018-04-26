@@ -55,7 +55,7 @@
                     </el-row>
 
                     <el-row v-if="collectionType.content" :gutter="20">
-                        <content-component v-if="collectionType.content" :content="collectionType.content"/>                        
+                        <content-component v-if="collectionType.content" :content="collectionType.content"/>
                     </el-row>
 
                     <el-row :gutter="20">
@@ -314,7 +314,8 @@ export default {
               api.get({
                   path: 'collections/' + this.collectionId + '/types/' + this.typeId,
                   params: {
-                      with: 'collection'
+                      with: ['collection', 'media', 'content'],
+                      include: ['individual_name', 'slug', 'live_at'],
                   },
               })
               .then(function (data) {
@@ -340,7 +341,8 @@ export default {
           submitForm(formName)
           {
               this.collectionTypeErrors = {};
-              this.collectionType.with = 'collection';
+              this.collectionType.with = ['collection', 'media', 'content'];
+              this.collectionType.include = ['individual_name', 'slug', 'live_at'];
               this.loading = true;
 
               this.$refs[formName].validate((valid) => {

@@ -40,13 +40,6 @@ class Page extends Model
     ];
 
     /**
-     * The default relations to load
-     *
-     * @var array
-     */
-    protected $with = ['content'];
-
-    /**
      * The default meta to create on creation
      *
      * @var array

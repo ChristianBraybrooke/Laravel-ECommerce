@@ -2,7 +2,7 @@ window.ecommerceConfig.web_version = '0.0.17';
 
 import 'babel-polyfill';
 
-import Vue from 'vue';
+window.Vue = require('vue');
 import Element from 'element-ui';
 import router from './router/';
 import store from './store/index.js';
@@ -42,8 +42,6 @@ Vue.mixin({
     }
 });
 
-import generateColors from './utils/color';
-import objectAssign from 'object-assign';
 
 const app = new Vue({
     router,

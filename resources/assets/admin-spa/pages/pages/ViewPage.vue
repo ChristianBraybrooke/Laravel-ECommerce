@@ -8,6 +8,7 @@
 
       <el-row align="middle">
           <el-col :span="24"><h1 class="page_title">{{ page.name }}</h1></el-col>
+          <a :href="getSiteBaseURL + page.slug" target="_blank"><el-button type="success" size="mini">View Page</el-button></a>
       </el-row>
 
       <errors v-if="Object.keys(pageErrors).length > 0" :errors="pageErrors"></errors>
@@ -92,6 +93,14 @@ var findIndex = require('lodash.findindex');
 var has = require('lodash.has');
 var filter = require('lodash.filter');
 
+
+var withRequest = [
+    'media', 'content'
+];
+var includeRequest = [
+    'live_at', 'created_at', 'in_menu', 'no_shop_data', 'slug'
+];
+
 export default {
 
       name: 'ViewPage',
@@ -143,7 +152,11 @@ export default {
               this.pageErrors = {};
 
               api.get({
-                    path: "pages/" + this.pageId
+                    path: "pages/" + this.pageId,
+                    params: {
+                        with: withRequest,
+                        include: includeRequest,
+                    }
                 })
                 .then(function (data) {
                     this.loading = false;
@@ -161,6 +174,9 @@ export default {
                   if (valid) {
                       this.loading = true;
                       this.pageErrors = {};
+
+                      this.page.with = withRequest;
+                      this.page.include = includeRequest;
 
                       api.persist("put", {
                             path: "pages/" + this.pageId,

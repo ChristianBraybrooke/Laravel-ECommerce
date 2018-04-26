@@ -7,6 +7,14 @@ p, a, span, li, div, h1, h2, h3, h4, h4, small, strong {
   -webkit-font-smoothing: antialiased;
 }
 
+main.el-main {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    background: lighten($--background-color-base, 0.9);
+    padding: 30px 50px;
+}
+
 .cb_menu_vertical {
     height: calc(100vh - 60px);
     position: fixed;
@@ -115,7 +123,6 @@ ul.el-menu {
     padding-top: 13px;
 }
 .gallery_file_wrap {
-    width: 100%;
     // min-width: 200px;
     height: 184px;
     overflow: hidden;
@@ -125,11 +132,19 @@ ul.el-menu {
     align-items: center;
     color: white;
     font-size: 30px;
+    height: 200px;
+    max-width: 200px;
+    width: 100%;
 }
-.gallery_file_wrap file {
+.gallery_file_wrap .file {
     width: 100%;
     height: auto;
     transition: all 0.7s ease-in-out;
+}
+.gallery_file_wrap img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .file_upload_box::selection, .el-upload-dragger p::selection {
     background:none!important;
@@ -197,6 +212,7 @@ ul.el-menu {
     padding-bottom: 15px;
 }
 .gallery_row {
+    display: flex;
     padding-top: 5px;
     padding-bottom: 5px;
 }

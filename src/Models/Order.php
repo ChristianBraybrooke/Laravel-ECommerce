@@ -84,7 +84,7 @@ class Order extends Model implements OrderContract
     {
         return $query->where('status', 'STATUS_PROCESSING');
     }
-
+    
     /**
      * The event map for the model.
      *

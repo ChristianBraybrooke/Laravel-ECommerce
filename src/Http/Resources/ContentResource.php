@@ -33,9 +33,12 @@ class ContentResource extends Resource
      */
     public function with($request)
     {
-        $shop = new ShopResource($request);
-        return [
-            'shop_data' => $shop->toArray($request)
-        ];
+        if (!requestIncludes('no_shop_data')) {
+            $shop = new ShopResource($request);
+            return [
+                'shop_data' => $shop->toArray($request)
+            ];
+        }
+        return [];
     }
 }

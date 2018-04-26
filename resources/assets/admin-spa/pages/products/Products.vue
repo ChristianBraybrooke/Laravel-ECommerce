@@ -2,6 +2,7 @@
     <data-table type-name="product"
                 bulk-update-url="products/bulk"
                 :table-options="tableOptions"
+                request-with="variant"
                 :request-includes="['live_at', 'created_at']"
                 :create-form="productsCreateForm">
 

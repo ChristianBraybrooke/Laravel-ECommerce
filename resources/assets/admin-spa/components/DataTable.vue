@@ -572,6 +572,9 @@ export default {
         this.$refs.createForm.validate((valid) => {
           if (valid) {
 
+            this.createFormData.with = this.requestWith;
+            this.createFormData.include = this.requestIncludes;
+
             api.persist('post', {
               path: this.baseUrl ? this.baseUrl : this.typeName,
               object: this.createFormData

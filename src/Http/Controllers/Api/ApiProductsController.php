@@ -31,7 +31,10 @@ class ApiProductsController extends Controller
     {
         $products = Product::with($request->with ?: [])
                            ->when($request->no_variants, function ($query) {
-                              return $query->whereNull('variant_id');
+                              return $query->noVariants();
+                           })
+                           ->when($request->only_variants, function ($query) {
+                              return $query->onlyVariants();
                            })
                            ->basicResponse();
 
@@ -195,9 +198,9 @@ class ApiProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function bulkUpdate(Request $request, Collection $collection)
+    public function bulkUpdate(Request $request)
     {
-        $this->authorize('bulkUpdate', get_class(new CollectionType()));
+        $this->authorize('bulkUpdate', get_class(new Product()));
 
         $actions = ['delete', 'live', 'draft', 'print_queue'];
 
@@ -214,21 +217,21 @@ class ApiProductsController extends Controller
             $ids[] = $data['id'];
         }
 
-        $types = CollectionType::whereIn('id', $ids);
+        $products = Product::whereIn('id', $ids);
 
         switch ($request->action) {
             case 'delete':
-                $types->delete();
+                $products->delete();
                 break;
 
             case 'live':
-                $types->update([
+                $products->update([
                     'live_at' => Carbon::now()->subMinute()->toDateTimeString()
                 ]);
                 break;
 
             case 'draft':
-                $types->update([
+                $products->update([
                     'live_at' => null
                 ]);
                 break;
@@ -236,7 +239,7 @@ class ApiProductsController extends Controller
 
         return [
             'errors' => [],
-            'message' => 'Successfully updated ' . count($ids) . ' collections.'
+            'message' => 'Successfully updated ' . count($ids) . ' products.'
         ];
     }
 
@@ -255,6 +258,7 @@ class ApiProductsController extends Controller
 
         return new ProductsResource($variants);
     }
+
 
     /**
      * Remove the specified resource from storage.

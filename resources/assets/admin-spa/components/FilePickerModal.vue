@@ -23,7 +23,7 @@
             </span>
         </el-dialog>
 
-        <template v-for="chunk in fileChunks">
+        <template v-for="chunk in fileChunks" v-if="showPreview">
             <el-row :gutter="10" class="gallery_row" type="flex">
                 <template v-for="(file, index) in chunk">
                     <el-col>
@@ -85,6 +85,20 @@ export default {
               type: String,
               required: true,
           },
+          visible: {
+              type: Boolean,
+              required: false,
+              default() {
+                  return false;
+              }
+          },
+          showPreview: {
+              type: Boolean,
+              required: false,
+              default() {
+                  return true
+              }
+          },
           showBtn: {
               type: Boolean,
               required: false,
@@ -119,7 +133,17 @@ export default {
       },
 
       watch: {
+          dialogVisible: function(value) {
+              if (!value) {
+                  this.$emit('closed:modal', value);
+              } else {
+                  this.$emit('opened:modal', value);
+              }
+          },
 
+          visible: function(value) {
+              this.dialogVisible = value;
+          }
       },
 
       mounted () {

@@ -1,1 +1,219 @@
-webpackJsonp([38],{"b76+":function(e,r,t){r=e.exports=t("FZ+f")(void 0),r.push([e.i,".stripe_input[data-v-fc530fea]{-webkit-appearance:none;background-color:#fff;background-image:none;border-radius:4px;border:1px solid #dcdfe6;border-color:#dcdfe6;-webkit-box-sizing:border-box;box-sizing:border-box;display:inherit;font-size:14px;line-height:1;outline:none;padding:12px 15px;-webkit-transition:border-color .2s cubic-bezier(.645,.045,.355,1);transition:border-color .2s cubic-bezier(.645,.045,.355,1);width:100%;height:40px}.stripe_input[data-v-fc530fea]:hover{cursor:text;border:1px solid #dcdfe6;border-color:#c0c4cc}.stripe_input.StripeElement--focus[data-v-fc530fea]{border:1px solid #dcdfe6;border-color:#409eff}.stripe_input.StripeElement--invalid[data-v-fc530fea]{border:1px solid #dcdfe6;border-color:#f56c6c}.stripe_input.StripeElement--complete[data-v-fc530fea]{border:1px solid #dcdfe6;border-color:#67c23a}.stripe_input.medium[data-v-fc530fea]{font-size:14px;height:36px;padding:10px 15px}.stripe_input.small[data-v-fc530fea]{font-size:13px;height:32px;padding:8.5px 15px}.stripe_input.mini[data-v-fc530fea]{font-size:12px;height:28px;padding:7px 15px}",""])},iyS7:function(e,r,t){var i=t("b76+");"string"==typeof i&&(i=[[e.i,i,""]]),i.locals&&(e.exports=i.locals);t("rjj0")("09f2d91a",i,!0)},oj35:function(e,r,t){"use strict";Object.defineProperty(r,"__esModule",{value:!0});var i=Stripe("pk_test_uAzfSI4OCDnMzvadYJWuFpfZ"),n=i.elements();r.default={name:"CardPaymentForm",components:{},props:{form:{type:Object,required:!0},onTokenCreation:{type:Function,required:!1,default:function(){return function(e,r,t){}}},size:{type:String,required:!1,default:function(){return""}}},data:function(){return{cardErrors:{number:null,date:null,cvc:null},loading:!1,cardNumberElement:void 0,cardExpiryElement:void 0,cardCvcElement:void 0}},computed:{},watch:{},mounted:function(){this.setupStripe()},methods:{setupStripe:function(){var e=this.size.includes("mini"),r=this.size.includes("small"),t=(this.size.includes("medium"),{base:{fontSize:e?"12px":r?"13px":"14px",color:"#606266",fontSmoothing:"antialiased",fontFamily:"Helvetica Neue","::placeholder":{color:"#c0c4cc"}},invalid:{color:"#606266"}});this.cardNumberElement=n.create("cardNumber",{style:t}),this.cardNumberElement.mount(this.$refs.cardNumber),this.cardExpiryElement=n.create("cardExpiry",{style:t}),this.cardExpiryElement.mount(this.$refs.cardExpiry),this.cardCvcElement=n.create("cardCvc",{style:t}),this.cardCvcElement.mount(this.$refs.cardCvc),this.listenForEvents()},listenForEvents:function(){this.cardNumberElement.on("change",function(e,r){e.brand&&this.setBrandIcon(e.brand),e.empty?this.$set(this.form,"card_number",null):this.$set(this.form,"card_number","4444"),e.complete&&this.cardExpiryElement.focus(),this.setOutcome(e,"number_change")}.bind(this)),this.cardExpiryElement.on("change",function(e){e.complete&&this.cardCvcElement.focus(),this.setOutcome(e,"expiry_change")}.bind(this)),this.cardCvcElement.on("change",function(e){e.complete,this.setOutcome(e,"cvc_change")}.bind(this))},setBrandIcon:function(e){},setOutcome:function(e){var r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;"number_change"==r&&(this.cardErrors.number=null),"expiry_change"==r&&(this.cardErrors.date=null),"cvc_change"==r&&(this.cardErrors.cvc=null),e.token?(this.onTokenCreation(!1,e.token,{}),this.$set(this.form,"payment_token",e.token.id),this.loading=!1):e.error&&(this.onTokenCreation(!0,{},e.error),this.loading=!1,this.handleError(e.error))},handleError:function(e){if("validation_error"===e.type&&e.code){var r=e.code;~r.indexOf("number")&&(this.cardErrors.number=e.message),~r.indexOf("expiry")&&(this.cardErrors.date=e.message),~r.indexOf("cvc")&&(this.cardErrors.cvc=e.message)}},createToken:function(){this.loading=!0,i.createToken(this.cardNumberElement,{name:"Christian Braybrooke"}).then(this.setOutcome)}}}},"sAw/":function(e,r,t){function i(e){t("iyS7")}var n=t("VU/8"),a=t("oj35"),o=t("wLm4"),s=i,c=n(a,o,!1,s,"data-v-fc530fea",null);e.exports=c.exports},wLm4:function(e,r){var t=function(){var e=this,r=e.$createElement,t=e._self._c||r;return t("div",{directives:[{name:"loading",rawName:"v-loading",value:e.loading,expression:"loading"}],staticClass:"card_payment_form"},[t("el-row",{attrs:{gutter:20}},[t("el-col",{attrs:{md:{span:8,offset:4}}},[t("el-form-item",{attrs:{label:"Cardholder Name",size:"small",prop:"cardholder_name",rules:[{required:!0,message:"Cardholder name is required.",trigger:"blur,change"}]}},[t("el-input",{attrs:{placeholder:""},model:{value:e.form.cardholder_name,callback:function(r){e.$set(e.form,"cardholder_name",r)},expression:"form.cardholder_name"}})],1)],1),e._v(" "),t("el-col",{attrs:{md:8}},[t("el-form-item",{attrs:{label:"Card Number",size:"small",prop:"card_number",rules:[{required:!0,message:"Card Number is required.",trigger:"blur,change"}]}},[t("div",{ref:"cardNumber",staticClass:"stripe_input small"}),e._v(" "),t("transition",{attrs:{name:"el-zoom-in-top"}},[e.cardErrors.number?t("div",{staticClass:"el-form-item__error"},[e._v("\n                        "+e._s(e.cardErrors.number)+"\n                    ")]):e._e()])],1)],1)],1),e._v(" "),t("el-row",{attrs:{gutter:20}},[t("el-col",{attrs:{md:{span:8,offset:4}}},[t("el-form-item",{attrs:{label:"Card Expiry",size:"small",prop:"customer.company"}},[t("div",{ref:"cardExpiry",staticClass:"stripe_input small"}),e._v(" "),t("transition",{attrs:{name:"el-zoom-in-top"}},[e.cardErrors.date?t("div",{staticClass:"el-form-item__error"},[e._v("\n                        "+e._s(e.cardErrors.date)+"\n                    ")]):e._e()])],1)],1),e._v(" "),t("el-col",{attrs:{md:8}},[t("el-form-item",{attrs:{label:"Card CVC",size:"small",prop:"customer.company"}},[t("div",{ref:"cardCvc",staticClass:"stripe_input small"}),e._v(" "),t("transition",{attrs:{name:"el-zoom-in-top"}},[e.cardErrors.cvc?t("div",{staticClass:"el-form-item__error"},[e._v("\n                        "+e._s(e.cardErrors.cvc)+"\n                    ")]):e._e()])],1)],1)],1)],1)},i=[];e.exports={render:t,staticRenderFns:i}}});
+webpackJsonp([38],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+exports.default = {
+
+    name: 'FormSectionComponent',
+
+    components: {
+        FormFieldComponent: function FormFieldComponent() {
+            return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormFieldComponent.vue"));
+        }
+    },
+
+    props: {
+        form: {
+            type: Object,
+            required: true
+        },
+        model: {
+            type: Object,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            loading: false
+        };
+    },
+
+
+    computed: {},
+
+    watch: {},
+
+    mounted: function mounted() {
+        console.log('FormSectionComponent.vue Mounted');
+    },
+
+
+    methods: {
+        addField: function addField() {
+            this.model.fields.data.push({
+                rules: {
+                    required: false
+                },
+                options: {}
+            });
+        }
+    }
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-19f61838\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-19f61838\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.model.fields
+        ? _vm._l(_vm.model.fields.data, function(field) {
+            return _c("form-field-component", {
+              key: field.id,
+              attrs: { model: field, section: _vm.model, form: _vm.form }
+            })
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "el-button",
+        {
+          attrs: {
+            type: "info",
+            size: "mini",
+            icon: "el-icon-plus",
+            plain: ""
+          },
+          on: { click: _vm.addField }
+        },
+        [_vm._v("Add Field")]
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-19f61838", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-19f61838\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-19f61838\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("bd43bc3c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-19f61838\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormSectionComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-19f61838\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormSectionComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/FormSectionComponent.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-19f61838\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-19f61838\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/FormSectionComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-19f61838", Component.options)
+  } else {
+    hotAPI.reload("data-v-19f61838", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
