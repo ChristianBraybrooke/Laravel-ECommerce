@@ -497,7 +497,7 @@ class Product extends Model implements ProductContract
     * @var String $field
     * @return Bool
     */
-    syncMediaFromName($name, $product, $location = 'main_img', $field = 'file_name')
+    public function syncMediaFromName($name, $product, $location = 'main_img', $field = 'file_name')
     {
         if ($name) {
             $media = Media::where($field, $name);
