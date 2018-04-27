@@ -503,7 +503,7 @@ class Product extends Model implements ProductContract
             $media = Media::where($field, $name);
             if ($media) {
                 $product->syncMedia([
-                    $location => $image,
+                    $location => $media,
                 ]);
                 return true;
             }
