@@ -459,6 +459,7 @@ class Product extends Model implements ProductContract
                 $parent->update(['meta' => $variant_meta]);
                 $parent->collectionTypes()->sync($collection_types);
                 $import->models('product')->attach($parent->id);
+                $this->syncMediaFromName(($row['variant_img'] ?? ''), $parent);
             }
 
             $variant = $parent->id;
@@ -479,11 +480,35 @@ class Product extends Model implements ProductContract
             'meta' => $meta,
         ]);
 
+        $this->syncMediaFromName(($row['img'] ?? ''), $product);
         $product->content()->createMany($content);
         $import->models('product')->attach($product->id);
         $product->collectionTypes()->sync($collection_types);
 
         return $product;
+    }
+
+    /**
+    * Sync media just by using a name.
+    *
+    * @var String $name
+    * @var String $product
+    * @var String $location
+    * @var String $field
+    * @return Bool
+    */
+    syncMediaFromName($name, $product, $location = 'main_img', $field = 'file_name')
+    {
+        if ($name) {
+            $media = Media::where($field, $name);
+            if ($media) {
+                $product->syncMedia([
+                    $location => $image,
+                ]);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
