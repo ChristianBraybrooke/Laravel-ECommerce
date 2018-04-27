@@ -1,5 +1,7 @@
 <template lang="html">
     <div v-loading="loading">
+      <el-form label-position="top" :model="page" :rules="pageFormRules" ref="pageForm" label-width="120px">
+
 
       <el-breadcrumb class="breadcrumbs" separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ name: 'pages' }">Pages</el-breadcrumb-item>
@@ -7,32 +9,45 @@
       </el-breadcrumb>
 
       <el-row align="middle">
-          <el-col :span="24"><h1 class="page_title">{{ page.name }}</h1></el-col>
-          <a :href="getSiteBaseURL + page.slug" target="_blank"><el-button type="success" size="mini">View Page</el-button></a>
+          <el-col :span="12">
+              <h1 class="page_title">{{ page.name }}</h1>
+              <a :href="getSiteBaseURL + page.slug" target="_blank"><el-button type="success" class="view_item_button" size="mini">View Page</el-button></a>
+          </el-col>
+
+          <el-col :span="12">
+              <el-row>
+                  <div class="page_switch">
+                      <el-form-item v-if="page.live_at" label="Live" prop="live_at.live">
+                          <el-switch v-model="page.live_at.live"
+                                     active-color="#13ce66"
+                                     inactive-color="#ff4949">
+                          </el-switch>
+                      </el-form-item>
+                  </div>
+              </el-row>
+
+              <el-row>
+                  <div class="page_switch">
+                      <el-form-item label="In Menu" prop="in_menu">
+                          <el-switch v-model="page.in_menu"
+                                     active-color="#13ce66"
+                                     inactive-color="#ff4949">
+                          </el-switch>
+                      </el-form-item>
+                  </div>
+                </el-row>
+          </el-col>
       </el-row>
 
       <errors v-if="Object.keys(pageErrors).length > 0" :errors="pageErrors"></errors>
 
       <el-row :gutter="40">
           <el-col :sm="24" :md="24">
-              <el-form label-position="top" :model="page" :rules="pageFormRules" ref="pageForm" label-width="120px">
 
                   <el-row :gutter="20">
+
                       <el-col :md="12">
-                          <el-form-item v-if="page.live_at" label="Live" prop="live_at.live">
-                              <el-switch v-model="page.live_at.live"
-                                         active-color="#13ce66"
-                                         inactive-color="#ff4949">
-                              </el-switch>
-                          </el-form-item>
-                      </el-col>
-                      <el-col :md="12">
-                          <el-form-item label="In Menu" prop="in_menu">
-                              <el-switch v-model="page.in_menu"
-                                         active-color="#13ce66"
-                                         inactive-color="#ff4949">
-                              </el-switch>
-                          </el-form-item>
+
                       </el-col>
                   </el-row>
 
@@ -79,11 +94,10 @@
                       </el-col>
                   </el-row>
 
-              </el-form>
           </el-col>
       </el-row>
 
-
+    </el-form>
     </div>
 </template>
 

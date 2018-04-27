@@ -109,7 +109,7 @@ export default {
         insertQuillImage(files)
         {
             forEach(files, function(file) {
-                this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', 'https://surteco.dev' + file.url);
+                this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', file.url);
             }.bind(this));
 
             this.quillInstance = null;

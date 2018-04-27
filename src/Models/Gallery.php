@@ -52,9 +52,11 @@ class Gallery extends Model implements HasMediaConversions
                      ->watermarkHeight(13, Manipulations::UNIT_PERCENT)
                      ->watermarkWidth(20, Manipulations::UNIT_PERCENT)
                      ->watermarkFit(Manipulations::FIT_FILL)
-                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT);
+                     ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
+                     ->keepOriginalImageFormat();
             } else {
-                $this->addMediaConversion("{$media->name}-web");
+                $this->addMediaConversion("{$media->name}-web")
+                     ->keepOriginalImageFormat();
             }
 
             if ($watermark) {
@@ -64,10 +66,12 @@ class Gallery extends Model implements HasMediaConversions
                      ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
                      ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
                      ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                     ->crop(Manipulations::CROP_CENTER, 500, 500);
+                     ->crop(Manipulations::CROP_CENTER, 500, 500)
+                     ->keepOriginalImageFormat();
             } else {
                 $this->addMediaConversion($media->thumbName())
-                     ->crop(Manipulations::CROP_CENTER, 500, 500);
+                     ->crop(Manipulations::CROP_CENTER, 500, 500)
+                     ->keepOriginalImageFormat();
             }
 
             if ($watermark) {
@@ -77,10 +81,12 @@ class Gallery extends Model implements HasMediaConversions
                      ->watermarkHeight(20, Manipulations::UNIT_PERCENT)
                      ->watermarkWidth(30, Manipulations::UNIT_PERCENT)
                      ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                     ->crop(Manipulations::CROP_CENTER, 800, 800);
+                     ->crop(Manipulations::CROP_CENTER, 800, 800)
+                     ->keepOriginalImageFormat();
             } else {
                 $this->addMediaConversion($media->squareName())
-                     ->crop(Manipulations::CROP_CENTER, 800, 800);
+                     ->crop(Manipulations::CROP_CENTER, 800, 800)
+                     ->keepOriginalImageFormat();
             }
 
             if ($watermark) {
@@ -90,10 +96,12 @@ class Gallery extends Model implements HasMediaConversions
                      ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
                      ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
                      ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                     ->focalCrop(1770, 800, 0, 57);
+                     ->focalCrop(1770, 800, 0, 57)
+                     ->keepOriginalImageFormat();
             } else {
                 $this->addMediaConversion($media->headerName())
-                     ->focalCrop(1770, 800, 0, 57);
+                     ->focalCrop(1770, 800, 0, 57)
+                     ->keepOriginalImageFormat();
             }
 
             if ($watermark) {
@@ -103,10 +111,12 @@ class Gallery extends Model implements HasMediaConversions
                      ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
                      ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
                      ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                     ->crop(Manipulations::CROP_CENTER, 1300, 390);
+                     ->crop(Manipulations::CROP_CENTER, 1300, 390)
+                     ->keepOriginalImageFormat();
             } else {
                 $this->addMediaConversion($media->panelName())
-                     ->crop(Manipulations::CROP_CENTER, 1300, 390);
+                     ->crop(Manipulations::CROP_CENTER, 1300, 390)
+                     ->keepOriginalImageFormat();
             }
 
             if ($watermark) {
@@ -116,10 +126,12 @@ class Gallery extends Model implements HasMediaConversions
                      ->watermarkHeight(15, Manipulations::UNIT_PERCENT)
                      ->watermarkWidth(25, Manipulations::UNIT_PERCENT)
                      ->watermarkPadding(3, 3, Manipulations::UNIT_PERCENT)
-                     ->crop(Manipulations::CROP_CENTER, 1000, 667);
+                     ->crop(Manipulations::CROP_CENTER, 1000, 667)
+                     ->keepOriginalImageFormat();
             } else {
                 $this->addMediaConversion($media->listingName())
-                     ->crop(Manipulations::CROP_CENTER, 1000, 667);
+                     ->crop(Manipulations::CROP_CENTER, 1000, 667)
+                     ->keepOriginalImageFormat();
             }
 
             $this->addMediaConversion($media->advertName())
