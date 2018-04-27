@@ -11,6 +11,7 @@ use ChrisBraybrooke\ECommerce\Notifications\NewOrderNotification;
 use Notification;
 use Excel;
 use Validator;
+use Storage;
 
 class ProcessImport implements ShouldQueue
 {
@@ -21,6 +22,10 @@ class ProcessImport implements ShouldQueue
     protected $import_class;
 
     protected $rows_added;
+
+    protected $temp_file_path = 'import-temps/';
+
+    protected $is_temp_file = false;
 
     /**
      * Create a new job instance.
@@ -46,13 +51,26 @@ class ProcessImport implements ShouldQueue
     {
         $import_file = $this->import->media->first();
 
+        if ($import_file->disk !== 'public') {
+            $this->temp_file_path = $this->temp_file_path . $import_file->file_name;
+            $temp_file = Storage::disk('local')->put($this->temp_file_path, Storage::disk($import_file->disk)->get($import_file->getPath()));
+
+            if ($temp_file) {
+                $import_file_path = 'storage/app/' . $this->temp_file_path;
+                $this->is_temp_file = true;
+            } else {
+                throw new \Exception("Creation of temp file for import failed: " . $this->temp_file_path, 422);
+            }
+        } else {
+            $import_file_path = optional($import_file)->getPath();
+        }
+
         if ($this->import_class && $import_file) {
             $this->import->update([
                 'status' => 'Processing'
             ]);
 
             $import_model = new $this->import_class;
-            $import_file_path = optional($import_file)->getUrl();
 
             Excel::selectSheetsByIndex(0)->load($import_file_path, function ($reader) use ($import_model) {
                 $i = 0;
@@ -100,5 +118,9 @@ class ProcessImport implements ShouldQueue
             'rows_added' => 0,
             'rows_not_added' => count($this->rows_added),
         ]);
+
+        if ($this->is_temp_file) {
+            Storage::delete($this->temp_file_path);
+        }
     }
 }
