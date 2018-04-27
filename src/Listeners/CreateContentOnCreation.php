@@ -58,7 +58,7 @@ class CreateContentOnCreation
         $contents = [];
         foreach ($event->model->defaultContent as $key => $content) {
             $content_inner = $content['content'] ?? null;
-            if ($content['type'] === 'json' && !empty($content_inner)) {
+            if (($content['type'] ?? null) === 'json' && !empty($content_inner)) {
                 $content_inner = json_encode($content_inner);
             }
             $contents[] = [
