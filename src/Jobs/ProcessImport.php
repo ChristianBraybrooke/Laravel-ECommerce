@@ -52,7 +52,7 @@ class ProcessImport implements ShouldQueue
             ]);
 
             $import_model = new $this->import_class;
-            $import_file_path = optional($import_file)->getPath();
+            $import_file_path = optional($import_file)->getUrl();
 
             Excel::selectSheetsByIndex(0)->load($import_file_path, function ($reader) use ($import_model) {
                 $i = 0;
