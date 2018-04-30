@@ -28,12 +28,12 @@ trait SluggableTrait
         if ($slug) {
             $other_slugs = self::withoutGlobalScopes()
                                ->where('slug', 'like', $slug . '%')
-                               ->where('id', '!==', $this->id)
+                               ->where('id', '!=', $this->id)
                                ->get();
         } else {
             $other_slugs = self::withoutGlobalScopes()
                                ->whereNull('slug')
-                               ->where('id', '!==', $this->id)
+                               ->where('id', '!=', $this->id)
                                ->get();
         }
 
