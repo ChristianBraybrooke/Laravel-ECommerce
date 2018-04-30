@@ -32,7 +32,7 @@ class ProcessImportOnCreation implements ShouldQueue
     public function handle($event)
     {
         if (isset($event->model->status) && $event->model->status === 'Pending') {
-            ProcessImport::dispatch($event->model);
+            ProcessImport::dispatch($event->model)->onQueue('imports');
         }
 
         // $admin_ids = Setting::get('Admin Notifications');

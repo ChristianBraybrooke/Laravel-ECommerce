@@ -27,6 +27,10 @@ class ProcessImport implements ShouldQueue
 
     protected $is_temp_file = false;
 
+    public $tries = 1;
+
+    public $timeout = 3600;
+
     /**
      * Create a new job instance.
      *
