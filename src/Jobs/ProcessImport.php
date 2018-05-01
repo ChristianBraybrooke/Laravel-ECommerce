@@ -29,7 +29,7 @@ class ProcessImport implements ShouldQueue
 
     public $tries = 1;
 
-    public $timeout = 3600;
+    public $timeout = 10600;
 
     /**
      * Create a new job instance.
