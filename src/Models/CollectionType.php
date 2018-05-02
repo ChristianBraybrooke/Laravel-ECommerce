@@ -145,7 +145,7 @@ class CollectionType extends Model implements CollectionTypeContract
      */
     public function getUrlAttribute()
     {
-        return url("{$this->collection->slug}/{$this->slug}");
+        return url("collections/{$this->collection->slug}/{$this->slug}");
         return '#';
     }
 
