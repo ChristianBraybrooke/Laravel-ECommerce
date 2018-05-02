@@ -63,7 +63,7 @@ class CollectionType extends Model implements CollectionTypeContract
      * @var array
      */
     public $defaultContent = [
-        ['content_name' => 'Main Content', 'content' => '', 'order' => 1],
+        ['content_name' => 'Main Content', 'content' => '', 'order' => 1, 'type' => 'quill'],
         ['content_name' => 'Features', 'content' => '', 'order' => 3],
         ['content_name' => 'Snippet', 'content' => '', 'order' => 2]
     ];
