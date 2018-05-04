@@ -45,7 +45,7 @@ class ApiCollectionsController extends Controller
 
         $collection = $collection->create([
           'name' => $request->name,
-          'slug' => $request->filled('slug') ? $request->slug : null,
+          'slug' => $request->has('slug') ? $request->slug : $request->name,
           'individual_name' => $request->filled('individual_name') ? $request->individual_name : null,
           'live_at' => $live
         ]);
@@ -59,8 +59,10 @@ class ApiCollectionsController extends Controller
      * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function show(Collection $collection)
+    public function show(Request $request, Collection $collection)
     {
+        $collection->load($request->with ?: []);
+
         return new CollectionResource($collection);
     }
 

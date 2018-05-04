@@ -49,6 +49,17 @@ class ProductsPolicy
     }
 
     /**
+     * Determine whether the user can update many products.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function bulkUpdate(User $user)
+    {
+        return $user->can('update products');
+    }
+
+    /**
      * Determine whether the user can delete the product.
      *
      * @param  \App\User  $user

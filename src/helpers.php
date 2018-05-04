@@ -142,3 +142,33 @@ function operators($op, $a, $b)
     ];
     return $operators[$op];
 }
+
+/**
+ * Turn a camel case string into words.
+ *
+ * @param String $string
+ * @param String $uc
+ * @return String
+ */
+function camelCaseToWords($string, $uc = false)
+{
+    $pattern = '/(.*?[a-z]{1})([A-Z]{1}.*?)/';
+    $replace = '${1} ${2}';
+    $words = preg_replace($pattern, $replace, $string);
+    if ($uc) {
+        $words = ucwords($words);
+    }
+
+    return $words ?: $string;
+}
+
+/**
+ * Return the id for a collection mapped to something.
+ *
+ * @param String $name
+ * @return Int
+ */
+function getCollectionMap($name)
+{
+    return Setting::get("{$name} Collection");
+}

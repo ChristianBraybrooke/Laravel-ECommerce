@@ -11,7 +11,7 @@ trait ResponsableTrait
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopebasicResponse($query)
+    public function scopeBasicResponse($query)
     {
         $request = request();
 
@@ -38,7 +38,7 @@ trait ResponsableTrait
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scoperesponseAdapter($query)
+    public function scopeResponseAdapter($query)
     {
         $request = request();
 

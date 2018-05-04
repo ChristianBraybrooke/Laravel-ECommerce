@@ -31,7 +31,10 @@ class ApiProductsController extends Controller
     {
         $products = Product::with($request->with ?: [])
                            ->when($request->no_variants, function ($query) {
-                              return $query->whereNull('variant_id');
+                              return $query->noVariants();
+                           })
+                           ->when($request->only_variants, function ($query) {
+                              return $query->onlyVariants();
                            })
                            ->basicResponse();
 
@@ -52,7 +55,7 @@ class ApiProductsController extends Controller
 
         $product = $product->create([
             'name' => $request->name,
-            'slug' => $request->filled('slug') ? $request->slug : null,
+            'slug' => $request->has('slug') ? $request->slug : $request->name,
             'live_at' => $live
         ]);
 
@@ -107,7 +110,7 @@ class ApiProductsController extends Controller
             foreach ($request->input('variants.data') as $key => $variant) {
                 $new_variant = $product->variants()->updateOrCreate(
                     ['name' => $variant['name']],
-                    ['slug' => $variant['slug'], 'live_at' => $live]
+                    ['slug' => !empty($variant['slug'] ?? null) ? $variant['slug'] : $variant['name'], 'live_at' => $live]
                 );
 
                 if (isset($variant['main_img'])) {
@@ -172,7 +175,7 @@ class ApiProductsController extends Controller
                         $collection = Collection::find($collectionId);
                         $col = $collection->types->where('name', 'LIKE', $collectionType)->first();
                         if (empty($col)) {
-                            $col = $collection->types()->create(['name' => $collectionType, 'individual_name' => null, 'slug' => null, 'live_at' => Carbon::now()->toDateTimeString()]);
+                            $col = $collection->types()->create(['name' => $collectionType, 'individual_name' => null, 'slug' => $collectionType, 'live_at' => Carbon::now()->toDateTimeString()]);
                         }
                         $newCollectionTypeSync[] = $col->id;
                     } elseif (is_int($collectionType)) {
@@ -195,9 +198,9 @@ class ApiProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function bulkUpdate(Request $request, Collection $collection)
+    public function bulkUpdate(Request $request)
     {
-        $this->authorize('bulkUpdate', get_class(new CollectionType()));
+        $this->authorize('bulkUpdate', get_class(new Product()));
 
         $actions = ['delete', 'live', 'draft', 'print_queue'];
 
@@ -214,21 +217,21 @@ class ApiProductsController extends Controller
             $ids[] = $data['id'];
         }
 
-        $types = CollectionType::whereIn('id', $ids);
+        $products = Product::whereIn('id', $ids);
 
         switch ($request->action) {
             case 'delete':
-                $types->delete();
+                $products->delete();
                 break;
 
             case 'live':
-                $types->update([
+                $products->update([
                     'live_at' => Carbon::now()->subMinute()->toDateTimeString()
                 ]);
                 break;
 
             case 'draft':
-                $types->update([
+                $products->update([
                     'live_at' => null
                 ]);
                 break;
@@ -236,7 +239,7 @@ class ApiProductsController extends Controller
 
         return [
             'errors' => [],
-            'message' => 'Successfully updated ' . count($ids) . ' collections.'
+            'message' => 'Successfully updated ' . count($ids) . ' products.'
         ];
     }
 
@@ -255,6 +258,7 @@ class ApiProductsController extends Controller
 
         return new ProductsResource($variants);
     }
+
 
     /**
      * Remove the specified resource from storage.

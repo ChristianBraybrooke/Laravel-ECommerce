@@ -17,13 +17,27 @@ class ShopResource extends Resource
      */
     public function toArray($request)
     {
+        $mappings = config('ecommerce.shop_data.collection_mappings');
+
         return [
           'url' => Setting::get('url'),
           'currency' => Setting::get('Currency'),
-          // 'cart_url' => route('cart.add'),
           'phone' => Setting::get('Contact Phone'),
           'orders' => $this->when(Auth::guard('api')->check(), function () {
               return Order::processing()->get()->count();
+          }),
+          'collection_mappings' => $this->when(Auth::guard('api')->check(), function () use ($mappings) {
+              return $mappings;
+          }),
+          'collection_mappings_values' => $this->when(Auth::guard('api')->check(), function () use ($mappings) {
+              $values = [];
+              foreach ($mappings as $key => $mapping) {
+                  $values[$mapping] = Setting::get($mapping);
+              }
+              return $values;
+          }),
+          'site_images' => $this->when(Auth::guard('api')->check(), function () {
+              return config('ecommerce.shop_data.site_images');
           }),
         ];
     }

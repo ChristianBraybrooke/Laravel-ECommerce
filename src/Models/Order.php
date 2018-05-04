@@ -96,6 +96,17 @@ class Order extends Model implements OrderContract
     ];
 
     /**
+     * The default content to create on creation
+     *
+     * @var array
+     */
+    public $defaultContent = [
+        ['content_name' => 'Shipping Information', 'content' => ['paid' => '', 'cost' => '', 'date' => '', 'reference' => ''], 'type' => 'json', 'order' => 1],
+        ['content_name' => 'Spec Completed', 'content' => ['date' => ''], 'type' => 'json', 'order' => 2],
+        ['content_name' => 'Materials Ordered', 'content' => ['date' => ''], 'type' => 'json', 'order' => 3],
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -108,7 +119,7 @@ class Order extends Model implements OrderContract
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date'
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent'
     ];
 
     /**
@@ -124,7 +135,7 @@ class Order extends Model implements OrderContract
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date'
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent'
     ];
 
     /**
@@ -135,7 +146,7 @@ class Order extends Model implements OrderContract
     protected $casts = [
         'cart_data' => 'collection',
         'use_billing_for_shipping' => 'boolean',
-        'send_auto_emails' => 'boolean'
+        'send_auto_emails' => 'boolean',
     ];
 
     /**
@@ -280,6 +291,17 @@ class Order extends Model implements OrderContract
     }
 
     /**
+     * Format the amount paid
+     *
+     * @param $value
+     * @return string
+     */
+    public function getAmountPaidAttribute($value)
+    {
+        return is_null($value) ? null : priceFormatter(($value / 100));
+    }
+
+    /**
      * Format the status information
      *
      * @param $value
@@ -298,5 +320,22 @@ class Order extends Model implements OrderContract
     public function invoiceName()
     {
         return ($this->status === $this->statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === $this->statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
+    }
+
+    public function getNeedsAddressAttribute()
+    {
+        foreach ($this->billing_address as $key => $address) {
+            if (!empty(str_replace(" ", "", $address))) {
+                return true;
+            }
+        }
+
+        foreach ($this->shipping_address as $key => $address) {
+            if (!empty(str_replace(" ", "", $address))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

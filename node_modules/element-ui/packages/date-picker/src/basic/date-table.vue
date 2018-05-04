@@ -73,6 +73,10 @@
 
       disabledDate: {},
 
+      selectedDate: {
+        type: Array
+      },
+
       minDate: {},
 
       maxDate: {},
@@ -129,6 +133,7 @@
 
         const startDate = this.startDate;
         const disabledDate = this.disabledDate;
+        const selectedDate = this.selectedDate || this.value;
         const now = clearHours(new Date());
 
         for (let i = 0; i < 6; i++) {
@@ -181,7 +186,10 @@
               }
             }
 
-            cell.disabled = typeof disabledDate === 'function' && disabledDate(new Date(time));
+            let newDate = new Date(time);
+            cell.disabled = typeof disabledDate === 'function' && disabledDate(newDate);
+            cell.selected = Array.isArray(selectedDate) &&
+              selectedDate.filter(date => date.toString() === newDate.toString())[0];
 
             this.$set(row, this.showWeekNumber ? j + 1 : j, cell);
           }
@@ -285,6 +293,10 @@
           classes.push('disabled');
         }
 
+        if (cell.selected) {
+          classes.push('selected');
+        }
+
         return classes.join(' ');
       },
 
@@ -311,7 +323,8 @@
 
         newDate.setDate(parseInt(cell.text, 10));
 
-        return getWeekNumber(newDate) === getWeekNumber(this.date);
+        const valueYear = isDate(this.value) ? this.value.getFullYear() : null;
+        return year === valueYear && getWeekNumber(newDate) === getWeekNumber(this.value);
       },
 
       markRange(maxDate) {
@@ -331,9 +344,15 @@
             const index = i * 7 + j + (this.showWeekNumber ? -1 : 0);
             const time = nextDate(startDate, index - this.offsetDay).getTime();
 
-            cell.inRange = minDate && time >= clearHours(minDate) && time <= clearHours(maxDate);
-            cell.start = minDate && time === clearHours(minDate.getTime());
-            cell.end = maxDate && time === clearHours(maxDate.getTime());
+            if (maxDate && maxDate < minDate) {
+              cell.inRange = minDate && time >= clearHours(maxDate) && time <= clearHours(minDate);
+              cell.start = maxDate && time === clearHours(maxDate.getTime());
+              cell.end = minDate && time === clearHours(minDate.getTime());
+            } else {
+              cell.inRange = minDate && time >= clearHours(minDate) && time <= clearHours(maxDate);
+              cell.start = minDate && time === clearHours(minDate.getTime());
+              cell.end = maxDate && time === clearHours(maxDate.getTime());
+            }
           }
         }
       },
@@ -442,8 +461,9 @@
               });
             } else {
               const minDate = new Date(newDate.getTime());
+              this.rangeState.selecting = false;
 
-              this.$emit('pick', { minDate, maxDate: this.maxDate }, false);
+              this.$emit('pick', { minDate, maxDate: this.minDate });
             }
           } else if (!this.minDate) {
             const minDate = new Date(newDate.getTime());
@@ -464,6 +484,20 @@
             value: value,
             date: newDate
           });
+        } else if (selectionMode === 'dates') {
+          let selectedDate = this.selectedDate;
+
+          if (!cell.selected) {
+            selectedDate.push(newDate);
+          } else {
+            selectedDate.forEach((date, index) => {
+              if (date.toString() === newDate.toString()) {
+                selectedDate.splice(index, 1);
+              }
+            });
+          }
+
+          this.$emit('select', selectedDate);
         }
       }
     }

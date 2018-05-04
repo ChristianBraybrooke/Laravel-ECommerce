@@ -25,8 +25,8 @@
         <template v-for="chunk in galleryImageChunks">
             <el-row :gutter="0" class="gallery_row">
                 <template v-for="(file, index) in chunk">
-                    <el-col :md="inModal ? 6 : 4" :sm="inModal ? 12 : 6">
-                        <div @click="handleFileClick(file, $event)"
+                    <!-- <el-col :md="inModal ? 6 : 4" :sm="inModal ? 12 : 6"> -->
+                        <div class="gallery_file" @click="handleFileClick(file, $event)"
                              :class="shouldShowProgress(file) ? 'gallery_file_wrap show_progress' : fileInSelects(file) ? 'gallery_file_wrap selected' : 'gallery_file_wrap'">
                             <div v-if="shouldShowProgress(file)" class="gallery_file_wrap_progress">
                                 <el-progress class="progress_object" type="circle" :percentage="formatPercentage(file.percentage)" :status="file.status === 'fail' ? 'exception' : file.status === 'success' ? 'success' : ''"></el-progress>
@@ -56,7 +56,7 @@
                             </div>
                             <img style="max-width: 100%;" :src="getFileUrl(file)" :alt="file.name">
                         </div>
-                    </el-col>
+                    <!-- </el-col> -->
                 </template>
             </el-row>
         </template>
@@ -126,7 +126,7 @@ export default {
           },
           meta: {
               type: Object,
-              required: !this.getGalleryFiles,
+              required: false,
           },
           getGalleryFiles: {
               type: Boolean,
@@ -137,7 +137,7 @@ export default {
           },
           galleryFiles: {
               type: Array,
-              required: !this.getGalleryFiles
+              required: false
           },
           selectable: {
               type: Number,
@@ -166,7 +166,7 @@ export default {
       computed: {
           galleryImageChunks()
           {
-              return chunk(this.files, this.inModal ? 4 : 12);
+              return chunk(this.files, this.inModal ? 6 : 12);
           },
       },
 

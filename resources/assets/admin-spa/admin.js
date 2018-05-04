@@ -2,7 +2,7 @@ window.ecommerceConfig.web_version = '0.0.17';
 
 import 'babel-polyfill';
 
-import Vue from 'vue';
+window.Vue = require('vue');
 import Element from 'element-ui';
 import router from './router/';
 import store from './store/index.js';
@@ -10,6 +10,7 @@ import Admin from './admin.vue';
 import locale from 'element-ui/lib/locale/lang/en';
 
 import './axios.js';
+
 
 Vue.use(Element, {locale});
 
@@ -22,8 +23,15 @@ Vue.mixin({
     },
 });
 
+var has = require('lodash.has');
+
 Vue.mixin({
     methods: {
+        objectHas(object, value)
+        {
+            return has(object, value);
+        },
+
         capitalize(str)
         {
             var lower = str.toLowerCase();
@@ -34,8 +42,6 @@ Vue.mixin({
     }
 });
 
-import generateColors from './utils/color';
-import objectAssign from 'object-assign';
 
 const app = new Vue({
     router,

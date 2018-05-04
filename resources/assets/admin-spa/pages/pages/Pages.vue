@@ -1,6 +1,8 @@
 <template lang="html">
 
   <data-table type-name="page"
+              bulk-update-url="pages/bulk"
+              :request-includes="['live_at', 'created_at', 'in_menu']"
               :table-options="tableOptions"
               :create-form="usersCreateForm">
 

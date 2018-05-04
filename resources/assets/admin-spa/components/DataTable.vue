@@ -34,7 +34,7 @@
                   v-for="item in tableOptions.bulkOptions"
                   :key="item.value"
                   :label="item.label"
-                  :value="item">
+                  :value="item.value">
                 </el-option>
               </el-select>
             </el-col>
@@ -82,20 +82,22 @@
                 label="Actions">
                 <template slot-scope="scope">
 
-                    <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="tableOptions.viewText">
-                        <el-button
-                          size="mini"
-                          class="action_btn view_btn">{{ tableOptions.viewText }}
-                        </el-button>
-                    </router-link>
+                    <slot name="actionButtons" :row="scope.row" :edit-path-formated="editPathFormated">
+                        <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="tableOptions.viewText">
+                            <el-button
+                              size="mini"
+                              class="action_btn view_btn">{{ tableOptions.viewText }}
+                            </el-button>
+                        </router-link>
 
-                    <el-button
-                      v-if="tableOptions.deleteText"
-                      size="mini"
-                      type="danger"
-                      class="action_btn delete_btn"
-                      @click="deleteData(scope.$index, scope.row)">{{ tableOptions.deleteText }}
-                    </el-button>
+                        <el-button
+                          v-if="tableOptions.deleteText"
+                          size="mini"
+                          type="danger"
+                          class="action_btn delete_btn"
+                          @click="deleteData(scope.$index, scope.row)">{{ tableOptions.deleteText }}
+                        </el-button>
+                    </slot>
                 </template>
             </el-table-column>
         </el-table>
@@ -461,7 +463,7 @@ export default {
         })
         .then(function (data) {
             this.Data = data.data;
-            this.setShopData(data.shop_data)
+            this.setShopData(data.shop_data);
             this.shopData = data.shop_data;
             this.paginationMeta = {
                 total: data.meta.total,
@@ -569,6 +571,9 @@ export default {
     {
         this.$refs.createForm.validate((valid) => {
           if (valid) {
+
+            this.createFormData.with = this.requestWith;
+            this.createFormData.include = this.requestIncludes;
 
             api.persist('post', {
               path: this.baseUrl ? this.baseUrl : this.typeName,

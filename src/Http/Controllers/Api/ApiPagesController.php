@@ -9,6 +9,7 @@ use ChrisBraybrooke\ECommerce\Http\Resources\PageResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\PagesResource;
 use ChrisBraybrooke\ECommerce\Http\Requests\PageRequest;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class ApiPagesController extends Controller
 {
@@ -43,8 +44,8 @@ class ApiPagesController extends Controller
 
         $page = $page->create([
             'name' => $request->name,
-            'slug' => $request->slug,
-            'live' => $request->live
+            'slug' => $request->has('slug') ? $request->slug : $request->name,
+            'live_at' => $live
         ]);
 
         return new PageResource($page);
@@ -78,7 +79,7 @@ class ApiPagesController extends Controller
 
         $page->update([
             'name' => $request->name,
-            'slug' => $request->slug ?: $page->slug,
+            'slug' => $request->has('slug') ? $request->slug : $page->slug,
             'live_at' => $live,
             'in_menu' => $request->in_menu ?: $page->in_menu
         ]);
@@ -86,7 +87,10 @@ class ApiPagesController extends Controller
         if ($request->filled('content.data')) {
             foreach ($request->input('content.data') as $key => $content) {
                 $page->content()->updateOrCreate(
-                    ['content_name' => $content['content_name']],
+                    [
+                        'content_name' => $content['content_name'],
+                        'lang' => $content['language']
+                    ],
                     ['content' => $content['content']]
                 );
             }
@@ -99,6 +103,57 @@ class ApiPagesController extends Controller
         $page->load($request->with ?: []);
 
         return new PageResource($page);
+    }
+
+    /**
+     *  Bulk Update the many resources in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function bulkUpdate(Request $request)
+    {
+        $this->authorize('bulkUpdate', get_class(new Page()));
+
+        $actions = ['delete', 'live', 'draft'];
+
+        $this->validate($request, [
+          'data' => 'array|required',
+          'action' => [
+              'required',
+              Rule::in($actions)
+          ],
+        ]);
+
+        $ids = [];
+        foreach ($request->data as $key => $data) {
+            $ids[] = $data['id'];
+        }
+
+        $pages = Page::whereIn('id', $ids);
+
+        switch ($request->action) {
+            case 'delete':
+                $pages->delete();
+                break;
+
+            case 'live':
+                $pages->update([
+                    'live_at' => Carbon::now()->subMinute()->toDateTimeString()
+                ]);
+                break;
+
+            case 'draft':
+                $pages->update([
+                    'live_at' => null
+                ]);
+                break;
+        }
+
+        return [
+            'errors' => [],
+            'message' => 'Successfully updated ' . count($ids) . ' pages.'
+        ];
     }
 
     /**

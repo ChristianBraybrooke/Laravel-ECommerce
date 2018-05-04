@@ -1,5 +1,7 @@
 <template lang="html">
     <div v-loading="loading">
+      <el-form label-position="top" :model="page" :rules="pageFormRules" ref="pageForm" label-width="120px">
+
 
       <el-breadcrumb class="breadcrumbs" separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ name: 'pages' }">Pages</el-breadcrumb-item>
@@ -7,31 +9,45 @@
       </el-breadcrumb>
 
       <el-row align="middle">
-          <el-col :span="24"><h1 class="page_title">{{ page.name }}</h1></el-col>
+          <el-col :span="12">
+              <h1 class="page_title">{{ page.name }}</h1>
+              <a :href="getSiteBaseURL + page.slug" target="_blank"><el-button type="success" class="view_item_button" size="mini">View Page</el-button></a>
+          </el-col>
+
+          <el-col :span="12">
+              <el-row>
+                  <div class="page_switch">
+                      <el-form-item v-if="page.live_at" label="Live" prop="live_at.live">
+                          <el-switch v-model="page.live_at.live"
+                                     active-color="#13ce66"
+                                     inactive-color="#ff4949">
+                          </el-switch>
+                      </el-form-item>
+                  </div>
+              </el-row>
+
+              <el-row>
+                  <div class="page_switch">
+                      <el-form-item label="In Menu" prop="in_menu">
+                          <el-switch v-model="page.in_menu"
+                                     active-color="#13ce66"
+                                     inactive-color="#ff4949">
+                          </el-switch>
+                      </el-form-item>
+                  </div>
+                </el-row>
+          </el-col>
       </el-row>
 
       <errors v-if="Object.keys(pageErrors).length > 0" :errors="pageErrors"></errors>
 
       <el-row :gutter="40">
           <el-col :sm="24" :md="24">
-              <el-form label-position="top" :model="page" :rules="pageFormRules" ref="pageForm" label-width="120px">
 
                   <el-row :gutter="20">
+
                       <el-col :md="12">
-                          <el-form-item v-if="page.live_at" label="Live" prop="live_at.live">
-                              <el-switch v-model="page.live_at.live"
-                                         active-color="#13ce66"
-                                         inactive-color="#ff4949">
-                              </el-switch>
-                          </el-form-item>
-                      </el-col>
-                      <el-col :md="12">
-                          <el-form-item label="In Menu" prop="in_menu">
-                              <el-switch v-model="page.in_menu"
-                                         active-color="#13ce66"
-                                         inactive-color="#ff4949">
-                              </el-switch>
-                          </el-form-item>
+
                       </el-col>
                   </el-row>
 
@@ -56,11 +72,6 @@
 
                   <el-row :gutter="20">
                       <el-col :md="12" :sm="24">
-                          <el-form-item label="Name" prop="name">
-                              <el-input :autofocus="true" v-model="page.name"></el-input>
-                          </el-form-item>
-                      </el-col>
-                      <el-col :md="12" :sm="24">
                           <el-form-item label="Slug / Url" prop="slug">
                               <el-input v-model="page.slug">
                                   <template slot="prepend">{{ getSiteBaseURL }}</template>
@@ -69,16 +80,7 @@
                       </el-col>
                   </el-row>
 
-                  <el-row :gutter="20">
-                      <el-col :sm="24">
-                          <el-form-item v-if="hasContent('Main Content')" label="Main Content" prop="content.data[findContentIndexFromName(Main Content)]">
-                              <quill-editor v-model="page.content.data[findContentIndexFromName('Main Content')].content"
-                                            ref="myQuillEditor"
-                                            :options="editorOption">
-                              </quill-editor>
-                          </el-form-item>
-                      </el-col>
-                  </el-row>
+                  <content-component v-if="page.content" :content="page.content"/>
 
                   </el-form-item>
 
@@ -92,11 +94,10 @@
                       </el-col>
                   </el-row>
 
-              </el-form>
           </el-col>
       </el-row>
 
-
+    </el-form>
     </div>
 </template>
 
@@ -104,12 +105,15 @@
 import api from "../../services/api-service.js";
 var findIndex = require('lodash.findindex');
 var has = require('lodash.has');
+var filter = require('lodash.filter');
 
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
 
-import { quillEditor } from 'vue-quill-editor';
+var withRequest = [
+    'media', 'content'
+];
+var includeRequest = [
+    'live_at', 'created_at', 'in_menu', 'no_shop_data', 'slug'
+];
 
 export default {
 
@@ -117,8 +121,8 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
+          ContentComponent: () => import('../../components/ContentComponent.vue'),
           FilePickerModal: () => import('../../components/FilePickerModal.vue'),
-          quillEditor
       },
 
       props: {
@@ -132,22 +136,6 @@ export default {
           return {
               loading: false,
               page: {},
-              editorOption: {
-                modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],
-                      ['blockquote'],
-
-                      [{ 'header': 1 }, { 'header': 2 }],
-
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-
-                      [{ 'align': [] }],
-                      ['clean'],
-                      ['link', 'video']
-                  ]
-                }
-              },
               pageErrors: {},
               pageFormRules: {},
           }
@@ -178,7 +166,11 @@ export default {
               this.pageErrors = {};
 
               api.get({
-                    path: "pages/" + this.pageId
+                    path: "pages/" + this.pageId,
+                    params: {
+                        with: withRequest,
+                        include: includeRequest,
+                    }
                 })
                 .then(function (data) {
                     this.loading = false;
@@ -196,6 +188,9 @@ export default {
                   if (valid) {
                       this.loading = true;
                       this.pageErrors = {};
+
+                      this.page.with = withRequest;
+                      this.page.include = includeRequest;
 
                       api.persist("put", {
                             path: "pages/" + this.pageId,
