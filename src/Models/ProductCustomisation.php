@@ -50,4 +50,16 @@ class ProductCustomisation extends Model implements ProductCustomisationContract
     {
         return $this->hasMany(config('ecommerce.models.product_customisation_option'));
     }
+
+    /**
+     * Get the attributes to be merged into the API resource.
+     *
+     * @return Array
+     */
+    function getResourceAttributes()
+    {
+        return [
+            //
+        ];
+    }
 }

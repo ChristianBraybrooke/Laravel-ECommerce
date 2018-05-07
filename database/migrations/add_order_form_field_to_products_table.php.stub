@@ -31,7 +31,7 @@ class AddOrderFormFieldToProductsTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('level');
+            $table->dropColumn('order_form_id');
         });
     }
 }

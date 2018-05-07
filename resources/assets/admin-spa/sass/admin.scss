@@ -354,6 +354,8 @@ section.el-container.is-vertical {
     margin-bottom: 10px;
     background: $--background-color-base;
     padding-top: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .form_field_row.required {
     background: $--color-danger-lighter;

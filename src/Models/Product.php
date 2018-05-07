@@ -77,8 +77,8 @@ class Product extends Model implements ProductContract
      * @var array
      */
     public $defaultContent = [
-        ['content_name' => 'Main Content', 'content' => ''],
-        ['content_name' => 'Snippet', 'content' => '']
+        ['content_name' => 'Main Content', 'content' => '', 'type' => 'quill'],
+        ['content_name' => 'Snippet', 'content' => '', 'type' => 'text']
     ];
 
     /**
@@ -89,7 +89,7 @@ class Product extends Model implements ProductContract
     protected $fillable = [
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id'
+        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id', 'frontend_form_id'
     ];
 
     /**
@@ -100,7 +100,7 @@ class Product extends Model implements ProductContract
     protected static $logAttributes = [
         'id', 'name', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'order_form_id'
+        'measurement_unit', 'width', 'height', 'depth', 'order_form_id', 'frontend_form_id'
     ];
 
     /**
@@ -174,11 +174,9 @@ class Product extends Model implements ProductContract
      */
     public function collectionTypes(): BelongsToMany
     {
-        return ($this->variant && $this->use_variant_data) ?
-            $this->variant->collectionTypes() :
-            $this->belongsToMany(config('ecommerce.models.collection_type'))
-                 ->with('collection:id,name')
-                 ->withTimestamps();
+        return $this->belongsToMany(config('ecommerce.models.collection_type'))
+                    ->with('collection:id,name')
+                    ->withTimestamps();
     }
 
     /**
@@ -189,6 +187,32 @@ class Product extends Model implements ProductContract
     public function customisations(): HasMany
     {
         return $this->hasMany(config('ecommerce.models.product_customisation'));
+    }
+
+    /**
+     * Get the collectionTypes of either this product or it's parent.
+     *
+     * @return App\CollectionType
+     */
+    public function getAvailableCollectionTypesAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->collectionTypes;
+        }
+        return $this->collectionTypes;
+    }
+
+    /**
+     * Get the customisations of either this product or it's parent.
+     *
+     * @return App\ProductCustomisation
+     */
+    public function getAvailableCustomisationsAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->customisations()->with('options')->get();
+        }
+        return $this->customisations;
     }
 
     /**
@@ -345,13 +369,49 @@ class Product extends Model implements ProductContract
     }
 
     /**
-    * Display any variants of this product.
-    *
-    * @return App\Product
-    */
+     * Get the Order Form.
+     *
+     * @return App\Form
+     */
     public function orderForm(): HasOne
     {
         return $this->hasOne(config('ecommerce.models.form'), 'id', 'order_form_id');
+    }
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function frontendForm(): HasOne
+    {
+        return $this->hasOne(config('ecommerce.models.form'), 'id', 'frontend_form_id');
+    }
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function getAvailableOrderFormAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->orderForm()->with('sections.fields')->first();
+        }
+        return $this->orderForm;
+    }
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function getAvailableFrontendFormAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->frontendForm()->with('sections.fields')->first();
+        }
+        return $this->frontendForm;
     }
 
     /**

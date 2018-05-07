@@ -77,6 +77,8 @@
 import api from "../../services/api-service.js";
 var orderBy = require('lodash.orderby');
 
+var formWith = ['sections.fields'];
+var formInclude = ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price', 'description', 'append', 'prepend'];
 
 export default {
 
@@ -130,8 +132,8 @@ export default {
               api.get({
                     path: "forms/" + this.formId,
                     params: {
-                        with: ['sections.fields'],
-                        include: ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price']
+                        with: formWith,
+                        include: formInclude
                     }
                 })
                 .then(function (data) {
@@ -156,8 +158,8 @@ export default {
                   if (valid) {
                       this.loading = true;
                       this.formErrors = {};
-                      this.form.with = ['sections.fields'];
-                      this.form.include = ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price'];
+                      this.form.with = formWith;
+                      this.form.include = formInclude;
 
                       api.persist("put", {
                             path: "forms/" + this.formId,

@@ -39,7 +39,12 @@ class ProductResource extends Resource
             'variants' => new ProductsResource($this->whenLoaded('variants')),
             'variant' => new ProductResource($this->whenLoaded('variant')),
             'order_form' => new FormResource($this->whenLoaded('orderForm')),
-            'customisations' => new ProductCustomisationsResource($this->whenLoaded('customisations')),
+            $this->mergeWhen($this->relationLoaded('frontendForm'), [
+                'frontend_form' => new FormResource($this->available_frontend_form),
+            ]),
+            $this->mergeWhen($this->relationLoaded('customisations'), [
+                'customisations' => new ProductCustomisationsResource($this->available_customisations),
+            ]),
             'is_variant' => $this->when(requestIncludes('is_variant'), $this->is_variant),
             'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),
             'slug' => $this->when(requestIncludes('slug'), $this->slug),

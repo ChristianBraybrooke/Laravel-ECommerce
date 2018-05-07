@@ -16,7 +16,7 @@ class ProductCustomisationResource extends Resource
      */
     public function toArray($request)
     {
-        return [
+        $array = [
             'id' => $this->id,
             'name' => $this->name,
             'order' => $this->order,
@@ -24,6 +24,9 @@ class ProductCustomisationResource extends Resource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
+        $merge = $this->getResourceAttributes();
+
+        return array_merge($array, $merge);
     }
 
     /**

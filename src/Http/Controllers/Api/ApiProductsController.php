@@ -95,6 +95,7 @@ class ApiProductsController extends Controller
             'featured' => $request->has('featured') ? $request->featured : $product->featured,
             'live_at' => $live,
             'order_form_id' => $request->has('order_form.id') ? $request->input('order_form.id') : $product->order_form_id,
+            'frontend_form_id' => $request->has('frontend_form.id') ? $request->input('frontend_form.id') : $product->frontend_form_id,
         ]);
 
         if ($request->has('content.data')) {

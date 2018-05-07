@@ -31,7 +31,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.18';
+    const VERSION = '0.0.19';
 
     /**
      * Bootstrap the application events.
@@ -403,6 +403,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/add_order_form_field_to_products_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 1).'_add_order_form_field_to_products_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddFrontendFormFieldToProductsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_frontend_form_field_to_products_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 1).'_add_frontend_form_field_to_products_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

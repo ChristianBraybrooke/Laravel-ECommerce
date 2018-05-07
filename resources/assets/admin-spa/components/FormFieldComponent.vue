@@ -1,45 +1,61 @@
 <template lang="html">
     <div>
+        <div :class="'form_field_row ' +  (model.rules.required ? 'required' : '')">
+            <el-row :gutter="20">
+                <el-col :lg="12" :xl="4">
+                    <el-form-item label="Name" size="small" prop="name">
+                        <el-input :autofocus="true" v-model="model.name"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :lg="12" :xl="6">
+                    <el-form-item label="Description" size="small" prop="description">
+                        <el-input :autofocus="true" v-model="model.description"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :lg="10" :xl="4">
+                    <el-form-item label="Type" size="small" prop="type">
+                        <el-select v-model="model.type" placeholder="Type">
+                            <el-option
+                              v-for="option in fieldOptions"
+                              :key="option.value"
+                              :label="option.label"
+                              :value="option.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-col>
 
-        <el-row :gutter="20" :class="'form_field_row ' +  (model.rules.required ? 'required' : '')">
-            <el-col :lg="12" :xl="4">
-                <el-form-item label="Name" size="small" prop="name">
-                    <el-input :autofocus="true" v-model="model.name"></el-input>
-                </el-form-item>
-            </el-col>
-            <el-col :lg="12" :xl="6">
-                <el-form-item label="Description" size="small" prop="description">
-                    <el-input :autofocus="true" v-model="model.description"></el-input>
-                </el-form-item>
-            </el-col>
-            <el-col :lg="10" :xl="4">
-                <el-form-item label="Type" size="small" prop="type">
-                    <el-select v-model="model.type" placeholder="Type">
-                        <el-option
-                          v-for="option in fieldOptions"
-                          :key="option.value"
-                          :label="option.label"
-                          :value="option.value">
-                        </el-option>
-                    </el-select>
-                </el-form-item>
-            </el-col>
-            <el-col :lg="4" :xl="2">
-                <el-form-item label="" size="small" prop="rules">
-                    <el-button plain @click="showRulesModal = true" size="mini" type="primary">Show Rules</el-button>
-                </el-form-item>
-            </el-col>
-            <el-col :lg="4" :xl="2" v-if="needsOptions">
-                <el-form-item label="" size="small" prop="options">
-                    <el-button plain @click="showOptionsModal = true" size="mini" type="primary">Show Options</el-button>
-                </el-form-item>
-            </el-col>
-            <el-col :lg="4" :xl="2">
-                <el-form-item label="" size="small" prop="delete">
-                    <el-button @click="deleteField(model)" size="mini" type="danger">Delete</el-button>
-                </el-form-item>
-            </el-col>
-        </el-row>
+                <el-col :lg="6" :xl="2">
+                    <el-form-item label="Prepends" size="small" prop="prepend">
+                        <el-input :autofocus="true" v-model="model.prepend"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :lg="6" :xl="2">
+                    <el-form-item label="Appends" size="small" prop="append">
+                        <el-input :autofocus="true" v-model="model.append"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+                <el-col :lg="4" :xl="2">
+                    <el-form-item label="" size="small" prop="rules">
+                        <el-button plain @click="showRulesModal = true" size="mini" type="primary">Show Rules</el-button>
+                    </el-form-item>
+                </el-col>
+                <el-col :lg="4" :xl="2" v-if="needsOptions">
+                    <el-form-item label="" size="small" prop="options">
+                        <el-button plain @click="showOptionsModal = true" size="mini" type="primary">Show Options</el-button>
+                    </el-form-item>
+                </el-col>
+                <el-col :lg="4" :xl="2">
+                    <el-form-item label="" size="small" prop="delete">
+                        <el-button @click="deleteField(model)" size="mini" type="danger">Delete</el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+        </div>
 
         <el-dialog :title="model.name + ' Rules'"
                    v-if="showRulesModal"
