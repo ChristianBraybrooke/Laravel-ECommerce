@@ -1,5 +1,6 @@
 <template lang="html">
     <data-table type-name="collection"
+                :request-includes="['live_at', 'created_at']"
                 bulk-update-url="collections/bulk">
 
     </data-table>

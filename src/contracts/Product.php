@@ -5,6 +5,7 @@ namespace ChrisBraybrooke\ECommerce\Contracts;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 interface Product
 {
@@ -35,4 +36,19 @@ interface Product
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function variant(): BelongsTo;
+
+    /**
+     * Get the Order Form.
+     *
+     * @return App\Form
+     */
+    public function orderForm(): HasOne;
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function frontendForm(): HasOne;
+
 }

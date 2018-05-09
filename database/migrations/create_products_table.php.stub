@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
                 $table->boolean('can_customise')->nullable()->default(null);
                 $table->boolean('list_in_shop')->nullable()->default(null);
                 $table->string('slug')->nullable();
+                $table->text('meta')->nullable()->default(null);
                 $table->timestamp('live_at')->nullable()->default(null);
                 $table->boolean('can_customise_width')->default(false);
                 $table->boolean('can_customise_height')->default(false);

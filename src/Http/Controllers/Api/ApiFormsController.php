@@ -105,11 +105,14 @@ class ApiFormsController extends Controller
                 if (isset($section['fields']['data'])) {
                     foreach ($section['fields']['data'] as $key => $field) {
                         $fields[] = [
-                            'id' => isset($field['id']) ? $field['id'] : null,
-                            'name' => isset($field['name']) ? $field['name'] : null,
-                            'type' => isset($field['type']) ? $field['type'] : null,
-                            'rules' => isset($field['rules']) ? $field['rules'] : [],
-                            'options' => isset($field['options']) ? $field['options'] : [],
+                            'id' => $field['id'] ?? null,
+                            'name' => $field['name'] ?? null,
+                            'description' => $field['description'] ?? null,
+                            'append' => $field['append'] ?? null,
+                            'prepend' => $field['prepend'] ?? null,
+                            'type' => $field['type'] ?? null,
+                            'rules' => $field['rules'] ?? [],
+                            'options' => $field['options'] ?? [],
                         ];
                     }
                 }
@@ -124,16 +127,22 @@ class ApiFormsController extends Controller
                 if (!is_null($field['id'])) {
                     FormField::where('id', $field['id'])->first()->update([
                         'name' => $field['name'],
+                        'description' => $field['description'],
                         'type' => $field['type'],
                         'rules' => $field['rules'],
+                        'append' => $field['append'],
+                        'prepend' => $field['prepend'],                
                         'options' => $field['options'],
                     ]);
                 } else {
                     $field = FormField::create([
                         'form_section_id' => $section_id,
                         'name' => $field['name'],
+                        'description' => $field['description'],
                         'type' => $field['type'],
                         'rules' => $field['rules'],
+                        'append' => $field['append'],
+                        'prepend' => $field['prepend'],
                         'options' => $field['options'],
                     ]);
                 }

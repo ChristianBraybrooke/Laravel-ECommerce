@@ -4,6 +4,7 @@ namespace ChrisBraybrooke\ECommerce\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ContentsResource;
 
 class OrderResource extends Resource
 {
@@ -20,9 +21,11 @@ class OrderResource extends Resource
             'status' => $this->status,
             'invoice' => $this->invoice,
             'customer' => $this->customer,
+            'content' => new ContentsResource($this->whenLoaded('content')),
             'use_billing_for_shipping' => $this->use_billing_for_shipping,
             'billing_address' => $this->billing_address,
             'shipping_address' => $this->shipping_address,
+            'needs_address' => $this->needs_address,
             'cart' => $this->cart,
             'items' => $this->items,
             'amount' => $this->payment_amount,
@@ -31,9 +34,11 @@ class OrderResource extends Resource
             'payment_method' => $this->payment_method,
             'payment_id' => $this->payment_id,
             'send_auto_emails' => $this->send_auto_emails,
-            'amount_paid' => $this->amount_paid,
+            'amount_paid' => $this->payment_amount,
             'delivery_cost' => $this->delivery_cost,
             'delivery_date' => $this->delivery_date,
+            'thank_you_email_sent' => $this->thank_you_email_sent,
+            'shipping_email_sent' => $this->shipping_email_sent,
         ];
     }
 

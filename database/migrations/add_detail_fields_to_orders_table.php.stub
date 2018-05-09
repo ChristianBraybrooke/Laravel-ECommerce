@@ -15,6 +15,9 @@ class AddDetailFieldsToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->boolean('send_auto_emails')->nullable()->default(null);
+            $table->boolean('send_shipping_emails')->nullable()->default(null);
+            $table->date('thank_you_email_sent')->nullable()->default(null);
+            $table->date('shipping_email_sent')->nullable()->default(null);
             $table->integer('amount_paid')->nullable()->default(null);
             $table->integer('delivery_cost')->nullable()->default(null);
             $table->date('delivery_date')->nullable()->default(null);
@@ -33,6 +36,8 @@ class AddDetailFieldsToOrdersTable extends Migration
             $table->dropColumn('amount_paid');
             $table->dropColumn('delivery_cost');
             $table->dropColumn('delivery_date');
+            $table->dropColumn('thank_you_email_sent');
+            $table->dropColumn('shipping_email_sent');
         });
     }
 }

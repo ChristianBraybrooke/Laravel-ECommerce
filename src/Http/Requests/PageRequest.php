@@ -25,7 +25,6 @@ class PageRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'slug' => 'string',
             'in_menu' => 'boolean',
             'live_at.live' => 'boolean',
         ];

@@ -18,14 +18,16 @@ class PageResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'slug' => $this->slug,
-            'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
-            'live_at' => $this->live_at,
-            'meta' => $this->meta,
-            'in_menu' => $this->in_menu,
+            'slug' => $this->when(requestIncludes('slug'), $this->slug),
+            $this->mergeWhen($this->relationLoaded('media'), [
+                'main_img' => $this->relationLoaded('media') ? new MediaResource($this->media()->location('main_img')->first()) : null
+            ]),
+            'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),
+            'meta' => $this->when(requestIncludes('meta'), $this->meta),
+            'in_menu' => $this->when(requestIncludes('in_menu'), $this->in_menu),
             'content' => new ContentsResource($this->whenLoaded('content')),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->when(requestIncludes('created_at'), $this->created_at),
+            'updated_at' => $this->when(requestIncludes('updated_at'), $this->updated_at),
         ];
     }
 
@@ -37,9 +39,12 @@ class PageResource extends Resource
      */
     public function with($request)
     {
-        $shop = new ShopResource($request);
-        return [
-            'shop_data' => $shop->toArray($request)
-        ];
+        if (!requestIncludes('no_shop_data')) {
+            $shop = new ShopResource($request);
+            return [
+                'shop_data' => $shop->toArray($request)
+            ];
+        }
+        return [];
     }
 }

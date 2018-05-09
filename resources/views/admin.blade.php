@@ -18,6 +18,8 @@
 
     @ShopDataScript
 
+    <script src="{{ mix('js/manifest.js', 'vendor/ecommerce') }}"></script>
+    <script src="{{ mix('js/vendor.js', 'vendor/ecommerce') }}"></script>
     <script src="{{ mix('js/admin.js', 'vendor/ecommerce') }}"></script>
   </body>
 </html>

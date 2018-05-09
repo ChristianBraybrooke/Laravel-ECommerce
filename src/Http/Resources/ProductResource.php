@@ -28,26 +28,23 @@ class ProductResource extends Resource
             'collections' =>
             $this->when(
                 $this->relationLoaded('collectionTypes'),
-                ['data' => $this->groupedCollectionTypes()]
+                ['data' => $this->relationLoaded('collectionTypes') ? $this->groupedCollectionTypes() : null]
             ),
             'content' => new ContentsResource($this->whenLoaded('content')),
             $this->mergeWhen($this->relationLoaded('media'), [
-                'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
-                'gallery' => new MediasResource($this->mediaByLocation('gallery')),
+                'main_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('main_img')->first()) : null,
+                'gallery' => $this->relationLoaded('media') ? new MediasResource($this->mediaByLocation('gallery')) : null,
+                'customisation_base_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('customisation_base_img')->first()) : null
             ]),
-            $this->mergeWhen($this->relationLoaded('collectionTypes'), [
-                'customisation_base_img' => new MediaResource($this->mediaByLocation('customisation_base_img')->first())
+            'variants' => new ProductsResource($this->whenLoaded('variants')),
+            'variant' => new ProductResource($this->whenLoaded('variant')),
+            'order_form' => new FormResource($this->whenLoaded('orderForm')),
+            $this->mergeWhen($this->relationLoaded('frontendForm'), [
+                'frontend_form' => new FormResource($this->available_frontend_form),
             ]),
-            $this->mergeWhen($this->relationLoaded('variants'), [
-                'variants' => new ProductsResource($this->whenLoaded('variants'))
+            $this->mergeWhen($this->relationLoaded('customisations'), [
+                'customisations' => new ProductCustomisationsResource($this->available_customisations),
             ]),
-            $this->mergeWhen($this->relationLoaded('variant'), [
-                'variant' => new ProductResource($this->whenLoaded('variant'))
-            ]),
-            $this->mergeWhen($this->relationLoaded('orderForm'), [
-                'order_form' => new FormResource($this->whenLoaded('orderForm'))
-            ]),
-            'customisations' => new ProductCustomisationsResource($this->whenLoaded('customisations')),
             'is_variant' => $this->when(requestIncludes('is_variant'), $this->is_variant),
             'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),
             'slug' => $this->when(requestIncludes('slug'), $this->slug),
@@ -65,7 +62,6 @@ class ProductResource extends Resource
             'width' => $this->when(requestIncludes('width'), $this->width),
             'height' => $this->when(requestIncludes('height'), $this->height),
             'depth' => $this->when(requestIncludes('depth'), $this->depth),
-            'variants' => $this->when(requestIncludes('blank_variants'), $this->variants->count() >= 1 ? [] : null),
         ];
     }
 
@@ -77,9 +73,12 @@ class ProductResource extends Resource
      */
     public function with($request)
     {
-        $shop = new ShopResource($request);
-        return [
-            'shop_data' => $shop->toArray($request)
-        ];
+        if (!requestIncludes('no_shop_data')) {
+            $shop = new ShopResource($request);
+            return [
+                'shop_data' => $shop->toArray($request)
+            ];
+        }
+        return [];
     }
 }

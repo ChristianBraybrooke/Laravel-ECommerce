@@ -77,8 +77,8 @@ class Product extends Model implements ProductContract
      * @var array
      */
     public $defaultContent = [
-        ['content_name' => 'Main Content', 'content' => ''],
-        ['content_name' => 'Snippet', 'content' => '']
+        ['content_name' => 'Main Content', 'content' => '', 'type' => 'quill'],
+        ['content_name' => 'Snippet', 'content' => '', 'type' => 'text']
     ];
 
     /**
@@ -89,7 +89,7 @@ class Product extends Model implements ProductContract
     protected $fillable = [
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id'
+        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id', 'frontend_form_id'
     ];
 
     /**
@@ -100,7 +100,7 @@ class Product extends Model implements ProductContract
     protected static $logAttributes = [
         'id', 'name', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'order_form_id'
+        'measurement_unit', 'width', 'height', 'depth', 'order_form_id', 'frontend_form_id'
     ];
 
     /**
@@ -174,11 +174,9 @@ class Product extends Model implements ProductContract
      */
     public function collectionTypes(): BelongsToMany
     {
-        return ($this->variant && $this->use_variant_data) ?
-            $this->variant->collectionTypes() :
-            $this->belongsToMany(config('ecommerce.models.collection_type'))
-                 ->with('collection:id,name')
-                 ->withTimestamps();
+        return $this->belongsToMany(config('ecommerce.models.collection_type'))
+                    ->with('collection:id,name')
+                    ->withTimestamps();
     }
 
     /**
@@ -189,6 +187,54 @@ class Product extends Model implements ProductContract
     public function customisations(): HasMany
     {
         return $this->hasMany(config('ecommerce.models.product_customisation'));
+    }
+
+    /**
+     * Get the collectionTypes of either this product or it's parent.
+     *
+     * @return App\CollectionType
+     */
+    public function getAvailableCollectionTypesAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->collectionTypes;
+        }
+        return $this->collectionTypes;
+    }
+
+    /**
+     * Get the customisations of either this product or it's parent.
+     *
+     * @return App\ProductCustomisation
+     */
+    public function getAvailableCustomisationsAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->customisations()->with('options')->get();
+        }
+        return $this->customisations;
+    }
+
+    /**
+     * Add a scope to pull only variants
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOnlyVariants($query)
+    {
+        return $query->whereNotNull('variant_id');
+    }
+
+    /**
+     * Add a scope to pull only parents
+     *
+     * @param $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNoVariants($query)
+    {
+        return $query->whereNull('variant_id');
     }
 
     /**
@@ -253,7 +299,7 @@ class Product extends Model implements ProductContract
         $groupedCollectionsArray = [];
 
         if ($includeTypesSync) {
-            $groupedCollectionsArray['collection_types_sync'] = $formatted_sync_collections;
+            $groupedCollectionsArray['collection_types_sync'] = collect($formatted_sync_collections);
         }
         if ($includeTypes) {
             $groupedCollectionsArray['collection_types'] = $formatted_collections;
@@ -323,13 +369,49 @@ class Product extends Model implements ProductContract
     }
 
     /**
-    * Display any variants of this product.
-    *
-    * @return App\Product
-    */
+     * Get the Order Form.
+     *
+     * @return App\Form
+     */
     public function orderForm(): HasOne
     {
         return $this->hasOne(config('ecommerce.models.form'), 'id', 'order_form_id');
+    }
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function frontendForm(): HasOne
+    {
+        return $this->hasOne(config('ecommerce.models.form'), 'id', 'frontend_form_id');
+    }
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function getAvailableOrderFormAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->orderForm()->with('sections.fields')->first();
+        }
+        return $this->orderForm;
+    }
+
+    /**
+     * Get the frontend Order Form.
+     *
+     * @return App\Form
+     */
+    public function getAvailableFrontendFormAttribute()
+    {
+        if ($this->is_variant && $this->use_variant_customisation) {
+            return $this->variant->frontendForm()->with('sections.fields')->first();
+        }
+        return $this->frontendForm;
     }
 
     /**
@@ -390,6 +472,7 @@ class Product extends Model implements ProductContract
     public function importCreate($row, $import)
     {
         $meta = $this->formatImportMeta($row, $import);
+        $content = $this->formatImportContent($meta);
 
         $variant = $row['variant_id'] ?? null;
 
@@ -412,6 +495,8 @@ class Product extends Model implements ProductContract
             }
 
             $variant_meta = $this->formatImportMeta($row, $import, 'variant_meta_');
+            $variant_content = $this->formatImportContent($variant_meta);
+
             if (!empty($variant_meta)) {
                 $lookup_array['meta'] = json_encode($variant_meta);
             }
@@ -420,7 +505,7 @@ class Product extends Model implements ProductContract
                 'name' => $row['variant_name'],
                 'live_at' => $live_at,
                 'price' => $row['variant_price'] ?? null,
-                'slug' => $row['variant_slug'] ?? null,
+                'slug' => $row['variant_slug'] ?? $row['variant_name'],
                 'list_in_shop' => $row['variant_list_in_shop'] ?? false,
                 'width' => $row['variant_width'] ?? null,
                 'height' => $row['variant_height'] ?? null,
@@ -430,9 +515,11 @@ class Product extends Model implements ProductContract
             ]);
 
             if ($parent->wasRecentlyCreated) {
+                $parent->content()->createMany($variant_content);
                 $parent->update(['meta' => $variant_meta]);
                 $parent->collectionTypes()->sync($collection_types);
                 $import->models('product')->attach($parent->id);
+                $this->syncMediaFromName(($row['variant_img'] ?? ''), $parent);
             }
 
             $variant = $parent->id;
@@ -443,19 +530,45 @@ class Product extends Model implements ProductContract
             'variant_id' => $variant,
             'live_at' => $live_at,
             'price' => $row['price'] ?? null,
-            'slug' => $row['slug'] ?? null,
+            'slug' => $row['slug'] ?? $row['name'],
             'list_in_shop' => $row['list_in_shop'] ?? false,
             'width' => $row['width'] ?? null,
             'height' => $row['height'] ?? null,
             'depth' => $row['depth'] ?? null,
             'featured' => $row['featured'] ?? false,
+            'sku' => $row['sku'] ?? null,
             'meta' => $meta,
         ]);
 
+        $this->syncMediaFromName(($row['img'] ?? ''), $product);
+        $product->content()->createMany($content);
         $import->models('product')->attach($product->id);
         $product->collectionTypes()->sync($collection_types);
 
         return $product;
+    }
+
+    /**
+    * Sync media just by using a name.
+    *
+    * @var String $name
+    * @var String $product
+    * @var String $location
+    * @var String $field
+    * @return Bool
+    */
+    public function syncMediaFromName($name, $product, $location = 'main_img', $field = 'file_name')
+    {
+        if ($name) {
+            $media = Media::where($field, $name)->first();
+            if ($media) {
+                $product->syncMedia([
+                    $location => $media,
+                ]);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -477,19 +590,19 @@ class Product extends Model implements ProductContract
                 $collection = Collection::firstOrCreate(['name' => $collection_name], [
                     'name' => $collection_name,
                     'individual_name' => null,
-                    'slug' => null,
+                    'slug' => $collection_name,
                     'live_at' => Carbon::now()->toDateTimeString(),
                 ]);
                 if ($collection->wasRecentlyCreated) {
                     $import->models('collection')->attach($collection->id);
                 }
 
-                $collection_types = explode(',', str_replace(' ', '', $field));
+                $collection_types = explode(',', $field);
                 foreach ($collection_types as $key => $type_name) {
                     $type = $collection->types()->firstOrCreate(['name' => $type_name], [
-                        'name' => ucwords(str_replace('_', ' ', $new_key)),
+                        'name' => ucwords(str_replace('_', ' ', $type_name)),
                         'individual_name' => null,
-                        'slug' => null,
+                        'slug' => str_replace('_', ' ', $type_name),
                         'live_at' => Carbon::now()->toDateTimeString(),
                     ]);
                     if ($type->wasRecentlyCreated) {
@@ -500,29 +613,5 @@ class Product extends Model implements ProductContract
             }
         }
         return $types;
-    }
-
-    /**
-    * Format the meta being added to the product.
-    *
-    * @var Array $row
-    * @var ChrisBraybrooke\ECommerce\Models\Import $import
-    * @var String $starts_with
-    * @return array
-    */
-    public function formatImportMeta($row, $import, $starts_with = 'meta_')
-    {
-        $meta = [];
-        foreach ($row as $key => $field) {
-            if (starts_with($key, $starts_with)) {
-                $new_key = str_replace_first($starts_with, '', $key);
-                if (str_contains($new_key, '_')) {
-                    $meta[str_before($new_key, '_')][str_after($new_key, '_')] = $field;
-                } else {
-                    $meta[$new_key] = $field;
-                }
-            }
-        }
-        return $meta;
     }
 }

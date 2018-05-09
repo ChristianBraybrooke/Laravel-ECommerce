@@ -7,6 +7,7 @@ use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\MediaResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\MediasResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ContentsResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\ProductsResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\CollectionResource;
 
 class CollectionTypeResource extends Resource
@@ -22,18 +23,21 @@ class CollectionTypeResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'individual_name' => $this->individual_name,
-            'slug' => $this->slug,
-            'main_img' => new MediaResource($this->mediaByLocation('main_img')->first()),
-            'secondary_img' => new MediaResource($this->mediaByLocation('secondary_img')->first()),
-            'third_img' => new MediaResource($this->mediaByLocation('third_img')->first()),
-            'gallery' => new MediasResource($this->mediaByLocation('gallery')),
-            'live_at' => $this->live_at,
-            'meta' => $this->meta,
+            'individual_name' => $this->when(requestIncludes('individual_name'), $this->individual_name),
+            'slug' => $this->when(requestIncludes('slug'), $this->slug),
+            $this->mergeWhen($this->relationLoaded('media'), [
+                'main_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('main_img')->first()) : null,
+                'secondary_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('secondary_img')->first()) : null,
+                'third_img' => $this->relationLoaded('media') ? new MediaResource($this->mediaByLocation('third_img')->first()) : null,
+                'gallery' => $this->relationLoaded('media') ? new MediasResource($this->mediaByLocation('gallery')) : null
+            ]),
+            'products' => new ProductsResource($this->whenLoaded('products')),
+            'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),
+            'meta' => $this->when(requestIncludes('meta'), $this->meta),
             'collection' => new CollectionResource($this->whenLoaded('collection')),
             'content' => new ContentsResource($this->whenLoaded('content')),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->when(requestIncludes('created_at'), $this->created_at),
+            'updated_at' => $this->when(requestIncludes('updated_at'), $this->updated_at),
         ];
     }
 
@@ -45,9 +49,12 @@ class CollectionTypeResource extends Resource
      */
     public function with($request)
     {
-        $shop = new ShopResource($request);
-        return [
-            'shop_data' => $shop->toArray($request)
-        ];
+        if (!requestIncludes('no_shop_data')) {
+            $shop = new ShopResource($request);
+            return [
+                'shop_data' => $shop->toArray($request)
+            ];
+        }
+        return [];
     }
 }

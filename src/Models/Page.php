@@ -40,13 +40,6 @@ class Page extends Model
     ];
 
     /**
-     * The default relations to load
-     *
-     * @var array
-     */
-    protected $with = ['content'];
-
-    /**
      * The default meta to create on creation
      *
      * @var array
@@ -61,8 +54,9 @@ class Page extends Model
      * @var array
      */
     public $defaultContent = [
-        ['content_name' => 'Main Content', 'content' => ''],
-        ['content_name' => 'Snippet', 'content' => '']
+      ['content_name' => 'Name', 'content' => '', 'type' => 'text', 'order' => 1],
+      ['content_name' => 'Main Content', 'content' => '', 'type' => 'quill', 'order' => 2],
+      ['content_name' => 'Snippet', 'content' => '', 'type' => 'textarea', 'order' => 3]
     ];
 
     /**

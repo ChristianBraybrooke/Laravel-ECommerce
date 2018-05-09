@@ -21,6 +21,9 @@ class FormFieldResource extends Resource
             'type' => $this->when(requestIncludes('type'), $this->type),
             'rules' => $this->when(requestIncludes('rules'), $this->rules),
             'options' => $this->when(requestIncludes('options'), $this->options),
+            'description' => $this->when(requestIncludes('description'), $this->description),
+            'append' => $this->when(requestIncludes('append'), $this->append),
+            'prepend' => $this->when(requestIncludes('prepend'), $this->prepend),
             'created_at' => $this->created_at
         ];
     }

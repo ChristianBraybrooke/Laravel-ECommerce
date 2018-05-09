@@ -55,19 +55,7 @@
                     </el-row>
 
                     <el-row v-if="collectionType.content" :gutter="20">
-                        <template v-for="content in collectionType.content.data">
-                            <el-col :md="24">
-                                <el-form-item :label="content.content_name" :prop="content.content_name">
-                                    <el-input v-if="content.content_name === 'Snippet' || content.content_name === 'Sub-Heading'" type="textarea" :autosize="{ minRows: 5 }" :autofocus="true" v-model="content.content"></el-input>
-
-                                    <quill-editor v-if="content.content_name === 'Main Content' || content.content_name === 'Features'"
-                                                  v-model="content.content"
-                                                  ref="myQuillEditor"
-                                                  :options="editorOption">
-                                    </quill-editor>
-                                </el-form-item>
-                            </el-col>
-                        </template>
+                        <content-component v-if="collectionType.content" :content="collectionType.content"/>
                     </el-row>
 
                     <el-row :gutter="20">
@@ -242,6 +230,7 @@ export default {
       components: {
           Errors: () => import('../../components/Errors.vue'),
           FilePickerModal: () => import('../../components/FilePickerModal.vue'),
+          ContentComponent: () => import('../../components/ContentComponent.vue'),
           quillEditor
       },
 
@@ -325,7 +314,8 @@ export default {
               api.get({
                   path: 'collections/' + this.collectionId + '/types/' + this.typeId,
                   params: {
-                      with: 'collection'
+                      with: ['collection', 'media', 'content'],
+                      include: ['individual_name', 'slug', 'live_at'],
                   },
               })
               .then(function (data) {
@@ -351,7 +341,8 @@ export default {
           submitForm(formName)
           {
               this.collectionTypeErrors = {};
-              this.collectionType.with = 'collection';
+              this.collectionType.with = ['collection', 'media', 'content'];
+              this.collectionType.include = ['individual_name', 'slug', 'live_at'];
               this.loading = true;
 
               this.$refs[formName].validate((valid) => {

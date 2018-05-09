@@ -80,9 +80,10 @@
             <el-col :sm="24" :md="24" :lg="12" class="half_table_col">
                 <data-table :type-name="collectionName"
                             :table-options="tableOptions"
-                            :edit-path="'collections/' + collectionId + '/types'"
+                            :edit-path="'/collections/' + collectionId + '/types'"
                             :create-form-rules="createFormRules"
                             :base-url="'collections/' + collectionId + '/types'"
+                            :request-includes="['live_at', 'created_at']"
                             :bulk-update-url="'collections/' + collectionId + '/types/bulk'">
                 </data-table>
             </el-col>
@@ -121,14 +122,6 @@ export default {
     collectionName()
     {
         return this.collection.individual_name ? this.collection.individual_name.toLowerCase() : 'collection';
-    },
-
-    uploadHeaders()
-    {
-        return {
-            'Accept': 'application/json',
-            'X-CSRF-TOKEN': window.laravel_token
-        };
     },
 
     createFormRules()
@@ -236,7 +229,11 @@ export default {
     getCollection()
     {
         api.get({
-            path: 'collections/' + this.collectionId
+            path: 'collections/' + this.collectionId,
+            params: {
+                include: ['individual_name', 'slug'],
+                with: ['media'],
+            }
         })
         .then(function (data) {
             this.collectionErrors = {};
@@ -259,6 +256,9 @@ export default {
     {
         this.collectionErrors = {};
         this.loading = true;
+
+        this.collection.with = ['media'];
+        this.collection.include = ['individual_name', 'slug'];
 
         this.$refs[formName].validate((valid) => {
           if (valid) {

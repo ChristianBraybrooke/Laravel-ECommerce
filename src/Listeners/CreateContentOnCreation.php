@@ -4,6 +4,7 @@ namespace ChrisBraybrooke\ECommerce\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Language;
 
 class CreateContentOnCreation
 {
@@ -25,8 +26,50 @@ class CreateContentOnCreation
      */
     public function handle($event)
     {
+        $all_languages = Language::all();
         if (isset($event->model->defaultContent) && !empty($event->model->defaultContent)) {
-            $event->model->content()->createMany($event->model->defaultContent);
+            if ($all_languages->count() >= 1) {
+                foreach ($all_languages as $key => $language) {
+                    $contents = $this->formatContents($event, $language);
+
+                    if ($contents) {
+                        $event->model->content()->createMany($contents);
+                    }
+                }
+            } else {
+                $contents = $this->formatContents($event);
+
+                if ($contents) {
+                    $event->model->content()->createMany($contents);
+                }
+            }
         }
+    }
+
+    /**
+     * Format model contents.
+     *
+     * @param  Object  $event
+     * @param  String  $language
+     * @return Array
+     */
+    public function formatContents($event, $language = null)
+    {
+        $contents = [];
+        foreach ($event->model->defaultContent as $key => $content) {
+            $content_inner = $content['content'] ?? null;
+            if (($content['type'] ?? null) === 'json' && !empty($content_inner)) {
+                $content_inner = json_encode($content_inner);
+            }
+            $contents[] = [
+                'content_name' => $content['content_name'],
+                'content' => $content_inner,
+                'lang' => optional($language)->key ?? 'en',
+                'type' => $content['type'] ?? 'text',
+                'order' => $content['order'] ?? null
+            ];
+        }
+
+        return $contents;
     }
 }

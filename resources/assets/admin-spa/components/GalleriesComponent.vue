@@ -43,12 +43,12 @@
 
       <errors :errors="errors"></errors>
 
-
       <el-tabs v-model="currentTab" type="card" closable @tab-remove="deleteGallery" @tab-click="handleTabClick">
           <el-tab-pane v-for="(gallery, index) in galleries"
                        :key="gallery.id"
                        :label="gallery.name"
                        :name="gallery.id.toString()">
+
               <gallery-component :gallery-id="gallery.id"
                                  v-if="showGallery[gallery.id] && showGallery[gallery.id].show"
                                  :get-gallery-files="false"

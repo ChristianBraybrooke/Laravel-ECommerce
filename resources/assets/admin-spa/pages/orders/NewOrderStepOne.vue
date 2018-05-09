@@ -26,65 +26,93 @@
                 </el-col>
             </el-row>
 
+
             <el-row :gutter="20">
                 <el-col :md="{span:16, offset: 4}">
-                    <el-form-item label="Customer Company" size="small" prop="customer.company">
-                        <el-input :autofocus="true" v-model="order.customer.company" auto-complete="off"></el-input>
-                    </el-form-item>
-                </el-col>
-            </el-row>
+                    <el-form-item label="Address" size="small" prop="needs_address">
 
-            <el-row :gutter="20">
-                <el-col :md="{span:8, offset: 4}">
-                    <el-form-item label="Customer First Name" size="small" prop="customer.first_name">
-                        <el-input :autofocus="true" v-model="order.customer.first_name" auto-complete="off"></el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :md="8">
-                    <el-form-item label="Customer Last Name" size="small" prop="customer.last_name">
-                        <el-input :autofocus="true" v-model="order.customer.last_name" auto-complete="off"></el-input>
-                    </el-form-item>
-                </el-col>
-            </el-row>
+                        <div>
+                            <el-radio-group v-model="order.needs_address" size="small">
+                                <el-radio-button label="Needs Address" ></el-radio-button>
+                                <el-radio-button label="No Address"></el-radio-button>
+                            </el-radio-group>
+                        </div>
 
-            <el-row :gutter="20">
-                <el-col :md="{span:8, offset: 4}">
-                    <el-form-item label="Customer Phone" size="small" prop="customer.phone">
-                        <el-input :autofocus="true" v-model="order.customer.phone" auto-complete="off"></el-input>
-                    </el-form-item>
-                </el-col>
-                <el-col :md="8">
-                    <el-form-item label="Customer Email" size="small" prop="customer.email">
-                        <el-input :autofocus="true" v-model="order.customer.email" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-col>
             </el-row>
 
             <hr>
 
-            <el-row :gutter="20">
-                <el-col :md="12">
-                    <h5>Billing Adress</h5>
-                </el-col>
-            </el-row>
+            <template v-if="needsAddress">
 
-            <address-form :form="order.billing_address" prop="billing_address"></address-form>
+                <el-row :gutter="20">
+                    <el-col :md="12">
+                        <h5>Customer Information</h5>
+                    </el-col>
+                </el-row>
 
-            <hr>
+                <el-row :gutter="20">
+                    <el-col :md="{span:16, offset: 4}">
+                        <el-form-item label="Customer Company" size="small" prop="customer.company">
+                            <el-input :autofocus="true" v-model="order.customer.company" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
 
-            <el-row :gutter="20">
-                <el-col :md="12">
-                    <h5>Shipping Adress</h5>
-                </el-col>
-            </el-row>
+                <el-row :gutter="20">
+                    <el-col :md="{span:8, offset: 4}">
+                        <el-form-item label="Customer First Name" size="small" prop="customer.first_name">
+                            <el-input :autofocus="true" v-model="order.customer.first_name" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :md="8">
+                        <el-form-item label="Customer Last Name" size="small" prop="customer.last_name">
+                            <el-input :autofocus="true" v-model="order.customer.last_name" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
 
-            <el-row :gutter="20" style="margin-bottom: 20px;">
-                <el-col :md="{span:20, offset: 4}">
-                    <el-checkbox v-model="order.use_billing_for_shipping">Same As Billing Address</el-checkbox>
-                </el-col>
-            </el-row>
+                <el-row :gutter="20">
+                    <el-col :md="{span:8, offset: 4}">
+                        <el-form-item label="Customer Phone" size="small" prop="customer.phone">
+                            <el-input :autofocus="true" v-model="order.customer.phone" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :md="8">
+                        <el-form-item label="Customer Email" size="small" prop="customer.email">
+                            <el-input :autofocus="true" v-model="order.customer.email" auto-complete="off"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
 
-            <address-form v-if="!order.use_billing_for_shipping" :form="order.shipping_address"></address-form>
+                <hr>
+
+                <el-row :gutter="20">
+                    <el-col :md="12">
+                        <h5>Billing Adress</h5>
+                    </el-col>
+                </el-row>
+
+                <address-form :form="order.billing_address" prop="billing_address"></address-form>
+
+                <hr>
+
+                <el-row :gutter="20">
+                    <el-col :md="12">
+                        <h5>Shipping Adress</h5>
+                    </el-col>
+                </el-row>
+
+                <el-row :gutter="20" style="margin-bottom: 20px;">
+                    <el-col :md="{span:20, offset: 4}">
+                        <el-checkbox v-model="order.use_billing_for_shipping">Same As Billing Address</el-checkbox>
+                    </el-col>
+                </el-row>
+
+                <address-form v-if="!order.use_billing_for_shipping" :form="order.shipping_address"></address-form>
+
+            </template>
 
             <el-row :gutter="20" style="margin-top: 40px;">
                 <el-col :md="{span:24}">
@@ -140,7 +168,13 @@ export default {
       computed: {
           ...mapGetters([
             'order',
+            'shopData'
           ]),
+
+          needsAddress()
+          {
+            return this.order.needs_address === 'Needs Address';
+          }
       },
 
       watch: {

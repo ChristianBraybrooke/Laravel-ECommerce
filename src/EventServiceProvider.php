@@ -27,6 +27,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'ChrisBraybrooke\ECommerce\Events\OrderCreated' => [
             'ChrisBraybrooke\ECommerce\Listeners\ProcessOrderCreation',
+            'ChrisBraybrooke\ECommerce\Listeners\CreateContentOnCreation',
         ],
         'ChrisBraybrooke\ECommerce\Events\OrderUpdated' => [
             'ChrisBraybrooke\ECommerce\Listeners\ProcessOrderUpdate',

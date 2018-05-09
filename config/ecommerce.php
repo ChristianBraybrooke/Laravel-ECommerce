@@ -63,10 +63,21 @@ return [
 
       //
       'form_section' => ChrisBraybrooke\ECommerce\Models\FormSection::class,
+
+      //
+      'language' => ChrisBraybrooke\ECommerce\Models\Language::class,
+
+      //
+      'currency' => ChrisBraybrooke\ECommerce\Models\Currency::class,
   ],
 
-  'shopData' => [
+  'shop_data' => [
 
+      //
+      'collection_mappings' => ['Home Header Collection', 'Home Panels Collection', 'Product Categories Collection'],
+
+      //
+      'site_images' => ['Website Logo', 'Website Logo Inverse']
   ],
 
 ];

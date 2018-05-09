@@ -107,9 +107,9 @@ class ApiOrdersController extends Controller
                 $order_subtotal = $order_subtotal + ($price * $quantity);
 
                 $options = [];
-                foreach ($item['options'] as $key => $option) {
+                foreach (($item['options'] ?? []) as $key => $option) {
                     if (isset($option['price_mutator']) && isset($option['price_value']) && $option['price_mutator'] && $option['price_value']) {
-                        $order_extras = $order_extras + (operators($option['price_mutator'], $order_extras, $option['price_value']) * $quantity);
+                        $order_extras = $order_extras + (operators($option['price_mutator'], 0, $option['price_value']) * $quantity);
                     }
                     $options[$key] = $option['name'] ?? $option;
                 }
@@ -161,6 +161,19 @@ class ApiOrdersController extends Controller
             'cart_data' => $cart_data
         ]);
 
+        if ($request->filled('content.data')) {
+            foreach ($request->input('content.data') as $key => $content) {
+                $order->content()->updateOrCreate(
+                    [
+                        'content_name' => $content['content_name'],
+                        'lang' => $content['language'] ?? null,
+                        'type' => $content['type'] ?? null,
+                    ],
+                    ['content' => $content['content']]
+                );
+            }
+        }
+
         $order->load($request->with ?: []);
 
         return new OrderResource($order);
@@ -186,32 +199,45 @@ class ApiOrdersController extends Controller
      */
     public function payment(Request $request, Order $order, PaymentService $payment)
     {
-        $payment = $payment->createCharge([
-            'token' => $request->payment_token,
-            'amount' => 2000,
-            'currency' => 'GBP',
-            'order' => $order,
-        ]);
+        if ($request->payment_method === 'stripe') {
+            $payment = $payment->createCharge([
+                'token' => $request->payment_token,
+                'amount' => 2000,
+                'currency' => 'GBP',
+                'order' => $order,
+            ]);
 
-        if ($payment) {
+            if ($payment) {
+                $order->update([
+                    'status' => 'STATUS_PROCESSING',
+
+                    'payment_method' => 'stripe',
+                    'payment_id' => isset($payment->id) ? $payment->id : null,
+                    'payment_currency' => isset($payment->currency) ? $payment->currency : null,
+                    'payment_amount' => isset($payment->amount) ? $payment->amount : null,
+                    'payment_fee' => isset($payment->application_fee) ? $payment->application_fee : null,
+                    'payment_source_id' => isset($payment->source->id) ? $payment->source->id : null,
+                    'payment_source_brand' => isset($payment->source->brand) ? $payment->source->brand : null,
+                    'payment_source_country' => isset($payment->source->country) ? $payment->source->country : null,
+                    'payment_source_last4' => isset($payment->source->last4) ? $payment->source->last4 : null,
+                    'payment_source_exp_month' => isset($payment->source->exp_month) ? $payment->source->exp_month : null,
+                    'payment_source_exp_year' => isset($payment->source->exp_year) ? $payment->source->exp_year : null,
+                ]);
+            }
+        }
+
+        if ($request->has('payment_method')) {
             $order->update([
                 'status' => 'STATUS_PROCESSING',
 
-                'payment_method' => 'stripe',
-                'payment_id' => isset($payment->id) ? $payment->id : null,
-                'payment_currency' => isset($payment->currency) ? $payment->currency : null,
-                'payment_amount' => isset($payment->amount) ? $payment->amount : null,
-                'payment_fee' => isset($payment->application_fee) ? $payment->application_fee : null,
-                'payment_source_id' => isset($payment->source->id) ? $payment->source->id : null,
-                'payment_source_brand' => isset($payment->source->brand) ? $payment->source->brand : null,
-                'payment_source_country' => isset($payment->source->country) ? $payment->source->country : null,
-                'payment_source_last4' => isset($payment->source->last4) ? $payment->source->last4 : null,
-                'payment_source_exp_month' => isset($payment->source->exp_month) ? $payment->source->exp_month : null,
-                'payment_source_exp_year' => isset($payment->source->exp_year) ? $payment->source->exp_year : null,
+                'payment_method' => $request->payment_method,
+                'payment_id' => $request->payment_reference,
+                'payment_amount' => $request->payment_amount,
             ]);
         }
 
-        return true;
+
+        return $order;
     }
 
     /**

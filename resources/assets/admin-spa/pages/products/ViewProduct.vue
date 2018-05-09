@@ -65,8 +65,8 @@
                 <el-row :gutter="20">
                     <template v-for="collection in collections">
                         <el-col :md="6" :sm="12" :xs="24">
-                            <el-form-item v-if="props.productForm.collections && collections" :label="collection.name" :prop="'collections.data.collection_types_sync' + [(collection.id - 1)]" size="small">
-                                <el-select class="collection_type_select" v-model="props.productForm.collections.data.collection_types_sync[(collection.id - 1)]" filterable multiple allow-create placeholder="Select">
+                            <el-form-item v-if="props.productForm.collections && collections" :label="collection.name" :prop="'collections.data.collection_types_sync' + [collection.id - 1]" size="small">
+                                <el-select class="collection_type_select" v-model="props.productForm.collections.data.collection_types_sync[collection.id]" filterable multiple allow-create placeholder="Select">
                                     <el-option v-for="type in collection.types.data"
                                                :key="type.name"
                                                :label="type.name"
