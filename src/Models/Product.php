@@ -393,9 +393,9 @@ class Product extends Model implements ProductContract
      *
      * @return App\Form
      */
-    public function getAvailableOrderFormAttribute()
+    public function getAvailableOrderFormAttribute($form)
     {
-        if ($this->is_variant && $this->use_variant_customisation) {
+        if ($this->is_variant && $this->use_variant_customisation && empty($form)) {
             return $this->variant->orderForm()->with('sections.fields')->first();
         }
         return $this->orderForm;
@@ -406,9 +406,9 @@ class Product extends Model implements ProductContract
      *
      * @return App\Form
      */
-    public function getAvailableFrontendFormAttribute()
+    public function getAvailableFrontendFormAttribute($form)
     {
-        if ($this->is_variant && $this->use_variant_customisation) {
+        if ($this->is_variant && $this->use_variant_customisation && empty($form)) {
             return $this->variant->frontendForm()->with('sections.fields')->first();
         }
         return $this->frontendForm;
