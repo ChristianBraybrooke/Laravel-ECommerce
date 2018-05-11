@@ -28,6 +28,8 @@ const Users = () => import(/* webpackChunkName: "users" */ '../pages/users/Users
 const Config = () => import(/* webpackChunkName: "config" */ '../pages/config/Config.vue');
 const Forms = () => import(/* webpackChunkName: "forms" */ '../pages/forms/Forms.vue');
 const ViewForm = () => import(/* webpackChunkName: "view-form" */ '../pages/forms/ViewForm.vue');
+const Menus = () => import(/* webpackChunkName: "menus" */ '../pages/menus/Menus.vue');
+const ViewMenu = () => import(/* webpackChunkName: "view-menu" */ '../pages/menus/ViewMenu.vue');
 const NotFound = () => import(/* webpackChunkName: "not-found" */ '../pages/NotFound.vue');
 const ImportExport = () => import(/* webpackChunkName: "import-export" */ '../pages/reports/ImportExport.vue');
 
@@ -183,6 +185,19 @@ const router = new Router({
             props: true,
             name: 'forms.view',
             meta: {title: 'Admin: Forms'}
+        },
+        {
+            path: '/menus',
+            component: Menus,
+            name: 'menus',
+            meta: {title: 'Admin: Menus'}
+        },
+        {
+            path: '/menus/:menuId',
+            component: ViewMenu,
+            props: true,
+            name: 'menus.view',
+            meta: {title: 'Admin: Menus'}
         },
         {
             path: '/config',

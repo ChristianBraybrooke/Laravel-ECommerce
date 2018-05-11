@@ -14,6 +14,7 @@ use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use ChrisBraybrooke\ECommerce\Contracts\Form as FormContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormField as FormFieldContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormSection as FormSectionContract;
+use ChrisBraybrooke\ECommerce\Contracts\Menu as MenuContract;
 use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
@@ -125,6 +126,10 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         // FormSection
         $this->app->bind(FormSectionContract::class, $config['form_section']);
         $loader->alias('FormSection', $config['form_section']);
+
+        // Menu
+        $this->app->bind(MenuFieldContract::class, $config['menu']);
+        $loader->alias('Menu', $config['menu']);
 
         // Language
         $loader->alias('Language', $config['language']);
@@ -457,6 +462,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/create_currencies_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 2).'_create_currencies_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('CreateMenusTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_menus_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_create_menus_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

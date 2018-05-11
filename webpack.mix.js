@@ -49,5 +49,5 @@ mix.js('resources/assets/admin-spa/admin.js', 'public/js/admin.js')
    .styles(['node_modules/normalize.css/normalize.css'], 'public/css/normalize.css')
    .sass('resources/assets/admin-spa/sass/admin.scss', 'public/css/admin.css')
    .setPublicPath('public')
-   .version()
-   .extract(['vue', 'element-ui', 'vue-router', 'vuex']);
+   .extract(['vue', 'element-ui', 'vue-router', 'vuex'])
+   .version();

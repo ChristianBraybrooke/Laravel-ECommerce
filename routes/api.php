@@ -49,6 +49,9 @@ Route::get('user', 'ApiUsersController@authUser');
 // Forms
 Route::apiResource('forms', 'ApiFormsController');
 
+// Menus
+Route::apiResource('menus', 'ApiMenusController');
+
 // Orders
 Route::apiResource('orders', 'ApiOrdersController');
 Route::post('orders/{order}/payment', 'ApiOrdersController@payment');

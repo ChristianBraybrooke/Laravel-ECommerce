@@ -7,6 +7,7 @@ use Collection;
 use CollectionType;
 use Gallery;
 use Page;
+use Menu;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -29,7 +30,8 @@ class AuthServiceProvider extends ServiceProvider
         Collection $collection,
         CollectionType $collection_type,
         Gallery $gallery,
-        Page $page
+        Page $page,
+        Menu $menu
     ) {
         $this->policies = [
             'App\User' => 'ChrisBraybrooke\ECommerce\Policies\UsersPolicy',
@@ -37,7 +39,8 @@ class AuthServiceProvider extends ServiceProvider
             get_class($collection) => 'ChrisBraybrooke\ECommerce\Policies\CollectionsPolicy',
             get_class($collection_type) => 'ChrisBraybrooke\ECommerce\Policies\CollectionTypesPolicy',
             get_class($gallery) => 'ChrisBraybrooke\ECommerce\Policies\GalleriesPolicy',
-            get_class($page) => 'ChrisBraybrooke\ECommerce\Policies\PagesPolicy'
+            get_class($page) => 'ChrisBraybrooke\ECommerce\Policies\PagesPolicy',
+            get_class($menu) => 'ChrisBraybrooke\ECommerce\Policies\MenusPolicy',
         ];
 
         $this->registerPolicies();

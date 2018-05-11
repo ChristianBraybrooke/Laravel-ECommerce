@@ -2,36 +2,36 @@
 
     <div v-loading="loading">
 
-        <div v-if="tableOptions.showHeader">
+        <div v-if="mergedTableOptions.showHeader">
 
             <el-row align="middle">
-              <el-col :sm="(tableOptions.showNewBtn || tableOptions.showRefreshBtn) ? 12 : 24" v-if="tableOptions.showTitle"><h1 class="page_title">{{ capitalTypeNamePlural }}</h1></el-col>
-              <el-col v-if="tableOptions.bulkOptions.length === 0 && !tableOptions.showTitle && tableOptions.showSearch" :sm="12">
+              <el-col :sm="(mergedTableOptions.showNewBtn || mergedTableOptions.showRefreshBtn) ? 12 : 24" v-if="mergedTableOptions.showTitle"><h1 class="page_title">{{ capitalTypeNamePlural }}</h1></el-col>
+              <el-col v-if="mergedTableOptions.bulkOptions.length === 0 && !mergedTableOptions.showTitle && mergedTableOptions.showSearch" :sm="12">
                   <el-input placeholder="Search"
-                            v-if="tableOptions.showSearch"
+                            v-if="mergedTableOptions.showSearch"
                             v-model="search">
                             <i slot="prefix" class="el-input__icon el-icon-search"></i>
                   </el-input>
               </el-col>
-              <el-col :sm="tableOptions.showTitle ? 12 : 24">
+              <el-col :sm="mergedTableOptions.showTitle ? 12 : 24">
                 <slot name="createButton">
-                    <el-button v-if="tableOptions.showNewBtn" @click="handleCreateData" class="create_btn" type="primary" plain>New {{ capitalTypeName }}</el-button>
+                    <el-button v-if="mergedTableOptions.showNewBtn" @click="handleCreateData" class="create_btn" type="primary" plain>New {{ capitalTypeName }}</el-button>
                 </slot>
-                <el-button v-if="tableOptions.showRefreshBtn" class="refresh_btn" @click="getData" type="info" plain><i class="el-icon-refresh"></i></el-button>
+                <el-button v-if="mergedTableOptions.showRefreshBtn" class="refresh_btn" @click="getData" type="info" plain><i class="el-icon-refresh"></i></el-button>
               </el-col>
             </el-row>
 
-            <hr class="page_hr" v-if="tableOptions.showHeadHr">
+            <hr class="page_hr" v-if="mergedTableOptions.showHeadHr">
 
         </div>
 
         <errors v-if="Object.keys(dataErrors).length > 0" :errors="dataErrors"></errors>
 
-        <el-row class="table_header" v-if="tableOptions.bulkOptions.length >= 1 || tableOptions.showSearch && tableOptions.showTitle">
+        <el-row class="table_header" v-if="mergedTableOptions.bulkOptions.length >= 1 || mergedTableOptions.showSearch && mergedTableOptions.showTitle">
             <el-col :lg="4" :md="8" :sm="12" :xs="16">
               <el-select class="bulk_select" size="large" v-model="bulkOptionValue" placeholder="Bulk actions">
                 <el-option
-                  v-for="item in tableOptions.bulkOptions"
+                  v-for="item in mergedTableOptions.bulkOptions"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value">
@@ -39,11 +39,11 @@
               </el-select>
             </el-col>
             <el-col :lg="2" :md="2" :sm="12" :xs="8">
-              <el-button @click="handleBulkOptionsApply" :disabled="bulkOptionsDisabled" class="apply_btn" type="success" plain v-if="tableOptions.bulkOptions.length >= 1">Apply</el-button>
+              <el-button @click="handleBulkOptionsApply" :disabled="bulkOptionsDisabled" class="apply_btn" type="success" plain v-if="mergedTableOptions.bulkOptions.length >= 1">Apply</el-button>
             </el-col>
             <el-col :lg="{span: 8, offset: 10}" :md="{span: 8, offset: 6}" class="table_search_col">
                 <el-input placeholder="Search"
-                          v-if="tableOptions.showSearch"
+                          v-if="mergedTableOptions.showSearch"
                           v-model="search">
                           <i slot="prefix" class="el-input__icon el-icon-search"></i>
                 </el-input>
@@ -58,8 +58,8 @@
 
         <el-table
             :data="Data"
-            :stripe="tableOptions.stripe"
-            :border="tableOptions.stripe"
+            :stripe="mergedTableOptions.stripe"
+            :border="mergedTableOptions.stripe"
             style="width: 100%"
             @selection-change="handleSelectionChange"
             @sort-change="handleSortChange">
@@ -69,7 +69,7 @@
                 width="55">
             </el-table-column>
 
-            <template v-for="col in tableOptions.collumns">
+            <template v-for="col in mergedTableOptions.collumns">
                 <el-table-column
                     :prop="col.prop"
                     :formatter="col.formatter ? col.formatter : null"
@@ -83,19 +83,19 @@
                 <template slot-scope="scope">
 
                     <slot name="actionButtons" :row="scope.row" :edit-path-formated="editPathFormated">
-                        <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="tableOptions.viewText">
+                        <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="mergedTableOptions.viewText">
                             <el-button
                               size="mini"
-                              class="action_btn view_btn">{{ tableOptions.viewText }}
+                              class="action_btn view_btn">{{ mergedTableOptions.viewText }}
                             </el-button>
                         </router-link>
 
                         <el-button
-                          v-if="tableOptions.deleteText"
+                          v-if="mergedTableOptions.deleteText"
                           size="mini"
                           type="danger"
                           class="action_btn delete_btn"
-                          @click="deleteData(scope.$index, scope.row)">{{ tableOptions.deleteText }}
+                          @click="deleteData(scope.$index, scope.row)">{{ mergedTableOptions.deleteText }}
                         </el-button>
                     </slot>
                 </template>
@@ -191,6 +191,7 @@ export default {
 
   mounted() {
     console.log('DataTable.vue Mounted.');
+    Object.assign(this.mergedTableOptions,this.defaultTableOptions,this.tableOptions);
     this.getData();
   },
 
@@ -258,74 +259,14 @@ export default {
           type: Object,
           required: false,
           default() {
-              return {
-                  border: true,
-                  stripe: true,
-                  showSearch: true,
-                  showHeader: true,
-                  showNewBtn: true,
-                  showRefreshBtn: true,
-                  showHeadHr: true,
-                  showTitle: true,
-                  viewText: 'View',
-                  deleteText: 'Delete',
-                  collumns: [
-                      {
-                          prop: 'id',
-                          sortable: true,
-                          label: 'ID',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'name',
-                          sortable: true,
-                          label: 'Name',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'created_at.human',
-                          sortable: true,
-                          label: 'Created',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'live_at.live',
-                          sortable: true,
-                          label: 'Live',
-                          align: 'left',
-                          formatter: function(row, column, cellValue) {
-                              return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>;
-                          },
-                          resizable: true
-                      },
-                  ],
-                  bulkOptions: [
-                      {
-                        value: 'delete',
-                        label: 'Delete'
-                      },
-                      {
-                        value: 'draft',
-                        label: 'Mark Draft'
-                      },
-                      {
-                        value: 'live',
-                        label: 'Mark Live'
-                      },
-                  ],
-              }
+              return {};
           }
       },
       createForm: {
           type: Object,
           required: false,
           default() {
-              return {
-
-              }
+              return {};
           }
       },
       createFormRules: {
@@ -352,6 +293,68 @@ export default {
         orderBy: 'id',
         ascending: 0,
         currentPage: 1,
+      },
+      mergedTableOptions: {
+          bulkOptions: []
+      },
+      defaultTableOptions: {
+          border: true,
+          stripe: true,
+          showSearch: true,
+          showHeader: true,
+          showNewBtn: true,
+          showRefreshBtn: true,
+          showHeadHr: true,
+          showTitle: true,
+          viewText: 'View',
+          deleteText: 'Delete',
+          collumns: [
+              {
+                  prop: 'id',
+                  sortable: true,
+                  label: 'ID',
+                  align: 'left',
+                  resizable: true
+              },
+              {
+                  prop: 'name',
+                  sortable: true,
+                  label: 'Name',
+                  align: 'left',
+                  resizable: true
+              },
+              {
+                  prop: 'created_at.human',
+                  sortable: true,
+                  label: 'Created',
+                  align: 'left',
+                  resizable: true
+              },
+              {
+                  prop: 'live_at.live',
+                  sortable: true,
+                  label: 'Live',
+                  align: 'left',
+                  formatter: function(row, column, cellValue) {
+                      return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>;
+                  },
+                  resizable: true
+              },
+          ],
+          bulkOptions: [
+              {
+                value: 'delete',
+                label: 'Delete'
+              },
+              {
+                value: 'draft',
+                label: 'Mark Draft'
+              },
+              {
+                value: 'live',
+                label: 'Mark Live'
+              },
+          ],
       },
       shopData: {},
       queueModalBtnDisabled: true,
@@ -400,10 +403,10 @@ export default {
 
       queueModalMessage()
       {
-          var key = findKey(this.tableOptions.bulkOptions, ['value', this.bulkOptionValue]);
+          var key = findKey(this.mergedTableOptions.bulkOptions, ['value', this.bulkOptionValue]);
 
           if (key) {
-            return this.tableOptions.bulkOptions[key].queue_message;
+            return this.mergedTableOptions.bulkOptions[key].queue_message;
           }
 
           return '';
@@ -412,10 +415,10 @@ export default {
 
       queueModalBtn()
       {
-          var key = findKey(this.tableOptions.bulkOptions, ['value', this.bulkOptionValue]);
+          var key = findKey(this.mergedTableOptions.bulkOptions, ['value', this.bulkOptionValue]);
 
           if (key) {
-            return this.tableOptions.bulkOptions[key].queue_action;
+            return this.mergedTableOptions.bulkOptions[key].queue_action;
           }
 
           return '';

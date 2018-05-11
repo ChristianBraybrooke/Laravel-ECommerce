@@ -65,6 +65,9 @@ return [
       'form_section' => ChrisBraybrooke\ECommerce\Models\FormSection::class,
 
       //
+      'menu' => ChrisBraybrooke\ECommerce\Models\Menu::class,
+
+      //
       'language' => ChrisBraybrooke\ECommerce\Models\Language::class,
 
       //

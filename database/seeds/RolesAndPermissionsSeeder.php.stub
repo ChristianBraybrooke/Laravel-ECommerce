@@ -69,6 +69,11 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'update pages']);
         Permission::create(['name' => 'delete pages']);
 
+        Permission::create(['name' => 'create menus']);
+        Permission::create(['name' => 'read menus']);
+        Permission::create(['name' => 'update menus']);
+        Permission::create(['name' => 'delete menus']);
+
         // Developer
         $role = Role::create(['name' => 'developer', 'level' => 7]);
         // API Tokens
@@ -124,6 +129,11 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo('read draft pages');
         $role->givePermissionTo('update pages');
         $role->givePermissionTo('delete pages');
+        // Menus
+        $role->givePermissionTo('create menus');
+        $role->givePermissionTo('read menus');
+        $role->givePermissionTo('update menus');
+        $role->givePermissionTo('delete menus');
 
         // Writer
         $role = Role::create(['name' => 'writer', 'level' => 8]);
@@ -154,6 +164,10 @@ class RolesAndPermissionsSeeder extends Seeder
         $role->givePermissionTo('create pages');
         $role->givePermissionTo('read draft pages');
         $role->givePermissionTo('update pages');
+        // Menus
+        $role->givePermissionTo('create menus');
+        $role->givePermissionTo('read menus');
+        $role->givePermissionTo('update menus');
 
         // User
         $role = Role::create(['name' => 'customer', 'level' => 1]);
