@@ -1,5 +1,5 @@
 <div class="invoice-box">
-    <h1 style="text-align: center;">{{ $order->invoiceName() }}</h1>
+    <h1 style="text-align: center;">{{ $order->invoice['name'] ?? '' }}</h1>
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
             <td colspan="4">
@@ -12,9 +12,9 @@
                         </td>
 
                         <td colspan="2">
-                            Invoice #: {{ $order->invoice['number'] }}<br>
-                            Created: {{ $order->invoice['issued_at'] }}<br>
-                            Due: {{ $order->invoice['due_by'] }}
+                            Invoice #: {{ $order->invoice['number'] ?? '' }}<br>
+                            Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
+                            Due: {{ $order->invoice['due_by'] ?? '' }}
                         </td>
                     </tr>
                 {{-- </table> --}}
@@ -91,9 +91,9 @@
         @foreach ($order->items as $key => $item)
             <tr class="item @if ($loop->last) last @endif">
                 <td>
-                    {{ $item['name'] }}
+                    {{ $item['name'] ?? '' }}
 
-                    @if (!empty($item['options']))
+                    @if (!empty($item['options'] ?? ''))
                         <ul>
                             @foreach ($item['options'] as $key => $options)
                                 <li class="cart_option font-weight-bold">{{ ucfirst($key) }}</li>
@@ -114,26 +114,26 @@
                 </td>
 
                 <td>
-                    {{ $order->cart['currency'] . $item['price'] }}
+                    {{ $order->cart['currency'] ?? '£' . $item['price'] ?? '' }}
                 </td>
 
                 <td>
-                    {{ $item['qty'] }}
+                    {{ $item['qty'] ?? '' }}
                 </td>
 
                 <td>
-                    {{ $order->cart['currency'] . $item['subtotal'] }}
+                    {{ $order->cart['currency'] ?? '£' . $item['subtotal'] ?? '' }}
                 </td>
             </tr>
         @endforeach
 
-        @foreach ($order->cart['totals'] as $key => $total)
+        @foreach ($order->cart['totals'] ?? [] as $key => $total)
             <tr class="total @if ($loop->last) last @endif">
                 <td></td>
                 <td></td>
                 <td>{{ $key }}: </td>
                 <td>
-                    {{ $order->cart['currency'] . $total }}
+                    {{ $order->cart['currency'] ?? '£' . $total }}
                 </td>
             </tr>
         @endforeach

@@ -255,6 +255,7 @@ class Order extends Model implements OrderContract
     {
         $prefix = Setting::get('Invoice Number Prefix');
         return [
+            'name' => $this->invoiceName(),
             'number' => $prefix . $this->id,
             'issued_at' => $this->created_at['carbon']->toFormattedDateString(),
             'due_by' => $this->created_at['carbon']->addDays(7)->toFormattedDateString(),
