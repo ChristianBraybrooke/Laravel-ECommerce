@@ -52,6 +52,9 @@ Route::apiResource('forms', 'ApiFormsController');
 // Menus
 Route::apiResource('menus', 'ApiMenusController');
 
+// Links
+Route::get('links', 'ApiLinksController@index');
+
 // Orders
 Route::apiResource('orders', 'ApiOrdersController');
 Route::post('orders/{order}/payment', 'ApiOrdersController@payment');

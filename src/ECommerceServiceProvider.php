@@ -21,6 +21,7 @@ use Illuminate\Foundation\AliasLoader;
 use Product;
 use Illuminate\Support\Facades\View;
 use Illuminate\Filesystem\Filesystem;
+use File;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -41,6 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     public function boot()
     {
+
         $this->handleConfigs();
         if (env('APP_ENV') === 'local') {
             $this->handleMigrations();
@@ -60,13 +62,6 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             __DIR__.'/../public' => public_path('vendor/ecommerce'),
         ], 'ecommerce-admin');
 
-        // If we are in the local env, publish assets automatically
-        if (env('APP_ENV') === 'local') {
-            Artisan::call('vendor:publish', [
-               '--tag' => 'ecommerce-admin',
-               '--force' => true
-            ]);
-        }
     }
 
     /**

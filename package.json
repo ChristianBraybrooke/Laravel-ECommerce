@@ -96,6 +96,7 @@
         "vue-progressive-image": "^2.4.4",
         "vue-quill-editor": "^3.0.6",
         "vue-router": "^3.0.1",
+        "vuedraggable": "^2.16.0",
         "vuex": "^3.0.1",
         "vuex-persistedstate": "^2.5.2",
         "zxcvbn": "^4.4.2"
