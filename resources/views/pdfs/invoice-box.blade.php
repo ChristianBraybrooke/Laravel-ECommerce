@@ -114,7 +114,7 @@
                 </td>
 
                 <td>
-                    {{ $order->cart['currency'] ?? '£' . $item['price'] ?? '' }}
+                    {{ ($order->cart['currency'] ?? '£') . ($item['price'] ?? '') }}
                 </td>
 
                 <td>
@@ -122,7 +122,7 @@
                 </td>
 
                 <td>
-                    {{ $order->cart['currency'] ?? '£' . $item['subtotal'] ?? '' }}
+                    {{ ($order->cart['currency'] ?? '£') . ($item['subtotal'] ?? '') }}
                 </td>
             </tr>
         @endforeach
@@ -133,7 +133,7 @@
                 <td></td>
                 <td>{{ $key }}: </td>
                 <td>
-                    {{ $order->cart['currency'] ?? '£' . $total }}
+                    {{ ($order->cart['currency'] ?? '£') . $total }}
                 </td>
             </tr>
         @endforeach
