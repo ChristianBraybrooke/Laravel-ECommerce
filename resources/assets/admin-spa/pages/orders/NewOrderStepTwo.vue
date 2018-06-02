@@ -14,7 +14,7 @@
 
         <el-row :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
             <el-col :span="12">
-                <product-add-form/>
+                <product-add-form :on-product-add="addProductToTable"/>
             </el-col>
         </el-row>
 
@@ -397,13 +397,10 @@ export default {
               return product;
           },
 
-          addProductToTable()
+          addProductToTable(product)
           {
-              console.log(this.addProductForm.product);
-              this.$store.commit('ADD_PRODUCT_TO_ORDER', this.addProductForm.product);
-              this.productAddErrors = {};
-              this.addProductForm = productFormTemplate;
-              this.showProductModal = false;
+              console.log(product);
+              this.$store.commit('ADD_PRODUCT_TO_ORDER', product);
           },
 
           editProductOnTable()

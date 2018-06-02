@@ -10,7 +10,7 @@
         <el-row align="middle" type="flex">
             <el-col :span="12">
               <h1 class="page_title">New Order <span v-if="order.first_name && order.last_name"> - {{ order.first_name + ' ' + order.last_name }}</span></h1>
-              <el-button type="danger" plain size="mini" @click="resetOrder">Reset Order</el-button>
+              <el-button v-show="order.id" type="danger" plain size="mini" @click="resetOrder">Reset Order</el-button>
             </el-col>
         </el-row>
 

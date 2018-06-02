@@ -54,9 +54,16 @@
                          <el-col :md="{span:16, offset: 4}">
                              <el-form-item :label="'Choose Variant'" size="small" prop="product">
                                  <div>
-                                     <el-radio-group v-model="form.product" size="small">
+                                     <el-radio-group v-model="form.product" size="small" v-if="productVariantsToShow.length < 10">
                                          <el-radio-button v-for="variant in productVariantsToShow" :label="variant" :key="variant.id">{{ variant.name }}</el-radio-button>
                                      </el-radio-group>
+                                     <el-select v-model="form.product" size="small" v-else>
+                                         <el-option v-for="variant in productVariantsToShow"
+                                                    :key="variant.id"
+                                                    :label="variant.name"
+                                                    :value="variant">
+                                         </el-option>
+                                     </el-select>
                                  </div>
                              </el-form-item>
                          </el-col>
@@ -181,6 +188,15 @@ export default {
                 return false;
               }
           },
+          onProductAdd: {
+              type: Function,
+              required: false,
+              default () {
+                  return function (product) {
+
+                  }
+              }
+          }
       },
 
       data () {
@@ -297,7 +313,13 @@ export default {
 
           addProduct()
           {
-
+              if(this.objectHas(this.form, 'product.id') && this.objectHas(this.form, 'product.quantity')) {
+                  this.onProductAdd(this.form.product);
+                  this.errors = {};
+                  this.form = formTemplate;
+                  this.loading = false;
+                  this.showModal = false;
+              }
           },
 
           saveProduct()
