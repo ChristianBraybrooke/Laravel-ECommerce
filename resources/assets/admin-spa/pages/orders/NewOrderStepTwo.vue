@@ -14,9 +14,13 @@
 
         <el-row :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
             <el-col :span="12">
-                <product-add-form :on-product-add="addProductToTable"/>
+                <product-form :on-product-add="addProductToTable"/>
             </el-col>
         </el-row>
+
+
+        <product-table :editable="true" :products="order.items" />
+
 
         <el-row v-if="order.items" :gutter="20">
             <el-col :span="24">
@@ -49,12 +53,13 @@
                     <el-table-column
                         label="Actions">
                         <template slot-scope="scope">
-                            <el-button size="mini"
+                            <product-form :edit-form="true" :product="scope.row"/>
+                            <!-- <el-button size="mini"
                                        plain
                                        type="primary"
                                        class="action_btn"
                                        @click="editRow(scope.$index, scope.row)">Edit
-                            </el-button>
+                            </el-button> -->
                             <el-button size="mini"
                                        type="danger"
                                        class="action_btn delete_btn"
@@ -129,7 +134,8 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
-          ProductAddForm: () => import('../../components/ProductAddForm.vue'),
+          productForm: () => import('../../components/productForm.vue'),
+          productTable: () => import('../../components/productTable.vue'),
       },
 
       props: {
@@ -275,7 +281,7 @@ export default {
 
           formattedPrice(product)
           {
-              var base_price = parseInt(product.price);
+              var base_price = parseFloat(product.price);
               var base_with_extras = base_price;
               var extras = 0;
               if (product.options) {

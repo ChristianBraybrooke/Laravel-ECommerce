@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+const { exec } = require('child_process');
 
 /*
  |--------------------------------------------------------------------------

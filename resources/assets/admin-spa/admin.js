@@ -14,7 +14,10 @@ import './axios.js';
 
 Vue.use(Element, {locale});
 
+var numeral = require('numeral');
+
 import { mapActions, mapGetters } from 'vuex';
+
 Vue.mixin({
     computed: {
         getSiteBaseURL(value) {
@@ -39,6 +42,11 @@ Vue.mixin({
               return x.toUpperCase();
             });
         },
+        formatPrice(price, prepend = '', append = '')
+        {
+            var number = parseFloat(price);
+            return prepend + numeral(number).format('0,0.00') + append;
+        }
     }
 });
 

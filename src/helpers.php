@@ -126,6 +126,11 @@ function requestIncludes($key)
     return in_array($key, $include);
 }
 
+function getResourceValue($self, $value)
+{
+    return requestIncludes($value) ? optional($self)->$value : null;
+}
+
 /**
  * Dynamically work out a sum.
  *
