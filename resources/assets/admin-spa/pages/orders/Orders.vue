@@ -120,7 +120,7 @@ export default {
                           formatter: function(row, column, cellValue) {
                               var items = [];
                               forEach(row.items, function (item) {
-                                  items.push(<li>{item.qty + ' * ' + item.name}</li>);
+                                  items.push(<li>{item.quantity + ' * ' + item.name}</li>);
                               });
 
                               return <ul>{items}</ul>

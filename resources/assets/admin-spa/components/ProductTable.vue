@@ -1,23 +1,19 @@
 <template lang="html">
     <div v-loading="loading">
 
-        <el-table :data="products"
+        <el-table :data="order.items"
                   style="width: 100%">
             <el-table-column v-for="(collumn, key) in collumns"
                              :key="key"
                              :prop="collumn.prop"
                              :label="collumn.label"
                              :formatter="collumn.formatter ? collumn.formatter : null">
-              <template v-if="collumn.template">
-                  <template slot-scope="scope">
-                      {{ collumn.template(scope) }}
-                  </template>
-              </template>
             </el-table-column>
         </el-table>
 
 
         <el-table :data="orderTotals"
+                  v-show="orderTotals.length > 0"
                   style="width: 100%">
             <el-table-column v-for="(col, key) in totalSpan" :key="key">
             </el-table-column>
@@ -26,7 +22,9 @@
             </el-table-column>
             <el-table-column prop="value"
                             label=""
-                            :formatter="function(row, column, cellValue) { return formatPrice(cellValue, shopData.currency) }">
+                            :formatter="function(row, column, cellValue) { return row.total === 'Shipping' ? shippingRowFormatter(cellValue) : formatPrice(cellValue, shopData.currency) }">
+            </el-table-column>
+            <el-table-column v-if="editable">
             </el-table-column>
         </el-table>
 
@@ -35,9 +33,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import order from '../utils/order';
+import ProductForm from './ProductForm.vue';
+import orderUtil from '../utils/order';
+var range = require('lodash.range');
 
 var forEach = require('lodash.foreach');
+
 
 export default {
 
@@ -45,7 +46,7 @@ export default {
 
       components: {
           Errors: () => import('./Errors.vue'),
-          productForm: () => import('./productForm.vue'),
+          ProductForm: ProductForm,
       },
 
       props: {
@@ -56,18 +57,25 @@ export default {
                   return false;
               }
           },
-          products: {
-              type: Array,
+          order: {
+              type: Object,
               required: true,
           },
-          collumns: {
+          orderTotals: {
+              type: Array,
+              required: false,
+              default () {
+                  return []
+              }
+          },
+          setCollumns: {
               type: Array,
               required: false,
               default() {
-                  return this.defaultCollumns;
+                  return [];
               }
           },
-          options: {
+          setOptions: {
               type: Object,
               required: false,
               default () {
@@ -80,8 +88,31 @@ export default {
           return {
               loading: false,
               mergedOptions: {},
-              defaultOptions: {},
-              defaultCollumns: [
+              options: {},
+              collumns: []
+          }
+      },
+
+      computed: {
+          ...mapGetters([
+              'shopData',
+          ]),
+
+          totals()
+          {
+              return order.totals(this.order.items);
+          },
+
+          totalSpan()
+          {
+              var numberOfCollumns = this.collumns ? this.collumns.length : 0;
+              numberOfCollumns = (numberOfCollumns > 2) ? (numberOfCollumns - (this.editable ? 3 : 2)) : 0;
+              return [...Array(parseInt(numberOfCollumns)).keys()];
+          },
+
+          defaultCollumns()
+          {
+              var cols = [
                   {
                       prop: 'name',
                       label: 'Product',
@@ -100,43 +131,36 @@ export default {
                   {
                       prop: 'subtotal',
                       label: 'Sub-Total',
-                      formatter: function (row, column, cellValue) { return this.formatPrice(order.productSubTotal(row), this.shopData.currency) }.bind(this),
+                      formatter: function (row, column, cellValue) { return this.formatPrice(orderUtil.productSubTotal(row), this.shopData.currency) }.bind(this),
                   },
                   {
                       prop: 'extras',
                       label: 'Extras',
-                      formatter: function (row, column, cellValue) { return this.formatPrice(order.productExtras(row), this.shopData.currency) }.bind(this),
+                      formatter: function (row, column, cellValue) { return this.formatPrice(orderUtil.productExtras(row), this.shopData.currency) }.bind(this),
                   },
                   {
                       prop: 'total',
                       label: 'Total',
-                      formatter: function (row, column, cellValue) { return this.formatPrice(order.productTotal(row), this.shopData.currency) }.bind(this),
+                      formatter: function (row, column, cellValue) { return this.formatPrice(orderUtil.productTotal(row), this.shopData.currency) }.bind(this),
                   },
-                  {
-                      prop: 'actions',
-                      label: 'Actions',
-                      template: function (scope) { return this.itemRowActionsFormatter(scope) }.bind(this),
-                  },
-              ]
-          }
-      },
+              ];
 
-      computed: {
-          ...mapGetters([
-              'shopData',
-              'orderTotals'
-          ]),
+              if (this.editable) {
+                  cols.push(
+                      {
+                          prop: 'actions',
+                          label: 'Actions',
+                          formatter: function (row, column, cellValue) { return this.itemRowActionsFormatter(row, column, cellValue) }.bind(this),
+                      }
+                  )
+              }
 
-          totals()
-          {
-              return order.totals(this.products);
+              return cols;
           },
 
-          totalSpan()
+          defaultOptions()
           {
-              var numberOfCollumns = this.collumns ? this.collumns.length : 0;
-              numberOfCollumns = (numberOfCollumns > 2) ? (numberOfCollumns - 2) : 0;
-              return [...Array(parseInt(numberOfCollumns)).keys()];
+              return {};
           }
       },
 
@@ -146,6 +170,19 @@ export default {
 
       mounted () {
           console.log('ProductTable.vue Mounted');
+
+          if(this.setCollumns.length == 0) {
+              this.collumns = this.defaultCollumns;
+          } else {
+              this.collumns = this.setCollumns;
+          }
+
+          if(!this.setOptions) {
+              this.options = this.defaultOptions;
+          } else {
+              this.options = this.setOptions;
+          }
+
           Object.assign(this.mergedOptions, this.defaultOptions, this.options);
       },
 
@@ -170,10 +207,28 @@ export default {
               return <div>{row_name}</div>;
           },
 
-          itemRowActionsFormatter(scope)
+          itemRowActionsFormatter(row, column, cellValue)
           {
-              // return <product-form edit-form={true} product={scope.row}></product-form>
+              return <span>
+                         <product-form edit-form={true} product={row}></product-form>
+                         <el-button size="mini" type="danger" on-click={ () => this.deleteRow(row) }>Delete</el-button>
+                     </span>
           },
+
+          shippingRowFormatter(value)
+          {
+              var options = [];
+              forEach(range(0,250, 10), function (range) {
+                  options.push(<el-option key={range} value={range} label={this.formatPrice(range, this.shopData.currency)}></el-option>);
+              }.bind(this));
+
+              return this.editable ? <el-select v-model={this.order.shipping_rate} size="mini" style="max-width: 100px;">{options}</el-select> : this.formatPrice(this.order.shipping_rate, this.shopData.currency);
+          },
+
+          deleteRow(row)
+          {
+              this.order.items.splice(this.order.items.indexOf(row), 1);
+          }
       }
 }
 </script>

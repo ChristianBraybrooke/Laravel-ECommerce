@@ -118,7 +118,7 @@
                 </td>
 
                 <td>
-                    {{ $item['qty'] ?? '' }}
+                    {{ $item['quantity'] ?? '' }}
                 </td>
 
                 <td>

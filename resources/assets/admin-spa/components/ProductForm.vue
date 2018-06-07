@@ -288,7 +288,7 @@ export default {
       },
 
       mounted () {
-          console.log('ProductAddForm.vue Mounted');
+          console.log('ProductForm.vue Mounted');
 
           if (!this.editForm) {
               this.getProductCollection();
@@ -309,7 +309,7 @@ export default {
                         path: "collections/" + product_category_id,
                         params: {
                             include: ['type', 'options', 'price', 'effects_price', 'no_shop_data'],
-                            with: ['types.products.variants.orderForm.sections.fields']
+                            with: ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant']
                         }
                     })
                     .then(function (data) {
