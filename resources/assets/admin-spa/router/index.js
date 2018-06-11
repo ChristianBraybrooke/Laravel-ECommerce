@@ -24,7 +24,9 @@ const ViewProductOrdering = () => import(/* webpackChunkName: "view-product-orde
 const Galleries = () => import(/* webpackChunkName: "galleries" */ '../pages/galleries/Galleries.vue');
 const Pages = () => import(/* webpackChunkName: "pages" */ '../pages/pages/Pages.vue');
 const ViewPage = () => import(/* webpackChunkName: "pages" */ '../pages/pages/ViewPage.vue');
+const ViewUser = () => import(/* webpackChunkName: "view-user" */ '../pages/users/ViewUser.vue');
 const Users = () => import(/* webpackChunkName: "users" */ '../pages/users/Users.vue');
+const Customers = () => import(/* webpackChunkName: "customers" */ '../pages/customers/Customers.vue');
 const Config = () => import(/* webpackChunkName: "config" */ '../pages/config/Config.vue');
 const Forms = () => import(/* webpackChunkName: "forms" */ '../pages/forms/Forms.vue');
 const ViewForm = () => import(/* webpackChunkName: "view-form" */ '../pages/forms/ViewForm.vue');
@@ -172,6 +174,19 @@ const router = new Router({
             component: Users,
             name: 'users',
             meta: {title: 'Admin: Users'}
+        },
+        {
+            path: '/users/:userId',
+            component: ViewUser,
+            props: true,
+            name: 'users.view',
+            meta: {title: 'Admin: Users'}
+        },
+        {
+            path: '/customers',
+            component: Customers,
+            name: 'customers',
+            meta: {title: 'Admin: Customers'}
         },
         {
             path: '/forms',

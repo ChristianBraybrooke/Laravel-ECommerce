@@ -262,6 +262,13 @@ export default {
               return {};
           }
       },
+      withParams: {
+          type: Object,
+          required: false,
+          default() {
+              return {};
+          }
+      },
       createForm: {
           type: Object,
           required: false,
@@ -452,9 +459,7 @@ export default {
         this.loading = true;
         this.dataErrors = {};
 
-        api.get({
-          path: this.baseUrl ? this.baseUrl : this.typeName,
-          params: {
+        const params = Object.assign(this.withParams, {
             with: this.requestWith,
             include: this.requestIncludes,
             limit: this.paginationMeta.perPage,
@@ -462,7 +467,11 @@ export default {
             orderBy: this.paginationMeta.orderBy,
             page: this.paginationMeta.currentPage,
             search: this.search
-          }
+        });
+
+        api.get({
+          path: this.baseUrl ? this.baseUrl : this.typeName,
+          params: params
         })
         .then(function (data) {
             this.Data = data.data;

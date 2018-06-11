@@ -37,10 +37,16 @@
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M7,1H0v18h9V3C9,1.895,8.105,1,7,1z"></path> <path fill="#000000" d="M23.447,11.105l-3.589-1.794L18.97,5.758C18.859,5.312,18.459,5,18,5h-1.625H11c0,0,0,12.451,0,13 s0.051,1,0.051,1c0.252,2.244,2.139,4,4.449,4s4.197-1.756,4.449-4H23c0.552,0,1-0.448,1-1v-6 C24,11.621,23.786,11.275,23.447,11.105z M15.5,21c-1.378,0-2.5-1.121-2.5-2.5s1.122-2.5,2.5-2.5s2.5,1.121,2.5,2.5 S16.878,21,15.5,21z M13,10V7h4.344L18,10H13z"></path></g></svg>
             <span slot="title">Orders <el-badge v-if="shopData" :value="shopData.orders" class="item"></el-badge></span>
           </el-menu-item>
-          <el-menu-item index="/users">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M17,2c-0.905,0-1.73,0.312-2.4,0.818C15.475,3.986,16,5.431,16,7v1 c0,0.953-0.193,1.862-0.54,2.691C15.935,10.889,16.454,11,17,11c2.209,0,4-1.791,4-4V6C21,3.791,19.209,2,17,2z"></path> <path fill="#000000" d="M9,13L9,13c-2.761,0-5-2.239-5-5V7c0-2.761,2.239-5,5-5h0c2.761,0,5,2.239,5,5v1C14,10.761,11.761,13,9,13z"></path> <path data-color="color-2" fill="#000000" d="M22.839,14.405C21.555,13.815,19.354,13,17,13c-1.195,0-2.35,0.211-3.367,0.495 c0.376,0.078,0.753,0.157,1.13,0.253c2.911,0.742,4.97,3.275,5.192,6.252H23c0.552,0,1-0.448,1-1v-2.779 C24,15.439,23.55,14.731,22.839,14.405z"></path> <path fill="#000000" d="M17,22H1c-0.552,0-1-0.448-1-1v-0.475c0-2.275,1.527-4.277,3.731-4.839C5.205,15.31,7.021,15,9,15 s3.795,0.31,5.269,0.686C16.473,16.248,18,18.25,18,20.525V21C18,21.552,17.552,22,17,22z"></path></g></svg>
-            <span slot="title">Users</span>
-          </el-menu-item>
+          <el-submenu index="0">
+            <template slot="title">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M17,2c-0.905,0-1.73,0.312-2.4,0.818C15.475,3.986,16,5.431,16,7v1 c0,0.953-0.193,1.862-0.54,2.691C15.935,10.889,16.454,11,17,11c2.209,0,4-1.791,4-4V6C21,3.791,19.209,2,17,2z"></path> <path fill="#000000" d="M9,13L9,13c-2.761,0-5-2.239-5-5V7c0-2.761,2.239-5,5-5h0c2.761,0,5,2.239,5,5v1C14,10.761,11.761,13,9,13z"></path> <path data-color="color-2" fill="#000000" d="M22.839,14.405C21.555,13.815,19.354,13,17,13c-1.195,0-2.35,0.211-3.367,0.495 c0.376,0.078,0.753,0.157,1.13,0.253c2.911,0.742,4.97,3.275,5.192,6.252H23c0.552,0,1-0.448,1-1v-2.779 C24,15.439,23.55,14.731,22.839,14.405z"></path> <path fill="#000000" d="M17,22H1c-0.552,0-1-0.448-1-1v-0.475c0-2.275,1.527-4.277,3.731-4.839C5.205,15.31,7.021,15,9,15 s3.795,0.31,5.269,0.686C16.473,16.248,18,18.25,18,20.525V21C18,21.552,17.552,22,17,22z"></path></g></svg>
+              <span slot="title">Users</span>
+            </template>
+
+              <el-menu-item index="/users">Users</el-menu-item>
+              <el-menu-item index="/customers">Customers</el-menu-item>
+
+          </el-submenu>
           <el-submenu index="1">
             <template slot="title">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve" width="24" height="24"><g class="nc-icon-wrapper" fill="#000000"><path data-color="color-2" fill="#000000" d="M12.994,12.839l10.022-5.988L11.504,0.136c-0.315-0.184-0.706-0.181-1.019,0.007L0.993,5.838 L12.994,12.839z"></path> <path fill="#000000" d="M12,14.575l-12-7V16c0,0.355,0.189,0.685,0.496,0.864L12,23.575V14.575z"></path> <path fill="#000000" d="M14,14.567v8.953l9.573-6.701C23.841,16.632,24,16.326,24,16V8.592L14,14.567z"></path></g></svg>

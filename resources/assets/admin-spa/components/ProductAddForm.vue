@@ -57,7 +57,7 @@
                                      <el-radio-group v-model="form.product" size="small" v-if="productVariantsToShow.length < 10">
                                          <el-radio-button v-for="variant in productVariantsToShow" :label="variant" :key="variant.id">{{ variant.name }}</el-radio-button>
                                      </el-radio-group>
-                                     <el-select v-model="form.product" size="small" v-else>
+                                     <el-select v-model="form.product" size="small" v-else value-key="id">
                                          <el-option v-for="variant in productVariantsToShow"
                                                     :key="variant.id"
                                                     :label="variant.name"
