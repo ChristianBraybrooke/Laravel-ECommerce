@@ -23,6 +23,22 @@ class UserResource extends Resource
                 'last' => $this->last_name,
                 'full' => $this->name
             ],
+            'billing_address' => [
+                'line_1' => $this->billing_address_line1,
+                'line_2' => $this->billing_address_line2,
+                'town' => $this->billing_address_town,
+                'county' => $this->billing_address_county,
+                'postcode' => $this->billing_address_postcode,
+                'country' => $this->billing_address_country,
+            ],
+            'shipping_address' => [
+                'line_1' => $this->shipping_address_line1,
+                'line_2' => $this->shipping_address_line2,
+                'town' => $this->shipping_address_town,
+                'county' => $this->shipping_address_county,
+                'postcode' => $this->shipping_address_postcode,
+                'country' => $this->shipping_address_country
+            ],
             'gender' => $this->gender,
             'phone' => $this->phone,
             'company' => $this->company,

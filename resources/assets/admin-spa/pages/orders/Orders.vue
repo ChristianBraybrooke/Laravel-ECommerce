@@ -41,6 +41,7 @@
 <script>
 var forEach = require('lodash.foreach');
 import api from '../../services/api-service.js';
+import collumn from '../../utils/collumn.js';
 
 export default {
 
@@ -184,7 +185,16 @@ export default {
       },
 
       mounted () {
-          console.log('Orders.vue mounted')
+          console.log('Orders.vue mounted');
+
+          if(this.objectHas(ecommerceConfig, 'aditional_cols.orders')) {
+              var cols = collumn.render(ecommerceConfig.aditional_cols.orders);
+
+              forEach(cols, col => {
+                  this.tableOptions.collumns.push(col);
+              })
+          }
+
       },
 
       methods: {

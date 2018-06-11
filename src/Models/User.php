@@ -88,6 +88,7 @@ class User extends Authenticatable
     {
         return [
           'id',
+          'company',
           'first_name',
           'last_name',
           'email'

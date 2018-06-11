@@ -42,6 +42,13 @@ export default {
                         resizable: true
                     },
                     {
+                        prop: 'company',
+                        sortable: true,
+                        label: 'Company',
+                        align: 'left',
+                        resizable: true
+                    },
+                    {
                         prop: 'created_at.human',
                         sortable: true,
                         label: 'Created',

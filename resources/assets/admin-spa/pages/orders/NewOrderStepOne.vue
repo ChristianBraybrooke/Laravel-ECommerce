@@ -26,6 +26,53 @@
                 </el-col>
             </el-row>
 
+            <el-row :gutter="20">
+                <el-col :md="{span:16, offset: 4}">
+                    <el-form-item label="Customer Company" size="small" prop="customer.company">
+                        <el-autocomplete :autofocus="true"
+                                         :disabled="order.customer.id ? true : false"
+                                         v-model="order.customer.company"
+                                         value-key="company"
+                                         @select="handleCustomerSelect"
+                                         :fetch-suggestions="getCustomers"></el-autocomplete>
+                        <el-button v-if="order.customer.id" type="warning" size="mini" @click="resetCustomer">Reset Customer</el-button>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+                <el-col :md="{span:8, offset: 4}">
+                    <el-form-item label="Customer First Name" size="small" prop="customer.first_name">
+                        <el-input :autofocus="true" v-model="order.customer.first_name" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :md="8">
+                    <el-form-item label="Customer Last Name" size="small" prop="customer.last_name">
+                        <el-input :autofocus="true" v-model="order.customer.last_name" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+                <el-col :md="{span:8, offset: 4}">
+                    <el-form-item label="Customer Phone" size="small" prop="customer.phone">
+                        <el-input :autofocus="true" v-model="order.customer.phone" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :md="8">
+                    <el-form-item label="Customer Email" size="small" prop="customer.email">
+                        <el-input :autofocus="true" v-model="order.customer.email" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+
+            <hr>
+
+            <el-row :gutter="20">
+                <el-col :md="12">
+                    <h5>Needs Address</h5>
+                </el-col>
+            </el-row>
 
             <el-row :gutter="20">
                 <el-col :md="{span:16, offset: 4}">
@@ -45,48 +92,6 @@
             <hr>
 
             <template v-if="needsAddress">
-
-                <el-row :gutter="20">
-                    <el-col :md="12">
-                        <h5>Customer Information</h5>
-                    </el-col>
-                </el-row>
-
-                <el-row :gutter="20">
-                    <el-col :md="{span:16, offset: 4}">
-                        <el-form-item label="Customer Company" size="small" prop="customer.company">
-                            <el-input :autofocus="true" v-model="order.customer.company" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-
-                <el-row :gutter="20">
-                    <el-col :md="{span:8, offset: 4}">
-                        <el-form-item label="Customer First Name" size="small" prop="customer.first_name">
-                            <el-input :autofocus="true" v-model="order.customer.first_name" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :md="8">
-                        <el-form-item label="Customer Last Name" size="small" prop="customer.last_name">
-                            <el-input :autofocus="true" v-model="order.customer.last_name" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-
-                <el-row :gutter="20">
-                    <el-col :md="{span:8, offset: 4}">
-                        <el-form-item label="Customer Phone" size="small" prop="customer.phone">
-                            <el-input :autofocus="true" v-model="order.customer.phone" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :md="8">
-                        <el-form-item label="Customer Email" size="small" prop="customer.email">
-                            <el-input :autofocus="true" v-model="order.customer.email" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-
-                <hr>
 
                 <el-row :gutter="20">
                     <el-col :md="12">
@@ -245,6 +250,71 @@ export default {
                   return false;
                 }
               });
+          },
+
+          /**
+           * Get customers for the autocomplete
+           *
+           * @param String queryString
+           * @param Function callback
+           * @return Void
+           */
+          getCustomers(queryString, callback)
+          {
+              api.get({
+                  path: 'users',
+                  params: {
+                      search: queryString
+                  }
+              })
+              .then((data) => {
+                  callback(data.data);
+              })
+              .catch((error) => {
+
+              });
+          },
+
+          /**
+           * Get customers for the autocomplete
+           *
+           * @param String queryString
+           * @param Function callback
+           * @return Void
+           */
+          handleCustomerSelect(item)
+          {
+              console.log(item);
+              this.order.customer.id = item.id;
+              this.order.customer.first_name = item.name.first;
+              this.order.customer.last_name = item.name.last;
+              this.order.customer.phone = item.phone;
+              this.order.customer.email = item.email;
+
+              this.order.billing_address.line_1 = item.billing_address.line_1;
+              this.order.billing_address.line_2 = item.billing_address.line_2;
+              this.order.billing_address.town = item.billing_address.town;
+              this.order.billing_address.county = item.billing_address.county;
+              this.order.billing_address.postcode = item.billing_address.postcode;
+              this.order.billing_address.country = item.billing_address.country;
+
+              this.order.shipping_address.line_1 = item.shipping_address.line_1;
+              this.order.shipping_address.line_2 = item.shipping_address.line_2;
+              this.order.shipping_address.town = item.shipping_address.town;
+              this.order.shipping_address.county = item.shipping_address.county;
+              this.order.shipping_address.postcode = item.shipping_address.postcode;
+              this.order.shipping_address.country = item.shipping_address.country;
+          },
+
+          /**
+           * Reset the customer id
+           *
+           * @return Void
+           */
+          resetCustomer()
+          {
+              this.order.customer.id = null;
+              this.order.customer.company = null;
           }
       }
 }

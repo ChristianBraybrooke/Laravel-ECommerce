@@ -108,7 +108,19 @@ class ApiUsersController extends Controller
             'language' => $request->language ?: $user->language,
             'stripe_id' => $request->stripe_id ?: $user->stripe_id,
             'last_login' => $request->last_login ?: $user->last_login,
-            'marketing_preferences' => $request->marketing_preferences ?: $user->marketing_preferences
+            'marketing_preferences' => $request->marketing_preferences ?: $user->marketing_preferences,
+            'shipping_address_line1' => $request->has('shipping_address_line_1') ? $request->shipping_address_line_1 : $user->shipping_address_line1,
+            'shipping_address_line2' => $request->has('shipping_address_line_2') ? $request->shipping_address_line_2 : $user->shipping_address_line2,
+            'shipping_address_town' => $request->has('shipping_address_town') ? $request->shipping_address_town : $user->shipping_address_town,
+            'shipping_address_county' => $request->has('shipping_address_county') ? $request->shipping_address_county : $user->shipping_address_county,
+            'shipping_address_postcode' => $request->has('shipping_address_postcode') ? $request->shipping_address_postcode : $user->shipping_address_postcode,
+            'shipping_address_country' => $request->has('shipping_address_country') ? $request->shipping_address_country : $user->shipping_address_country,
+            'billing_address_line1' => $request->has('billing_address_line_1') ? $request->billing_address_line_1 : $user->billing_address_line1,
+            'billing_address_line2' => $request->has('billing_address_line_2') ? $request->billing_address_line_2 : $user->billing_address_line2,
+            'billing_address_town' => $request->has('billing_address_town') ? $request->billing_address_town : $user->billing_address_town,
+            'billing_address_county' => $request->has('billing_address_county') ? $request->billing_address_county : $user->billing_address_county,
+            'billing_address_postcode' => $request->has('billing_address_postcode') ? $request->billing_address_postcode : $user->billing_address_postcode,
+            'billing_address_country' => $request->has('billing_address_country') ? $request->billing_address_country : $user->billing_address_country,
         ]);
 
         if ($request->filled('password')) {

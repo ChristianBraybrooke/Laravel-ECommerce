@@ -43,6 +43,7 @@ class ApiOrdersController extends Controller
         $use_billing_for_shipping = $request->has('use_billing_for_shipping') && $request->use_billing_for_shipping;
 
         $order = $order->create([
+          'user_id' => $request->has('customer.id') ? $request->input('customer.id') : null,
           'user_first_name' => $request->input('customer.first_name'),
           'user_last_name' => $request->input('customer.last_name'),
           'user_email' => $request->input('customer.email'),
@@ -137,7 +138,7 @@ class ApiOrdersController extends Controller
 
         $order->update([
             'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->getAttributes()['status'],
-
+            'user_id' => $request->input('customer.id'),
             'user_first_name' => $request->input('customer.first_name'),
             'user_last_name' => $request->input('customer.last_name'),
             'user_email' => $request->input('customer.email'),

@@ -80,7 +80,10 @@ return [
       'collection_mappings' => ['Home Header Collection', 'Home Panels Collection', 'Product Categories Collection'],
 
       //
-      'site_images' => ['Website Logo', 'Website Logo Inverse']
+      'site_images' => ['Website Logo', 'Website Logo Inverse'],
+
+      //
+      'aditional_cols' => [],
   ],
 
 ];

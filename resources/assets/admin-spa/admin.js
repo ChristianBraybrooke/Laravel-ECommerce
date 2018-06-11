@@ -44,7 +44,8 @@ Vue.mixin({
         },
         formatPrice(price, prepend = '', append = '')
         {
-            var number = parseFloat(price);
+            var price = String(price);
+            var number = parseFloat(price.replace(/,/g, ''));
             return prepend + numeral(number).format('0,0.00') + append;
         }
     }

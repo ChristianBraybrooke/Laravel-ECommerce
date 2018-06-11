@@ -306,7 +306,7 @@ export default {
               forEach(this.order.cart.totals, function(value, key) {
                   totals.push({
                       'total': key,
-                      'value': this.order.cart.currency + value
+                      'value': value
                   })
               }.bind(this));
 
