@@ -216,37 +216,9 @@
         <el-row v-if="order.items" :gutter="20">
             <el-col :span="24">
                 <el-card class="box-card">
-                    <el-table :data="order.items"
-                              style="width: 100%">
-                        <el-table-column prop="name"
-                                         label="Product">
-                        </el-table-column>
-                        <el-table-column prop="price"
-                                         :formatter="function(row, column, cellValue) { return order.cart.currency + row.price }"
-                                         label="Price">
-                        </el-table-column>
-                        <el-table-column prop="qty"
-                                         label="Quantity">
-                        </el-table-column>
-                        <el-table-column prop="subtotal"
-                                         :formatter="function(row, column, cellValue) { return order.cart.currency + row.subtotal }"
-                                         label="Total">
-                        </el-table-column>
-                    </el-table>
 
-                    <el-table :data="orderTotals"
-                              style="width: 100%">
-                        <el-table-column>
-                        </el-table-column>
-                        <el-table-column>
-                        </el-table-column>
-                        <el-table-column prop="total"
-                                         label="">
-                        </el-table-column>
-                        <el-table-column prop="value"
-                                        label="">
-                        </el-table-column>
-                    </el-table>
+                    <product-table :editable="true" :order="order" :order-totals="orderTotals"/>
+
 
                </el-card>
             </el-col>
@@ -281,6 +253,7 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
+          ProductTable: () => import('../../components/ProductTable.vue'),
       },
 
       props: {

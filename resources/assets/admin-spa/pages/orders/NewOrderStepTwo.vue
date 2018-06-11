@@ -14,78 +14,13 @@
 
         <el-row :gutter="20" style="margin-top: 20px; margin-bottom: 20px;">
             <el-col :span="12">
-                <product-add-form :on-product-add="addProductToTable"/>
+                <product-form :on-product-add="addProductToTable"/>
             </el-col>
         </el-row>
 
         <el-row v-if="order.items" :gutter="20">
             <el-col :span="24">
-                <el-table :data="order.items"
-                          style="width: 100%">
-                    <el-table-column prop="name"
-                                     label="Product"
-                                     :formatter="itemRowNameFormatter">
-                    </el-table-column>
-                    <el-table-column prop="price"
-                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Base Price'] : 0) }"
-                                     label="Price">
-                    </el-table-column>
-                    <el-table-column prop="qty"
-                                     :formatter="function(row, column, cellValue) { return row.quantity ? row.quantity : 1 }"
-                                     label="Quantity">
-                    </el-table-column>
-                    <el-table-column prop="subtotal"
-                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Sub-Total'] : 0) }"
-                                     label="Sub-Total">
-                    </el-table-column>
-                    <el-table-column prop="total"
-                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Extras'] : 0) }"
-                                     label="Extras">
-                    </el-table-column>
-                    <el-table-column prop="total"
-                                     :formatter="function(row, column, cellValue) { return shopData.currency + (formattedPrice(row) ? formattedPrice(row)['Total'] : 0) }"
-                                     label="Total">
-                    </el-table-column>
-                    <el-table-column
-                        label="Actions">
-                        <template slot-scope="scope">
-                            <el-button size="mini"
-                                       plain
-                                       type="primary"
-                                       class="action_btn"
-                                       @click="editRow(scope.$index, scope.row)">Edit
-                            </el-button>
-                            <el-button size="mini"
-                                       type="danger"
-                                       class="action_btn delete_btn"
-                                       @click="deleteRow(scope.$index, scope.row)">Delete
-                            </el-button>
-                        </template>
-                    </el-table-column>
-                </el-table>
-
-
-                <el-table :data="orderTotals"
-                          style="width: 100%">
-                    <el-table-column>
-                    </el-table-column>
-                    <el-table-column>
-                    </el-table-column>
-                    <el-table-column>
-                    </el-table-column>
-                    <el-table-column>
-                    </el-table-column>
-                    <el-table-column>
-                    </el-table-column>
-                    <el-table-column prop="total"
-                                     label="">
-                    </el-table-column>
-                    <el-table-column prop="value"
-                                    label=""
-                                    :formatter="function(row, column, cellValue) { return formatTotalRow(row, column, cellValue) }">
-                    </el-table-column>
-                </el-table>
-
+                <product-table :editable="true" :order="order" :order-totals="orderTotals"/>
             </el-col>
         </el-row>
 
@@ -129,7 +64,8 @@ export default {
 
       components: {
           Errors: () => import('../../components/Errors.vue'),
-          ProductAddForm: () => import('../../components/ProductAddForm.vue'),
+          ProductForm: () => import('../../components/ProductForm.vue'),
+          ProductTable: () => import('../../components/ProductTable.vue'),
       },
 
       props: {
@@ -456,6 +392,7 @@ export default {
 
           processSubmit(navigate = true)
           {
+              console.log(this.order)
               this.loading = true;
               api.persist('put', {
                   path: "orders/" + this.order.id,
