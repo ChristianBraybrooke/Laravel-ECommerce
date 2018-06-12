@@ -42,13 +42,15 @@
 var forEach = require('lodash.foreach');
 import api from '../../services/api-service.js';
 import collumn from '../../utils/collumn.js';
+import TableCollumn from '../../components/TableCollumn.vue';
 
 export default {
 
       name: 'Orders',
 
       components: {
-          DataTable: () => import('../../components/DataTable.vue')
+          DataTable: () => import('../../components/DataTable.vue'),
+          TableCollumn,
       },
 
       props: [
@@ -188,9 +190,8 @@ export default {
           console.log('Orders.vue mounted');
 
           if(this.objectHas(ecommerceConfig, 'aditional_cols.orders')) {
-              var cols = collumn.render(ecommerceConfig.aditional_cols.orders);
-
-              forEach(cols, col => {
+              forEach(ecommerceConfig.aditional_cols.orders, col => {
+                  col.formatter = function() { return <table-collumn col={col}/> };
                   this.tableOptions.collumns.push(col);
               })
           }
