@@ -9,10 +9,20 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Laravel\Passport\HasApiTokens;
 use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Events\UserCreated;
 
 class User extends Authenticatable
 {
     use Notifiable, HasRoles, LogsActivity, HasApiTokens, ResponsableTrait, FormatDatesTrait;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => UserCreated::class,
+    ];
 
     /**
      * The attributes to log when changes are made.

@@ -4,9 +4,11 @@ namespace ChrisBraybrooke\ECommerce\Services;
 
 use Stripe\Stripe;
 use Stripe\Charge;
+use Stripe\Customer;
 use Exception;
 use ChrisBraybrooke\ECommerce\Exceptions\PaymentFailedException;
 use Auth;
+use App\User;
 
 class PaymentService
 {
@@ -108,5 +110,34 @@ class PaymentService
             ]);
             throw new PaymentFailedException($this->error_message);
         }
+    }
+
+    /**
+    * Setup a customer on stripe for a user.
+    *
+    * @param User $user
+    * @param Boolean $attach
+    * @return Object
+    */
+    public function createCustomer(User $user, $attach = true)
+    {
+        $customer = null;
+        try {
+            $customer = Customer::create([
+                'description' => $user->name,
+                'email' => $user->email,
+                'metadata' => [
+                    'company' => $user->company
+                ]
+            ]);
+            if ($attach) {
+                $user->update([
+                    'stripe_id' => $customer->id
+                ]);
+            }
+        } catch (\Exception $e) {
+            report($e);
+        }
+        return $customer;
     }
 }

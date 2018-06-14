@@ -29,6 +29,10 @@ class EventServiceProvider extends ServiceProvider
             'ChrisBraybrooke\ECommerce\Listeners\ProcessOrderCreation',
             'ChrisBraybrooke\ECommerce\Listeners\CreateContentOnCreation',
         ],
+        'ChrisBraybrooke\ECommerce\Events\UserCreated' => [
+            'ChrisBraybrooke\ECommerce\Listeners\CreateStripeCustomer',
+            'ChrisBraybrooke\ECommerce\Listeners\AttachCustomerRoleToUser'
+        ],
         'ChrisBraybrooke\ECommerce\Events\OrderUpdated' => [
             'ChrisBraybrooke\ECommerce\Listeners\ProcessOrderUpdate',
         ],

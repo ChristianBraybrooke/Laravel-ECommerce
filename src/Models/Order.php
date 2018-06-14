@@ -101,9 +101,7 @@ class Order extends Model implements OrderContract
      * @var array
      */
     public $defaultContent = [
-        ['content_name' => 'Shipping Information', 'content' => ['paid' => '', 'cost' => '', 'date' => '', 'reference' => ''], 'type' => 'json', 'order' => 1],
-        ['content_name' => 'Spec Completed', 'content' => ['date' => ''], 'type' => 'json', 'order' => 2],
-        ['content_name' => 'Materials Ordered', 'content' => ['date' => ''], 'type' => 'json', 'order' => 3],
+        //
     ];
 
     /**
