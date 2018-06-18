@@ -42,8 +42,6 @@ mix.setPublicPath('public')
    .js('resources/assets/admin-spa/admin.js', 'public/js/admin.js')
    .styles(['node_modules/normalize.css/normalize.css'], 'public/css/normalize.css')
    .copy('node_modules/element-ui/lib/theme-chalk/fonts/', 'public/fonts')
-   // .copy('node_modules/element-ui/lib/theme-chalk/fonts/', 'public/fonts')
    .sass('resources/assets/admin-spa/sass/admin.scss', 'public/css/admin.css')
-   // .copy('public', '../app/public/vendor/ecommerce')
    .extract(['vue', 'element-ui', 'vue-router', 'vuex'])
    .version();

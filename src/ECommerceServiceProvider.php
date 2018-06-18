@@ -47,6 +47,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         if (env('APP_ENV') === 'local') {
             $this->handleMigrations();
         }
+
         $this->handleSeeds();
         $this->handleViews();
         $this->handleRoutes();
@@ -62,6 +63,12 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             __DIR__.'/../public' => public_path('vendor/ecommerce'),
         ], 'ecommerce-admin');
 
+        if (env('APP_ENV') === 'local' && !$this->app->runningInConsole()) {
+            Artisan::call('vendor:publish', [
+                '--tag' => 'ecommerce-admin',
+                '--force' => true
+            ]);
+        }
     }
 
     /**
