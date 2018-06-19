@@ -88,7 +88,7 @@ We use Laravel Passport under the hood, so make sure you install passport to gen
 php artisan passport:install
 ```
 
-You then need to add this middleware to your `app/Http/Kernel.php` web group.
+You then need to add this middleware to your `app/Http/Kernel.php` web group. Make sure it is added after the `\App\Http\Middleware\EncryptCookies::class` middleware.
 
 ```sh
 'web' => [
