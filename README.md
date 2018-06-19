@@ -26,6 +26,29 @@ php artisan vendor:publish --tag=ecommerce-admin
 php artisan migrate
 ```
 
+Seeding Roles And Permissions:
+```sh
+php artisan vendor:publish --tag=ecommerce-seeds
+```
+In `database/seeds/DatabaseSeeder.php` add the RolesAndPermissionsSeeder class
+```sh
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // $this->call(UsersTableSeeder::class);
+        $this->call(RolesAndPermissionsSeeder::class)
+    }
+}
+```
+
 We use Laravel Passport under the hood, so make sure this middleware is in your web group and you install passport.
 
 ```sh
