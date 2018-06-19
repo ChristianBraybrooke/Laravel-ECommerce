@@ -152,7 +152,7 @@
 </template>
 
 <script>
-import api from '../services/api-service.js';
+import api from 'services/api-service';
 import { mapActions, mapGetters } from 'vuex';
 
 var forEach = require('lodash.foreach');
@@ -187,7 +187,7 @@ export default {
       name: 'ProductForm',
 
       components: {
-          Errors: () => import('./Errors.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
       },
 
       props: {

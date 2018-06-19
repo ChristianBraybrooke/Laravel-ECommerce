@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 var find = require('lodash.find');
 var forEach = require('lodash.foreach');
 var has = require('lodash.has');
@@ -78,7 +78,7 @@ export default {
       name: 'ProductPageLayout',
 
       components: {
-          PageLayout: () => import('../PageLayout.vue'),
+          PageLayout: () => import(/* webpackChunkName: "page-layout" */'../PageLayout'),
       },
 
       props: {

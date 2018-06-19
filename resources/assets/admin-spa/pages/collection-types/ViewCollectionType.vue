@@ -214,24 +214,18 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
-
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-import { quillEditor } from 'vue-quill-editor';
+import api from "services/api-service";
 var has = require('lodash.has');
 
 
 export default {
 
-      name: '',
+      name: 'ViewCollectionType',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          FilePickerModal: () => import('../../components/FilePickerModal.vue'),
-          ContentComponent: () => import('../../components/ContentComponent.vue'),
-          quillEditor
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
+          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
       },
 
       props: {

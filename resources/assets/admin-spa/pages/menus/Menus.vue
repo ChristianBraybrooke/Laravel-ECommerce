@@ -22,7 +22,7 @@ export default {
       name: 'Menus',
 
       components: {
-          DataTable: () => import('../../components/DataTable.vue'),
+          DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
       },
 
       props: {

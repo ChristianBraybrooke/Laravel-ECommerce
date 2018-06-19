@@ -27,7 +27,7 @@ export default {
       name: 'Forms',
 
       components: {
-          DataTable: () => import('../../components/DataTable.vue')
+          DataTable: () => import('components/DataTable')
       },
 
       props: [

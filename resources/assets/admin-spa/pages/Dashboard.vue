@@ -3,17 +3,15 @@
         <errors v-if="Object.keys(userErrors).length > 0" :errors="userErrors"></errors>
 
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span v-if="user.name">Welcome, <strong>{{ user.name.first }}</strong></span>
-            <!-- <el-button style="float: right; padding: 3px 0" type="text">Operation button</el-button> -->
-          </div>
-
+            <div slot="header" class="clearfix">
+                <span v-if="user.name">Welcome, <strong>{{ user.name.first }}</strong></span>
+            </div>
         </el-card>
     </div>
 </template>
 
 <script>
-import api from "../services/api-service.js";
+import api from "services/api-service";
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -21,7 +19,7 @@ export default {
       name: 'Dashboard',
 
       components: {
-          Errors: () => import('../components/Errors.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
       },
 
       props: {

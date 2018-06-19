@@ -235,7 +235,7 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 var upperFirst = require('lodash.upperfirst');
 import { mapActions, mapGetters } from 'vuex';
 
@@ -245,8 +245,8 @@ export default {
       name: 'Config',
 
       components: {
-          Errors: () => import('../../components/Errors'),
-          FilePickerModal: () => import('../../components/FilePickerModal.vue')
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal')
       },
 
       props: [

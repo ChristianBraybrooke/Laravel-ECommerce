@@ -242,7 +242,7 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 import { mapActions, mapGetters } from 'vuex';
 var forEach = require('lodash.foreach');
 var filter = require('lodash.filter');
@@ -252,8 +252,8 @@ export default {
       name: 'ViewOrder',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          ProductTable: () => import('../../components/ProductTable.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
       },
 
       props: {

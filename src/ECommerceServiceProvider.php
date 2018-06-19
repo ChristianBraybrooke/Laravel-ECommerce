@@ -62,13 +62,6 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/ecommerce'),
         ], 'ecommerce-admin');
-
-        if (env('APP_ENV') === 'local' && !$this->app->runningInConsole()) {
-            Artisan::call('vendor:publish', [
-                '--tag' => 'ecommerce-admin',
-                '--force' => true
-            ]);
-        }
     }
 
     /**

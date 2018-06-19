@@ -118,7 +118,7 @@ class ApiOrdersController extends Controller
                 $items[] = [
                     'id' => $item['id'],
                     'name' => $item['name'],
-                    'variant' => $item['variant'],
+                    'variant' => $item['variant'] ?? null,
                     'qty' => $quantity,
                     'price' => $price,
                     'options' => $options,

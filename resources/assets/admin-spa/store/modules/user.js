@@ -1,6 +1,6 @@
 import * as types from '../mutation-types';
 var has = require('lodash.has');
-import api from '../../services/api-service';
+import api from 'services/api-service';
 
 var FETCH_BUFFER = 60 * 5 * 1000; /* ms */
 

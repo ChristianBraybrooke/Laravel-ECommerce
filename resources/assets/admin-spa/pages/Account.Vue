@@ -70,8 +70,8 @@ export default {
       name: 'Account',
 
       components: {
-          Errors: () => import('../components/Errors.vue'),
-          FilePickerModal: () => import('../components/FilePickerModal.vue')
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal')
       },
 
       props: {

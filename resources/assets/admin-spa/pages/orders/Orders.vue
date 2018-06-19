@@ -10,46 +10,44 @@
                     :create-form="ordersCreateForm"
                     v-on:createNew="handleCreateNew"
                     :create-form-rules="createFormRules">
-          <template slot="createButton">
-              <router-link :to="{ name: 'orders.step1'}">
-                  <el-button class="create_btn" type="primary" plain>New Order</el-button>
-              </router-link>
-          </template>
+            <template slot="createButton">
+                <router-link :to="{ name: 'orders.step1'}">
+                    <el-button class="create_btn" type="primary" plain>New Order</el-button>
+                </router-link>
+            </template>
 
-          <template slot="actionButtons" slot-scope="props">
-              <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }" v-if="tableOptions.viewText">
-                  <el-button
-                    size="mini"
-                    class="action_btn view_btn">{{ tableOptions.viewText }}
-                  </el-button>
-              </router-link>
+            <template slot="actionButtons" slot-scope="props">
+                <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }" v-if="tableOptions.viewText">
+                    <el-button
+                      size="mini"
+                      class="action_btn view_btn">{{ tableOptions.viewText }}
+                    </el-button>
+                </router-link>
 
-              <a :href="'/ecommerce-templates/invoice-download?reports=' + props.row.id" target="_blank">
-                  <el-button
-                    size="mini"
-                    type="success"
-                    class="action_btn view_btn">Download PDF
-                  </el-button>
-              </a>
-          </template>
-
-
+                <a :href="'/ecommerce-templates/invoice-download?reports=' + props.row.id" target="_blank">
+                    <el-button
+                      size="mini"
+                      type="success"
+                      class="action_btn view_btn">Download PDF
+                    </el-button>
+                </a>
+            </template>
         </data-table>
     </div>
 </template>
 
 <script>
 var forEach = require('lodash.foreach');
-import api from '../../services/api-service.js';
-import collumn from '../../utils/collumn.js';
-import TableCollumn from '../../components/TableCollumn.vue';
+import api from 'services/api-service';
+import collumn from 'utils/collumn';
+import TableCollumn from 'components/TableCollumn';
 
 export default {
 
       name: 'Orders',
 
       components: {
-          DataTable: () => import('../../components/DataTable.vue'),
+          DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
           TableCollumn,
       },
 

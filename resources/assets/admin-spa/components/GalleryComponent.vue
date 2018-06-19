@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import api from "../services/api-service.js";
+import api from "services/api-service";
 var chunk = require('lodash.chunk');
 var find = require('lodash.find');
 var last = require('lodash.last');
@@ -108,8 +108,8 @@ export default {
       name: 'GalleryComponent',
 
       components: {
-          FileUploadComponent: () => import('./FileUploadComponent.vue'),
-          Errors: () => import('./Errors')
+          FileUploadComponent: () => import(/* webpackChunkName: "file-upload-component" */'components/FileUploadComponent'),
+          Errors: () => import(/* webpackChunkName: "error" */'./Errors')
       },
 
       props: {

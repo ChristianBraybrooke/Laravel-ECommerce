@@ -30,8 +30,8 @@ export default {
       name: 'ViewProductVariants',
 
       components: {
-          ProductPageLayout: () => import('./ProductPageLayout.vue'),
-          ProductVariantComponent: () => import('../../components/ProductVariantComponent'),
+          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
+          ProductVariantComponent: () => import(/* webpackChunkName: "product-variant-component" */'components/ProductVariantComponent'),
       },
 
       props: {

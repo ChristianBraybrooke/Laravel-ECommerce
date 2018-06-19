@@ -1,4 +1,12 @@
-var has = require('lodash.has');
+import axios from "axios";
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+let token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) {
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    axios.defaults.withCredentials = true;
+} else {
+    console.error('CSRF token not found');
+}
 const BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/';
 const SERVER_ERROR_MESSAGE = "We could not access the server at this time. Please try again. If the issue persists, please open a support ticket.";
 const SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are not authorised to do so.";

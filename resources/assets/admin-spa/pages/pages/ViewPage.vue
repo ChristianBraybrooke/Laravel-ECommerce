@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 var findIndex = require('lodash.findindex');
 var has = require('lodash.has');
 var filter = require('lodash.filter');
@@ -120,9 +120,9 @@ export default {
       name: 'ViewPage',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          ContentComponent: () => import('../../components/ContentComponent.vue'),
-          FilePickerModal: () => import('../../components/FilePickerModal.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
       },
 
       props: {

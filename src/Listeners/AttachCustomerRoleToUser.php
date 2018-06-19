@@ -28,6 +28,8 @@ class AttachCustomerRoleToUser
     {
         $user = $event->user;
 
-        $user->assignRole('customer');
+        if (!$user->hasRole('customer')) {
+            $user->assignRole('customer');
+        }
     }
 }

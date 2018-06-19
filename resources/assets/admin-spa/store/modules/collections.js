@@ -1,5 +1,5 @@
 import * as types from '../mutation-types';
-import api from '../../services/api-service';
+import api from 'services/api-service';
 
 // initial state
 const state = {

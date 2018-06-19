@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 import draggable from 'vuedraggable';
 
 var withRequest = [
@@ -53,8 +53,8 @@ export default {
       name: 'ViewMenu',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          ContentComponent: () => import('../../components/ContentComponent.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
           draggable
       },
 

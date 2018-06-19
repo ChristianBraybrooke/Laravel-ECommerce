@@ -34,8 +34,8 @@ export default {
       name: 'ViewProductCustomisations',
 
       components: {
-          ProductPageLayout: () => import('./ProductPageLayout.vue'),
-          ProductCustomisationComponent: () => import('../../components/ProductCustomisationComponent'),
+          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
+          ProductCustomisationComponent: () => import(/* webpackChunkName: "product-customisation-component" */'components/ProductCustomisationComponent'),
       },
 
       props: {

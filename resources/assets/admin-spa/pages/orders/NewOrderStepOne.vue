@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import api from '../../services/api-service.js';
+import api from 'services/api-service';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -140,8 +140,8 @@ export default {
       name: 'orderStepOne',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          AddressForm: () => import('../../components/AddressForm.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          AddressForm: () => import(/* webpackChunkName: "address-form" */'components/AddressForm'),
       },
 
       props: {

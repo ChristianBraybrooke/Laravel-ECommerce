@@ -60,10 +60,10 @@ class ApiUsersController extends Controller
 
         if ($request->filled('roles') && $user) {
             foreach ($request->roles as $key => $role) {
-                $user->assignRole($role);
+                if (!$user->hasRole($role)) {
+                    $user->assignRole($role);
+                }
             }
-        } else {
-            $user->assignRole('customer');
         }
 
         return new UserResource($user);

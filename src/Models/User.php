@@ -15,6 +15,15 @@ class User extends Authenticatable
 {
     use Notifiable, HasRoles, LogsActivity, HasApiTokens, ResponsableTrait, FormatDatesTrait;
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->attributes['name'] = $model->name ?: "{$model->first_name}  {$model->last_name}";
+        });
+    }
+
     /**
      * The event map for the model.
      *
@@ -169,6 +178,39 @@ class User extends Authenticatable
      */
     public function getNameAttribute($value)
     {
-        return "{$this->first_name} {$this->last_name}";
+        return $value ? $value : "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Format the users full name.
+     *
+     * @param $value
+     * @var string
+     */
+    public function setNameAttribute($value)
+    {
+        return $value ? $value : "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * Get First Name Attribute
+     *
+     * @param $value
+     * @return string
+     */
+    public function getFirstNameAttribute($value)
+    {
+         return $value ? $value : str_before($this->name, ' ');
+    }
+
+    /**
+     * Get Last Name Attribute
+     *
+     * @param $value
+     * @return String
+     */
+    public function getLastNameAttribute($value)
+    {
+        return $value ? $value : str_after($this->name, ' ');
     }
 }

@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 var orderBy = require('lodash.orderby');
 
 var formWith = ['sections.fields'];
@@ -85,8 +85,8 @@ export default {
       name: 'ViewForm',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          FormSectionComponent: () => import('../../components/FormSectionComponent.vue')
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          FormSectionComponent: () => import(/* webpackChunkName: "form-section-component" */'components/FormSectionComponent')
       },
 
       props: {

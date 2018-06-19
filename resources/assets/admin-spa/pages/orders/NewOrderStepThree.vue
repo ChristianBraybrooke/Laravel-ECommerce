@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import api from '../../services/api-service.js';
+import api from 'services/api-service';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -104,8 +104,8 @@ export default {
       name: 'orderStepThree',
 
       components: {
-          CardPaymentForm: () => import('../../components/CardPaymentForm.vue'),
-          Errors: () => import('../../components/Errors.vue'),
+          CardPaymentForm: () => import(/* webpackChunkName: "card-payment-form" */'components/CardPaymentForm'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
       },
 
       props: {

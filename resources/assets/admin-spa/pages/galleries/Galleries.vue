@@ -10,7 +10,7 @@ export default {
       name: 'Galleries',
 
       components: {
-          GalleriesComponent: () => import('../../components/GalleriesComponent.vue')
+          GalleriesComponent: () => import(/* webpackChunkName: "galleries-component" */'components/GalleriesComponent')
       },
 
       props: [

@@ -17,7 +17,7 @@ export default {
       name: 'FormSectionComponent',
 
       components: {
-          FormFieldComponent: () => import('./FormFieldComponent.vue'),
+          FormFieldComponent: () => import(/* webpackChunkName: "form-field-component" */'components/FormFieldComponent'),
       },
 
       props: {

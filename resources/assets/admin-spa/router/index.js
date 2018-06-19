@@ -4,36 +4,38 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 // Pages
-const Dashboard = () => import(/* webpackChunkName: "dashboard" */ '../pages/Dashboard.vue');
-const Account = () => import(/* webpackChunkName: "account" */ '../pages/Account.vue');
-const Orders = () => import(/* webpackChunkName: "orders" */ '../pages/orders/Orders.vue');
-const NewOrderStepOne = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepOne.vue');
-const NewOrderStepTwo = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepTwo.vue');
-const NewOrderStepThree = () => import(/* webpackChunkName: "orders" */ '../pages/orders/NewOrderStepThree.vue');
-const ViewOrder = () => import(/* webpackChunkName: "orders" */ '../pages/orders/ViewOrder.vue');
-const Collections = () => import(/* webpackChunkName: "collections" */ '../pages/collections/Collections.vue');
-const ViewCollection = () => import(/* webpackChunkName: "collections" */ '../pages/collections/ViewCollection.vue');
-const ViewCollectionType = () => import(/* webpackChunkName: "collectiontypes" */ '../pages/collection-types/ViewCollectionType.vue');
-const Products = () => import(/* webpackChunkName: "products" */ '../pages/products/Products.vue');
-const ViewProduct = () => import(/* webpackChunkName: "view-product" */ '../pages/products/ViewProduct.vue');
-const ViewProductCustomisations = () => import(/* webpackChunkName: "view-product-customisations" */ '../pages/products/ViewProductCustomisations.vue');
-const ViewProductImages = () => import(/* webpackChunkName: "view-product-images" */ '../pages/products/ViewProductImages.vue');
-const ViewProductPricing = () => import(/* webpackChunkName: "view-product-pricing" */ '../pages/products/ViewProductPricing.vue');
-const ViewProductVariants = () => import(/* webpackChunkName: "view-product-variants" */ '../pages/products/ViewProductVariants.vue');
-const ViewProductOrdering = () => import(/* webpackChunkName: "view-product-ordering" */ '../pages/products/ViewProductOrdering.vue');
-const Galleries = () => import(/* webpackChunkName: "galleries" */ '../pages/galleries/Galleries.vue');
-const Pages = () => import(/* webpackChunkName: "pages" */ '../pages/pages/Pages.vue');
-const ViewPage = () => import(/* webpackChunkName: "pages" */ '../pages/pages/ViewPage.vue');
-const ViewUser = () => import(/* webpackChunkName: "view-user" */ '../pages/users/ViewUser.vue');
-const Users = () => import(/* webpackChunkName: "users" */ '../pages/users/Users.vue');
-const Customers = () => import(/* webpackChunkName: "customers" */ '../pages/customers/Customers.vue');
-const Config = () => import(/* webpackChunkName: "config" */ '../pages/config/Config.vue');
-const Forms = () => import(/* webpackChunkName: "forms" */ '../pages/forms/Forms.vue');
-const ViewForm = () => import(/* webpackChunkName: "view-form" */ '../pages/forms/ViewForm.vue');
-const Menus = () => import(/* webpackChunkName: "menus" */ '../pages/menus/Menus.vue');
-const ViewMenu = () => import(/* webpackChunkName: "view-menu" */ '../pages/menus/ViewMenu.vue');
-const NotFound = () => import(/* webpackChunkName: "not-found" */ '../pages/NotFound.vue');
-const ImportExport = () => import(/* webpackChunkName: "import-export" */ '../pages/reports/ImportExport.vue');
+const Dashboard = () => import(/* webpackChunkName: "dashboard" */ 'pages/Dashboard');
+const Account = () => import(/* webpackChunkName: "account" */ 'pages/Account');
+const Orders = () => import(/* webpackChunkName: "orders" */ 'pages/orders/Orders');
+const Quotes = () => import(/* webpackChunkName: "quotes" */ 'pages/quotes/Quotes');
+const Estimates = () => import(/* webpackChunkName: "estimates" */ 'pages/estimates/Estimates');
+const NewOrderStepOne = () => import(/* webpackChunkName: "orders" */ 'pages/orders/NewOrderStepOne');
+const NewOrderStepTwo = () => import(/* webpackChunkName: "orders" */ 'pages/orders/NewOrderStepTwo');
+const NewOrderStepThree = () => import(/* webpackChunkName: "orders" */ 'pages/orders/NewOrderStepThree');
+const ViewOrder = () => import(/* webpackChunkName: "orders" */ 'pages/orders/ViewOrder');
+const Collections = () => import(/* webpackChunkName: "collections" */ 'pages/collections/Collections');
+const ViewCollection = () => import(/* webpackChunkName: "collections" */ 'pages/collections/ViewCollection');
+const ViewCollectionType = () => import(/* webpackChunkName: "collectiontypes" */ 'pages/collection-types/ViewCollectionType');
+const Products = () => import(/* webpackChunkName: "products" */ 'pages/products/Products');
+const ViewProduct = () => import(/* webpackChunkName: "view-product" */ 'pages/products/ViewProduct');
+const ViewProductCustomisations = () => import(/* webpackChunkName: "view-product-customisations" */ 'pages/products/ViewProductCustomisations');
+const ViewProductImages = () => import(/* webpackChunkName: "view-product-images" */ 'pages/products/ViewProductImages.vue');
+const ViewProductPricing = () => import(/* webpackChunkName: "view-product-pricing" */ 'pages/products/ViewProductPricing');
+const ViewProductVariants = () => import(/* webpackChunkName: "view-product-variants" */ 'pages/products/ViewProductVariants');
+const ViewProductOrdering = () => import(/* webpackChunkName: "view-product-ordering" */ 'pages/products/ViewProductOrdering');
+const Galleries = () => import(/* webpackChunkName: "galleries" */ 'pages/galleries/Galleries');
+const Pages = () => import(/* webpackChunkName: "pages" */ 'pages/pages/Pages');
+const ViewPage = () => import(/* webpackChunkName: "pages" */ 'pages/pages/ViewPage');
+const ViewUser = () => import(/* webpackChunkName: "view-user" */ 'pages/users/ViewUser');
+const Users = () => import(/* webpackChunkName: "users" */ 'pages/users/Users');
+const Customers = () => import(/* webpackChunkName: "customers" */ 'pages/customers/Customers');
+const Config = () => import(/* webpackChunkName: "config" */ 'pages/config/Config');
+const Forms = () => import(/* webpackChunkName: "forms" */ 'pages/forms/Forms');
+const ViewForm = () => import(/* webpackChunkName: "view-form" */ 'pages/forms/ViewForm');
+const Menus = () => import(/* webpackChunkName: "menus" */ 'pages/menus/Menus');
+const ViewMenu = () => import(/* webpackChunkName: "view-menu" */ 'pages/menus/ViewMenu');
+const NotFound = () => import(/* webpackChunkName: "not-found" */ 'pages/NotFound');
+const ImportExport = () => import(/* webpackChunkName: "import-export" */ 'pages/reports/ImportExport');
 
 const router = new Router({
     mode: 'history',
@@ -81,6 +83,18 @@ const router = new Router({
             props: true,
             name: 'orders.view',
             meta: {title: 'Admin: Orders'}
+        },
+        {
+            path: '/quotes',
+            component: Quotes,
+            name: 'quotes',
+            meta: {title: 'Admin: Quotes'}
+        },
+        {
+            path: '/estimates',
+            component: Estimates,
+            name: 'estimates',
+            meta: {title: 'Admin: Estimates'}
         },
         {
             path: '/collections',

@@ -44,14 +44,14 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service";
 
 export default {
 
       name: 'ViewProductOrdering',
 
       components: {
-          ProductPageLayout: () => import('./ProductPageLayout.vue'),
+          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
       },
 
       props: {

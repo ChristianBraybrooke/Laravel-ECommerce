@@ -26,7 +26,7 @@ export default {
       name: 'ProductCustomisationComponent',
 
       components: {
-          ProductCustomisationOptionComponent: () => import('./ProductCustomisationOptionComponent'),
+          ProductCustomisationOptionComponent: () => import(/* webpackChunkName: "product-customisation-option-component" */'components/ProductCustomisationOptionComponent'),
       },
 
       props: {

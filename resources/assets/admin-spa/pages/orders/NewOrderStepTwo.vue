@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import api from '../../services/api-service.js';
+import api from 'services/api-service';
 import { mapActions, mapGetters } from 'vuex';
 var findIndex = require('lodash.findindex');
 var forEach = require('lodash.foreach');
@@ -63,9 +63,9 @@ export default {
       name: 'NewOrderStepTwo',
 
       components: {
-          Errors: () => import('../../components/Errors.vue'),
-          ProductForm: () => import('../../components/ProductForm.vue'),
-          ProductTable: () => import('../../components/ProductTable.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+          ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+          ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
       },
 
       props: {

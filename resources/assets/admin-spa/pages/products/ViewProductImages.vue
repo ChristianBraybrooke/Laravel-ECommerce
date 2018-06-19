@@ -48,8 +48,8 @@ export default {
       name: 'ViewProductImages',
 
       components: {
-          ProductPageLayout: () => import('./ProductPageLayout.vue'),
-          FilePickerModal: () => import('../../components/FilePickerModal.vue'),
+          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
       },
 
       props: {

@@ -1,22 +1,17 @@
 window.ecommerceConfig.web_version = '0.0.25';
 
 import 'babel-polyfill';
-
-window.Vue = require('vue');
+import Vue from 'vue';
 import Element from 'element-ui';
 import router from './router/';
 import store from './store/index.js';
 import Admin from './admin.vue';
 import locale from 'element-ui/lib/locale/lang/en';
-
-import './axios.js';
-
-
-Vue.use(Element, {locale});
-
+import { mapActions, mapGetters } from 'vuex';
+window.has = require('lodash.has');
 var numeral = require('numeral');
 
-import { mapActions, mapGetters } from 'vuex';
+Vue.use(Element, {locale});
 
 Vue.mixin({
     computed: {
@@ -24,11 +19,6 @@ Vue.mixin({
             return ecommerceConfig.site_url + '/';
         },
     },
-});
-
-var has = require('lodash.has');
-
-Vue.mixin({
     methods: {
         objectHas(object, value)
         {
@@ -51,10 +41,10 @@ Vue.mixin({
     }
 });
 
+Vue.config.productionTip = false
 
 const app = new Vue({
     router,
-    el: '#app',
     store,
     render: h => h(Admin),
-});
+}).$mount('#app');

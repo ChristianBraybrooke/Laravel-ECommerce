@@ -51,7 +51,7 @@ export default {
 
       components: {
           quillEditor,
-          FilePickerModal: () => import('./FilePickerModal.vue'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
       },
 
       props: {

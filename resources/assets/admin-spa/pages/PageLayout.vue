@@ -18,7 +18,7 @@
             </el-menu-item>
 
         </el-menu>
-        
+
         <slot name="page_content"></slot>
     </div>
 </template>
@@ -29,7 +29,7 @@ export default {
       name: 'NewOrderStepOne',
 
       components: {
-          Errors: () => import('../components/Errors.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
       },
 
       props: {

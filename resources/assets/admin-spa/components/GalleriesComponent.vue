@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import api from "../services/api-service.js";
+import api from "services/api-service";
 var findIndex = require('lodash.findindex');
 var head = require('lodash.head');
 var find = require('lodash.find');
@@ -81,8 +81,8 @@ export default {
       name: 'GalleriesComponent',
 
       components: {
-          GalleryComponent: () => import('./GalleryComponent.vue'),
-          Errors: () => import('./Errors.vue')
+          GalleryComponent: () => import(/* webpackChunkName: "gallery-component" */'components/GalleryComponent'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
       },
 
       props: {

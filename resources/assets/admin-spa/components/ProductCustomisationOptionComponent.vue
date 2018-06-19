@@ -59,7 +59,7 @@ export default {
       name: 'ProductCustomisationOptionComponent',
 
       components: {
-          FilePickerModal: () => import('./FilePickerModal.vue'),
+          FilePickerModal: () => import(/* webpackChunkName: "file-picker-model" */'components/FilePickerModal'),
       },
 
       props: {

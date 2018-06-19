@@ -33,8 +33,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import ProductForm from './ProductForm.vue';
-import orderUtil from '../utils/order';
+import ProductForm from 'components/ProductForm';
+import orderUtil from 'utils/order';
 var range = require('lodash.range');
 
 var forEach = require('lodash.foreach');
@@ -45,7 +45,7 @@ export default {
       name: 'ProductTable',
 
       components: {
-          Errors: () => import('./Errors.vue'),
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
           ProductForm: ProductForm,
       },
 

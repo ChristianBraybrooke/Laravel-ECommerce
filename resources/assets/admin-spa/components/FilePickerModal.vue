@@ -63,7 +63,7 @@ export default {
       name: 'FilePickerComponent',
 
       components: {
-          GalleriesComponent: () => import('./GalleriesComponent.vue'),
+          GalleriesComponent: () => import(/* webpackChunkName: "galleries-component" */'components/GalleriesComponent'),
       },
 
       props: {

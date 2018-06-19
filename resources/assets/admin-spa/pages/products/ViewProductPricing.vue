@@ -30,7 +30,7 @@ export default {
       name: 'ViewProductPricing',
 
       components: {
-          ProductPageLayout: () => import('./ProductPageLayout.vue'),
+          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
       },
 
       props: {

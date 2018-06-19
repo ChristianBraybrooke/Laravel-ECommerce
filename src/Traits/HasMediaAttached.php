@@ -2,6 +2,8 @@
 
 namespace ChrisBraybrooke\ECommerce\Traits;
 
+use Illuminate\Support\Facades\DB;
+
 trait HasMediaAttached
 {
     /**
@@ -58,13 +60,29 @@ trait HasMediaAttached
         foreach ($files as $location => $location_files) {
             if (is_array($location_files) && !isset($location_files['id'])) {
                 foreach ($location_files as $key => $file) {
-                    $sync_files[$file['id']] = ['media_location' => $location];
+                    $sync_files[$location][$file['id']] = ['media_location' => $location];
                 }
             } elseif (isset($location_files['id'])) {
-                $sync_files[$location_files['id']] = ['media_location' => $location];
+                $sync_files[$location][$location_files['id']] = ['media_location' => $location];
             }
         }
 
-        $this->media()->sync($sync_files);
+        $db = DB::table('media_to_models')
+                ->where('model_id', $this->id)
+                ->where('model_type', get_class($this));
+        $i = 0;
+        foreach ($sync_files as $location => $files) {
+            $i++;
+            if ($i === 1) {
+                $db->where('media_location', $location);
+            } else {
+                $db->orWhere('media_location', $location);
+            }
+        }
+        $db->delete();
+
+        foreach ($sync_files as $location => $files) {
+            $this->media()->attach($files);
+        }
     }
 }

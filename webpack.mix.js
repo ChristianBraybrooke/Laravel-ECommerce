@@ -10,6 +10,7 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+ const appPath = path.resolve(__dirname, 'resources', 'assets', 'admin-spa');
 
  mix.webpackConfig({
      node: {
@@ -36,12 +37,44 @@ let mix = require('laravel-mix');
            },
           ],
       },
+      resolve: {
+          alias: {
+              'vue$': 'vue/dist/vue.runtime.esm.js',
+              'axios': 'axios/dist/axios.min.js',
+              'components': path.resolve(appPath, 'components'),
+              'pages': path.resolve(appPath, 'pages'),
+              'services': path.resolve(appPath, 'services'),
+              'utils': path.resolve(appPath, 'utils'),
+          }
+      }
  });
 
 mix.setPublicPath('public')
+   .options({
+     uglify: {
+         uglifyOptions: {
+             compress: {
+                 drop_console: true,
+                 warnings: false,
+                 conditionals: true,
+                 unused: true,
+                 comparisons: true,
+                 sequences: true,
+                 dead_code: true,
+                 evaluate: true,
+                 if_return: true,
+                 join_vars: true,
+             }
+         }
+     }
+   })
    .js('resources/assets/admin-spa/admin.js', 'public/js/admin.js')
    .styles(['node_modules/normalize.css/normalize.css'], 'public/css/normalize.css')
    .copy('node_modules/element-ui/lib/theme-chalk/fonts/', 'public/fonts')
    .sass('resources/assets/admin-spa/sass/admin.scss', 'public/css/admin.css')
-   .extract(['vue', 'element-ui', 'vue-router', 'vuex'])
+   .extract(['vue', 'element-ui', 'vue-router', 'vuex', 'axios'])
    .version();
+
+if (!mix.inProduction()) {
+    mix.copy('public', '../../public/vendor/ecommerce');
+}

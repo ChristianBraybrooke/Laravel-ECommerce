@@ -95,14 +95,14 @@
 </template>
 
 <script>
-import api from "../../services/api-service.js";
+import api from "services/api-service.js";
 
 export default {
 
   components: {
-    Errors: () => import('../../components/Errors.vue'),
-    DataTable: () => import('../../components/DataTable.vue'),
-    FilePickerModal: () => import('../../components/FilePickerModal.vue')
+    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+    DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
+    FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal')
   },
 
   props: {

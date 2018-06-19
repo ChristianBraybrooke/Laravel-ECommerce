@@ -174,7 +174,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import api from '../services/api-service.js';
+import api from 'services/api-service.js';
 import router from '../router';
 var throttle = require('lodash.throttle');
 var bind = require('lodash.bind');
@@ -186,7 +186,7 @@ export default {
   name: 'DataTable',
 
   components: {
-    Errors: () => import('./Errors.vue')
+    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
   },
 
   mounted() {
