@@ -55,6 +55,20 @@ And then seed the database
 php artisan migrate --seed
 ```
 
+## Media:
+```sh
+php artisan vendor:publish --tag=config
+```
+
+After publishing the config files, be sure to change the media class to `ChrisBraybrooke\ECommerce\Models\Media`
+
+```sh
+/*
+ * The class name of the media model that should be used.
+ */
+ 'media_model' => ChrisBraybrooke\ECommerce\Models\Media::class,
+```
+
 ## Users:
 
 To ensure all roles / permissions work correctly, you will need to edit your `App/User.php` class so that it extends the Laravel Ecommerce User class.
