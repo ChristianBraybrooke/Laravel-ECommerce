@@ -1,5 +1,11 @@
 # Laravel ECommerce Package
 
+## Laravel Setup
+```sh
+laravel new laravel-shop
+php artisan make:auth
+```
+
 ## Installation
 
 Only installation on a fresh Laravel app is reccomended:
