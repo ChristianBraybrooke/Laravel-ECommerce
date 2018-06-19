@@ -17,10 +17,11 @@ composer require chrisbraybrooke/laravel-ecommerce
 Setup:
 
 ```sh
+php artisan vendor:publish --tag=migrations
+
 php artisan vendor:publish --tag=ecommerce-config
 php artisan vendor:publish --tag=ecommerce-migrations
 php artisan vendor:publish --tag=ecommerce-admin
-php artisan vendor:publish --tag=migrations
 
 php artisan migrate
 ```
