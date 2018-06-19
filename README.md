@@ -82,15 +82,33 @@ $user->save()
 $user->assignRole('admin')
 ```
 
-We use Laravel Passport under the hood, so make sure this middleware is in your web group and you install passport.
+We use Laravel Passport under the hood, so make sure you install passport to generate the relevent keys etc.
 
 ```sh
 php artisan passport:install
 ```
 
+You then need to add this middleware to your `app/Http/Kernel.php` web group.
+
 ```sh
 'web' => [
     // Other middleware...
     \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+],
+```
+
+Finally in your `config/auth.php` config file, you should set the API driver to passport.
+
+```sh
+'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
+    ],
+
+    'api' => [
+        'driver' => 'passport',
+        'provider' => 'users',
+    ],
 ],
 ```
