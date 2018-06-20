@@ -22,6 +22,8 @@ use Product;
 use Illuminate\Support\Facades\View;
 use Illuminate\Filesystem\Filesystem;
 use File;
+use ChrisBraybrooke\ECommerce\Commands\InitialSetupCommand;
+use ChrisBraybrooke\ECommerce\Commands\CreateAdminCommand;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -62,6 +64,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/ecommerce'),
         ], 'ecommerce-admin');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InitialSetupCommand::class,
+                CreateAdminCommand::class,
+            ]);
+        }
     }
 
     /**
