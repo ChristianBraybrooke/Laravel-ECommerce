@@ -355,7 +355,7 @@ class Product extends Model implements ProductContract
     */
     public function getCanCustomiseAttribute($value)
     {
-        return $this->use_variant_customisation ? $this->variant->can_customise : $value;
+        return $this->use_variant_customisation ? optional($this->variant)->can_customise : $value;
     }
 
     /**
