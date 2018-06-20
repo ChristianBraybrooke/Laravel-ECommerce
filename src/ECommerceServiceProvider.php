@@ -478,16 +478,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     private function handleSeeds()
     {
-        $files = new FileSystem();
-        foreach ($files->glob('database/seeds/*_*.php') as $key => $file) {
-            $files->requireOnce($file);
-        }
-        if (! class_exists('RolesAndPermissionsSeeder')) {
-            $this->publishes([
-                __DIR__.'/../database/seeds/RolesAndPermissionsSeeder.php.stub' =>
-                database_path('seeds/RolesAndPermissionsSeeder.php'),
-            ], 'ecommerce-seeds');
-        }
+        $this->publishes([
+            __DIR__.'/../database/seeds/' => database_path('seeds')
+        ], 'ecommerce-seeds');
+
+        $this->publishes([
+            __DIR__.'/../database/factories/' => database_path('factories')
+        ], 'ecommerce-seeds');
     }
 
     /**

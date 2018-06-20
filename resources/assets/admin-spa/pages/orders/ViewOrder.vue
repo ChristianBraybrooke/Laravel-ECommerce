@@ -142,7 +142,7 @@
                     <el-button @click="edit_shipping = !edit_shipping" style="float: right; padding: 3px 0" type="text">{{ edit_shipping ? 'Cancel' : 'Edit'}}</el-button>
                   </div>
 
-                  <div v-if="!edit_shipping" v-for="(line, key) in order.shipping_address" :key="line" class="text item">
+                  <div v-if="!edit_shipping" v-for="(line, key) in order.shipping_address" :key="key" class="text item">
                       <strong>{{ formatAddressLabel(key) }}:</strong> {{ line }}
                   </div>
 
@@ -154,7 +154,7 @@
                           </el-switch>
                       </el-form-item>
 
-                      <el-form-item :label="formatAddressLabel(key)" :key="line" :prop="order[key]" v-for="(line, key) in order.shipping_address">
+                      <el-form-item :label="formatAddressLabel(key)" :key="key" :prop="order[key]" v-for="(line, key) in order.shipping_address">
                           <el-input :disabled="order.use_billing_for_shipping" v-model="order.shipping_address[key]" auto-complete="off" clearable></el-input>
                       </el-form-item>
 
@@ -173,12 +173,12 @@
                     <el-button @click="edit_billing = !edit_billing"  style="float: right; padding: 3px 0" type="text">{{ edit_billing ? 'Cancel' : 'Edit'}}</el-button>
                   </div>
 
-                  <div v-if="!edit_billing" v-for="(line, key) in order.billing_address" :key="line" class="text item">
+                  <div v-if="!edit_billing" v-for="(line, key) in order.billing_address" :key="key" class="text item">
                       <strong>{{ formatAddressLabel(key) }}:</strong> {{ line }}
                   </div>
 
                   <el-form v-if="edit_billing" ref="editShippingForm" :model="order.billing_address" label-width="120px" size="mini">
-                      <el-form-item :label="formatAddressLabel(key)" :key="line" :prop="key" v-for="(line, key) in order.billing_address">
+                      <el-form-item :label="formatAddressLabel(key)" :key="key" :prop="key" v-for="(line, key) in order.billing_address">
                           <el-input :autofocus="true" v-model="order.billing_address[key]" auto-complete="off" clearable></el-input>
                       </el-form-item>
 

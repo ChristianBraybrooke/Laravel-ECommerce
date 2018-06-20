@@ -29,7 +29,8 @@ class Order extends Model implements OrderContract
       'STATUS_REFUNDED' => 'Refunded',
       'STATUS_AWAITING_PAYMENT' => 'Awaiting Payment',
       'STATUS_PAYMENT_FAILED' => 'Failed Payment',
-      'STATUS_ESTIMATE' => 'Estimate'
+      'STATUS_ESTIMATE' => 'Estimate',
+      // 'STATUS_QUOTE' => 'Quote',
     ];
 
 
@@ -72,6 +73,37 @@ class Order extends Model implements OrderContract
         } else {
            return $this->setStatusFromName();
         }
+    }
+
+    /**
+     * Scope a query to only include orders with a specific status.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $status
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithStatus($query, $status)
+    {
+        return $status ? $query->where('status', $this->setStatusFromName(ucfirst($status))) : $query;
+    }
+
+    /**
+     * Scope a query to only include orders with a specific status.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $status
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithOutStatuses($query, $statuses)
+    {
+        if ($statuses) {
+            $statuses = is_array($statuses) ? $statuses : [$statuses];
+
+            foreach ($statuses as $key => $status) {
+                $query->where('status', '!=', $this->setStatusFromName(ucfirst($status)));
+            }
+        }
+        return $query;
     }
 
     /**

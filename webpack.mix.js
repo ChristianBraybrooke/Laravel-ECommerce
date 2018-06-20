@@ -69,7 +69,7 @@ mix.setPublicPath('public')
      }
    })
    .js('resources/assets/admin-spa/admin.js', 'public/js/admin.js')
-   .styles(['node_modules/normalize.css/normalize.css'], 'public/css/normalize.css')
+   .styles(['node_modules/normalize.css/normalize.css'], 'public/css/reset.css')
    .copy('node_modules/element-ui/lib/theme-chalk/fonts/', 'public/fonts')
    .sass('resources/assets/admin-spa/sass/admin.scss', 'public/css/admin.css')
    .extract(['vue', 'element-ui', 'vue-router', 'vuex', 'axios'])

@@ -1,5 +1,5 @@
 {
-    "/js/chunks/orders.js": "/js/chunks/orders.js?id=819569922ea8fa21d0ec",
+    "/js/chunks/orders.js": "/js/chunks/orders.js?id=da9e4475282c4be75850",
     "/js/chunks/pages.js": "/js/chunks/pages.js?id=5da008e31792e19deee0",
     "/js/chunks/collections.js": "/js/chunks/collections.js?id=2435bbfa9f58c8053c55",
     "/js/chunks/account.js": "/js/chunks/account.js?id=8171aa3e61e87c64c82d",
@@ -12,7 +12,7 @@
     "/js/chunks/config.js": "/js/chunks/config.js?id=5b5f0fb038d20c8a748d",
     "/js/chunks/view-user.js": "/js/chunks/view-user.js?id=afed54701a23bf9640cf",
     "/js/chunks/import-export.js": "/js/chunks/import-export.js?id=6c1592bcd5272aa658c7",
-    "/js/chunks/quotes.js": "/js/chunks/quotes.js?id=92585e36fc63b26f45cf",
+    "/js/chunks/quotes.js": "/js/chunks/quotes.js?id=f73357827c74a9dfd076",
     "/js/chunks/view-product-variants.js": "/js/chunks/view-product-variants.js?id=7cb3e76e604de5731a59",
     "/js/chunks/view-product-pricing.js": "/js/chunks/view-product-pricing.js?id=86b8b72689554422af63",
     "/js/chunks/view-product-ordering.js": "/js/chunks/view-product-ordering.js?id=13a26c913139b29c66d5",
@@ -21,11 +21,11 @@
     "/js/chunks/products.js": "/js/chunks/products.js?id=4466920674080549da45",
     "/js/chunks/menus.js": "/js/chunks/menus.js?id=986513d8238c83c54fdb",
     "/js/chunks/galleries.js": "/js/chunks/galleries.js?id=541a25d0770f41e5b939",
-    "/js/chunks/estimates.js": "/js/chunks/estimates.js?id=a3e2d100cec1d8f9d653",
+    "/js/chunks/estimates.js": "/js/chunks/estimates.js?id=ea11fd99fc326ef95613",
     "/js/chunks/collectiontypes.js": "/js/chunks/collectiontypes.js?id=1596b8937e737b10cd0a",
     "/js/chunks/not-found.js": "/js/chunks/not-found.js?id=24b2c1fa65800a652d30",
     "/js/chunks/dashboard.js": "/js/chunks/dashboard.js?id=24ee3b4c09cc6adc59a1",
-    "/js/admin.js": "/js/admin.js?id=7f76f3fdbc696b912f9e",
+    "/js/admin.js": "/js/admin.js?id=b9908b7ca0a74bf5e453",
     "/css/admin.css": "/css/admin.css?id=adf932bcb3dcf83aeb3e",
     "/js/vendor.js": "/js/vendor.js?id=e3ae294670bdc438b45b",
     "/js/chunks/errors.js": "/js/chunks/errors.js?id=73ff91924eaa6b1065d3",
@@ -47,5 +47,5 @@
     "/js/chunks/form-field-component.js": "/js/chunks/form-field-component.js?id=203169003a64ef857b39",
     "/js/chunks/card-payment-form.js": "/js/chunks/card-payment-form.js?id=5ce89e4e8f5969f57b8d",
     "/js/manifest.js": "/js/manifest.js?id=36e43bd76e362ed61b37",
-    "/css/normalize.css": "/css/normalize.css?id=8c6eee6b2107ef25dc48"
+    "/css/reset.css": "/css/reset.css?id=8c6eee6b2107ef25dc48"
 }

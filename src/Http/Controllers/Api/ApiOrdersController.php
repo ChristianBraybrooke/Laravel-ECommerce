@@ -26,7 +26,10 @@ class ApiOrdersController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = Order::with($request->with ?: [])->basicResponse();
+        $orders = Order::with($request->with ?: [])
+                       ->withOutStatuses($request->withOutStatuses)
+                       ->withStatus($request->withStatus)
+                       ->basicResponse();
 
         return new OrdersResource($orders);
     }

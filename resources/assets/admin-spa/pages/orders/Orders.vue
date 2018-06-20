@@ -6,6 +6,7 @@
         <data-table type-name="order"
                     :full-modal="true"
                     request-with="content"
+                    :with-params="{withOutStatuses: ['quote', 'estimate']}"
                     :table-options="tableOptions"
                     :create-form="ordersCreateForm"
                     v-on:createNew="handleCreateNew"
