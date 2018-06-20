@@ -38,7 +38,9 @@ class ProductResource extends Resource
             ]),
             'variants' => new ProductsResource($this->whenLoaded('variants')),
             'variant' => new ProductResource($this->whenLoaded('variant')),
-            'order_form' => new FormResource($this->whenLoaded('orderForm')),
+            $this->mergeWhen($this->relationLoaded('orderForm'), [
+                'order_form' => $this->relationLoaded('orderForm') ? new FormResource($this->available_order_form) : null,
+            ]),
             $this->mergeWhen($this->relationLoaded('frontendForm'), [
                 'frontend_form' => $this->relationLoaded('frontendForm') ? new FormResource($this->available_frontend_form) : null,
             ]),

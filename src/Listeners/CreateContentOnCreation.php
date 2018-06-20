@@ -27,17 +27,21 @@ class CreateContentOnCreation
     public function handle($event)
     {
         $all_languages = Language::all();
-        if (isset($event->model->defaultContent) && !empty($event->model->defaultContent)) {
+
+        $class_name = getClassName($event->model);
+        $default_content = config("ecommerce.default_content.{$class_name}", []);
+
+        if (!empty($default_content)) {
             if ($all_languages->count() >= 1) {
                 foreach ($all_languages as $key => $language) {
-                    $contents = $this->formatContents($event, $language);
+                    $contents = $this->formatContents($event, $default_content, $language);
 
                     if ($contents) {
                         $event->model->content()->createMany($contents);
                     }
                 }
             } else {
-                $contents = $this->formatContents($event);
+                $contents = $this->formatContents($event, $default_content);
 
                 if ($contents) {
                     $event->model->content()->createMany($contents);
@@ -53,10 +57,10 @@ class CreateContentOnCreation
      * @param  String  $language
      * @return Array
      */
-    public function formatContents($event, $language = null)
+    public function formatContents($event, $content, $language = null)
     {
         $contents = [];
-        foreach ($event->model->defaultContent as $key => $content) {
+        foreach ($content as $key => $content) {
             $content_inner = $content['content'] ?? null;
             if (($content['type'] ?? null) === 'json' && !empty($content_inner)) {
                 $content_inner = json_encode($content_inner);

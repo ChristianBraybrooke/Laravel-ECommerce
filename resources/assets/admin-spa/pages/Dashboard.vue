@@ -2,11 +2,39 @@
     <div v-loading="loading">
         <errors v-if="Object.keys(userErrors).length > 0" :errors="userErrors"></errors>
 
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span v-if="user.name">Welcome, <strong>{{ user.name.first }}</strong></span>
-            </div>
-        </el-card>
+        <h1 class="welcome_text">Welcome, {{ user.name.first }}</h1>
+
+        <el-row :gutter="40" class="welcome_row">
+
+            <el-col :md="8">
+                <el-card>
+                    <div slot="header" class="clearfix">
+                      <span>Orders</span>
+                      <el-button style="float: right;" size="mini" type="primary" plain>Create Order</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :md="8">
+                <el-card>
+                    <div slot="header" class="clearfix">
+                      <span>Products</span>
+                      <el-button style="float: right;" size="mini" type="primary" plain>Create Product</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+            <el-col :md="8">
+                <el-card>
+                    <div slot="header" class="clearfix">
+                      <span>Pages</span>
+                      <el-button style="float: right;" size="mini" type="primary" plain>Create Page</el-button>
+                    </div>
+                </el-card>
+            </el-col>
+
+
+        </el-row>
+
+
     </div>
 </template>
 
@@ -57,5 +85,12 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+.welcome_text {
+    text-align: center;
+}
+.welcome_row {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 </style>

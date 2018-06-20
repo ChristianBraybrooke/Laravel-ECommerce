@@ -177,3 +177,21 @@ function getCollectionMap($name)
 {
     return Setting::get("{$name} Collection");
 }
+
+/**
+ * Return the name of the class.
+ *
+ * @param String $class
+ * @param Boolean $plural
+ * @return String
+ */
+function getClassName($class, $plural = true)
+{
+    $expoloded = explode("\\", get_class($class));
+    $last = strtolower(last($expoloded));
+
+    if ($plural) {
+        return str_plural($last);
+    }
+    return $last;
+}

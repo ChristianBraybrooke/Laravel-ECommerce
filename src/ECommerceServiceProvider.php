@@ -478,6 +478,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'ecommerce-migrations');
         }
+
+        if (! class_exists('AddUserVariantOrderFormsFieldToProductsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_user_variant_order_forms_field_to_products_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_add_user_variant_order_forms_field_to_products_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
     }
 
     /**

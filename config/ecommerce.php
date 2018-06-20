@@ -86,4 +86,9 @@ return [
       'aditional_cols' => [],
   ],
 
+  'default_content' => [
+
+      'orders' => []
+  ],
+
 ];

@@ -18,19 +18,14 @@
         <el-row :gutter="20">
            <el-col :md="24">
                <el-form-item label="Main Img" prop="main_img">
-                   <el-button type="info" plain size="mini" @click="displayFilePicker('mainImgFilePicker')">Select File <i class="el-icon-document"></i></el-button>
-
-                   <file-picker-modal v-if="productVariant"
-                                      ref="mainImgFilePicker"
-                                      :current-files="productVariant.main_img ? [productVariant.main_img] : undefined"
-                                      v-on:filesChosen="handleFilesChosen"
-                                      v-on:filesUnChosen="handleFilesUnChosen"
+                   <file-picker-modal v-if="productVariant.main_img"
+                                      :current-files="productVariant.main_img.id ? [productVariant.main_img] : undefined"
+                                      @update:files="val => productVariant.main_img = val"
+                                      :show-btn="true"
                                       name="Main Img"
                                       :selectable="1"
-                                      picker-id="main_img"
-                                      :open-on-mount="false">
+                                      picker-id="main_img">
                    </file-picker-modal>
-
                </el-form-item>
            </el-col>
         </el-row>
@@ -55,40 +50,15 @@ export default {
 
       data () {
           return {
-              productVariant: {}
+              productVariant: {
+                  main_img: []
+              }
           }
-      },
-
-      computed: {
-
-      },
-
-      watch: {
-
       },
 
       mounted () {
           console.log('ProductVariantComponent.vue mounted');
           this.productVariant = this.model;
-      },
-
-      methods: {
-        displayFilePicker(filePicker)
-        {
-            if(this.$refs[filePicker]) {
-                this.$refs[filePicker].openModal();
-            }
-        },
-
-        handleFilesChosen(data)
-        {
-            this.$set(this.productVariant, data.id, data.files);
-        },
-
-        handleFilesUnChosen(data)
-        {
-            this.$set(this.productVariant, data.id, data.files);
-        },
       },
 }
 </script>

@@ -6,7 +6,9 @@ var FETCH_BUFFER = 60 * 5 * 1000; /* ms */
 
 // initial state
 const state = {
-  user: {},
+  user: {
+      name: {}
+  },
   userErrors: [],
   userLastFetched: ''
 }

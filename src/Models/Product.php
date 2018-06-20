@@ -89,7 +89,8 @@ class Product extends Model implements ProductContract
     protected $fillable = [
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id', 'frontend_form_id'
+        'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id', 'frontend_form_id',
+        'use_variant_order_forms'
     ];
 
     /**
@@ -100,7 +101,7 @@ class Product extends Model implements ProductContract
     protected static $logAttributes = [
         'id', 'name', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'order_form_id', 'frontend_form_id'
+        'measurement_unit', 'width', 'height', 'depth', 'order_form_id', 'frontend_form_id', 'use_variant_order_forms'
     ];
 
     /**
@@ -345,7 +346,9 @@ class Product extends Model implements ProductContract
     */
     public function setPriceAttribute($value)
     {
-        $this->attributes['price'] = (int)number_format(((int)$value * 100), 0, '', '');
+        $formatted = priceFormatter($value);
+        $formatted = (int)preg_replace('/\D/', '', $formatted);
+        $this->attributes['price'] = $formatted;
     }
 
     /**

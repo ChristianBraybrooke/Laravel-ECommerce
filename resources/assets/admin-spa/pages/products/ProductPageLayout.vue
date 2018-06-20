@@ -203,7 +203,11 @@ export default {
                     .then(function (data) {
                         this.loading = false;
                         this.productForm = data.data;
-                        // this.getCollections();
+                        this.$message({
+                          message: 'Product updated',
+                          type: 'success',
+                          showClose: true,
+                        });
                     }.bind(this))
                     .catch(function (error) {
                         this.loading = false;

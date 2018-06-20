@@ -90,9 +90,9 @@ export default {
                   deleteText: '',
                   collumns: [
                       {
-                          prop: 'id',
+                          prop: 'ref_number',
                           sortable: true,
-                          label: 'ID',
+                          label: 'Ref',
                           align: 'left',
                           resizable: true
                       },
@@ -190,7 +190,7 @@ export default {
 
           if(this.objectHas(ecommerceConfig, 'aditional_cols.orders')) {
               forEach(ecommerceConfig.aditional_cols.orders, col => {
-                  col.formatter = function() { return <table-collumn col={col}/> };
+                  col.formatter = function(row) { return <table-collumn col={col} row={row}/> };
                   this.tableOptions.collumns.push(col);
               })
           }

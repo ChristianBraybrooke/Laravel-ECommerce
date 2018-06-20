@@ -23,7 +23,7 @@ class Shop
      */
     public static function dumpData()
     {
-        $additional_data = config('ecommerce.shopData');
+        $additional_data = config('ecommerce.shop_data');
         return self::$data ? collect(
             is_array($additional_data) ?
             array_merge(self::$data, $additional_data) :

@@ -4,7 +4,8 @@
         <product-page-layout :product-id="productId"
                              :current-page="'/products/' + productId + '/variants'"
                              :request-with="['variants.media']"
-                             :request-include="['slug']">
+                             :form="{variants: {data: []}}"
+                             :request-includes="['slug']">
 
             <template slot="product_page"
                       slot-scope="props">
@@ -15,7 +16,7 @@
                     </el-card>
                 </template>
 
-                <el-button type="primary" icon="el-icon-plus" @click="props.productForm.variants.data.push({})" plain>Add Variant</el-button>
+                <el-button type="primary" class="add_variant_btn" icon="el-icon-plus" @click="props.productForm.variants.data.push({main_img: {}})" plain>Add Variant</el-button>
             </template>
 
         </product-page-layout>
@@ -67,5 +68,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
+.product_variant_card {
+    margin-top: 40px;
+}
+.add_variant_btn {
+    margin-top: 40px;
+}
 </style>

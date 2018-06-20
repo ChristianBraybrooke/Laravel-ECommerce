@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import api from 'services/api-service'
 export default {
 
       name: 'Estimates',
@@ -30,9 +31,9 @@ export default {
               tableOptions: {
                   collumns: [
                       {
-                          prop: 'id',
+                          prop: 'ref_number',
                           sortable: true,
-                          label: 'ID',
+                          label: 'Ref',
                           align: 'left',
                           resizable: true
                       },
@@ -49,7 +50,7 @@ export default {
                       {
                           prop: 'created_at.date',
                           sortable: true,
-                          label: 'Order Placed',
+                          label: 'Created',
                           align: 'left',
                           resizable: true
                       },
@@ -91,6 +92,16 @@ export default {
                           align: 'left',
                           resizable: true
                       },
+                      {
+                          prop: 'invoice',
+                          sortable: true,
+                          label: 'Create Invoice',
+                          formatter: function(row, column, cellValue) {
+                              return <el-button on-click={() => this.createInvoice(row)} type="success" size="mini" class="action_btn" plain>Create Invoice</el-button>;
+                          }.bind(this),
+                          align: 'left',
+                          resizable: true
+                      },
                   ],
               }
           }
@@ -109,6 +120,25 @@ export default {
       },
 
       methods: {
+
+          createInvoice(val)
+          {
+              val.status = 'Awaiting Payment';
+              api.persist("put", {
+                    path: "orders/" + val.id,
+                    object: val
+                })
+                .then(data => {
+
+                    this.$router.push({ name: 'orders.view', params: { orderId: val.id.toString() }})
+                    // this.loading = false;
+                    // this.data = data.data;
+                })
+                .catch(error => {
+                    // this.loading = false;
+                    // this.errors = error;
+                });
+          }
 
       },
 

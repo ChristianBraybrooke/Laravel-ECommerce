@@ -180,6 +180,27 @@ class Order extends Model implements OrderContract
     ];
 
     /**
+     * The attributes that should be appended.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'ref_number'
+    ];
+
+    public function getRefNumberAttribute()
+    {
+        $start = 'INV';
+        if ($this->status === 'Estimate') {
+            $start = 'EST';
+        }
+        $date = optional($this->created_at['carbon'])->format('dmy');
+        $end = $this->id;
+
+        return "{$start}-{$date}-{$end}";
+    }
+
+    /**
      * Set default event log message.
      *
      * @var String
