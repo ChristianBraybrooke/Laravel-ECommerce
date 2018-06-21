@@ -14,6 +14,10 @@ var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api
 
 var _apiService2 = _interopRequireDefault(_apiService);
 
+var _collumn = __webpack_require__("./resources/assets/admin-spa/utils/collumn.js");
+
+var _collumn2 = _interopRequireDefault(_collumn);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
@@ -39,6 +43,11 @@ exports.default = {
 
     },
 
+    data: function data() {
+        return {
+            loading: false
+        };
+    },
     mounted: function mounted() {
         console.log('TableCollumn.vue Mounted.');
     },
@@ -59,14 +68,15 @@ exports.default = {
             var button = this.col.button ? this.col.button : {};
 
             return h(
-                'el-button',
+                "el-button",
                 {
                     attrs: { type: button.type ? button.type : 'primary',
+                        loading: this.loading,
                         plain: button.plain === true ? true : false,
                         size: button.size ? button.size : 'small'
                     },
                     on: {
-                        'click': function click() {
+                        "click": function click() {
                             return _this.handleClick();
                         }
                     }
@@ -86,85 +96,26 @@ exports.default = {
         handleClick: function handleClick() {
             var action = this.col.action ? this.col.action : {};
             if (action.type === 'api' && this.col.api) {
-                var path = this.replacer(this.col.api.path);
-                var dots = this.fillIndexInDotSyntaxString(this.col.action.set, this.row);
-                this.setRowValue(this.row, dots, this.col.action.value);
+                var path = _collumn2.default.replaceVariables(this.col.api.path, this.row);
+                var dots = _collumn2.default.replaceWhereLookup(this.col.action.set, this.row);
+                _collumn2.default.setRowValue(this.row, dots, this.col.action.value);
 
+                this.loading = true;
                 _apiService2.default.persist(this.col.api.method, {
                     path: path,
                     object: this.row
                 }).then(function (data) {
-                    // this.loading = false;
-                    // this.data = data.data;
+                    this.$message({
+                        message: this.col.label + " Updated!",
+                        type: 'success',
+                        showClose: true
+                    });
+                    this.loading = false;
                 }.bind(this)).catch(function (error) {
-                    // this.loading = false;
+                    this.loading = false;
                     // this.errors = error;
                 }.bind(this));
             }
-        },
-
-
-        /**
-         * Replace the parts of the path that need to be subsituted for real data.
-         *
-         * @return String
-         */
-        replacer: function replacer(path) {
-            var _this2 = this;
-
-            path = path.replace(/\${(.+?)\}/g, function (x) {
-                x = x.replace('${', '');
-                x = x.replace('}', '');
-                return _this2.dotToObjectPath(x, _this2.row);
-            });
-            return path;
-        },
-
-
-        /**
-         * Replace a lookup for index in a dot syntax string.
-         *
-         * @return String
-         */
-        fillIndexInDotSyntaxString: function fillIndexInDotSyntaxString(set, object) {
-            var _this3 = this;
-
-            var string = set.replace(/\$\[(.+?)\]/g, function (x) {
-                x = x.replace('$[', '');
-                x = x.replace(']', '');
-
-                var before_equals = x.split('=')[0];
-                var after_equals = x.split('=')[1];
-                var lookup = set.split('.$[')[0];
-                lookup = _this3.dotToObjectPath(lookup, object);
-
-                return findIndex(lookup, function (o) {
-                    return o[before_equals] === after_equals;
-                });
-            });
-            return string;
-        },
-
-
-        /**
-         * Turn a dot syntax string into an object path.
-         *
-         * @return Mixed
-         */
-        dotToObjectPath: function dotToObjectPath(string, object) {
-            return string.split('.').reduce(function (o, i) {
-                return o[i];
-            }, object);
-        },
-
-
-        /**
-         * Set a dynamic row value.
-         *
-         * @return Mixed
-         */
-        setRowValue: function setRowValue(obj, is, value) {
-            if (typeof is == 'string') return this.setRowValue(obj, is.split('.'), value);else if (is.length == 1 && value !== undefined) return obj[is[0]] = value;else if (is.length == 0) return obj;else return this.setRowValue(obj[is[0]], is.slice(1), value);
         }
     }
 };
@@ -1151,10 +1102,6 @@ var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api
 
 var _apiService2 = _interopRequireDefault(_apiService);
 
-var _collumn = __webpack_require__("./resources/assets/admin-spa/utils/collumn.js");
-
-var _collumn2 = _interopRequireDefault(_collumn);
-
 var _TableCollumn = __webpack_require__("./resources/assets/admin-spa/components/TableCollumn.vue");
 
 var _TableCollumn2 = _interopRequireDefault(_TableCollumn);
@@ -1849,7 +1796,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1894,7 +1841,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -12467,32 +12414,91 @@ module.exports = Component.exports
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
+var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 
 exports.default = {
 
     /**
-     * Render the collumns
+     * Replace the parts of the path that need to be subsituted for real data.
      *
-     * @param Array collumns
-     * @return Array
+     * @return String
      */
-    render: function render() {
-        var collumns = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    replaceVariables: function replaceVariables(path, row) {
+        var _this = this;
 
-        var renderedCols = [];
-        forEach(collumns, function (col) {
-            col.formatter = function () {
-                return button.render(col);
-            };
-            renderedCols.push(col);
+        path = path.replace(/\${(.+?)\}/g, function (x) {
+            x = x.replace('${', '');
+            x = x.replace('}', '');
+            return _this.dotToObjectPath(x, row);
         });
-        return renderedCols;
+        return path;
     },
-    selectCollumnType: function selectCollumnType(collumn) {
-        if (collumn.type === 'button') {
-            return button.render(collumn);
-        }
+
+
+    /**
+     * Replace a lookup for index in a dot syntax string.
+     *
+     * @return String
+     */
+    replaceWhereLookup: function replaceWhereLookup(set, object) {
+        var _this2 = this;
+
+        var string = set.replace(/\$\[(.+?)\]/g, function (x) {
+            x = x.replace('$[', '');
+            x = x.replace(']', '');
+
+            var before_equals = x.split('=')[0];
+            var after_equals = x.split('=')[1];
+            var lookup = set.split('.$[')[0];
+            lookup = _this2.dotToObjectPath(lookup, object);
+
+            return findIndex(lookup, function (o) {
+                return o[before_equals] === after_equals;
+            });
+        });
+        return string;
+    },
+
+
+    /**
+     * Turn a dot syntax string into an object path.
+     *
+     * @return Mixed
+     */
+    dotToObjectPath: function dotToObjectPath(string, object) {
+        return string.split('.').reduce(function (o, i) {
+            return o[i];
+        }, object);
+    },
+
+
+    /**
+     * Set a dynamic row value.
+     *
+     * @return Mixed
+     */
+    setRowValue: function setRowValue(obj, is, value) {
+        if (typeof is == 'string') return this.setRowValue(obj, is.split('.'), value);else if (is.length == 1 && value !== undefined) return obj[is[0]] = value;else if (is.length == 0) return obj;else return this.setRowValue(obj[is[0]], is.slice(1), value);
+    },
+    getRowColour: function getRowColour(colour_rules, row) {
+        var _this3 = this;
+
+        var row_colour = '';
+        colour_rules.forEach(function (rule) {
+
+            var if_path = _this3.replaceWhereLookup(rule.if, row);
+            var if_value = _this3.dotToObjectPath(if_path, row);
+
+            switch (rule.value) {
+                case '*':
+                    if (if_value !== null && if_value !== '') {
+                        row_colour = rule.colour;
+                    }
+                    break;
+
+            }
+        });
+        return row_colour;
     }
 };
 

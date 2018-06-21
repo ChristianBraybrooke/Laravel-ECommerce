@@ -40,7 +40,6 @@
 <script>
 var forEach = require('lodash.foreach');
 import api from 'services/api-service';
-import collumn from 'utils/collumn';
 import TableCollumn from 'components/TableCollumn';
 
 export default {

@@ -60,6 +60,8 @@
             :data="Data"
             :stripe="mergedTableOptions.stripe"
             :border="mergedTableOptions.stripe"
+            :row-style="tableRowStyle"
+            :row-class-name="tableRowClass"
             style="width: 100%"
             @selection-change="handleSelectionChange"
             @sort-change="handleSortChange">
@@ -173,12 +175,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import api from 'services/api-service.js';
-import router from '../router';
-var throttle = require('lodash.throttle');
-var bind = require('lodash.bind');
-var findKey = require('lodash.findkey');
+import { mapActions, mapGetters } from 'vuex'
+import api from 'services/api-service.js'
+import router from '../router'
+import collumn_util from "utils/collumn"
+var throttle = require('lodash.throttle')
+var bind = require('lodash.bind')
+var findKey = require('lodash.findkey')
 
 
 
@@ -440,6 +443,11 @@ export default {
       capitalTypeNamePlural()
       {
           return this.capitalize(this.typeNamePlural)
+      },
+
+      colourRules()
+      {
+          return this.objectHas(ecommerceConfig, 'col_colours.orders') ? ecommerceConfig.col_colours.orders : [];
       },
   },
 
@@ -732,10 +740,30 @@ export default {
         this.$emit('createNew', this.Data);
     },
 
+    tableRowStyle({row, rowIndex})
+    {
+        var row_colour = collumn_util.getRowColour(this.colourRules, row);
+
+        return `background: ${row_colour}!important`;
+    },
+
+    tableRowClass({row, rowIndex})
+    {
+        var row_has_colour = collumn_util.getRowColour(this.colourRules, row);
+
+        console.log(`Colour: ${row_has_colour}`)
+        if (!row_has_colour) {
+            return ''
+        }
+        return 'row_has_colour';
+    }
+
   }
 }
 </script>
 
 <style lang="css">
-
+.el-table--enable-row-hover .el-table__body tr.row_has_colour:hover > td {
+    background-color: initial!important;
+}
 </style>
