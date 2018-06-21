@@ -58,16 +58,9 @@ export default {
         {
             var action = this.col.action ? this.col.action : {};
             if (action.type === 'api' && this.col.api) {
-                var path = this.col.api.path;
-                path = this.replacer(path);
-
-                var set = this.fillIndexInDotSyntaxString(this.col.action.set, this.row);
-
-                set = this.dotToObjectPath(set, this.row);
-
-                set = this.col.action.value;
-
-                console.log(set);
+                var path = this.replacer(this.col.api.path);
+                var dots = this.fillIndexInDotSyntaxString(this.col.action.set, this.row);
+                this.setRowValue(this.row, dots, this.col.action.value);
 
 
                 api.persist(this.col.api.method, {
@@ -130,6 +123,22 @@ export default {
         dotToObjectPath(string, object)
         {
             return string.split('.').reduce((o,i)=>o[i], object);
+        },
+
+        /**
+         * Set a dynamic row value.
+         *
+         * @return Mixed
+         */
+        setRowValue(obj,is, value) {
+            if (typeof is == 'string')
+                return this.setRowValue(obj,is.split('.'), value);
+            else if (is.length==1 && value!==undefined)
+                return obj[is[0]] = value;
+            else if (is.length==0)
+                return obj;
+            else
+                return this.setRowValue(obj[is[0]],is.slice(1), value);
         }
 
     },

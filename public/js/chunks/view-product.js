@@ -1,1 +1,636 @@
-webpackJsonp([18],{"1BA3":function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,o=t._self._c||e;return o("div",[o("product-page-layout",{attrs:{"product-id":t.productId,"current-page":"/products/"+t.productId,"request-with":["collectionTypes","content"],"request-includes":["live_at","slug","list_in_shop","featured"],"form-rules":t.productFormRules},scopedSlots:t._u([{key:"product_page",fn:function(e){return[o("el-row",{attrs:{type:"flex"}},[o("el-col",{attrs:{span:4}},[e.productForm.live_at?o("el-form-item",{attrs:{label:"Live",prop:"live_at.live",size:"small"}},[o("el-switch",{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},model:{value:e.productForm.live_at.live,callback:function(o){t.$set(e.productForm.live_at,"live",o)},expression:"props.productForm.live_at.live"}})],1):t._e()],1),t._v(" "),o("el-col",{attrs:{span:4}},[o("el-form-item",{attrs:{label:"List In Shop",prop:"list_in_shop",size:"small"}},[o("el-switch",{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},model:{value:e.productForm.list_in_shop,callback:function(o){t.$set(e.productForm,"list_in_shop",o)},expression:"props.productForm.list_in_shop"}})],1)],1),t._v(" "),o("el-col",{attrs:{span:4}},[o("el-form-item",{attrs:{label:"Featured",prop:"featured",size:"small"}},[o("el-switch",{attrs:{"active-color":"#13ce66","inactive-color":"#ff4949"},model:{value:e.productForm.featured,callback:function(o){t.$set(e.productForm,"featured",o)},expression:"props.productForm.featured"}})],1)],1)],1),t._v(" "),o("el-row",{attrs:{gutter:20}},[o("el-col",{attrs:{lg:12,md:24}},[o("el-form-item",{attrs:{label:"Name",prop:"name",size:"small"}},[o("el-input",{attrs:{autofocus:!0},model:{value:e.productForm.name,callback:function(o){t.$set(e.productForm,"name",o)},expression:"props.productForm.name"}})],1)],1),t._v(" "),o("el-col",{attrs:{lg:12,md:24}},[o("el-form-item",{attrs:{label:"Slug / Url",prop:"slug",size:"small"}},[o("el-input",{model:{value:e.productForm.slug,callback:function(o){t.$set(e.productForm,"slug",o)},expression:"props.productForm.slug"}},[o("template",{slot:"prepend"},[t._v(t._s(t.getSiteBaseURL)+"products/")])],2)],1)],1)],1),t._v(" "),e.productForm.content?o("el-row",{attrs:{gutter:20}},[t._l(e.productForm.content.data,function(e){return[o("el-col",{attrs:{lg:12,md:24}},[o("el-form-item",{attrs:{label:e.content_name,prop:e.content_name,size:"small"}},[o("el-input",{attrs:{type:"textarea",autosize:{minRows:5},autofocus:!0},model:{value:e.content,callback:function(o){t.$set(e,"content",o)},expression:"content.content"}})],1)],1)]})],2):t._e(),t._v(" "),Object.keys(t.collectionErrors).length>0?o("errors",{attrs:{errors:t.collectionErrors}}):t._e(),t._v(" "),o("el-row",{attrs:{gutter:20}},[t._l(t.collections,function(r){return[o("el-col",{attrs:{md:6,sm:12,xs:24}},[e.productForm.collections&&t.collections?o("el-form-item",{attrs:{label:r.name,prop:"collections.data.collection_types_sync"+[r.id-1],size:"small"}},[o("el-select",{staticClass:"collection_type_select",attrs:{filterable:"",multiple:"","allow-create":"",placeholder:"Select"},model:{value:e.productForm.collections.data.collection_types_sync[r.id],callback:function(o){t.$set(e.productForm.collections.data.collection_types_sync,r.id,o)},expression:"props.productForm.collections.data.collection_types_sync[collection.id]"}},t._l(r.types.data,function(t){return o("el-option",{key:t.name,attrs:{label:t.name,value:t.id}})}))],1):t._e()],1)]})],2)]}}])})],1)},staticRenderFns:[]}},"3COu":function(t,e,o){(t.exports=o("FZ+f")(!1)).push([t.i,".collection_type_select[data-v-2f462e08]{width:100%}.product_variant_card[data-v-2f462e08]{margin:30px 0}.product_variant_card.minimised .el-card__body[data-v-2f462e08]{padding:0!important}",""])},"8iwf":function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r,l=o("GzQy"),c=(r=l)&&r.__esModule?r:{default:r};e.default={name:"ViewProduct",components:{ProductPageLayout:function(){return o.e(31).then(o.bind(null,"98Ok"))}},props:{productId:{type:String,required:!0}},data:function(){return{collections:{},collectionErrors:{}}},computed:{productFormRules:function(){return{name:[{required:!0,message:"The product name field is required",trigger:"blur"}],slug:[{required:!0,message:"The product slug field is required",trigger:"blur"}]}}},watch:{},mounted:function(){this.getCollections()},methods:{getCollections:function(){c.default.get({path:"collections",params:{with:"types"}}).then(function(t){this.collections=t.data}.bind(this)).catch(function(t){this.collectionErrors=t}.bind(this))}}}},DUxO:function(t,e,o){var r=o("VU/8")(o("8iwf"),o("1BA3"),!1,function(t){o("FQu6")},"data-v-2f462e08",null);t.exports=r.exports},FQu6:function(t,e,o){var r=o("3COu");"string"==typeof r&&(r=[[t.i,r,""]]),r.locals&&(t.exports=r.locals);o("rjj0")("34df52c5",r,!0,{})}});
+webpackJsonp([18],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+
+    name: 'ViewProduct',
+
+    components: {
+        ProductPageLayout: function ProductPageLayout() {
+            return __webpack_require__.e/* import() */(31).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
+        }
+    },
+
+    props: {
+        productId: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            collections: {},
+            collectionErrors: {}
+        };
+    },
+
+
+    computed: {
+        productFormRules: function productFormRules() {
+            return {
+                name: [{ required: true, message: 'The product name field is required', trigger: 'blur' }],
+                slug: [{ required: true, message: 'The product slug field is required', trigger: 'blur' }]
+            };
+        }
+    },
+
+    watch: {
+        //
+    },
+
+    mounted: function mounted() {
+        console.log('ViewProduct.vue mounted');
+        this.getCollections();
+    },
+
+
+    methods: {
+
+        /**
+         * Get the collections with their types from the server.
+         *
+         * @return void
+         */
+        getCollections: function getCollections() {
+            _apiService2.default.get({
+                path: 'collections',
+                params: {
+                    with: 'types'
+                }
+            }).then(function (data) {
+                this.collections = data.data;
+            }.bind(this)).catch(function (error) {
+                this.collectionErrors = error;
+            }.bind(this));
+        }
+    }
+
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9aab8f92\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.collection_type_select[data-v-9aab8f92] {\n    width: 100%;\n}\n.product_variant_card[data-v-9aab8f92] {\n    margin: 30px 0px;\n}\n.product_variant_card.minimised .el-card__body[data-v-9aab8f92] {\n    padding: 0px!important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9aab8f92\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("product-page-layout", {
+        attrs: {
+          "product-id": _vm.productId,
+          "current-page": "/products/" + _vm.productId,
+          "request-with": ["collectionTypes", "content"],
+          "request-includes": ["live_at", "slug", "list_in_shop", "featured"],
+          "form-rules": _vm.productFormRules
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "product_page",
+            fn: function(props) {
+              return [
+                _c(
+                  "el-row",
+                  { attrs: { type: "flex" } },
+                  [
+                    _c(
+                      "el-col",
+                      { attrs: { span: 4 } },
+                      [
+                        props.productForm.live_at
+                          ? _c(
+                              "el-form-item",
+                              {
+                                attrs: {
+                                  label: "Live",
+                                  prop: "live_at.live",
+                                  size: "small"
+                                }
+                              },
+                              [
+                                _c("el-switch", {
+                                  attrs: {
+                                    "active-color": "#13ce66",
+                                    "inactive-color": "#ff4949"
+                                  },
+                                  model: {
+                                    value: props.productForm.live_at.live,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        props.productForm.live_at,
+                                        "live",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "props.productForm.live_at.live"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-col",
+                      { attrs: { span: 4 } },
+                      [
+                        _c(
+                          "el-form-item",
+                          {
+                            attrs: {
+                              label: "List In Shop",
+                              prop: "list_in_shop",
+                              size: "small"
+                            }
+                          },
+                          [
+                            _c("el-switch", {
+                              attrs: {
+                                "active-color": "#13ce66",
+                                "inactive-color": "#ff4949"
+                              },
+                              model: {
+                                value: props.productForm.list_in_shop,
+                                callback: function($$v) {
+                                  _vm.$set(
+                                    props.productForm,
+                                    "list_in_shop",
+                                    $$v
+                                  )
+                                },
+                                expression: "props.productForm.list_in_shop"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-col",
+                      { attrs: { span: 4 } },
+                      [
+                        _c(
+                          "el-form-item",
+                          {
+                            attrs: {
+                              label: "Featured",
+                              prop: "featured",
+                              size: "small"
+                            }
+                          },
+                          [
+                            _c("el-switch", {
+                              attrs: {
+                                "active-color": "#13ce66",
+                                "inactive-color": "#ff4949"
+                              },
+                              model: {
+                                value: props.productForm.featured,
+                                callback: function($$v) {
+                                  _vm.$set(props.productForm, "featured", $$v)
+                                },
+                                expression: "props.productForm.featured"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-row",
+                  { attrs: { gutter: 20 } },
+                  [
+                    _c(
+                      "el-col",
+                      { attrs: { lg: 12, md: 24 } },
+                      [
+                        _c(
+                          "el-form-item",
+                          {
+                            attrs: {
+                              label: "Name",
+                              prop: "name",
+                              size: "small"
+                            }
+                          },
+                          [
+                            _c("el-input", {
+                              attrs: { autofocus: true },
+                              model: {
+                                value: props.productForm.name,
+                                callback: function($$v) {
+                                  _vm.$set(props.productForm, "name", $$v)
+                                },
+                                expression: "props.productForm.name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-col",
+                      { attrs: { lg: 12, md: 24 } },
+                      [
+                        _c(
+                          "el-form-item",
+                          {
+                            attrs: {
+                              label: "Slug / Url",
+                              prop: "slug",
+                              size: "small"
+                            }
+                          },
+                          [
+                            _c(
+                              "el-input",
+                              {
+                                model: {
+                                  value: props.productForm.slug,
+                                  callback: function($$v) {
+                                    _vm.$set(props.productForm, "slug", $$v)
+                                  },
+                                  expression: "props.productForm.slug"
+                                }
+                              },
+                              [
+                                _c("template", { slot: "prepend" }, [
+                                  _vm._v(
+                                    _vm._s(_vm.getSiteBaseURL) + "products/"
+                                  )
+                                ])
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                props.productForm.content
+                  ? _c(
+                      "el-row",
+                      { attrs: { gutter: 20 } },
+                      [
+                        _vm._l(props.productForm.content.data, function(
+                          content
+                        ) {
+                          return [
+                            _c(
+                              "el-col",
+                              { attrs: { lg: 12, md: 24 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: {
+                                      label: content.content_name,
+                                      prop: content.content_name,
+                                      size: "small"
+                                    }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: {
+                                        type: "textarea",
+                                        autosize: { minRows: 5 },
+                                        autofocus: true
+                                      },
+                                      model: {
+                                        value: content.content,
+                                        callback: function($$v) {
+                                          _vm.$set(content, "content", $$v)
+                                        },
+                                        expression: "content.content"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ]
+                        })
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                Object.keys(_vm.collectionErrors).length > 0
+                  ? _c("errors", { attrs: { errors: _vm.collectionErrors } })
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "el-row",
+                  { attrs: { gutter: 20 } },
+                  [
+                    _vm._l(_vm.collections, function(collection) {
+                      return [
+                        _c(
+                          "el-col",
+                          { attrs: { md: 6, sm: 12, xs: 24 } },
+                          [
+                            props.productForm.collections && _vm.collections
+                              ? _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: {
+                                      label: collection.name,
+                                      prop:
+                                        "collections.data.collection_types_sync" +
+                                        [collection.id - 1],
+                                      size: "small"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "el-select",
+                                      {
+                                        staticClass: "collection_type_select",
+                                        attrs: {
+                                          filterable: "",
+                                          multiple: "",
+                                          "allow-create": "",
+                                          placeholder: "Select"
+                                        },
+                                        model: {
+                                          value:
+                                            props.productForm.collections.data
+                                              .collection_types_sync[
+                                              collection.id
+                                            ],
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              props.productForm.collections.data
+                                                .collection_types_sync,
+                                              collection.id,
+                                              $$v
+                                            )
+                                          },
+                                          expression:
+                                            "props.productForm.collections.data.collection_types_sync[collection.id]"
+                                        }
+                                      },
+                                      _vm._l(collection.types.data, function(
+                                        type
+                                      ) {
+                                        return _c("el-option", {
+                                          key: type.name,
+                                          attrs: {
+                                            label: type.name,
+                                            value: type.id
+                                          }
+                                        })
+                                      })
+                                    )
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9aab8f92", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9aab8f92\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9aab8f92\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("8952d1ce", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9aab8f92\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewProduct.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9aab8f92\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ViewProduct.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/pages/products/ViewProduct.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-9aab8f92\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-9aab8f92\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/products/ViewProduct.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-9aab8f92"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/pages/products/ViewProduct.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9aab8f92", Component.options)
+  } else {
+    hotAPI.reload("data-v-9aab8f92", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
