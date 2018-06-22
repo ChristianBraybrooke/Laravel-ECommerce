@@ -1,4 +1,5 @@
 var findIndex = require('lodash.findindex');
+var has = require('lodash.has');
 
 export default {
 
@@ -24,18 +25,24 @@ export default {
      */
     replaceWhereLookup(set, object)
     {
-        var string = set.replace(/\$\[(.+?)\]/g, (x) => {
-            x = x.replace('$[', '');
-            x = x.replace(']', '');
+        if (set) {
+            var string = set.replace(/\$\[(.+?)\]/g, (x) => {
+                x = x.replace('$[', '');
+                x = x.replace(']', '');
 
-            var before_equals = x.split('=')[0];
-            var after_equals = x.split('=')[1];
-            var lookup = set.split('.$[')[0];
-            lookup = this.dotToObjectPath(lookup, object);
+                var before_equals = x.split('=')[0];
+                var after_equals = x.split('=')[1];
+                var lookup = set.split('.$[')[0];
+                lookup = this.dotToObjectPath(lookup, object);
 
-            return findIndex(lookup, function (o) { return o[before_equals] === after_equals });
-        });
-        return string;
+                return findIndex(lookup, function (o) { return o[before_equals] === after_equals });
+            });
+            if (has(object, string)) {
+                return string
+            }
+            return null;
+        }
+        return null;
     },
 
     /**
@@ -45,7 +52,7 @@ export default {
      */
     dotToObjectPath(string, object)
     {
-        return string.split('.').reduce((o,i)=>o[i], object);
+        return string ? string.split('.').reduce((o,i) => has(o, i) ? o[i] : null, object) : null;
     },
 
     /**

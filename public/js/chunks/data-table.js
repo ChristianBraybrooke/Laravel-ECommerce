@@ -343,22 +343,22 @@ exports.default = {
                     sortable: true,
                     label: 'ID',
                     align: 'left',
-                    resizable: true
+                    resizable: false
                 }, {
                     prop: 'name',
                     sortable: true,
                     label: 'Name',
                     align: 'left',
-                    resizable: true
+                    resizable: false
                 }, {
                     prop: 'created_at.human',
                     sortable: true,
                     label: 'Created',
                     align: 'left',
-                    resizable: true
+                    resizable: false
                 }, {
                     prop: 'live_at.live',
-                    sortable: true,
+                    sortable: false,
                     label: 'Live',
                     align: 'left',
                     formatter: function formatter(row, column, cellValue) {
@@ -439,7 +439,7 @@ exports.default = {
             return this.capitalize(this.typeNamePlural);
         },
         colourRules: function colourRules() {
-            return this.objectHas(ecommerceConfig, 'col_colours.orders') ? ecommerceConfig.col_colours.orders : [];
+            return this.objectHas(ecommerceConfig, 'col_colours.' + this.typeNamePlural) ? ecommerceConfig.col_colours.orders : [];
         }
     },
 
@@ -743,7 +743,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.el-table--enable-row-hover .el-table__body tr.row_has_colour:hover > td {\n    background-color: initial!important;\n}\n", ""]);
+exports.push([module.i, "\n.el-table--striped .el-table__body tr.row_has_colour.el-table__row--striped td {\n    background-color: initial!important;\n}\n.el-table--enable-row-hover .el-table__body tr.row_has_colour:hover > td {\n    background-color: initial!important;\n}\n.table_col_list {\n    font-size: 12px;\n    line-height: 1.2;\n}\n", ""]);
 
 // exports
 
@@ -7424,6 +7424,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
+var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
 exports.default = {
 
@@ -7452,20 +7453,26 @@ exports.default = {
     replaceWhereLookup: function replaceWhereLookup(set, object) {
         var _this2 = this;
 
-        var string = set.replace(/\$\[(.+?)\]/g, function (x) {
-            x = x.replace('$[', '');
-            x = x.replace(']', '');
+        if (set) {
+            var string = set.replace(/\$\[(.+?)\]/g, function (x) {
+                x = x.replace('$[', '');
+                x = x.replace(']', '');
 
-            var before_equals = x.split('=')[0];
-            var after_equals = x.split('=')[1];
-            var lookup = set.split('.$[')[0];
-            lookup = _this2.dotToObjectPath(lookup, object);
+                var before_equals = x.split('=')[0];
+                var after_equals = x.split('=')[1];
+                var lookup = set.split('.$[')[0];
+                lookup = _this2.dotToObjectPath(lookup, object);
 
-            return findIndex(lookup, function (o) {
-                return o[before_equals] === after_equals;
+                return findIndex(lookup, function (o) {
+                    return o[before_equals] === after_equals;
+                });
             });
-        });
-        return string;
+            if (has(object, string)) {
+                return string;
+            }
+            return null;
+        }
+        return null;
     },
 
 
@@ -7475,9 +7482,9 @@ exports.default = {
      * @return Mixed
      */
     dotToObjectPath: function dotToObjectPath(string, object) {
-        return string.split('.').reduce(function (o, i) {
-            return o[i];
-        }, object);
+        return string ? string.split('.').reduce(function (o, i) {
+            return has(o, i) ? o[i] : null;
+        }, object) : null;
     },
 
 

@@ -7,7 +7,7 @@ export default {
     name: 'TableCollumn',
 
     render: function (h) {
-        return (this.button);
+        return (this.getRenderType);
     },
 
     props: {
@@ -27,14 +27,34 @@ export default {
     data () {
         return {
             loading: false,
+            temp_date: ''
         }
     },
 
     mounted () {
         console.log('TableCollumn.vue Mounted.');
+
+        if(this.col.type === 'date') {
+            this.temp_date = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+        }
     },
 
     computed: {
+
+        getRenderType()
+        {
+            switch (this.col.type) {
+              case 'button':
+                return this.button;
+                break;
+              case 'date':
+                return this.date;
+                break;
+              default:
+                return this.col.value ? <div>{collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row)}</div> : '';
+
+            }
+        },
 
         /**
          * Render the button.
@@ -44,15 +64,47 @@ export default {
         button()
         {
             var button = this.col.button ? this.col.button : {};
+            var button_content = '';
+            var extra_content = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(button.value, this.row), this.row);
+            var extra = button.show_value ? <span>{extra_content}</span> : '';
 
-            return <el-button type={button.type ? button.type : 'primary'}
-                              loading={this.loading}
-                              plain={button.plain === true ? true : false}
-                              size={button.size ? button.size : 'small'}
-                              on-click={() => this.handleClick()}>
-                              { button.text ? button.text : 'Confirm' }
-                   </el-button>
+            var hide_button_if_value = false;
+            if (this.objectHas(button, 'hide_if_value') && button.hide_if_value) {
+                hide_button_if_value = true;
+            }
+
+            if (!hide_button_if_value && !extra_content || !hide_button_if_value || hide_button_if_value && !extra_content) {
+                button_content = <el-button type={button.type ? button.type : 'primary'}
+                                            loading={this.loading}
+                                            plain={button.plain === true ? true : false}
+                                            size={button.size ? button.size : 'small'}
+                                            on-click={() => this.handleClick()}>{ button.text ? button.text : 'Confirm' }
+                                 </el-button>
+            }
+
+            return <div>{button_content}{extra}</div>
         },
+
+        /**
+         * Render the date.
+         *
+         * @return JSX
+         */
+        date()
+        {
+            var date = this.col.date ? this.col.date : {};
+            var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+            return  <el-date-picker type="date"
+                                    v-model={this.temp_date}
+                                    on-change={(val) => this.dateChange(val)}
+                                    disabled={this.loading}
+                                    style="width: 100%;"
+                                    size={date.size ? date.size : 'mini'}
+                                    placeholder={date.placeholder}
+                                    format={date.format ? date.format : 'dd/MM/yyyy'}
+                                    value-format={date.value_format ? date.value_format : 'dd-MM-yyyy'}>
+                    </el-date-picker>
+        }
     },
 
     methods: {
@@ -66,11 +118,48 @@ export default {
         {
             var action = this.col.action ? this.col.action : {};
             if (action.type === 'api' && this.col.api) {
-                var path = collumn_util.replaceVariables(this.col.api.path, this.row);
                 var dots = collumn_util.replaceWhereLookup(this.col.action.set, this.row);
-                collumn_util.setRowValue(this.row, dots, this.col.action.value);
 
+                if (dots !== null) {
+                    collumn_util.setRowValue(this.row, dots, this.col.action.value);
+                    this.apiAction();
+                } else {
+                    this.$message({
+                      message: "Sorry, content not available.",
+                      type: 'error',
+                      showClose: true,
+                    });
+                }
+            }
+        },
 
+        dateChange(val)
+        {
+            var dots = collumn_util.replaceWhereLookup(this.col.action.set, this.row);
+
+            if (dots !== null) {
+                collumn_util.setRowValue(this.row, dots, val);
+                this.apiAction();
+            } else {
+                this.$message({
+                  message: "Sorry, content not available.",
+                  type: 'error',
+                  showClose: true,
+                });
+            }
+        },
+
+        apiAction(path)
+        {
+            var path = path ? path : null;
+
+            if (path === null) {
+                if (this.objectHas(this.col, 'api.path')) {
+                    path = collumn_util.replaceVariables(this.col.api.path, this.row)
+                }
+            }
+
+            if (path !== null) {
                 this.loading = true;
                 api.persist(this.col.api.method, {
                       path: path,
@@ -86,11 +175,10 @@ export default {
                   }.bind(this))
                   .catch(function (error) {
                       this.loading = false;
-                      // this.errors = error;
                   }.bind(this));
-
             }
-        },
+
+        }
     }
 }
 </script>

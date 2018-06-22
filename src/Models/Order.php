@@ -20,7 +20,7 @@ class Order extends Model implements OrderContract
 {
     use  LogsActivity, ResponsableTrait, FormatDatesTrait, HasMediaAttached, HasContentAttached;
 
-    protected $statuses = [
+    public static $statuses = [
       'STATUS_DRAFT' => 'Draft',
       'STATUS_PROFORMA' => 'Pro-Forma',
       'STATUS_PROCESSING' => 'Processing',
@@ -41,13 +41,13 @@ class Order extends Model implements OrderContract
      */
     public function getStatuses()
     {
-        $statuses = $this->statuses;
+        $statuses = self::$statuses;
 
-        if ($this->status === $this->statuses['STATUS_PROCESSING']) {
-            $statuses = array_except($this->statuses, ['STATUS_DRAFT']);
+        if ($this->status === self::$statuses['STATUS_PROCESSING']) {
+            $statuses = array_except(self::$statuses, ['STATUS_DRAFT']);
         }
-        if ($this->status === $this->statuses['STATUS_COMPLETED']) {
-            $statuses = array_except($this->statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
+        if ($this->status === self::$statuses['STATUS_COMPLETED']) {
+            $statuses = array_except(self::$statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
         }
 
         $only_values = [];
@@ -64,7 +64,7 @@ class Order extends Model implements OrderContract
      */
     public function setStatusFromName($name = 'Draft')
     {
-        $filtered = array_where($this->statuses, function ($value, $key) use ($name) {
+        $filtered = array_where(self::$statuses, function ($value, $key) use ($name) {
             return $value === $name;
         });
 
@@ -362,7 +362,7 @@ class Order extends Model implements OrderContract
      */
     public function getStatusAttribute($value)
     {
-        return isset($this->statuses[$value]) ? $this->statuses[$value] : null;
+        return isset(self::$statuses[$value]) ? self::$statuses[$value] : null;
     }
 
     /**
@@ -372,7 +372,7 @@ class Order extends Model implements OrderContract
      */
     public function invoiceName()
     {
-        return ($this->status === $this->statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === $this->statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
+        return ($this->status === self::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === self::$statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
     }
 
     public function getNeedsAddressAttribute()

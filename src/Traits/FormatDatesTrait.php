@@ -58,7 +58,7 @@ trait FormatDatesTrait
 
         return [
             'carbon' => isset($date) ? $date : null,
-            'date' => $value ? $date->toDateTimeString() : null,
+            'date' => $value ? $date->format('d-m-Y') : null,
             'timezone' => $value ? $date->timezone : null,
             'human' => $value ? $date->diffForHumans(Carbon::now(), true) . ' ago' : null,
         ];

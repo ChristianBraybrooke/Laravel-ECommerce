@@ -18,20 +18,38 @@
             </template>
 
             <template slot="actionButtons" slot-scope="props">
-                <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }" v-if="tableOptions.viewText">
-                    <el-button
-                      size="mini"
-                      class="action_btn view_btn">{{ tableOptions.viewText }}
-                    </el-button>
-                </router-link>
 
-                <a :href="'/ecommerce-templates/invoice-download?reports=' + props.row.id" target="_blank">
-                    <el-button
-                      size="mini"
-                      type="success"
-                      class="action_btn view_btn">Download PDF
-                    </el-button>
-                </a>
+                <el-popover trigger="hover" placement="top">
+
+                    <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }" v-if="tableOptions.viewText">
+                        <el-button
+                          size="mini"
+                          type="success"
+                          class="action_btn view_btn">{{ tableOptions.viewText }}
+                        </el-button>
+                    </router-link>
+
+                    <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref_number + '&body=Hello ' + props.row.customer.first_name + ','">
+                        <el-button
+                          size="mini"
+                          plain
+                          class="action_btn view_btn">Email Customer
+                        </el-button>
+                    </a>
+
+                    <a :href="'/ecommerce-templates/invoice-download?reports=' + props.row.id" target="_blank">
+                        <el-button
+                          size="mini"
+                          plain
+                          class="action_btn view_btn">Download PDF
+                        </el-button>
+                    </a>
+
+                  <div slot="reference">
+                      <el-button size="mini">Actions</el-button>
+                  </div>
+                </el-popover>
+
             </template>
         </data-table>
     </div>
@@ -93,39 +111,59 @@ export default {
                           sortable: true,
                           label: 'Ref',
                           align: 'left',
-                          resizable: true
+                          resizable: false
                       },
                       {
                           prop: 'name',
                           sortable: true,
-                          label: 'Customer Name',
+                          label: 'Customer',
                           formatter: function(row, column, cellValue) {
-                              return row.customer.full_name;
-                          },
+                              var lines = [];
+                              var address = [];
+                              forEach(row.shipping_address, (line, key) => {
+                                  if(line) {
+                                      address.push(line);
+                                  }
+                                  lines.push(<li>{line}</li>);
+                              })
+                              return <el-popover trigger="hover" placement="top">
+                                         <ul class="order_address_list table_col_list">{lines}</ul>
+                                         <el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy</el-button>
+                                         <div slot="reference"><strong>{row.customer.first_name} {row.customer.last_name}</strong></div>
+                                     </el-popover>
+                              // return <div><ul class="order_address_list table_col_list">{lines}</ul><el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy</el-button></div>
+                          }.bind(this),
                           align: 'left',
-                          resizable: true
+                          resizable: false
                       },
                       {
                           prop: 'created_at.date',
                           sortable: true,
                           label: 'Order Placed',
                           align: 'left',
-                          resizable: true
+                          resizable: false
                       },
                       {
                           prop: 'items',
                           sortable: true,
-                          label: 'Order Summary',
+                          label: 'Summary',
                           align: 'left',
-                          resizable: true,
+                          resizable: false,
                           formatter: function(row, column, cellValue) {
                               var items = [];
+                              var total = [];
                               forEach(row.items, function (item) {
+                                  var real_quantity = Array(item.quantity).fill().map((_, i) => i * i);
+                                  real_quantity.forEach(() => {
+                                      total.push(item.name)
+                                  })
                                   items.push(<li>{item.quantity + ' * ' + item.name}</li>);
                               });
 
-                              return <ul>{items}</ul>
-
+                              return <el-popover trigger="hover" placement="top">
+                                         <ul class="order_items_list table_col_list">{items}</ul>
+                                         <div slot="reference"><strong>{total.length} items</strong></div>
+                                     </el-popover>
                           },
                       },
                       {
@@ -136,19 +174,7 @@ export default {
                               return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
                           },
                           align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'status',
-                          sortable: true,
-                          label: 'Status',
-                          formatter: function(row, column, cellValue) {
-                              var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
-
-                              return <el-tag type={type} size="medium">{ row.status }</el-tag>;
-                          },
-                          align: 'left',
-                          resizable: true
+                          resizable: false
                       },
                   ],
                   bulkOptions: [
@@ -193,6 +219,34 @@ export default {
                   this.tableOptions.collumns.push(col);
               })
           }
+          this.tableOptions.collumns.push(
+              {
+                  prop: 'status',
+                  sortable: true,
+                  label: 'Status',
+                  formatter: function(row, column, cellValue) {
+                      var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
+                      var config = this.ecommerceConfig;
+
+                      var options = [];
+                      forEach(config.orders.statuses, (status, key) => {
+                          options.push(<el-option label={status} value={status}></el-option>);
+                      });
+
+                      return <el-popover trigger="hover" placement="top">
+                          <el-select on-change={() => this.apiAction(row)} v-model={row.status} size="mini" placeholder="Select">
+                              {options}
+                          </el-select>
+
+                          <div slot="reference">
+                              <el-tag type={type} size="medium">{ row.status }</el-tag>
+                          </div>
+                      </el-popover>
+                  }.bind(this),
+                  align: 'left',
+                  resizable: false
+              },
+          )
 
       },
 
@@ -228,6 +282,28 @@ export default {
               .catch(function (errors) {
                   this.loading = false;
               }.bind(this));
+          },
+
+          apiAction(row)
+          {
+              api.persist('put', {
+                    path: 'orders/' + row.id,
+                    object: row
+                })
+                .then(function (data) {
+                    this.$message({
+                      message: "Status Updated!",
+                      type: 'success',
+                      showClose: true,
+                    });
+                }.bind(this))
+                .catch(function (error) {
+                    this.$message({
+                      message: "Error updating status.",
+                      type: 'error',
+                      showClose: true,
+                    });
+                }.bind(this));
           }
 
       },
@@ -236,4 +312,9 @@ export default {
 </script>
 
 <style lang="css">
+ul.order_address_list {
+    list-style: none;
+    -webkit-margin-before: 0;
+    -webkit-padding-start: 0;
+}
 </style>

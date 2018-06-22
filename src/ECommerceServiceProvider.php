@@ -24,6 +24,7 @@ use Illuminate\Filesystem\Filesystem;
 use File;
 use ChrisBraybrooke\ECommerce\Commands\InitialSetupCommand;
 use ChrisBraybrooke\ECommerce\Commands\CreateAdminCommand;
+use ChrisBraybrooke\ECommerce\Models\Order;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -179,9 +180,13 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     protected function configure()
     {
         Shop::setData([
-            'site_url' => (string)env('APP_URL'),
+            'site_name' => (string)config('app.name'),
+            'site_url' => (string)config('app.url'),
             'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
             'theme_color' => (string)env('THEME_COLOR', '#409eff'),
+            'orders' => [
+                'statuses' => Order::$statuses,
+            ],
             'api_version' => self::VERSION
         ]);
     }

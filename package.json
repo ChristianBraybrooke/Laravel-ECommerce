@@ -95,6 +95,7 @@
         "quill-image-resize-module": "^3.0.0",
         "slick-carousel": "^1.8.1",
         "vee-validate": "^2.0.9",
+        "vue-clipboard2": "^0.2.0",
         "vue-directive-tooltip": "^1.4.5",
         "vue-progressive-image": "^2.4.4",
         "vue-quill-editor": "^3.0.6",

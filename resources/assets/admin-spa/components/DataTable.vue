@@ -324,25 +324,25 @@ export default {
                   sortable: true,
                   label: 'ID',
                   align: 'left',
-                  resizable: true
+                  resizable: false
               },
               {
                   prop: 'name',
                   sortable: true,
                   label: 'Name',
                   align: 'left',
-                  resizable: true
+                  resizable: false
               },
               {
                   prop: 'created_at.human',
                   sortable: true,
                   label: 'Created',
                   align: 'left',
-                  resizable: true
+                  resizable: false
               },
               {
                   prop: 'live_at.live',
-                  sortable: true,
+                  sortable: false,
                   label: 'Live',
                   align: 'left',
                   formatter: function(row, column, cellValue) {
@@ -447,7 +447,7 @@ export default {
 
       colourRules()
       {
-          return this.objectHas(ecommerceConfig, 'col_colours.orders') ? ecommerceConfig.col_colours.orders : [];
+          return this.objectHas(ecommerceConfig, `col_colours.${this.typeNamePlural}`) ? ecommerceConfig.col_colours.orders : [];
       },
   },
 
@@ -763,7 +763,14 @@ export default {
 </script>
 
 <style lang="css">
+.el-table--striped .el-table__body tr.row_has_colour.el-table__row--striped td {
+    background-color: initial!important;
+}
 .el-table--enable-row-hover .el-table__body tr.row_has_colour:hover > td {
     background-color: initial!important;
+}
+.table_col_list {
+    font-size: 12px;
+    line-height: 1.2;
 }
 </style>

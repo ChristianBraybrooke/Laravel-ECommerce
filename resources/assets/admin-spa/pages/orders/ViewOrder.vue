@@ -59,7 +59,7 @@
                                                     style="width: 100%;"
                                                     placeholder="Pick a date"
                                                     format="dd/MM/yyyy"
-                                                    value-format="yyyy-MM-dd"
+                                                    value-format="dd-MM-yyy"
                                                     :picker-options="deliveryDateOptions">
                                     </el-date-picker>
                                 </el-form-item>

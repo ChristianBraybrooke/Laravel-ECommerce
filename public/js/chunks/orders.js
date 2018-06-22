@@ -10,6 +10,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _babelHelperVueJsxMergeProps = __webpack_require__("./node_modules/babel-helper-vue-jsx-merge-props/index.js");
+
+var _babelHelperVueJsxMergeProps2 = _interopRequireDefault(_babelHelperVueJsxMergeProps);
+
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 
 var _apiService2 = _interopRequireDefault(_apiService);
@@ -26,7 +30,7 @@ exports.default = {
     name: 'TableCollumn',
 
     render: function render(h) {
-        return this.button;
+        return this.getRenderType;
     },
 
     props: {
@@ -45,15 +49,36 @@ exports.default = {
 
     data: function data() {
         return {
-            loading: false
+            loading: false,
+            temp_date: ''
         };
     },
     mounted: function mounted() {
         console.log('TableCollumn.vue Mounted.');
+
+        if (this.col.type === 'date') {
+            this.temp_date = _collumn2.default.dotToObjectPath(_collumn2.default.replaceWhereLookup(this.col.value, this.row), this.row);
+        }
     },
 
 
     computed: {
+        getRenderType: function getRenderType() {
+            var h = this.$createElement;
+
+            switch (this.col.type) {
+                case 'button':
+                    return this.button;
+                    break;
+                case 'date':
+                    return this.date;
+                    break;
+                default:
+                    return this.col.value ? h("div", [_collumn2.default.dotToObjectPath(_collumn2.default.replaceWhereLookup(this.col.value, this.row), this.row)]) : '';
+
+            }
+        },
+
 
         /**
          * Render the button.
@@ -66,23 +91,78 @@ exports.default = {
             var h = this.$createElement;
 
             var button = this.col.button ? this.col.button : {};
+            var button_content = '';
+            var extra_content = _collumn2.default.dotToObjectPath(_collumn2.default.replaceWhereLookup(button.value, this.row), this.row);
+            var extra = button.show_value ? h("span", [extra_content]) : '';
 
-            return h(
-                "el-button",
-                {
-                    attrs: { type: button.type ? button.type : 'primary',
-                        loading: this.loading,
-                        plain: button.plain === true ? true : false,
-                        size: button.size ? button.size : 'small'
-                    },
-                    on: {
-                        "click": function click() {
-                            return _this.handleClick();
+            var hide_button_if_value = false;
+            if (this.objectHas(button, 'hide_if_value') && button.hide_if_value) {
+                hide_button_if_value = true;
+            }
+
+            if (!hide_button_if_value && !extra_content || !hide_button_if_value || hide_button_if_value && !extra_content) {
+                button_content = h(
+                    "el-button",
+                    {
+                        attrs: { type: button.type ? button.type : 'primary',
+                            loading: this.loading,
+                            plain: button.plain === true ? true : false,
+                            size: button.size ? button.size : 'small'
+                        },
+                        on: {
+                            "click": function click() {
+                                return _this.handleClick();
+                            }
                         }
+                    },
+                    [button.text ? button.text : 'Confirm']
+                );
+            }
+
+            return h("div", [button_content, extra]);
+        },
+
+
+        /**
+         * Render the date.
+         *
+         * @return JSX
+         */
+        date: function date() {
+            var _this2 = this;
+
+            var h = this.$createElement;
+
+            var date = this.col.date ? this.col.date : {};
+            var value = _collumn2.default.dotToObjectPath(_collumn2.default.replaceWhereLookup(this.col.value, this.row), this.row);
+            return h("el-date-picker", (0, _babelHelperVueJsxMergeProps2.default)([{
+                attrs: { type: "date",
+                    value: _this2.temp_date
+                },
+                on: {
+                    "input": function input($$v) {
+                        _this2.temp_date = $$v;
+                    }
+                }
+            }, {
+                directives: [{
+                    name: "model",
+                    value: _this2.temp_date
+                }]
+            }, {
+                on: {
+                    "change": function change(val) {
+                        return _this2.dateChange(val);
                     }
                 },
-                [button.text ? button.text : 'Confirm']
-            );
+                attrs: {
+                    disabled: this.loading,
+
+                    size: date.size ? date.size : 'mini',
+                    placeholder: date.placeholder,
+                    format: date.format ? date.format : 'dd/MM/yyyy',
+                    "value-format": date.value_format ? date.value_format : 'dd-MM-yyyy' },
+                style: "width: 100%;" }]));
         }
     },
 
@@ -96,10 +176,44 @@ exports.default = {
         handleClick: function handleClick() {
             var action = this.col.action ? this.col.action : {};
             if (action.type === 'api' && this.col.api) {
-                var path = _collumn2.default.replaceVariables(this.col.api.path, this.row);
                 var dots = _collumn2.default.replaceWhereLookup(this.col.action.set, this.row);
-                _collumn2.default.setRowValue(this.row, dots, this.col.action.value);
 
+                if (dots !== null) {
+                    _collumn2.default.setRowValue(this.row, dots, this.col.action.value);
+                    this.apiAction();
+                } else {
+                    this.$message({
+                        message: "Sorry, content not available.",
+                        type: 'error',
+                        showClose: true
+                    });
+                }
+            }
+        },
+        dateChange: function dateChange(val) {
+            var dots = _collumn2.default.replaceWhereLookup(this.col.action.set, this.row);
+
+            if (dots !== null) {
+                _collumn2.default.setRowValue(this.row, dots, val);
+                this.apiAction();
+            } else {
+                this.$message({
+                    message: "Sorry, content not available.",
+                    type: 'error',
+                    showClose: true
+                });
+            }
+        },
+        apiAction: function apiAction(path) {
+            var path = path ? path : null;
+
+            if (path === null) {
+                if (this.objectHas(this.col, 'api.path')) {
+                    path = _collumn2.default.replaceVariables(this.col.api.path, this.row);
+                }
+            }
+
+            if (path !== null) {
                 this.loading = true;
                 _apiService2.default.persist(this.col.api.method, {
                     path: path,
@@ -113,7 +227,6 @@ exports.default = {
                     this.loading = false;
                 }.bind(this)).catch(function (error) {
                     this.loading = false;
-                    // this.errors = error;
                 }.bind(this));
             }
         }
@@ -1098,6 +1211,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _babelHelperVueJsxMergeProps = __webpack_require__("./node_modules/babel-helper-vue-jsx-merge-props/index.js");
+
+var _babelHelperVueJsxMergeProps2 = _interopRequireDefault(_babelHelperVueJsxMergeProps);
+
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
 
 var _apiService2 = _interopRequireDefault(_apiService);
@@ -1108,6 +1225,24 @@ var _TableCollumn2 = _interopRequireDefault(_TableCollumn);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1192,35 +1327,92 @@ exports.default = {
                     sortable: true,
                     label: 'Ref',
                     align: 'left',
-                    resizable: true
+                    resizable: false
                 }, {
                     prop: 'name',
                     sortable: true,
-                    label: 'Customer Name',
-                    formatter: function formatter(row, column, cellValue) {
-                        return row.customer.full_name;
-                    },
+                    label: 'Customer',
+                    formatter: function (row, column, cellValue) {
+                        var _this = this;
+
+                        var lines = [];
+                        var address = [];
+                        forEach(row.shipping_address, function (line, key) {
+                            if (line) {
+                                address.push(line);
+                            }
+                            lines.push(h('li', [line]));
+                        });
+                        return h(
+                            'el-popover',
+                            {
+                                attrs: { trigger: 'hover', placement: 'top' }
+                            },
+                            [h(
+                                'ul',
+                                { 'class': 'order_address_list table_col_list' },
+                                [lines]
+                            ), h(
+                                'el-button',
+                                {
+                                    attrs: { size: 'mini', plain: true },
+                                    on: {
+                                        'click': function click() {
+                                            return _this.copy(address.join(', '));
+                                        }
+                                    }
+                                },
+                                ['Copy']
+                            ), h(
+                                'div',
+                                { slot: 'reference' },
+                                [h('strong', [row.customer.first_name, ' ', row.customer.last_name])]
+                            )]
+                        );
+                        // return <div><ul class="order_address_list table_col_list">{lines}</ul><el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy</el-button></div>
+                    }.bind(this),
                     align: 'left',
-                    resizable: true
+                    resizable: false
                 }, {
                     prop: 'created_at.date',
                     sortable: true,
                     label: 'Order Placed',
                     align: 'left',
-                    resizable: true
+                    resizable: false
                 }, {
                     prop: 'items',
                     sortable: true,
-                    label: 'Order Summary',
+                    label: 'Summary',
                     align: 'left',
-                    resizable: true,
+                    resizable: false,
                     formatter: function formatter(row, column, cellValue) {
                         var items = [];
+                        var total = [];
                         forEach(row.items, function (item) {
+                            var real_quantity = Array(item.quantity).fill().map(function (_, i) {
+                                return i * i;
+                            });
+                            real_quantity.forEach(function () {
+                                total.push(item.name);
+                            });
                             items.push(h('li', [item.quantity + ' * ' + item.name]));
                         });
 
-                        return h('ul', [items]);
+                        return h(
+                            'el-popover',
+                            {
+                                attrs: { trigger: 'hover', placement: 'top' }
+                            },
+                            [h(
+                                'ul',
+                                { 'class': 'order_items_list table_col_list' },
+                                [items]
+                            ), h(
+                                'div',
+                                { slot: 'reference' },
+                                [h('strong', [total.length, ' items'])]
+                            )]
+                        );
                     }
                 }, {
                     prop: 'amount',
@@ -1230,24 +1422,7 @@ exports.default = {
                         return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
                     },
                     align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'status',
-                    sortable: true,
-                    label: 'Status',
-                    formatter: function formatter(row, column, cellValue) {
-                        var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
-
-                        return h(
-                            'el-tag',
-                            {
-                                attrs: { type: type, size: 'medium' }
-                            },
-                            [row.status]
-                        );
-                    },
-                    align: 'left',
-                    resizable: true
+                    resizable: false
                 }],
                 bulkOptions: [{
                     value: 'completed',
@@ -1277,7 +1452,7 @@ exports.default = {
     watch: {},
 
     mounted: function mounted() {
-        var _this = this;
+        var _this2 = this;
 
         var h = this.$createElement;
 
@@ -1290,9 +1465,70 @@ exports.default = {
                         attrs: { col: col, row: row }
                     });
                 };
-                _this.tableOptions.collumns.push(col);
+                _this2.tableOptions.collumns.push(col);
             });
         }
+        this.tableOptions.collumns.push({
+            prop: 'status',
+            sortable: true,
+            label: 'Status',
+            formatter: function (row, column, cellValue) {
+                var _this3 = this;
+
+                var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
+                var config = this.ecommerceConfig;
+
+                var options = [];
+                forEach(config.orders.statuses, function (status, key) {
+                    options.push(h('el-option', {
+                        attrs: { label: status, value: status }
+                    }));
+                });
+
+                return h(
+                    'el-popover',
+                    {
+                        attrs: { trigger: 'hover', placement: 'top' }
+                    },
+                    [h(
+                        'el-select',
+                        (0, _babelHelperVueJsxMergeProps2.default)([{
+                            on: {
+                                'change': function change() {
+                                    return _this3.apiAction(row);
+                                },
+                                'input': function input($$v) {
+                                    row.status = $$v;
+                                }
+                            },
+                            attrs: {
+                                value: row.status
+                            }
+                        }, {
+                            directives: [{
+                                name: 'model',
+                                value: row.status
+                            }]
+                        }, {
+                            attrs: { size: 'mini', placeholder: 'Select' }
+                        }]),
+                        [options]
+                    ), h(
+                        'div',
+                        { slot: 'reference' },
+                        [h(
+                            'el-tag',
+                            {
+                                attrs: { type: type, size: 'medium' }
+                            },
+                            [row.status]
+                        )]
+                    )]
+                );
+            }.bind(this),
+            align: 'left',
+            resizable: false
+        });
     },
 
 
@@ -1322,6 +1558,24 @@ exports.default = {
                 this.loading = false;
             }.bind(this)).catch(function (errors) {
                 this.loading = false;
+            }.bind(this));
+        },
+        apiAction: function apiAction(row) {
+            _apiService2.default.persist('put', {
+                path: 'orders/' + row.id,
+                object: row
+            }).then(function (data) {
+                this.$message({
+                    message: "Status Updated!",
+                    type: 'success',
+                    showClose: true
+                });
+            }.bind(this)).catch(function (error) {
+                this.$message({
+                    message: "Error updating status.",
+                    type: 'error',
+                    showClose: true
+                });
             }.bind(this));
         }
     }
@@ -1796,7 +2050,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nul.order_address_list {\n    list-style: none;\n    -webkit-margin-before: 0;\n    -webkit-padding-start: 0;\n}\n", ""]);
 
 // exports
 
@@ -1841,7 +2095,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -10053,14 +10307,52 @@ var render = function() {
               key: "actionButtons",
               fn: function(props) {
                 return [
-                  _vm.tableOptions.viewText
-                    ? _c(
-                        "router-link",
+                  _c(
+                    "el-popover",
+                    { attrs: { trigger: "hover", placement: "top" } },
+                    [
+                      _vm.tableOptions.viewText
+                        ? _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  path:
+                                    props.editPathFormated + "/" + props.row.id
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "el-button",
+                                {
+                                  staticClass: "action_btn view_btn",
+                                  attrs: { size: "mini", type: "success" }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(_vm.tableOptions.viewText) +
+                                      "\n                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "a",
                         {
                           attrs: {
-                            to: {
-                              path: props.editPathFormated + "/" + props.row.id
-                            }
+                            href:
+                              "mailto:" +
+                              props.row.customer.email +
+                              "?subject=Order Ref " +
+                              props.row.ref_number +
+                              "&body=Hello " +
+                              props.row.customer.first_name +
+                              ","
                           }
                         },
                         [
@@ -10068,38 +10360,46 @@ var render = function() {
                             "el-button",
                             {
                               staticClass: "action_btn view_btn",
-                              attrs: { size: "mini" }
+                              attrs: { size: "mini", plain: "" }
                             },
-                            [
-                              _vm._v(
-                                _vm._s(_vm.tableOptions.viewText) +
-                                  "\n                "
-                              )
-                            ]
+                            [_vm._v("Email Customer\n                    ")]
                           )
                         ],
                         1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href:
-                          "/ecommerce-templates/invoice-download?reports=" +
-                          props.row.id,
-                        target: "_blank"
-                      }
-                    },
-                    [
+                      ),
+                      _vm._v(" "),
                       _c(
-                        "el-button",
+                        "a",
                         {
-                          staticClass: "action_btn view_btn",
-                          attrs: { size: "mini", type: "success" }
+                          attrs: {
+                            href:
+                              "/ecommerce-templates/invoice-download?reports=" +
+                              props.row.id,
+                            target: "_blank"
+                          }
                         },
-                        [_vm._v("Download PDF\n                ")]
+                        [
+                          _c(
+                            "el-button",
+                            {
+                              staticClass: "action_btn view_btn",
+                              attrs: { size: "mini", plain: "" }
+                            },
+                            [_vm._v("Download PDF\n                    ")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { attrs: { slot: "reference" }, slot: "reference" },
+                        [
+                          _c("el-button", { attrs: { size: "mini" } }, [
+                            _vm._v("Actions")
+                          ])
+                        ],
+                        1
                       )
                     ],
                     1
@@ -10424,7 +10724,7 @@ var render = function() {
                                                 type: "date",
                                                 placeholder: "Pick a date",
                                                 format: "dd/MM/yyyy",
-                                                "value-format": "yyyy-MM-dd",
+                                                "value-format": "dd-MM-yyy",
                                                 "picker-options":
                                                   _vm.deliveryDateOptions
                                               },
@@ -12415,6 +12715,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
+var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
 exports.default = {
 
@@ -12443,20 +12744,26 @@ exports.default = {
     replaceWhereLookup: function replaceWhereLookup(set, object) {
         var _this2 = this;
 
-        var string = set.replace(/\$\[(.+?)\]/g, function (x) {
-            x = x.replace('$[', '');
-            x = x.replace(']', '');
+        if (set) {
+            var string = set.replace(/\$\[(.+?)\]/g, function (x) {
+                x = x.replace('$[', '');
+                x = x.replace(']', '');
 
-            var before_equals = x.split('=')[0];
-            var after_equals = x.split('=')[1];
-            var lookup = set.split('.$[')[0];
-            lookup = _this2.dotToObjectPath(lookup, object);
+                var before_equals = x.split('=')[0];
+                var after_equals = x.split('=')[1];
+                var lookup = set.split('.$[')[0];
+                lookup = _this2.dotToObjectPath(lookup, object);
 
-            return findIndex(lookup, function (o) {
-                return o[before_equals] === after_equals;
+                return findIndex(lookup, function (o) {
+                    return o[before_equals] === after_equals;
+                });
             });
-        });
-        return string;
+            if (has(object, string)) {
+                return string;
+            }
+            return null;
+        }
+        return null;
     },
 
 
@@ -12466,9 +12773,9 @@ exports.default = {
      * @return Mixed
      */
     dotToObjectPath: function dotToObjectPath(string, object) {
-        return string.split('.').reduce(function (o, i) {
-            return o[i];
-        }, object);
+        return string ? string.split('.').reduce(function (o, i) {
+            return has(o, i) ? o[i] : null;
+        }, object) : null;
     },
 
 
