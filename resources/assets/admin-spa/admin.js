@@ -56,10 +56,16 @@ Vue.mixin({
               return x.toUpperCase();
             });
         },
+
+        simplePrice(price)
+        {
+            price = String(price);
+            return parseFloat(price.replace(/,/g, ''));
+        },
+
         formatPrice(price, prepend = '', append = '')
         {
-            var price = String(price);
-            var number = parseFloat(price.replace(/,/g, ''));
+            var number = this.simplePrice(price)
             return prepend + numeral(number).format('0,0.00') + append;
         }
     }

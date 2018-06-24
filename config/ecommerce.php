@@ -72,6 +72,9 @@ return [
 
       //
       'currency' => ChrisBraybrooke\ECommerce\Models\Currency::class,
+
+      //
+      'payment' => ChrisBraybrooke\ECommerce\Models\Payment::class,
   ],
 
   'shop_data' => [

@@ -102,12 +102,13 @@ class ApiOrdersController extends Controller
         $order_extras = 0;
         $order_subtotal = 0;
         $order_vat = 0;
+        $order_discount = $request->filled('discount_rate') ? $request->discount_rate : 0;
         $order_shipping = (int)$request->shipping_rate;
 
         if ($request->filled('items')) {
             foreach ($request->items as $key => $item) {
-                $quantity = $item['quantity'] ?? 1;
-                $price = (int)$item['price'];
+                $quantity = (int)$item['quantity'] ?? 1;
+                $price = (float)str_replace(',', '', $item['price']);
                 $order_subtotal = $order_subtotal + ($price * $quantity);
 
                 $options = [];
@@ -128,15 +129,22 @@ class ApiOrdersController extends Controller
                     'subtotal' => ($price * $quantity),
                 ];
             }
-            $order_vat = ($order_subtotal + $order_extras + $order_shipping) * 0.2;
         }
+
+        $total_ex_vat = $order_subtotal + $order_extras + $order_shipping;
+        $discount_amount = $total_ex_vat * ((float)$order_discount / 100);
+        $total_ex_vat = $total_ex_vat - $discount_amount;
+        $order_vat = $total_ex_vat * 0.2;
+        $order_total = $total_ex_vat + $order_vat;
+
         $cart_data = [
             'items' => $items,
             'extras' => $order_extras,
             'sub_total' => $order_subtotal,
             'shipping' => $order_shipping,
+            'discount' => $order_discount,
             'tax' => $order_vat,
-            'total' => $order_subtotal + $order_extras + $order_shipping + $order_vat
+            'total' => $order_total
         ];
 
         $order->update([

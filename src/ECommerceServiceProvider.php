@@ -15,6 +15,7 @@ use ChrisBraybrooke\ECommerce\Contracts\Form as FormContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormField as FormFieldContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormSection as FormSectionContract;
 use ChrisBraybrooke\ECommerce\Contracts\Menu as MenuContract;
+use ChrisBraybrooke\ECommerce\Contracts\Payment as PaymentContract;
 use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
@@ -141,6 +142,10 @@ class ECommerceServiceProvider extends LaravelServiceProvider
 
         // Currency
         $loader->alias('Currency', $config['currency']);
+
+        // Payment
+        $this->app->bind(PaymentContract::class, $config['payment']);
+        $loader->alias('Payment', $config['payment']);
     }
 
     /**
@@ -489,6 +494,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/add_user_variant_order_forms_field_to_products_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 2).'_add_user_variant_order_forms_field_to_products_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('CreatePaymentsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_payments_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_create_payments_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

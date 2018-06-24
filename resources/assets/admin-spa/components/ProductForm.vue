@@ -3,10 +3,11 @@
     <div style="display: initial;">
 
       <el-button :loading="loading"
-                 :size="editForm ? 'mini' : 'small'"
-                 :plain="editForm"
+                 :size="mergedButton.size"
+                 :plain="mergedButton.plain"
+                 :class="mergedButton.class"
                  @click="showModal = true;"
-                 type="primary">{{ editForm ? 'Edit'  : (loading ? 'Loading Products' : 'Add Product(s)') }}
+                 type="primary">{{(loading ? mergedButton.loading : mergedButton.text)}}
       </el-button>
 
       <el-dialog :title="(editForm ? 'Edit' : 'Add') + ' Product'"
@@ -29,9 +30,9 @@
 
                      <el-row :gutter="20">
                          <el-col :md="{span:16, offset: 4}">
-                             <el-form-item label="Choose Category" size="small" prop="productCategory">
+                             <el-form-item label="Choose Category" prop="productCategory">
                                  <div>
-                                     <el-radio-group v-model="productCategory" size="small">
+                                     <el-radio-group v-model="productCategory" class="product_form_radio">
                                          <el-radio-button v-for="type in collectionToShow.types.data" :label="type" :key="type.id">{{ type.name }}</el-radio-button>
                                      </el-radio-group>
                                  </div>
@@ -41,10 +42,14 @@
 
                      <el-row :gutter="20" v-show="productCategory">
                          <el-col :md="{span:16, offset: 4}">
-                             <el-form-item label="Choose Product" size="small" prop="productFirst">
+                             <el-form-item label="Choose Product" prop="productFirst">
                                  <div>
-                                     <el-radio-group v-model="productFirst" size="small">
-                                         <el-radio-button v-for="product in productsToShow" :label="product" :key="product.id">{{ product.name }}</el-radio-button>
+                                     <el-radio-group v-model="productFirst" class="product_form_radio">
+                                         <template v-for="product in productsToShow">
+                                             <el-tooltip :content="shopData.currency + (product.price ? product.price : '0.00')" placement="top" effect="light">
+                                                 <el-radio-button :label="product">{{ product.name }}</el-radio-button>
+                                             </el-tooltip>
+                                         </template>
                                      </el-radio-group>
                                  </div>
                              </el-form-item>
@@ -53,10 +58,14 @@
 
                      <el-row :gutter="20" v-show="productFirst && productVariantsToShow.length >= 1">
                          <el-col :md="{span:16, offset: 4}">
-                             <el-form-item :label="'Choose Variant'" size="small" prop="product">
+                             <el-form-item :label="'Choose Variant'" prop="product">
                                  <div>
-                                     <el-radio-group v-model="form.product" size="small" v-if="productVariantsToShow.length < 10">
-                                         <el-radio-button v-for="variant in productVariantsToShow" :label="variant" :key="variant.id">{{ variant.name }}</el-radio-button>
+                                     <el-radio-group v-model="form.product" class="product_form_radio" v-if="productVariantsToShow.length < 10">
+                                         <template v-for="variant in productVariantsToShow">
+                                             <el-tooltip :content="shopData.currency + (variant.price ? variant.price : '0.00')" placement="top" effect="light">
+                                                 <el-radio-button :label="variant">{{ variant.name }}</el-radio-button>
+                                             </el-tooltip>
+                                         </template>
                                      </el-radio-group>
                                      <el-select v-model="form.product" size="small" v-else value-key="id">
                                          <el-option v-for="variant in productVariantsToShow"
@@ -94,11 +103,11 @@
                                                         :label="optionLabel(option)"></el-option>
                                          </el-select>
                                          <div v-if="field.type === 'radio'">
-                                             <el-radio-group v-model="form.product.options[field.name]" size="small">
+                                             <el-radio-group v-model="form.product.options[field.name]"  class="product_form_radio">
                                                  <el-radio-button v-for="option in field.options" :label="option" :key="option.id">{{optionLabel(option)}}</el-radio-button>
                                              </el-radio-group>
                                          </div>
-
+                                         <p class="form_item_description">{{ field.description }}</p>
                                      </el-form-item>
                                  </el-col>
                              </el-row>
@@ -124,12 +133,22 @@
                      <el-row :gutter="20">
                          <el-col :md="12">
                              <h5>Price</h5>
+                             <el-button size="mini"
+                                        :type="editPrice ? 'warning'  : 'primary'"
+                                        plain
+                                        @click="handleEditPrice">{{ editPrice ? 'Reset Price' : 'Edit Price' }}</el-button>
                          </el-col>
                      </el-row>
 
                      <el-row :gutter="20">
                          <el-col :md="{span:16, offset: 4}">
-                             <p v-for="(value, key) in formattedPrice(form.product)"><strong>{{ key }}:</strong> {{ shopData.currency }}{{ value }}</p>
+                            <template v-for="(value, key) in formattedPrice(form.product)">
+                                <p><strong>{{ key }}:</strong> <span v-show="key !== 'Base Price' || !editPrice && key === 'Base Price'">{{ shopData.currency }}{{ value }}</span>
+                                    <div class="price_changer" v-show="editPrice && key === 'Base Price'">
+                                         <span class="currency">{{ shopData.currency }}</span><el-input-number size="mini" @change="adjustPrice" :value="simplePrice(form.product.price)" controls-position="right"></el-input-number>
+                                    </div>
+                                </p>
+                            </template>
                          </el-col>
                      </el-row>
 
@@ -152,8 +171,10 @@
 </template>
 
 <script>
-import api from 'services/api-service';
-import { mapActions, mapGetters } from 'vuex';
+import api from 'services/api-service'
+import clone from 'lodash.clone'
+import { mapActions, mapGetters } from 'vuex'
+import { operators } from 'utils/operators'
 
 var forEach = require('lodash.foreach');
 var range = require('lodash.range');
@@ -175,6 +196,10 @@ var formTemplate = {
       quantity: 1,
       order_form: orderFormTemplate,
       options: {},
+      product: {
+          quantity: 1,
+          options: {}
+      },
       variants: {
         data: [],
         order_form: orderFormTemplate
@@ -211,7 +236,14 @@ export default {
               default () {
                   return function (product) {}
               }
-          }
+          },
+          button: {
+              type: Object,
+              required: false,
+              default () {
+                  return {};
+              }
+          },
       },
 
       data () {
@@ -226,7 +258,17 @@ export default {
                   types: {
                       data: []
                   }
-              }
+              },
+              defaultButton: {
+                  text: 'Add Product',
+                  loading: 'Loading Products',
+                  size: 'small',
+                  plain: false,
+                  class: ''
+              },
+              mergedButton: {},
+              editPrice: false,
+              clonedPrice: '0.00'
           }
       },
 
@@ -238,7 +280,7 @@ export default {
 
         quantityRange()
         {
-            return range(1,251);
+            return range(1, 250);
         },
 
         productsToShow()
@@ -267,7 +309,10 @@ export default {
       watch: {
 
         'form.product': function (val) {
-            this.$set(this.form.product, 'options', {});
+            if (!this.objectHas(this.form, 'product.options')) {
+                this.$set(this.form.product, 'options', {});
+            }
+            this.clonedPrice = clone(this.form.product.price)
         },
 
         productCategory: function() {
@@ -277,18 +322,29 @@ export default {
         productFirst: function(value) {
             if (this.objectHas(value, 'variants.data')) {
                 if(value.variants.data.length >= 1) {
-                    this.form.product = {};
+                    this.form.product = {
+                        quantity: 1,
+                        options: {}
+                    };
                 } else {
+                  this.form.product.quantity = 1;
                   this.form.product = value;
+                  this.clonedPrice = clone(this.form.product.price)
                 }
             } else {
-                this.form.product = {};
+                this.form.product = {
+                    quantity: 1,
+                    options: {}
+                };
             }
         },
       },
 
       mounted () {
           console.log('ProductForm.vue Mounted');
+          this.clearAll();
+
+          Object.assign(this.mergedButton,this.defaultButton,this.button);
 
           if (!this.editForm) {
               this.getProductCollection();
@@ -308,8 +364,8 @@ export default {
                   api.get({
                         path: "collections/" + product_category_id,
                         params: {
-                            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data'],
-                            with: ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant']
+                            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description'],
+                            with: ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant', 'types.products.orderForm.sections.fields']
                         }
                     })
                     .then(function (data) {
@@ -321,6 +377,19 @@ export default {
                         this.errors = error;
                     }.bind(this));
               }
+          },
+
+          adjustPrice(val)
+          {
+              this.form.product.price = val;
+          },
+
+          handleEditPrice()
+          {
+              if (this.editPrice) {
+                  this.form.product.price = clone(this.clonedPrice);
+              }
+              this.editPrice = !this.editPrice;
           },
 
           closeAndClearModal()
@@ -347,37 +416,41 @@ export default {
 
           formattedPrice(product)
           {
-              var base_price = parseFloat(product.price);
+              var base_price = this.simplePrice(product.price);
               var base_with_extras = base_price;
               var extras = 0;
               if (product.options) {
-                  forEach(product.options, function(option) {
+                  forEach(product.options, (option) => {
                       if (option) {
                           if (option.price_mutator && option.price_value) {
-                              base_with_extras = this.operators[option.price_mutator](base_with_extras, option.price_value);
-                              extras = this.operators[option.price_mutator](extras, option.price_value);
+                              base_with_extras = operators[option.price_mutator](base_with_extras, option.price_value);
+                              extras = operators[option.price_mutator](extras, option.price_value);
                           }
                       }
-                  }.bind(this));
+                  });
               }
 
               var quantity = product.quantity ? product.quantity : 1;
               var total = base_with_extras * quantity;
               extras = extras * quantity;
               return {
-                  'Base Price': base_price,
-                  'Sub-Total': base_price * quantity,
-                  'Extras':  extras,
-                  'Total': total
+                  'Base Price': this.formatPrice(base_price),
+                  'Sub-Total': this.formatPrice(base_price * quantity),
+                  'Extras':  this.formatPrice(extras),
+                  'Total': this.formatPrice(total)
               };
           },
 
           clearAll()
           {
+              // if (this.objectHas(this.form, 'product.options')) {
+              //     this.form.product.options = {};
+              // }
               this.errors = {};
               this.form = formTemplate;
-              this.productCategory = '';
-              this.productFirst = '';
+
+              this.productCategory = null;
+              this.productFirst = null;
           },
 
           addProduct()
@@ -399,4 +472,33 @@ export default {
 </script>
 
 <style lang="css">
+.product_form_radio .el-radio-button {
+    margin: 0px 3px;
+    border-left: 1px solid #dcdfe6;
+}
+.product_form_radio .el-radio-button:first-child {
+    margin: 0px 3px 0px 0px;
+    border-left: 0;
+}
+.product_form_radio .el-radio-button:last-child {
+    margin: 0px 0px 0px 3px;
+}
+p.form_item_description {
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 0;
+}
+span.currency {
+    background: #f5f7fa;
+    padding: 4px 10px 6px 10px;
+    border: 1px solid #dde0e6;
+    margin-right: -1px;
+    border-radius: 3px 0px 0px 3px;
+}
+.price_changer {
+    margin-top: 10px;
+}
+.price_changer .el-input-number input {
+    border-radius: 0px 4px 4px 0px!important;
+}
 </style>

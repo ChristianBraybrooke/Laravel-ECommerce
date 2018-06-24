@@ -9,6 +9,10 @@
                 :request-includes="['created_at']"
                 :create-form="{}">
 
+        <template slot="createButton">
+            <product-form :button="{ text:'Create Estimate', size: '', plain: true, class:'create_btn'}"/>
+        </template>
+
     </data-table>
 </template>
 
@@ -19,6 +23,7 @@ export default {
       name: 'Estimates',
 
       components: {
+          ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
           DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
       },
 

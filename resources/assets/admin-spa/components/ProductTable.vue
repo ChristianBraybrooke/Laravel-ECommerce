@@ -22,7 +22,7 @@
             </el-table-column>
             <el-table-column prop="value"
                             label=""
-                            :formatter="function(row, column, cellValue) { return row.total === 'Shipping' ? shippingRowFormatter(cellValue) : formatPrice(cellValue, shopData.currency) }">
+                            :formatter="totalValueFormatter">
             </el-table-column>
             <el-table-column v-if="editable">
             </el-table-column>
@@ -225,9 +225,34 @@ export default {
               return this.editable ? <el-select v-model={this.order.shipping_rate} size="mini" style="max-width: 100px;">{options}</el-select> : this.formatPrice(this.order.shipping_rate, this.shopData.currency);
           },
 
+          discountRowFormatter(value)
+          {
+              var options = [];
+              forEach(range(0,101), function (range) {
+                  var label = `${value}%`;
+                  options.push(<el-option key={range} value={range} label={range + '%'}></el-option>);
+              }.bind(this));
+
+              return this.editable ? <el-select v-model={this.order.discount_rate} size="mini" style="max-width: 100px;">{options}</el-select> : `${this.order.discount_rate}%`;
+          },
+
           deleteRow(row)
           {
               this.order.items.splice(this.order.items.indexOf(row), 1);
+          },
+
+          totalValueFormatter(row, col, value)
+          {
+              switch (row.total) {
+                case 'Shipping':
+                  return this.shippingRowFormatter(value);
+                  break;
+                case 'Discount':
+                  return this.discountRowFormatter(value);
+                  break;
+                default:
+                  return this.formatPrice(value, this.shopData.currency);
+              }
           }
       }
 }

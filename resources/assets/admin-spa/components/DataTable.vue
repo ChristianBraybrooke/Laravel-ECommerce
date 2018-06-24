@@ -84,7 +84,7 @@
                 label="Actions">
                 <template slot-scope="scope">
 
-                    <slot name="actionButtons" :row="scope.row" :edit-path-formated="editPathFormated">
+                    <slot name="actionButtons" :row="scope.row" :delete="deleteData" :edit-path-formated="editPathFormated">
                         <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="mergedTableOptions.viewText">
                             <el-button
                               size="mini"
@@ -97,7 +97,7 @@
                           size="mini"
                           type="danger"
                           class="action_btn delete_btn"
-                          @click="deleteData(scope.$index, scope.row)">{{ mergedTableOptions.deleteText }}
+                          @click="deleteData(scope.row)">{{ mergedTableOptions.deleteText }}
                         </el-button>
                     </slot>
                 </template>
@@ -545,7 +545,7 @@ export default {
      * @param Object row
      * @return void
      */
-    deleteData(index, row)
+    deleteData(row)
     {
         this.dataErrors = {};
 

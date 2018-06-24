@@ -57,9 +57,9 @@ export default {
                   rules: {
                       required: false,
                   },
-                  options: {
+                  options: [
 
-                  }
+                  ]
               });
           },
 

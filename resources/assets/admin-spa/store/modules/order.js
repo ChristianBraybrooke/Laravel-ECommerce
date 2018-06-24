@@ -1,11 +1,13 @@
-import * as types from '../mutation-types';
-var forEach = require('lodash.foreach');
+import * as types from '../mutation-types'
+import orderUtil from 'utils/order'
+var forEach = require('lodash.foreach')
 
 // initial state
 const state = {
   order: {
       customer: {},
       shipping_rate: 60,
+      discount_rate: 0,
       billing_address: {},
       shipping_address: {},
       items: [],
@@ -20,51 +22,7 @@ const state = {
 const getters = {
   order: state => state.order,
   orderTotals(state) {
-
-      var operators = {
-          '+': function(a, b) { return parseInt(a) + parseInt(b) },
-          '-': function(a, b) { return parseInt(a) - parseInt(b) },
-      };
-
-      var shipping = state.order.shipping_rate;
-      var sub_total = 0;
-      var extras = 0;
-      forEach(state.order.items, function(item, key) {
-          var quantity = item.quantity ? item.quantity : 1;
-          sub_total = sub_total + (parseInt(item.price) * quantity);
-
-          forEach(item.options, function(option) {
-              if (option) {
-                  if (option.price_mutator && option.price_value) {
-                      extras = extras + (operators[option.price_mutator](0, option.price_value) * parseInt(quantity));
-                  }
-              }
-          });
-      });
-
-      var vat = (sub_total + extras + shipping) * 0.2;
-      return [
-          {
-              total: 'Sub-Total',
-              value: sub_total
-          },
-          {
-              total: 'Extras',
-              value: extras
-          },
-          {
-              total: 'Shipping',
-              value: shipping
-          },
-          {
-              total: 'VAT',
-              value: vat
-          },
-          {
-              total: 'Total',
-              value: sub_total + extras + shipping + vat
-          },
-      ]
+      return orderUtil.totals(state.order.items, state.order.shipping_rate, state.order.discount_rate)
   }
 }
 
@@ -109,12 +67,14 @@ const mutations = {
     state.order = {
         customer: {},
         shipping_rate: 60,
+        discount_rate: 0,
         billing_address: {},
         shipping_address: {},
         items: [],
         cart: {},
         use_billing_for_shipping: true,
-        status: 'STATUS_DRAFT'
+        status: 'STATUS_DRAFT',
+        needs_address: 'Needs Address'
     };
   },
 

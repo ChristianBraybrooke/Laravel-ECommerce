@@ -11,6 +11,7 @@ use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 use ChrisBraybrooke\ECommerce\Events\OrderCreated;
 use ChrisBraybrooke\ECommerce\Events\OrderUpdated;
 use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cart;
 use Setting;
 use Product;
@@ -210,6 +211,11 @@ class Order extends Model implements OrderContract
         return "Order was: {$eventName}";
     }
 
+    public function payments(): HasMany
+    {
+        return $this->HasMany(config('ecommerce.models.payment'));
+    }
+
     /**
      * Format the address into a normalised format
      *
@@ -289,6 +295,7 @@ class Order extends Model implements OrderContract
             'Sub Total' => priceFormatter($cart['sub_total'] ?? 0),
             'Extras' => priceFormatter($cart['extras'] ?? 0),
             'Shipping' => priceFormatter($cart['shipping'] ?? 0),
+            'Discount' => $cart['discount'] ?? 0,
             'Tax' => priceFormatter($cart['tax'] ?? 0),
             'Total' => priceFormatter($cart['total'] ?? 0),
         ];

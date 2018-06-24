@@ -22,28 +22,31 @@
                 <el-popover trigger="hover" placement="top">
 
                     <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }" v-if="tableOptions.viewText">
-                        <el-button
-                          size="mini"
-                          type="success"
-                          class="action_btn view_btn">{{ tableOptions.viewText }}
+                        <el-button size="mini"
+                                   type="success"
+                                   class="action_btn view_btn">{{ tableOptions.viewText }}
                         </el-button>
                     </router-link>
 
                     <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref_number + '&body=Hello ' + props.row.customer.first_name + ','">
-                        <el-button
-                          size="mini"
-                          plain
-                          class="action_btn view_btn">Email Customer
+                        <el-button size="mini"
+                                   plain
+                                   class="action_btn view_btn">Email Customer
                         </el-button>
                     </a>
 
                     <a :href="'/ecommerce-templates/invoice-download?reports=' + props.row.id" target="_blank">
-                        <el-button
-                          size="mini"
-                          plain
-                          class="action_btn view_btn">Download PDF
+                        <el-button size="mini"
+                                   plain
+                                   class="action_btn view_btn">Download PDF
                         </el-button>
                     </a>
+
+                    <el-button size="mini"
+                               type="danger"
+                               @click="props.delete(props.row)"
+                               class="action_btn view_btn">Delete
+                    </el-button>
 
                   <div slot="reference">
                       <el-button size="mini">Actions</el-button>

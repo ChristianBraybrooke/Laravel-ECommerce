@@ -131,7 +131,7 @@ class ApiFormsController extends Controller
                         'type' => $field['type'],
                         'rules' => $field['rules'],
                         'append' => $field['append'],
-                        'prepend' => $field['prepend'],                
+                        'prepend' => $field['prepend'],
                         'options' => $field['options'],
                     ]);
                 } else {
