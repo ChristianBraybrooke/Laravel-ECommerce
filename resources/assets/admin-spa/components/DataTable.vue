@@ -62,6 +62,7 @@
             :border="mergedTableOptions.stripe"
             :row-style="tableRowStyle"
             :row-class-name="tableRowClass"
+            :cell-style="tableCellStyle"
             style="width: 100%"
             @selection-change="handleSelectionChange"
             @sort-change="handleSortChange">
@@ -182,8 +183,6 @@ import collumn_util from "utils/collumn"
 var throttle = require('lodash.throttle')
 var bind = require('lodash.bind')
 var findKey = require('lodash.findkey')
-
-
 
 export default {
   name: 'DataTable',
@@ -447,7 +446,12 @@ export default {
 
       colourRules()
       {
-          return this.objectHas(ecommerceConfig, `col_colours.${this.typeNamePlural}`) ? ecommerceConfig.col_colours.orders : [];
+          return this.objectHas(ecommerceConfig, `col_colours.${this.typeNamePlural}`) ? ecommerceConfig.col_colours[this.typeNamePlural] : [];
+      },
+
+      additonalCols()
+      {
+          return this.objectHas(ecommerceConfig, `aditional_cols.${this.typeNamePlural}`) ? ecommerceConfig.aditional_cols[this.typeNamePlural] : [];
       },
   },
 
@@ -745,6 +749,12 @@ export default {
         var row_colour = collumn_util.getRowColour(this.colourRules, row);
 
         return `background: ${row_colour}!important`;
+    },
+
+    tableCellStyle({row, column, rowIndex, columnIndex})
+    {
+        var colour = collumn_util.getColColour(this.additonalCols, column, row);
+        return colour ? `background: ${colour}!important` : null;
     },
 
     tableRowClass({row, rowIndex})

@@ -27,15 +27,15 @@ export default {
     data () {
         return {
             loading: false,
-            temp_date: ''
+            temp: ''
         }
     },
 
     mounted () {
         console.log('TableCollumn.vue Mounted.');
 
-        if(this.col.type === 'date') {
-            this.temp_date = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+        if(this.col.value) {
+            this.temp = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
         }
     },
 
@@ -49,6 +49,12 @@ export default {
                 break;
               case 'date':
                 return this.date;
+                break;
+              case 'text':
+                return this.text;
+                break;
+              case 'number':
+                return this.number;
                 break;
               default:
                 return this.col.value ? <div>{collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row)}</div> : '';
@@ -95,8 +101,8 @@ export default {
             var date = this.col.date ? this.col.date : {};
             var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
             return  <el-date-picker type="date"
-                                    v-model={this.temp_date}
-                                    on-change={(val) => this.dateChange(val)}
+                                    v-model={this.temp}
+                                    on-change={(val) => this.valChange(val)}
                                     disabled={this.loading}
                                     style="width: 100%;"
                                     size={date.size ? date.size : 'mini'}
@@ -104,6 +110,45 @@ export default {
                                     format={date.format ? date.format : 'dd/MM/yyyy'}
                                     value-format={date.value_format ? date.value_format : 'dd-MM-yyyy'}>
                     </el-date-picker>
+        },
+
+        /**
+         * Render the text.
+         *
+         * @return JSX
+         */
+        text()
+        {
+            var text = this.col.text ? this.col.text : {};
+            var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+            return  <el-input v-model={this.temp}
+                              on-change={(val) => this.valChange(val)}
+                              disabled={this.loading}
+                              style="width: 100%;"
+                              size={text.size ? text.size : 'mini'}
+                              placeholder={text.placeholder}>
+                    </el-input>
+
+        },
+
+        /**
+         * Render the number.
+         *
+         * @return JSX
+         */
+        number()
+        {
+            var number = this.col.number ? this.col.number : {};
+            var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+            return  <el-input-number v-model={this.temp}
+                              on-change={(val) => this.valChange(val)}
+                              controls-position={number.controls ? number.controls : 'right'}
+                              disabled={this.loading}
+                              style="width: 100%;"
+                              size={number.size ? number.size : 'mini'}
+                              placeholder={number.placeholder}>
+                    </el-input-number>
+
         }
     },
 
@@ -133,7 +178,7 @@ export default {
             }
         },
 
-        dateChange(val)
+        valChange(val)
         {
             var dots = collumn_util.replaceWhereLookup(this.col.action.set, this.row);
 

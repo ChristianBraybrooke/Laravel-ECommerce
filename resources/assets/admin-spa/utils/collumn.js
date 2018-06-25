@@ -1,5 +1,6 @@
 var findIndex = require('lodash.findindex');
 var has = require('lodash.has');
+var forEach = require('lodash.foreach');
 
 export default {
 
@@ -82,15 +83,41 @@ export default {
 
             switch (rule.value) {
               case '*':
-                if (if_value !== null && if_value !== '') {
+                if (if_value != null && if_value != '' && if_value != 0) {
                     row_colour = rule.colour
                 }
                 break;
+                default:
+                if (if_value === rule.value) {
+                    row_colour = rule.colour
+                }
 
             }
 
         });
         return row_colour;
+    },
+
+    getColColour(additonalCols, collumn, row)
+    {
+        var colour = null;
+        forEach(additonalCols, (col) => {
+            if (col.prop === collumn.property && (col.col_background || col.empty_background || col.filled_background)) {
+                var dots = this.replaceWhereLookup(col.value, row);
+                var value = this.dotToObjectPath(dots, row);
+
+                if (col.col_background) {
+                    colour = col.col_background;
+                }
+                else if (value == null || value == '' || value == 0) {
+                    colour = col.empty_background;
+                }
+                else if (value && col.filled_background) {
+                    colour = col.filled_background;
+                }
+            }
+        });
+        return colour;
     }
 
 }

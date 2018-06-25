@@ -186,7 +186,7 @@ export default {
                 })
                 .then(data => {
 
-                    this.$router.push({ name: 'orders.view', params: { orderId: val.id.toString() }})
+                    this.$router.push({ name: 'orders'})
                     // this.loading = false;
                     // this.data = data.data;
                 })

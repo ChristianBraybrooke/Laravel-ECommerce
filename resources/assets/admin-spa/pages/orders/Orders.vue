@@ -114,7 +114,17 @@ export default {
                           sortable: true,
                           label: 'Ref',
                           align: 'left',
-                          resizable: false
+                          resizable: false,
+                          formatter: function(row, column, cellValue) {
+                              var btn = null;
+
+                              if (row.status === 'Processing') {
+                                  btn = <el-button class="order_dispatch_btn" type="success" size="mini" on-click={() => this.dispatchOrder(row, 'Completed')}>Dispatch</el-button>
+                              } else if (row.status === 'Completed') {
+                                  btn = <el-button class="order_dispatch_btn" type="danger" size="mini" on-click={() => this.dispatchOrder(row, 'Processing')}>Reverse Dispatch</el-button>
+                              }
+                              return <div class="order_dispatch"><span class={btn ? 'order_dispatch_text' : ''}>{row.ref_number}</span>{btn}</div>
+                          }.bind(this)
                       },
                       {
                           prop: 'name',
@@ -307,7 +317,13 @@ export default {
                       showClose: true,
                     });
                 }.bind(this));
-          }
+          },
+
+          dispatchOrder(row, status = 'Completed')
+          {
+              row.status = status;
+              this.apiAction(row);
+          },
 
       },
 
@@ -319,5 +335,14 @@ ul.order_address_list {
     list-style: none;
     -webkit-margin-before: 0;
     -webkit-padding-start: 0;
+}
+.order_dispatch .order_dispatch_btn {
+    display: none;
+}
+.order_dispatch:hover .order_dispatch_btn {
+    display: initial;
+}
+.order_dispatch:hover .order_dispatch_text {
+    display: none;
 }
 </style>
