@@ -195,3 +195,56 @@ function getClassName($class, $plural = true)
     }
     return $last;
 }
+
+function formatOrderItems($request_items = [], $shipping_rate = 0, $discount_rate = 0)
+{
+    $items = [];
+    $order_extras = 0;
+    $order_subtotal = 0;
+    $order_vat = 0;
+    $order_discount = (int)$discount_rate;
+    $order_shipping = (int)$shipping_rate;
+
+
+    foreach ($request_items as $key => $item) {
+        $quantity = (int)$item['quantity'] ?? 1;
+        $price = (float)str_replace(',', '', $item['price']);
+        $order_subtotal = $order_subtotal + ($price * $quantity);
+
+        $options = [];
+        foreach (($item['options'] ?? []) as $key => $option) {
+            if (isset($option['price_mutator']) && isset($option['price_value']) && $option['price_mutator'] && $option['price_value']) {
+                $order_extras = $order_extras + (operators($option['price_mutator'], 0, $option['price_value']) * $quantity);
+            }
+            $options[$key] = $option['name'] ?? $option;
+        }
+
+        $items[] = [
+            'id' => $item['id'],
+            'name' => $item['name'],
+            'variant' => $item['variant'] ?? null,
+            'qty' => $quantity,
+            'price' => $price,
+            'options' => $options,
+            'subtotal' => ($price * $quantity),
+        ];
+    }
+
+    $total_ex_vat = $order_subtotal + $order_extras + $order_shipping;
+    $discount_amount = $total_ex_vat * ((float)$order_discount / 100);
+    $total_ex_vat = $total_ex_vat - $discount_amount;
+    $order_vat = $total_ex_vat * 0.2;
+    $order_total = $total_ex_vat + $order_vat;
+
+    $cart_data = [
+        'items' => $items,
+        'extras' => $order_extras,
+        'sub_total' => $order_subtotal,
+        'shipping' => $order_shipping,
+        'discount' => $order_discount,
+        'tax' => $order_vat,
+        'total' => $order_total
+    ];
+
+    return $cart_data;
+}
