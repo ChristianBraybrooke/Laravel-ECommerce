@@ -267,7 +267,9 @@ export default {
           return {
               orderErrors: {},
               loading: false,
-              order: {},
+              order: {
+                  shipping_rate: 0
+              },
               shopData: {},
               edit_billing: false,
               edit_shipping: false,
