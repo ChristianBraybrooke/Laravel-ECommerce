@@ -473,15 +473,15 @@ export default {
 
 <style lang="css">
 .product_form_radio .el-radio-button {
-    margin: 0px 3px;
+    margin: 5px 3px;
     border-left: 1px solid #dcdfe6;
 }
 .product_form_radio .el-radio-button:first-child {
-    margin: 0px 3px 0px 0px;
+    margin: 5px 3px 5px 0px;
     border-left: 0;
 }
 .product_form_radio .el-radio-button:last-child {
-    margin: 0px 0px 0px 3px;
+    margin: 5px 0px 5px 3px;
 }
 p.form_item_description {
     font-size: 12px;
