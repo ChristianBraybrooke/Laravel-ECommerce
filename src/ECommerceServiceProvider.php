@@ -37,7 +37,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.27';
+    const VERSION = '0.0.28';
 
     /**
      * Bootstrap the application events.
@@ -155,6 +155,9 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
+        $configPath = __DIR__ . '/../config/ecommerce.php';
+        $this->mergeConfigFrom($configPath, 'ecommerce');
+
         $this->configure();
         $this->registerBladeExtensions();
 
@@ -234,8 +237,6 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $configPath = __DIR__ . '/../config/ecommerce.php';
 
         $this->publishes([$configPath => config_path('ecommerce.php')], 'ecommerce-config');
-
-        $this->mergeConfigFrom($configPath, 'ecommerce');
     }
 
     /**
