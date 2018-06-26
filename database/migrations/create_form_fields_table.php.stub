@@ -19,8 +19,8 @@ class CreateFormFieldsTable extends Migration
             $table->string('type');
             $table->string('name');
             $table->string('description')->nullable()->default(null);
-            $table->json('rules')->nullable()->default(null);
-            $table->json('options')->nullable()->default(null);
+            $table->text('rules')->nullable()->default(null);
+            $table->text('options')->nullable()->default(null);
             $table->string('append')->nullable()->default(null);
             $table->string('prepend')->nullable()->default(null);
             $table->integer('order')->nullable()->default(null);

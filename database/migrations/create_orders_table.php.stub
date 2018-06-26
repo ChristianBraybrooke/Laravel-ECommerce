@@ -40,7 +40,7 @@ class CreateOrdersTable extends Migration
                 $table->string('shipping_address_country')->nullable()->default(null);
 
                 $table->integer('cart_id')->unsigned()->nullable()->default(null);
-                $table->json('cart_data')->nullable()->default(null);
+                $table->text('cart_data')->nullable()->default(null);
 
                 $table->string('payment_method')->nullable()->default(null);
                 $table->string('payment_id')->nullable()->default(null);

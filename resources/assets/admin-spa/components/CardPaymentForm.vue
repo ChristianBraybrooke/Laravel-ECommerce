@@ -1,47 +1,74 @@
 <template lang="html">
     <div class="card_payment_form" v-loading="loading">
 
-        <el-row :gutter="20">
-            <el-col :md="{span:8, offset: 4}">
-                <el-form-item label="Cardholder Name" size="small" prop="cardholder_name" :rules="[{required: true, message: 'Cardholder name is required.', trigger: 'blur,change'}]">
-                    <el-input v-model="form.cardholder_name" placeholder=""></el-input>
-                </el-form-item>
-            </el-col>
+        <slot name="before_form" :model="model">
 
-            <el-col :md="8">
-                <el-form-item label="Card Number" size="small" prop="card_number" :rules="[{required: true, message: 'Card Number is required.', trigger: 'blur,change'}]">
-                    <div class="stripe_input small" ref="cardNumber"></div>
-                    <transition name="el-zoom-in-top">
-                        <div class="el-form-item__error" v-if="cardErrors.number">
-                            {{ cardErrors.number }}
-                        </div>
-                    </transition>
-                </el-form-item>
-            </el-col>
+        </slot>
+
+        <el-row :gutter="20">
+            <el-col :md="{span:16, offset: 4}">
+                <el-card class="secure_payment_form box-card">
+                    <div slot="header" class="clearfix">
+                      <span>Secure Payment Form</span>
+                    </div>
+                    <slot name="form" :model="model" :card-errors="cardErrors">
+                        <el-row :gutter="20">
+                            <el-col :md="{span: 12}">
+                                <el-form-item label="Cardholder Name" size="small" prop="cardholder_name" :rules="[{required: true, message: 'Cardholder name is required.'}]">
+                                    <el-input v-model="model.cardholder_name" placeholder=""></el-input>
+                                </el-form-item>
+                            </el-col>
+
+                            <el-col :md="12">
+                                <el-form-item label="Card Number" size="small" prop="card_number">
+                                    <div class="stripe_input small" ref="cardNumber"></div>
+                                    <transition name="el-zoom-in-top">
+                                        <div class="el-form-item__error" v-if="cardErrors.number">
+                                            {{ cardErrors.number }}
+                                        </div>
+                                    </transition>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+
+
+                        <el-row :gutter="20">
+                            <el-col :md="{span:12}">
+                                <el-form-item label="Card Expiry" size="small" prop="cardholder_expiry">
+                                    <div class="stripe_input small" ref="cardExpiry"></div>
+                                    <transition name="el-zoom-in-top">
+                                        <div class="el-form-item__error" v-if="cardErrors.date">
+                                            {{ cardErrors.date }}
+                                        </div>
+                                    </transition>
+                                </el-form-item>
+                            </el-col>
+
+                            <el-col :md="12">
+                                <el-form-item label="Card CVC" size="small" prop="cardholder_cvc">
+                                    <div class="stripe_input small" ref="cardCvc"></div>
+                                    <transition name="el-zoom-in-top">
+                                        <div class="el-form-item__error" v-if="cardErrors.cvc">
+                                            {{ cardErrors.cvc }}
+                                        </div>
+                                    </transition>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </slot>
+                </el-card>
+          </el-col>
         </el-row>
 
+        <slot name="after_form" :model="model">
+
+        </slot>
 
         <el-row :gutter="20">
-            <el-col :md="{span:8, offset: 4}">
-                <el-form-item label="Card Expiry" size="small" prop="customer.company">
-                    <div class="stripe_input small" ref="cardExpiry"></div>
-                    <transition name="el-zoom-in-top">
-                        <div class="el-form-item__error" v-if="cardErrors.date">
-                            {{ cardErrors.date }}
-                        </div>
-                    </transition>
-                </el-form-item>
-            </el-col>
-
-            <el-col :md="8">
-                <el-form-item label="Card CVC" size="small" prop="customer.company">
-                    <div class="stripe_input small" ref="cardCvc"></div>
-                    <transition name="el-zoom-in-top">
-                        <div class="el-form-item__error" v-if="cardErrors.cvc">
-                            {{ cardErrors.cvc }}
-                        </div>
-                    </transition>
-                </el-form-item>
+            <el-col :md="{span:16, offset: 4}">
+                <slot name="submit_button" :create-token="createToken">
+                    <el-button type="success" @click="createToken" :loading="loading">Process Payment</el-button>
+                </slot>
             </el-col>
         </el-row>
 
@@ -50,7 +77,7 @@
 </template>
 
 <script>
-let stripe = Stripe('pk_test_uAzfSI4OCDnMzvadYJWuFpfZ'),
+let stripe = Stripe(ecommerceConfig.stripe_public_key),
     elements = stripe.elements(),
     card = undefined;
 
@@ -63,7 +90,7 @@ export default {
       },
 
       props: {
-          form: {
+          model: {
               type: Object,
               required: true
           },
@@ -73,6 +100,13 @@ export default {
               default () {
                   return function (has_error, token_object, error_object) {};
               },
+          },
+          onFormSubmit: {
+              type: Function,
+              required: false,
+              default () {
+                  return function () {};
+              }
           },
           size: {
               type: String,
@@ -108,6 +142,10 @@ export default {
       mounted () {
           console.log('CardPaymentForm.vue Mounted');
           this.setupStripe();
+      },
+
+      destroyed() {
+          this.clearForm(true);
       },
 
       methods: {
@@ -173,14 +211,6 @@ export default {
                 // Switch brand logo.
                 if (event.brand) {
                     this.setBrandIcon(event.brand);
-                }
-
-                console.log(event)
-                console.log(this.cardNumberElement)
-                if(!event.empty) {
-                    this.$set(this.form, 'card_number', '4444');
-                } else {
-                    this.$set(this.form, 'card_number', null);
                 }
 
                 // Focus on next element.
@@ -250,7 +280,9 @@ export default {
             if (result.token) {
               // Tell the parent that a token has been created.
               this.onTokenCreation(false, result.token, {});
-              this.$set(this.form, 'payment_token', result.token.id);
+              this.$set(this.model, 'payment_token', result.token.id);
+
+              this.clearForm();
 
               // Submit the form:
               this.loading = false;
@@ -299,8 +331,20 @@ export default {
             }
         },
 
+        clearForm(destroy = false)
+        {
+            var method = 'clear';
+            if (destroy) {
+                method = 'destroy';
+            }
+            this.cardNumberElement[method](this.$refs.cardNumber);
+            this.cardExpiryElement[method](this.$refs.cardExpiry);
+            this.cardCvcElement[method](this.$refs.cardCvc);
+        },
+
         createToken()
         {
+            this.onFormSubmit();
             this.loading = true;
             stripe.createToken(this.cardNumberElement, {
                 name: 'Christian Braybrooke'
@@ -369,5 +413,8 @@ export default {
         font-size: $--input-mini-font-size;
         height: $--input-mini-height;
         padding: stripe-padding-calc($--input-mini-height, $--input-mini-font-size) 15px;
+    }
+    .el-card.secure_payment_form {
+        margin: 20px 0px;
     }
 </style>

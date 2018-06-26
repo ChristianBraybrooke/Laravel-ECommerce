@@ -213,7 +213,7 @@
             </el-col>
         </el-row>
 
-        <el-row v-if="order.items" :gutter="20">
+        <el-row v-if="order.items" :gutter="20" style="margin-bottom: 50px;">
             <el-col :span="24">
                 <el-card class="box-card">
 
@@ -221,6 +221,12 @@
 
 
                </el-card>
+            </el-col>
+        </el-row>
+
+        <el-row v-if="order.payments" :gutter="20">
+            <el-col :span="24">
+                <payments :payments="order.payments.data" :order="order" :on-payment-processed="onPaymentProcessed"/>
             </el-col>
         </el-row>
 
@@ -254,6 +260,7 @@ export default {
       components: {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
           ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
+          Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
       },
 
       props: {
@@ -349,7 +356,8 @@ export default {
               api.get({
                   path: 'orders/' + this.orderId,
                   params: {
-                      with: ['content'],
+                      with: ['content', 'payments'],
+                      include: [ 'payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source' ]
                   }
               })
               .then(function (data) {
@@ -374,7 +382,7 @@ export default {
           {
               this.orderErrors = {};
               this.loading = true;
-              this.order.with = ['content'];
+              this.order.with = ['content', 'payments'];
 
               api.persist('put', {
                   path: 'orders/' + this.orderId,
@@ -440,6 +448,12 @@ export default {
               }
 
               this.printUrl = null;
+          },
+
+          onPaymentProcessed(payment)
+          {
+              console.log(payment)
+              this.order.payments.data.push(payment);
           }
 
       },

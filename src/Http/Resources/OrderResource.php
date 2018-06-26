@@ -5,6 +5,7 @@ namespace ChrisBraybrooke\ECommerce\Http\Resources;
 use Illuminate\Http\Resources\Json\Resource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ContentsResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\PaymentResource;
 
 class OrderResource extends Resource
 {
@@ -40,6 +41,7 @@ class OrderResource extends Resource
             'delivery_date' => $this->delivery_date,
             'thank_you_email_sent' => $this->thank_you_email_sent,
             'shipping_email_sent' => $this->shipping_email_sent,
+            'payments' => new PaymentsResource($this->whenLoaded('payments')),
         ];
     }
 

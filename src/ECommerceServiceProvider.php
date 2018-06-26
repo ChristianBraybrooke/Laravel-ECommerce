@@ -163,8 +163,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
 
         $this->app->bind(PaymentService::class, function ($app) {
             return new PaymentService(
-                env('APP_ENV') === 'local' ? env('TEST_STRIPE_SECRET') : env('STRIPE_SECRET'),
-                env('APP_ENV') === 'local' ? env('TEST_STRIPE_KEY') : env('STRIPE_KEY')
+                config('services.stripe.secret'),
+                config('services.stripe.key')
             );
         });
     }
@@ -192,6 +192,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             'site_url' => (string)config('app.url'),
             'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
             'theme_color' => (string)env('THEME_COLOR', '#409eff'),
+            'stripe_public_key' => config('services.stripe.key'),
             'orders' => [
                 'statuses' => Order::$statuses,
             ],

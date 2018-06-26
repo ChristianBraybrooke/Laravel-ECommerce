@@ -488,17 +488,4 @@ p.form_item_description {
     font-style: italic;
     margin-top: 0;
 }
-span.currency {
-    background: #f5f7fa;
-    padding: 4px 10px 6px 10px;
-    border: 1px solid #dde0e6;
-    margin-right: -1px;
-    border-radius: 3px 0px 0px 3px;
-}
-.price_changer {
-    margin-top: 10px;
-}
-.price_changer .el-input-number input {
-    border-radius: 0px 4px 4px 0px!important;
-}
 </style>

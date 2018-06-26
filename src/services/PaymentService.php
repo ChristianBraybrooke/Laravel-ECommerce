@@ -67,49 +67,54 @@ class PaymentService
                 'source' => $details['token'],
                 'amount' => $details['amount'],
                 'currency' => strtolower($details['currency']),
-                'customer' => Auth::check() && Auth::user()->stripe_id ?: null,
+                'customer' => $details['stripe_id'] ?? (Auth::check() && Auth::user()->stripe_id ?: null),
             ]);
         } catch (Stripe_CardError $e) {
             report($e);
-            $details['order']->update([
-                'status' => 'STATUS_PAYMENT_FAILED',
-            ]);
+            if ($details['order'] ?? false) {
+                $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+            }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_InvalidRequestError $e) {
           // Invalid parameters were supplied to Stripe's API
             report($e);
-            $details['order']->update([
-                'status' => 'STATUS_PAYMENT_FAILED',
-            ]);
-            throw new PaymentFailedException($this->error_message);
+            if ($details['order'] ?? false) {
+                $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+            }
+            throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_AuthenticationError $e) {
             // Authentication with Stripe's API failed
             report($e);
-            $details['order']->update([
-                'status' => 'STATUS_PAYMENT_FAILED',
-            ]);
-            throw new PaymentFailedException($this->error_message);
+            if ($details['order'] ?? false) {
+                $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+            }
+            throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_ApiConnectionError $e) {
             report($e);
-            $details['order']->update([
-                'status' => 'STATUS_PAYMENT_FAILED',
-            ]);
-            throw new PaymentFailedException($this->error_message);
+            if ($details['order'] ?? false) {
+                $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+            }
+            throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_Error $e) {
             // Display a very generic error to the user
             report($e);
-            $details['order']->update([
-                'status' => 'STATUS_PAYMENT_FAILED',
-            ]);
-            throw new PaymentFailedException($this->error_message);
+            if ($details['order'] ?? false) {
+                $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+            }
+            throw new PaymentFailedException($e->getMessage());
         } catch (Exception $e) {
           // Something else happened, completely unrelated to Stripe
             report($e);
-            $details['order']->update([
-                'status' => 'STATUS_PAYMENT_FAILED',
-            ]);
-            throw new PaymentFailedException($this->error_message);
+            if ($details['order'] ?? false) {
+                $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+            }
+            throw new PaymentFailedException($e->getMessage());
         }
+    }
+
+    public function updateOrderStatus($order, $status)
+    {
+        return $order->update(['status' => $status]);
     }
 
     /**

@@ -22,7 +22,7 @@ class CreateImportsTable extends Migration
                 $table->integer('rows_added')->nullable();
                 $table->integer('rows_not_added')->nullable();
                 $table->string('status')->nullable();
-                $table->json('import_data')->nullable()->default(null);
+                $table->text('import_data')->nullable()->default(null);
                 $table->timestamps();
 
                 $table->foreign('user_id')

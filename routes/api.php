@@ -57,9 +57,12 @@ Route::get('links', 'ApiLinksController@index');
 
 // Orders
 Route::apiResource('orders', 'ApiOrdersController');
-Route::post('orders/{order}/payment', 'ApiOrdersController@payment');
+Route::put('orders/{order}/payment', 'ApiOrdersController@payment');
 Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');
 
 // Import / Export
 Route::post('imports', 'ApiImportsController@import');
 Route::get('imports', 'ApiImportsController@index');
+
+// Payments
+Route::post('payments', 'ApiPaymentsController@store');

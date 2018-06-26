@@ -3,7 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Exceptions;
 
 use Exception;
-use Illuminate\Support\MessageBag;
+use Illuminate\Validation\ValidationException;
 
 class PaymentFailedException extends Exception
 {
@@ -16,11 +16,9 @@ class PaymentFailedException extends Exception
      */
     public function render($request)
     {
-        $errors = new MessageBag();
-
-        // add your error messages:
-        $errors->add('stripeToken', $this->message);
-
-        return $errors;
+        $error = \Illuminate\Validation\ValidationException::withMessages([
+           'stripeToken' => [$this->message],
+        ]);
+        throw $error;
     }
 }
