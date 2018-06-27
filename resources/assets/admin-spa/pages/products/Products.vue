@@ -3,7 +3,7 @@
                 bulk-update-url="products/bulk"
                 :table-options="tableOptions"
                 request-with="variant"
-                :request-includes="['live_at', 'created_at']"
+                :request-includes="['live_at', 'created_at', 'price', 'can_customise', 'list_in_shop', 'featured']"
                 :create-form="productsCreateForm">
 
       <template slot="createForm"
@@ -74,6 +74,52 @@ export default {
 
                     },
                     resizable: true
+                },
+                {
+                    prop: 'price',
+                    sortable: true,
+                    label: 'Price',
+                    align: 'left',
+                    resizable: true,
+                    formatter: (row, collumn, cellValue) => {
+                        return this.formatPrice(cellValue, '£')
+                    }
+                },
+                {
+                    prop: 'can_customise',
+                    sortable: true,
+                    label: 'Customisable',
+                    align: 'left',
+                    resizable: true,
+                    formatter: (row, collumn, cellValue) => {
+                        if (cellValue) {
+                            return <i class="el-icon-check"></i>
+                        }
+                    }
+                },
+                {
+                    prop: 'list_in_shop',
+                    sortable: true,
+                    label: 'In Shop',
+                    align: 'left',
+                    resizable: true,
+                    formatter: (row, collumn, cellValue) => {
+                        if (cellValue) {
+                            return <i class="el-icon-check"></i>
+                        }
+                    }
+                },
+                {
+                    prop: 'featured',
+                    sortable: true,
+                    label: 'Featured',
+                    align: 'left',
+                    resizable: true,
+                    formatter: (row, collumn, cellValue) => {
+                        if (cellValue) {
+                            return <i class="el-icon-check"></i>
+                        }
+                    }
                 },
                 {
                     prop: 'created_at.human',

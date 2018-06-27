@@ -12,7 +12,7 @@
 
                 <template v-if="props.productForm.variants">
                     <el-card class="product_variant_card box-card" v-for="variant in props.productForm.variants.data" :key="variant.id">
-                        <product-variant-component :model="variant"></product-variant-component>
+                        <product-variant-component :model="variant" :variants="props.productForm.variants.data"/>
                     </el-card>
                 </template>
 
@@ -61,7 +61,7 @@ export default {
       },
 
       methods: {
-          //
+
       },
 
 }

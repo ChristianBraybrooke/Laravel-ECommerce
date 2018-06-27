@@ -1,4 +1,4 @@
-window.ecommerceConfig.web_version = '0.0.34';
+window.ecommerceConfig.web_version = '0.0.35';
 
 import 'babel-polyfill'
 import Vue from 'vue'

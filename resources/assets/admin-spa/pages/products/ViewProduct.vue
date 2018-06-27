@@ -7,7 +7,6 @@
                              :form-rules="productFormRules">
             <template slot="product_page"
                       slot-scope="props">
-
                 <el-row type="flex">
                     <el-col :span="4">
                         <el-form-item v-if="props.productForm.live_at" label="Live" prop="live_at.live" size="small">

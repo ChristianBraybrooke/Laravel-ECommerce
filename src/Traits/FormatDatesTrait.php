@@ -39,7 +39,7 @@ trait FormatDatesTrait
     {
          $live = $this->dateAdapter($value);
 
-         $live['live'] = ($live['date'] && $live['date'] < Carbon::now()->toDateTimeString());
+         $live['live'] = ($live['carbon'] && $live['carbon'] < Carbon::now()->toDateTimeString());
 
          return $live;
     }

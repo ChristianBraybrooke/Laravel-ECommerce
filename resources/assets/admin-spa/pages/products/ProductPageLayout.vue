@@ -2,6 +2,7 @@
     <div v-loading="loading">
         <el-breadcrumb class="breadcrumbs" separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ name: 'products' }">Products</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ name: 'products.view.variants', params: {productId: productForm.variant.id.toString()}, force: true }" v-if="productForm.variant">{{ productForm.variant.name }}</el-breadcrumb-item>
             <el-breadcrumb-item>{{ productForm.name }}</el-breadcrumb-item>
         </el-breadcrumb>
 
@@ -167,7 +168,7 @@ export default {
               api.get({
                   path: 'products/' + this.productId,
                   params: {
-                      with: this.requestWith,
+                      with: this.requestWith.concat(['variant']),
                       include: this.requestIncludes
                   }
               })
@@ -191,7 +192,7 @@ export default {
           {
               this.productErrors = {};
               this.loading = true;
-              this.productForm.with = this.requestWith;
+              this.productForm.with = this.requestWith.concat(['variant']);
               this.productForm.include = this.requestIncludes;
 
               this.$refs[formName].validate((valid) => {
