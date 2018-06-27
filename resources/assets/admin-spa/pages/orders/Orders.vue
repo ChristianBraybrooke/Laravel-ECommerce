@@ -162,7 +162,7 @@ export default {
                       {
                           prop: 'items',
                           sortable: true,
-                          label: 'Summary',
+                          label: 'Products',
                           align: 'left',
                           resizable: false,
                           formatter: function(row, column, cellValue) {

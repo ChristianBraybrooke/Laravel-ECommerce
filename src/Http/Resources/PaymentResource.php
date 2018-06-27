@@ -16,7 +16,10 @@ class PaymentResource extends Resource
     {
         return [
             'id' => $this->id,
-            'reference' => $this->when(requestIncludes('reference'), $this->reference),
+            'reference' => $this->when(requestIncludes('payment.reference'), $this->reference),
+            'notes' => $this->when(requestIncludes('payment.notes'), $this->notes),
+            'refunded' => $this->when(requestIncludes('payment.refunded'), $this->refunded),
+            'link' => $this->when(requestIncludes('payment.link'), $this->link),
             'method' => $this->when(requestIncludes('payment.method'), $this->method),
             'currency' => $this->when(requestIncludes('payment.currency'), $this->currency),
             'amount' => $this->when(requestIncludes('payment.amount'), $this->amount),

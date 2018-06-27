@@ -75,7 +75,7 @@ class ApiPagesController extends Controller
     {
         $this->authorize('update', $page);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $page->live_at['carbon']->toDateTimeString();
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : optional($page->live_at['carbon'])->toDateTimeString();
 
         $page->update([
             'name' => $request->name,

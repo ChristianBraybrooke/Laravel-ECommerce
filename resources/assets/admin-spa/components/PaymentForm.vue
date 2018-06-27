@@ -181,7 +181,6 @@ export default {
           },
           onPaymentProcessed: {
               required: false,
-              type: Function,
               default () {
                   return function (payment) {};
               }
@@ -252,7 +251,6 @@ export default {
                         order: {},
                     };
                     this.errors = {};
-                    this.showModal = false;
                   })
                   .catch(error => {
                       this.errors = error;

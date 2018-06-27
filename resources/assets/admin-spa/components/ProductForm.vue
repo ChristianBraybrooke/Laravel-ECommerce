@@ -67,7 +67,7 @@
                                              </el-tooltip>
                                          </template>
                                      </el-radio-group>
-                                     <el-select v-model="form.product" size="small" v-else value-key="id">
+                                     <el-select v-model="form.product" size="small" filterable v-else value-key="id">
                                          <el-option v-for="variant in productVariantsToShow"
                                                     :key="variant.id"
                                                     :label="variant.name"
@@ -96,7 +96,7 @@
                                      <el-form-item :label="field.name" size="small" :prop="'product.options[' + field.name + ']'">
                                          <el-input v-if="field.type === 'text'" v-model="form.product.options[field.name]"></el-input>
                                          <el-input-number v-if="field.type === 'number'" v-model="form.product.options[field.name]"></el-input-number>
-                                         <el-select v-if="field.type === 'select'" v-model="form.product.options[field.name]">
+                                         <el-select filterable v-if="field.type === 'select'" v-model="form.product.options[field.name]">
                                              <el-option v-for="option in field.options"
                                                         :key="option.id"
                                                         :value="option"
@@ -173,6 +173,7 @@
 <script>
 import api from 'services/api-service'
 import clone from 'lodash.clone'
+import orderBy from 'lodash.orderby'
 import { mapActions, mapGetters } from 'vuex'
 import { operators } from 'utils/operators'
 
@@ -301,7 +302,7 @@ export default {
 
         orderForm()
         {
-            return this.objectHas(this.form, 'product.order_form.sections.data') ? this.form.product.order_form.sections.data : [];
+            return this.objectHas(this.form, 'product.order_form.sections.data') ? orderBy(this.form.product.order_form.sections.data, ['order'], ['asc']) : [];
         }
 
       },
@@ -364,7 +365,7 @@ export default {
                   api.get({
                         path: "collections/" + product_category_id,
                         params: {
-                            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description'],
+                            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description', 'order'],
                             with: ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant', 'types.products.orderForm.sections.fields']
                         }
                     })

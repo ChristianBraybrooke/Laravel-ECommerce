@@ -2,7 +2,7 @@
 
     <div :loading="loading">
         <el-button type="success" plain style="margin-bottom: 20px;" @click="showModal = true">Add Payment</el-button>
-        <payment-details v-for="payment in payments" :payment="payment" :key="payment.id"/>
+        <payment-details :payments="payments"/>
 
 
 
@@ -12,7 +12,7 @@
                    :visible.sync="showModal">
 
 
-                <payment-form :model="payment" :order="order"/>
+                <payment-form :model="payment" :order="order" :on-payment-processed="clearModal"/>
 
         </el-dialog>
 
@@ -39,6 +39,12 @@ export default {
           order: {
               type: Object,
               required: true,
+          },
+          onPaymentProcessed: {
+              required: false,
+              default () {
+                  return function (payment) {};
+              }
           }
       },
 
@@ -71,6 +77,12 @@ export default {
                 })
                 .catch(_ => {});
           },
+
+          clearModal(payment)
+          {
+              this.onPaymentProcessed(payment);
+              this.showModal = false;
+          }
       },
 
 }

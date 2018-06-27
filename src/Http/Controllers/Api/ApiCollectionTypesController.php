@@ -77,7 +77,7 @@ class ApiCollectionTypesController extends Controller
     {
         $this->authorize('update', $type);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $type->live_at['carbon']->toDateTimeString();
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : optional($type->live_at['carbon'])->toDateTimeString();
 
         $type->update([
             'name' => $request->name ?: $type->name,

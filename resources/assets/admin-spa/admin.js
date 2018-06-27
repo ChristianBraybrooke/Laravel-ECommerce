@@ -1,16 +1,17 @@
-window.ecommerceConfig.web_version = '0.0.32';
+window.ecommerceConfig.web_version = '0.0.33';
 
-import 'babel-polyfill';
-import Vue from 'vue';
-import Element from 'element-ui';
-import router from './router/';
-import store from './store/index.js';
-import Admin from './admin.vue';
-import locale from 'element-ui/lib/locale/lang/en';
-import { mapActions, mapGetters } from 'vuex';
+import 'babel-polyfill'
+import Vue from 'vue'
+import Element from 'element-ui'
+import router from './router/'
+import store from './store/index.js'
+import Admin from './admin.vue'
+import locale from 'element-ui/lib/locale/lang/en'
+import { mapActions, mapGetters } from 'vuex'
 import VueClipboard from 'vue-clipboard2'
-window.has = require('lodash.has');
-var numeral = require('numeral');
+window.has = require('lodash.has')
+var numeral = require('numeral')
+import { code_converter } from 'utils/currency'
 
 Vue.use(Element, {locale})
 Vue.use(VueClipboard)
@@ -27,6 +28,11 @@ Vue.mixin({
         }
     },
     methods: {
+        currencyCodeToSymbol(code, fallback = '')
+        {
+            return code_converter(code, fallback)
+        },
+
         objectHas(object, value)
         {
             return has(object, value);

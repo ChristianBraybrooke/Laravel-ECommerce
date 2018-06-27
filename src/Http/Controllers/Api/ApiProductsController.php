@@ -86,7 +86,7 @@ class ApiProductsController extends Controller
     {
         $this->authorize('update products', $product);
 
-        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : $product->live_at['carbon']->toDateTimeString();
+        $live = $request->filled('live_at.live') ? ($request->live_at['live'] ? Carbon::now()->subMinute()->toDateTimeString() : null) : optional($product->live_at['carbon'])->toDateTimeString();
 
         $product->update([
             'name' => $request->has('name') ? $request->name : $product->name,
