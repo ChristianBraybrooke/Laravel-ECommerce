@@ -1,4 +1,4 @@
-window.ecommerceConfig.web_version = '0.0.33';
+window.ecommerceConfig.web_version = '0.0.34';
 
 import 'babel-polyfill'
 import Vue from 'vue'
@@ -12,6 +12,9 @@ import VueClipboard from 'vue-clipboard2'
 window.has = require('lodash.has')
 var numeral = require('numeral')
 import { code_converter } from 'utils/currency'
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+window.laravel_token = token.content;
 
 Vue.use(Element, {locale})
 Vue.use(VueClipboard)
