@@ -28,10 +28,17 @@
                         </el-button>
                     </router-link>
 
-                    <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref_number + '&body=Hello ' + props.row.customer.first_name + ','">
+                    <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref_number + '&body=Hello ' + props.row.customer.first_name + ',%0A%0A'">
                         <el-button size="mini"
                                    plain
                                    class="action_btn view_btn">Email Customer
+                        </el-button>
+                    </a>
+
+                    <a :href="mailToCourier(props.row)">
+                        <el-button size="mini"
+                                   plain
+                                   class="action_btn view_btn">Email Courier
                         </el-button>
                     </a>
 
@@ -112,6 +119,7 @@ export default {
                   collumns: [
                       {
                           prop: 'ref_number',
+                          width: '130px',
                           sortable: true,
                           label: 'Ref',
                           align: 'left',
@@ -131,6 +139,7 @@ export default {
                           prop: 'name',
                           sortable: true,
                           label: 'Customer',
+                          width: '150px',
                           formatter: function(row, column, cellValue) {
                               var lines = [];
                               var address = [];
@@ -156,6 +165,7 @@ export default {
                           prop: 'created_at.date',
                           sortable: true,
                           label: 'Order Placed',
+                          width: '120px',
                           align: 'left',
                           resizable: false
                       },
@@ -163,6 +173,7 @@ export default {
                           prop: 'items',
                           sortable: true,
                           label: 'Products',
+                          width: '100px',
                           align: 'left',
                           resizable: false,
                           formatter: function(row, column, cellValue) {
@@ -186,6 +197,18 @@ export default {
                           prop: 'amount',
                           sortable: true,
                           label: 'Total',
+                          width: '90px',
+                          formatter: function(row, column, cellValue) {
+                              return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
+                          },
+                          align: 'left',
+                          resizable: false
+                      },
+                      {
+                          prop: 'amount',
+                          sortable: true,
+                          label: 'Paid',
+                          width: '90px',
                           formatter: function(row, column, cellValue) {
                               return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
                           },
@@ -245,6 +268,7 @@ export default {
                   prop: 'status',
                   sortable: true,
                   label: 'Status',
+                  width: '120px',
                   formatter: function(row, column, cellValue) {
                       var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
                       var config = this.ecommerceConfig;
@@ -332,6 +356,19 @@ export default {
               row.status = status;
               this.apiAction(row);
           },
+
+          mailToCourier(row)
+          {
+              var delivery_details = []
+
+              forEach(row.shipping_address, (line, key) => {
+                  if(line) {
+                      delivery_details.push(line);
+                  }
+              });
+
+              return 'mailto:?subject=Order Ref '+ row.ref_number +'&body=Hello,%0A%0A The delivery details are as follows: %0A%0A' + delivery_details.join('%0A')
+          }
 
       },
 

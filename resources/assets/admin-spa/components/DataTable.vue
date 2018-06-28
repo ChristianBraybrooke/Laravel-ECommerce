@@ -75,6 +75,7 @@
             <template v-for="col in mergedTableOptions.collumns">
                 <el-table-column
                     :prop="col.prop"
+                    :width="col.width"
                     :formatter="col.formatter ? col.formatter : null"
                     sortable
                     :label="col.label">
