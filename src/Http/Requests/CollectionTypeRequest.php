@@ -32,7 +32,6 @@ class CollectionTypeRequest extends FormRequest
           'header_img.*.id' => 'exists:media,id',
           'content.data' => 'array',
           'content.data.*.content_name' => 'sometimes|required|string|max:250',
-          'content.data.*.content' => 'string|nullable',
           'meta' => 'array|nullable',
         ];
 

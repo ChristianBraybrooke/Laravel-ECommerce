@@ -55,7 +55,7 @@
                     </el-row>
 
                     <el-row v-if="collectionType.content" :gutter="20">
-                        <content-component v-if="collectionType.content" :content="collectionType.content"/>
+                        <content-component v-if="collectionType.content" :content="collectionType.content.data"/>
                     </el-row>
 
                     <el-row :gutter="20">

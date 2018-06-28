@@ -1,34 +1,89 @@
 <template lang="html">
 
-    <div>
+    <div style="margin-top: 30px; margin-bottom: 30px;">
+        <el-form :model="form">
+            <el-tabs v-if="languageOptions" v-model="activeContentTab" style="margin-top:30px; margin-bottom: 30px">
+                <el-tab-pane v-for="(content, key) in groupedByLangContent" :key="key" :label="(key ? key : 'Content')" :name="(key ? key : 'Content')">
 
-        <file-picker-modal :visible="showFilePicker"
-                           :current-files="undefined"
-                           @update:files="val => insertQuillImage(val)"
-                           @closed:modal="val => fileModalClosed()"
-                           :show-btn="false"
-                           :show-preview="false"
-                           name="content"
-                           picker-id="image"/>
+                    <el-row :gutter="20" v-if="key === activeContentTab && !accordian">
+                        <el-col :md="content.type === 'quill' ? 24 : 12" v-for="(content, content_key) in content" :key="content_key">
+                            <content-inner :content="content" :content-key="content_key" :editable="editable" :on-delete-content="onDeleteContent" :language-options="languageOptions"/>
+                        </el-col>
+                    </el-row>
 
-        <el-tabs v-model="activeContentTab" v-if="content">
-            <el-tab-pane v-for="(content, key) in groupedByLangContent" :key="key" :label="(key ? key : 'Content')" :name="(key ? key : 'Content')">
-                <el-row :gutter="20" v-if="key === activeContentTab">
-                    <el-col :sm="24" v-for="content in content" :key="content.id">
-                        <el-form-item :label="content.content_name + ' (' + (content.language ? content.language : '') + ')'" :prop="content.content_name">
-                            <quill-editor v-model="content.content"
-                                          v-if="content.type === 'quill'"
-                                          :ref="'quillEditor' + content.content_name"
-                                          :options="editorOption">
-                            </quill-editor>
+                    <el-collapse v-if="accordian" v-model="accordianTab" accordion>
+                        <el-collapse-item v-for="(content, content_key) in content" :key="content_key" :name="content_key">
+                            <template slot="title">
+                                <p style="margin-left: 10px;">{{ content.content_name }}</p>
+                            </template>
+                            <content-inner :content="content" :content-key="content_key" :show-section-title="false" :editable="editable" :on-delete-content="onDeleteContent" :language-options="languageOptions"/>
+                        </el-collapse-item>
+                    </el-collapse>
 
-                            <el-input v-else :type="content.type === 'textarea' ? 'textarea' : ''" :autofocus="true" v-model="content.content"></el-input>
+                    <el-button style="margin-top: 30px;" v-if="editable" type="success" size="small" plain @click="showModal = true">Add Content</el-button>
 
+                </el-tab-pane>
+            </el-tabs>
+
+            <el-row :gutter="20" v-if="!languageOptions">
+
+                <el-col>
+                    <el-collapse v-if="accordian" v-model="accordianTab" accordion>
+                        <el-collapse-item v-for="(content, content_key) in selectedLangContent" :key="content_key" :name="content_key">
+                            <template slot="title">
+                                <p style="margin-left: 10px;">{{ content.content_name }}</p>
+                            </template>
+                            <content-inner :content="content" :content-key="content_key" :show-section-title="false" :editable="editable" :on-delete-content="onDeleteContent" :language-options="languageOptions"/>
+                        </el-collapse-item>
+                    </el-collapse>
+                </el-col>
+
+                <el-col v-if="!accordian" :md="content.type === 'quill' ? 24 : 12" v-for="(content, content_key) in selectedLangContent" :key="content_key">
+                    <content-inner :content="content" :content-key="content_key" :editable="editable" :on-delete-content="onDeleteContent" :language-options="languageOptions"/>
+                </el-col>
+            </el-row>
+
+            <el-button v-if="editable && !languageOptions" type="success" size="small" plain @click="showModal = true">Add Content</el-button>
+        </el-form>
+
+
+        <el-dialog title="Add New Content"
+                   :visible.sync="showModal"
+                   v-if="editable">
+
+            <el-form :model="newContent" label-position="top" ref="contentAdd">
+                <el-row :gutter="20">
+                    <el-col :md="12">
+                        <h5>New Content</h5>
+                    </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                    <el-col :md="{span:8, offset: 4}">
+                        <el-form-item label="Name" prop="name" :rules="[{required: true, message: 'Content name is required.', trigger: 'blur,change'}]">
+                            <el-input v-model="newContent.name" size="small" placeholder="Main Content"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :md="{span:8}">
+                        <el-form-item label="Type" prop="type" :rules="[{required: true, message: 'Content type is required.', trigger: 'blur,change'}]">
+                            <el-select v-model="newContent.type" placeholder="Text" size="small">
+                                <el-option v-for="type in contentTypes"
+                                           :key="type.label"
+                                           :label="type.label"
+                                           :value="type.value"></el-option>
+                            </el-select>
                         </el-form-item>
                     </el-col>
                 </el-row>
-            </el-tab-pane>
-        </el-tabs>
+
+                <el-row :gutter="20">
+                    <el-col :md="12">
+                        <el-button type="success" size="small" plain @click="addContent(languageOptions ? activeContentTab : language)">Add Content</el-button>
+                    </el-col>
+                </el-row>
+            </el-form>
+
+        </el-dialog>
 
     </div>
 </template>
@@ -36,64 +91,107 @@
 <script>
 var groupBy = require('lodash.groupby');
 var orderBy = require('lodash.orderby');
-var forEach = require('lodash.foreach');
-
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
-
-import { quillEditor } from 'vue-quill-editor';
-
+var filter = require('lodash.filter');
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 
       name: 'ContentComponent',
 
       components: {
-          quillEditor,
-          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
+          ContentInner: () => import(/* webpackChunkName: "content-inner" */'components/ContentInner')
       },
 
       props: {
           content: {
               required: true,
-              type: Object
+              type: Array
+          },
+          editable: {
+              required: false,
+              type: Boolean,
+              default () {
+                  return true
+              }
+          },
+          languageOptions: {
+              required: false,
+              type: Boolean,
+              default () {
+                  return true
+              }
+          },
+          language: {
+              required: false,
+              type: String,
+              default () {
+                  return 'en'
+              }
+          },
+          accordian: {
+              required: false,
+              type: Boolean,
+              default () {
+                  return true
+              }
           }
       },
 
       data () {
-          var self = this;
           return {
+              newContent: {
+                  type: 'text'
+              },
+              form: {},
+              showModal: false,
               loading: false,
               activeContentTab: 'en',
-              showFilePicker: false,
-              quillInstance: null,
-              quillSelection: null,
-              editorOption: {
-                modules: {
-                  toolbar: {
-                      container: ["image", "bold", "italic", "underline", "strike", { 'header': 1 }, { 'header': 2 }, "blockquote", { 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
-
-                      handlers: {
-                        'image': function(value) {
-                            self.quillSelection = this.quill.getSelection();
-                            self.showFilePicker = true;
-                            self.quillInstance = this;
-                        }
-                      }
-                  },
-                }
-              },
+              accordianTab: null,
           }
       },
 
       computed: {
 
+          ...mapGetters([
+            'shopData',
+          ]),
+
           groupedByLangContent()
           {
-              var orderedContent = orderBy(this.content.data, ['order'], ['asc']);
-              return groupBy(orderedContent, 'language');
+              var orderedContent = orderBy(this.content, ['order'], ['asc']);
+              orderedContent = groupBy(orderedContent, 'language');
+              return Object.keys(orderedContent).length > 0 ? orderedContent : {'en': []};
           },
+
+          selectedLangContent()
+          {
+              var orderedContent = orderBy(this.content, ['order'], ['asc']);
+              orderedContent = filter(orderedContent, ['language', this.language]);
+
+              return orderedContent !== undefined ? orderedContent : [];
+          },
+
+          contentTypes()
+          {
+              return [
+                {
+                    label: 'Text',
+                    value: 'text',
+                },
+                {
+                    label: 'Text Area',
+                    value: 'textarea',
+                },
+                {
+                    label: 'Content Editor',
+                    value: 'quill',
+                },
+                {
+                    label: 'Multi',
+                    value: 'json',
+                }
+              ]
+          }
       },
 
       watch: {
@@ -105,26 +203,34 @@ export default {
       },
 
       methods: {
-
-        insertQuillImage(files)
+        addContent(lang)
         {
-            forEach(files, function(file) {
-                this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', file.url);
-            }.bind(this));
+            this.$refs['contentAdd'].validate((valid) => {
+                if (valid) {
+                    this.content.push({
+                        'order': (this.content.length + 1),
+                        'language': lang,
+                        'content': this.newContent.type === 'json' ? {} : '',
+                        'content_name': this.newContent.name,
+                        'type': this.newContent.type
+                    });
 
-            this.quillInstance = null;
-            this.quillSelection = null;
+                    this.showModal = false;
+                    this.newContent = {};
+                }
+            });
         },
 
-        fileModalClosed()
+        onDeleteContent(key)
         {
-            this.showFilePicker = val;
-            this.quillInstance = null;
-            this.quillSelection = null;
+              this.content.splice(key, 1);
         },
       }
 }
 </script>
 
 <style lang="css">
+.el-collapse-item__wrap {
+    padding: 0px 20px;
+}
 </style>

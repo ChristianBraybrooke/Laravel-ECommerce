@@ -50,13 +50,9 @@
                 </el-row>
 
                 <el-row v-if="props.productForm.content" :gutter="20">
-                    <template v-for="content in props.productForm.content.data">
-                        <el-col :lg="12" :md="24">
-                            <el-form-item :label="content.content_name" :prop="content.content_name" size="small">
-                                <el-input type="textarea" :autosize="{ minRows: 5 }" :autofocus="true" v-model="content.content"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </template>
+                    <el-col :span="24">
+                        <content-component v-if="props.productForm.content" :content="props.productForm.content.data"/>
+                    </el-col>
                 </el-row>
 
                 <errors v-if="Object.keys(collectionErrors).length > 0" :errors="collectionErrors"></errors>
@@ -90,6 +86,7 @@ export default {
 
       components: {
           ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
+          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
       },
 
       props: {

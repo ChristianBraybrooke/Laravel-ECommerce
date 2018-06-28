@@ -25,6 +25,7 @@ use Illuminate\Filesystem\Filesystem;
 use File;
 use ChrisBraybrooke\ECommerce\Commands\InitialSetupCommand;
 use ChrisBraybrooke\ECommerce\Commands\CreateAdminCommand;
+use ChrisBraybrooke\ECommerce\Commands\PublishAdminCommand;
 use ChrisBraybrooke\ECommerce\Models\Order;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
@@ -71,6 +72,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             $this->commands([
                 InitialSetupCommand::class,
                 CreateAdminCommand::class,
+                PublishAdminCommand::class,
             ]);
         }
     }

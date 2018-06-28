@@ -40,86 +40,8 @@
         </el-row>
 
         <el-row :gutter="20">
-            <el-col :lg="12" style="margin-bottom: 50px;" v-for="(content, key) in formattedContent" :key="content.id">
-                <el-card>
-                    <div slot="header" class="clearfix">
-                        {{ content.content_name }}
-                    </div>
-
-                    <el-form :model="order" label-width="120px" size="mini">
-
-                        <el-row v-if="content.type === 'json'">
-                            <el-col :md="12" v-for="(jsonContent, k) in content.content" :key="k">
-                                <el-form-item :label="capitalize(k)" :prop="k">
-                                    <el-input v-if="k !== 'date'" v-model="order.content.data[key].content[k]"></el-input>
-
-                                    <el-date-picker v-if="k === 'date'"
-                                                    v-model="order.content.data[key].content[k]"
-                                                    type="date"
-                                                    style="width: 100%;"
-                                                    placeholder="Pick a date"
-                                                    format="dd/MM/yyyy"
-                                                    value-format="dd-MM-yyy"
-                                                    :picker-options="deliveryDateOptions">
-                                    </el-date-picker>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item>
-                                    <el-button type="primary" :loading="loading" @click="updateOrder()">Save</el-button>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                    </el-form>
-
-                </el-card>
-            </el-col>
-            <el-col :lg="12" style="margin-bottom: 50px;">
-                <el-card>
-                    <div slot="header" class="clearfix">
-                        <span>Payment Information</span>
-                        <a :href="'https://dashboard.stripe.com/payments/' + order.payment_id" target="_blank" v-if="order.payment_id" class="el-button el-button--text" style="float: right; padding: 3px 0; text-decoration: none;">View In Stripe</a>
-                    </div>
-
-                    <el-form ref="paymentInformationForm" :model="order" label-width="120px" size="mini">
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item label="Payment Id" prop="payment_id">
-                                    <el-input :disabled="true" :autofocus="true" v-model="order.payment_id"></el-input>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item label="Payment Method" prop="payment_method">
-                                    <el-input :disabled="true" :autofocus="true" v-model="order.payment_method"></el-input>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item label="Amount Paid" prop="amount_paid">
-                                    <el-input :disabled="true" :autofocus="true" v-model="order.amount_paid"></el-input>
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                        <el-row>
-                            <el-col :xl="12">
-                                <el-form-item>
-                                    <!-- <el-button type="primary" :loading="loading" @click="updateOrder()">Save</el-button> -->
-                                </el-form-item>
-                            </el-col>
-                        </el-row>
-
-                    </el-form>
-                </el-card>
+            <el-col>
+                <content-component :content="formattedContent" :editable="false" :language-options="false" language="en" />
             </el-col>
         </el-row>
 
@@ -261,6 +183,7 @@ export default {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
           ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
           Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
+          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent')
       },
 
       props: {

@@ -99,12 +99,7 @@ class ApiProductsController extends Controller
         ]);
 
         if ($request->has('content.data')) {
-            foreach ($request->input('content.data') as $key => $content) {
-                $product->content()->updateOrCreate(
-                    ['content_name' => $content['content_name']],
-                    ['content' => $content['content']]
-                );
-            }
+            $product->syncContent($request->input('content.data'));
         }
 
         if ($request->has('variants.data')) {

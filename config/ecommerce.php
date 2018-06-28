@@ -91,7 +91,11 @@ return [
 
   'default_content' => [
 
-      'orders' => []
+      'orders' => [],
+      'products' => [
+          ['content_name' => 'Main Content', 'content' => '', 'type' => 'quill'],
+          ['content_name' => 'Snippet', 'content' => '', 'type' => 'text']
+      ],
   ],
 
 ];
