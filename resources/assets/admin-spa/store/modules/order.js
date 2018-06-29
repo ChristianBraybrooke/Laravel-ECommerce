@@ -6,12 +6,15 @@ var forEach = require('lodash.foreach')
 const state = {
   order: {
       customer: {},
-      shipping_rate: 60,
-      discount_rate: 0,
       billing_address: {},
       shipping_address: {},
       items: [],
-      cart: {},
+      cart: {
+          totals: {
+              Shipping: 60,
+              Discount: 0,
+          }
+      },
       use_billing_for_shipping: true,
       status: 'STATUS_DRAFT',
       needs_address: 'Needs Address'
@@ -22,7 +25,16 @@ const state = {
 const getters = {
   order: state => state.order,
   orderTotals(state) {
-      return orderUtil.totals(state.order.items, state.order.shipping_rate, state.order.discount_rate)
+      return orderUtil.totals(state.order.items, state.order.cart.totals['Shipping'], state.order.cart.totals['Discount'])
+  },
+  orderTotal(state, getters) {
+      var grand_total = 0;
+      forEach(getters.orderTotals, (total) => {
+          if (total.total === 'Total') {
+              grand_total = total.value;
+          }
+      });
+      return grand_total;
   }
 }
 
@@ -66,12 +78,15 @@ const mutations = {
   [types.RESET_ORDER] (state) {
     state.order = {
         customer: {},
-        shipping_rate: 60,
-        discount_rate: 0,
         billing_address: {},
         shipping_address: {},
         items: [],
-        cart: {},
+        cart: {
+            totals: {
+                Shipping: 60,
+                Discount: 0,
+            }
+        },
         use_billing_for_shipping: true,
         status: 'STATUS_DRAFT',
         needs_address: 'Needs Address'

@@ -167,7 +167,7 @@ export default {
           },
           startingAmount: {
               required: false,
-              type: String,
+              type: [String, Number],
               default () {
                   return null
               }
@@ -232,37 +232,41 @@ export default {
 
         processPayment()
         {
-            this.$refs['paymentForm'].validate((valid, errors) => {
-              if (valid) {
-                  if (this.activePaymentTab !== 'other') {
-                      this.model.payment_method = this.activePaymentTab;
-                  }
-                  this.model.order.id = this.order.id;
-                  this.loading = true;
-                  this.model.include = ['payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source'];
-                  api.persist('post', {
-                      path: 'payments',
-                      object: this.model
-                  })
-                  .then(data => {
-                    this.onPaymentProcessed(data.data);
-                    this.loading = false;
-                    this.model = {
-                        order: {},
-                    };
-                    this.errors = {};
-                  })
-                  .catch(error => {
-                      this.errors = error;
-                      this.loading = false;
-                  });
+            if (this.activePaymentTab !== 'none') {
+                this.$refs['paymentForm'].validate((valid, errors) => {
+                  if (valid) {
+                      if (this.activePaymentTab !== 'other') {
+                          this.model.payment_method = this.activePaymentTab;
+                      }
+                      this.model.order.id = this.order.id;
+                      this.loading = true;
+                      this.model.include = ['payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source'];
+                      api.persist('post', {
+                          path: 'payments',
+                          object: this.model
+                      })
+                      .then(data => {
+                        this.onPaymentProcessed(data.data);
+                        this.loading = false;
+                        this.model = {
+                            order: {},
+                        };
+                        this.errors = {};
+                      })
+                      .catch(error => {
+                          this.errors = error;
+                          this.loading = false;
+                      });
 
-              } else {
-                  this.errors = {
-                      message: 'There are required feilds empty below.'
-                  };
-              }
-            });
+                  } else {
+                      this.errors = {
+                          message: 'There are required feilds empty below.'
+                      };
+                  }
+                });
+            } else {
+                this.onPaymentProcessed({})
+            }
         },
       },
 

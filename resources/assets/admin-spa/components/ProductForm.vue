@@ -6,7 +6,7 @@
                  :size="mergedButton.size"
                  :plain="mergedButton.plain"
                  :class="mergedButton.class"
-                 @click="showModal = true;"
+                 @click="openModal"
                  type="primary">{{(loading ? mergedButton.loading : mergedButton.text)}}
       </el-button>
 
@@ -14,6 +14,7 @@
                  :close-on-click-modal="false"
                  :before-close="closeAndClearModal"
                  :visible.sync="showModal"
+                 v-if="showModal"
                  width="70%">
 
           <div v-loading="loading">
@@ -158,7 +159,7 @@
 
 
               <span slot="footer" class="dialog-footer">
-                  <el-button @click="closeAndClearModal(null)">{{ editForm ? 'Discard Changes' : 'Cancel' }}</el-button>
+                  <el-button v-if="!editForm" @click="closeAndClearModal(null)">{{ editForm ? 'Discard Changes' : 'Cancel' }}</el-button>
                   <el-button v-if="!editForm" type="primary" @click="addProduct()">Add Product</el-button>
                   <el-button v-if="editForm" type="primary" @click="saveProduct()">Save Changes</el-button>
               </span>
@@ -192,20 +193,18 @@ var orderFormTemplate = {
     }
 }
 
-var formTemplate = {
-  product: {
-      quantity: 1,
-      order_form: orderFormTemplate,
-      options: {},
-      product: {
-          quantity: 1,
-          options: {}
-      },
-      variants: {
-        data: [],
-        order_form: orderFormTemplate
-      }
-  }
+var productTemplate = {
+    quantity: 1,
+    order_form: orderFormTemplate,
+    options: {},
+    product: {
+        quantity: 1,
+        options: {}
+    },
+    variants: {
+      data: [],
+      order_form: orderFormTemplate
+    }
 }
 
 export default {
@@ -252,7 +251,10 @@ export default {
               loading: true,
               showModal: false,
               errors: {},
-              form: formTemplate,
+              tempProduct: {},
+              form: {
+                  product: productTemplate
+              },
               productCategory: '',
               productFirst: '',
               collectionToShow: {
@@ -343,6 +345,7 @@ export default {
 
       mounted () {
           console.log('ProductForm.vue Mounted');
+
           this.clearAll();
 
           Object.assign(this.mergedButton,this.defaultButton,this.button);
@@ -391,6 +394,14 @@ export default {
                   this.form.product.price = clone(this.clonedPrice);
               }
               this.editPrice = !this.editPrice;
+          },
+
+          openModal()
+          {
+            if (this.editForm) {
+                this.form.product = this.product;
+            }
+            this.showModal = true;
           },
 
           closeAndClearModal()
@@ -444,11 +455,11 @@ export default {
 
           clearAll()
           {
-              // if (this.objectHas(this.form, 'product.options')) {
-              //     this.form.product.options = {};
-              // }
               this.errors = {};
-              this.form = formTemplate;
+              this.form = {
+                  product: {},
+              };
+              this.form.product = productTemplate;
 
               this.productCategory = null;
               this.productFirst = null;
@@ -465,6 +476,7 @@ export default {
 
           saveProduct()
           {
+              this.clearAll();
               this.showModal = false;
           },
 

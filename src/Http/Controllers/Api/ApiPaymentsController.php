@@ -49,6 +49,8 @@ class ApiPaymentsController extends Controller
 
         $payment = $payment->create([
             'order_id' => $request->input('order.id'),
+            'refunded' => false,
+            'notes' => $request->payment_notes,
             'reference' => $reference,
             'method' => $request->payment_method,
             'currency' => $currency,
@@ -61,6 +63,18 @@ class ApiPaymentsController extends Controller
             'source_exp_month' => $source['exp_month'] ?? null,
             'source_exp_year' => $source['exp_year'] ?? null,
         ]);
+
+        return new PaymentResource($payment);
+    }
+
+    public function update(Request $request, Payment $payment)
+    {
+        $payment->update([
+            'refunded' => $request->payment_refunded,
+            'notes' => $request->payment_notes,
+        ]);
+
+        $payment->load($request->with ?: []);
 
         return new PaymentResource($payment);
     }

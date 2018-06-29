@@ -1,18 +1,22 @@
 <template lang="html">
 
     <div :loading="loading">
-        <el-button type="success" plain style="margin-bottom: 20px;" @click="showModal = true">Add Payment</el-button>
-        <payment-details :payments="payments"/>
 
+        <slot :showModal="displayModal">
+            <el-button type="success" plain style="margin-bottom: 20px;" @click="showModal = true">Add Payment</el-button>
+        </slot>
 
+        <payment-details v-if="showPayments" :payments="payments"/>
 
         <el-dialog title="Add Payment"
+                   v-if="showModal"
                    :close-on-click-modal="false"
+                   :append-to-body="true"
                    :before-close="closeAndClearModal"
                    :visible.sync="showModal">
 
 
-                <payment-form :model="payment" :order="order" :on-payment-processed="clearModal"/>
+                <payment-form :starting-amount="formStartingAmount" :model="payment" :order="order" :on-payment-processed="clearModal"/>
 
         </el-dialog>
 
@@ -44,6 +48,20 @@ export default {
               required: false,
               default () {
                   return function (payment) {};
+              }
+          },
+          showPayments: {
+              type: Boolean,
+              required: false,
+              default () {
+                  return true
+              }
+          },
+          formStartingAmount: {
+              required: false,
+              type: [String, Number],
+              default () {
+                  return null
               }
           }
       },
@@ -81,7 +99,13 @@ export default {
           clearModal(payment)
           {
               this.onPaymentProcessed(payment);
+              this.order.payments.data.push(payment);
               this.showModal = false;
+          },
+
+          displayModal()
+          {
+              this.showModal = true;
           }
       },
 

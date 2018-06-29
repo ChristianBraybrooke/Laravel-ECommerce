@@ -22,12 +22,25 @@ export default {
                 }
             });
         }
-        return extras;
+        return extras * product.quantity;
     },
 
     productTotal(product)
     {
         return priceUtil.normalise(this.productExtras(product)) + priceUtil.normalise(this.productSubTotal(product));
+    },
+
+    paymentTotal(payments)
+    {
+        var total = 0;
+        payments.forEach((payment) => {
+            if (payment.refunded !== true) {
+                var amount = String(payment.amount)
+                amount = parseFloat(amount.replace(/,/g, ''))
+                total = total + amount
+            }
+        });
+        return total;
     },
 
     totals(products, shipping = 0, discount = 0)

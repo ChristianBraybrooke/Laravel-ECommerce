@@ -217,14 +217,14 @@ export default {
           }
       },
       requestWith: {
-          type: String,
+          type: [String, Array],
           required: false,
           default () {
 
           }
       },
       requestIncludes: {
-          type: Array,
+          type: [String, Array],
           required: false,
           default () {
               return [];
@@ -762,7 +762,6 @@ export default {
     {
         var row_has_colour = collumn_util.getRowColour(this.colourRules, row);
 
-        console.log(`Colour: ${row_has_colour}`)
         if (!row_has_colour) {
             return ''
         }

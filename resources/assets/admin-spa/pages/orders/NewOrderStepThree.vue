@@ -29,65 +29,8 @@
                 </el-col>
             </el-row>
 
+            <payment-form :order="order" :show-none-option="true" :starting-amount="orderTotal" :on-payment-processed="onPaymentProcessed"/>
 
-            <el-tabs v-model="activePaymentTab">
-                <el-tab-pane label="Card" name="card">
-                    <card-payment-form :form="order" :loading="loading" ref="paymentForm" :on-token-creation="onTokenCreation"/>
-                </el-tab-pane>
-
-                <el-tab-pane label="BACS" name="bacs">
-
-
-                    <el-row :gutter="20">
-                        <el-col :md="{span:8, offset: 4}">
-                            <el-form-item label="Amount" size="small" prop="payment_amount">
-                                <el-input :autofocus="true" v-model="order.payment_amount" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :md="8">
-                            <el-form-item label="Reference" size="small" prop="payment_reference">
-                                <el-input :autofocus="true" v-model="order.payment_reference" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
-                </el-tab-pane>
-
-                <el-tab-pane label="Other" name="other">
-
-                    <el-row :gutter="20">
-                        <el-col :md="{span:8, offset: 4}">
-                            <el-form-item label="Payment Method" size="small" prop="payment_method">
-                                <el-input :autofocus="true" v-model="order.payment_method" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
-                    <el-row :gutter="20">
-                        <el-col :md="{span:8, offset: 4}">
-                            <el-form-item label="Amount" size="small" prop="payment_amount">
-                                <el-input :autofocus="true" v-model="order.payment_amount" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                        <el-col :md="8">
-                            <el-form-item label="Reference" size="small" prop="payment_reference">
-                                <el-input :autofocus="true" v-model="order.payment_reference" auto-complete="off"></el-input>
-                            </el-form-item>
-                        </el-col>
-                    </el-row>
-
-                </el-tab-pane>
-            </el-tabs>
-
-
-
-
-
-            <el-row :gutter="20" style="margin-top: 40px;">
-                <el-col :md="{span:24}">
-                    <el-button @click="processSubmit('orderForm')" type="success" plain>Complete Payment</el-button>
-                </el-col>
-            </el-row>
 
 
         </el-form>
@@ -104,7 +47,7 @@ export default {
       name: 'orderStepThree',
 
       components: {
-          CardPaymentForm: () => import(/* webpackChunkName: "card-payment-form" */'components/CardPaymentForm'),
+          PaymentForm: () => import(/* webpackChunkName: "payment-form" */'components/PaymentForm'),
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
       },
 
@@ -124,6 +67,7 @@ export default {
           ...mapGetters([
             'order',
             'orderTotals',
+            'orderTotal',
             'shopData'
           ]),
       },
@@ -150,62 +94,11 @@ export default {
               'resetOrder'
           ]),
 
-          processSubmit(ref)
+          onPaymentProcessed(payment)
           {
-              this.loading = true;
-
-              this.$refs[ref].validate((valid) => {
-                  if (valid && this.activePaymentTab === 'card') {
-                      this.$refs.paymentForm.createToken();
-                  } else if (this.activePaymentTab !== 'card') {
-
-
-                    this.order.payment_method = this.order.payment_method ? this.order.payment_method : this.activePaymentTab;
-                    api.persist("post", {
-                          path: "orders/" + this.order.id + "/payment",
-                          object: this.order
-                      })
-                      .then(function (data) {
-                          this.loading = false;
-                          this.$router.push({name: 'orders.view', params: { orderId: this.order.id.toString() }})
-                          this.resetOrder();
-                          // this.data = data.data;
-                      }.bind(this))
-                      .catch(function (error) {
-                          this.loading = false;
-                          // this.errors = error;
-                      }.bind(this));
-
-
-
-                  } else {
-                      return false;
-                      this.loading = false;
-                  }
-              });
-
+              this.$router.push({name: 'orders.view', params: { orderId: this.order.id.toString() }})
+              this.resetOrder();
           },
-
-          onTokenCreation(has_error, token_object, error_object)
-          {
-              if (!has_error && this.order.id) {
-                  this.order.payment_method = 'stripe';
-                  api.persist("post", {
-                        path: "orders/" + this.order.id + "/payment",
-                        object: this.order
-                    })
-                    .then(function (data) {
-                        this.loading = false;
-                        this.$router.push({name: 'orders.view', params: { orderId: this.order.id.toString() }})
-                        this.resetOrder();
-                        // this.data = data.data;
-                    }.bind(this))
-                    .catch(function (error) {
-                        this.loading = false;
-                        // this.errors = error;
-                    }.bind(this));
-              }
-          }
 
       }
 }

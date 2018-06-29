@@ -32,12 +32,13 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import ProductForm from 'components/ProductForm';
-import orderUtil from 'utils/order';
-var range = require('lodash.range');
+import { mapActions, mapGetters } from 'vuex'
+import ProductForm from 'components/ProductForm'
+import orderUtil from 'utils/order'
 
-var forEach = require('lodash.foreach');
+var clone = require('lodash.clone')
+var range = require('lodash.range')
+var forEach = require('lodash.foreach')
 
 
 export default {
@@ -89,7 +90,9 @@ export default {
               loading: false,
               mergedOptions: {},
               options: {},
-              collumns: []
+              collumns: [],
+              discount_rate: 0,
+              shipping_rate: 0,
           }
       },
 
@@ -165,11 +168,14 @@ export default {
       },
 
       watch: {
-
+          //
       },
 
       mounted () {
           console.log('ProductTable.vue Mounted');
+
+          // this.shipping_rate = this.order.cart.totals.Shipping;
+          // this.discount_rate = this.order.discount_rate;
 
           if(this.setCollumns.length == 0) {
               this.collumns = this.defaultCollumns;
@@ -197,9 +203,17 @@ export default {
 
               if (row.options) {
                 var items = [];
-                forEach(row.options, function(value, key) {
+                forEach(row.options, (value, key) => {
                     var new_value = value ? value.name : value;
-                    items.push(<li>{key}: {new_value}</li>);
+                    var extra = '';
+                    if (value) {
+                        var price_mutator = value.price_mutator ? value.price_mutator : '';
+                        var price_value = value.price_value ? this.formatPrice(value.price_value, this.shopData.currency) : '';
+                        if (price_mutator && price_value) {
+                            extra = <span style="font-size: 11px;">({price_mutator} {price_value})</span>
+                        }
+                    }
+                    items.push(<li>{key}: {new_value} {extra}</li>);
                 });
 
                 return <div>{row_name} <ul class="order_item_options">{items}</ul></div>
@@ -210,7 +224,7 @@ export default {
           itemRowActionsFormatter(row, column, cellValue)
           {
               return <span>
-                         <product-form edit-form={true} product={row}></product-form>
+                         <product-form edit-form={true} product={row} button={{text: 'Edit Product', size: 'mini'}}></product-form>
                          <el-button size="mini" type="danger" on-click={ () => this.deleteRow(row) }>Delete</el-button>
                      </span>
           },
@@ -222,7 +236,7 @@ export default {
                   options.push(<el-option key={range} value={range} label={this.formatPrice(range, this.shopData.currency)}></el-option>);
               }.bind(this));
 
-              return this.editable ? <el-select v-model={this.order.shipping_rate} size="mini" style="max-width: 100px;">{options}</el-select> : this.formatPrice(this.order.shipping_rate, this.shopData.currency);
+              return this.editable ? <el-select v-model={this.order.cart.totals.Shipping} size="mini" style="max-width: 100px;">{options}</el-select> : this.formatPrice(this.order.cart.totals.Shipping, this.shopData.currency);
           },
 
           discountRowFormatter(value)
@@ -233,7 +247,7 @@ export default {
                   options.push(<el-option key={range} value={range} label={range + '%'}></el-option>);
               }.bind(this));
 
-              return this.editable ? <el-select v-model={this.order.discount_rate} size="mini" style="max-width: 100px;">{options}</el-select> : `${this.order.discount_rate}%`;
+              return this.editable ? <el-select v-model={this.order.cart.totals.Discount} size="mini" style="max-width: 100px;">{options}</el-select> : `${this.order.cart.totals.Discount}%`;
           },
 
           deleteRow(row)

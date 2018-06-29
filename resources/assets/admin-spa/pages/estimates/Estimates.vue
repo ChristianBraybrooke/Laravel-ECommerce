@@ -1,7 +1,7 @@
 <template lang="html">
     <data-table type-name="estimate"
                 base-url="orders"
-                edit-path="orders"
+                edit-path="estimates"
                 bulk-update-url="orders/bulk"
                 :with-params="{withStatus: 'estimate'}"
                 request-with="content"

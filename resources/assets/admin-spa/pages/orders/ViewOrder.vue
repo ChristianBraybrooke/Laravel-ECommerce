@@ -139,7 +139,7 @@
             <el-col :span="24">
                 <el-card class="box-card">
 
-                    <product-table :editable="true" :order="order" :order-totals="orderTotals"/>
+                    <product-table :editable="false" :order="order" :order-totals="orderTotals"/>
 
 
                </el-card>
@@ -148,7 +148,7 @@
 
         <el-row v-if="order.payments" :gutter="20">
             <el-col :span="24">
-                <payments :payments="order.payments.data" :order="order" :on-payment-processed="onPaymentProcessed"/>
+                <payments :payments="order.payments.data" :order="order"/>
             </el-col>
         </el-row>
 
@@ -171,6 +171,7 @@
 
 <script>
 import api from "services/api-service";
+import order_util from "utils/order"
 import { mapActions, mapGetters } from 'vuex';
 var forEach = require('lodash.foreach');
 var filter = require('lodash.filter');
@@ -234,15 +235,11 @@ export default {
           },
 
           orderTotals() {
-              var totals = [];
-              forEach(this.order.cart.totals, function(value, key) {
-                  totals.push({
-                      'total': key,
-                      'value': value
-                  })
-              }.bind(this));
 
-              return totals;
+              if (this.order.cart) {
+                  return order_util.totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount']);
+              }
+              return [{}];
           }
       },
 
@@ -280,7 +277,7 @@ export default {
                   path: 'orders/' + this.orderId,
                   params: {
                       with: ['content', 'payments'],
-                      include: [ 'payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source' ]
+                      include: [ 'payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source', 'payment.refunded', 'payment.notes' ]
                   }
               })
               .then(function (data) {
@@ -372,12 +369,6 @@ export default {
 
               this.printUrl = null;
           },
-
-          onPaymentProcessed(payment)
-          {
-              console.log(payment)
-              this.order.payments.data.push(payment);
-          }
 
       },
 

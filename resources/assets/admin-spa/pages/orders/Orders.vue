@@ -5,8 +5,9 @@
 
         <data-table type-name="order"
                     :full-modal="true"
-                    request-with="content"
-                    :with-params="{withOutStatuses: ['quote', 'estimate']}"
+                    :request-with="['content', 'payments']"
+                    :request-includes="['payment.amount', 'payment.method', 'payment.refunded']"
+                    :with-params="{withOutStatuses: 'STATUS_ESTIMATE'}"
                     :table-options="tableOptions"
                     :create-form="ordersCreateForm"
                     v-on:createNew="handleCreateNew"
@@ -66,10 +67,12 @@
 </template>
 
 <script>
-var forEach = require('lodash.foreach');
-var findIndex = require('lodash.findindex');
-import api from 'services/api-service';
-import TableCollumn from 'components/TableCollumn';
+var forEach = require('lodash.foreach')
+var findIndex = require('lodash.findindex')
+import api from 'services/api-service'
+import TableCollumn from 'components/TableCollumn'
+import Payments from 'components/Payments'
+import order_util from 'utils/order'
 
 export default {
 
@@ -77,6 +80,7 @@ export default {
 
       components: {
           DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
+          Payments: Payments,
           TableCollumn,
       },
 
@@ -205,12 +209,29 @@ export default {
                           resizable: false
                       },
                       {
-                          prop: 'amount',
+                          prop: 'payment_amount',
                           sortable: true,
                           label: 'Paid',
                           width: '90px',
-                          formatter: function(row, column, cellValue) {
-                              return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
+                          formatter: (row) => {
+                              var payments = [];
+                              row.payments.data.forEach((payment) => {
+                                  if (!payment.refunded) {
+                                      payments.push(<li>{this.formatPrice(payment.amount, row.cart.currency)} by <strong>{payment.method}</strong></li>)
+                                  }
+                              });
+                              var payment_info = payments.length > 0 ? <ul class="order_items_list table_col_list">{payments}</ul> : <span>No Payment Information</span>;
+                              return <el-popover trigger="hover" placement="top">
+                                         {payment_info}
+                                         <payments payments={row.payments.data} order={row} show-payments={false} form-starting-amount={row.cart.totals.Total - row.payment_amount}>
+                                            {
+                                                (props) => <el-button on-click={() => props.showModal()}
+                                                                      type="success" size="mini"
+                                                                      plain>Make Payment</el-button>
+                                            }
+                                         </payments>
+                                         <div slot="reference"><strong>{this.formatPrice(order_util.paymentTotal(row.payments.data), row.cart.currency)}</strong></div>
+                                     </el-popover>
                           },
                           align: 'left',
                           resizable: false
@@ -296,6 +317,11 @@ export default {
       },
 
       methods: {
+
+          processPayment(payment)
+          {
+              console.log(payment)
+          },
 
           /**
            * Open the print dialog.

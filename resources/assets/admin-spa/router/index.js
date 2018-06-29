@@ -10,6 +10,7 @@ const Orders = () => import(/* webpackChunkName: "orders" */ 'pages/orders/Order
 const Quotes = () => import(/* webpackChunkName: "quotes" */ 'pages/quotes/Quotes');
 const Estimates = () => import(/* webpackChunkName: "estimates" */ 'pages/estimates/Estimates');
 const NewEstimate = () => import(/* webpackChunkName: "new-estimates" */ 'pages/estimates/NewEstimate');
+const ViewEstimate = () => import(/* webpackChunkName: "view-estimates" */ 'pages/estimates/ViewEstimate');
 const NewOrderStepOne = () => import(/* webpackChunkName: "orders" */ 'pages/orders/NewOrderStepOne');
 const NewOrderStepTwo = () => import(/* webpackChunkName: "orders" */ 'pages/orders/NewOrderStepTwo');
 const NewOrderStepThree = () => import(/* webpackChunkName: "orders" */ 'pages/orders/NewOrderStepThree');
@@ -102,6 +103,13 @@ const router = new Router({
             component: NewEstimate,
             name: 'estimates.new',
             meta: {title: 'Admin: New Estimate'}
+        },
+        {
+            path: '/estimates/:estimateId',
+            component: ViewEstimate,
+            props: true,
+            name: 'estimates.view',
+            meta: {title: 'Admin: Estimate'}
         },
         {
             path: '/collections',

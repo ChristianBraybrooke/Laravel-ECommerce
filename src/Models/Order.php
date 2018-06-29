@@ -16,6 +16,7 @@ use Cart;
 use Setting;
 use Product;
 use ReflectionClass;
+use Illuminate\Support\Facades\DB;
 
 class Order extends Model implements OrderContract
 {
@@ -31,7 +32,6 @@ class Order extends Model implements OrderContract
       'STATUS_AWAITING_PAYMENT' => 'Awaiting Payment',
       'STATUS_PAYMENT_FAILED' => 'Failed Payment',
       'STATUS_ESTIMATE' => 'Estimate',
-      // 'STATUS_QUOTE' => 'Quote',
     ];
 
 
@@ -69,10 +69,16 @@ class Order extends Model implements OrderContract
             return $value === $name;
         });
 
+        if (!$filtered) {
+            $filtered = array_where(self::$statuses, function ($value, $key) use ($name) {
+                return $key === $name;
+            });
+        }
+
         if ($filtered) {
             return implode(array_keys($filtered));
         } else {
-           return $this->setStatusFromName();
+            return $this->setStatusFromName();
         }
     }
 
@@ -273,6 +279,7 @@ class Order extends Model implements OrderContract
                     'quantity' => $item['qty'] ?? null,
                     'price' => priceFormatter($item['price'] ?? 0),
                     'options' => $item['options'] ?? null,
+                    'order_form' => $item['order_form'] ?? null,
                     'tax' => priceFormatter($item['tax'] ?? 0),
                     'subtotal' => priceFormatter($item['subtotal'] ?? 0)
                 ];
@@ -356,9 +363,26 @@ class Order extends Model implements OrderContract
      * @param $value
      * @return string
      */
-    public function getAmountPaidAttribute($value)
+    public function getPaymentAmountAttribute($value)
     {
-        return is_null($value) ? null : priceFormatter(($value / 100));
+        if ($value) {
+            return $value;
+        }
+
+        if ($this->relationLoaded('payments')) {
+            $payments = $this->payments;
+        } else {
+            $payments = DB::table('payments')
+                          ->select('amount')
+                          ->where('order_id', $this->id)
+                          ->get();
+        }
+
+        $amount = 0;
+        foreach ($this->payments as $key => $payment) {
+            $amount = $amount + floatval(str_replace(',', '', $payment->amount));
+        }
+        return $amount;
     }
 
     /**

@@ -45,7 +45,11 @@ class ApiOrdersController extends Controller
     {
         $use_billing_for_shipping = $request->has('use_billing_for_shipping') && $request->use_billing_for_shipping;
 
-        $cart_data = formatOrderItems($request->filled('items') ? $request->items : []);
+        $cart_data = formatOrderItems(
+            $request->filled('items') ? $request->items : [],
+            $request->input('cart.totals.Shipping'),
+            $request->input('cart.totals.Discount')
+        );
 
         $order = $order->create([
           'user_id' => $request->has('customer.id') ? $request->input('customer.id') : null,
@@ -102,7 +106,11 @@ class ApiOrdersController extends Controller
      */
     public function update(OrderRequest $request, Order $order)
     {
-        $cart_data = formatOrderItems($request->filled('items') ? $request->items : []);
+        $cart_data = formatOrderItems(
+            $request->filled('items') ? $request->items : [],
+            $request->input('cart.totals.Shipping'),
+            $request->input('cart.totals.Discount')
+        );
 
         $order->update([
             'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->getAttributes()['status'],
@@ -119,12 +127,12 @@ class ApiOrdersController extends Controller
             'billing_address_postcode' => $request->input('billing_address.postcode'),
             'billing_address_country' => $request->input('billing_address.country'),
 
-            'shipping_address_line1' => $request->filled('shipping_address.line_1') ? $request->input('shipping_address.line_1') : $order->shipping_address_line1,
-            'shipping_address_line2' => $request->filled('shipping_address.line_2') ? $request->input('shipping_address.line_2') : $order->shipping_address_line2,
-            'shipping_address_town' => $request->filled('shipping_address.town') ? $request->input('shipping_address.town') : $order->shipping_address_town,
-            'shipping_address_county' => $request->filled('shipping_address.county') ? $request->input('shipping_address.county') : $order->shipping_address_county,
-            'shipping_address_postcode' => $request->filled('shipping_address.postcode') ? $request->input('shipping_address.postcode') : $order->shipping_address_postcode,
-            'shipping_address_country' => $request->filled('shipping_address.country') ? $request->input('shipping_address.country') : $order->shipping_address_country,
+            'shipping_address_line1' => $request->has('shipping_address.line_1') ? $request->input('shipping_address.line_1') : $order->shipping_address_line1,
+            'shipping_address_line2' => $request->has('shipping_address.line_2') ? $request->input('shipping_address.line_2') : $order->shipping_address_line2,
+            'shipping_address_town' => $request->has('shipping_address.town') ? $request->input('shipping_address.town') : $order->shipping_address_town,
+            'shipping_address_county' => $request->has('shipping_address.county') ? $request->input('shipping_address.county') : $order->shipping_address_county,
+            'shipping_address_postcode' => $request->has('shipping_address.postcode') ? $request->input('shipping_address.postcode') : $order->shipping_address_postcode,
+            'shipping_address_country' => $request->has('shipping_address.country') ? $request->input('shipping_address.country') : $order->shipping_address_country,
 
             'use_billing_for_shipping' => $request->use_billing_for_shipping,
 

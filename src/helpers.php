@@ -216,7 +216,15 @@ function formatOrderItems($request_items = [], $shipping_rate = 0, $discount_rat
             if (isset($option['price_mutator']) && isset($option['price_value']) && $option['price_mutator'] && $option['price_value']) {
                 $order_extras = $order_extras + (operators($option['price_mutator'], 0, $option['price_value']) * $quantity);
             }
-            $options[$key] = $option['name'] ?? $option;
+            $option_name = $option['name'] ?? $option;
+            $options[$key] = [
+                'name' => $option_name,
+                'value' => $option['value'] ?? $option_name
+            ];
+            if (($option['price_mutator'] ?? false) && ($option['price_value'] ?? false)) {
+                $options[$key]['price_mutator'] = $option['price_mutator'];
+                $options[$key]['price_value'] = $option['price_value'];
+            }
         }
 
         $items[] = [
@@ -226,6 +234,7 @@ function formatOrderItems($request_items = [], $shipping_rate = 0, $discount_rat
             'qty' => $quantity,
             'price' => $price,
             'options' => $options,
+            'order_form' => $item['order_form'] ?? null,
             'subtotal' => ($price * $quantity),
         ];
     }

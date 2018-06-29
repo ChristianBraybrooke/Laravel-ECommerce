@@ -92,7 +92,6 @@
 var groupBy = require('lodash.groupby');
 var orderBy = require('lodash.orderby');
 var filter = require('lodash.filter');
-import { mapActions, mapGetters } from 'vuex';
 
 export default {
 
@@ -151,10 +150,6 @@ export default {
       },
 
       computed: {
-
-          ...mapGetters([
-            'shopData',
-          ]),
 
           groupedByLangContent()
           {

@@ -128,7 +128,12 @@ export default {
                   billing_address: {},
                   shipping_address: {},
                   items: [],
-                  cart: {},
+                  cart: {
+                      totals: {
+                          Shipping: 60,
+                          Discount: 0
+                      }
+                  },
                   use_billing_for_shipping: false,
                   needs_address: 'No Address'
               },
@@ -137,7 +142,7 @@ export default {
 
       computed: {
           orderTotals() {
-              return orderUtil.totals(this.order.items, this.order.shipping_rate, this.order.discount_rate)
+              return orderUtil.totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount'])
           }
       },
 

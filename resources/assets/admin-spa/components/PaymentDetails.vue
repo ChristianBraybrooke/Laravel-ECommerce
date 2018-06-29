@@ -1,6 +1,8 @@
 <template lang="html">
     <div>
 
+      <errors v-if="Object.keys(errors).length > 0" :errors="errors"></errors>
+
       <el-table :data="payments" style="width: 100%">
           <el-table-column prop="created_at" label="Payment Date">
               <template slot-scope="props">
@@ -17,7 +19,7 @@
                   <a v-if="props.row.link" :href="props.row.link" target="_blank">
                       <el-button @click="markPaymentRefunded(props.row)" class="action_btn left" type="primary" size="mini" plain>View Details</el-button>
                   </a>
-                  <el-button @click="markPaymentRefunded(props.row)" class="action_btn" type="danger" size="mini" plain>Mark Refunded</el-button>
+                  <el-button v-if="!props.row.refunded" @click="markPaymentRefunded(props.row)" class="action_btn" type="danger" size="mini" plain>Mark Refunded</el-button>
               </template>
           </el-table-column>
       </el-table>
@@ -44,12 +46,15 @@
 </template>
 
 <script>
+import order_util from 'utils/order'
+import api from 'services/api-service'
+
 export default {
 
       name: 'PaymentDetails',
 
       components: {
-
+          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
       },
 
       props: {
@@ -68,20 +73,14 @@ export default {
 
       data () {
           return {
-
+              errors: {}
           }
       },
 
       computed: {
           totalPaid()
           {
-              var total = 0;
-              this.payments.forEach((payment) => {
-                  if (payment.refunded !== true) {
-                      total = total + this.simplePrice(payment.amount)
-                  }
-              });
-              return total;
+              return order_util.paymentTotal(this.payments)
           }
       },
 
@@ -96,7 +95,26 @@ export default {
       methods: {
           markPaymentRefunded(payment)
           {
-              //
+              payment.payment_refunded = true;
+              api.persist('put', {
+                  path: 'payments/' + payment.id,
+                  object: payment
+              })
+              .then((data) => {
+                  payment = data.data;
+                  this.$message({
+                      type: 'success',
+                      message: 'Payment updated successfully.'
+                  })
+              })
+              .catch((error) => {
+                  payment.payment_refunded = false;
+                  this.errors = error;
+                  this.$message({
+                      type: 'error',
+                      message: 'There was an error updating the payment.'
+                  })
+              })
           }
       },
 

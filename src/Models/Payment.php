@@ -19,7 +19,7 @@ class Payment extends Model
      */
     protected $fillable = [
         'order_id', 'reference', 'method', 'currency', 'amount', 'fee', 'source_id', 'source_brand',
-        'source_country', 'source_last4', 'source_exp_month', 'source_exp_year'
+        'source_country', 'source_last4', 'source_exp_month', 'source_exp_year', 'refunded', 'notes'
     ];
 
     /**
@@ -29,7 +29,16 @@ class Payment extends Model
      */
     protected static $logAttributes = [
         'order_id', 'reference', 'method', 'currency', 'amount', 'fee', 'source_id', 'source_brand',
-        'source_country', 'source_last4', 'source_exp_month', 'source_exp_year'
+        'source_country', 'source_last4', 'source_exp_month', 'source_exp_year', 'refunded', 'notes'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'refunded' => 'boolean',
     ];
 
     public function validationRules()
