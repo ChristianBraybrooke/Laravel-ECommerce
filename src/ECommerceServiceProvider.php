@@ -26,7 +26,7 @@ use File;
 use ChrisBraybrooke\ECommerce\Commands\InitialSetupCommand;
 use ChrisBraybrooke\ECommerce\Commands\CreateAdminCommand;
 use ChrisBraybrooke\ECommerce\Commands\PublishAdminCommand;
-use ChrisBraybrooke\ECommerce\Models\Order;
+use Order;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -62,6 +62,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
 
         $this->app->register('ChrisBraybrooke\ECommerce\AuthServiceProvider');
         $this->app->register('ChrisBraybrooke\ECommerce\EventServiceProvider');
+
+        $this->configure();
 
         // Make public assets available
         $this->publishes([
@@ -160,7 +162,6 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         $configPath = __DIR__ . '/../config/ecommerce.php';
         $this->mergeConfigFrom($configPath, 'ecommerce');
 
-        $this->configure();
         $this->registerBladeExtensions();
 
         $this->app->bind(PaymentService::class, function ($app) {

@@ -92,4 +92,18 @@ export default {
             },
         ]
     },
+
+    getStatusNameFromCode(status_code)
+    {
+        const {statuses} = ecommerceConfig.orders;
+        var name = null;
+
+        forEach(statuses, (status, key) => {
+            if (key === status_code) {
+                name = status;
+            }
+        })
+
+        return name;
+    }
 }

@@ -39,7 +39,7 @@
                   <span slot="title">Orders <el-badge v-if="shopData" :value="shopData.orders" class="item"></el-badge></span>
               </template>
               <el-menu-item index="/orders">Orders <el-badge v-if="shopData" :value="shopData.orders" class="item"></el-badge></el-menu-item>
-              <!-- <el-menu-item index="/quotes">Quotes</el-menu-item> -->
+              <el-menu-item index="/pro-formas">Pro-Formas / Drafts</el-menu-item>
               <el-menu-item index="/estimates">Estimates</el-menu-item>
 
           </el-submenu>

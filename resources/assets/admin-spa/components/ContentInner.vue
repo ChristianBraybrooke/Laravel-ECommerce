@@ -121,6 +121,17 @@
                                     <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
                                 </el-popover>
                             </div>
+                            <div v-else-if="(json_key.toUpperCase().includes('CHECK') || json_key.toUpperCase().includes('CHECKBOX'))">
+                                <el-checkbox v-model="content.content[json_key]"></el-checkbox>
+                            </div>
+                            <div v-else-if="json_key.toUpperCase().includes('MULTI')">
+                                <content-inner :show-section-title="false"
+                                               :on-delete-content="deleteMultiContent"
+                                               :content="{content_name: json_key, content: content.content[json_key], type: 'json'}"
+                                               :content-key="json_key"
+                                               :editable="true"
+                                               :language-options="false"/>
+                            </div>
                             <div v-else>
                                 <el-input v-model="content.content[json_key]" size="small" style="width: 100%; max-width: 300px;"></el-input>
                                 <el-popover placement="top"
@@ -178,6 +189,7 @@ export default {
       components: {
           quillEditor,
           FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
+          ContentInner: () => import(/* webpackChunkName: "content-inner" */'components/ContentInner'),
       },
 
       props: {
@@ -271,7 +283,8 @@ export default {
                 inputValidator: function (val) { return val ? true : false },
                 inputErrorMessage: 'Name is required.'
               }).then(value => {
-                  this.$set(this.content.content, value.value, '');
+                  var inner_content = value.value.toUpperCase().includes('MULTI') ? {} : '';
+                  this.$set(this.content.content, value.value, inner_content);
               });
           },
 
@@ -295,6 +308,11 @@ export default {
               this.showFilePicker = false;
               this.quillInstance = null;
               this.quillSelection = null;
+          },
+
+          deleteMultiContent(key)
+          {
+              console.log(this.content.content[key])
           },
       },
 

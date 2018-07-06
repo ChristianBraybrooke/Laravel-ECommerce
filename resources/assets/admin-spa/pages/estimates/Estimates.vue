@@ -64,7 +64,6 @@ export default {
       name: 'Estimates',
 
       components: {
-          ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
           DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
       },
 

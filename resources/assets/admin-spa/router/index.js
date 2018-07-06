@@ -7,6 +7,7 @@ Vue.use(Router);
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */ 'pages/Dashboard');
 const Account = () => import(/* webpackChunkName: "account" */ 'pages/Account');
 const Orders = () => import(/* webpackChunkName: "orders" */ 'pages/orders/Orders');
+const ProFormas = () => import(/* webpackChunkName: "pro-formas" */ 'pages/pro-formas/ProFormas');
 const Quotes = () => import(/* webpackChunkName: "quotes" */ 'pages/quotes/Quotes');
 const Estimates = () => import(/* webpackChunkName: "estimates" */ 'pages/estimates/Estimates');
 const NewEstimate = () => import(/* webpackChunkName: "new-estimates" */ 'pages/estimates/NewEstimate');
@@ -60,6 +61,12 @@ const router = new Router({
             component: Orders,
             name: 'orders',
             meta: {title: 'Admin: Orders'}
+        },
+        {
+            path: '/pro-formas',
+            component: ProFormas,
+            name: 'pro-formas',
+            meta: {title: 'Admin: ProFormas'}
         },
         {
             path: '/orders/new',

@@ -2,6 +2,7 @@
 import api from "services/api-service"
 import collumn_util from "utils/collumn"
 var findIndex = require('lodash.findindex')
+import AdditionForm from 'components/AdditionForm'
 
 export default {
     name: 'TableCollumn',
@@ -22,6 +23,10 @@ export default {
             required: true,
         }
 
+    },
+
+    components: {
+        AdditionForm: AdditionForm,
     },
 
     data () {
@@ -55,6 +60,9 @@ export default {
                 break;
               case 'number':
                 return this.number;
+                break;
+              case 'addition':
+                return this.addition;
                 break;
               default:
                 return this.col.value ? <div>{collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row)}</div> : '';
@@ -103,7 +111,7 @@ export default {
         date()
         {
             var date = this.col.date ? this.col.date : {};
-            var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+            var value = this.value;
             return  <el-date-picker type="date"
                                     v-model={this.temp}
                                     on-change={(val) => this.valChange(val)}
@@ -124,7 +132,7 @@ export default {
         text()
         {
             var text = this.col.text ? this.col.text : {};
-            var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+            var value = this.value;
             return  <el-input v-model={this.temp}
                               on-change={(val) => this.valChange(val)}
                               disabled={this.loading}
@@ -143,7 +151,7 @@ export default {
         number()
         {
             var number = this.col.number ? this.col.number : {};
-            var value = collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
+            var value = this.value;
             return  <el-input-number v-model={this.temp}
                               on-change={(val) => this.valChange(val)}
                               controls={this.objectHas(number, 'controls') ? number.controls : true}
@@ -154,6 +162,48 @@ export default {
                               placeholder={number.placeholder}>
                     </el-input-number>
 
+        },
+
+        /**
+         * Render the addition.
+         *
+         * @return JSX
+         */
+        addition()
+        {
+            var addition = this.col.addition ? this.col.addition : {};
+            var value = this.value;
+
+            var base_additions = [];
+            var addition_total = 0;
+            // base_additions.forEach((addition) => {
+            //     if (addition.amount) {
+            //         addition_total = addition_total + this.simplePrice(addition.amount);
+            //     }
+            // })
+
+            return <addition-form form-name={addition.form_name}
+                                       amount-prefix={addition.amount_prefix}
+                                       format-amount={addition.format_amount}
+                                       additional-fields={addition.additional_fields}
+                                       base-additions={base_additions}
+                                       on-addition-added={(model, total) => addition_total = total}>
+                       {
+                           (props) => <el-button on-click={() => props.showModal()}
+                                                 type={addition.add_button_type ? addition.add_button_type : 'primary'} size={addition.add_button_size ? addition.add_button_size : 'mini'}
+                                                 plain>{addition.add_button_text ? addition.add_button_text : 'Add'}</el-button>
+                       }
+                    </addition-form>
+
+
+
+
+
+        },
+
+        value()
+        {
+            return collumn_util.dotToObjectPath(collumn_util.replaceWhereLookup(this.col.value, this.row), this.row);
         }
     },
 
@@ -228,6 +278,11 @@ export default {
                   }.bind(this));
             }
 
+        },
+
+        additionAdded(model, additions)
+        {
+            additions.push(model)
         }
     }
 }

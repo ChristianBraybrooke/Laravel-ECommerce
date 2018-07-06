@@ -135,13 +135,16 @@
             </el-col>
         </el-row>
 
+        <el-row :gutter="20" style="margin-bottom:20px; margin-top:20px;">
+            <el-col :sm="24">
+                <product-form :on-product-add="product => {this.order.items.push(product)}"/>
+            </el-col>
+        </el-row>
+
         <el-row v-if="order.items" :gutter="20" style="margin-bottom: 50px;">
             <el-col :span="24">
                 <el-card class="box-card">
-
-                    <product-table :editable="false" :order="order" :order-totals="orderTotals"/>
-
-
+                    <product-table :editable="true" :order="order" :order-totals="orderTotals"/>
                </el-card>
             </el-col>
         </el-row>
@@ -184,7 +187,8 @@ export default {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
           ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
           Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
-          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent')
+          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
       },
 
       props: {

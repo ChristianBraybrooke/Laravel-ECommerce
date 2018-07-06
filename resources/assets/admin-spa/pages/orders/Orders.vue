@@ -7,7 +7,7 @@
                     :full-modal="true"
                     :request-with="['content', 'payments']"
                     :request-includes="['payment.amount', 'payment.method', 'payment.refunded']"
-                    :with-params="{withOutStatuses: 'STATUS_ESTIMATE'}"
+                    :with-params="{withOutStatuses: ['STATUS_ESTIMATE', 'STATUS_DRAFT', 'STATUS_PROFORMA', 'STATUS_PAYMENT_FAILED', 'STATUS_CANCELLED']}"
                     :table-options="tableOptions"
                     :create-form="ordersCreateForm"
                     v-on:createNew="handleCreateNew"
@@ -211,8 +211,8 @@ export default {
                       {
                           prop: 'payment_amount',
                           sortable: true,
-                          label: 'Paid',
-                          width: '90px',
+                          label: 'Payment',
+                          width: '100px',
                           formatter: (row) => {
                               var payments = [];
                               row.payments.data.forEach((payment) => {
@@ -223,7 +223,11 @@ export default {
                               var payment_info = payments.length > 0 ? <ul class="order_items_list table_col_list">{payments}</ul> : <span>No Payment Information</span>;
                               return <el-popover trigger="hover" placement="top">
                                          {payment_info}
-                                         <payments payments={row.payments.data} order={row} show-payments={false} form-starting-amount={row.cart.totals.Total - row.payment_amount}>
+                                         <payments payments={row.payments.data}
+                                                   order={row}
+                                                   show-payments={false}
+                                                   form-starting-amount={row.cart.totals.Total - row.payment_amount}
+                                                   on-payment-processed={(payment) => this.paymentAdded(row, payment)}>
                                             {
                                                 (props) => <el-button on-click={() => props.showModal()}
                                                                       type="success" size="mini"
@@ -291,7 +295,7 @@ export default {
                   label: 'Status',
                   width: '120px',
                   formatter: function(row, column, cellValue) {
-                      var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
+                      var type = row.status == order_util.getStatusNameFromCode('STATUS_COMPLETED') ? 'success' : row.status == order_util.getStatusNameFromCode('STATUS_PROCESSING') ? 'danger' : 'info';
                       var config = this.ecommerceConfig;
 
                       var options = [];
@@ -394,6 +398,35 @@ export default {
               });
 
               return 'mailto:?subject=Order Ref '+ row.ref_number +'&body=Hello,%0A%0A The delivery details are as follows: %0A%0A' + delivery_details.join('%0A')
+          },
+
+          paymentAdded(row, payment)
+          {
+              var payments = this.simplePrice(order_util.paymentTotal(row.payments.data)) + this.simplePrice(payment.amount);
+              var status_is_awaiting_payment = row.status === order_util.getStatusNameFromCode('STATUS_AWAITING_PAYMENT');
+              var payments_are_more_than_total = payments >= this.simplePrice(row.cart.totals.Total);
+
+              if (status_is_awaiting_payment && payments_are_more_than_total) {
+                  row.status = order_util.getStatusNameFromCode('STATUS_PROCESSING');
+
+                  this.loading = true;
+                  api.persist('put', {
+                        path: 'orders/' + row.id,
+                        object: row
+                    })
+                    .then((data) => {
+                        this.$message({
+                          message: "Order Updated!",
+                          type: 'success',
+                          showClose: true,
+                        });
+                        this.loading = false;
+                    })
+                    .catch((error) => {
+                        this.loading = false;
+                    });
+
+                }
           }
 
       },

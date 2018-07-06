@@ -2,7 +2,7 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use ChrisBraybrooke\ECommerce\Models\Order;
+use Order;
 use Illuminate\Http\Request;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
 use ChrisBraybrooke\ECommerce\Http\Resources\OrdersResource;

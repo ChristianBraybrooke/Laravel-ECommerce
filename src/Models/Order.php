@@ -42,13 +42,13 @@ class Order extends Model implements OrderContract
      */
     public function getStatuses()
     {
-        $statuses = self::$statuses;
+        $statuses = static::$statuses;
 
-        if ($this->status === self::$statuses['STATUS_PROCESSING']) {
-            $statuses = array_except(self::$statuses, ['STATUS_DRAFT']);
+        if ($this->status === static::$statuses['STATUS_PROCESSING']) {
+            $statuses = array_except(static::$statuses, ['STATUS_DRAFT']);
         }
-        if ($this->status === self::$statuses['STATUS_COMPLETED']) {
-            $statuses = array_except(self::$statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
+        if ($this->status === static::$statuses['STATUS_COMPLETED']) {
+            $statuses = array_except(static::$statuses, ['STATUS_DRAFT', 'STATUS_PROCESSING']);
         }
 
         $only_values = [];
@@ -65,12 +65,12 @@ class Order extends Model implements OrderContract
      */
     public function setStatusFromName($name = 'Draft')
     {
-        $filtered = array_where(self::$statuses, function ($value, $key) use ($name) {
+        $filtered = array_where(static::$statuses, function ($value, $key) use ($name) {
             return $value === $name;
         });
 
         if (!$filtered) {
-            $filtered = array_where(self::$statuses, function ($value, $key) use ($name) {
+            $filtered = array_where(static::$statuses, function ($value, $key) use ($name) {
                 return $key === $name;
             });
         }
@@ -89,9 +89,16 @@ class Order extends Model implements OrderContract
      * @param mixed $status
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWithStatus($query, $status)
+    public function scopeWithStatus($query, $statuses)
     {
-        return $status ? $query->where('status', $this->setStatusFromName(ucfirst($status))) : $query;
+        if ($statuses) {
+            $statuses = is_array($statuses) ? $statuses : [$statuses];
+
+            foreach ($statuses as $key => $status) {
+                $query->orWhere('status', $this->setStatusFromName(ucfirst($status)));
+            }
+        }
+        return $query;
     }
 
     /**
@@ -393,7 +400,7 @@ class Order extends Model implements OrderContract
      */
     public function getStatusAttribute($value)
     {
-        return isset(self::$statuses[$value]) ? self::$statuses[$value] : null;
+        return isset(static::$statuses[$value]) ? static::$statuses[$value] : null;
     }
 
     /**
@@ -403,7 +410,7 @@ class Order extends Model implements OrderContract
      */
     public function invoiceName()
     {
-        return ($this->status === self::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === self::$statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
+        return ($this->status === static::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === static::$statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
     }
 
     public function getNeedsAddressAttribute()

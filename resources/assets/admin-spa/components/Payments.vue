@@ -45,6 +45,7 @@ export default {
               required: true,
           },
           onPaymentProcessed: {
+              type: Function,
               required: false,
               default () {
                   return function (payment) {};
@@ -99,6 +100,7 @@ export default {
           clearModal(payment)
           {
               this.onPaymentProcessed(payment);
+              this.$emit('payment-processed', payment)
               this.order.payments.data.push(payment);
               this.showModal = false;
           },
