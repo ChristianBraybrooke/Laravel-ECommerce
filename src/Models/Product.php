@@ -11,6 +11,7 @@ use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
 use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasFormsTrait;
+use ChrisBraybrooke\ECommerce\Traits\HasCustomisationsAttached;
 use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 use Collection;
 use ChrisBraybrooke\ECommerce\Events\ProductCreated;
@@ -23,10 +24,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 use Carbon\Carbon;
 
+
 class Product extends Model implements ProductContract
 {
     use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
-        HasContentAttached, HasFormsTrait, Importable;
+        HasContentAttached, HasFormsTrait, Importable, HasCustomisationsAttached;
 
     /**
      * The "booting" method of the model.

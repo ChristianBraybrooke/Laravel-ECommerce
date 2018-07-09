@@ -172,22 +172,19 @@ export default {
         addition()
         {
             var addition = this.col.addition ? this.col.addition : {};
-            var value = this.value;
+            var value = this.value ? this.value : {};
 
-            var base_additions = [];
-            var addition_total = 0;
-            // base_additions.forEach((addition) => {
-            //     if (addition.amount) {
-            //         addition_total = addition_total + this.simplePrice(addition.amount);
-            //     }
-            // })
+            if (typeof value !== 'object') {
+                value = {};
+            }
 
             return <addition-form form-name={addition.form_name}
                                        amount-prefix={addition.amount_prefix}
                                        format-amount={addition.format_amount}
+                                       individual-name={addition.individual_name}
                                        additional-fields={addition.additional_fields}
-                                       base-additions={base_additions}
-                                       on-addition-added={(model, total) => addition_total = total}>
+                                       base-additions={value}
+                                       on-addition-added={(model, total, additions) => this.valChange(additions)}>
                        {
                            (props) => <el-button on-click={() => props.showModal()}
                                                  type={addition.add_button_type ? addition.add_button_type : 'primary'} size={addition.add_button_size ? addition.add_button_size : 'mini'}

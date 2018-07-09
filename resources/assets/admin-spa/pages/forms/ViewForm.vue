@@ -91,7 +91,7 @@ export default {
 
       props: {
         formId: {
-            type: String,
+            type: [String, Number],
             required: true,
         },
       },

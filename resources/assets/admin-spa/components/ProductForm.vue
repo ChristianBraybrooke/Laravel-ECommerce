@@ -84,6 +84,8 @@
 
                  <div v-show="objectHas(form, 'product.id')">
 
+                    <p v-if="objectHas(form, 'product.order_form.id')">Using: <router-link :to="{ name: 'forms.view', params: {formId: form.product.order_form.id} }">{{ form.product.order_form.name }}</router-link></p>
+
                      <template v-for="section in orderForm">
                          <el-row :gutter="20" v-show="section.fields.data.length > 0">
                              <el-col :md="12">

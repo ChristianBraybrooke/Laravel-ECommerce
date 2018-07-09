@@ -10,7 +10,7 @@
                            name="content"
                            picker-id="image"/>
 
-        <el-form-item :label="showSectionTitle ? (content.content_name + (languageOptions ? ' (' + (content.language ? content.language : '') + ')' : '')) : ''" :prop="content.content_name">
+        <el-form-item :label="contentLabel" :prop="content.content_name">
             <quill-editor v-model="content.content"
                           v-if="content.type === 'quill'"
                           :ref="'quillEditor' + content.content_name"
@@ -22,7 +22,7 @@
                     <el-col :md="{span: 22, offset: 2}">
                         <el-row v-for="(jsonContent, json_key) in content.content" :key="json_key">
 
-                            <span style="display:block;">{{ capitalize(json_key.replace(/_/g, ' ')) }}</span>
+                            <span style="display:block;">{{ inputLabel(json_key) }}</span>
 
                             <div v-if="json_key.toUpperCase().includes('DATE')">
                                 <el-date-picker v-model="content.content[json_key]"
@@ -47,7 +47,7 @@
                                 </el-popover>
                             </div>
 
-                            <div v-else-if="json_key.toUpperCase().includes('NUMBER')" style="width:100%;">
+                            <div v-else-if="json_key.toUpperCase().includes('NUMBER') || json_key.toUpperCase().includes('VALUE') || json_key.toUpperCase().includes('AMOUNT')" style="width:100%;">
                                 <el-input-number v-model="content.content[json_key]" :controls="false" size="small"></el-input-number>
 
                                 <el-popover placement="top"
@@ -126,7 +126,7 @@
                             </div>
                             <div v-else-if="json_key.toUpperCase().includes('MULTI')">
                                 <content-inner :show-section-title="false"
-                                               :on-delete-content="deleteMultiContent"
+                                               :on-delete-content="deleteJsonContent"
                                                :content="{content_name: json_key, content: content.content[json_key], type: 'json'}"
                                                :content-key="json_key"
                                                :editable="true"
@@ -259,6 +259,12 @@ export default {
           ...mapGetters([
             'shopData',
           ]),
+
+          contentLabel()
+          {
+              var content_name = this.content.content_name.replace("multi", "");
+              return this.showSectionTitle ? (content_name + (this.anguageOptions ? ' (' + (this.content.language ? this.content.language : '') + ')' : '')) : '';
+          },
       },
 
       watch: {
@@ -275,6 +281,19 @@ export default {
               this.$delete(this.content.content, json_key);
           },
 
+          inputLabel(json_key)
+          {
+              if (typeof json_key === 'string') {
+                  return this.capitalize(
+                             json_key.replace(/_/g, ' ')
+                                     .replace('multi', '')
+                                     .replace('Multi', '')
+                                     .replace('checkbox', '')
+                                     .replace('Checkbox', '')
+                         )
+              }
+          },
+
           addJsonContent()
           {
               this.$prompt('Content Name', 'Content Name', {
@@ -283,6 +302,7 @@ export default {
                 inputValidator: function (val) { return val ? true : false },
                 inputErrorMessage: 'Name is required.'
               }).then(value => {
+                  var content = this.content.content
                   var inner_content = value.value.toUpperCase().includes('MULTI') ? {} : '';
                   this.$set(this.content.content, value.value, inner_content);
               });
@@ -308,12 +328,7 @@ export default {
               this.showFilePicker = false;
               this.quillInstance = null;
               this.quillSelection = null;
-          },
-
-          deleteMultiContent(key)
-          {
-              console.log(this.content.content[key])
-          },
+          }
       },
 
 }

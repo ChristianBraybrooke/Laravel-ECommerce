@@ -5,7 +5,7 @@
         <el-popover trigger="hover" placement="top">
             <ul>
                 <li v-for="(addition, key) in additions" :key="key">
-                    <strong>Amount</strong>: {{ amountPrefix }}{{ formatAmount ? formatPrice(addition.amount) : addition.amount }} <br />
+                    <strong>Amount</strong>: {{ amountPrefix }}{{ formatAmount ? formatPrice(addition.Amount) : addition.Amount }} <br />
                     <template v-for="(field, key) in additionalFields"><strong>{{ key }}</strong>: {{ addition[key] }}<br /></template>
                 </li>
             </ul>
@@ -29,11 +29,11 @@
                     <el-col :md="{span:8, offset: 4}">
                         <el-form-item label="Amount"
                                       size="small"
-                                      prop="amount"
+                                      prop="Amount"
                                       :rules="[{required: true, message: 'Amount is required.', trigger: 'blur,change'}]">
                             <div class="price_changer">
                                 <span class="currency --small">{{ amountPrefix }}</span><el-input-number size="small"
-                                                                                                         v-model="model.amount"
+                                                                                                         v-model="model.Amount"
                                                                                                          :autofocus="true"
                                                                                                          :controls="false"
                                                                                                          :min="1"
@@ -76,12 +76,15 @@
 </template>
 
 <script>
+var clone = require('lodash.clone')
+var forEach = require('lodash.foreach')
+
 export default {
 
       name: 'AdditionForm',
 
       components: {
-
+          ContentInner: () => import(/* webpackChunkName: "content-inner" */'components/ContentInner')
       },
 
       props: {
@@ -90,6 +93,13 @@ export default {
               required: false,
               default () {
                   return 'Add New';
+              }
+          },
+          individualName: {
+              type: String,
+              required: false,
+              default () {
+                  return 'Item';
               }
           },
           formAddButton: {
@@ -124,11 +134,11 @@ export default {
               type: Function,
               required: false,
               default () {
-                  return function (model, total) {};
+                  return function (model, total, additions) {};
               }
           },
           baseAdditions: {
-              type: [Array],
+              type: Object,
               required: false,
               default () {
                   return [];
@@ -141,7 +151,7 @@ export default {
               loading: false,
               showModal: false,
               model: {},
-              additions: [],
+              additions: {},
           }
       },
 
@@ -149,9 +159,9 @@ export default {
           total()
           {
               var addition_total = 0;
-              this.additions.forEach((addition) => {
-                  if (addition.amount) {
-                      addition_total = addition_total + this.simplePrice(addition.amount);
+              forEach(this.additions, (addition) => {
+                  if (addition.Amount) {
+                      addition_total = addition_total + this.simplePrice(addition.Amount);
                   }
               })
 
@@ -165,6 +175,7 @@ export default {
 
       mounted () {
           console.log('AdditionForm.vue mounted!')
+          this.additions = clone(this.baseAdditions)
       },
 
       methods: {
@@ -181,9 +192,11 @@ export default {
           {
               this.$refs['form'].validate((valid, errors) => {
                   if (valid) {
-                      this.additions.push(this.model)
-                      this.onAdditionAdded(this.model, this.total)
-                      this.$emit('addition-added', this.model, this.total)
+                      var obj_length = Object.keys(this.additions).length
+                      obj_length = obj_length +1
+                      this.$set(this.additions, `Multi ${this.individualName} ${obj_length}`, this.model)
+                      this.onAdditionAdded(this.model, this.total, this.additions)
+                      this.$emit('addition-added', this.model, this.total, this.additions)
                       this.model = {}
                       this.showModal = false
                       this.loading = false

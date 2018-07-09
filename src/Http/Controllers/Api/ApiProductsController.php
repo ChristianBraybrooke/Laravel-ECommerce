@@ -124,32 +124,7 @@ class ApiProductsController extends Controller
         }
 
         if ($request->has('customisations.data')) {
-            foreach ($request->input('customisations.data') as $key => $customisation) {
-                $new_customisation = $product->customisations()->updateOrCreate(
-                    ['id' => isset($customisation['id']) ? $customisation['id'] : null],
-                    [
-                        'name' => $customisation['name'],
-                        'order' => isset($customisation['order']) ? $customisation['order'] : 1
-                    ]
-                );
-
-                if (isset($customisation['options']['data'])) {
-                    foreach ($customisation['options']['data'] as $key => $option) {
-                        $new_option = $new_customisation->options()->updateOrCreate(
-                            ['id' => isset($option['id']) ? $option['id'] : null],
-                            [
-                              'name' => $option['name'],
-                              'default' => isset($option['default']) ? $option['default'] : false,
-                            ]
-                        );
-
-                        $new_option->syncMedia([
-                            'main_img' => isset($option['main_img']) ? $option['main_img'] : null,
-                            'selector_img' => isset($option['selector_img']) ? $option['selector_img'] : null
-                        ]);
-                    }
-                }
-            }
+            $product->syncCustomisations($request->input('customisations.data'));
         }
 
         if ($request->has('gallery.data')) {
