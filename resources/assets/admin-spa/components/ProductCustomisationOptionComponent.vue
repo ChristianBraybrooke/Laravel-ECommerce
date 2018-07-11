@@ -10,7 +10,8 @@
                 <el-form-item label="Selector Img" prop="selector_img">
 
                     <file-picker-modal ref="customisationSelectorFile"
-                                       :current-files="productCustomisationOption.selector_img ? [productCustomisationOption.selector_img] : undefined"
+                                       v-if="objectHas(productCustomisationOption, 'selector_img')"
+                                       :current-files="objectHas(productCustomisationOption, 'selector_img.id') ? [productCustomisationOption.selector_img] : undefined"
                                        v-on:filesChosen="handleFilesChosen"
                                        v-on:filesUnChosen="handleFilesUnChosen"
                                        :name="productCustomisationOption + ' Selector Img'"
@@ -25,7 +26,8 @@
                 <el-form-item label="Main Img" prop="main_img">
 
                     <file-picker-modal ref="customisationOptionFile"
-                                       :current-files="productCustomisationOption.main_img ? [productCustomisationOption.main_img] : undefined"
+                                       v-if="objectHas(productCustomisationOption, 'main_img')"
+                                       :current-files="objectHas(productCustomisationOption, 'main_img.id') ? [productCustomisationOption.main_img] : undefined"
                                        v-on:filesChosen="handleFilesChosen"
                                        v-on:filesUnChosen="handleFilesUnChosen"
                                        :name="productCustomisationOption + ' Main Img'"

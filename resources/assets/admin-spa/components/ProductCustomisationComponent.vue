@@ -59,7 +59,9 @@ export default {
           addOption()
           {
               this.productCustomisation.options.data.push({
-                  name: ''
+                  name: '',
+                  selector_img: {},
+                  main_img: {},
               });
           },
 
