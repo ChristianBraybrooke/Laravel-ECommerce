@@ -68,10 +68,12 @@
 
 <script>
 var forEach = require('lodash.foreach')
+var find = require('lodash.find')
 var findIndex = require('lodash.findindex')
 import api from 'services/api-service'
 import TableCollumn from 'components/TableCollumn'
 import Payments from 'components/Payments'
+import OrderNotes from 'components/OrderNotes'
 import order_util from 'utils/order'
 
 export default {
@@ -80,6 +82,7 @@ export default {
 
       components: {
           DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
+          OrderNotes: OrderNotes,
           Payments: Payments,
           TableCollumn,
       },
@@ -121,6 +124,18 @@ export default {
                   viewText: 'View',
                   deleteText: '',
                   collumns: [
+                      {
+                          prop: 'content.data',
+                          width: '80px',
+                          sortable: false,
+                          label: 'Notes',
+                          align: 'left',
+                          resizable: false,
+                          formatter: function(row, column, cellValue) {
+                              var notesIndex = findIndex(row.content.data, ['content_name', 'Notes'])
+                              return <order-notes notes={row.content.data[notesIndex].content} on-notes-save={() => this.apiAction(row, 'Notes')} />
+                          }.bind(this)
+                      },
                       {
                           prop: 'ref_number',
                           width: '130px',
@@ -322,11 +337,6 @@ export default {
 
       methods: {
 
-          processPayment(payment)
-          {
-              console.log(payment)
-          },
-
           /**
            * Open the print dialog.
            *
@@ -359,7 +369,7 @@ export default {
               }.bind(this));
           },
 
-          apiAction(row)
+          apiAction(row, message = 'Status')
           {
               api.persist('put', {
                     path: 'orders/' + row.id,
@@ -367,7 +377,7 @@ export default {
                 })
                 .then(function (data) {
                     this.$message({
-                      message: "Status Updated!",
+                      message: `${message} Updated!`,
                       type: 'success',
                       showClose: true,
                     });

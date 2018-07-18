@@ -178,6 +178,7 @@ var forEach = require('lodash.foreach');
 import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
+import contentUtil from 'utils/content'
 
 import { mapActions, mapGetters } from 'vuex';
 
@@ -231,6 +232,12 @@ export default {
           }
       },
 
+      watch: {
+          'content.content': function (value) {
+              console.log(value)
+          },
+       },
+
       data () {
           var self = this;
           return {
@@ -283,15 +290,7 @@ export default {
 
           inputLabel(json_key)
           {
-              if (typeof json_key === 'string') {
-                  return this.capitalize(
-                             json_key.replace(/_/g, ' ')
-                                     .replace('multi', '')
-                                     .replace('Multi', '')
-                                     .replace('checkbox', '')
-                                     .replace('Checkbox', '')
-                         )
-              }
+            return this.capitalize(contentUtil.inputLabel(json_key))
           },
 
           addJsonContent()

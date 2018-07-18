@@ -13,7 +13,13 @@
             <slot :showModal="displayModal">
                 <el-button type="success" plain style="margin-bottom: 20px;" @click="showModal = true">{{ formName }}</el-button>
             </slot>
-            <div slot="reference"><strong>{{ amountPrefix }}{{formatAmount ? formatPrice(total) : total}}</strong></div>
+            <div slot="reference">
+                <strong v-if="showTotal">{{ amountPrefix }}{{formatAmount ? formatPrice(total) : total}}</strong>
+                <strong v-else-if="totalText && totalButton">
+                    <el-button size="mini">{{ totalText }}</el-button>
+                </strong>
+                <strong v-else-if="totalText">{{ totalText }}</strong>
+            </div>
         </el-popover>
 
         <el-dialog :title="formName"
@@ -138,10 +144,31 @@ export default {
               }
           },
           baseAdditions: {
-              type: Object,
+              type: [Object],
               required: false,
               default () {
                   return [];
+              }
+          },
+          showTotal: {
+              type: Boolean,
+              required: false,
+              default () {
+                  return true;
+              }
+          },
+          totalText: {
+              type: String,
+              required: false,
+              default () {
+                  return '';
+              }
+          },
+          totalButton: {
+              type: Boolean,
+              required: false,
+              default () {
+                  return false;
               }
           },
       },

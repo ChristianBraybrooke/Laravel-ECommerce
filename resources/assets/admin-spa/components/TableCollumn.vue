@@ -173,8 +173,9 @@ export default {
         {
             var addition = this.col.addition ? this.col.addition : {};
             var value = this.value ? this.value : {};
+            console.log(typeof this.value)
 
-            if (typeof value !== 'object') {
+            if (typeof value !== 'object' || this.value.length == 0) {
                 value = {};
             }
 
@@ -183,6 +184,9 @@ export default {
                                        format-amount={addition.format_amount}
                                        individual-name={addition.individual_name}
                                        additional-fields={addition.additional_fields}
+                                       show-total={addition.show_total}
+                                       total-text={addition.total_text}
+                                       total-button={addition.total_button}
                                        base-additions={value}
                                        on-addition-added={(model, total, additions) => this.valChange(additions)}>
                        {
