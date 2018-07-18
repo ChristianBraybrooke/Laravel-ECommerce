@@ -133,7 +133,8 @@ export default {
                           resizable: false,
                           formatter: function(row, column, cellValue) {
                               var notesIndex = findIndex(row.content.data, ['content_name', 'Notes'])
-                              return <order-notes notes={row.content.data[notesIndex].content} on-notes-save={() => this.apiAction(row, 'Notes')} />
+                              var hasIndex = notesIndex === -1 ? false : true;
+                              return <order-notes notes={hasIndex ? row.content.data[notesIndex].content : {}} on-notes-save={() => this.apiAction(row, 'Notes')} />
                           }.bind(this)
                       },
                       {

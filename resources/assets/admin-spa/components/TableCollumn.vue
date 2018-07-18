@@ -174,6 +174,7 @@ export default {
             var addition = this.col.addition ? this.col.addition : {};
             var value = this.value ? this.value : {};
             console.log(typeof this.value)
+            console.log(this.value)
 
             if (typeof value !== 'object' || this.value.length == 0) {
                 value = {};
