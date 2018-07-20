@@ -45,6 +45,16 @@ class ProcessOrderCreation implements ShouldQueue
 
             Notification::route('mail', $admins)
                         ->notify(new SendAdminOrderNotification($event->model));
+
+            $admin_emails = [];
+            foreach ($admins as $key => $admin) {
+                $admin_emails[] = $admin->email;
+            }
+            $admin_emails = implode(", ", $admin_emails);
+
+            activity()
+               ->performedOn($event->model)
+               ->log("New Order notification email sent to admins: {$admin_emails}");
         }
     }
 }

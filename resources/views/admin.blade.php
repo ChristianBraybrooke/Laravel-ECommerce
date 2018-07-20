@@ -15,7 +15,18 @@
   <body>
     <div id="app"></div>
 
-
+    <script type="text/javascript">
+        window.bugsnag = {
+          key: '{{ config('services.bugsnag.key') ?: null}}',
+          active: {{ config('services.bugsnag.active') ?: 'false' }},
+          env: '{{ config('services.bugsnag.env') ?: 'production' }}',
+          user: {
+            id: {{ Auth::user()->id }},
+            name: '{{ Auth::user()->name }}',
+            email: '{{ Auth::user()->email }}',
+          }
+        }
+    </script>
     @ShopDataScript
 
     <script src="{{ mix('js/manifest.js', 'vendor/ecommerce') }}"></script>

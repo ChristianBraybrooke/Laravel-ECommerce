@@ -1,4 +1,9 @@
-window.ecommerceConfig.web_version = '0.0.39';
+window.ecommerceConfig.web_version = '0.0.40';
+
+const bugsnag = require('bugsnag-js')
+const bugsnagClient = bugsnag({ apiKey: window.bugsnag.key, appVersion: ecommerceConfig.web_version, releaseStage: window.bugsnag.env })
+
+
 
 import 'babel-polyfill'
 import Vue from 'vue'
@@ -12,6 +17,13 @@ import VueClipboard from 'vue-clipboard2'
 window.has = require('lodash.has')
 var numeral = require('numeral')
 import { code_converter } from 'utils/currency'
+
+if (window.bugsnag.active) {
+    const bugsnagVue = require('bugsnag-vue')
+    bugsnagClient.use(bugsnagVue(Vue))
+
+    bugsnagClient.user = window.bugsnag.user
+}
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 window.laravel_token = token.content;
