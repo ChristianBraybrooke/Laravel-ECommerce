@@ -63,16 +63,30 @@ class PaymentService
     public function createCharge(array $details)
     {
         try {
-            return Charge::create([
+            $charge = Charge::create([
                 'source' => $details['token'],
                 'amount' => $details['amount'],
                 'currency' => strtolower($details['currency']),
                 'customer' => $details['stripe_id'] ?? (Auth::check() && Auth::user()->stripe_id ?: null),
+                'description' => $details['description'] ?? null,
+                'metadata' => $details['metadata'] ?? null,
             ]);
+
+            if ($details['order'] ?? false) {
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment succeeded: {$charge->id}`);
+            }
+
+            return $charge;
         } catch (Stripe_CardError $e) {
             report($e);
             if ($details['order'] ?? false) {
                 $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment failed: {$e->getMessage()}`);
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_InvalidRequestError $e) {
@@ -80,6 +94,10 @@ class PaymentService
             report($e);
             if ($details['order'] ?? false) {
                 $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment failed: {$e->getMessage()}`);
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_AuthenticationError $e) {
@@ -87,12 +105,20 @@ class PaymentService
             report($e);
             if ($details['order'] ?? false) {
                 $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment failed: {$e->getMessage()}`);
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_ApiConnectionError $e) {
             report($e);
             if ($details['order'] ?? false) {
                 $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment failed: {$e->getMessage()}`);
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_Error $e) {
@@ -100,6 +126,10 @@ class PaymentService
             report($e);
             if ($details['order'] ?? false) {
                 $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment failed: {$e->getMessage()}`);
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Exception $e) {
@@ -107,6 +137,10 @@ class PaymentService
             report($e);
             if ($details['order'] ?? false) {
                 $this->updateOrderStatus($details['order'], 'STATUS_PAYMENT_FAILED');
+
+                activity()
+                   ->performedOn($details['order'])
+                   ->log(`Payment failed: {$e->getMessage()}`);
             }
             throw new PaymentFailedException($e->getMessage());
         }
