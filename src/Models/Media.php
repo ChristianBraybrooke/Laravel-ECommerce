@@ -162,4 +162,14 @@ class Media extends BaseMedia
     {
         return $query->where('media_to_models.media_location', $location);
     }
+
+    /**
+     * Set default event log message.
+     *
+     * @var String
+     */
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Media was: {$eventName}";
+    }
 }

@@ -54,4 +54,14 @@ class Payment extends Model
 
         ];
     }
+
+    /**
+     * Set default event log message.
+     *
+     * @var String
+     */
+    public function getDescriptionForEvent(string $eventName): string
+    {
+        return "Payment was: {$eventName}";
+    }
 }
