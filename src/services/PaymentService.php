@@ -75,7 +75,7 @@ class PaymentService
             if ($details['order'] ?? false) {
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment succeeded: {$charge->id}`);
+                   ->log("Payment succeeded: {$charge->id}");
             }
 
             return $charge;
@@ -86,7 +86,7 @@ class PaymentService
 
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment failed: {$e->getMessage()}`);
+                   ->log("Payment failed: {$e->getMessage()}");
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_InvalidRequestError $e) {
@@ -97,7 +97,7 @@ class PaymentService
 
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment failed: {$e->getMessage()}`);
+                   ->log("Payment failed: {$e->getMessage()}");
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_AuthenticationError $e) {
@@ -108,7 +108,7 @@ class PaymentService
 
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment failed: {$e->getMessage()}`);
+                   ->log("Payment failed: {$e->getMessage()}");
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_ApiConnectionError $e) {
@@ -118,7 +118,7 @@ class PaymentService
 
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment failed: {$e->getMessage()}`);
+                   ->log("Payment failed: {$e->getMessage()}");
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Stripe_Error $e) {
@@ -129,7 +129,7 @@ class PaymentService
 
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment failed: {$e->getMessage()}`);
+                   ->log("Payment failed: {$e->getMessage()}");
             }
             throw new PaymentFailedException($e->getMessage());
         } catch (Exception $e) {
@@ -140,7 +140,7 @@ class PaymentService
 
                 activity()
                    ->performedOn($details['order'])
-                   ->log(`Payment failed: {$e->getMessage()}`);
+                   ->log("Payment failed: {$e->getMessage()}");
             }
             throw new PaymentFailedException($e->getMessage());
         }
