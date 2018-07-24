@@ -58,7 +58,7 @@ mix.setPublicPath('public')
                  warnings: false,
                  conditionals: true,
                  unused: true,
-                 comparisons: true,
+                 comparisons: false,
                  sequences: true,
                  dead_code: true,
                  evaluate: true,

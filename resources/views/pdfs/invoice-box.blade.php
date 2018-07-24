@@ -37,15 +37,36 @@
             </td>
         </tr>
 
-        <tr class="details">
-            <td style="padding-top: 40px" colspan="2">
-                <strong>Payment Method</strong>
-            </td>
+        @if ($order->payment_method)
+            <tr class="details">
+                <td style="padding-top: 40px" colspan="2">
+                    <strong>Payment Method</strong>
+                </td>
 
-            <td style="padding-top: 40px" colspan="2">
-                {{ $order->payment_method }}
-            </td>
-        </tr>
+                <td style="padding-top: 40px" colspan="2">
+                    {{ $order->payment_method }}
+                </td>
+            </tr>
+        @endif
+        @foreach ($order->payments as $key => $payment)
+            <tr class="details">
+                <td @if ($loop->first && !$order->payment_method)style="padding-top: 40px"@endif colspan="2">
+                    <strong>Payment Method</strong>
+                </td>
+
+                <td @if ($loop->first && !$order->payment_method)style="padding-top: 40px"@endif colspan="2">
+                    @if ($payment->method === 'card')
+                        {{ ucfirst($payment->source_brand) }} {{ $payment->source_last4 }}
+                    @else
+                        {{ ucfirst($payment->method) }}
+                    @endif
+                         - {{ $payment->currency }}{{ priceFormatter($payment->amount) }}
+                         @if ($payment->refunded)
+                            <strong style="color: red">Refunded</strong>
+                         @endif
+                </td>
+            </tr>
+        @endforeach
 
         <tr class="details">
 

@@ -40,6 +40,8 @@
 <script>
 import api from "services/api-service";
 import draggable from 'vuedraggable';
+import ContentComponent from 'components/ContentComponent'
+
 
 var withRequest = [
 
@@ -54,7 +56,7 @@ export default {
 
       components: {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          ContentComponent,
           draggable
       },
 

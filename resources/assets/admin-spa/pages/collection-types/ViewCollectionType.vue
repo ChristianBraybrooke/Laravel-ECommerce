@@ -217,6 +217,8 @@
 import api from "services/api-service";
 var has = require('lodash.has');
 
+import ContentComponent from 'components/ContentComponent'
+
 
 export default {
 
@@ -225,7 +227,7 @@ export default {
       components: {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
           FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
-          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          ContentComponent
       },
 
       props: {

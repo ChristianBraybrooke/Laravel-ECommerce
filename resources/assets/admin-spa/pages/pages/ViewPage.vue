@@ -106,6 +106,7 @@ import api from "services/api-service";
 var findIndex = require('lodash.findindex');
 var has = require('lodash.has');
 var filter = require('lodash.filter');
+import ContentComponent from 'components/ContentComponent'
 
 
 var withRequest = [
@@ -121,7 +122,7 @@ export default {
 
       components: {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          ContentComponent,
           FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
       },
 

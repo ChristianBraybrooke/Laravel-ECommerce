@@ -93,12 +93,14 @@ var groupBy = require('lodash.groupby');
 var orderBy = require('lodash.orderby');
 var filter = require('lodash.filter');
 
+import ContentInner from 'components/ContentInner'
+
 export default {
 
       name: 'ContentComponent',
 
       components: {
-          ContentInner: () => import(/* webpackChunkName: "content-inner" */'components/ContentInner')
+          ContentInner
       },
 
       props: {

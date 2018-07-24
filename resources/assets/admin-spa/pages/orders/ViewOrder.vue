@@ -179,6 +179,8 @@ import { mapActions, mapGetters } from 'vuex';
 var forEach = require('lodash.foreach');
 var filter = require('lodash.filter');
 
+import ContentComponent from 'components/ContentComponent'
+
 export default {
 
       name: 'ViewOrder',
@@ -187,7 +189,7 @@ export default {
           Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
           ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
           Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
-          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          ContentComponent,
           ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
       },
 

@@ -79,6 +79,7 @@
 
 <script>
 import api from "services/api-service";
+import ContentComponent from 'components/ContentComponent'
 
 export default {
 
@@ -86,7 +87,7 @@ export default {
 
       components: {
           ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
-          ContentComponent: () => import(/* webpackChunkName: "content-component" */'components/ContentComponent'),
+          ContentComponent
       },
 
       props: {

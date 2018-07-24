@@ -182,6 +182,8 @@ import contentUtil from 'utils/content'
 
 import { mapActions, mapGetters } from 'vuex';
 
+import ContentComponent from 'components/ContentComponent'
+
 import { quillEditor } from 'vue-quill-editor';
 export default {
 
@@ -190,7 +192,7 @@ export default {
       components: {
           quillEditor,
           FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
-          ContentInner: () => import(/* webpackChunkName: "content-inner" */'components/ContentInner'),
+          ContentComponent
       },
 
       props: {
