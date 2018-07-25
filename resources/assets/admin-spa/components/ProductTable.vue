@@ -204,7 +204,21 @@ export default {
               if (row.options) {
                 var items = [];
                 forEach(row.options, (value, key) => {
-                    var new_value = value ? value.name : value;
+
+                    var new_value = value;
+
+                    if (new_value) {
+                        if (value.value && typeof value.value === 'object') {
+                            new_value = [];
+                            forEach(value.value, (value, key) => {
+                                new_value.push(<li>{key}: {value}</li>)
+                            })
+                            new_value = <ul>{new_value}</ul>
+                        } else {
+                            var new_value = value.name ? value.name : value;
+                        }
+                    }
+
                     var extra = '';
                     if (value) {
                         var price_mutator = value.price_mutator ? value.price_mutator : '';

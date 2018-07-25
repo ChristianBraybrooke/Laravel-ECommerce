@@ -162,7 +162,8 @@
 
               <span slot="footer" class="dialog-footer">
                   <el-button v-if="!editForm" @click="closeAndClearModal(null)">{{ editForm ? 'Discard Changes' : 'Cancel' }}</el-button>
-                  <el-button v-if="!editForm" type="primary" @click="addProduct()">Add Product</el-button>
+                  <el-button :disabled="!form.product.id" v-if="!editForm" type="primary" @click="addProduct(true)" plain>Add Another</el-button>
+                  <el-button :disabled="!form.product.id" v-if="!editForm" type="primary" @click="addProduct()">Finish</el-button>
                   <el-button v-if="editForm" type="primary" @click="saveProduct()">Save Changes</el-button>
               </span>
 
@@ -317,6 +318,7 @@ export default {
             if (!this.objectHas(this.form, 'product.options')) {
                 this.$set(this.form.product, 'options', {});
             }
+            this.$set(this.form.product, 'quantity', 1);
             this.clonedPrice = clone(this.form.product.price)
         },
 
@@ -467,12 +469,23 @@ export default {
               this.productFirst = null;
           },
 
-          addProduct()
+          addProduct(addAnother = false)
           {
               if(this.objectHas(this.form, 'product.id') && this.objectHas(this.form, 'product.quantity')) {
-                  this.showModal = false;
                   this.onProductAdd(this.form.product);
-                  this.clearAll();
+                  if (!addAnother) {
+                      this.showModal = false;
+                      this.clearAll();
+                  }
+                  this.$message({
+                      message: 'Product Added!',
+                      type: 'success'
+                  })
+              } else {
+                  this.$message({
+                      message: 'Please choose a product and quantity!',
+                      type: 'error'
+                  })
               }
           },
 
