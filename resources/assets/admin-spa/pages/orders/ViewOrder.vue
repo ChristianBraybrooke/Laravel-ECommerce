@@ -11,7 +11,13 @@
                 <h1 v-if="order.invoice" class="page_title">Order: {{ order.invoice.number }} <el-tag v-if="order.status" type="info" size="large">{{ order.status }}</el-tag></h1>
             </el-col>
             <el-col :sm="24" :lg="12">
-                <el-button @click="preparePrint" size="small" style="float:right; margin-bottom:20px;" type="success" plain>Send Invoice</el-button>
+                <!-- <el-button @click="preparePrint" size="small" style="float:right; margin-bottom:20px;" type="success" plain>Send Invoice</el-button> -->
+                <a :href="'/ecommerce-templates/invoice-download?reports=' + orderId" target="_blank" style="float:right; margin-bottom:20px;">
+                    <el-button size="small"
+                               plain
+                               class="action_btn view_btn">Download PDF
+                    </el-button>
+                </a>
                 <el-button @click="preparePrint" size="small" style="float:right; margin-bottom:20px; margin-right:10px" type="success">Print Invoice</el-button>
 
                 <iframe @load="printInvoice" v-if="!loading && printUrl" id="printLinkIframe" name="printLinkIframe" :src='printUrl' style="position:absolute;top:-9999px;left:-9999px;border:0px;overfow:none; z-index:-1"></iframe>
