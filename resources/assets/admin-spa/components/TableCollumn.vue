@@ -176,7 +176,7 @@ export default {
             console.log(typeof this.value)
             console.log(this.value)
 
-            if (typeof value !== 'object' || this.value.length == 0) {
+            if (typeof value !== 'object' || value.length == 0) {
                 value = {};
             }
 

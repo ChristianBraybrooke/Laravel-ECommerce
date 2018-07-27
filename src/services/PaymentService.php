@@ -42,7 +42,7 @@ class PaymentService
     */
     public function getWebhookKey()
     {
-        return env('STRIPE_WH_SECRET');
+        return config('services.stripe.wh_secret');
     }
 
     /**

@@ -38,7 +38,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.43';
+    const VERSION = '0.0.46';
 
     /**
      * Bootstrap the application events.
@@ -49,7 +49,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
     {
 
         $this->handleConfigs();
-        if (env('APP_ENV') === 'local') {
+        if (config('app.env') === 'local') {
             $this->handleMigrations();
         }
 
@@ -194,7 +194,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             'site_name' => (string)config('app.name'),
             'site_url' => (string)config('app.url'),
             'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
-            'theme_color' => (string)env('THEME_COLOR', '#409eff'),
+            'theme_color' => (string)config('ecommerce.theme_color', '#409eff'),
             'stripe_public_key' => config('services.stripe.key'),
             'orders' => [
                 'statuses' => Order::$statuses,

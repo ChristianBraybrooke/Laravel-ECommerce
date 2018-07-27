@@ -1,7 +1,7 @@
 <template lang="html">
     <data-table type-name="pro-forma"
                 base-url="orders"
-                edit-path="pro-forma"
+                edit-path="orders"
                 bulk-update-url="orders/bulk"
                 :with-params="{withStatus: ['STATUS_PROFORMA', 'STATUS_DRAFT', 'STATUS_CANCELLED', 'STATUS_AWAITING_PAYMENT', 'STATUS_PAYMENT_FAILED']}"
                 request-with="content"

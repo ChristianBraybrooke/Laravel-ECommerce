@@ -8,11 +8,11 @@ return [
 
   'web_uri' => env('ECOMMERCE_WEB_URI', 'admin'),
 
-
   'web_middleware' => env('ECOMMERCE_WEB_MIDDLEWARE', 'web'),
 
-
   'api_uri' => env('ECOMMERCE_API_URI', 'api/ecommerce'),
+
+  'theme_color' => env('THEME_COLOR', '#409eff'),
 
   'models' => [
 

@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use PDF;
 use Gallery;
+use ChrisBraybrooke\ECommerce\Scopes\LiveScope;
 
 class CreateOrderInvoicePdf implements ShouldQueue
 {
@@ -41,7 +42,7 @@ class CreateOrderInvoicePdf implements ShouldQueue
         $pdf = PDF::loadView('ecommerce::pdfs.invoice', ['orders' => $this->order, 'pdf' => true])->setPaper('a4');
         $pdf->save($file_path);
 
-        $gallery = Gallery::firstOrCreate(['name' => $this->invoice_gallery]);
+        $gallery = Gallery::withoutGlobalScope(LiveScope::class)->firstOrCreate(['name' => $this->invoice_gallery]);
         if ($gallery) {
             $invoice = $gallery->addMedia($file_path)->toMediaCollection($this->invoice_gallery);
             $this->order->media()->sync([$invoice->id => ['media_location' => 'invoice']]);

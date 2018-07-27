@@ -204,7 +204,19 @@ export default {
               if (row.options) {
                 var items = [];
                 forEach(row.options, (value, key) => {
-                    var new_value = value ? value.name : value;
+
+                    var new_value = value;
+
+                    if (new_value) {
+                        if (value.value && typeof value.value === 'object') {
+                            new_value = this.loopOverItemOptions(value.value)
+                        } else if (value && typeof value === 'object') {
+                            new_value = this.loopOverItemOptions(value)
+                        } else {
+                            new_value = value.name ? value.name : value;
+                        }
+                    }
+
                     var extra = '';
                     if (value) {
                         var price_mutator = value.price_mutator ? value.price_mutator : '';
@@ -219,6 +231,15 @@ export default {
                 return <div>{row_name} <ul class="order_item_options">{items}</ul></div>
               }
               return <div>{row_name}</div>;
+          },
+
+          loopOverItemOptions(options)
+          {
+              var new_value = [];
+              forEach(options, (value, key) => {
+                  new_value.push(<li>{key}: {value}</li>)
+              })
+              return <ul>{new_value}</ul>
           },
 
           itemRowActionsFormatter(row, column, cellValue)

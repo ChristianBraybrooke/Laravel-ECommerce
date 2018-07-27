@@ -1,4 +1,4 @@
-window.ecommerceConfig.web_version = '0.0.43';
+window.ecommerceConfig.web_version = '0.0.45';
 
 if (window.bugsnag.active && window.bugsnag.key) {
     const bugsnag = require('bugsnag-js')
