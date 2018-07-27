@@ -181,21 +181,44 @@ import { mapActions, mapGetters } from 'vuex'
 import api from 'services/api-service.js'
 import router from '../router'
 import collumn_util from "utils/collumn"
+import order_util from 'utils/order'
+import TableCollumn from 'components/TableCollumn'
+import Payments from 'components/Payments'
+import OrderNotes from 'components/OrderNotes'
+
 var throttle = require('lodash.throttle')
 var bind = require('lodash.bind')
 var findKey = require('lodash.findkey')
+var forEach = require('lodash.foreach')
+var find = require('lodash.find')
+var findIndex = require('lodash.findindex')
 
 export default {
   name: 'DataTable',
 
   components: {
-    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
+    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+    OrderNotes,
+    Payments,
+    TableCollumn
   },
 
   mounted() {
     console.log('DataTable.vue Mounted.');
     Object.assign(this.mergedTableOptions,this.defaultTableOptions,this.tableOptions);
     this.getData();
+
+    if(this.objectHas(ecommerceConfig, `aditional_cols.${this.tableOptions.typeNamePlural}`)) {
+        forEach(ecommerceConfig.aditional_cols[this.tableOptions.typeNamePlural], col => {
+            var col_index = findIndex(this.mergedTableOptions.collumns, ['prop', col.prop]);
+            col.formatter = function(row) { return <table-collumn col={col} row={row}/> };
+            if (col_index === -1) {
+                this.mergedTableOptions.collumns.push(col);
+            } else {
+                this.mergedTableOptions.collumns[col_index] = col;
+            }
+        })
+    }
   },
 
   watch: {

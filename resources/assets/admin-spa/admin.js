@@ -1,8 +1,9 @@
 window.ecommerceConfig.web_version = '0.0.43';
 
-const bugsnag = require('bugsnag-js')
-const bugsnagClient = bugsnag({ apiKey: window.bugsnag.key, appVersion: ecommerceConfig.web_version, releaseStage: window.bugsnag.env })
-
+if (window.bugsnag.active && window.bugsnag.key) {
+    const bugsnag = require('bugsnag-js')
+    const bugsnagClient = bugsnag({ apiKey: window.bugsnag.key, appVersion: ecommerceConfig.web_version, releaseStage: window.bugsnag.env })
+}
 
 
 import 'babel-polyfill'
@@ -18,7 +19,7 @@ window.has = require('lodash.has')
 var numeral = require('numeral')
 import { code_converter } from 'utils/currency'
 
-if (window.bugsnag.active) {
+if (window.bugsnag.active && window.bugsnag.key) {
     const bugsnagVue = require('bugsnag-vue')
     bugsnagClient.use(bugsnagVue(Vue))
 

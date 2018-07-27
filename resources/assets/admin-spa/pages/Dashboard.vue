@@ -10,7 +10,9 @@
                 <el-card>
                     <div slot="header" class="clearfix">
                       <span>Orders</span>
-                      <el-button style="float: right;" size="mini" type="primary" plain>Create Order</el-button>
+                      <router-link :to="{ name: 'orders.step1' }">
+                          <el-button style="float: right;" size="mini" type="primary" plain>Create Order</el-button>
+                      </router-link>
                     </div>
                 </el-card>
             </el-col>
@@ -18,7 +20,9 @@
                 <el-card>
                     <div slot="header" class="clearfix">
                       <span>Products</span>
-                      <el-button style="float: right;" size="mini" type="primary" plain>Create Product</el-button>
+                      <router-link :to="{ name: 'products' }">
+                          <el-button style="float: right;" size="mini" type="primary" plain>View Products</el-button>
+                      </router-link>
                     </div>
                 </el-card>
             </el-col>
@@ -26,7 +30,9 @@
                 <el-card>
                     <div slot="header" class="clearfix">
                       <span>Pages</span>
-                      <el-button style="float: right;" size="mini" type="primary" plain>Create Page</el-button>
+                      <router-link :to="{ name: 'pages' }">
+                          <el-button style="float: right;" size="mini" type="primary" plain>View Pages</el-button>
+                      </router-link>
                     </div>
                 </el-card>
             </el-col>
