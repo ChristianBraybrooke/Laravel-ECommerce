@@ -80,7 +80,7 @@
                       </el-col>
                   </el-row>
 
-                  <content-component v-if="page.content" :content="page.content"/>
+                  <content-component v-if="page.content" :content="page.content.data"/>
 
                   </el-form-item>
 
