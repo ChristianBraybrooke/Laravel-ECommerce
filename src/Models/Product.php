@@ -193,6 +193,16 @@ class Product extends Model implements ProductContract
     }
 
     /**
+     * The collection types that this product is associated with.
+     *
+     * @return App\Price
+     */
+    public function prices(): HasMany
+    {
+        return $this->hasMany(config('ecommerce.models.price'));
+    }
+
+    /**
      * Get the collectionTypes of either this product or it's parent.
      *
      * @return App\CollectionType

@@ -64,7 +64,7 @@
 
             <el-row :gutter="20">
                 <el-col :sm="24">
-                    <el-button plain type="success" :loading="loading" @click="submitForm('formForm')">Update</el-button>
+                    <el-button plain type="success" :loading="loading" @click="submitForm('formForm')">Save</el-button>
                 </el-col>
             </el-row>
 

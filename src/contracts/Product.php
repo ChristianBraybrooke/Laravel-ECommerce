@@ -31,6 +31,13 @@ interface Product
     public function variants(): HasMany;
 
     /**
+      * Display any prices that this product.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function prices(): HasMany;
+
+    /**
      * If the product is a variant then what is a variant of
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo

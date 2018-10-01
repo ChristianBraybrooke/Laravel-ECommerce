@@ -7,7 +7,7 @@
                  :plain="mergedButton.plain"
                  :class="mergedButton.class"
                  @click="openModal"
-                 type="primary">{{(loading ? mergedButton.loading : mergedButton.text)}}
+                 :type="mergedButton.type">{{(loading ? mergedButton.loading : mergedButton.text)}}
       </el-button>
 
       <el-dialog :title="(editForm ? 'Edit' : 'Add') + ' Product'"
@@ -268,11 +268,11 @@ export default {
               defaultButton: {
                   text: 'Add Product',
                   loading: 'Loading Products',
-                  size: 'small',
+                  type: 'success',
+                  size: 'large',
                   plain: false,
                   class: ''
               },
-              mergedButton: {},
               editPrice: false,
               clonedPrice: '0.00'
           }
@@ -308,6 +308,13 @@ export default {
         orderForm()
         {
             return this.objectHas(this.form, 'product.order_form.sections.data') ? orderBy(this.form.product.order_form.sections.data, ['order'], ['asc']) : [];
+        },
+
+        mergedButton () {
+          return {
+            ...this.defaultButton,
+            ...this.button
+          }
         }
 
       },

@@ -75,6 +75,9 @@ return [
 
       //
       'payment' => ChrisBraybrooke\ECommerce\Models\Payment::class,
+
+      //
+      'price' => ChrisBraybrooke\ECommerce\Models\Price::class,
   ],
 
   'shop_data' => [
@@ -92,7 +95,13 @@ return [
   'default_content' => [
 
       'orders' => [],
+
       'products' => [
+          ['content_name' => 'Main Content', 'content' => '', 'type' => 'quill'],
+          ['content_name' => 'Snippet', 'content' => '', 'type' => 'text']
+      ],
+
+      'pages' => [
           ['content_name' => 'Main Content', 'content' => '', 'type' => 'quill'],
           ['content_name' => 'Snippet', 'content' => '', 'type' => 'text']
       ],

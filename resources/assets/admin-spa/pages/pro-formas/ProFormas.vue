@@ -58,6 +58,7 @@
 
 <script>
 var forEach = require('lodash.foreach');
+import api from 'services/api-service'
 
 export default {
 
@@ -147,16 +148,16 @@ export default {
                           align: 'left',
                           resizable: true
                       },
-                      // {
-                      //     prop: 'invoice',
-                      //     sortable: true,
-                      //     label: 'Create Invoice',
-                      //     formatter: function(row, column, cellValue) {
-                      //         return <el-button on-click={() => this.createInvoice(row)} type="success" size="mini" class="action_btn" plain>Create Invoice</el-button>;
-                      //     }.bind(this),
-                      //     align: 'left',
-                      //     resizable: true
-                      // },
+                      {
+                          prop: 'invoice',
+                          sortable: true,
+                          label: 'Create Invoice',
+                          formatter: function(row, column, cellValue) {
+                              return <el-button on-click={() => this.createInvoice(row)} type="success" size="mini" class="action_btn" plain>Create Invoice</el-button>;
+                          }.bind(this),
+                          align: 'left',
+                          resizable: true
+                      },
                   ],
               }
           }
@@ -175,7 +176,22 @@ export default {
       },
 
       methods: {
-
+        createInvoice(val)
+        {
+            var status = window.ecommerceConfig.orders.statuses
+            val.status = status.STATUS_PROCESSING;
+            api.persist("put", {
+                path: "orders/" + val.id,
+                object: val
+              })
+              .then(data => {
+                this.$router.push({ name: 'orders'})
+              })
+              .catch(error => {
+                // this.loading = false;
+                // this.errors = error;
+              });
+        }
       },
 
 }

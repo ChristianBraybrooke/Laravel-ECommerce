@@ -178,22 +178,20 @@ export default {
 
           createInvoice(val)
           {
-              val.status = 'Awaiting Payment';
+              var status = window.ecommerceConfig.orders.statuses
+              val.status = status.STATUS_AWAITING_PAYMENT;
               api.persist("put", {
                     path: "orders/" + val.id,
                     object: val
                 })
                 .then(data => {
-
-                    this.$router.push({ name: 'orders'})
-                    // this.loading = false;
-                    // this.data = data.data;
+                  this.$router.push({ name: 'orders'})
                 })
                 .catch(error => {
                     // this.loading = false;
                     // this.errors = error;
                 });
-          },
+          }
       },
 
 }

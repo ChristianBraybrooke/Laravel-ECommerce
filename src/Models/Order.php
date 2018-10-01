@@ -34,6 +34,17 @@ class Order extends Model implements OrderContract
       'STATUS_ESTIMATE' => 'Estimate',
     ];
 
+    /**
+     * Which collumns to use for search.
+     *
+     * @return array
+     */
+    private function responsableSearch()
+    {
+        return [
+          'id'
+        ];
+    }
 
     /**
      * Get the order statuses.
@@ -310,7 +321,7 @@ class Order extends Model implements OrderContract
             'Extras' => priceFormatter($cart['extras'] ?? 0),
             'Shipping' => priceFormatter($cart['shipping'] ?? 0),
             'Discount' => $cart['discount'] ?? 0,
-            'Tax' => priceFormatter($cart['tax'] ?? 0),
+            'VAT' => priceFormatter($cart['tax'] ?? 0),
             'Total' => priceFormatter($cart['total'] ?? 0),
         ];
         return [
@@ -410,7 +421,7 @@ class Order extends Model implements OrderContract
      */
     public function invoiceName()
     {
-        return ($this->status === static::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === static::$statuses['STATUS_ESTIMATE']) ? 'Quote' : 'Invoice';
+        return ($this->status === static::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === static::$statuses['STATUS_ESTIMATE']) ? 'Estimate' : 'Invoice';
     }
 
     public function getNeedsAddressAttribute()
