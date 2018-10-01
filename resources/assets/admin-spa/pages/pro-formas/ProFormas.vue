@@ -1,5 +1,5 @@
 <template lang="html">
-    <data-table type-name="pro-forma"
+    <data-table type-name="Pro Forma Order"
                 base-url="orders"
                 edit-path="orders"
                 bulk-update-url="orders/bulk"

@@ -11,7 +11,7 @@
 
         <el-row :gutter="20" style="margin-bottom:20px; margin-top:20px;">
             <el-col :sm="24">
-                <product-form :on-product-add="product => {this.estimate.items.push(product)}"/>
+                <product-form :on-product-add="onProductAdd"/>
             </el-col>
         </el-row>
 
@@ -64,7 +64,6 @@ export default {
 
       computed: {
           orderTotals() {
-
               if (this.estimate.cart) {
                   return order_util.totals(this.estimate.items, this.estimate.cart.totals['Shipping'], this.estimate.cart.totals['Discount']);
               }
@@ -82,6 +81,11 @@ export default {
       },
 
       methods: {
+          onProductAdd (product) {
+            console.log(product)
+            this.estimate.items.push(product)
+          },
+
           getEstimate()
           {
               this.loading = true;
