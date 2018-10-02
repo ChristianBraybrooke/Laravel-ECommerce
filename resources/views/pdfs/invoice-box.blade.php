@@ -14,7 +14,6 @@
                         <td colspan="2">
                             Invoice #: {{ $order->invoice['number'] ?? '' }}<br>
                             Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
-                            Due: {{ $order->invoice['due_by'] ?? '' }}
                         </td>
                     </tr>
                 {{-- </table> --}}
@@ -23,7 +22,7 @@
 
         <tr class="information">
             <td colspan="2">
-                <strong>Shipping Address</strong> <br>
+                <strong>Delivery Address</strong> <br>
                 @foreach ($order->shipping_address as $key => $shipping_address)
                     {{ $shipping_address }} @if ($shipping_address) <br> @endif
                 @endforeach

@@ -5,6 +5,7 @@
                   style="width: 100%">
             <el-table-column v-for="(collumn, key) in collumns"
                              :key="key"
+                             :min-width="collumn.minWidth"
                              :prop="collumn.prop"
                              :label="collumn.label"
                              :formatter="collumn.formatter ? collumn.formatter : null">
@@ -119,6 +120,7 @@ export default {
                   {
                       prop: 'name',
                       label: 'Product',
+                      minWidth: 350,
                       formatter: function (row, column, cellValue) { return this.itemRowNameFormatter(row, column, cellValue) }.bind(this),
                   },
                   {
@@ -153,6 +155,7 @@ export default {
                       {
                           prop: 'actions',
                           label: 'Actions',
+                          minWidth: 200,
                           formatter: function (row, column, cellValue) { return this.itemRowActionsFormatter(row, column, cellValue) }.bind(this),
                       }
                   )
@@ -210,10 +213,12 @@ export default {
                     if (new_value) {
                         if (value.value && typeof value.value === 'object') {
                             new_value = this.loopOverItemOptions(value.value)
+                        } else if (typeof value === 'object' && value.value && value.name) {
+                            new_value = value.value
                         } else if (value && typeof value === 'object') {
                             new_value = this.loopOverItemOptions(value)
                         } else {
-                            new_value = value.name ? value.name : value;
+                            new_value = value.name ? value.name : value
                         }
                     }
 
@@ -225,7 +230,9 @@ export default {
                             extra = <span style="font-size: 11px;">({price_mutator} {price_value})</span>
                         }
                     }
-                    items.push(<li>{key}: {new_value} {extra}</li>);
+                    if (new_value) {
+                      items.push(<li>{key}: {new_value} {extra}</li>)
+                    }
                 });
 
                 return <div>{row_name} <ul class="order_item_options">{items}</ul></div>
@@ -237,7 +244,9 @@ export default {
           {
               var new_value = [];
               forEach(options, (value, key) => {
+                if (value) {
                   new_value.push(<li>{key}: {value}</li>)
+                }
               })
               return <ul>{new_value}</ul>
           },

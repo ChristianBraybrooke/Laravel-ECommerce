@@ -7,7 +7,7 @@
                  :plain="mergedButton.plain"
                  :class="mergedButton.class"
                  @click="openModal"
-                 type="primary">{{(loading ? mergedButton.loading : mergedButton.text)}}
+                 :type="mergedButton.type">{{(loading ? mergedButton.loading : mergedButton.text)}}
       </el-button>
 
       <el-dialog :title="(editForm ? 'Edit' : 'Add') + ' Product'"
@@ -97,8 +97,17 @@
                              <el-row :gutter="20" v-for="field in section.fields.data" :key="field.id">
                                  <el-col :md="{span:16, offset: 4}">
                                      <el-form-item :label="field.name" size="small" :prop="'product.options[' + field.name + ']'">
-                                         <el-input v-if="field.type === 'text'" v-model="form.product.options[field.name]"></el-input>
-                                         <el-input-number v-if="field.type === 'number'" v-model="form.product.options[field.name]"></el-input-number>
+
+                                         <template v-if="field.type === 'text'">
+                                           <el-input v-if="typeof form.product.options[field.name] === 'object'" v-model="form.product.options[field.name].value"></el-input>
+                                           <el-input v-else v-model="form.product.options[field.name]"></el-input>
+                                         </template>
+
+                                         <template v-if="field.type === 'number'">
+                                           <el-input-number v-if="typeof form.product.options[field.name] === 'object'" v-model="form.product.options[field.name].value"></el-input-number>
+                                           <el-input-number v-else v-model="form.product.options[field.name]"></el-input-number>
+                                         </template>
+
                                          <el-select filterable v-if="field.type === 'select'" v-model="form.product.options[field.name]">
                                              <el-option v-for="option in field.options"
                                                         :key="option.id"
@@ -201,7 +210,7 @@ var productTemplate = {
     order_form: orderFormTemplate,
     options: {},
     product: {
-        quantity: 1,
+        quantity: 5,
         options: {}
     },
     variants: {
@@ -268,11 +277,11 @@ export default {
               defaultButton: {
                   text: 'Add Product',
                   loading: 'Loading Products',
-                  size: 'small',
+                  type: 'success',
+                  size: 'large',
                   plain: false,
                   class: ''
               },
-              mergedButton: {},
               editPrice: false,
               clonedPrice: '0.00'
           }
@@ -308,6 +317,13 @@ export default {
         orderForm()
         {
             return this.objectHas(this.form, 'product.order_form.sections.data') ? orderBy(this.form.product.order_form.sections.data, ['order'], ['asc']) : [];
+        },
+
+        mergedButton () {
+          return {
+            ...this.defaultButton,
+            ...this.button
+          }
         }
 
       },
@@ -318,7 +334,9 @@ export default {
             if (!this.objectHas(this.form, 'product.options')) {
                 this.$set(this.form.product, 'options', {});
             }
-            this.$set(this.form.product, 'quantity', 1);
+            if (!this.objectHas(this.form, 'product.quantity')) {
+                this.$set(this.form.product, 'quantity', 1);
+            }
             this.clonedPrice = clone(this.form.product.price)
         },
 
@@ -329,13 +347,11 @@ export default {
         productFirst: function(value) {
             if (this.objectHas(value, 'variants.data')) {
                 if(value.variants.data.length >= 1) {
-                    this.form.product = {
-                        quantity: 1,
-                        options: {}
-                    };
+                    this.form.product.quantity = 1
+                    this.form.product.options = {}
                 } else {
-                  this.form.product.quantity = 1;
-                  this.form.product = value;
+                  this.form.product = value
+                  this.form.product.quantity = 1
                   this.clonedPrice = clone(this.form.product.price)
                 }
             } else {
@@ -344,6 +360,7 @@ export default {
                     options: {}
                 };
             }
+          console.log(`Quantity 2: ${this.form.product.quantity}`)
         },
       },
 
@@ -462,8 +479,8 @@ export default {
               this.errors = {};
               this.form = {
                   product: {},
-              };
-              this.form.product = productTemplate;
+              }
+              this.form.product = productTemplate
 
               this.productCategory = null;
               this.productFirst = null;
@@ -472,6 +489,7 @@ export default {
           addProduct(addAnother = false)
           {
               if(this.objectHas(this.form, 'product.id') && this.objectHas(this.form, 'product.quantity')) {
+                  console.log(this.form.product.quantity)
                   this.onProductAdd(this.form.product);
                   if (!addAnother) {
                       this.showModal = false;

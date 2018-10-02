@@ -16,6 +16,7 @@ use ChrisBraybrooke\ECommerce\Contracts\FormField as FormFieldContract;
 use ChrisBraybrooke\ECommerce\Contracts\FormSection as FormSectionContract;
 use ChrisBraybrooke\ECommerce\Contracts\Menu as MenuContract;
 use ChrisBraybrooke\ECommerce\Contracts\Payment as PaymentContract;
+use ChrisBraybrooke\ECommerce\Contracts\Price as PriceContract;
 use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Foundation\AliasLoader;
@@ -38,7 +39,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.49';
+    const VERSION = '0.0.51';
 
     /**
      * Bootstrap the application events.
@@ -150,6 +151,10 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         // Payment
         $this->app->bind(PaymentContract::class, $config['payment']);
         $loader->alias('Payment', $config['payment']);
+
+        // Price
+        $this->app->bind(PriceContract::class, $config['price']);
+        $loader->alias('Price', $config['price']);
     }
 
     /**
@@ -508,6 +513,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/create_payments_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 2).'_create_payments_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('CreatePricesTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_prices_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_create_prices_table.php'
                 ),
             ], 'ecommerce-migrations');
         }
