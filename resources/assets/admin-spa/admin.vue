@@ -1,32 +1,33 @@
 <script type="text/ecmascript-6">
-    import Layout from './layouts/MainLayout';
+import Layout from './layouts/MainLayout'
 
-    export default {
-        name: 'Admin',
-        components: { Layout },
-        mounted() {
-          document.title = this.$route.meta.title ? this.$route.meta.title  : 'Admin: ' + this.$route.name;
-          console.log('Admin.vue mounted.')
-        },
-        watch: {
-          $route: function (value) {
-              document.title = value.meta.title ? value.meta.title  : 'Admin: ' + this.capitalizeFirstLetter(value.name);
-          }
-        },
-        methods: {
-            capitalizeFirstLetter(string) {
-                return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-            }
-        }
-    };
+export default {
+  name: 'Admin',
+  components: { Layout },
+  watch: {
+    $route: function (value) {
+      document.title = value.meta.title ? value.meta.title : 'Admin: ' + this.capitalizeFirstLetter(value.name)
+    }
+  },
+  mounted () {
+    document.title = this.$route.meta.title ? this.$route.meta.title : 'Admin: ' + this.$route.name
+    console.log('Admin.vue mounted.')
+  },
+  methods: {
+    capitalizeFirstLetter (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+    }
+  }
+}
 </script>
 
 <template>
 
   <layout>
-    <transition name="slide-fade"
-                mode="out-in"
-                appear>
+    <transition
+      name="slide-fade"
+      mode="out-in"
+      appear>
       <router-view/>
     </transition>
 

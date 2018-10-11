@@ -1,43 +1,39 @@
 <template lang="html">
 
-<galleries-component></galleries-component>
+  <galleries-component/>
 
 </template>
 
 <script>
 export default {
 
-      name: 'Galleries',
+  name: 'Galleries',
 
-      components: {
-          GalleriesComponent: () => import(/* webpackChunkName: "galleries-component" */'components/GalleriesComponent')
-      },
+  components: {
+    GalleriesComponent: () => import(/* webpackChunkName: "galleries-component" */'components/GalleriesComponent')
+  },
 
-      props: [
+  data () {
+    return {
 
-      ],
+    }
+  },
 
-      data () {
-          return {
+  computed: {
 
-          }
-      },
+  },
 
-      computed: {
+  watch: {
 
-      },
+  },
 
-      watch: {
+  mounted () {
+    console.log('Galleries.vue: Mounted')
+  },
 
-      },
+  methods: {
 
-      mounted () {
-          console.log('Galleries.vue: Mounted');
-      },
-
-      methods: {
-
-      },
+  }
 
 }
 </script>

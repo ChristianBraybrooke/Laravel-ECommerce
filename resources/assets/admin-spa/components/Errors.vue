@@ -1,41 +1,44 @@
 <template lang="html">
-    <div v-if="Object.keys(errors).length > 0" class="error_wrap">
+  <div
+    v-if="Object.keys(errors).length > 0"
+    class="error_wrap">
 
-        <el-alert class="error_title"
-            :title="errors.message"
-            :closable="false"
-            type="error"
-            description="More information can be found below."
-            show-icon>
-        </el-alert>
+    <el-alert
+      :title="errors.message"
+      :closable="false"
+      class="error_title"
+      type="error"
+      description="More information can be found below."
+      show-icon/>
 
-        <div class="error_messages"
-             v-if="errors.errors && Object.keys(errors.errors).length > 0"
-             v-for="error in errors.errors">
-             <el-alert
-               :closable="false"
-               :title="error.join()"
-               type="error">
-             </el-alert>
-        </div>
+    <template v-if="errors.errors && Object.keys(errors.errors).length > 0">
+      <div
+        v-for="(error, key) in errors.errors"
+        :key="key"
+        class="error_messages">
+        <el-alert
+          :closable="false"
+          :title="error.join()"
+          type="error"/>
+      </div>
+    </template>
 
-
-    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'Errors',
 
-  mounted() {
-      console.log('Errors: Mounted');
+  props: {
+    errors: {
+      type: Object,
+      required: true
+    }
   },
 
-  props: {
-      errors: {
-          type: Object,
-          required: true,
-      }
+  mounted () {
+    console.log('Errors: Mounted')
   }
 }
 </script>

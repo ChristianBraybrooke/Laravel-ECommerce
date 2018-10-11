@@ -1,106 +1,107 @@
 <template lang="html">
 
-    <data-table type-name="form"
-                request-with=""
-                :table-options="tableOptions"
-                :create-form="formCreateForm"
-                :create-form-rules="formCreateFormRules">
+  <data-table
+    :table-options="tableOptions"
+    :create-form="formCreateForm"
+    :create-form-rules="formCreateFormRules"
+    type-name="form"
+    request-with="">
 
-      <template slot="createForm"
-                slot-scope="props">
+    <template
+      slot="createForm"
+      slot-scope="props">
 
-                <el-form-item label="Form Name" prop="name">
-                  <el-input :autofocus="true" v-model="formCreateForm.name" auto-complete="off"></el-input>
-                </el-form-item>
+      <el-form-item
+        label="Form Name"
+        prop="name">
+        <el-input
+          :autofocus="true"
+          v-model="formCreateForm.name"
+          auto-complete="off"/>
+      </el-form-item>
 
-      </template>
+    </template>
 
-    </data-table>
+  </data-table>
 
 </template>
 
 <script>
-var upperFirst = require('lodash.upperfirst');
-
 export default {
 
-      name: 'Forms',
+  name: 'Forms',
 
-      components: {
-          DataTable: () => import('components/DataTable')
+  components: {
+    DataTable: () => import('components/DataTable')
+  },
+
+  data () {
+    return {
+      formCreateForm: {},
+      formCreateFormRules: {
+        name: [
+          { required: true, message: 'The name is required', trigger: 'blur' }
+        ]
       },
-
-      props: [
-
-      ],
-
-      data () {
-          return {
-              formCreateForm: {},
-              formCreateFormRules: {
-                  name: [
-                    { required: true, message: 'The name is required', trigger: 'blur' },
-                  ],
-              },
-              tableOptions: {
-                  border: true,
-                  stripe: true,
-                  showSearch: true,
-                  showHeader: true,
-                  showNewBtn: true,
-                  showRefreshBtn: true,
-                  showHeadHr: true,
-                  showTitle: true,
-                  viewText: 'View',
-                  deleteText: 'Delete',
-                  collumns: [
-                      {
-                          prop: 'id',
-                          sortable: true,
-                          label: 'ID',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'name',
-                          sortable: true,
-                          label: 'Name',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'created_at.human',
-                          sortable: true,
-                          label: 'Created',
-                          align: 'left',
-                          resizable: true
-                      },
-                  ],
-                  bulkOptions: [
-                      {
-                        value: 'delete',
-                        label: 'Delete'
-                      }
-                  ],
-              }
+      tableOptions: {
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [
+          {
+            prop: 'id',
+            sortable: true,
+            label: 'ID',
+            align: 'left',
+            resizable: true
+          },
+          {
+            prop: 'name',
+            sortable: true,
+            label: 'Name',
+            align: 'left',
+            resizable: true
+          },
+          {
+            prop: 'created_at.human',
+            sortable: true,
+            label: 'Created',
+            align: 'left',
+            resizable: true
           }
-      },
+        ],
+        bulkOptions: [
+          {
+            value: 'delete',
+            label: 'Delete'
+          }
+        ]
+      }
+    }
+  },
 
-      computed: {
+  computed: {
 
-      },
+  },
 
-      watch: {
+  watch: {
 
-      },
+  },
 
-      mounted () {
-          console.log('Forms.vue mounted.')
-      },
+  mounted () {
+    console.log('Forms.vue mounted.')
+  },
 
-      methods: {
+  methods: {
 
-      },
+  }
 
 }
 </script>

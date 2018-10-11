@@ -1,9 +1,8 @@
 <template lang="html">
-    <data-table type-name="collection"
-                :request-includes="['live_at', 'created_at']"
-                bulk-update-url="collections/bulk">
-
-    </data-table>
+  <data-table
+    :request-includes="['live_at', 'created_at']"
+    type-name="collection"
+    bulk-update-url="collections/bulk"/>
 </template>
 
 <script>
@@ -13,15 +12,15 @@ export default {
     DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable')
   },
 
-  mounted() {
-      console.log('Collections.vue Mounted.');
-  },
-
-  data() {
+  data () {
     return {
 
     }
   },
+
+  mounted () {
+    console.log('Collections.vue Mounted.')
+  }
 
 }
 </script>

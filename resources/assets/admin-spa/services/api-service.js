@@ -1,45 +1,42 @@
-import axios from "axios";
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-let token = document.head.querySelector('meta[name="csrf-token"]');
+import axios from 'axios'
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+let token = document.head.querySelector('meta[name="csrf-token"]')
 if (token) {
-    axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-    axios.defaults.withCredentials = true;
+  axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
+  axios.defaults.withCredentials = true
 } else {
-    console.error('CSRF token not found');
+  console.error('CSRF token not found')
 }
-const BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/';
-const SERVER_ERROR_MESSAGE = "We could not access the server at this time. Please try again. If the issue persists, please open a support ticket.";
-const SERVER_UNAUTH_MESSAGE = "We could not complete the request, because you are not authorised to do so.";
-
-
+const BASE_URL = window.ecommerceConfig.site_url + '/' + window.ecommerceConfig.api_prefix + '/'
+const SERVER_ERROR_MESSAGE = 'We could not access the server at this time. Please try again. If the issue persists, please open a support ticket.'
+const SERVER_UNAUTH_MESSAGE = 'We could not complete the request, because you are not authorised to do so.'
 
 export default {
 
-  get(data)
-  {
-      if(!has(data, 'params')) {
-          data.params = {};
-      }
+  get (data) {
+    if (!data.params) {
+      data.params = {}
+    }
 
-      if(!has(data, 'url') || has(data, 'url') && !data.url) {
-          data.url = BASE_URL + data.path;
-      }
+    if (!data.url) {
+      data.url = BASE_URL + data.path
+    }
 
-      data.params.limit = has(data, 'params.limit') ? data.params.limit : 15;
-      data.params.ascending = has(data, 'params.ascending') ? data.params.ascending : 0;
-      data.params.orderBy = has(data, 'params.orderBy') ? data.params.orderBy : 'id';
+    data.params.limit = window.has(data, 'params.limit') ? data.params.limit : 15
+    data.params.ascending = window.has(data, 'params.ascending') ? data.params.ascending : 0
+    data.params.orderBy = window.has(data, 'params.orderBy') ? data.params.orderBy : 'id'
 
-      console.log('API Get: ' + data.url);
+    console.log('API Get: ' + data.url)
 
-      return new Promise(function(resolve, reject) {
-          axios.get(data.url, { params: data.params })
-              .then(function (response) {
-                  resolve(response.data);
-              }.bind(this))
-              .catch(function (error) {
-                  reject(this.errorAdapter(error));
-              }.bind(this));
-      }.bind(this));
+    return new Promise(function (resolve, reject) {
+      axios.get(data.url, { params: data.params })
+        .then(function (response) {
+          resolve(response.data)
+        })
+        .catch(function (error) {
+          reject(this.errorAdapter(error))
+        }.bind(this))
+    }.bind(this))
   },
 
   /**
@@ -49,25 +46,23 @@ export default {
    *
    * @return Promise | resolve() or reject()
    */
-  delete(data)
-  {
-      if(!has(data, 'url') || has(data, 'url') && !data.url) {
-        data.url = BASE_URL + data.path;
-      }
+  delete (data) {
+    if (!data.url) {
+      data.url = BASE_URL + data.path
+    }
 
-      console.log('API Delete: ' + data.url);
+    console.log('API Delete: ' + data.url)
 
-      return new Promise(function(resolve, reject) {
-          axios.delete(data.url, has(data, 'params') ? {params: data.params} : '')
-              .then(function (response) {
-                  resolve(response.data);
-              }.bind(this))
-              .catch(function (error) {
-                  reject(this.errorAdapter(error));
-              }.bind(this));
-      }.bind(this));
+    return new Promise(function (resolve, reject) {
+      axios.delete(data.url, window.has(data, 'params') ? { params: data.params } : '')
+        .then(function (response) {
+          resolve(response.data)
+        })
+        .catch(function (error) {
+          reject(this.errorAdapter(error))
+        }.bind(this))
+    }.bind(this))
   },
-
 
   /**
    * Persist data to the server using the method supplied.
@@ -77,27 +72,26 @@ export default {
    *
    * @return Promise | resolve() or reject()
    */
-  persist(method, data)
-  {
-      if(!has(data, 'params')) {
-          data.params = {};
-      }
+  persist (method, data) {
+    if (!data.params) {
+      data.params = {}
+    }
 
-      if(!has(data, 'url') || has(data, 'url') && !data.url) {
-          data.url = BASE_URL + data.path;
-      }
+    if (!data.url) {
+      data.url = BASE_URL + data.path
+    }
 
-      console.log('API ' + method + ': ' + data.url);
+    console.log('API ' + method + ': ' + data.url)
 
-      return new Promise(function(resolve, reject) {
-          axios[method](data.url, data.object, data.params)
-              .then(function (response) {
-                  resolve(response.data);
-              }.bind(this))
-              .catch(function (error) {
-                  reject(this.errorAdapter(error));
-              }.bind(this));
-      }.bind(this));
+    return new Promise(function (resolve, reject) {
+      axios[method](data.url, data.object, data.params)
+        .then(function (response) {
+          resolve(response.data)
+        })
+        .catch(function (error) {
+          reject(this.errorAdapter(error))
+        }.bind(this))
+    }.bind(this))
   },
 
   /**
@@ -107,41 +101,37 @@ export default {
    *
    * @return Object
    */
-  errorAdapter(error)
-  {
-      error = has(error, 'response.status') ? error.response : error;
-      var data = has(error, 'data') ? error.data : error.message;
+  errorAdapter (error) {
+    error = window.has(error, 'response.status') ? error.response : error
+    var data = window.has(error, 'data') ? error.data : error.message
 
-      console.error('API Error:');
-      console.log(error);
-      console.error('API Error Data');
-      console.log(data);
+    console.error('API Error:')
+    console.log(error)
+    console.error('API Error Data')
+    console.log(data)
 
-      return error ? (
-          (typeof data === 'object' && error.status === 422) ?
-          data :
-          (error.status === 403) ?
-          {
-              message: SERVER_UNAUTH_MESSAGE,
-              code: error.status
-          } :
-          {
-              message: SERVER_ERROR_MESSAGE,
-              errors: {
-                  'server': ['Please use this error code in any suppot queries. Error Code: ' + error.status],
-              },
-              code: error.status
+    return error ? (
+      (typeof data === 'object' && error.status === 422)
+        ? data
+        : (error.status === 403)
+          ? {
+            message: SERVER_UNAUTH_MESSAGE,
+            code: error.status
           }
-      ) : {
-              message: SERVER_ERROR_MESSAGE,
-              errors: {
-                  'server': error.message
-              },
-              code: error.status
+          : {
+            message: SERVER_ERROR_MESSAGE,
+            errors: {
+              'server': ['Please use this error code in any suppot queries. Error Code: ' + error.status]
+            },
+            code: error.status
           }
-  },
-
-
-
+    ) : {
+      message: SERVER_ERROR_MESSAGE,
+      errors: {
+        'server': error.message
+      },
+      code: error.status
+    }
+  }
 
 }

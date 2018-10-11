@@ -1,250 +1,270 @@
 <template lang="html">
-    <div class="">
+  <div class="">
+    <el-button
+      v-if="showBtn"
+      type="info"
+      plain
+      size="mini"
+      @click="dialogVisible = true;">Select File <i class="el-icon-document"/></el-button>
+    <el-dialog
+      :title="'File Picker: ' + name"
+      :visible.sync="dialogVisible"
+      :close-on-click-modal="false"
+      :before-close="handleClose"
+      class="file_picker_window"
+      width="70%"
+      top="7vh">
 
-        <el-button v-if="showBtn" type="info" plain size="mini" @click="dialogVisible = true;">Select File <i class="el-icon-document"></i></el-button>
-        <el-dialog :title="'File Picker: ' + name"
-                   class="file_picker_window"
-                   :visible.sync="dialogVisible"
-                   width="70%"
-                   :close-on-click-modal="false"
-                   top="7vh"
-                   :before-close="handleClose">
+      <galleries-component
+        ref="galleries"
+        :selectable="selectable"
+        :in-modal="true"
+        @fileHighlighted="handleFileHighlighted"
+        @fileUnHighlighted="handleFileHighlighted"/>
 
-            <galleries-component ref="galleries"
-                                 :selectable="selectable"
-                                 :in-modal="true"
-                                 v-on:fileHighlighted="handleFileHighlighted"
-                                 v-on:fileUnHighlighted="handleFileHighlighted">
-            </galleries-component>
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button @click="dialogVisible = false; files = []; handleClose()">Cancel</el-button>
+        <el-button
+          :disabled="!fileSelected"
+          type="primary"
+          @click="handleFileChoose">{{ files.length > 1 ? 'Use Files' : 'Use File' }}
+        </el-button>
+      </span>
+    </el-dialog>
 
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false; files = []; handleClose()">Cancel</el-button>
-                <el-button :disabled="!fileSelected" type="primary" @click="handleFileChoose">{{ this.files.length <= 1 ? 'Use File' : 'Use Files' }}</el-button>
-            </span>
-        </el-dialog>
+    <template v-if="showPreview">
+      <el-row
+        v-for="(chunk, key) in fileChunks"
+        :key="key"
+        :gutter="10"
+        class="gallery_row"
+        type="flex">
+        <el-col
+          v-for="(file, index) in chunk"
+          :key="index">
+          <div class="gallery_file_wrap">
+            <div class="gallery_file_wrap_inner">
 
-        <template v-for="chunk in fileChunks" v-if="showPreview">
-            <el-row :gutter="10" class="gallery_row" type="flex">
-                <template v-for="(file, index) in chunk">
-                    <el-col>
-                        <div class="gallery_file_wrap">
-                            <div class="gallery_file_wrap_inner">
+              <el-popover
+                :ref="'delete_popover_' + file.id"
+                placement="top"
+                width="160">
+                <p>Remove {{ file.name }}?</p>
+                <div style="text-align: right; margin: 0">
+                  <el-button
+                    type="primary"
+                    size="mini"
+                    @click="hideDeletePopover(file)">cancel</el-button>
+                  <el-button
+                    type="primary"
+                    size="mini"
+                    @click="deleteFile(file)">confirm</el-button>
+                </div>
+                <i
+                  id="delete"
+                  slot="reference"
+                  class="el-icon-delete gallery_file_wrap_icon"
+                  @click="handleIconClick('delete', file)"/>
+              </el-popover>
 
-                                <el-popover
-                                  :ref="'delete_popover_' + file.id"
-                                  placement="top"
-                                  width="160">
-                                  <p>Remove {{ file.name }}?</p>
-                                  <div style="text-align: right; margin: 0">
-                                    <el-button type="primary" size="mini" @click="hideDeletePopover(file)">cancel</el-button>
-                                    <el-button type="primary" size="mini" @click="deleteFile(file)">confirm</el-button>
-                                  </div>
-                                  <i id="delete" slot="reference" @click="handleIconClick('delete', file)" class="el-icon-delete gallery_file_wrap_icon"></i>
-                                </el-popover>
-
-                                <p class="gallery_file_wrap_title">{{file.name}}</p>
-                            </div>
-                            <img style="max-width: 100%;" :src="getFileUrl(file)" :alt="file.name">
-                        </div>
-                    </el-col>
-                </template>
-            </el-row>
-        </template>
-
-    </div>
+              <p class="gallery_file_wrap_title">{{ file.name }}</p>
+            </div>
+            <img
+              :src="getFileUrl(file)"
+              :alt="file.name"
+              style="max-width: 100%;">
+          </div>
+        </el-col>
+      </el-row>
+    </template>
+  </div>
 </template>
 
 <script>
-var chunk = require('lodash.chunk');
-var forEach = require('lodash.foreach');
+var chunk = require('lodash.chunk')
+var forEach = require('lodash.foreach')
 
 export default {
 
-      name: 'FilePickerComponent',
+  name: 'FilePickerComponent',
 
-      components: {
-          GalleriesComponent: () => import(/* webpackChunkName: "galleries-component" */'components/GalleriesComponent'),
-      },
+  components: {
+    GalleriesComponent: () => import(/* webpackChunkName: "galleries-component" */'components/GalleriesComponent')
+  },
 
-      props: {
-          openOnMount: {
-              type: Boolean,
-              required: false,
-              default() {
-                  return false
-              }
-          },
-          selectable: {
-              type: Number,
-              required: false,
-              default() {
+  props: {
+    openOnMount: {
+      type: Boolean,
+      required: false,
+      default () {
+        return false
+      }
+    },
+    selectable: {
+      type: Number,
+      required: false,
+      default () {
 
-              }
-          },
-          name: {
-              type: String,
-              required: true,
-          },
-          visible: {
-              type: Boolean,
-              required: false,
-              default() {
-                  return false;
-              }
-          },
-          showPreview: {
-              type: Boolean,
-              required: false,
-              default() {
-                  return true
-              }
-          },
-          showBtn: {
-              type: Boolean,
-              required: false,
-              default() {
-                  return false
-              }
-          },
-          currentFiles: {
-              required: false,
-          },
-          pickerId: {
+      }
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    visible: {
+      type: Boolean,
+      required: false,
+      default () {
+        return false
+      }
+    },
+    showPreview: {
+      type: Boolean,
+      required: false,
+      default () {
+        return true
+      }
+    },
+    showBtn: {
+      type: Boolean,
+      required: false,
+      default () {
+        return false
+      }
+    },
+    currentFiles: {
+      type: [Array, Object],
+      required: false,
+      default: () => { return [] }
+    },
+    pickerId: {
+      type: [Number, String],
+      required: false,
+      default: () => { return null }
+    }
+  },
 
-          },
-      },
+  data () {
+    return {
+      dialogVisible: false,
+      files: []
+    }
+  },
 
-      data () {
-          return {
-              dialogVisible: false,
-              files: [],
-          }
-      },
+  computed: {
+    fileSelected: function () {
+      return Object.keys(this.files).length >= 1
+    },
 
-      computed: {
-          fileSelected: function() {
-              return Object.keys(this.files).length >= 1;
-          },
+    fileChunks () {
+      return chunk(this.files, 4)
+    }
+  },
 
-          fileChunks()
-          {
-              return chunk(this.files, 4);
-          },
-      },
+  watch: {
+    dialogVisible: function (value) {
+      if (!value) {
+        this.$emit('closed:modal', value)
+      } else {
+        this.$emit('opened:modal', value)
+      }
+    },
 
-      watch: {
-          dialogVisible: function(value) {
-              if (!value) {
-                  this.$emit('closed:modal', value);
-              } else {
-                  this.$emit('opened:modal', value);
-              }
-          },
+    visible: function (value) {
+      this.dialogVisible = value
+    }
+  },
 
-          visible: function(value) {
-              this.dialogVisible = value;
-          }
-      },
+  mounted () {
+    console.log('FilePickerModal.vue mounted.')
 
-      mounted () {
-          console.log('FilePickerModal.vue mounted.');
+    this.syncFiles()
 
-          this.syncFiles();
+    if (this.openOnMount) {
+      this.openModal()
+    }
+  },
 
-          if(this.openOnMount) {
-              this.openModal();
-          }
-      },
+  methods: {
 
-      methods: {
+    syncFiles () {
+      if (this.currentFiles) {
+        forEach(this.currentFiles, function (file) {
+          this.files.push(file)
+        }.bind(this))
+      }
+    },
 
-          syncFiles()
-          {
-              if(this.currentFiles) {
-                  forEach(this.currentFiles, function (file) {
-                      this.files.push(file);
-                  }.bind(this));
-              }
-          },
+    getFileUrl (file) {
+      var thumb = file.conversions ? file.conversions.thumbnail : null
+      var url = file.url
 
-          getFileUrl(file)
-          {
-            var thumb = file.conversions ? file.conversions.thumbnail : null;
-            var url = file.url;
+      if (thumb) {
+        return thumb
+      } else if (url) {
+        return url
+      }
 
-            if(thumb) {
-                return thumb;
-            } else if(url) {
-                return url;
-            }
+      return file.response
+    },
 
-            return file.response;
-          },
+    openModal () {
+      this.dialogVisible = true
+    },
 
-          openModal()
-          {
-              this.dialogVisible = true;
-          },
+    closeModal () {
+      this.dialogVisible = false
+    },
 
-          closeModal()
-          {
-              this.dialogVisible = false;
-          },
+    handleClose () {
+      this.files = []
+      this.closeModal()
+      this.$emit('modalClosed', { files: this.files, id: this.pickerId })
+      if (this.currentFiles) {
+        forEach(this.currentFiles, function (file) {
+          this.files.push(file)
+        }.bind(this))
+      }
+    },
 
-          handleClose()
-          {
-              this.files = [];
-              this.closeModal();
-              this.$emit('modalClosed', { files: this.files, id: this.pickerId });
-              if(this.currentFiles) {
-                  forEach(this.currentFiles, function (file) {
-                      this.files.push(file);
-                  }.bind(this));
-              }
-          },
+    handleFileChoose () {
+      this.dialogVisible = false
+      this.$emit('update:files', this.files)
+      this.$emit('filesChosen', { files: this.files, id: this.pickerId })
+    },
 
-          handleFileChoose()
-          {
-              this.dialogVisible = false;
-              this.$emit('update:files', this.files);
-              this.$emit('filesChosen', { files: this.files, id: this.pickerId });
-          },
+    handleFileHighlighted (data) {
+      this.files = data.selectedFiles
+    },
 
-          handleFileHighlighted(data)
-          {
-              this.files = data.selectedFiles;
-          },
+    handleIconClick (type) {
 
-          handleIconClick(type)
-          {
+    },
 
-          },
+    hideDeletePopover (file) {
+      this.$refs['delete_popover_' + file.id][0].doClose()
+    },
 
-          hideDeletePopover(file)
-          {
-              this.$refs['delete_popover_' + file.id][0].doClose();
-          },
+    deleteFile (file) {
+      this.files.splice(this.files.indexOf(file), 1)
+      this.$emit('update:files', this.files)
+      this.$emit('filesUnChosen', { files: this.files, id: this.pickerId })
+    }
 
-          deleteFile(file)
-          {
-              this.files.splice(this.files.indexOf(file), 1);
-              this.$emit('update:files', this.files);
-              this.$emit('filesUnChosen', { files: this.files, id: this.pickerId });
-          },
-
-
-      },
+  }
 
 }
 </script>
 
 <style lang="css">
-.file_picker_window .el-dialog {
-    min-width: 620px!important;
-}
-@media (max-width: 700px) {
   .file_picker_window .el-dialog {
-      min-width: 350px!important;
+  min-width: 620px!important;
   }
-}
+  @media (max-width: 700px) {
+  .file_picker_window .el-dialog {
+  min-width: 350px!important;
+  }
+  }
 </style>

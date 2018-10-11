@@ -1,13 +1,13 @@
-import * as types from '../mutation-types';
-var has = require('lodash.has');
-import api from 'services/api-service';
+import * as types from '../mutation-types'
+import api from 'services/api-service'
+var has = require('lodash.has')
 
-var FETCH_BUFFER = 60 * 5 * 1000; /* ms */
+var FETCH_BUFFER = 60 * 5 * 1000 /* ms */
 
 // initial state
 const state = {
   user: {
-      name: {}
+    name: {}
   },
   userErrors: [],
   userLastFetched: ''
@@ -23,78 +23,78 @@ const getters = {
 const actions = {
 
   getUser ({ state, commit, dispatch }, data = {}) {
-      console.log('Vuex: Get User');
+    console.log('Vuex: Get User')
 
-      data.path = has(data, 'path') ? data.path : 'user';
+    data.path = has(data, 'path') ? data.path : 'user'
 
-      if(!has(data, 'params')) {
-        data.params = {};
+    if (!has(data, 'params')) {
+      data.params = {}
+    }
+
+    return new Promise((resolve, reject) => {
+      if (!state.user.created_at || ((Date.now()) - state.userLastFetched) > FETCH_BUFFER) {
+        api.get(data)
+          .then(function (response) {
+            commit(types.USER_LAST_FETCHED, Date.now())
+            commit(types.UPDATE_USER, response.data)
+            commit(types.UPDATE_USER_ERRORS, [])
+            resolve(response.data)
+          })
+          .catch(function (error) {
+            commit(types.UPDATE_USER_ERRORS, error)
+            reject(error)
+          })
+      } else {
+        resolve(state.user)
       }
-
-      return new Promise((resolve, reject) => {
-        if(!state.user.created_at || ((Date.now()) - state.userLastFetched) > FETCH_BUFFER) {
-            api.get(data)
-               .then( function(response) {
-                   commit(types.USER_LAST_FETCHED, Date.now());
-                   commit(types.UPDATE_USER, response.data);
-                   commit(types.UPDATE_USER_ERRORS, []);
-                   resolve(response.data);
-               }.bind(this))
-               .catch( function(error) {
-                   commit(types.UPDATE_USER_ERRORS, error)
-                   reject(error);
-               }.bind(this));
-        } else {
-          resolve(state.user);
-        }
-          });
+    })
   },
 
   updateUser ({ state, commit, dispatch }, data = {}) {
-      console.log('Vuex: Update User');
+    console.log('Vuex: Update User')
 
-      data.path = has(data, 'path') ? data.path : 'users/' + state.user.id;
+    data.path = has(data, 'path') ? data.path : 'users/' + state.user.id
 
-      if(!has(data, 'params')) {
-        data.params = {};
-      }
-      if(!has(data, 'object')) {
-        data.object = state.user;
-      }
+    if (!has(data, 'params')) {
+      data.params = {}
+    }
+    if (!has(data, 'object')) {
+      data.object = state.user
+    }
 
-      return new Promise((resolve, reject) => {
-            api.persist('put', data)
-               .then( function(response) {
-                   commit(types.USER_LAST_FETCHED, Date.now());
-                   commit(types.UPDATE_USER, response.data);
-                   commit(types.UPDATE_USER_ERRORS, []);
-                 resolve(response.data);
-               }.bind(this))
-               .catch( function(error) {
-                   commit(types.UPDATE_USER_ERRORS, error)
-                   reject(error);
-               }.bind(this));
-          });
-  },
+    return new Promise((resolve, reject) => {
+      api.persist('put', data)
+        .then(function (response) {
+          commit(types.USER_LAST_FETCHED, Date.now())
+          commit(types.UPDATE_USER, response.data)
+          commit(types.UPDATE_USER_ERRORS, [])
+          resolve(response.data)
+        })
+        .catch(function (error) {
+          commit(types.UPDATE_USER_ERRORS, error)
+          reject(error)
+        })
+    })
+  }
 }
 
 // mutations
 const mutations = {
 
   [types.UPDATE_USER] (state, user) {
-    state.user = user;
+    state.user = user
   },
 
   [types.UPDATE_USER_ERRORS] (state, error) {
-    state.userErrors = error;
+    state.userErrors = error
   },
 
   [types.USER_LAST_FETCHED] (state, data) {
-    state.userLastFetched = data;
+    state.userLastFetched = data
   },
 
   updateUserForm (state, data) {
-      state.user[data.key] = data.value;
+    state.user[data.key] = data.value
   }
 
 }

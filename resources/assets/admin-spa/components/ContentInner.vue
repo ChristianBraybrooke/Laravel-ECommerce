@@ -1,336 +1,440 @@
 <template lang="html">
-    <div>
+  <div>
 
-        <file-picker-modal :visible="showFilePicker"
-                           :current-files="undefined"
-                           @update:files="val => insertQuillImage(val)"
-                           @closed:modal="val => fileModalClosed()"
-                           :show-btn="false"
-                           :show-preview="false"
-                           name="content"
-                           picker-id="image"/>
+    <file-picker-modal
+      :visible="showFilePicker"
+      :current-files="undefined"
+      :show-btn="false"
+      :show-preview="false"
+      name="content"
+      picker-id="image"
+      @update:files="val => insertQuillImage(val)"
+      @closed:modal="val => fileModalClosed()"/>
 
-        <el-form-item :label="contentLabel" :prop="content.content_name">
-            <quill-editor v-model="content.content"
-                          v-if="content.type === 'quill'"
-                          :ref="'quillEditor' + content.content_name"
-                          :options="editorOptions">
-            </quill-editor>
+    <el-form-item
+      :label="contentLabel"
+      :prop="content.content_name">
+      <quill-editor
+        v-if="content.type === 'quill'"
+        v-model="content.content"
+        :ref="'quillEditor' + content.content_name"
+        :options="editorOptions"/>
 
-            <template v-else-if="content.type === 'json'">
-                <el-row :gutter="20">
-                    <el-col :md="{span: 22, offset: 2}">
-                        <el-row v-for="(jsonContent, json_key) in content.content" :key="json_key">
+      <template v-else-if="content.type === 'json'">
+        <el-row :gutter="20">
+          <el-col :md="{span: 22, offset: 2}">
+            <el-row
+              v-for="(jsonContent, jsonKey) in content.content"
+              :key="jsonKey">
 
-                            <span style="display:block;">{{ inputLabel(json_key) }}</span>
+              <span style="display:block;">{{ inputLabel(jsonKey) }}</span>
 
-                            <div v-if="json_key.toUpperCase().includes('DATE')">
-                                <el-date-picker v-model="content.content[json_key]"
-                                                type="date"
-                                                size="small"
-                                                style="width: 100%; max-width: 300px;"
-                                                placeholder="Pick a date"
-                                                format="dd/MM/yyyy"
-                                                value-format="dd-MM-yyy">
-                                </el-date-picker>
+              <div v-if="jsonKey.toUpperCase().includes('DATE')">
+                <el-date-picker
+                  v-model="content.content[jsonKey]"
+                  type="date"
+                  size="small"
+                  style="width: 100%; max-width: 300px;"
+                  placeholder="Pick a date"
+                  format="dd/MM/yyyy"
+                  value-format="dd-MM-yyy"/>
 
-                                <el-popover placement="top"
-                                            width="160"
-                                            v-if="editable"
-                                            :ref="'json_content_delete_confirm_' + json_key">
-                                    <p>Delete content?</p>
-                                    <div style="text-align: right; margin: 0">
-                                        <el-button size="mini" type="text" @click="$refs['json_content_delete_confirm_' + json_key][0].doClose()">Cancel</el-button>
-                                        <el-button type="primary" size="mini" @click="deleteJsonContent(json_key)">Confirm</el-button>
-                                    </div>
-                                    <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
-                                </el-popover>
-                            </div>
+                <el-popover
+                  v-if="editable"
+                  :ref="'json_content_delete_confirm_' + jsonKey"
+                  placement="top"
+                  width="160">
+                  <p>Delete content?</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['json_content_delete_confirm_' + jsonKey][0].doClose()">Cancel</el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="deleteJsonContent(jsonKey)">Confirm</el-button>
+                  </div>
+                  <el-button
+                    slot="reference"
+                    plain
+                    class="mini_delete"
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-error"/>
+                </el-popover>
+              </div>
 
-                            <div v-else-if="json_key.toUpperCase().includes('NUMBER') || json_key.toUpperCase().includes('VALUE') || json_key.toUpperCase().includes('AMOUNT')" style="width:100%;">
-                                <el-input-number v-model="content.content[json_key]" :controls="false" size="small"></el-input-number>
+              <div
+                v-else-if="jsonKey.toUpperCase().includes('NUMBER') || jsonKey.toUpperCase().includes('VALUE') || jsonKey.toUpperCase().includes('AMOUNT')"
+                style="width:100%;">
+                <el-input-number
+                  v-model="content.content[jsonKey]"
+                  :controls="false"
+                  size="small"/>
 
-                                <el-popover placement="top"
-                                            width="160"
-                                            v-if="editable"
-                                            :ref="'json_content_delete_confirm_' + json_key">
-                                    <p>Delete content?</p>
-                                    <div style="text-align: right; margin: 0">
-                                        <el-button size="mini" type="text" @click="$refs['json_content_delete_confirm_' + json_key][0].doClose()">Cancel</el-button>
-                                        <el-button type="primary" size="mini" @click="deleteJsonContent(json_key)">Confirm</el-button>
-                                    </div>
-                                    <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
-                                </el-popover>
+                <el-popover
+                  v-if="editable"
+                  :ref="'json_content_delete_confirm_' + jsonKey"
+                  placement="top"
+                  width="160">
+                  <p>Delete content?</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['json_content_delete_confirm_' + jsonKey][0].doClose()">Cancel</el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="deleteJsonContent(jsonKey)">Confirm</el-button>
+                  </div>
+                  <el-button
+                    slot="reference"
+                    plain
+                    class="mini_delete"
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-error"/>
+                </el-popover>
 
-                            </div>
-                            <div v-else-if="json_key.toUpperCase().includes('COST')" style="width: 100%;">
-                                <span class="currency --small">{{ shopData.currency }}</span><el-input-number size="small"
-                                                                                                              v-model="content.content[json_key]"
-                                                                                                              :controls="false"
-                                                                                                              :precision="3">
-                                </el-input-number>
+              </div>
+              <div
+                v-else-if="jsonKey.toUpperCase().includes('COST')"
+                style="width: 100%;">
+                <span class="currency --small">{{ shopData.currency }}</span><el-input-number
+                  v-model="content.content[jsonKey]"
+                  :controls="false"
+                  :precision="3"
+                  size="small"/>
 
-                                <el-popover placement="top"
-                                            width="160"
-                                            v-if="editable"
-                                            :ref="'json_content_delete_confirm_' + json_key">
-                                    <p>Delete content?</p>
-                                    <div style="text-align: right; margin: 0">
-                                        <el-button size="mini" type="text" @click="$refs['json_content_delete_confirm_' + json_key][0].doClose()">Cancel</el-button>
-                                        <el-button type="primary" size="mini" @click="deleteJsonContent(json_key)">Confirm</el-button>
-                                    </div>
-                                    <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
-                                </el-popover>
-                            </div>
-                            <div v-else-if="(json_key.toUpperCase().includes('GALLERY') || json_key.toUpperCase().includes('FILES') || json_key.toUpperCase().includes('IMAGES'))">
-                                <file-picker-modal :current-files="(content.content[json_key] && content.content[json_key][0]) ? content.content[json_key] : undefined"
-                                                   @update:files="val => content.content[json_key] = val"
-                                                   :show-btn="true"
-                                                   :name="capitalize(json_key.replace(/_/g, ' '))"
-                                                   :picker-id="json_key">
-                                </file-picker-modal>
-                                <el-popover placement="top"
-                                            width="160"
-                                            v-if="editable"
-                                            :ref="'json_content_delete_confirm_' + json_key">
-                                    <p>Delete content?</p>
-                                    <div style="text-align: right; margin: 0">
-                                        <el-button size="mini" type="text" @click="$refs['json_content_delete_confirm_' + json_key][0].doClose()">Cancel</el-button>
-                                        <el-button type="primary" size="mini" @click="deleteJsonContent(json_key)">Confirm</el-button>
-                                    </div>
-                                    <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
-                                </el-popover>
-                            </div>
-                            <div v-else-if="(json_key.toUpperCase().includes('IMAGE') || json_key.toUpperCase().includes('FILE'))">
-                                <file-picker-modal :current-files="(content.content[json_key] && content.content[json_key][0]) ? [content.content[json_key][0]] : undefined"
-                                                   @update:files="val => content.content[json_key] = val"
-                                                   :show-btn="true"
-                                                   :name="capitalize(json_key.replace(/_/g, ' '))"
-                                                   :selectable="1"
-                                                   :picker-id="json_key">
-                                </file-picker-modal>
-                                <el-popover placement="top"
-                                            width="160"
-                                            v-if="editable"
-                                            :ref="'json_content_delete_confirm_' + json_key">
-                                    <p>Delete content?</p>
-                                    <div style="text-align: right; margin: 0">
-                                        <el-button size="mini" type="text" @click="$refs['json_content_delete_confirm_' + json_key][0].doClose()">Cancel</el-button>
-                                        <el-button type="primary" size="mini" @click="deleteJsonContent(json_key)">Confirm</el-button>
-                                    </div>
-                                    <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
-                                </el-popover>
-                            </div>
-                            <div v-else-if="(json_key.toUpperCase().includes('CHECK') || json_key.toUpperCase().includes('CHECKBOX'))">
-                                <el-checkbox v-model="content.content[json_key]"></el-checkbox>
-                            </div>
-                            <div v-else-if="json_key.toUpperCase().includes('MULTI')">
-                                <content-inner :show-section-title="false"
-                                               :on-delete-content="deleteJsonContent"
-                                               :content="{content_name: json_key, content: content.content[json_key], type: 'json'}"
-                                               :content-key="json_key"
-                                               :editable="true"
-                                               :language-options="false"/>
-                            </div>
-                            <div v-else>
-                                <el-input v-model="content.content[json_key]" size="small" style="width: 100%; max-width: 300px;"></el-input>
-                                <el-popover placement="top"
-                                            v-if="editable"
-                                            width="160"
-                                            :ref="'json_content_delete_confirm_' + json_key">
-                                    <p>Delete content?</p>
-                                    <div style="text-align: right; margin: 0">
-                                        <el-button size="mini" type="text" @click="$refs['json_content_delete_confirm_' + json_key][0].doClose()">Cancel</el-button>
-                                        <el-button type="primary" size="mini" @click="deleteJsonContent(json_key)">Confirm</el-button>
-                                    </div>
-                                    <el-button plain class="mini_delete" slot="reference" size="mini" type="danger" icon="el-icon-error"></el-button>
-                                </el-popover>
-                            </div>
-                        </el-row>
-                        <div>
-                            <el-button v-if="editable" plain class="mini_add" slot="reference" size="mini" type="success" @click="addJsonContent()">Add Content</el-button>
-                        </div>
-                    </el-col>
-                </el-row>
-            </template>
+                <el-popover
+                  v-if="editable"
+                  :ref="'json_content_delete_confirm_' + jsonKey"
+                  placement="top"
+                  width="160">
+                  <p>Delete content?</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['json_content_delete_confirm_' + jsonKey][0].doClose()">Cancel</el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="deleteJsonContent(jsonKey)">Confirm</el-button>
+                  </div>
+                  <el-button
+                    slot="reference"
+                    plain
+                    class="mini_delete"
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-error"/>
+                </el-popover>
+              </div>
+              <div v-else-if="(jsonKey.toUpperCase().includes('GALLERY') || jsonKey.toUpperCase().includes('FILES') || jsonKey.toUpperCase().includes('IMAGES'))">
+                <file-picker-modal
+                  :current-files="(content.content[jsonKey] && content.content[jsonKey][0]) ? content.content[jsonKey] : undefined"
+                  :show-btn="true"
+                  :name="capitalize(jsonKey.replace(/_/g, ' '))"
+                  :picker-id="jsonKey"
+                  @update:files="val => content.content[jsonKey] = val"/>
+                <el-popover
+                  v-if="editable"
+                  :ref="'json_content_delete_confirm_' + jsonKey"
+                  placement="top"
+                  width="160">
+                  <p>Delete content?</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['json_content_delete_confirm_' + jsonKey][0].doClose()">Cancel</el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="deleteJsonContent(jsonKey)">Confirm</el-button>
+                  </div>
+                  <el-button
+                    slot="reference"
+                    plain
+                    class="mini_delete"
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-error"/>
+                </el-popover>
+              </div>
+              <div v-else-if="(jsonKey.toUpperCase().includes('IMAGE') || jsonKey.toUpperCase().includes('FILE'))">
+                <file-picker-modal
+                  :current-files="(content.content[jsonKey] && content.content[jsonKey][0]) ? [content.content[jsonKey][0]] : undefined"
+                  :show-btn="true"
+                  :name="capitalize(jsonKey.replace(/_/g, ' '))"
+                  :selectable="1"
+                  :picker-id="jsonKey"
+                  @update:files="val => content.content[jsonKey] = val"/>
+                <el-popover
+                  v-if="editable"
+                  :ref="'json_content_delete_confirm_' + jsonKey"
+                  placement="top"
+                  width="160">
+                  <p>Delete content?</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['json_content_delete_confirm_' + jsonKey][0].doClose()">Cancel</el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="deleteJsonContent(jsonKey)">Confirm</el-button>
+                  </div>
+                  <el-button
+                    slot="reference"
+                    plain
+                    class="mini_delete"
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-error"/>
+                </el-popover>
+              </div>
+              <div v-else-if="(jsonKey.toUpperCase().includes('CHECK') || jsonKey.toUpperCase().includes('CHECKBOX'))">
+                <el-checkbox v-model="content.content[jsonKey]"/>
+              </div>
+              <div v-else-if="jsonKey.toUpperCase().includes('MULTI')">
+                <content-inner
+                  :show-section-title="false"
+                  :on-delete-content="deleteJsonContent"
+                  :content="{content_name: jsonKey, content: content.content[jsonKey], type: 'json'}"
+                  :content-key="jsonKey"
+                  :editable="true"
+                  :language-options="false"/>
+              </div>
+              <div v-else>
+                <el-input
+                  v-model="content.content[jsonKey]"
+                  size="small"
+                  style="width: 100%; max-width: 300px;"/>
+                <el-popover
+                  v-if="editable"
+                  :ref="'json_content_delete_confirm_' + jsonKey"
+                  placement="top"
+                  width="160">
+                  <p>Delete content?</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['json_content_delete_confirm_' + jsonKey][0].doClose()">Cancel</el-button>
+                    <el-button
+                      type="primary"
+                      size="mini"
+                      @click="deleteJsonContent(jsonKey)">Confirm</el-button>
+                  </div>
+                  <el-button
+                    slot="reference"
+                    plain
+                    class="mini_delete"
+                    size="mini"
+                    type="danger"
+                    icon="el-icon-error"/>
+                </el-popover>
+              </div>
+            </el-row>
+            <div>
+              <el-button
+                v-if="editable"
+                slot="reference"
+                plain
+                class="mini_add"
+                size="mini"
+                type="success"
+                @click="addJsonContent()">Add Content</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </template>
 
-            <el-input v-else size="small" :type="content.type === 'textarea' ? 'textarea' : ''" :autofocus="true" v-model="content.content"></el-input>
+      <el-input
+        v-else
+        :type="content.type === 'textarea' ? 'textarea' : ''"
+        :autofocus="true"
+        v-model="content.content"
+        size="small"/>
 
-            <el-popover placement="top"
-                        v-if="editable"
-                        width="160"
-                        ref="content_delete_confirm">
-                <p>Delete content?</p>
-                <div style="text-align: right; margin: 0">
-                    <el-button size="mini" type="text" @click="$refs['content_delete_confirm'].doClose()">Cancel</el-button>
-                    <el-button type="primary" size="mini" @click="deleteContent(contentKey)">Confirm</el-button>
-                </div>
-                <el-button slot="reference" size="mini" type="danger">Delete</el-button>
-            </el-popover>
+      <el-popover
+        v-if="editable"
+        ref="content_delete_confirm"
+        placement="top"
+        width="160">
+        <p>Delete content?</p>
+        <div style="text-align: right; margin: 0">
+          <el-button
+            size="mini"
+            type="text"
+            @click="$refs['content_delete_confirm'].doClose()">Cancel</el-button>
+          <el-button
+            type="primary"
+            size="mini"
+            @click="deleteContent(contentKey)">Confirm</el-button>
+        </div>
+        <el-button
+          slot="reference"
+          size="mini"
+          type="danger">Delete</el-button>
+      </el-popover>
 
-        </el-form-item>
-    </div>
+    </el-form-item>
+  </div>
 </template>
 
 <script>
-var forEach = require('lodash.foreach');
-
-import 'quill/dist/quill.core.css';
-import 'quill/dist/quill.snow.css';
-import 'quill/dist/quill.bubble.css';
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 import contentUtil from 'utils/content'
 
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 import ContentComponent from 'components/ContentComponent'
 
-import { quillEditor } from 'vue-quill-editor';
+import { quillEditor } from 'vue-quill-editor'
+
+var forEach = require('lodash.foreach')
 export default {
 
-      name: 'ContentInner',
+  name: 'ContentInner',
 
-      components: {
-          quillEditor,
-          FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
-          ContentComponent
-      },
+  components: {
+    quillEditor,
+    FilePickerModal: () => import(/* webpackChunkName: "file-picker-modal" */'components/FilePickerModal'),
+    ContentComponent
+  },
 
-      props: {
-          content: {
-              required: true,
-              type: Object
-          },
-          contentKey: {
-              required: true,
-              type: [Number, String]
-          },
-          editable: {
-              required: false,
-              type: Boolean,
-              default () {
-                  return false
+  props: {
+    content: {
+      required: true,
+      type: Object
+    },
+    contentKey: {
+      required: true,
+      type: [Number, String]
+    },
+    editable: {
+      required: false,
+      type: Boolean,
+      default () {
+        return false
+      }
+    },
+    languageOptions: {
+      required: false,
+      type: Boolean,
+      default () {
+        return true
+      }
+    },
+    showSectionTitle: {
+      required: false,
+      type: Boolean,
+      default () {
+        return true
+      }
+    },
+    onDeleteContent: {
+      required: false,
+      type: Function,
+      default () {
+        return function (contentKey) {}
+      }
+    }
+  },
+
+  data () {
+    var self = this
+    return {
+      editorOptions: {
+        modules: {
+          toolbar: {
+            container: ['image', 'bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, 'blockquote', { 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
+
+            handlers: {
+              'image': function (value) {
+                self.quillSelection = this.quill.getSelection()
+                self.showFilePicker = true
+                self.quillInstance = this
               }
-          },
-          languageOptions: {
-              required: false,
-              type: Boolean,
-              default () {
-                  return true
-              }
-          },
-          showSectionTitle: {
-              required: false,
-              type: Boolean,
-              default () {
-                  return true
-              }
-          },
-          onDeleteContent: {
-              required: false,
-              type: Function,
-              default () {
-                  return function (contentKey) {};
-              }
+            }
           }
+        }
       },
+      showFilePicker: false,
+      quillInstance: null,
+      quillSelection: null
+    }
+  },
 
-      watch: {
-          'content.content': function (value) {
-              console.log(value)
-          },
-       },
+  computed: {
+    ...mapGetters([
+      'shopData'
+    ]),
 
-      data () {
-          var self = this;
-          return {
-              editorOptions: {
-                modules: {
-                  toolbar: {
-                      container: ["image", "bold", "italic", "underline", "strike", { 'header': 1 }, { 'header': 2 }, "blockquote", { 'list': 'ordered'}, { 'list': 'bullet' }, { 'align': [] }],
+    contentLabel () {
+      var contentName = this.content.content_name.replace('multi', '')
+      return this.showSectionTitle ? (contentName + (this.anguageOptions ? ' (' + (this.content.language ? this.content.language : '') + ')' : '')) : ''
+    }
+  },
 
-                      handlers: {
-                        'image': function(value) {
-                            self.quillSelection = this.quill.getSelection();
-                            self.showFilePicker = true;
-                            self.quillInstance = this;
-                        }
-                      }
-                  },
-                }
-              },
-              showFilePicker: false,
-              quillInstance: null,
-              quillSelection: null,
-          }
-      },
+  watch: {
+    'content.content': function (value) {
+      console.log(value)
+    }
+  },
 
-      computed: {
-          ...mapGetters([
-            'shopData',
-          ]),
+  mounted () {
+    console.log('ContentInner.vue mounted!')
+  },
 
-          contentLabel()
-          {
-              var content_name = this.content.content_name.replace("multi", "");
-              return this.showSectionTitle ? (content_name + (this.anguageOptions ? ' (' + (this.content.language ? this.content.language : '') + ')' : '')) : '';
-          },
-      },
+  methods: {
+    deleteJsonContent (jsonKey) {
+      this.$delete(this.content.content, jsonKey)
+    },
 
-      watch: {
+    inputLabel (jsonKey) {
+      return this.capitalize(contentUtil.inputLabel(jsonKey))
+    },
 
-      },
+    addJsonContent () {
+      this.$prompt('Content Name', 'Content Name', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        inputValidator: function (val) { return !!val },
+        inputErrorMessage: 'Name is required.'
+      }).then(value => {
+        var innerContent = value.value.toUpperCase().includes('MULTI') ? {} : ''
+        this.$set(this.content.content, value.value, innerContent)
+      })
+    },
 
-      mounted () {
-          console.log('ContentInner.vue mounted!')
-      },
+    deleteContent () {
+      this.onDeleteContent(this.contentKey)
+    },
 
-      methods: {
-          deleteJsonContent(json_key)
-          {
-              this.$delete(this.content.content, json_key);
-          },
+    insertQuillImage (files) {
+      forEach(files, function (file) {
+        this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', file.url)
+      }.bind(this))
 
-          inputLabel(json_key)
-          {
-            return this.capitalize(contentUtil.inputLabel(json_key))
-          },
+      this.quillInstance = null
+      this.quillSelection = null
+    },
 
-          addJsonContent()
-          {
-              this.$prompt('Content Name', 'Content Name', {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
-                inputValidator: function (val) { return val ? true : false },
-                inputErrorMessage: 'Name is required.'
-              }).then(value => {
-                  var content = this.content.content
-                  var inner_content = value.value.toUpperCase().includes('MULTI') ? {} : '';
-                  this.$set(this.content.content, value.value, inner_content);
-              });
-          },
-
-          deleteContent()
-          {
-              this.onDeleteContent(this.contentKey);
-          },
-
-          insertQuillImage(files)
-          {
-              forEach(files, function(file) {
-                  this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', file.url);
-              }.bind(this));
-
-              this.quillInstance = null;
-              this.quillSelection = null;
-          },
-
-          fileModalClosed()
-          {
-              this.showFilePicker = false;
-              this.quillInstance = null;
-              this.quillSelection = null;
-          }
-      },
+    fileModalClosed () {
+      this.showFilePicker = false
+      this.quillInstance = null
+      this.quillSelection = null
+    }
+  }
 
 }
 </script>

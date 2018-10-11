@@ -1,141 +1,149 @@
 <template lang="html">
-    <div v-loading="loading">
-      <el-form label-position="top" :model="menu" :rules="menuFormRules" ref="menuForm" label-width="120px">
+  <div v-loading="loading">
+    <el-form
+      ref="menuForm"
+      :model="menu"
+      :rules="menuFormRules"
+      label-position="top"
+      label-width="120px">
 
-
-      <el-breadcrumb class="breadcrumbs" separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ name: 'menus' }">Menus</el-breadcrumb-item>
-          <el-breadcrumb-item>{{ menu.name }}</el-breadcrumb-item>
+      <el-breadcrumb
+        class="breadcrumbs"
+        separator-class="el-icon-arrow-right">
+        <el-breadcrumb-item :to="{ name: 'menus' }">Menus</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ menu.name }}</el-breadcrumb-item>
       </el-breadcrumb>
 
-
-      <errors v-if="Object.keys(menuErrors).length > 0" :errors="menuErrors"></errors>
+      <errors
+        v-if="Object.keys(menuErrors).length > 0"
+        :errors="menuErrors"/>
 
       <el-row>
-          <el-col :md="6">
-              <div class="menu_links_container">
+        <el-col :md="6">
+          <div class="menu_links_container">
 
-                  <ul class="menu_outer" v-for="(linkType, key) in links" :key="key">
-                      <li class="menu_link_type">{{ key }}</li>
-                      <ul class="menu_inner">
-                          <!-- <draggable v-model="linkType" class="dragArea" :options="{}"> -->
-                              <li class="menu_link_name" v-for="link in linkType" :key="link.id">{{ link.name }}</li>
-                          <!-- </draggable> -->
-                      </ul>
-                  </ul>
-              </div>
-          </el-col>
+            <ul
+              v-for="(linkType, key) in links"
+              :key="key"
+              class="menu_outer">
+              <li class="menu_link_type">{{ key }}</li>
+              <ul class="menu_inner">
+                <!-- <draggable v-model="linkType" class="dragArea" :options="{}"> -->
+                <li
+                  v-for="link in linkType"
+                  :key="link.id"
+                  class="menu_link_name">{{ link.name }}</li>
+                  <!-- </draggable> -->
+              </ul>
+            </ul>
+          </div>
+        </el-col>
 
-          <el-col :md="12">
-              <div class="menu_container">
-              </div>
-          </el-col>
+        <el-col :md="12">
+          <div class="menu_container"/>
+        </el-col>
       </el-row>
 
-
     </el-form>
-    </div>
+  </div>
 </template>
 
 <script>
-import api from "services/api-service";
-import draggable from 'vuedraggable';
+import api from 'services/api-service'
+import draggable from 'vuedraggable'
 import ContentComponent from 'components/ContentComponent'
-
 
 var withRequest = [
 
-];
+]
 var includeRequest = [
 
-];
+]
 
 export default {
 
-      name: 'ViewMenu',
+  name: 'ViewMenu',
 
-      components: {
-          Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-          ContentComponent,
-          draggable
-      },
+  components: {
+    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+    ContentComponent,
+    draggable
+  },
 
-      props: {
-        menuId: {
-            type: String,
-            required: true,
-        },
-      },
+  props: {
+    menuId: {
+      type: String,
+      required: true
+    }
+  },
 
-      data () {
-          return {
-              loading: false,
-              menu: {},
-              menuErrors: {},
-              menuFormRules: {},
-              loadingLinks: false,
-              linkErrors: {},
-              links: [],
-          }
-      },
+  data () {
+    return {
+      loading: false,
+      menu: {},
+      menuErrors: {},
+      menuFormRules: {},
+      loadingLinks: false,
+      linkErrors: {},
+      links: []
+    }
+  },
 
-      computed: {
+  computed: {
 
-      },
+  },
 
-      watch: {
+  watch: {
 
-      },
+  },
 
-      mounted () {
-          console.log('ViewMenu.vue mounted');
-          this.getMenu();
-          this.getLinks();
-      },
+  mounted () {
+    console.log('ViewMenu.vue mounted')
+    this.getMenu()
+    this.getLinks()
+  },
 
-      methods: {
+  methods: {
 
-          getMenu()
-          {
-              this.loading = true;
-              this.menuErrors = {};
+    getMenu () {
+      this.loading = true
+      this.menuErrors = {}
 
-              api.get({
-                    path: "menus/" + this.menuId,
-                    params: {
-                        with: withRequest,
-                        include: includeRequest
-                    }
-                })
-                .then(function (data) {
-                    this.loading = false;
-                    this.menu = data.data;
-                }.bind(this))
-                .catch(function (error) {
-                    this.loading = false;
-                    this.menuErrors = error;
-                }.bind(this));
-          },
+      api.get({
+        path: 'menus/' + this.menuId,
+        params: {
+          with: withRequest,
+          include: includeRequest
+        }
+      })
+        .then(function (data) {
+          this.loading = false
+          this.menu = data.data
+        }.bind(this))
+        .catch(function (error) {
+          this.loading = false
+          this.menuErrors = error
+        }.bind(this))
+    },
 
-          getLinks()
-          {
-              this.loadingLinks = true;
-              this.linkErrors = {};
+    getLinks () {
+      this.loadingLinks = true
+      this.linkErrors = {}
 
-              api.get({
-                    path: "links"
-                })
-                .then(function (data) {
-                    this.loadingLinks = false;
-                    this.links = data.data;
-                }.bind(this))
-                .catch(function (error) {
-                    this.loadingLinks = false;
-                    this.linkErrors = error;
-                }.bind(this));
-          },
+      api.get({
+        path: 'links'
+      })
+        .then(function (data) {
+          this.loadingLinks = false
+          this.links = data.data
+        }.bind(this))
+        .catch(function (error) {
+          this.loadingLinks = false
+          this.linkErrors = error
+        }.bind(this))
+    }
 
-      }
+  }
 
 }
 </script>

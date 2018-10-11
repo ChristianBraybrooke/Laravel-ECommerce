@@ -1,5 +1,5 @@
-import * as types from '../mutation-types';
-import api from 'services/api-service';
+import * as types from '../mutation-types'
+import api from 'services/api-service'
 
 // initial state
 const state = {
@@ -17,41 +17,34 @@ const getters = {
 const actions = {
 
   getShopData ({ commit, dispatch }, data = {}) {
-      console.log('Vuex: Get Shop Data');
+    console.log('Vuex: Get Shop Data')
 
-      data.path = _.has(data, 'path') ? data.path : 'shop-data';
+    data.path = window._.has(data, 'path') ? data.path : 'shop-data'
 
-      if(!_.has(data, 'params')) {
-        data.params = {};
-      }
-      data.params.orderBy = _.has(data, 'params.orderBy') ? data.params.orderBy : 'name';
-      data.params.ascending = _.has(data, 'params.ascending') ? data.params.ascending : 1;
+    if (!window._.has(data, 'params')) {
+      data.params = {}
+    }
+    data.params.orderBy = window._.has(data, 'params.orderBy') ? data.params.orderBy : 'name'
+    data.params.ascending = window._.has(data, 'params.ascending') ? data.params.ascending : 1
 
-      return new Promise((resolve, reject) => {
-
-        api.get(data)
-           .then( function(response) {
-
-             commit(types.GET_SHOP_DATA, response.data);
-             commit(types.GET_SHOP_DATA_ERRORS, []);
-             resolve(response);
-
-           }.bind(this))
-           .catch( function(error) {
-
-             commit(types.GET_SHOP_DATA_ERRORS, error)
-             reject(error);
-
-           }.bind(this));
-
-      });
+    return new Promise((resolve, reject) => {
+      api.get(data)
+        .then(function (response) {
+          commit(types.GET_SHOP_DATA, response.data)
+          commit(types.GET_SHOP_DATA_ERRORS, [])
+          resolve(response)
+        })
+        .catch(function (error) {
+          commit(types.GET_SHOP_DATA_ERRORS, error)
+          reject(error)
+        })
+    })
   },
 
-  setShopData ({commit, dispatch}, data = {}) {
-      console.log('Vuex: Set Shop Data');
-      commit(types.GET_SHOP_DATA, data);
-      commit(types.GET_SHOP_DATA_ERRORS, []);
-
+  setShopData ({ commit, dispatch }, data = {}) {
+    console.log('Vuex: Set Shop Data')
+    commit(types.GET_SHOP_DATA, data)
+    commit(types.GET_SHOP_DATA_ERRORS, [])
   }
 
 }
@@ -60,11 +53,11 @@ const actions = {
 const mutations = {
 
   [types.GET_SHOP_DATA] (state, shopData) {
-    state.shopData = shopData;
+    state.shopData = shopData
   },
 
   [types.GET_SHOP_DATA_ERRORS] (state, error) {
-    state.shopDataErrors = error;
+    state.shopDataErrors = error
   }
 
 }
