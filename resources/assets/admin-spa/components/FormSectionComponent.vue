@@ -3,7 +3,7 @@
 
     <template v-if="model.fields">
       <form-field-component
-        v-for="field in model.fields.data"
+        v-for="field in orderedFields"
         :model="field"
         :section="model"
         :form="form"
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+var orderBy = require('lodash.orderby')
 
 export default {
 
@@ -48,7 +49,9 @@ export default {
   },
 
   computed: {
-
+    orderedFields () {
+      return this.model.fields.data.length >= 1 ? orderBy(this.model.fields.data, ['order'], ['asc']) : []
+    }
   },
 
   watch: {

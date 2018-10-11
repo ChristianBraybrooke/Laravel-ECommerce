@@ -140,56 +140,64 @@
                 v-show="section.fields.data.length > 0"
                 class="form_option_section">
                 <el-row
-                  v-for="field in section.fields.data"
-                  :gutter="20"
-                  :key="field.id">
-                  <el-col :md="{span:16, offset: 4}">
-                    <el-form-item
-                      :label="field.name"
-                      :prop="'product.options[' + field.name + ']'"
-                      size="small">
+                  :gutter="20">
+                  <div
+                    v-for="(field, key) in orderedFields(section.fields.data)"
+                    :key="field.id">
+                    <el-col
+                      v-if="calculateDynamicVisible(field.rules)"
+                      :md="calculateFieldCol(key, field)">
+                      <el-form-item
+                        :label="field.name"
+                        :prop="'product.options[' + field.name + ']'"
+                        size="small">
 
-                      <template v-if="field.type === 'text'">
-                        <el-input
-                          v-if="typeof form.product.options[field.name] === 'object'"
-                          v-model="form.product.options[field.name].value"/>
-                        <el-input
-                          v-else
-                          v-model="form.product.options[field.name]"/>
-                      </template>
+                        <template v-if="field.type === 'text' || field.type === 'textarea'">
+                          <el-input
+                            v-if="typeof form.product.options[field.name] === 'object'"
+                            v-model="form.product.options[field.name].value"
+                            :type="field.type === 'textarea' ? 'textarea' : null"/>
+                          <el-input
+                            v-else
+                            v-model="form.product.options[field.name]"
+                            :type="field.type === 'textarea' ? 'textarea' : null"/>
+                        </template>
 
-                      <template v-if="field.type === 'number'">
-                        <el-input-number
-                          v-if="typeof form.product.options[field.name] === 'object'"
-                          v-model="form.product.options[field.name].value"/>
-                        <el-input-number
-                          v-else
-                          v-model="form.product.options[field.name]"/>
-                      </template>
+                        <template v-if="field.type === 'number'">
+                          <el-input-number
+                            v-if="typeof form.product.options[field.name] === 'object'"
+                            v-model="form.product.options[field.name].value"
+                            controls-position="right"/>
+                          <el-input-number
+                            v-else
+                            v-model="form.product.options[field.name]"
+                            controls-position="right"/>
+                        </template>
 
-                      <el-select
-                        v-if="field.type === 'select'"
-                        v-model="form.product.options[field.name]"
-                        filterable>
-                        <el-option
-                          v-for="option in field.options"
-                          :key="option.id"
-                          :value="option"
-                          :label="optionLabel(option)"/>
-                      </el-select>
-                      <div v-if="field.type === 'radio'">
-                        <el-radio-group
+                        <el-select
+                          v-if="field.type === 'select'"
                           v-model="form.product.options[field.name]"
-                          class="product_form_radio">
-                          <el-radio-button
+                          filterable>
+                          <el-option
                             v-for="option in field.options"
-                            :label="option"
-                            :key="option.id">{{ optionLabel(option) }}</el-radio-button>
-                        </el-radio-group>
-                      </div>
-                      <p class="form_item_description">{{ field.description }}</p>
-                    </el-form-item>
-                  </el-col>
+                            :key="option.id"
+                            :value="option"
+                            :label="optionLabel(option)"/>
+                        </el-select>
+                        <div v-if="field.type === 'radio'">
+                          <el-radio-group
+                            v-model="form.product.options[field.name]"
+                            class="product_form_radio">
+                            <el-radio-button
+                              v-for="option in field.options"
+                              :label="option"
+                              :key="option.id">{{ optionLabel(option) }}</el-radio-button>
+                          </el-radio-group>
+                        </div>
+                        <p class="form_item_description">{{ field.description }}</p>
+                      </el-form-item>
+                    </el-col>
+                  </div>
                 </el-row>
               </div>
             </div>
@@ -478,7 +486,7 @@ export default {
         api.get({
           path: 'collections/' + productCatId,
           params: {
-            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description', 'order'],
+            include: ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description', 'order', 'rules'],
             with: ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant', 'types.products.orderForm.sections.fields']
           }
         })
@@ -590,6 +598,44 @@ export default {
     saveProduct () {
       this.clearAll()
       this.showModal = false
+    },
+
+    calculateDynamicVisible (rules) {
+      if (rules.dynamic) {
+        var optionKey = null
+        this.orderForm.forEach((section) => {
+          section.fields.data.forEach((field) => {
+            if (field.id === rules.show_if_att) {
+              optionKey = field.name
+            }
+          })
+        })
+        if (this.form.product.options[optionKey]) {
+          if (this.form.product.options[optionKey].value) {
+            return this.form.product.options[optionKey].value === rules.show_if_value
+          }
+          return this.form.product.options[optionKey] === rules.show_if_value
+        }
+        return false
+      }
+      return true
+    },
+
+    orderedFields (fields) {
+      return fields.length >= 1 ? orderBy(fields, ['order'], ['asc']) : []
+    },
+
+    calculateFieldCol (key, field) {
+      if (field.type === 'number' || field.type === 'select') {
+        return {
+          span: 4,
+          offset: (key === 0 || key === 4) ? 4 : 0
+        }
+      }
+      return {
+        span: 16,
+        offset: 4
+      }
     }
 
   }

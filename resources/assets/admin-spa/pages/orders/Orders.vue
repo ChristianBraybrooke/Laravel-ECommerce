@@ -337,7 +337,13 @@ export default {
             options.push(<el-option label={status} value={status}></el-option>)
           })
 
+          var actionBtn = null
+          if (row.status !== 'Completed') {
+            actionBtn = <el-button class="order_status_complete_btn" on-click={() => this.markRowComplete(row) } size="small" type="success">Complete</el-button>
+          }
+
           return <el-popover trigger="hover" placement="top">
+            {actionBtn}
             <el-select on-change={() => this.apiAction(row)} v-model={row.status} size="mini" placeholder="Select">
               {options}
             </el-select>
@@ -365,6 +371,11 @@ export default {
       frames['printLinkIframe'].print()
 
       this.printUrl = null
+    },
+
+    markRowComplete (row) {
+      row.status = 'Completed'
+      this.apiAction(row)
     },
 
     handleCreateNew (data) {
@@ -469,5 +480,10 @@ ul.order_address_list {
 }
 .order_dispatch:hover .order_dispatch_text {
     display: none;
+}
+.order_status_complete_btn {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
 }
 </style>

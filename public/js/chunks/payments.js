@@ -1,4 +1,4 @@
-webpackJsonp([53],{
+webpackJsonp([51],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/Payments.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,17 @@ webpackJsonp([53],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39,85 +48,85 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'Payments',
+  name: 'Payments',
 
-    components: {
-        PaymentDetails: function PaymentDetails() {
-            return __webpack_require__.e/* import() */(48).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentDetails.vue"));
-        },
-        PaymentForm: function PaymentForm() {
-            return __webpack_require__.e/* import() */(40).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentForm.vue"));
-        }
+  components: {
+    PaymentDetails: function PaymentDetails() {
+      return __webpack_require__.e/* import() */(46).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentDetails.vue"));
     },
-
-    props: {
-        payments: {
-            type: Array,
-            required: true
-        },
-        order: {
-            type: Object,
-            required: true
-        },
-        onPaymentProcessed: {
-            type: Function,
-            required: false,
-            default: function _default() {
-                return function (payment) {};
-            }
-        },
-        showPayments: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return true;
-            }
-        },
-        formStartingAmount: {
-            required: false,
-            type: [String, Number],
-            default: function _default() {
-                return null;
-            }
-        }
-    },
-
-    data: function data() {
-        return {
-            loading: false,
-            showModal: false,
-            payment: {}
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('Payments.vue mounted!');
-    },
-
-
-    methods: {
-        closeAndClearModal: function closeAndClearModal() {
-            var _this = this;
-
-            this.$confirm('Are you sure to close the payment form?').then(function (_) {
-                _this.showModal = false;
-            }).catch(function (_) {});
-        },
-        clearModal: function clearModal(payment) {
-            this.onPaymentProcessed(payment);
-            this.$emit('payment-processed', payment);
-            this.order.payments.data.push(payment);
-            this.showModal = false;
-        },
-        displayModal: function displayModal() {
-            this.showModal = true;
-        }
+    PaymentForm: function PaymentForm() {
+      return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentForm.vue"));
     }
+  },
+
+  props: {
+    payments: {
+      type: Array,
+      required: true
+    },
+    order: {
+      type: Object,
+      required: true
+    },
+    onPaymentProcessed: {
+      type: Function,
+      required: false,
+      default: function _default() {
+        return function (payment) {};
+      }
+    },
+    showPayments: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return true;
+      }
+    },
+    formStartingAmount: {
+      required: false,
+      type: [String, Number],
+      default: function _default() {
+        return null;
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      loading: false,
+      showModal: false,
+      payment: {}
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('Payments.vue mounted!');
+  },
+
+
+  methods: {
+    closeAndClearModal: function closeAndClearModal() {
+      var _this = this;
+
+      this.$confirm('Are you sure to close the payment form?').then(function (_) {
+        _this.showModal = false;
+      }).catch(function (_) {});
+    },
+    clearModal: function clearModal(payment) {
+      this.onPaymentProcessed(payment);
+      this.$emit('payment-processed', payment);
+      this.order.payments.data.push(payment);
+      this.showModal = false;
+    },
+    displayModal: function displayModal() {
+      this.showModal = true;
+    }
+  }
 
 };
 
@@ -131,7 +140,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -178,11 +187,11 @@ var render = function() {
             "el-dialog",
             {
               attrs: {
-                title: "Add Payment",
                 "close-on-click-modal": false,
                 "append-to-body": true,
                 "before-close": _vm.closeAndClearModal,
-                visible: _vm.showModal
+                visible: _vm.showModal,
+                title: "Add Payment"
               },
               on: {
                 "update:visible": function($event) {

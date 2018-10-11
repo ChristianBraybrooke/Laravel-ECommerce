@@ -69,6 +69,19 @@
               v-model="model.append"/>
           </el-form-item>
         </el-col>
+
+        <el-col
+          :lg="10"
+          :xl="4">
+          <el-form-item
+            label="Order"
+            prop="order"
+            size="small">
+            <el-input-number
+              v-model="model.order"
+              size="mini"/>
+          </el-form-item>
+        </el-col>
       </el-row>
 
       <el-row :gutter="20">
@@ -134,6 +147,66 @@
               active-color="#13ce66"
               inactive-color="#ff4949"/>
           </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row
+        type="flex">
+        <el-col :span="24">
+          <el-form-item
+            label="Dynamic"
+            prop="dynamic">
+            <el-switch
+              v-model="model.rules.dynamic"
+              active-color="#13ce66"
+              inactive-color="#ff4949"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row
+        v-if="model.rules.dynamic"
+        type="flex">
+        <el-col
+          :lg="12"
+          :xl="4">
+          <el-select
+            v-model="model.rules.show_if_att">
+            <el-option-group
+              v-for="optgroup in getDynamicOptions"
+              :key="optgroup[0].section_id"
+              :label="optgroup[0].section_name">
+              <el-option
+                v-for="op in optgroup"
+                :key="op.field_id"
+                :label="op.field_name"
+                :value="op.field_id" />
+            </el-option-group>
+          </el-select>
+        </el-col>
+        <el-col
+          :lg="12"
+          :xl="4">
+          <el-select
+            v-model="model.rules.show_if_operator">
+            <el-option
+              v-for="(op, key) in ['=']"
+              :key="key"
+              :label="op"
+              :value="op" />
+          </el-select>
+        </el-col>
+        <el-col
+          :lg="12"
+          :xl="4">
+          <el-select
+            v-model="model.rules.show_if_value">
+            <el-option
+              v-for="value in getDynamicOptionValues"
+              :key="value.value"
+              :label="value.name"
+              :value="value.value" />
+          </el-select>
         </el-col>
       </el-row>
 
@@ -248,6 +321,7 @@
 </template>
 
 <script>
+var groupBy = require('lodash.groupby')
 
 export default {
 
@@ -280,6 +354,10 @@ export default {
           value: 'text'
         },
         {
+          label: 'Text Area',
+          value: 'textarea'
+        },
+        {
           label: 'Number',
           value: 'number'
         },
@@ -307,6 +385,35 @@ export default {
         return true
       }
       return false
+    },
+
+    getDynamicOptions () {
+      var options = []
+      this.form.sections.data.forEach((section) => {
+        section.fields.data.forEach((field) => {
+          options.push({
+            section_id: section.id,
+            section_name: section.name,
+            field_id: field.id,
+            field_name: field.name
+          })
+        })
+      })
+      return groupBy(options, 'section_id')
+    },
+
+    getDynamicOptionValues () {
+      var options = []
+      if (this.model.rules.show_if_att) {
+        this.form.sections.data.forEach((section) => {
+          section.fields.data.forEach((field) => {
+            if (field.id === this.model.rules.show_if_att) {
+              options = field.options
+            }
+          })
+        })
+      }
+      return options
     }
   },
 

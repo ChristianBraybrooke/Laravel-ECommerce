@@ -107,6 +107,7 @@ class ApiFormsController extends Controller
                         $fields[] = [
                             'id' => $field['id'] ?? null,
                             'name' => $field['name'] ?? null,
+                            'order' => $field['order'] ?? null,
                             'description' => $field['description'] ?? null,
                             'append' => $field['append'] ?? null,
                             'prepend' => $field['prepend'] ?? null,
@@ -127,6 +128,7 @@ class ApiFormsController extends Controller
                 if (!is_null($field['id'])) {
                     FormField::where('id', $field['id'])->first()->update([
                         'name' => $field['name'],
+                        'order' => $field['order'],
                         'description' => $field['description'],
                         'type' => $field['type'],
                         'rules' => $field['rules'],
@@ -138,6 +140,7 @@ class ApiFormsController extends Controller
                     $field = FormField::create([
                         'form_section_id' => $section_id,
                         'name' => $field['name'],
+                        'order' => $field['order'],
                         'description' => $field['description'],
                         'type' => $field['type'],
                         'rules' => $field['rules'],
