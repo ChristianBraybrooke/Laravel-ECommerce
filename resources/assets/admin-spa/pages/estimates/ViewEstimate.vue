@@ -8,6 +8,8 @@
       <el-breadcrumb-item v-if="estimate.id">{{ estimate.ref_number }}</el-breadcrumb-item>
     </el-breadcrumb>
 
+    <print-download-button :order-id="estimateId" />
+
     <errors
       v-if="Object.keys(errors).length > 0"
       :errors="errors"/>
@@ -57,7 +59,8 @@ export default {
   components: {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
-    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm')
+    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+    PrintDownloadButton: () => import(/* webpackChunkName: "print-download-button" */'components/PrintDownloadButton')
   },
 
   props: {

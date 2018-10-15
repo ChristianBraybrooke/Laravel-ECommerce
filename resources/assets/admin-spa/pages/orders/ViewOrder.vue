@@ -22,30 +22,7 @@
       <el-col
         :sm="24"
         :lg="12">
-        <!-- <el-button @click="preparePrint" size="small" style="float:right; margin-bottom:20px;" type="success" plain>Send Invoice</el-button> -->
-        <a
-          :href="'/ecommerce-templates/invoice-download?reports=' + orderId"
-          target="_blank"
-          style="float:right; margin-bottom:20px;">
-          <el-button
-            size="small"
-            plain
-            class="action_btn view_btn">Download PDF
-          </el-button>
-        </a>
-        <el-button
-          size="small"
-          style="float:right; margin-bottom:20px; margin-right:10px"
-          type="success"
-          @click="preparePrint">Print Invoice</el-button>
-
-        <iframe
-          v-if="!loading && printUrl"
-          id="printLinkIframe"
-          :src="printUrl"
-          name="printLinkIframe"
-          style="position:absolute;top:-9999px;left:-9999px;border:0px;overfow:none; z-index:-1"
-          @load="printInvoice"/>
+        <print-download-button :order-id="orderId" />
       </el-col>
     </el-row>
 
@@ -333,7 +310,8 @@ export default {
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
     Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
     ContentComponent,
-    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm')
+    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+    PrintDownloadButton: () => import(/* webpackChunkName: "print-download-button" */'components/PrintDownloadButton')
   },
 
   props: {
@@ -491,26 +469,7 @@ export default {
         .catch(function () {
           this.loading = false
         }.bind(this))
-    },
-
-    preparePrint () {
-      this.printUrl = this.shopData.url + '/ecommerce-templates/invoice?reports=' + this.order.id
-    },
-
-    printInvoice () {
-      if (navigator.userAgent.match(/opera/i) || navigator.userAgent.match(/trident/i) || (navigator.userAgent.match(/msie/i) && window.addEventListener)) {
-        window.open(
-          this.printUrl,
-          '_blank'
-        )
-      } else {
-        frames['printLinkIframe'].focus()
-        frames['printLinkIframe'].print()
-      }
-
-      this.printUrl = null
     }
-
   }
 
 }
