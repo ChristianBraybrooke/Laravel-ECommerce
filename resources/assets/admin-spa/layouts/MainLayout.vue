@@ -10,6 +10,14 @@
           class="cb_menu_horizontal"
           mode="horizontal">
           <el-menu-item
+            index="/">
+            <img
+              :src="config.site_logo"
+              class="admin_logo"
+              alt="Logo">
+          </el-menu-item>
+
+          <el-menu-item
             v-if="user.name"
             class="menu_right"
             index="/account">{{ user.name.first ? user.name.first : 'Account' }}</el-menu-item>
@@ -340,6 +348,9 @@ export default {
 @import '../sass/variables';
 .cb_header {
 
+}
+.admin_logo {
+  max-width: 90px;
 }
 
 </style>
