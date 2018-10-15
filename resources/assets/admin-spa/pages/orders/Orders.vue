@@ -338,7 +338,7 @@ export default {
           })
 
           var actionBtn = null
-          if (row.status !== 'Completed') {
+          if (row.status !== orderUtil.getStatusNameFromCode('STATUS_COMPLETED')) {
             actionBtn = <el-button class="order_status_complete_btn" on-click={() => this.markRowComplete(row) } size="small" type="success">Complete</el-button>
           }
 
