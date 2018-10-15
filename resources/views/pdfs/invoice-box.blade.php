@@ -3,20 +3,18 @@
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
             <td colspan="4">
-                {{-- <table> --}}
-                    <tr>
-                        <td class="title" colspan="2">
-                            @if (isset($logo) && $logo->url)
-                                <img src="{{ asset($logo->url) }}" style="width:100%; max-width:220px;">
-                            @endif
-                        </td>
+                <tr>
+                    <td class="title" colspan="2">
+                        @if (isset($logo) && $logo->url)
+                            <img src="{{ asset($logo->url) }}" style="width:auto; max-height: 50px;">
+                        @endif
+                    </td>
 
-                        <td colspan="2">
-                            Invoice #: {{ $order->invoice['number'] ?? '' }}<br>
-                            Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
-                        </td>
-                    </tr>
-                {{-- </table> --}}
+                    <td colspan="2">
+                        Invoice #: {{ $order->invoice['number'] ?? '' }}<br>
+                        Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
+                    </td>
+                </tr>
             </td>
         </tr>
 
@@ -24,14 +22,14 @@
             <td colspan="2">
                 <strong>Delivery Address</strong> <br>
                 @foreach ($order->shipping_address as $key => $shipping_address)
-                    {{ $shipping_address }} @if ($shipping_address) <br> @endif
+                    @if ($shipping_address)<p class="address_line">{{ $shipping_address }}</p>@endif
                 @endforeach
             </td>
 
             <td colspan="2">
                 <strong>Billing Address</strong> <br>
                 @foreach ($order->billing_address as $key => $billing_address)
-                    {{ $billing_address }} @if ($billing_address) <br> @endif
+                    @if ($billing_address)<p class="address_line">{{ $billing_address }}</p>@endif
                 @endforeach
             </td>
         </tr>
@@ -110,7 +108,7 @@
         @foreach ($order->items as $key => $item)
 
             <tr class="item @if ($loop->last) last @endif">
-                <td>
+                <td style="max-width: 200px;">
                     {{ $item['name'] ?? '' }}
 
                     @if ($item['order_form'] ?? false)
@@ -153,14 +151,16 @@
         @endforeach
 
         @foreach ($order->cart['totals'] ?? [] as $key => $total)
-            <tr class="total @if ($loop->last) last @endif">
-                <td></td>
-                <td></td>
-                <td>{{ $key }}: </td>
-                <td>
-                    {{ ($order->cart['currency'] ?? '£') . $total }}
-                </td>
-            </tr>
+            @if ($total > 0 && ($key !== 'Total' || $key !== 'VAT'))
+              <tr class="total @if ($loop->last) last @endif">
+                  <td></td>
+                  <td></td>
+                  <td>{{ $key }}: </td>
+                  <td>
+                      {{ ($order->cart['currency'] ?? '£') . $total }}
+                  </td>
+              </tr>
+            @endif
         @endforeach
     </table>
 </div>

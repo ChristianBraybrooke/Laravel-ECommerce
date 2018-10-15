@@ -42,7 +42,7 @@ class Order extends Model implements OrderContract
     private function responsableSearch()
     {
         return [
-          'id'
+            'id'
         ];
     }
 
@@ -338,6 +338,7 @@ class Order extends Model implements OrderContract
     public function getInvoiceAttribute()
     {
         $prefix = Setting::get('Invoice Number Prefix');
+
         return [
             'name' => $this->invoiceName(),
             'number' => $prefix . $this->id,
@@ -421,7 +422,7 @@ class Order extends Model implements OrderContract
      */
     public function invoiceName()
     {
-        return ($this->status === static::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : ($this->status === static::$statuses['STATUS_ESTIMATE']) ? 'Estimate' : 'Invoice';
+        return ($this->status == static::$statuses['STATUS_PROFORMA']) ? 'Pro-Forma Invoice' : (($this->status === static::$statuses['STATUS_ESTIMATE']) ? 'Estimate' : 'Invoice');
     }
 
     public function getNeedsAddressAttribute()
