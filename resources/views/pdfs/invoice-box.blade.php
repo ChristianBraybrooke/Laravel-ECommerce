@@ -6,7 +6,7 @@
                 <tr>
                     <td class="title" colspan="2">
                         @if (isset($logo) && $logo->url)
-                            <img src="{{ asset($logo->url) }}" style="width:auto; max-height: 50px;">
+                            <img src="{{ asset($logo->url) }}" alt="{{ asset($logo->url) }}" style="width:auto; max-height: 50px;">
                         @endif
                     </td>
 
@@ -164,6 +164,6 @@
         @endforeach
     </table>
 </div>
-@if (isset($page_break) && $page_break)
-    <div class="page_break"></div>
+@if (isset($page_break) && $page_break === true)
+    {{-- <div class="page_break"></div> --}}
 @endif

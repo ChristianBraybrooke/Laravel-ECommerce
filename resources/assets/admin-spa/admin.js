@@ -8,7 +8,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import VueClipboard from 'vue-clipboard2'
 import { codeConverter } from 'utils/currency'
 
-window.ecommerceConfig.web_version = '0.0.55'
+window.ecommerceConfig.web_version = '0.0.56'
 
 const bugsnag = require('bugsnag-js')
 const bugsnagClient = bugsnag({ apiKey: window.bugsnag.key, appVersion: window.ecommerceConfig.web_version, releaseStage: window.bugsnag.env })

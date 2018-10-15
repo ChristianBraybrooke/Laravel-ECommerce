@@ -1,5 +1,0 @@
-{
-  "name": "bugsnag",
-  "main": "dist/bugsnag.js",
-  "license": "MIT"
-}

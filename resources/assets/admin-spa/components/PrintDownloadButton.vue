@@ -16,7 +16,7 @@
       size="small"
       style="float:right; margin-bottom:20px; margin-right:10px"
       type="success"
-      @click="printInvoice">Print Invoice
+      @click="printInvoice">Print
     </el-button>
 
     <iframe

@@ -53,7 +53,14 @@ class InvoiceController extends Controller
             $orders = [];
         }
 
-        $pdf = PDF::loadView('ecommerce::pdfs.invoice', ['orders' => $orders]);
+        $pdf = PDF::loadView('ecommerce::pdfs.invoice', ['orders' => $orders])
+                  ->setPaper('a4')
+                  ->setOrientation('portrait')
+                  ->setOption('print-media-type', true)
+                  ->setOption('images', true)
+                  ->setOption('lowquality', true)
+                  ->setOption('image-dpi', 300)
+                  ->setOption('image-quality', 50);
         return $pdf->download('invoice.pdf');
     }
 }
