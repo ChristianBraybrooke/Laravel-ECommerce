@@ -6,7 +6,9 @@
                 <tr>
                     <td class="title" colspan="2">
                         @if (isset($logo) && $logo->url)
-                            <img src="{{ asset($logo->url) }}" alt="{{ asset($logo->url) }}" style="width:auto; max-height: 50px;">
+                            {{-- <img src="{{ asset($logo->url) }}" alt="{{ asset($logo->url) }}" style="width:auto; max-height: 50px;"> --}}
+
+                            <img src="data:image/jpeg;base64, {{ base64_encode(@file_get_contents(asset($logo->url))) }}" alt="{{ url(optional($logo)->url) }}" style="width:auto; max-height: 50px;">
                         @endif
                     </td>
 
