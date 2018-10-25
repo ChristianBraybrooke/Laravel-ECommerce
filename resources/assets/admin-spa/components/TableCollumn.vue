@@ -162,12 +162,17 @@ export default {
         show-total={addition.show_total}
         total-text={addition.total_text}
         total-button={addition.total_button}
+        editable={addition.editable}
         base-additions={value}
         on-addition-added={(model, total, additions) => this.valChange(additions)}>
         {
-          (props) => <el-button on-click={() => props.showModal()}
-            type={addition.add_button_type ? addition.add_button_type : 'primary'} size={addition.add_button_size ? addition.add_button_size : 'mini'}
-            plain>{addition.add_button_text ? addition.add_button_text : 'Add'}</el-button>
+          (props) => <div>
+            <el-button on-click={() => props.showModal()}
+              type={addition.add_button_type ? addition.add_button_type : 'primary'} size={addition.add_button_size ? addition.add_button_size : 'mini'}
+              plain>{addition.add_button_text ? addition.add_button_text : 'Add'}
+            </el-button>
+            <el-button on-click={() => props.toggleEdit()} type="success" size="mini">{props.inEdit ? (addition.editable_save_text ? addition.editable_save_text : 'Save') : (addition.editable_text ? addition.editable_text : 'Edit')}</el-button>
+          </div>
         }
       </addition-form>
     },

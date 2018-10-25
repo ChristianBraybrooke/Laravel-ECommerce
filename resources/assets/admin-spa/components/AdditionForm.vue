@@ -12,17 +12,31 @@
           <strong>Amount</strong>: {{ amountPrefix }}{{ formatAmount ? formatPrice(addition.Amount) : addition.Amount }} <br >
           <span
             v-for="(field, key) in additionalFields"
-            :key="key"><strong>{{ key }}</strong>: {{ addition[key] }}<br >
+            :key="key"
+            class="addition_meta_list"><strong>{{ key }}</strong>:
+            <span
+              v-if="!inEdit"
+              class="addition_meta_list">{{ addition[key] }}</span>
+            <el-input
+              v-else
+              v-model="addition[key]"
+              class="addition_meta_list_input"
+              size="mini" />
           </span>
         </li>
       </ul>
 
-      <slot :showModal="displayModal">
+      <slot
+        :showModal="displayModal"
+        :toggleEdit="toggleEdit"
+        :inEdit="inEdit">
         <el-button
           type="success"
           plain
           style="margin-bottom: 20px;"
           @click="showModal = true">{{ formName }}</el-button>
+        <el-button
+          type="success">Edit</el-button>
       </slot>
       <div slot="reference">
         <strong v-if="showTotal">{{ amountPrefix }}{{ formatAmount ? formatPrice(total) : total }}</strong>
@@ -187,6 +201,13 @@ export default {
       default () {
         return false
       }
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default () {
+        return false
+      }
     }
   },
 
@@ -195,7 +216,8 @@ export default {
       loading: false,
       showModal: false,
       model: {},
-      additions: {}
+      additions: {},
+      inEdit: false
     }
   },
 
@@ -230,6 +252,15 @@ export default {
         .catch(_ => {})
     },
 
+    toggleEdit () {
+      this.inEdit = !this.inEdit
+
+      if (!this.inEdit) {
+        this.onAdditionAdded(this.model, this.total, this.additions)
+        this.$emit('addition-added', this.model, this.total, this.additions)
+      }
+    },
+
     addObject () {
       this.$refs['form'].validate((valid, errors) => {
         if (valid) {
@@ -253,5 +284,12 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+ .addition_meta_list {
+   position: relative;
+   display: block;
+ }
+ .addition_meta_list_input {
+   max-width: 100px;
+ }
 </style>
