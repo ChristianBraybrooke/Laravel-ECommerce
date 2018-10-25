@@ -174,7 +174,8 @@
 
         <address-form
           v-if="!order.use_billing_for_shipping"
-          :form="order.shipping_address"/>
+          :form="order.shipping_address"
+          prop="shipping_address"/>
 
       </template>
 
