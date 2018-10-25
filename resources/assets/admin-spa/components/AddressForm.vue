@@ -66,9 +66,6 @@
         <el-form-item
           :label="getFormatedLabel('Address County')"
           :prop="prop ? prop + '.county' : 'county'"
-          :rules="{
-            required: required, message: 'County is required', trigger: 'blur'
-          }"
           size="small">
           <el-input
             v-if="prop && prefixProp"

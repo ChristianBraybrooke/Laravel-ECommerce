@@ -14,7 +14,7 @@ $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 $--color-white: #fff !default;
 $--color-black: #000 !default;
 
-$--color-primary: #409eff;
+$--color-primary: #2294ad;
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
 $--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
 $--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
@@ -477,10 +477,10 @@ $--dialog-padding-primary: 20px !default;
 -------------------------- */
 $--table-border:  1px solid $--border-color-lighter !default;
 $--table-text-color: $--color-text-regular !default;
-$--table-header-color: $--color-text-secondary !default;
+$--table-header-color: black !default;
 $--table-row-hover-background: $--background-color-base !default;
 $--table-current-row-background: $--color-primary-light-9 !default;
-$--table-header-background: $--color-white !default;
+$--table-header-background: #e2e2e2 !default;
 $--table-footer-background: $--color-text-placeholder !default;
 $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 
@@ -715,6 +715,6 @@ $--breakpoints-spec: (
 
 /* Menu
 -------------------------- */
-$--background-color-menu: $--background-color-base;
+$--background-color-menu: #e2e2e2;
 $--color-active_icon: $--color-primary;
 $--background-color-active: $--color-primary-light-9;
