@@ -221,19 +221,19 @@ export default {
       loading: false,
       orderErrors: {},
       formRules: {
-        'customer.first_name': [
-          { required: true, message: 'The first name is required', trigger: 'blur' }
-        ],
-        'customer.last_name': [
-          { required: true, message: 'The last name is required', trigger: 'blur' }
-        ],
-        'customer.phone': [
-          { required: true, message: 'The phone number is required', trigger: 'blur' }
-        ],
-        'customer.email': [
-          { required: true, message: 'The email is required', trigger: 'blur' },
-          { type: 'email', message: 'Please enter a valid email address' }
-        ]
+        // 'customer.first_name': [
+        //   { required: true, message: 'The first name is required', trigger: 'blur' }
+        // ],
+        // 'customer.last_name': [
+        //   { required: true, message: 'The last name is required', trigger: 'blur' }
+        // ],
+        // 'customer.phone': [
+        //   { required: true, message: 'The phone number is required', trigger: 'blur' }
+        // ],
+        // 'customer.email': [
+        //   { required: true, message: 'The email is required', trigger: 'blur' },
+        //   { type: 'email', message: 'Please enter a valid email address' }
+        // ]
       }
     }
   },

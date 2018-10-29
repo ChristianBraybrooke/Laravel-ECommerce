@@ -6,9 +6,6 @@
         <el-form-item
           :label="getFormatedLabel('Address Line 1')"
           :prop="prop ? prop + '.line_1' : 'line_1'"
-          :rules="{
-            required: required, message: 'Line 1 is required', trigger: 'blur'
-          }"
           size="small">
           <el-input
             v-if="prop && prefixProp"
@@ -46,9 +43,6 @@
         <el-form-item
           :label="getFormatedLabel('Address Town')"
           :prop="prop ? prop + '.town' : 'town'"
-          :rules="{
-            required: required, message: 'Town is required', trigger: 'blur'
-          }"
           size="small">
           <el-input
             v-if="prop && prefixProp"
@@ -86,9 +80,6 @@
         <el-form-item
           :label="getFormatedLabel('Address Postcode')"
           :prop="prop ? prop + '.postcode' : 'postcode'"
-          :rules="{
-            required: required, message: 'Postcode is required', trigger: 'blur'
-          }"
           size="small">
           <el-input
             v-if="prop && prefixProp"
@@ -106,9 +97,6 @@
         <el-form-item
           :label="getFormatedLabel('Address Country')"
           :prop="prop ? prop + '.country' : 'country'"
-          :rules="{
-            required: required, message: 'Country is required', trigger: 'blur'
-          }"
           size="small">
           <el-input
             v-if="prop && prefixProp"

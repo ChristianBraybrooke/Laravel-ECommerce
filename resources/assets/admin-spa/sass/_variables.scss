@@ -527,25 +527,25 @@ $--tag-border: rgba($--color-primary, 0.20) !default;
 $--tag-font-size: 12px !default;
 $--tag-border-radius: 4px !default;
 
-$--tag-info-fill: rgba($--color-info, 0.10) !default;
+$--tag-info-fill: rgba($--color-info, 0.36) !default;
 $--tag-info-border: rgba($--color-info, 0.20) !default;
-$--tag-info-color: $--color-info !default;
+$--tag-info-color: darken($--color-info, 50%) !default;
 
-$--tag-primary-fill: rgba($--color-primary, 0.10) !default;
+$--tag-primary-fill: rgba($--color-primary, 0.36) !default;
 $--tag-primary-border: rgba($--color-primary, 0.20) !default;
-$--tag-primary-color: $--color-primary !default;
+$--tag-primary-color: darken($--color-primary, 50%) !default;
 
-$--tag-success-fill: rgba($--color-success, 0.10) !default;
+$--tag-success-fill: rgba($--color-success, 0.36) !default;
 $--tag-success-border: rgba($--color-success, 0.20) !default;
-$--tag-success-color: $--color-success !default;
+$--tag-success-color: darken($--color-success, 50%) !default;
 
-$--tag-warning-fill: rgba($--color-warning, 0.10) !default;
+$--tag-warning-fill: rgba($--color-warning, 0.36) !default;
 $--tag-warning-border: rgba($--color-warning, 0.20) !default;
-$--tag-warning-color: $--color-warning !default;
+$--tag-warning-color: darken($--color-warning, 50%) !default;
 
-$--tag-danger-fill: rgba($--color-danger, 0.10) !default;
+$--tag-danger-fill: rgba($--color-danger, 0.36) !default;
 $--tag-danger-border: rgba($--color-danger, 0.20) !default;
-$--tag-danger-color: $--color-danger !default;
+$--tag-danger-color: darken($--color-danger, 50%) !default;
 
 /* Tree
 -------------------------- */

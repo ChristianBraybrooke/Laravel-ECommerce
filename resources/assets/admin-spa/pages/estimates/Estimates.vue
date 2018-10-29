@@ -167,7 +167,10 @@ export default {
             sortable: true,
             label: 'Create Invoice',
             formatter: function (row, column, cellValue) {
-              return <el-button on-click={() => this.createInvoice(row)} type="success" size="mini" class="action_btn" plain>Create Invoice</el-button>
+              return <div>
+                <el-button on-click={() => this.createInvoice(row, true)} type="success" size="mini" class="action_btn">Create Pro-Forma</el-button>
+                <el-button on-click={() => this.createInvoice(row)} type="success" size="mini" class="action_btn" plain>Create Invoice</el-button>
+              </div>
             }.bind(this),
             align: 'left',
             resizable: true
@@ -191,15 +194,19 @@ export default {
 
   methods: {
 
-    createInvoice (val) {
+    createInvoice (val, proForma = false) {
       var status = window.ecommerceConfig.orders.statuses
-      val.status = status.STATUS_AWAITING_PAYMENT
+      if (proForma) {
+        val.status = status.STATUS_PROFORMA
+      } else {
+        val.status = status.STATUS_AWAITING_PAYMENT
+      }
       api.persist('put', {
         path: 'orders/' + val.id,
         object: val
       })
         .then(data => {
-          this.$router.push({ name: 'orders' })
+          this.$router.push({ name: 'orders.view', params: { orderId: `${val.id}` } })
         })
         .catch(() => {
           // this.loading = false;
