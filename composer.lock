@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f318c49b37f6976c148e5577fc7d7804",
+    "content-hash": "b8a0fce9353bc3057d66c86463f11879",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1294,16 +1294,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.47",
+            "version": "1.0.48",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a11e4a75f256bdacf99d20780ce42d3b8272975c"
+                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a11e4a75f256bdacf99d20780ce42d3b8272975c",
-                "reference": "a11e4a75f256bdacf99d20780ce42d3b8272975c",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
+                "reference": "a6ded5b2f6055e2db97b4b859fdfca2b952b78aa",
                 "shasum": ""
             },
             "require": {
@@ -1374,7 +1374,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-09-14T15:30:29+00:00"
+            "time": "2018-10-15T13:53:10+00:00"
         },
         {
             "name": "league/glide",
@@ -2613,16 +2613,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.22.0",
+            "version": "2.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "095fae92d5a0950405e251a10061ec64d768b842"
+                "reference": "104e3aad0ac6f1364ec52d3f3f9d9ded0e822d82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/095fae92d5a0950405e251a10061ec64d768b842",
-                "reference": "095fae92d5a0950405e251a10061ec64d768b842",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/104e3aad0ac6f1364ec52d3f3f9d9ded0e822d82",
+                "reference": "104e3aad0ac6f1364ec52d3f3f9d9ded0e822d82",
                 "shasum": ""
             },
             "require": {
@@ -2673,7 +2673,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2018-10-12T00:42:03+00:00"
+            "time": "2018-10-15T19:10:43+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -2826,16 +2826,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.19.4",
+            "version": "v6.19.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "02bfccdf554a048c11c72567c31a43713ad3cd79"
+                "reference": "1ab5c54fae4c16e9cc47d60c7454e6c3b6bbcb85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/02bfccdf554a048c11c72567c31a43713ad3cd79",
-                "reference": "02bfccdf554a048c11c72567c31a43713ad3cd79",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/1ab5c54fae4c16e9cc47d60c7454e6c3b6bbcb85",
+                "reference": "1ab5c54fae4c16e9cc47d60c7454e6c3b6bbcb85",
                 "shasum": ""
             },
             "require": {
@@ -2877,7 +2877,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2018-10-11T16:17:52+00:00"
+            "time": "2018-10-17T14:58:41+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
