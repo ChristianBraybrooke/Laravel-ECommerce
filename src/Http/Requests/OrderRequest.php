@@ -33,25 +33,25 @@ class OrderRequest extends FormRequest
             ];
             if ($this->has('use_billing_for_shipping') && $this->use_billing_for_shipping) {
                 $address = [
-                    'billing_address.line_1' => 'required',
-                    'billing_address.town' => 'required',
-                    'billing_address.county' => 'required',
-                    'billing_address.postcode' => 'required',
-                    'billing_address.country' => 'required',
+                    // 'billing_address.line_1' => 'required',
+                    // 'billing_address.town' => 'required',
+                    // 'billing_address.county' => 'required',
+                    // 'billing_address.postcode' => 'required',
+                    // 'billing_address.country' => 'required',
                 ];
             } else {
                 $address = [
-                    'billing_address.line_1' => 'required',
-                    'billing_address.town' => 'required',
-                    'billing_address.county' => 'required',
-                    'billing_address.postcode' => 'required',
-                    'billing_address.country' => 'required',
+                    // 'billing_address.line_1' => 'required',
+                    // 'billing_address.town' => 'required',
+                    // 'billing_address.county' => 'required',
+                    // 'billing_address.postcode' => 'required',
+                    // 'billing_address.country' => 'required',
 
-                    'shipping_address.line_1' => 'required',
-                    'shipping_address.town' => 'required',
-                    'shipping_address.county' => 'required',
-                    'shipping_address.postcode' => 'required',
-                    'shipping_address.country' => 'required',
+                    // 'shipping_address.line_1' => 'required',
+                    // 'shipping_address.town' => 'required',
+                    // 'shipping_address.county' => 'required',
+                    // 'shipping_address.postcode' => 'required',
+                    // 'shipping_address.country' => 'required',
                 ];
             }
             $all = [
