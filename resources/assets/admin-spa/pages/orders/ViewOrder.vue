@@ -261,6 +261,7 @@
       <el-col :span="24">
         <payments
           :payments="order.payments.data"
+          :form-starting-amount="orderAmount - paymentTotal"
           :order="order"/>
       </el-col>
     </el-row>
@@ -350,7 +351,9 @@ export default {
 
   computed: {
     orderAmount () {
-      return this.shopData.currency + this.order.amount / 100
+      if (this.order.cart) {
+        return parseFloat(this.order.cart.totals['Total'])
+      }
     },
 
     formattedContent () {
@@ -365,6 +368,13 @@ export default {
         return orderUtil.totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount'])
       }
       return [{}]
+    },
+
+    paymentTotal () {
+      if (this.order.payments) {
+        return parseFloat(orderUtil.paymentTotal(this.order.payments.data))
+      }
+      return 0
     }
   },
 
@@ -388,10 +398,10 @@ export default {
     },
 
     /**
-           * Get the order information from the server.
-           *
-           * @return void
-           */
+     * Get the order information from the server.
+     *
+     * @return void
+     */
     getOrder () {
       this.orderErrors = {}
       this.loading = true

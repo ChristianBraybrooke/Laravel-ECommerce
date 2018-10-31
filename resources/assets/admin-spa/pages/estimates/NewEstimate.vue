@@ -106,14 +106,14 @@
         v-if="order.needs_address === 'Needs Address'"
         :gutter="20">
         <el-col :md="12">
-          <h5>Billing Adress</h5>
+          <h5>Shipping Address</h5>
           <address-form
             :form="order.billing_address"
             prop="billing_address"/>
         </el-col>
 
         <el-col :md="12">
-          <h5>Billing Adress</h5>
+          <h5>Billing Address</h5>
           <el-col :md="{span:24}">
             <el-checkbox v-model="order.use_billing_for_shipping">Same As Billing Address</el-checkbox>
           </el-col>

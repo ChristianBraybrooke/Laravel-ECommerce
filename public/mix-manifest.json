@@ -1,5 +1,5 @@
 {
-    "/js/chunks/orders.js": "/js/chunks/orders.js?id=2e30c989bf6018895ba1",
+    "/js/chunks/orders.js": "/js/chunks/orders.js?id=aa0ae597ade00d1a2e1a",
     "/js/chunks/pages.js": "/js/chunks/pages.js?id=950110d177f56d4cbd2f",
     "/js/chunks/collections.js": "/js/chunks/collections.js?id=cf910704eabf5225d583",
     "/js/chunks/view-menu.js": "/js/chunks/view-menu.js?id=e7c9569181f2155bc76d",
@@ -23,12 +23,12 @@
     "/js/chunks/galleries.js": "/js/chunks/galleries.js?id=403f4f1f0ed7246d7c8a",
     "/js/chunks/forms.js": "/js/chunks/forms.js?id=68da055d317b4e07fa32",
     "/js/chunks/view-estimates.js": "/js/chunks/view-estimates.js?id=c1167da1f23cec19dc84",
-    "/js/chunks/new-estimates.js": "/js/chunks/new-estimates.js?id=b8523c7f2ce3fcf92116",
+    "/js/chunks/new-estimates.js": "/js/chunks/new-estimates.js?id=2e6fd13d24bb2f1971fb",
     "/js/chunks/estimates.js": "/js/chunks/estimates.js?id=a1d8bc1c92507e266c41",
     "/js/chunks/customers.js": "/js/chunks/customers.js?id=db1ce9866af7080de74f",
     "/js/chunks/not-found.js": "/js/chunks/not-found.js?id=82c198468974b0ed1401",
     "/js/chunks/dashboard.js": "/js/chunks/dashboard.js?id=e8ce60c1877e64bbc9b8",
-    "/js/admin.js": "/js/admin.js?id=bfde5d194512abff312f",
+    "/js/admin.js": "/js/admin.js?id=5c64196a9fdefb23e370",
     "/css/admin.css": "/css/admin.css?id=c5dcddb9fad87e045374",
     "/js/vendor.js": "/js/vendor.js?id=00ae855263e2d55fc0f4",
     "/js/chunks/errors.js": "/js/chunks/errors.js?id=f065599f9be53f922cf5",
@@ -50,7 +50,7 @@
     "/js/chunks/product-customisation-component.js": "/js/chunks/product-customisation-component.js?id=566333ca2c76b47dd98a",
     "/js/chunks/payment-details.js": "/js/chunks/payment-details.js?id=830285e82474c3cbdfd7",
     "/js/chunks/form-section-component.js": "/js/chunks/form-section-component.js?id=115fc57a68364e0a327b",
-    "/js/chunks/card-payment-form.js": "/js/chunks/card-payment-form.js?id=bef44433b461aa6eaf2d",
+    "/js/chunks/card-payment-form.js": "/js/chunks/card-payment-form.js?id=cf9121a868c3827adf27",
     "/js/manifest.js": "/js/manifest.js?id=128d8a899ff9cc6bc8a1",
     "/css/reset.css": "/css/reset.css?id=8c6eee6b2107ef25dc48"
 }

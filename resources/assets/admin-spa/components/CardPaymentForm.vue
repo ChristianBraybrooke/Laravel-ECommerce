@@ -372,7 +372,7 @@ export default {
       this.onFormSubmit()
       this.loading = true
       stripe.createToken(this.cardNumberElement, {
-        name: 'Christian Braybrooke'
+        name: this.model.cardholder_name
       }).then(this.setOutcome)
     }
   }
