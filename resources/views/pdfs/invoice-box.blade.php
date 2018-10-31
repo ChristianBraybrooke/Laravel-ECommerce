@@ -111,26 +111,24 @@
 
             <tr class="item @if ($loop->last) last @endif">
                 <td style="max-width: 200px;">
-                    {{ $item['name'] ?? '' }}
+                    @php($variant = $item['variant']['name'] ?? null)
+                    @if ($variant)<strong>{{ $variant }}</strong>/ @endif{{ $item['name'] ?? '' }}
 
                     @if ($item['order_form'] ?? false)
                       @component('ecommerce::pdfs.order-form-options', ['form' => $item['order_form'], 'options' => $item['options'] ?? []])
                       @endcomponent
                     @else
                         @if (!empty($item['options'] ?? ''))
-                            <ul>
+                            <ul class="options_list">
                                 @foreach ($item['options'] as $key => $options)
                                     @if (is_array($options['value'] ?? $options))
-                                        <li class="cart_option font-weight-bold">{{ ucfirst($key) }}</li>
-                                        <ul>
-                                            <li class="cart_option"><span class="font-weight-bold">
-                                                @foreach ($options['value'] ?? $options  as $key => $option)
-                                                  <strong>{{ ucfirst($key) }}</strong>: </span>{{ $option['value'] ?? $option }}@if (!$loop->last),@endif
-                                                @endforeach
-                                            </li>
-                                        </ul>
+                                      <li class="cart_option font-weight-bold">
+                                        @foreach ($options['value'] ?? $options  as $key => $option)
+                                          <strong>{{ ucfirst($key) }}</strong>: </span>{{ $option['value'] ?? $option }}@if (!$loop->last),@endif
+                                        @endforeach
+                                      </li>
                                     @else
-                                            <li class="cart_option"><strong>{{ ucfirst($key) }}</strong> {{ $options['value'] ?? $options }}</li>
+                                      <li class="cart_option"><strong>{{ ucfirst($key) }}</strong> {{ $options['value'] ?? $options }}</li>
                                     @endif
                                 @endforeach
                             </ul>

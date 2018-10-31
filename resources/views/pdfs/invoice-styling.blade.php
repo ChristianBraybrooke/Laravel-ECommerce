@@ -99,6 +99,11 @@ p.address_line {
     }
 }
 
+.options_list {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
 /** RTL **/
 .rtl {
     direction: rtl;
