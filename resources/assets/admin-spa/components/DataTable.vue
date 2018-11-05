@@ -873,11 +873,12 @@ export default {
 .table_col_list {
     font-size: 12px;
     line-height: 1.2;
-
+}
+.inline_col_list {
     margin-block-start: 0;
     padding-inline-start: 0px;
 }
-.table_col_list li:not(:first-child) {
+.inline_col_list li:not(:first-child) {
     border-top: dashed 0.5px;
     padding-top: 5px;
     margin-top: 5px;

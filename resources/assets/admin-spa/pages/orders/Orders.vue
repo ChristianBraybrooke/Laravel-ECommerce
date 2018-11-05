@@ -225,7 +225,7 @@ export default {
                 items.push(<li>{item.quantity + ' * ' + item.name}</li>)
               })
 
-              return <ul class="order_items_list table_col_list">{items}</ul>
+              return <ul class="order_items_list inline_col_list table_col_list">{items}</ul>
               // return <el-popover trigger="hover" placement="top">
               //   <ul class="order_items_list table_col_list">{items}</ul>
               //   <div slot="reference"><strong>{total.length} items</strong></div>
