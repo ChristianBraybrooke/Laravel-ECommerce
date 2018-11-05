@@ -13,7 +13,7 @@
                     </td>
 
                     <td colspan="2">
-                        Invoice #: {{ $order->invoice['number'] ?? '' }}<br>
+                        {{ $order->status }} #: {{ $order->invoice['number'] ?? '' }}<br>
                         Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
                     </td>
                 </tr>

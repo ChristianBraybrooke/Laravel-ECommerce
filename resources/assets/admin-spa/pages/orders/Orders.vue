@@ -33,7 +33,7 @@
         slot-scope="props">
 
         <el-popover
-          trigger="hover"
+          trigger="click"
           placement="top">
 
           <router-link
@@ -189,7 +189,7 @@ export default {
               })
               lines.push(<li on-click={() => this.copy(row.customer.email)} style="margin-top: 10px; cursor: copy;"><strong>{row.customer.email}</strong></li>)
               lines.push(<li on-click={() => this.copy(row.customer.phone)} style="cursor: copy;"><strong>{row.customer.phone}</strong></li>)
-              return <el-popover trigger="hover" placement="top">
+              return <el-popover trigger="click" placement="top">
                 <ul class="order_address_list table_col_list">{lines}</ul>
                 <el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy Address</el-button>
                 <div slot="reference"><strong>{row.customer.first_name} {row.customer.last_name}</strong></div>
@@ -255,7 +255,7 @@ export default {
                 }
               })
               var paymentInfo = payments.length > 0 ? <ul class="order_items_list table_col_list">{payments}</ul> : <span>No Payment Information</span>
-              return <el-popover trigger="hover" placement="top">
+              return <el-popover trigger="click" placement="top">
                 {paymentInfo}
                 <payments payments={row.payments.data}
                   order={row}
@@ -342,7 +342,7 @@ export default {
             actionBtn = <el-button class="order_status_complete_btn" on-click={() => this.markRowComplete(row) } size="small" type="success">Complete</el-button>
           }
 
-          return <el-popover trigger="hover" placement="top">
+          return <el-popover trigger="click" placement="top">
             {actionBtn}
             <el-select on-change={() => this.apiAction(row)} v-model={row.status} size="mini" placeholder="Select">
               {options}

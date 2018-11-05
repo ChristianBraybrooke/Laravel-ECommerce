@@ -3,7 +3,7 @@
   <div :loading="loading">
 
     <el-popover
-      trigger="hover"
+      trigger="click"
       placement="top">
       <ul>
         <li

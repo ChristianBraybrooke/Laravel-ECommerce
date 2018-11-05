@@ -24,7 +24,7 @@
       slot-scope="props">
 
       <el-popover
-        trigger="hover"
+        trigger="click"
         placement="top">
 
         <router-link :to="{ path: props.editPathFormated + '/' + props.row.id }">

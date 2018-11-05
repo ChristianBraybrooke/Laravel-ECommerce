@@ -33,6 +33,21 @@
 
         <el-col :md="{span:8, offset: 4}">
           <el-form-item
+            label="Customer Company"
+            size="small"
+            prop="customer.company">
+            <el-input
+              :autofocus="true"
+              v-model="order.customer.company"
+              auto-complete="off"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="20">
+
+        <el-col :md="{span:8, offset: 4}">
+          <el-form-item
             label="Customer First Name"
             size="small"
             prop="customer.first_name">

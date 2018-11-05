@@ -53,7 +53,7 @@
               :disabled="order.customer.id ? true : false"
               v-model="order.customer.company"
               :fetch-suggestions="getCustomers"
-              value-key="company"
+              value-key="email"
               @select="handleCustomerSelect"/>
             <el-button
               v-if="order.customer.id"
