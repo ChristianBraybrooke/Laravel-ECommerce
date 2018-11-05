@@ -124,7 +124,7 @@
         v-for="(col, key) in mergedTableOptions.collumns"
         :key="key"
         :prop="col.prop"
-        :width="col.width"
+        :width="getColumnWidth(col)"
         :formatter="col.formatter ? col.formatter : null"
         :label="col.label"
         sortable/>
@@ -511,7 +511,7 @@ export default {
     thisTableDataFromStorage () {
       var newObj = {}
       newObj[this.typeName] = {}
-      return this.tableDataFromStorage[this.typeName] ? JSON.parse(this.tableDataFromStorage.typeName) : newObj
+      return this.tableDataFromStorage[this.typeName] ? this.tableDataFromStorage[this.typeName] : newObj
     }
   },
 
@@ -524,6 +524,7 @@ export default {
   mounted () {
     console.log('DataTable.vue Mounted.')
     Object.assign(this.mergedTableOptions, this.defaultTableOptions, this.tableOptions)
+    this.paginationMeta.perPage = this.thisTableDataFromStorage.perPage
     this.getData()
   },
 
@@ -723,6 +724,8 @@ export default {
     handleSizeChange (perPage) {
       this.paginationMeta.perPage = perPage
 
+      this.saveLocalData('perPage', perPage)
+
       this.getData()
     },
 
@@ -817,36 +820,43 @@ export default {
     },
 
     tableColWidthChanged (newWidth, oldWidth, column, event) {
-      var tableData = this.tableDataFromStorage
       var thisTableData = this.thisTableDataFromStorage
-
 
       var newWidthColumn = {}
       newWidthColumn[column.property] = newWidth
-
 
       if (!thisTableData.columns) {
         thisTableData.columns = {}
       }
 
       thisTableData.columns = {
-        ...cols,
+        ...thisTableData.columns,
         ...newWidthColumn
       }
 
+      this.saveLocalData('columns', thisTableData.columns)
+    },
 
-      var tableData = {
-        ...tableData,
-        ...thisTableData
+    saveLocalData (key, value) {
+      var tableData = this.tableDataFromStorage
+
+      if (!tableData[this.typeName]) {
+        tableData[this.typeName] = {}
       }
+      tableData[this.typeName][key] = value
 
       window.localStorage.setItem('commerceTableData', JSON.stringify(tableData))
     },
 
     getColumnWidth (column) {
-      var tableData = this.tableDataFromStorage
+      var thisTableData = this.thisTableDataFromStorage
 
-      // if (tableData[this.typeName])
+      if (thisTableData.columns) {
+        if (thisTableData.columns[column.prop]) {
+          return thisTableData.columns[column.prop]
+        }
+      }
+      return column.width
     }
 
   }

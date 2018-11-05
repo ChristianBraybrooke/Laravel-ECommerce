@@ -61,7 +61,6 @@
     "dependencies": {
         "@fengyuanchen/datepicker": "^0.6.5",
         "@fortawesome/fontawesome": "^1.1.5",
-        "@fortawesome/fontawesome-pro-light": "^5.0.10",
         "animate.css": "^3.6.1",
         "babel-plugin-transform-react-jsx": "^6.24.1",
         "babel-polyfill": "^6.26.0",
