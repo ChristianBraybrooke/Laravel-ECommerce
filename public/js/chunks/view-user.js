@@ -1,4 +1,4 @@
-webpackJsonp([13],{
+webpackJsonp([11],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/users/ViewUser.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([13],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
@@ -17,116 +17,144 @@ var _apiService2 = _interopRequireDefault(_apiService);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    name: 'ViewUser',
+  name: 'ViewUser',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        AddressForm: function AddressForm() {
-            return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
+    AddressForm: function AddressForm() {
+      return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
+    }
+  },
 
-    props: {
-        userId: {
-            type: String,
-            required: true
-        }
-    },
+  props: {
+    userId: {
+      type: String,
+      required: true
+    }
+  },
 
-    data: function data() {
-        return {
-            loading: false,
-            errors: {},
-            user: {
-                name: {},
-                billing_address: {},
-                shipping_address: {}
-            }
+  data: function data() {
+    return {
+      loading: false,
+      errors: {},
+      user: {
+        name: {},
+        billing_address: {},
+        shipping_address: {}
+      }
 
-        };
-    },
-    mounted: function mounted() {
-        console.log('ViewUser.vue mounted.');
-        this.getUser();
-    },
+    };
+  },
+  mounted: function mounted() {
+    console.log('ViewUser.vue mounted.');
+    this.getUser();
+  },
 
 
-    methods: {
+  methods: {
 
-        /*
+    /*
          * Get the user data from the server.
          *
          * @return Void
          */
-        getUser: function getUser() {
-            var _this = this;
+    getUser: function getUser() {
+      var _this = this;
 
-            this.loading = true;
-            _apiService2.default.get({
-                path: 'users/' + this.userId
-            }).then(function (data) {
-                _this.user = data.data;
-                _this.loading = false;
-            }).catch(function (error) {
-                _this.errors = error;
-                _this.loading = false;
+      this.loading = true;
+      _apiService2.default.get({
+        path: 'users/' + this.userId
+      }).then(function (data) {
+        _this.user = data.data;
+        _this.loading = false;
+      }).catch(function (error) {
+        _this.errors = error;
+        _this.loading = false;
+      });
+    },
+
+
+    /*
+          * Submit the form to the server and save the user info.
+          *
+          * @return Void
+          */
+    submitForm: function submitForm(formName) {
+      var _this2 = this;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          _this2.loading = true;
+          _this2.errors = {};
+
+          _apiService2.default.persist('put', {
+            path: 'users/' + _this2.userId,
+            object: {
+              company: _this2.user.company,
+              first_name: _this2.user.name.first,
+              last_name: _this2.user.name.last,
+              email: _this2.user.email,
+              shipping_address_line_1: _this2.user.shipping_address.line_1,
+              shipping_address_line_2: _this2.user.shipping_address.line_2,
+              shipping_address_town: _this2.user.shipping_address.town,
+              shipping_address_county: _this2.user.shipping_address.county,
+              shipping_address_postcode: _this2.user.shipping_address.postcode,
+              shipping_address_country: _this2.user.shipping_address.country,
+              billing_address_line_1: _this2.user.billing_address.line_1,
+              billing_address_line_2: _this2.user.billing_address.line_2,
+              billing_address_town: _this2.user.billing_address.town,
+              billing_address_county: _this2.user.billing_address.county,
+              billing_address_postcode: _this2.user.billing_address.postcode,
+              billing_address_country: _this2.user.billing_address.country
+            }
+          }).then(function (data) {
+            _this2.loading = false;
+            _this2.user = data.data;
+
+            _this2.$message({
+              message: 'User updated',
+              type: 'success',
+              showClose: true
             });
-        },
-
-
-        /*
-         * Submit the form to the server and save the user info.
-         *
-         * @return Void
-         */
-        submitForm: function submitForm(formName) {
-            var _this2 = this;
-
-            this.$refs[formName].validate(function (valid) {
-                if (valid) {
-                    _this2.loading = true;
-                    _this2.errors = {};
-
-                    _apiService2.default.persist("put", {
-                        path: "users/" + _this2.userId,
-                        object: {
-                            company: _this2.user.company,
-                            first_name: _this2.user.name.first,
-                            last_name: _this2.user.name.last,
-                            email: _this2.user.email,
-                            shipping_address_line_1: _this2.user.shipping_address.line_1,
-                            shipping_address_line_2: _this2.user.shipping_address.line_2,
-                            shipping_address_town: _this2.user.shipping_address.town,
-                            shipping_address_county: _this2.user.shipping_address.county,
-                            shipping_address_postcode: _this2.user.shipping_address.postcode,
-                            shipping_address_country: _this2.user.shipping_address.country,
-                            billing_address_line_1: _this2.user.billing_address.line_1,
-                            billing_address_line_2: _this2.user.billing_address.line_2,
-                            billing_address_town: _this2.user.billing_address.town,
-                            billing_address_county: _this2.user.billing_address.county,
-                            billing_address_postcode: _this2.user.billing_address.postcode,
-                            billing_address_country: _this2.user.billing_address.country
-                        }
-                    }).then(function (data) {
-                        _this2.loading = false;
-                        _this2.user = data.data;
-
-                        _this2.$message({
-                            message: 'User updated',
-                            type: 'success',
-                            showClose: true
-                        });
-                    }).catch(function (error) {
-                        _this2.loading = false;
-                        _this2.pageErrors = error;
-                    });
-                }
-            });
+          }).catch(function (error) {
+            _this2.loading = false;
+            _this2.pageErrors = error;
+          });
         }
+      });
     }
+  }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -224,7 +252,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -247,8 +275,8 @@ var render = function() {
         {
           ref: "userForm",
           attrs: {
-            "label-position": "top",
             model: _vm.user,
+            "label-position": "top",
             "label-width": "120px"
           }
         },
@@ -322,13 +350,13 @@ var render = function() {
                     "el-form-item",
                     {
                       attrs: {
-                        size: "small",
-                        label: "First Name",
-                        prop: "name.first",
                         rules: {
                           required: true,
                           message: "First name field is required."
-                        }
+                        },
+                        size: "small",
+                        label: "First Name",
+                        prop: "name.first"
                       }
                     },
                     [
@@ -356,13 +384,13 @@ var render = function() {
                     "el-form-item",
                     {
                       attrs: {
-                        size: "small",
-                        label: "Last Name",
-                        prop: "name.last",
                         rules: {
                           required: true,
                           message: "Last name field is required."
-                        }
+                        },
+                        size: "small",
+                        label: "Last Name",
+                        prop: "name.last"
                       }
                     },
                     [
@@ -390,13 +418,13 @@ var render = function() {
                     "el-form-item",
                     {
                       attrs: {
-                        size: "small",
-                        label: "Email",
-                        prop: "email",
                         rules: {
                           required: true,
                           message: "Email field is required."
-                        }
+                        },
+                        size: "small",
+                        label: "Email",
+                        prop: "email"
                       }
                     },
                     [
@@ -430,12 +458,12 @@ var render = function() {
                   _c("address-form", {
                     attrs: {
                       form: _vm.user,
-                      type: "billing",
                       span: 12,
                       offset: 0,
                       required: false,
-                      prop: "billing_address",
-                      "prefix-prop": true
+                      "prefix-prop": true,
+                      type: "billing",
+                      prop: "billing_address"
                     }
                   })
                 ],
@@ -449,12 +477,12 @@ var render = function() {
                   _c("address-form", {
                     attrs: {
                       form: _vm.user,
-                      type: "shippping",
                       span: 12,
                       offset: 0,
                       required: false,
-                      prop: "shipping_address",
-                      "prefix-prop": true
+                      "prefix-prop": true,
+                      type: "shippping",
+                      prop: "shipping_address"
                     }
                   })
                 ],
@@ -481,9 +509,9 @@ var render = function() {
                         "el-button",
                         {
                           attrs: {
+                            loading: _vm.loading,
                             plain: "",
-                            type: "success",
-                            loading: _vm.loading
+                            type: "success"
                           },
                           on: {
                             click: function($event) {

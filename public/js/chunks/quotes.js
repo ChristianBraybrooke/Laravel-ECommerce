@@ -1,4 +1,4 @@
-webpackJsonp([15],{
+webpackJsonp([13],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/quotes/Quotes.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,9 +7,8 @@ webpackJsonp([15],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-//
 //
 //
 //
@@ -26,98 +25,98 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'Quotes',
+  name: 'Quotes',
 
-    components: {
-        DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
-        }
-    },
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+    }
+  },
 
-    props: {},
+  props: {},
 
-    data: function data() {
-        var h = this.$createElement;
+  data: function data() {
+    var h = this.$createElement;
 
-        return {
-            tableOptions: {
-                collumns: [{
-                    prop: 'id',
-                    sortable: true,
-                    label: 'ID',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'name',
-                    sortable: true,
-                    label: 'Customer Name',
-                    formatter: function formatter(row, column, cellValue) {
-                        return row.customer.full_name;
-                    },
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'created_at.date',
-                    sortable: true,
-                    label: 'Order Placed',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'items',
-                    sortable: true,
-                    label: 'Order Summary',
-                    align: 'left',
-                    resizable: true,
-                    formatter: function formatter(row, column, cellValue) {
-                        var items = [];
-                        row.items.forEach(function (item) {
-                            items.push(h('li', [item.quantity + ' * ' + item.name]));
-                        });
+    return {
+      tableOptions: {
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name',
+          sortable: true,
+          label: 'Customer Name',
+          formatter: function formatter(row, column, cellValue) {
+            return row.customer.full_name;
+          },
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'created_at.date',
+          sortable: true,
+          label: 'Order Placed',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'items',
+          sortable: true,
+          label: 'Order Summary',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, column, cellValue) {
+            var items = [];
+            row.items.forEach(function (item) {
+              items.push(h('li', [item.quantity + ' * ' + item.name]));
+            });
 
-                        return h('ul', [items]);
-                    }
-                }, {
-                    prop: 'amount',
-                    sortable: true,
-                    label: 'Total',
-                    formatter: function formatter(row, column, cellValue) {
-                        return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
-                    },
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'status',
-                    sortable: true,
-                    label: 'Status',
-                    formatter: function formatter(row, column, cellValue) {
-                        var type = row.status == 'Completed' ? 'success' : row.status == 'Processing' ? 'danger' : 'info';
+            return h('ul', [items]);
+          }
+        }, {
+          prop: 'amount',
+          sortable: true,
+          label: 'Total',
+          formatter: function formatter(row, column, cellValue) {
+            return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
+          },
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'status',
+          sortable: true,
+          label: 'Status',
+          formatter: function formatter(row, column, cellValue) {
+            var type = row.status === 'Completed' ? 'success' : row.status === 'Processing' ? 'danger' : 'info';
 
-                        return h(
-                            'el-tag',
-                            {
-                                attrs: { type: type, size: 'medium' }
-                            },
-                            [row.status]
-                        );
-                    },
-                    align: 'left',
-                    resizable: true
-                }]
-            }
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('Qoutes.vue mounted.');
-    },
+            return h(
+              'el-tag',
+              {
+                attrs: { type: type, size: 'medium' }
+              },
+              [row.status]
+            );
+          },
+          align: 'left',
+          resizable: true
+        }]
+      }
+    };
+  },
 
 
-    methods: {}
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('Qoutes.vue mounted.');
+  },
+
+
+  methods: {}
 
 };
 
@@ -131,7 +130,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -147,15 +146,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("data-table", {
     attrs: {
+      "with-params": { withStatus: "quote" },
+      "table-options": _vm.tableOptions,
+      "request-includes": ["created_at"],
+      "create-form": {},
       "type-name": "quote",
       "base-url": "orders",
       "edit-path": "orders",
       "bulk-update-url": "orders/bulk",
-      "with-params": { withStatus: "quote" },
-      "request-with": "content",
-      "table-options": _vm.tableOptions,
-      "request-includes": ["created_at"],
-      "create-form": {}
+      "request-with": "content"
     }
   })
 }

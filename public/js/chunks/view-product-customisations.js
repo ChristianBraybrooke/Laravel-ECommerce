@@ -7,8 +7,30 @@ webpackJsonp([7],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -42,97 +64,97 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 
 exports.default = {
 
-    name: 'ViewProductCustomisations',
+  name: 'ViewProductCustomisations',
 
-    components: {
-        ProductPageLayout: function ProductPageLayout() {
-            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
-        },
-        ProductCustomisationComponent: function ProductCustomisationComponent() {
-            return __webpack_require__.e/* import() */(45).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
-        }
+  components: {
+    ProductPageLayout: function ProductPageLayout() {
+      return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
     },
-
-    props: {
-        productId: {
-            type: String,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            //
-        };
-    },
-
-
-    computed: {
-        //
-    },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ViewProductCustomisations.vue mounted');
-    },
-
-
-    methods: {
-
-        /**
-         * List the customisations in the order specified by the user
-         *
-         * @param Array customisations
-         * @return Array
-         */
-        orderedCusomisations: function orderedCusomisations(customisations) {
-            return customisations.length >= 1 ? orderBy(customisations, ['order'], ['asc']) : [];
-        },
-
-
-        /**
-         * Add a customisation to the customisations
-         *
-         * @param Array customisations
-         * @return void
-         */
-        addCustomisation: function addCustomisation(customisations) {
-            customisations.push({
-                options: {
-                    data: []
-                }
-            });
-        },
-
-
-        /**
-         * Delete a customisation from the customisations
-         *
-         * @param Object customisation
-         * @param Array customisations
-         * @return void
-         */
-        deleteCustomisation: function deleteCustomisation(customisation, customisations) {
-            customisations.splice(customisations.indexOf(customisation), 1);
-        },
-
-
-        /**
-         * Maximise or minimise the customisation card
-         *
-         * @param Object customisation
-         * @param Array customisations
-         * @return void
-         */
-        minimiseCustomisationCard: function minimiseCustomisationCard(customisation, customisations) {
-            var index = customisations.indexOf(customisation);
-
-            var value = customisations[index].minimise ? false : true;
-
-            this.$set(customisations[index], 'minimise', value);
-        }
+    ProductCustomisationComponent: function ProductCustomisationComponent() {
+      return __webpack_require__.e/* import() */(47).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
     }
+  },
+
+  props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      //
+    };
+  },
+
+
+  computed: {
+    //
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ViewProductCustomisations.vue mounted');
+  },
+
+
+  methods: {
+
+    /**
+           * List the customisations in the order specified by the user
+           *
+           * @param Array customisations
+           * @return Array
+           */
+    orderedCusomisations: function orderedCusomisations(customisations) {
+      return customisations.length >= 1 ? orderBy(customisations, ['order'], ['asc']) : [];
+    },
+
+
+    /**
+           * Add a customisation to the customisations
+           *
+           * @param Array customisations
+           * @return void
+           */
+    addCustomisation: function addCustomisation(customisations) {
+      customisations.push({
+        options: {
+          data: []
+        }
+      });
+    },
+
+
+    /**
+           * Delete a customisation from the customisations
+           *
+           * @param Object customisation
+           * @param Array customisations
+           * @return void
+           */
+    deleteCustomisation: function deleteCustomisation(customisation, customisations) {
+      customisations.splice(customisations.indexOf(customisation), 1);
+    },
+
+
+    /**
+           * Maximise or minimise the customisation card
+           *
+           * @param Object customisation
+           * @param Array customisations
+           * @return void
+           */
+    minimiseCustomisationCard: function minimiseCustomisationCard(customisation, customisations) {
+      var index = customisations.indexOf(customisation);
+
+      var value = !customisations[index].minimise;
+
+      this.$set(customisations[index], 'minimise', value);
+    }
+  }
 
 };
 
@@ -2721,7 +2743,7 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                      " +
+                                      "\n              " +
                                         _vm._s(
                                           customisation.minimise
                                             ? "Minimise"

@@ -1,4 +1,4 @@
-webpackJsonp([45],{
+webpackJsonp([47],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/ProductCustomisationComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,22 @@ webpackJsonp([45],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -34,52 +48,52 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'ProductCustomisationComponent',
+  name: 'ProductCustomisationComponent',
 
-    components: {
-        ProductCustomisationOptionComponent: function ProductCustomisationOptionComponent() {
-            return __webpack_require__.e/* import() */(44).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationOptionComponent.vue"));
-        }
-    },
-
-    props: {
-        model: {
-            type: Object,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            productCustomisation: {}
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ProductCustomisationComponent.vue mounted');
-        this.productCustomisation = this.model;
-    },
-
-
-    methods: {
-        addOption: function addOption() {
-            this.productCustomisation.options.data.push({
-                name: '',
-                selector_img: {},
-                main_img: {}
-            });
-        },
-        handleOptionDeleted: function handleOptionDeleted(option) {
-            if (option.id) {} else {
-                this.productCustomisation.options.data.splice(this.productCustomisation.options.data.indexOf(option), 1);
-            }
-        }
+  components: {
+    ProductCustomisationOptionComponent: function ProductCustomisationOptionComponent() {
+      return __webpack_require__.e/* import() */(46).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationOptionComponent.vue"));
     }
+  },
+
+  props: {
+    model: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      productCustomisation: {}
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ProductCustomisationComponent.vue mounted');
+    this.productCustomisation = this.model;
+  },
+
+
+  methods: {
+    addOption: function addOption() {
+      this.productCustomisation.options.data.push({
+        name: '',
+        selector_img: {},
+        main_img: {}
+      });
+    },
+    handleOptionDeleted: function handleOptionDeleted(option) {
+      if (option.id) {} else {
+        this.productCustomisation.options.data.splice(this.productCustomisation.options.data.indexOf(option), 1);
+      }
+    }
+  }
 
 };
 
@@ -93,7 +107,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -153,14 +167,14 @@ var render = function() {
                 { attrs: { lg: 24, md: 24 } },
                 [
                   _vm._l(_vm.productCustomisation.options.data, function(
-                    option
+                    option,
+                    key
                   ) {
-                    return [
-                      _c("product-customisation-option-component", {
-                        attrs: { model: option },
-                        on: { optionDeleted: _vm.handleOptionDeleted }
-                      })
-                    ]
+                    return _c("product-customisation-option-component", {
+                      key: key,
+                      attrs: { model: option },
+                      on: { optionDeleted: _vm.handleOptionDeleted }
+                    })
                   }),
                   _vm._v(" "),
                   _c(

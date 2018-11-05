@@ -1,4 +1,4 @@
-webpackJsonp([19],{
+webpackJsonp([17],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/products/ViewProductImages.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,12 @@ webpackJsonp([19],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
 //
 //
 //
@@ -56,45 +60,45 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'ViewProductImages',
+  name: 'ViewProductImages',
 
-    components: {
-        ProductPageLayout: function ProductPageLayout() {
-            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
-        },
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        }
+  components: {
+    ProductPageLayout: function ProductPageLayout() {
+      return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
     },
-
-    props: {
-        productId: {
-            type: String,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            //
-        };
-    },
-
-
-    computed: {
-        //
-    },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ViewProductImages.vue mounted');
-    },
-
-
-    methods: {
-        //
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
     }
+  },
+
+  props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      //
+    };
+  },
+
+
+  computed: {
+    //
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ViewProductImages.vue mounted');
+  },
+
+
+  methods: {
+    //
+  }
 
 };
 
@@ -108,7 +112,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -191,8 +195,8 @@ var render = function() {
                                       ? props.productForm.gallery.data
                                       : undefined,
                                     name: props.productForm.name + " Gallery",
-                                    "picker-id": "gallery",
-                                    "show-btn": true
+                                    "show-btn": true,
+                                    "picker-id": "gallery"
                                   },
                                   on: {
                                     "update:files": function(val) {

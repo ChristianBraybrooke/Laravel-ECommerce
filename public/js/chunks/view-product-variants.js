@@ -1,4 +1,4 @@
-webpackJsonp([16],{
+webpackJsonp([14],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/products/ViewProductVariants.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,20 @@ webpackJsonp([16],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -39,45 +51,45 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'ViewProductVariants',
+  name: 'ViewProductVariants',
 
-    components: {
-        ProductPageLayout: function ProductPageLayout() {
-            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
-        },
-        ProductVariantComponent: function ProductVariantComponent() {
-            return __webpack_require__.e/* import() */(43).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductVariantComponent.vue"));
-        }
+  components: {
+    ProductPageLayout: function ProductPageLayout() {
+      return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
     },
+    ProductVariantComponent: function ProductVariantComponent() {
+      return __webpack_require__.e/* import() */(45).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductVariantComponent.vue"));
+    }
+  },
 
-    props: {
-        productId: {
-            type: String,
-            required: true
-        }
-    },
+  props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
 
-    data: function data() {
-        return {
-            //
-        };
-    },
-
-
-    computed: {
-        //
-    },
-
-    watch: {
-        //
-    },
-
-    mounted: function mounted() {
-        console.log('ViewProductVariants.vue mounted');
-    },
+  data: function data() {
+    return {
+      //
+    };
+  },
 
 
-    methods: {}
+  computed: {
+    //
+  },
+
+  watch: {
+    //
+  },
+
+  mounted: function mounted() {
+    console.log('ViewProductVariants.vue mounted');
+  },
+
+
+  methods: {}
 
 };
 

@@ -1,4 +1,4 @@
-webpackJsonp([20],{
+webpackJsonp([18],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/products/Products.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,14 @@ webpackJsonp([20],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -33,129 +39,131 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    components: {
-        DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
-        }
-    },
-
-    watch: {
-        productsCreateForm: function productsCreateForm(value) {
-            this.$emit('input', this.internalValue);
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Products.vue Mounted.');
-    },
-    data: function data() {
-        var _this = this;
-
-        var h = this.$createElement;
-
-        return {
-            productsCreateForm: {},
-            tableOptions: {
-                border: true,
-                stripe: true,
-                showSearch: true,
-                showHeader: true,
-                showNewBtn: true,
-                showRefreshBtn: true,
-                showHeadHr: true,
-                showTitle: true,
-                viewText: 'View',
-                deleteText: 'Delete',
-                collumns: [{
-                    prop: 'id',
-                    sortable: true,
-                    label: 'ID',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'name',
-                    sortable: true,
-                    label: 'Name',
-                    align: 'left',
-                    formatter: function formatter(row, column, cellValue) {
-                        if (!row.variant) {
-                            return h('strong', [row.name]);
-                        } else {
-                            return h('span', [h('strong', [row.variant.name]), ' / ', row.name]);
-                        }
-                    },
-                    resizable: true
-                }, {
-                    prop: 'price',
-                    sortable: true,
-                    label: 'Price',
-                    align: 'left',
-                    resizable: true,
-                    formatter: function formatter(row, collumn, cellValue) {
-                        return _this.formatPrice(cellValue, '£');
-                    }
-                }, {
-                    prop: 'can_customise',
-                    sortable: true,
-                    label: 'Customisable',
-                    align: 'left',
-                    resizable: true,
-                    formatter: function formatter(row, collumn, cellValue) {
-                        if (cellValue) {
-                            return h('i', { 'class': 'el-icon-check' });
-                        }
-                    }
-                }, {
-                    prop: 'list_in_shop',
-                    sortable: true,
-                    label: 'In Shop',
-                    align: 'left',
-                    resizable: true,
-                    formatter: function formatter(row, collumn, cellValue) {
-                        if (cellValue) {
-                            return h('i', { 'class': 'el-icon-check' });
-                        }
-                    }
-                }, {
-                    prop: 'featured',
-                    sortable: true,
-                    label: 'Featured',
-                    align: 'left',
-                    resizable: true,
-                    formatter: function formatter(row, collumn, cellValue) {
-                        if (cellValue) {
-                            return h('i', { 'class': 'el-icon-check' });
-                        }
-                    }
-                }, {
-                    prop: 'created_at.human',
-                    sortable: true,
-                    label: 'Created',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'live_at.live',
-                    sortable: true,
-                    label: 'Live',
-                    align: 'left',
-                    formatter: function formatter(row, column, cellValue) {
-                        return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
-                    },
-                    resizable: true
-                }],
-                bulkOptions: [{
-                    value: 'delete',
-                    label: 'Delete'
-                }, {
-                    value: 'draft',
-                    label: 'Mark Draft'
-                }, {
-                    value: 'live',
-                    label: 'Mark Live'
-                }]
-            }
-        };
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
     }
+  },
+
+  data: function data() {
+    var _this = this;
+
+    var h = this.$createElement;
+
+    return {
+      productsCreateForm: {},
+      tableOptions: {
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name',
+          sortable: true,
+          label: 'Name',
+          align: 'left',
+          formatter: function formatter(row, column, cellValue) {
+            if (!row.variant) {
+              return h('strong', [row.name]);
+            } else {
+              return h('span', [h('strong', [row.variant.name]), ' / ', row.name]);
+            }
+          },
+          resizable: true
+        }, {
+          prop: 'price',
+          sortable: true,
+          label: 'Price',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, collumn, cellValue) {
+            return _this.formatPrice(cellValue, '£');
+          }
+        }, {
+          prop: 'can_customise',
+          sortable: true,
+          label: 'Customisable',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, collumn, cellValue) {
+            if (cellValue) {
+              return h('i', { 'class': 'el-icon-check' });
+            }
+          }
+        }, {
+          prop: 'list_in_shop',
+          sortable: true,
+          label: 'In Shop',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, collumn, cellValue) {
+            if (cellValue) {
+              return h('i', { 'class': 'el-icon-check' });
+            }
+          }
+        }, {
+          prop: 'featured',
+          sortable: true,
+          label: 'Featured',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, collumn, cellValue) {
+            if (cellValue) {
+              return h('i', { 'class': 'el-icon-check' });
+            }
+          }
+        }, {
+          prop: 'created_at.human',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'live_at.live',
+          sortable: true,
+          label: 'Live',
+          align: 'left',
+          formatter: function formatter(row, column, cellValue) {
+            return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
+          },
+          resizable: true
+        }],
+        bulkOptions: [{
+          value: 'delete',
+          label: 'Delete'
+        }, {
+          value: 'draft',
+          label: 'Mark Draft'
+        }, {
+          value: 'live',
+          label: 'Mark Live'
+        }]
+      }
+    };
+  },
+
+
+  watch: {
+    productsCreateForm: function productsCreateForm(value) {
+      this.$emit('input', this.internalValue);
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('Products.vue Mounted.');
+  }
 };
 
 /***/ }),
@@ -168,7 +176,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -184,10 +192,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("data-table", {
     attrs: {
-      "type-name": "product",
-      "bulk-update-url": "products/bulk",
       "table-options": _vm.tableOptions,
-      "request-with": "variant",
       "request-includes": [
         "live_at",
         "created_at",
@@ -196,7 +201,10 @@ var render = function() {
         "list_in_shop",
         "featured"
       ],
-      "create-form": _vm.productsCreateForm
+      "create-form": _vm.productsCreateForm,
+      "type-name": "product",
+      "bulk-update-url": "products/bulk",
+      "request-with": "variant"
     },
     scopedSlots: _vm._u([
       {

@@ -1,145 +1,140 @@
 <template lang="html">
-<div>
+  <div>
     <el-upload
-        class="file_upload_box"
-        list-type="picture-card"
-        :with-credentials="true"
-        :action="uploadUrl"
-        :on-preview="handlePictureCardPreview"
-        :file-list="fileList"
-        :on-remove="handleRemove"
-        :show-file-list="false"
-        :drag="true"
-        :multiple="true"
-        :on-success="handleSuccess"
-        :data="uploadData"
-        :headers="uploadHeaders"
-        :on-change="handleChange"
-        :before-upload="handleBeforeUpload"
-        :on-error="handleUploadError">
+      :with-credentials="true"
+      :action="uploadUrl"
+      :on-preview="handlePictureCardPreview"
+      :file-list="fileList"
+      :on-remove="handleRemove"
+      :show-file-list="false"
+      :drag="true"
+      :multiple="true"
+      :on-success="handleSuccess"
+      :data="uploadData"
+      :headers="uploadHeaders"
+      :on-change="handleChange"
+      :before-upload="handleBeforeUpload"
+      :on-error="handleUploadError"
+      class="file_upload_box"
+      list-type="picture-card">
 
-        <div class="file_upload_text">
-          <i class="el-icon-plus"></i>
-          <p>Click to upload or drag file</p>
-        </div>
+      <div class="file_upload_text">
+        <i class="el-icon-plus"/>
+        <p>Click to upload or drag file</p>
+      </div>
     </el-upload>
 
-
-    <el-dialog :visible.sync="dialogVisible" size="tiny">
-        <img width="100%" :src="dialogImageUrl" alt="">
+    <el-dialog
+      :visible.sync="dialogVisible"
+      size="tiny">
+      <img
+        :src="dialogImageUrl"
+        width="100%"
+        alt="">
     </el-dialog>
-</div>
+  </div>
 </template>
 
 <script>
-var replace = require('lodash.replace');
+var replace = require('lodash.replace')
 
 export default {
 
-      name: 'FileUploadComponent',
+  name: 'FileUploadComponent',
 
-      components: {
+  components: {
 
-      },
+  },
 
-      props: {
-          galleryId: {
-              type: Number,
-              required: true,
-          },
-          fileList: {
-              type: Array,
-              required: false,
-              default () {
-                  return []
-              },
-          },
-      },
+  props: {
+    galleryId: {
+      type: Number,
+      required: true
+    },
+    fileList: {
+      type: Array,
+      required: false,
+      default () {
+        return []
+      }
+    }
+  },
 
-      data () {
-          return {
-              dialogVisible: false,
-              dialogImageUrl: ''
-          }
-      },
+  data () {
+    return {
+      dialogVisible: false,
+      dialogImageUrl: ''
+    }
+  },
 
-      computed: {
+  computed: {
 
-          uploadUrl()
-          {
-              const BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/';
-              return BASE_URL + 'media/upload';
-          },
+    uploadUrl () {
+      const BASE_URL = this.ecommerceConfig.site_url + '/' + this.ecommerceConfig.api_prefix + '/'
+      return BASE_URL + 'media/upload'
+    },
 
-          uploadHeaders()
-          {
-              return {
-                  'Accept': 'application/json',
-                  'X-CSRF-TOKEN': window.laravel_token
-              };
-          },
+    uploadHeaders () {
+      return {
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': window.laravel_token
+      }
+    },
 
-          uploadData()
-          {
-              return {
-                  'gallery': this.galleryId,
-              };
-          },
-      },
+    uploadData () {
+      return {
+        'gallery': this.galleryId
+      }
+    }
+  },
 
-      watch: {
+  watch: {
 
-      },
+  },
 
-      mounted () {
-          console.log('ImageUploadComponent.vue: Mounted');
-      },
+  mounted () {
+    console.log('ImageUploadComponent.vue: Mounted')
+  },
 
-      methods: {
+  methods: {
 
-        handlePictureCardPreview(file)
-        {
-            this.dialogImageUrl = file.url;
-            this.dialogVisible = true;
+    handlePictureCardPreview (file) {
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
+    },
+
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+
+    handleChange (file, filelist) {
+      if (file.status === 'ready' && file.percentage === 0) {
+        this.$emit('fileSelected', file)
+      }
+    },
+
+    handleSuccess (response, file, fileList) {
+      this.$emit('fileUploadSuccess', { response: response, file: file, fileList: fileList })
+    },
+
+    handleUploadError (err, file, fileList) {
+      var errorData = JSON.parse(replace(err, 'Error: ' + err.status + ' ', ''))
+
+      this.$emit('fileUploadError', {
+        error: {
+          status: err.status,
+          data: errorData
         },
+        file: file,
+        gallery: this.galleryId
+      })
+    },
 
-        handleRemove(file, fileList)
-        {
-            console.log(file, fileList);
-        },
+    handleBeforeUpload (file) {
 
-        handleChange(file, filelist)
-        {
-            if(file.status === 'ready' && file.percentage === 0) {
-                this.$emit('fileSelected', file);
-            }
-        },
+    }
 
-        handleSuccess(response, file, fileList)
-        {
-            this.$emit('fileUploadSuccess', { response: response, file: file, fileList: fileList });
-        },
-
-        handleUploadError(err, file, fileList)
-        {
-            var err_data = JSON.parse(replace(err, 'Error: '+ err.status +' ', ''));
-
-            this.$emit('fileUploadError', {
-                error: {
-                    status: err.status,
-                    data: err_data
-                },
-                file: file,
-                gallery: this.galleryId
-            })
-        },
-
-        handleBeforeUpload(file)
-        {
-
-        },
-
-      },
+  }
 
 }
 </script>

@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-webpackJsonp([24],{
+webpackJsonp([23],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/estimates/ViewEstimate.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -8,7 +7,7 @@ webpackJsonp([24],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
@@ -55,91 +54,113 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
 
-    name: 'ViewEstimate',
+  name: 'ViewEstimate',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        ProductTable: function ProductTable() {
-            return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
-        },
-        ProductForm: function ProductForm() {
-            return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductForm.vue"));
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
-
-    props: {
-        estimateId: {
-            required: true,
-            type: [String, Number]
-        }
+    ProductTable: function ProductTable() {
+      return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
     },
-
-    data: function data() {
-        return {
-            loading: false,
-            estimate: {},
-            errors: {}
-
-        };
+    ProductForm: function ProductForm() {
+      return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductForm.vue"));
     },
-
-
-    computed: {
-        orderTotals: function orderTotals() {
-
-            if (this.estimate.cart) {
-                return _order2.default.totals(this.estimate.items, this.estimate.cart.totals['Shipping'], this.estimate.cart.totals['Discount']);
-            }
-            return [{}];
-        }
-    },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ViewEstimate.vue mounted!');
-        this.getEstimate();
-    },
-
-
-    methods: {
-        getEstimate: function getEstimate() {
-            var _this = this;
-
-            this.loading = true;
-
-            _apiService2.default.get({
-                path: 'orders/' + this.estimateId
-            }).then(function (data) {
-                _this.loading = false;
-                _this.estimate = data.data;
-            }).catch(function (error) {
-                _this.errors = error;
-                _this.loading = false;
-            });
-        },
-        updateEstimate: function updateEstimate() {
-            var _this2 = this;
-
-            this.loading = true;
-
-            _apiService2.default.persist('put', {
-                path: 'orders/' + this.estimateId,
-                object: this.estimate
-            }).then(function (data) {
-                _this2.loading = false;
-                _this2.estimate = data.data;
-            }).catch(function (error) {
-                _this2.errors = error;
-                _this2.loading = false;
-            });
-        }
+    PrintDownloadButton: function PrintDownloadButton() {
+      return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PrintDownloadButton.vue"));
     }
+  },
+
+  props: {
+    estimateId: {
+      required: true,
+      type: [String, Number]
+    }
+  },
+
+  data: function data() {
+    return {
+      loading: false,
+      estimate: {},
+      errors: {}
+
+    };
+  },
+
+
+  computed: {
+    orderTotals: function orderTotals() {
+      if (this.estimate.cart) {
+        return _order2.default.totals(this.estimate.items, this.estimate.cart.totals['Shipping'], this.estimate.cart.totals['Discount']);
+      }
+      return [{}];
+    }
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ViewEstimate.vue mounted!');
+    this.getEstimate();
+  },
+
+
+  methods: {
+    onProductAdd: function onProductAdd(product) {
+      console.log(product);
+      this.estimate.items.push(product);
+    },
+    getEstimate: function getEstimate() {
+      var _this = this;
+
+      this.loading = true;
+
+      _apiService2.default.get({
+        path: 'orders/' + this.estimateId
+      }).then(function (data) {
+        _this.loading = false;
+        _this.estimate = data.data;
+      }).catch(function (error) {
+        _this.errors = error;
+        _this.loading = false;
+      });
+    },
+    updateEstimate: function updateEstimate() {
+      var _this2 = this;
+
+      this.loading = true;
+
+      _apiService2.default.persist('put', {
+        path: 'orders/' + this.estimateId,
+        object: this.estimate
+      }).then(function (data) {
+        _this2.loading = false;
+        _this2.estimate = data.data;
+      }).catch(function (error) {
+        _this2.errors = error;
+        _this2.loading = false;
+      });
+    }
+  }
 
 };
 
@@ -153,7 +174,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -164,7 +185,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
-  var this$1 = this
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
@@ -201,6 +221,8 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c("print-download-button", { attrs: { "order-id": _vm.estimateId } }),
+      _vm._v(" "),
       Object.keys(_vm.errors).length > 0
         ? _c("errors", { attrs: { errors: _vm.errors } })
         : _vm._e(),
@@ -217,11 +239,7 @@ var render = function() {
             { attrs: { sm: 24 } },
             [
               _c("product-form", {
-                attrs: {
-                  "on-product-add": function(product) {
-                    this$1.estimate.items.push(product)
-                  }
-                }
+                attrs: { "on-product-add": _vm.onProductAdd }
               })
             ],
             1
@@ -268,14 +286,14 @@ var render = function() {
               _c(
                 "el-button",
                 {
-                  attrs: { plain: "", type: "success", loading: _vm.loading },
+                  attrs: { loading: _vm.loading, plain: "", type: "success" },
                   on: {
                     click: function($event) {
                       _vm.updateEstimate()
                     }
                   }
                 },
-                [_vm._v("Update")]
+                [_vm._v("Save")]
               )
             ],
             1
@@ -379,6 +397,3 @@ module.exports = Component.exports
 /***/ })
 
 });
-=======
-webpackJsonp([24],{"5I1P":function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("div",{directives:[{name:"loading",rawName:"v-loading",value:t.loading,expression:"loading"}]},[r("el-breadcrumb",{staticClass:"breadcrumbs",attrs:{"separator-class":"el-icon-arrow-right"}},[r("el-breadcrumb-item",{attrs:{to:{name:"estimates"}}},[t._v("Estimates")]),t._v(" "),t.estimate.id?r("el-breadcrumb-item",[t._v(t._s(t.estimate.ref_number))]):t._e()],1),t._v(" "),Object.keys(t.errors).length>0?r("errors",{attrs:{errors:t.errors}}):t._e(),t._v(" "),r("el-row",{staticStyle:{"margin-bottom":"20px","margin-top":"20px"},attrs:{gutter:20}},[r("el-col",{attrs:{sm:24}},[r("product-form",{attrs:{"on-product-add":t.onProductAdd}})],1)],1),t._v(" "),r("el-row",{staticStyle:{"margin-bottom":"20px","margin-top":"20px"},attrs:{gutter:20}},[r("el-col",{attrs:{sm:24}},[r("product-table",{attrs:{editable:!0,order:t.estimate,"order-totals":t.orderTotals}})],1)],1),t._v(" "),r("hr",{staticClass:"page_hr"}),t._v(" "),r("el-row",{attrs:{gutter:20}},[r("el-col",{attrs:{sm:24}},[r("el-button",{attrs:{plain:"",type:"success",loading:t.loading},on:{click:function(e){t.updateEstimate()}}},[t._v("Save")])],1)],1)],1)},staticRenderFns:[]}},MpRh:function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var a=i(r("GzQy")),s=i(r("nCXa"));function i(t){return t&&t.__esModule?t:{default:t}}e.default={name:"ViewEstimate",components:{Errors:function(){return r.e(31).then(r.bind(null,"DqGP"))},ProductTable:function(){return r.e(35).then(r.bind(null,"tAls"))},ProductForm:function(){return r.e(36).then(r.bind(null,"mBvu"))}},props:{estimateId:{required:!0,type:[String,Number]}},data:function(){return{loading:!1,estimate:{},errors:{}}},computed:{orderTotals:function(){return this.estimate.cart?s.default.totals(this.estimate.items,this.estimate.cart.totals.Shipping,this.estimate.cart.totals.Discount):[{}]}},watch:{},mounted:function(){this.getEstimate()},methods:{onProductAdd:function(t){this.estimate.items.push(t)},getEstimate:function(){var t=this;this.loading=!0,a.default.get({path:"orders/"+this.estimateId}).then(function(e){t.loading=!1,t.estimate=e.data}).catch(function(e){t.errors=e,t.loading=!1})},updateEstimate:function(){var t=this;this.loading=!0,a.default.persist("put",{path:"orders/"+this.estimateId,object:this.estimate}).then(function(e){t.loading=!1,t.estimate=e.data}).catch(function(e){t.errors=e,t.loading=!1})}}}},XKD7:function(t,e,r){(t.exports=r("FZ+f")(!1)).push([t.i,"",""])},gryR:function(t,e,r){var a=r("VU/8")(r("MpRh"),r("5I1P"),!1,function(t){r("vlSB")},null,null);t.exports=a.exports},vlSB:function(t,e,r){var a=r("XKD7");"string"===typeof a&&(a=[[t.i,a,""]]),a.locals&&(t.exports=a.locals);r("rjj0")("7936de09",a,!0,{})}});
->>>>>>> 7de368b16432cd0b210639e646c65104496e39e4

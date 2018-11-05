@@ -1,4 +1,4 @@
-webpackJsonp([46],{
+webpackJsonp([48],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/PaymentDetails.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([46],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _order = __webpack_require__("./resources/assets/admin-spa/utils/order.js");
@@ -67,75 +67,126 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
 
-    name: 'PaymentDetails',
+  name: 'PaymentDetails',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        }
-    },
-
-    props: {
-        payments: {
-            type: Array,
-            required: true
-        },
-        editable: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return true;
-            }
-        }
-    },
-
-    data: function data() {
-        return {
-            errors: {}
-        };
-    },
-
-
-    computed: {
-        totalPaid: function totalPaid() {
-            return _order2.default.paymentTotal(this.payments);
-        }
-    },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('PaymentDetails.vue mounted!');
-    },
-
-
-    methods: {
-        markPaymentRefunded: function markPaymentRefunded(payment) {
-            var _this = this;
-
-            payment.payment_refunded = true;
-            _apiService2.default.persist('put', {
-                path: 'payments/' + payment.id,
-                object: payment
-            }).then(function (data) {
-                payment = data.data;
-                _this.$message({
-                    type: 'success',
-                    message: 'Payment updated successfully.'
-                });
-            }).catch(function (error) {
-                payment.payment_refunded = false;
-                _this.errors = error;
-                _this.$message({
-                    type: 'error',
-                    message: 'There was an error updating the payment.'
-                });
-            });
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     }
+  },
+
+  props: {
+    payments: {
+      type: Array,
+      required: true
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return true;
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      errors: {}
+    };
+  },
+
+
+  computed: {
+    totalPaid: function totalPaid() {
+      return _order2.default.paymentTotal(this.payments);
+    }
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('PaymentDetails.vue mounted!');
+  },
+
+
+  methods: {
+    markPaymentRefunded: function markPaymentRefunded(payment) {
+      var _this = this;
+
+      payment.payment_refunded = true;
+      _apiService2.default.persist('put', {
+        path: 'payments/' + payment.id,
+        object: payment
+      }).then(function (data) {
+        payment = data.data;
+        _this.$message({
+          type: 'success',
+          message: 'Payment updated successfully.'
+        });
+      }).catch(function (error) {
+        payment.payment_refunded = false;
+        _this.errors = error;
+        _this.$message({
+          type: 'error',
+          message: 'There was an error updating the payment.'
+        });
+      });
+    }
+  }
 
 };
 
@@ -149,7 +200,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -198,14 +249,14 @@ var render = function() {
           _vm._v(" "),
           _c("el-table-column", {
             attrs: {
-              prop: "amount",
-              label: "Payment Amount",
               formatter: function(row) {
                 return _vm.formatPrice(
                   row.amount,
                   _vm.currencyCodeToSymbol(row.currency)
                 )
-              }
+              },
+              prop: "amount",
+              label: "Payment Amount"
             }
           }),
           _vm._v(" "),

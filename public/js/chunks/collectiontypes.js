@@ -7,7 +7,7 @@ webpackJsonp([5],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _ContentInner = __webpack_require__("./resources/assets/admin-spa/components/ContentInner.vue");
@@ -16,6 +16,90 @@ var _ContentInner2 = _interopRequireDefault(_ContentInner);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var groupBy = __webpack_require__("./node_modules/lodash.groupby/index.js"); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -107,126 +191,125 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 
-var groupBy = __webpack_require__("./node_modules/lodash.groupby/index.js");
 var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
 
 exports.default = {
 
-    name: 'ContentComponent',
+  name: 'ContentComponent',
 
-    components: {
-        ContentInner: _ContentInner2.default
+  components: {
+    ContentInner: _ContentInner2.default
+  },
+
+  props: {
+    content: {
+      required: true,
+      type: Array
     },
-
-    props: {
-        content: {
-            required: true,
-            type: Array
-        },
-        editable: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return true;
-            }
-        },
-        languageOptions: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return true;
-            }
-        },
-        language: {
-            required: false,
-            type: String,
-            default: function _default() {
-                return 'en';
-            }
-        },
-        accordian: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return true;
-            }
-        }
+    editable: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return true;
+      }
     },
-
-    data: function data() {
-        return {
-            newContent: {
-                type: 'text'
-            },
-            form: {},
-            showModal: false,
-            loading: false,
-            activeContentTab: 'en',
-            accordianTab: null
-        };
+    languageOptions: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return true;
+      }
     },
-
-
-    computed: {
-        groupedByLangContent: function groupedByLangContent() {
-            var orderedContent = orderBy(this.content, ['order'], ['asc']);
-            orderedContent = groupBy(orderedContent, 'language');
-            return Object.keys(orderedContent).length > 0 ? orderedContent : { 'en': [] };
-        },
-        selectedLangContent: function selectedLangContent() {
-            var orderedContent = orderBy(this.content, ['order'], ['asc']);
-            orderedContent = filter(orderedContent, ['language', this.language]);
-
-            return orderedContent !== undefined ? orderedContent : [];
-        },
-        contentTypes: function contentTypes() {
-            return [{
-                label: 'Text',
-                value: 'text'
-            }, {
-                label: 'Text Area',
-                value: 'textarea'
-            }, {
-                label: 'Content Editor',
-                value: 'quill'
-            }, {
-                label: 'Multi',
-                value: 'json'
-            }];
-        }
+    language: {
+      required: false,
+      type: String,
+      default: function _default() {
+        return 'en';
+      }
     },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ContentComponent.vue Mounted');
-    },
-
-
-    methods: {
-        addContent: function addContent(lang) {
-            var _this = this;
-
-            this.$refs['contentAdd'].validate(function (valid) {
-                if (valid) {
-                    _this.content.push({
-                        'order': _this.content.length + 1,
-                        'language': lang,
-                        'content': _this.newContent.type === 'json' ? {} : '',
-                        'content_name': _this.newContent.name,
-                        'type': _this.newContent.type
-                    });
-
-                    _this.showModal = false;
-                    _this.newContent = {};
-                }
-            });
-        },
-        onDeleteContent: function onDeleteContent(key) {
-            this.content.splice(key, 1);
-        }
+    accordian: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return true;
+      }
     }
+  },
+
+  data: function data() {
+    return {
+      newContent: {
+        type: 'text'
+      },
+      form: {},
+      showModal: false,
+      loading: false,
+      activeContentTab: 'en',
+      accordianTab: null
+    };
+  },
+
+
+  computed: {
+    groupedByLangContent: function groupedByLangContent() {
+      var orderedContent = orderBy(this.content, ['order'], ['asc']);
+      orderedContent = groupBy(orderedContent, 'language');
+      return Object.keys(orderedContent).length > 0 ? orderedContent : { 'en': [] };
+    },
+    selectedLangContent: function selectedLangContent() {
+      var orderedContent = orderBy(this.content, ['order'], ['asc']);
+      orderedContent = filter(orderedContent, ['language', this.language]);
+
+      return orderedContent !== undefined ? orderedContent : [];
+    },
+    contentTypes: function contentTypes() {
+      return [{
+        label: 'Text',
+        value: 'text'
+      }, {
+        label: 'Text Area',
+        value: 'textarea'
+      }, {
+        label: 'Content Editor',
+        value: 'quill'
+      }, {
+        label: 'Multi',
+        value: 'json'
+      }];
+    }
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ContentComponent.vue Mounted');
+  },
+
+
+  methods: {
+    addContent: function addContent(lang) {
+      var _this = this;
+
+      this.$refs['contentAdd'].validate(function (valid) {
+        if (valid) {
+          _this.content.push({
+            'order': _this.content.length + 1,
+            'language': lang,
+            'content': _this.newContent.type === 'json' ? {} : '',
+            'content_name': _this.newContent.name,
+            'type': _this.newContent.type
+          });
+
+          _this.showModal = false;
+          _this.newContent = {};
+        }
+      });
+    },
+    onDeleteContent: function onDeleteContent(key) {
+      this.content.splice(key, 1);
+    }
+  }
 };
 
 /***/ }),
@@ -238,12 +321,299 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
-var _name$components$prop;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 __webpack_require__("./node_modules/quill/dist/quill.core.css");
 
@@ -265,316 +635,142 @@ var _vueQuillEditor = __webpack_require__("./node_modules/vue-quill-editor/dist/
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
+exports.default = {
 
-exports.default = (_name$components$prop = {
+  name: 'ContentInner',
 
-    name: 'ContentInner',
-
-    components: {
-        quillEditor: _vueQuillEditor.quillEditor,
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        },
-        ContentComponent: _ContentComponent2.default
+  components: {
+    quillEditor: _vueQuillEditor.quillEditor,
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
     },
+    ContentComponent: _ContentComponent2.default
+  },
 
-    props: {
-        content: {
-            required: true,
-            type: Object
-        },
-        contentKey: {
-            required: true,
-            type: [Number, String]
-        },
-        editable: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return false;
+  props: {
+    content: {
+      required: true,
+      type: Object
+    },
+    contentKey: {
+      required: true,
+      type: [Number, String]
+    },
+    editable: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return false;
+      }
+    },
+    languageOptions: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return true;
+      }
+    },
+    showSectionTitle: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return true;
+      }
+    },
+    onDeleteContent: {
+      required: false,
+      type: Function,
+      default: function _default() {
+        return function (contentKey) {};
+      }
+    }
+  },
+
+  data: function data() {
+    var self = this;
+    return {
+      editorOptions: {
+        modules: {
+          toolbar: {
+            container: ['image', 'bold', 'italic', 'underline', 'strike', { 'header': 1 }, { 'header': 2 }, 'blockquote', { 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
+
+            handlers: {
+              'image': function image(value) {
+                self.quillSelection = this.quill.getSelection();
+                self.showFilePicker = true;
+                self.quillInstance = this;
+              }
             }
-        },
-        languageOptions: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return true;
-            }
-        },
-        showSectionTitle: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return true;
-            }
-        },
-        onDeleteContent: {
-            required: false,
-            type: Function,
-            default: function _default() {
-                return function (contentKey) {};
-            }
+          }
         }
-    },
-
-    watch: {
-        'content.content': function contentContent(value) {
-            console.log(value);
-        }
-    },
-
-    data: function data() {
-        var self = this;
-        return {
-            editorOptions: {
-                modules: {
-                    toolbar: {
-                        container: ["image", "bold", "italic", "underline", "strike", { 'header': 1 }, { 'header': 2 }, "blockquote", { 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
-
-                        handlers: {
-                            'image': function image(value) {
-                                self.quillSelection = this.quill.getSelection();
-                                self.showFilePicker = true;
-                                self.quillInstance = this;
-                            }
-                        }
-                    }
-                }
-            },
-            showFilePicker: false,
-            quillInstance: null,
-            quillSelection: null
-        };
-    },
+      },
+      showFilePicker: false,
+      quillInstance: null,
+      quillSelection: null
+    };
+  },
 
 
-    computed: _extends({}, (0, _vuex.mapGetters)(['shopData']), {
-        contentLabel: function contentLabel() {
-            var content_name = this.content.content_name.replace("multi", "");
-            return this.showSectionTitle ? content_name + (this.anguageOptions ? ' (' + (this.content.language ? this.content.language : '') + ')' : '') : '';
-        }
-    })
+  computed: _extends({}, (0, _vuex.mapGetters)(['shopData']), {
+    contentLabel: function contentLabel() {
+      var contentName = this.content.content_name.replace('multi', '');
+      return this.showSectionTitle ? contentName + (this.anguageOptions ? ' (' + (this.content.language ? this.content.language : '') + ')' : '') : '';
+    }
+  }),
 
-}, _defineProperty(_name$components$prop, 'watch', {}), _defineProperty(_name$components$prop, 'mounted', function mounted() {
+  watch: {
+    'content.content': function contentContent(value) {
+      console.log(value);
+    }
+  },
+
+  mounted: function mounted() {
     console.log('ContentInner.vue mounted!');
-}), _defineProperty(_name$components$prop, 'methods', {
-    deleteJsonContent: function deleteJsonContent(json_key) {
-        this.$delete(this.content.content, json_key);
+  },
+
+
+  methods: {
+    deleteJsonContent: function deleteJsonContent(jsonKey) {
+      this.$delete(this.content.content, jsonKey);
     },
-    inputLabel: function inputLabel(json_key) {
-        return this.capitalize(_content2.default.inputLabel(json_key));
+    inputLabel: function inputLabel(jsonKey) {
+      return this.capitalize(_content2.default.inputLabel(jsonKey));
     },
     addJsonContent: function addJsonContent() {
-        var _this = this;
+      var _this = this;
 
-        this.$prompt('Content Name', 'Content Name', {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            inputValidator: function inputValidator(val) {
-                return val ? true : false;
-            },
-            inputErrorMessage: 'Name is required.'
-        }).then(function (value) {
-            var content = _this.content.content;
-            var inner_content = value.value.toUpperCase().includes('MULTI') ? {} : '';
-            _this.$set(_this.content.content, value.value, inner_content);
-        });
+      this.$prompt('Content Name', 'Content Name', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        inputValidator: function inputValidator(val) {
+          return !!val;
+        },
+        inputErrorMessage: 'Name is required.'
+      }).then(function (value) {
+        var innerContent = value.value.toUpperCase().includes('MULTI') ? {} : '';
+        _this.$set(_this.content.content, value.value, innerContent);
+      });
     },
     deleteContent: function deleteContent() {
-        this.onDeleteContent(this.contentKey);
+      this.onDeleteContent(this.contentKey);
     },
     insertQuillImage: function insertQuillImage(files) {
-        forEach(files, function (file) {
-            this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', file.url);
-        }.bind(this));
+      forEach(files, function (file) {
+        this.quillInstance.quill.insertEmbed(this.quillSelection.index, 'image', file.url);
+      }.bind(this));
 
-        this.quillInstance = null;
-        this.quillSelection = null;
+      this.quillInstance = null;
+      this.quillSelection = null;
     },
     fileModalClosed: function fileModalClosed() {
-        this.showFilePicker = false;
-        this.quillInstance = null;
-        this.quillSelection = null;
+      this.showFilePicker = false;
+      this.quillInstance = null;
+      this.quillSelection = null;
     }
-}), _name$components$prop);
+  }
+
+};
 
 /***/ }),
 
@@ -585,7 +781,7 @@ exports.default = (_name$components$prop = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
@@ -598,7 +794,6 @@ var _ContentComponent2 = _interopRequireDefault(_ContentComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var has = __webpack_require__("./node_modules/lodash.has/index.js"); //
 //
 //
 //
@@ -813,179 +1008,258 @@ var has = __webpack_require__("./node_modules/lodash.has/index.js"); //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var has = __webpack_require__("./node_modules/lodash.has/index.js");
 
 exports.default = {
 
-    name: 'ViewCollectionType',
+  name: 'ViewCollectionType',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        },
-        ContentComponent: _ContentComponent2.default
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
-
-    props: {
-        collectionId: {
-            type: String,
-            required: true
-        },
-        editorOption: {
-            modules: {
-                toolbar: [['bold', 'italic', 'underline', 'strike'], ['blockquote'], [{ 'header': 1 }, { 'header': 2 }], [{ 'list': 'ordered' }, { 'list': 'bullet' }], [{ 'align': [] }], ['clean'], ['link', 'video']]
-            }
-        },
-        typeId: {
-            type: String,
-            required: true
-        }
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
     },
+    ContentComponent: _ContentComponent2.default
+  },
 
-    data: function data() {
-        return {
-            loading: false,
-            collectionTypeErrors: {},
-            collectionType: {}
-        };
+  props: {
+    collectionId: {
+      type: String,
+      required: true
     },
-
-
-    computed: {
-        typeName: function typeName() {
-            return this.collectionType.individual_name ? this.collectionType.individual_name.toLowerCase() : 'collection type';
-        },
-        collectionTypeFormRules: function collectionTypeFormRules() {
-            return {
-                name: [{ required: true, message: 'The ' + this.typeName + ' name field is required', trigger: 'blur' }],
-                individual_name: [{ required: true, message: 'The ' + this.typeName + ' individual name field is required', trigger: 'blur' }],
-                slug: [{ required: true, message: 'The ' + this.typeName + ' slug field is required', trigger: 'blur' }]
-            };
-        }
-    },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ViewCollectionType.vue Mounted');
-        this.getCollectionType();
-    },
-
-
-    methods: {
-        objectHas: function objectHas(haystack, needle) {
-            return has(haystack, needle);
-        },
-        getCollectionType: function getCollectionType() {
-
-            this.loading = true;
-            this.collectionTypeErrors = {};
-
-            _apiService2.default.get({
-                path: 'collections/' + this.collectionId + '/types/' + this.typeId,
-                params: {
-                    with: ['collection', 'media', 'content'],
-                    include: ['individual_name', 'slug', 'live_at']
-                }
-            }).then(function (data) {
-                this.loading = false;
-                this.collectionType = data.data;
-
-                if (this.collectionType.meta.options) {
-                    this.collectionType.meta.options.forEach(function (option) {
-                        option.value.forEach(function (value) {
-                            if (value.value.__fileDialogOpen === true) {
-                                value.value.__fileDialogOpen = false;
-                            }
-                        }.bind(this));
-                    }.bind(this));
-                }
-            }.bind(this)).catch(function (error) {
-                this.loading = false;
-                this.collectionTypeErrors = error;
-            }.bind(this));
-        },
-        submitForm: function submitForm(formName) {
-            var _this = this;
-
-            this.collectionTypeErrors = {};
-            this.collectionType.with = ['collection', 'media', 'content'];
-            this.collectionType.include = ['individual_name', 'slug', 'live_at'];
-            this.loading = true;
-
-            this.$refs[formName].validate(function (valid) {
-                if (valid) {
-                    _apiService2.default.persist('put', {
-                        path: 'collections/' + _this.collectionId + '/types/' + _this.typeId,
-                        object: _this.collectionType
-                    }).then(function (data) {
-                        this.loading = false;
-
-                        this.collectionType = data.data;
-
-                        this.$message({
-                            message: this.collectionType.name + ' updated',
-                            type: 'success',
-                            showClose: true
-                        });
-                    }.bind(_this)).catch(function (error) {
-                        this.collectionTypeErrors = error;
-                        this.loading = false;
-                    }.bind(_this));
-                } else {
-                    _this.loading = false;
-                    return false;
-                }
-            });
-        },
-        displayFilePicker: function displayFilePicker(filePicker) {
-            if (this.$refs[filePicker]) {
-                this.$refs[filePicker].openModal();
-            }
-        },
-        handleFilesChosen: function handleFilesChosen(data) {
-            this.$set(this.collectionType, data.id, data.files);
-        },
-        handleFilesUnChosen: function handleFilesUnChosen(data) {
-            this.$set(this.collectionType, data.id, data.files);
-        },
-        handleOptionFilesChosen: function handleOptionFilesChosen(data) {
-            var optionsIndex = this.collectionType.meta.options.indexOf(data.id.option);
-            var value = this.collectionType.meta.options[optionsIndex].values[this.collectionType.meta.options[optionsIndex].values.indexOf(data.id.value)];
-
-            value.value.file = data.files[0];
-        },
-        handleOptionFilesUnChosen: function handleOptionFilesUnChosen(data) {
-            var optionsIndex = this.collectionType.meta.options.indexOf(data.id.option);
-            var value = this.collectionType.meta.options[optionsIndex].values[this.collectionType.meta.options[optionsIndex].values.indexOf(data.id.value)];
-
-            value.value.file = data.files;
-        },
-        addSpecification: function addSpecification(meta) {
-            var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-            if (!set) {
-                set = { value: '' };
-            }
-            if (!this.collectionType.meta[meta]) {
-                this.$set(this.collectionType.meta, meta, []);
-            }
-            this.collectionType.meta[meta].push({
-                key: '',
-                values: [set]
-            });
-        },
-        addSpecificationValue: function addSpecificationValue(value, meta) {
-            var set = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-            if (!set) {
-                set = { value: '' };
-            }
-            this.collectionType.meta[meta][this.collectionType.meta[meta].indexOf(value)].values.push(set);
-        }
+    typeId: {
+      type: String,
+      required: true
     }
+  },
+
+  data: function data() {
+    return {
+      loading: false,
+      collectionTypeErrors: {},
+      collectionType: {}
+    };
+  },
+
+
+  computed: {
+    typeName: function typeName() {
+      return this.collectionType.individual_name ? this.collectionType.individual_name.toLowerCase() : 'collection type';
+    },
+    collectionTypeFormRules: function collectionTypeFormRules() {
+      return {
+        name: [{ required: true, message: 'The ' + this.typeName + ' name field is required', trigger: 'blur' }],
+        individual_name: [{ required: true, message: 'The ' + this.typeName + ' individual name field is required', trigger: 'blur' }],
+        slug: [{ required: true, message: 'The ' + this.typeName + ' slug field is required', trigger: 'blur' }]
+      };
+    }
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ViewCollectionType.vue Mounted');
+    this.getCollectionType();
+  },
+
+
+  methods: {
+    objectHas: function objectHas(haystack, needle) {
+      return has(haystack, needle);
+    },
+    getCollectionType: function getCollectionType() {
+      this.loading = true;
+      this.collectionTypeErrors = {};
+
+      _apiService2.default.get({
+        path: 'collections/' + this.collectionId + '/types/' + this.typeId,
+        params: {
+          with: ['collection', 'media', 'content'],
+          include: ['individual_name', 'slug', 'live_at']
+        }
+      }).then(function (data) {
+        this.loading = false;
+        this.collectionType = data.data;
+
+        if (this.collectionType.meta.options) {
+          this.collectionType.meta.options.forEach(function (option) {
+            option.value.forEach(function (value) {
+              if (value.value.__fileDialogOpen === true) {
+                value.value.__fileDialogOpen = false;
+              }
+            });
+          });
+        }
+      }.bind(this)).catch(function (error) {
+        this.loading = false;
+        this.collectionTypeErrors = error;
+      }.bind(this));
+    },
+    submitForm: function submitForm(formName) {
+      var _this = this;
+
+      this.collectionTypeErrors = {};
+      this.collectionType.with = ['collection', 'media', 'content'];
+      this.collectionType.include = ['individual_name', 'slug', 'live_at'];
+      this.loading = true;
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          _apiService2.default.persist('put', {
+            path: 'collections/' + _this.collectionId + '/types/' + _this.typeId,
+            object: _this.collectionType
+          }).then(function (data) {
+            this.loading = false;
+
+            this.collectionType = data.data;
+
+            this.$message({
+              message: this.collectionType.name + ' updated',
+              type: 'success',
+              showClose: true
+            });
+          }.bind(_this)).catch(function (error) {
+            this.collectionTypeErrors = error;
+            this.loading = false;
+          }.bind(_this));
+        } else {
+          _this.loading = false;
+          return false;
+        }
+      });
+    },
+    displayFilePicker: function displayFilePicker(filePicker) {
+      if (this.$refs[filePicker]) {
+        this.$refs[filePicker].openModal();
+      }
+    },
+    handleFilesChosen: function handleFilesChosen(data) {
+      this.$set(this.collectionType, data.id, data.files);
+    },
+    handleFilesUnChosen: function handleFilesUnChosen(data) {
+      this.$set(this.collectionType, data.id, data.files);
+    },
+    handleOptionFilesChosen: function handleOptionFilesChosen(data) {
+      var optionsIndex = this.collectionType.meta.options.indexOf(data.id.option);
+      var value = this.collectionType.meta.options[optionsIndex].values[this.collectionType.meta.options[optionsIndex].values.indexOf(data.id.value)];
+
+      value.value.file = data.files[0];
+    },
+    handleOptionFilesUnChosen: function handleOptionFilesUnChosen(data) {
+      var optionsIndex = this.collectionType.meta.options.indexOf(data.id.option);
+      var value = this.collectionType.meta.options[optionsIndex].values[this.collectionType.meta.options[optionsIndex].values.indexOf(data.id.value)];
+
+      value.value.file = data.files;
+    },
+    addSpecification: function addSpecification(meta) {
+      var set = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (!set) {
+        set = { value: '' };
+      }
+      if (!this.collectionType.meta[meta]) {
+        this.$set(this.collectionType.meta, meta, []);
+      }
+      this.collectionType.meta[meta].push({
+        key: '',
+        values: [set]
+      });
+    },
+    addSpecificationValue: function addSpecificationValue(value, meta) {
+      var set = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+      if (!set) {
+        set = { value: '' };
+      }
+      this.collectionType.meta[meta][this.collectionType.meta[meta].indexOf(value)].values.push(set);
+    }
+  }
 
 };
 
@@ -1044,7 +1318,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1074,7 +1348,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22491,16 +22765,16 @@ var render = function() {
                         [
                           _vm._l(_vm.content.content, function(
                             jsonContent,
-                            json_key
+                            jsonKey
                           ) {
-                            return _c("el-row", { key: json_key }, [
+                            return _c("el-row", { key: jsonKey }, [
                               _c(
                                 "span",
                                 { staticStyle: { display: "block" } },
-                                [_vm._v(_vm._s(_vm.inputLabel(json_key)))]
+                                [_vm._v(_vm._s(_vm.inputLabel(jsonKey)))]
                               ),
                               _vm._v(" "),
-                              json_key.toUpperCase().includes("DATE")
+                              jsonKey.toUpperCase().includes("DATE")
                                 ? _c(
                                     "div",
                                     [
@@ -22517,16 +22791,15 @@ var render = function() {
                                           "value-format": "dd-MM-yyy"
                                         },
                                         model: {
-                                          value: _vm.content.content[json_key],
+                                          value: _vm.content.content[jsonKey],
                                           callback: function($$v) {
                                             _vm.$set(
                                               _vm.content.content,
-                                              json_key,
+                                              jsonKey,
                                               $$v
                                             )
                                           },
-                                          expression:
-                                            "content.content[json_key]"
+                                          expression: "content.content[jsonKey]"
                                         }
                                       }),
                                       _vm._v(" "),
@@ -22536,7 +22809,7 @@ var render = function() {
                                             {
                                               ref:
                                                 "json_content_delete_confirm_" +
-                                                json_key,
+                                                jsonKey,
                                               refInFor: true,
                                               attrs: {
                                                 placement: "top",
@@ -22570,7 +22843,7 @@ var render = function() {
                                                         ) {
                                                           _vm.$refs[
                                                             "json_content_delete_confirm_" +
-                                                              json_key
+                                                              jsonKey
                                                           ][0].doClose()
                                                         }
                                                       }
@@ -22590,7 +22863,7 @@ var render = function() {
                                                           $event
                                                         ) {
                                                           _vm.deleteJsonContent(
-                                                            json_key
+                                                            jsonKey
                                                           )
                                                         }
                                                       }
@@ -22619,9 +22892,9 @@ var render = function() {
                                     ],
                                     1
                                   )
-                                : json_key.toUpperCase().includes("NUMBER") ||
-                                  json_key.toUpperCase().includes("VALUE") ||
-                                  json_key.toUpperCase().includes("AMOUNT")
+                                : jsonKey.toUpperCase().includes("NUMBER") ||
+                                  jsonKey.toUpperCase().includes("VALUE") ||
+                                  jsonKey.toUpperCase().includes("AMOUNT")
                                   ? _c(
                                       "div",
                                       { staticStyle: { width: "100%" } },
@@ -22632,17 +22905,16 @@ var render = function() {
                                             size: "small"
                                           },
                                           model: {
-                                            value:
-                                              _vm.content.content[json_key],
+                                            value: _vm.content.content[jsonKey],
                                             callback: function($$v) {
                                               _vm.$set(
                                                 _vm.content.content,
-                                                json_key,
+                                                jsonKey,
                                                 $$v
                                               )
                                             },
                                             expression:
-                                              "content.content[json_key]"
+                                              "content.content[jsonKey]"
                                           }
                                         }),
                                         _vm._v(" "),
@@ -22652,7 +22924,7 @@ var render = function() {
                                               {
                                                 ref:
                                                   "json_content_delete_confirm_" +
-                                                  json_key,
+                                                  jsonKey,
                                                 refInFor: true,
                                                 attrs: {
                                                   placement: "top",
@@ -22686,7 +22958,7 @@ var render = function() {
                                                           ) {
                                                             _vm.$refs[
                                                               "json_content_delete_confirm_" +
-                                                                json_key
+                                                                jsonKey
                                                             ][0].doClose()
                                                           }
                                                         }
@@ -22706,7 +22978,7 @@ var render = function() {
                                                             $event
                                                           ) {
                                                             _vm.deleteJsonContent(
-                                                              json_key
+                                                              jsonKey
                                                             )
                                                           }
                                                         }
@@ -22735,7 +23007,7 @@ var render = function() {
                                       ],
                                       1
                                     )
-                                  : json_key.toUpperCase().includes("COST")
+                                  : jsonKey.toUpperCase().includes("COST")
                                     ? _c(
                                         "div",
                                         { staticStyle: { width: "100%" } },
@@ -22751,22 +23023,22 @@ var render = function() {
                                           ),
                                           _c("el-input-number", {
                                             attrs: {
-                                              size: "small",
                                               controls: false,
-                                              precision: 3
+                                              precision: 3,
+                                              size: "small"
                                             },
                                             model: {
                                               value:
-                                                _vm.content.content[json_key],
+                                                _vm.content.content[jsonKey],
                                               callback: function($$v) {
                                                 _vm.$set(
                                                   _vm.content.content,
-                                                  json_key,
+                                                  jsonKey,
                                                   $$v
                                                 )
                                               },
                                               expression:
-                                                "content.content[json_key]"
+                                                "content.content[jsonKey]"
                                             }
                                           }),
                                           _vm._v(" "),
@@ -22776,7 +23048,7 @@ var render = function() {
                                                 {
                                                   ref:
                                                     "json_content_delete_confirm_" +
-                                                    json_key,
+                                                    jsonKey,
                                                   refInFor: true,
                                                   attrs: {
                                                     placement: "top",
@@ -22810,7 +23082,7 @@ var render = function() {
                                                             ) {
                                                               _vm.$refs[
                                                                 "json_content_delete_confirm_" +
-                                                                  json_key
+                                                                  jsonKey
                                                               ][0].doClose()
                                                             }
                                                           }
@@ -22830,7 +23102,7 @@ var render = function() {
                                                               $event
                                                             ) {
                                                               _vm.deleteJsonContent(
-                                                                json_key
+                                                                jsonKey
                                                               )
                                                             }
                                                           }
@@ -22859,13 +23131,11 @@ var render = function() {
                                         ],
                                         1
                                       )
-                                    : json_key
+                                    : jsonKey
                                         .toUpperCase()
                                         .includes("GALLERY") ||
-                                      json_key
-                                        .toUpperCase()
-                                        .includes("FILES") ||
-                                      json_key.toUpperCase().includes("IMAGES")
+                                      jsonKey.toUpperCase().includes("FILES") ||
+                                      jsonKey.toUpperCase().includes("IMAGES")
                                       ? _c(
                                           "div",
                                           [
@@ -22873,25 +23143,25 @@ var render = function() {
                                               attrs: {
                                                 "current-files":
                                                   _vm.content.content[
-                                                    json_key
+                                                    jsonKey
                                                   ] &&
                                                   _vm.content.content[
-                                                    json_key
+                                                    jsonKey
                                                   ][0]
                                                     ? _vm.content.content[
-                                                        json_key
+                                                        jsonKey
                                                       ]
                                                     : undefined,
                                                 "show-btn": true,
                                                 name: _vm.capitalize(
-                                                  json_key.replace(/_/g, " ")
+                                                  jsonKey.replace(/_/g, " ")
                                                 ),
-                                                "picker-id": json_key
+                                                "picker-id": jsonKey
                                               },
                                               on: {
                                                 "update:files": function(val) {
                                                   return (_vm.content.content[
-                                                    json_key
+                                                    jsonKey
                                                   ] = val)
                                                 }
                                               }
@@ -22903,7 +23173,7 @@ var render = function() {
                                                   {
                                                     ref:
                                                       "json_content_delete_confirm_" +
-                                                      json_key,
+                                                      jsonKey,
                                                     refInFor: true,
                                                     attrs: {
                                                       placement: "top",
@@ -22937,7 +23207,7 @@ var render = function() {
                                                               ) {
                                                                 _vm.$refs[
                                                                   "json_content_delete_confirm_" +
-                                                                    json_key
+                                                                    jsonKey
                                                                 ][0].doClose()
                                                               }
                                                             }
@@ -22957,7 +23227,7 @@ var render = function() {
                                                                 $event
                                                               ) {
                                                                 _vm.deleteJsonContent(
-                                                                  json_key
+                                                                  jsonKey
                                                                 )
                                                               }
                                                             }
@@ -22987,10 +23257,10 @@ var render = function() {
                                           ],
                                           1
                                         )
-                                      : json_key
+                                      : jsonKey
                                           .toUpperCase()
                                           .includes("IMAGE") ||
-                                        json_key.toUpperCase().includes("FILE")
+                                        jsonKey.toUpperCase().includes("FILE")
                                         ? _c(
                                             "div",
                                             [
@@ -22998,30 +23268,30 @@ var render = function() {
                                                 attrs: {
                                                   "current-files":
                                                     _vm.content.content[
-                                                      json_key
+                                                      jsonKey
                                                     ] &&
                                                     _vm.content.content[
-                                                      json_key
+                                                      jsonKey
                                                     ][0]
                                                       ? [
                                                           _vm.content.content[
-                                                            json_key
+                                                            jsonKey
                                                           ][0]
                                                         ]
                                                       : undefined,
                                                   "show-btn": true,
                                                   name: _vm.capitalize(
-                                                    json_key.replace(/_/g, " ")
+                                                    jsonKey.replace(/_/g, " ")
                                                   ),
                                                   selectable: 1,
-                                                  "picker-id": json_key
+                                                  "picker-id": jsonKey
                                                 },
                                                 on: {
                                                   "update:files": function(
                                                     val
                                                   ) {
                                                     return (_vm.content.content[
-                                                      json_key
+                                                      jsonKey
                                                     ] = val)
                                                   }
                                                 }
@@ -23033,7 +23303,7 @@ var render = function() {
                                                     {
                                                       ref:
                                                         "json_content_delete_confirm_" +
-                                                        json_key,
+                                                        jsonKey,
                                                       refInFor: true,
                                                       attrs: {
                                                         placement: "top",
@@ -23070,7 +23340,7 @@ var render = function() {
                                                                 ) {
                                                                   _vm.$refs[
                                                                     "json_content_delete_confirm_" +
-                                                                      json_key
+                                                                      jsonKey
                                                                   ][0].doClose()
                                                                 }
                                                               }
@@ -23090,7 +23360,7 @@ var render = function() {
                                                                   $event
                                                                 ) {
                                                                   _vm.deleteJsonContent(
-                                                                    json_key
+                                                                    jsonKey
                                                                   )
                                                                 }
                                                               }
@@ -23120,10 +23390,10 @@ var render = function() {
                                             ],
                                             1
                                           )
-                                        : json_key
+                                        : jsonKey
                                             .toUpperCase()
                                             .includes("CHECK") ||
-                                          json_key
+                                          jsonKey
                                             .toUpperCase()
                                             .includes("CHECKBOX")
                                           ? _c(
@@ -23133,23 +23403,23 @@ var render = function() {
                                                   model: {
                                                     value:
                                                       _vm.content.content[
-                                                        json_key
+                                                        jsonKey
                                                       ],
                                                     callback: function($$v) {
                                                       _vm.$set(
                                                         _vm.content.content,
-                                                        json_key,
+                                                        jsonKey,
                                                         $$v
                                                       )
                                                     },
                                                     expression:
-                                                      "content.content[json_key]"
+                                                      "content.content[jsonKey]"
                                                   }
                                                 })
                                               ],
                                               1
                                             )
-                                          : json_key
+                                          : jsonKey
                                               .toUpperCase()
                                               .includes("MULTI")
                                             ? _c(
@@ -23161,14 +23431,14 @@ var render = function() {
                                                       "on-delete-content":
                                                         _vm.deleteJsonContent,
                                                       content: {
-                                                        content_name: json_key,
+                                                        content_name: jsonKey,
                                                         content:
                                                           _vm.content.content[
-                                                            json_key
+                                                            jsonKey
                                                           ],
                                                         type: "json"
                                                       },
-                                                      "content-key": json_key,
+                                                      "content-key": jsonKey,
                                                       editable: true,
                                                       "language-options": false
                                                     }
@@ -23188,17 +23458,17 @@ var render = function() {
                                                     model: {
                                                       value:
                                                         _vm.content.content[
-                                                          json_key
+                                                          jsonKey
                                                         ],
                                                       callback: function($$v) {
                                                         _vm.$set(
                                                           _vm.content.content,
-                                                          json_key,
+                                                          jsonKey,
                                                           $$v
                                                         )
                                                       },
                                                       expression:
-                                                        "content.content[json_key]"
+                                                        "content.content[jsonKey]"
                                                     }
                                                   }),
                                                   _vm._v(" "),
@@ -23208,7 +23478,7 @@ var render = function() {
                                                         {
                                                           ref:
                                                             "json_content_delete_confirm_" +
-                                                            json_key,
+                                                            jsonKey,
                                                           refInFor: true,
                                                           attrs: {
                                                             placement: "top",
@@ -23246,7 +23516,7 @@ var render = function() {
                                                                     ) {
                                                                       _vm.$refs[
                                                                         "json_content_delete_confirm_" +
-                                                                          json_key
+                                                                          jsonKey
                                                                       ][0].doClose()
                                                                     }
                                                                   }
@@ -23271,7 +23541,7 @@ var render = function() {
                                                                       $event
                                                                     ) {
                                                                       _vm.deleteJsonContent(
-                                                                        json_key
+                                                                        jsonKey
                                                                       )
                                                                     }
                                                                   }
@@ -23345,9 +23615,9 @@ var render = function() {
                 ]
               : _c("el-input", {
                   attrs: {
-                    size: "small",
                     type: _vm.content.type === "textarea" ? "textarea" : "",
-                    autofocus: true
+                    autofocus: true,
+                    size: "small"
                   },
                   model: {
                     value: _vm.content.content,
@@ -23644,12 +23914,12 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.selectedLangContent, function(
-                    content,
-                    content_key
-                  ) {
-                    return !_vm.accordian
-                      ? _c(
+                  !_vm.accordian
+                    ? _vm._l(_vm.selectedLangContent, function(
+                        content,
+                        content_key
+                      ) {
+                        return _c(
                           "el-col",
                           {
                             key: content_key,
@@ -23668,8 +23938,8 @@ var render = function() {
                           ],
                           1
                         )
-                      : _vm._e()
-                  })
+                      })
+                    : _vm._e()
                 ],
                 2
               )
@@ -23697,7 +23967,7 @@ var render = function() {
         ? _c(
             "el-dialog",
             {
-              attrs: { title: "Add New Content", visible: _vm.showModal },
+              attrs: { visible: _vm.showModal, title: "Add New Content" },
               on: {
                 "update:visible": function($event) {
                   _vm.showModal = $event
@@ -23735,15 +24005,15 @@ var render = function() {
                             "el-form-item",
                             {
                               attrs: {
-                                label: "Name",
-                                prop: "name",
                                 rules: [
                                   {
                                     required: true,
                                     message: "Content name is required.",
                                     trigger: "blur,change"
                                   }
-                                ]
+                                ],
+                                label: "Name",
+                                prop: "name"
                               }
                             },
                             [
@@ -23775,15 +24045,15 @@ var render = function() {
                             "el-form-item",
                             {
                               attrs: {
-                                label: "Type",
-                                prop: "type",
                                 rules: [
                                   {
                                     required: true,
                                     message: "Content type is required.",
                                     trigger: "blur,change"
                                   }
-                                ]
+                                ],
+                                label: "Type",
+                                prop: "type"
                               }
                             },
                             [
@@ -23963,9 +24233,9 @@ var render = function() {
                 {
                   ref: "collectionTypeForm",
                   attrs: {
-                    "label-position": "top",
                     model: _vm.collectionType,
                     rules: _vm.collectionTypeFormRules,
+                    "label-position": "top",
                     "label-width": "120px"
                   }
                 },
@@ -24099,9 +24369,8 @@ var render = function() {
                                     _vm._v(
                                       _vm._s(_vm.getSiteBaseURL) +
                                         _vm._s(
-                                          this.collectionType.collection
-                                            ? this.collectionType.collection
-                                                .slug
+                                          _vm.collectionType.collection
+                                            ? _vm.collectionType.collection.slug
                                             : ""
                                         ) +
                                         "/"
@@ -24158,10 +24427,10 @@ var render = function() {
                                         .main_img
                                         ? [_vm.collectionType.main_img]
                                         : undefined,
-                                      name: "Main Img",
                                       selectable: 1,
-                                      "picker-id": "main_img",
-                                      "open-on-mount": false
+                                      "open-on-mount": false,
+                                      name: "Main Img",
+                                      "picker-id": "main_img"
                                     },
                                     on: {
                                       filesChosen: _vm.handleFilesChosen,
@@ -24198,10 +24467,10 @@ var render = function() {
                                         .secondary_img
                                         ? [_vm.collectionType.secondary_img]
                                         : undefined,
-                                      name: "Secondary Img",
                                       selectable: 1,
-                                      "picker-id": "secondary_img",
-                                      "open-on-mount": false
+                                      "open-on-mount": false,
+                                      name: "Secondary Img",
+                                      "picker-id": "secondary_img"
                                     },
                                     on: {
                                       filesChosen: _vm.handleFilesChosen,
@@ -24235,10 +24504,10 @@ var render = function() {
                                         .third_img
                                         ? [_vm.collectionType.third_img]
                                         : undefined,
-                                      name: "Third Img",
                                       selectable: 1,
-                                      "picker-id": "third_img",
-                                      "open-on-mount": false
+                                      "open-on-mount": false,
+                                      name: "Third Img",
+                                      "picker-id": "third_img"
                                     },
                                     on: {
                                       filesChosen: _vm.handleFilesChosen,
@@ -24263,89 +24532,86 @@ var render = function() {
                         [
                           _vm._l(
                             _vm.collectionType.meta.specifications,
-                            function(spec) {
-                              return [
-                                _c(
-                                  "el-col",
-                                  { attrs: { md: 12 } },
-                                  [
-                                    _c(
-                                      "el-form-item",
-                                      {
-                                        attrs: {
-                                          label: "Specification",
-                                          prop: "key"
+                            function(spec, key) {
+                              return _c(
+                                "el-col",
+                                { key: key, attrs: { md: 12 } },
+                                [
+                                  _c(
+                                    "el-form-item",
+                                    {
+                                      attrs: {
+                                        label: "Specification",
+                                        prop: "key"
+                                      }
+                                    },
+                                    [
+                                      _c("el-input", {
+                                        attrs: { autofocus: true },
+                                        model: {
+                                          value: spec.key,
+                                          callback: function($$v) {
+                                            _vm.$set(spec, "key", $$v)
+                                          },
+                                          expression: "spec.key"
                                         }
-                                      },
-                                      [
-                                        _c("el-input", {
-                                          attrs: { autofocus: true },
-                                          model: {
-                                            value: spec.key,
-                                            callback: function($$v) {
-                                              _vm.$set(spec, "key", $$v)
-                                            },
-                                            expression: "spec.key"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            }
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { md: 12 } },
+                            [
+                              _vm._l(_vm.spec.values, function(value, key) {
+                                return _c(
+                                  "el-form-item",
+                                  {
+                                    key: key,
+                                    attrs: {
+                                      label: "Specification Value",
+                                      prop: "value"
+                                    }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: { autofocus: true },
+                                      model: {
+                                        value: value.value,
+                                        callback: function($$v) {
+                                          _vm.$set(value, "value", $$v)
+                                        },
+                                        expression: "value.value"
+                                      }
+                                    })
                                   ],
                                   1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "el-col",
-                                  { attrs: { md: 12 } },
-                                  [
-                                    _vm._l(spec.values, function(value) {
-                                      return [
-                                        _c(
-                                          "el-form-item",
-                                          {
-                                            attrs: {
-                                              label: "Specification Value",
-                                              prop: "value"
-                                            }
-                                          },
-                                          [
-                                            _c("el-input", {
-                                              attrs: { autofocus: true },
-                                              model: {
-                                                value: value.value,
-                                                callback: function($$v) {
-                                                  _vm.$set(value, "value", $$v)
-                                                },
-                                                expression: "value.value"
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "el-button",
-                                      {
-                                        attrs: { type: "primary", plain: "" },
-                                        on: {
-                                          click: function($event) {
-                                            _vm.addSpecificationValue(
-                                              spec,
-                                              "specifications"
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [_vm._v("Add Specification Value")]
-                                    )
-                                  ],
-                                  2
                                 )
-                              ]
-                            }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "primary", plain: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.addSpecificationValue(
+                                        _vm.spec,
+                                        "specifications"
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v("Add Specification Value")]
+                              )
+                            ],
+                            2
                           ),
                           _vm._v(" "),
                           _c(
@@ -24371,9 +24637,75 @@ var render = function() {
                         { attrs: { gutter: 20 } },
                         [
                           _vm._l(_vm.collectionType.meta.options, function(
-                            option
+                            key
                           ) {
-                            return [
+                            return _c(
+                              "el-col",
+                              { key: key, attrs: { md: 12 } },
+                              [
+                                _c(
+                                  "el-form-item",
+                                  {
+                                    attrs: { label: "Option Type", prop: "key" }
+                                  },
+                                  [
+                                    _c("el-input", {
+                                      attrs: { autofocus: true },
+                                      model: {
+                                        value: _vm.option.key,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.option, "key", $$v)
+                                        },
+                                        expression: "option.key"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "el-col",
+                            { attrs: { md: 12 } },
+                            [
+                              _vm._l(_vm.option.values, function(
+                                value,
+                                optKey
+                              ) {
+                                return _c(
+                                  "el-col",
+                                  { key: optKey, attrs: { md: 12 } },
+                                  [
+                                    _c(
+                                      "el-form-item",
+                                      {
+                                        attrs: {
+                                          label: "Option Name",
+                                          prop: "name"
+                                        }
+                                      },
+                                      [
+                                        _c("el-input", {
+                                          attrs: { autofocus: true },
+                                          model: {
+                                            value: value.value.name,
+                                            callback: function($$v) {
+                                              _vm.$set(value.value, "name", $$v)
+                                            },
+                                            expression: "value.value.name"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              }),
+                              _vm._v(" "),
                               _c(
                                 "el-col",
                                 { attrs: { md: 12 } },
@@ -24382,19 +24714,23 @@ var render = function() {
                                     "el-form-item",
                                     {
                                       attrs: {
-                                        label: "Option Type",
-                                        prop: "key"
+                                        label: "Option Text",
+                                        prop: "text"
                                       }
                                     },
                                     [
                                       _c("el-input", {
                                         attrs: { autofocus: true },
                                         model: {
-                                          value: option.key,
+                                          value: _vm.value.value.text,
                                           callback: function($$v) {
-                                            _vm.$set(option, "key", $$v)
+                                            _vm.$set(
+                                              _vm.value.value,
+                                              "text",
+                                              $$v
+                                            )
                                           },
-                                          expression: "option.key"
+                                          expression: "value.value.text"
                                         }
                                       })
                                     ],
@@ -24406,152 +24742,68 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "el-col",
-                                { attrs: { md: 12 } },
+                                { attrs: { md: 24 } },
                                 [
-                                  _vm._l(option.values, function(
-                                    value,
-                                    optKey
-                                  ) {
-                                    return [
-                                      _c(
-                                        "el-col",
-                                        { attrs: { md: 12 } },
-                                        [
-                                          _c(
-                                            "el-form-item",
-                                            {
-                                              attrs: {
-                                                label: "Option Name",
-                                                prop: "name"
-                                              }
-                                            },
-                                            [
-                                              _c("el-input", {
-                                                attrs: { autofocus: true },
-                                                model: {
-                                                  value: value.value.name,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      value.value,
-                                                      "name",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression: "value.value.name"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-col",
-                                        { attrs: { md: 12 } },
-                                        [
-                                          _c(
-                                            "el-form-item",
-                                            {
-                                              attrs: {
-                                                label: "Option Text",
-                                                prop: "text"
-                                              }
-                                            },
-                                            [
-                                              _c("el-input", {
-                                                attrs: { autofocus: true },
-                                                model: {
-                                                  value: value.value.text,
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      value.value,
-                                                      "text",
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression: "value.value.text"
-                                                }
-                                              })
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-col",
-                                        { attrs: { md: 24 } },
-                                        [
-                                          _c(
-                                            "el-form-item",
-                                            {
-                                              attrs: {
-                                                label: "Option File",
-                                                prop: "file"
-                                              }
-                                            },
-                                            [
-                                              value.value
-                                                ? _c("file-picker-modal", {
-                                                    ref:
-                                                      "metaOptionFile_" +
-                                                      optKey,
-                                                    refInFor: true,
-                                                    attrs: {
-                                                      "current-files": value
-                                                        .value.file
-                                                        ? [value.value.file]
-                                                        : undefined,
-                                                      name: value.value.name,
-                                                      selectable: 1,
-                                                      "show-btn": true,
-                                                      "picker-id": {
-                                                        option: option,
-                                                        value: value
-                                                      },
-                                                      "open-on-mount": false
-                                                    },
-                                                    on: {
-                                                      filesChosen:
-                                                        _vm.handleOptionFilesChosen,
-                                                      filesUnChosen:
-                                                        _vm.handleOptionFilesUnChosen
-                                                    }
-                                                  })
-                                                : _vm._e()
-                                            ],
-                                            1
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ]
-                                  }),
-                                  _vm._v(" "),
                                   _c(
-                                    "el-button",
+                                    "el-form-item",
                                     {
-                                      attrs: { type: "primary", plain: "" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.addSpecificationValue(
-                                            option,
-                                            "options",
-                                            { value: { name: "", file: null } }
-                                          )
-                                        }
+                                      attrs: {
+                                        label: "Option File",
+                                        prop: "file"
                                       }
                                     },
-                                    [_vm._v("Add Option Value")]
+                                    [
+                                      _vm.value.value
+                                        ? _c("file-picker-modal", {
+                                            ref: "metaOptionFile_" + _vm.optKey,
+                                            attrs: {
+                                              "current-files": _vm.value.value
+                                                .file
+                                                ? [_vm.value.value.file]
+                                                : undefined,
+                                              name: _vm.value.value.name,
+                                              selectable: 1,
+                                              "show-btn": true,
+                                              "picker-id": {
+                                                option: _vm.option,
+                                                value: _vm.value
+                                              },
+                                              "open-on-mount": false
+                                            },
+                                            on: {
+                                              filesChosen:
+                                                _vm.handleOptionFilesChosen,
+                                              filesUnChosen:
+                                                _vm.handleOptionFilesUnChosen
+                                            }
+                                          })
+                                        : _vm._e()
+                                    ],
+                                    1
                                   )
                                 ],
-                                2
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-button",
+                                {
+                                  attrs: { type: "primary", plain: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.addSpecificationValue(
+                                        _vm.option,
+                                        "options",
+                                        { value: { name: "", file: null } }
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v("Add Option Value")]
                               )
-                            ]
-                          }),
+                            ],
+                            2
+                          ),
                           _vm._v(" "),
                           _c(
                             "el-button",
@@ -24637,9 +24889,9 @@ var render = function() {
                                 "el-button",
                                 {
                                   attrs: {
+                                    loading: _vm.loading,
                                     plain: "",
-                                    type: "success",
-                                    loading: _vm.loading
+                                    type: "success"
                                   },
                                   on: {
                                     click: function($event) {
@@ -24963,14 +25215,14 @@ module.exports = Component.exports
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.default = {
-    inputLabel: function inputLabel(json_key) {
-        if (typeof json_key === 'string') {
-            return json_key.replace(/_/g, ' ').replace('multi', '').replace('Multi', '').replace('checkbox', '').replace('Checkbox', '');
-        }
+  inputLabel: function inputLabel(jsonKey) {
+    if (typeof jsonKey === 'string') {
+      return jsonKey.replace(/_/g, ' ').replace('multi', '').replace('Multi', '').replace('checkbox', '').replace('Checkbox', '');
     }
+  }
 };
 
 /***/ })

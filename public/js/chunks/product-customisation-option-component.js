@@ -1,4 +1,4 @@
-webpackJsonp([44],{
+webpackJsonp([46],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/ProductCustomisationOptionComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,33 @@ webpackJsonp([44],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69,54 +94,54 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'ProductCustomisationOptionComponent',
+  name: 'ProductCustomisationOptionComponent',
 
-    components: {
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        }
-    },
-
-    props: {
-        model: {
-            type: Object,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            productCustomisationOption: {}
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ProductCustomisationOptionComponent.vue mounted');
-        this.productCustomisationOption = this.model;
-    },
-
-
-    methods: {
-        displayFilePicker: function displayFilePicker(filePicker) {
-            if (this.$refs[filePicker]) {
-                this.$refs[filePicker].openModal();
-            }
-        },
-        handleFilesChosen: function handleFilesChosen(data) {
-            this.$set(this.productCustomisationOption, data.id, data.files);
-        },
-        handleFilesUnChosen: function handleFilesUnChosen(data) {
-            this.$set(this.productCustomisationOption, data.id, data.files);
-        },
-        deleteOption: function deleteOption(option) {
-            this.$emit('optionDeleted', option);
-        }
+  components: {
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
     }
+  },
+
+  props: {
+    model: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      productCustomisationOption: {}
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ProductCustomisationOptionComponent.vue mounted');
+    this.productCustomisationOption = this.model;
+  },
+
+
+  methods: {
+    displayFilePicker: function displayFilePicker(filePicker) {
+      if (this.$refs[filePicker]) {
+        this.$refs[filePicker].openModal();
+      }
+    },
+    handleFilesChosen: function handleFilesChosen(data) {
+      this.$set(this.productCustomisationOption, data.id, data.files);
+    },
+    handleFilesUnChosen: function handleFilesUnChosen(data) {
+      this.$set(this.productCustomisationOption, data.id, data.files);
+    },
+    deleteOption: function deleteOption(option) {
+      this.$emit('optionDeleted', option);
+    }
+  }
 
 };
 
@@ -130,7 +155,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -234,8 +259,8 @@ var render = function() {
                             : undefined,
                           name: _vm.productCustomisationOption + " Main Img",
                           selectable: 1,
-                          "picker-id": "main_img",
-                          "show-btn": true
+                          "show-btn": true,
+                          "picker-id": "main_img"
                         },
                         on: {
                           filesChosen: _vm.handleFilesChosen,

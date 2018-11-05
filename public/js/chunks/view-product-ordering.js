@@ -1,4 +1,4 @@
-webpackJsonp([18],{
+webpackJsonp([16],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/products/ViewProductOrdering.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([18],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
@@ -18,64 +18,87 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
 
-    name: 'ViewProductOrdering',
+  name: 'ViewProductOrdering',
 
-    components: {
-        ProductPageLayout: function ProductPageLayout() {
-            return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
-        }
-    },
-
-    props: {
-        productId: {
-            type: String,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            forms: {},
-            formErrors: {}
-        };
-    },
-
-
-    computed: {
-        //
-    },
-
-    watch: {
-        //
-    },
-
-    mounted: function mounted() {
-        console.log('ViewProductOrdering.vue mounted');
-        this.getForms();
-    },
-
-
-    methods: {
-        formLoaded: function formLoaded(data) {
-            if (!data.order_form) {
-                this.$set(data, 'order_form', {});
-            }
-            if (!data.frontend_form) {
-                this.$set(data, 'frontend_form', {});
-            }
-        },
-        getForms: function getForms() {
-            _apiService2.default.get({
-                path: 'forms'
-            }).then(function (data) {
-                this.forms = data.data;
-            }.bind(this)).catch(function (error) {
-                this.formErrors = error;
-            }.bind(this));
-        }
+  components: {
+    ProductPageLayout: function ProductPageLayout() {
+      return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
     }
+  },
+
+  props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      forms: {},
+      formErrors: {}
+    };
+  },
+
+
+  computed: {
+    //
+  },
+
+  watch: {
+    //
+  },
+
+  mounted: function mounted() {
+    console.log('ViewProductOrdering.vue mounted');
+    this.getForms();
+  },
+
+
+  methods: {
+    formLoaded: function formLoaded(data) {
+      if (!data.order_form) {
+        this.$set(data, 'order_form', {});
+      }
+      if (!data.frontend_form) {
+        this.$set(data, 'frontend_form', {});
+      }
+    },
+    getForms: function getForms() {
+      _apiService2.default.get({
+        path: 'forms'
+      }).then(function (data) {
+        this.forms = data.data;
+      }.bind(this)).catch(function (error) {
+        this.formErrors = error;
+      }.bind(this));
+    }
+  }
 
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -131,7 +154,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 

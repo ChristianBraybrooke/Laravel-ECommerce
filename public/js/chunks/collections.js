@@ -16,7 +16,6 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
 
 exports.default = {
 
@@ -26,11 +25,11 @@ exports.default = {
     }
   },
 
-  mounted: function mounted() {
-    console.log('Collections.vue Mounted.');
-  },
   data: function data() {
     return {};
+  },
+  mounted: function mounted() {
+    console.log('Collections.vue Mounted.');
   }
 };
 
@@ -43,7 +42,7 @@ exports.default = {
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
@@ -54,190 +53,232 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
-        },
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
-
-    props: {
-        collectionId: {
-            type: String,
-            required: true
-        }
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
     },
-
-    mounted: function mounted() {
-        console.log('ViewCollection.vue Mounted');
-        this.getCollection();
-    },
-
-
-    computed: {
-        collectionName: function collectionName() {
-            return this.collection.individual_name ? this.collection.individual_name.toLowerCase() : 'collection';
-        },
-        createFormRules: function createFormRules() {
-            return {
-                name: [{ required: true, message: 'The ' + this.collectionName + ' name field is required', trigger: 'blur' }]
-            };
-        },
-        collectionFormRules: function collectionFormRules() {
-            return {
-                name: [{ required: true, message: 'The ' + this.collectionName + ' name field is required', trigger: 'blur' }],
-                individual_name: [{ required: true, message: 'The ' + this.collectionName + ' individual name field is required', trigger: 'blur' }],
-                slug: [{ required: true, message: 'The ' + this.collectionName + ' slug field is required', trigger: 'blur' }]
-            };
-        }
-    },
-
-    data: function data() {
-        var h = this.$createElement;
-
-        return {
-            tableOptions: {
-                border: false,
-                stripe: false,
-                showSearch: true,
-                showHeader: true,
-                showNewBtn: true,
-                showRefreshBtn: true,
-                showHeadHr: false,
-                showTitle: false,
-                viewText: 'View',
-                deleteText: 'Delete',
-                bulkOptions: [{
-                    value: 'draft',
-                    label: 'Mark Draft'
-                }, {
-                    value: 'live',
-                    label: 'Mark Live'
-                }, {
-                    value: 'delete',
-                    label: 'Delete'
-                }],
-                collumns: [{
-                    prop: 'id',
-                    sortable: true,
-                    label: 'ID',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'name',
-                    sortable: true,
-                    label: 'Name',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'created_at.human',
-                    sortable: true,
-                    label: 'Created',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'live_at.live',
-                    sortable: true,
-                    label: 'Live',
-                    align: 'left',
-                    formatter: function formatter(row, column, cellValue) {
-                        return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
-                    },
-                    resizable: true
-                }]
-            },
-            showFilePicker: false,
-            uploadFileList: [],
-            collectionErrors: {},
-            collection: {},
-            collectionStore: {},
-            loading: false
-        };
-    },
-
-
-    methods: {
-        /**
-         * Get information about this collection.
-         *
-         * @return void
-         */
-        getCollection: function getCollection() {
-            _apiService2.default.get({
-                path: 'collections/' + this.collectionId,
-                params: {
-                    include: ['individual_name', 'slug'],
-                    with: ['media']
-                }
-            }).then(function (data) {
-                this.collectionErrors = {};
-                this.collection = data.data;
-                if (data.data.header_img.url) {
-                    this.showFilePicker = true;
-                }
-                this.collectionStore.push(Vue.util.extend({}, data));
-            }.bind(this)).catch(function (errors) {
-                if (errors.code && errors.code === 404) {
-                    this.$router.push({ path: 'not-found' });
-                }
-
-                this.collectionErrors = errors;
-            }.bind(this));
-        },
-        submitForm: function submitForm(formName) {
-            var _this = this;
-
-            this.collectionErrors = {};
-            this.loading = true;
-
-            this.collection.with = ['media'];
-            this.collection.include = ['individual_name', 'slug'];
-
-            this.$refs[formName].validate(function (valid) {
-                if (valid) {
-                    _apiService2.default.persist('put', {
-                        path: 'collections/' + _this.collectionId,
-                        object: _this.collection
-                    }).then(function (data) {
-                        this.loading = false;
-
-                        this.collection = data.data;
-
-                        this.$message({
-                            message: this.collection.name + ' updated',
-                            type: 'success',
-                            showClose: true
-                        });
-                    }.bind(_this)).catch(function (error) {
-                        this.collectionErrors = error;
-                        this.loading = false;
-                    }.bind(_this));
-                } else {
-                    _this.loading = false;
-                    return false;
-                }
-            });
-        },
-        displayFilePicker: function displayFilePicker() {
-            this.showFilePicker = true;
-            if (this.$refs.filePicker) {
-                this.$refs.filePicker.openModal();
-            }
-        },
-        handleFilesChosen: function handleFilesChosen(data) {
-            this.$set(this.collection, data.id, data.files);
-        },
-        handleFilesUnChosen: function handleFilesUnChosen(data) {
-            this.$set(this.collection, data.id, data.files);
-        }
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
     }
+  },
+
+  props: {
+    collectionId: {
+      type: String,
+      required: true
+    }
+  },
+
+  data: function data() {
+    var h = this.$createElement;
+
+    return {
+      tableOptions: {
+        border: false,
+        stripe: false,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: false,
+        showTitle: false,
+        viewText: 'View',
+        deleteText: 'Delete',
+        bulkOptions: [{
+          value: 'draft',
+          label: 'Mark Draft'
+        }, {
+          value: 'live',
+          label: 'Mark Live'
+        }, {
+          value: 'delete',
+          label: 'Delete'
+        }],
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name',
+          sortable: true,
+          label: 'Name',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'created_at.human',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'live_at.live',
+          sortable: true,
+          label: 'Live',
+          align: 'left',
+          formatter: function formatter(row, column, cellValue) {
+            return row.live_at.live ? h('i', { 'class': 'el-icon-check' }) : h('i', { 'class': 'el-icon-close' });
+          },
+          resizable: true
+        }]
+      },
+      showFilePicker: false,
+      uploadFileList: [],
+      collectionErrors: {},
+      collection: {},
+      collectionStore: {},
+      loading: false
+    };
+  },
+
+
+  computed: {
+    collectionName: function collectionName() {
+      return this.collection.individual_name ? this.collection.individual_name.toLowerCase() : 'collection';
+    },
+    createFormRules: function createFormRules() {
+      return {
+        name: [{ required: true, message: 'The ' + this.collectionName + ' name field is required', trigger: 'blur' }]
+      };
+    },
+    collectionFormRules: function collectionFormRules() {
+      return {
+        name: [{ required: true, message: 'The ' + this.collectionName + ' name field is required', trigger: 'blur' }],
+        individual_name: [{ required: true, message: 'The ' + this.collectionName + ' individual name field is required', trigger: 'blur' }],
+        slug: [{ required: true, message: 'The ' + this.collectionName + ' slug field is required', trigger: 'blur' }]
+      };
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('ViewCollection.vue Mounted');
+    this.getCollection();
+  },
+
+
+  methods: {
+    /**
+     * Get information about this collection.
+     *
+     * @return void
+     */
+    getCollection: function getCollection() {
+      _apiService2.default.get({
+        path: 'collections/' + this.collectionId,
+        params: {
+          include: ['individual_name', 'slug'],
+          with: ['media']
+        }
+      }).then(function (data) {
+        this.collectionErrors = {};
+        this.collection = data.data;
+        if (data.data.header_img.url) {
+          this.showFilePicker = true;
+        }
+        this.collectionStore.push(window.Vue.util.extend({}, data));
+      }.bind(this)).catch(function (errors) {
+        if (errors.code && errors.code === 404) {
+          this.$router.push({ path: 'not-found' });
+        }
+
+        this.collectionErrors = errors;
+      }.bind(this));
+    },
+    submitForm: function submitForm(formName) {
+      var _this = this;
+
+      this.collectionErrors = {};
+      this.loading = true;
+
+      this.collection.with = ['media'];
+      this.collection.include = ['individual_name', 'slug'];
+
+      this.$refs[formName].validate(function (valid) {
+        if (valid) {
+          _apiService2.default.persist('put', {
+            path: 'collections/' + _this.collectionId,
+            object: _this.collection
+          }).then(function (data) {
+            this.loading = false;
+
+            this.collection = data.data;
+
+            this.$message({
+              message: this.collection.name + ' updated',
+              type: 'success',
+              showClose: true
+            });
+          }.bind(_this)).catch(function (error) {
+            this.collectionErrors = error;
+            this.loading = false;
+          }.bind(_this));
+        } else {
+          _this.loading = false;
+          return false;
+        }
+      });
+    },
+    displayFilePicker: function displayFilePicker() {
+      this.showFilePicker = true;
+      if (this.$refs.filePicker) {
+        this.$refs.filePicker.openModal();
+      }
+    },
+    handleFilesChosen: function handleFilesChosen(data) {
+      this.$set(this.collection, data.id, data.files);
+    },
+    handleFilesUnChosen: function handleFilesUnChosen(data) {
+      this.$set(this.collection, data.id, data.files);
+    }
+  }
 
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -344,7 +385,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -359,7 +400,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -375,8 +416,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("data-table", {
     attrs: {
-      "type-name": "collection",
       "request-includes": ["live_at", "created_at"],
+      "type-name": "collection",
       "bulk-update-url": "collections/bulk"
     }
   })
@@ -462,9 +503,9 @@ var render = function() {
                 {
                   ref: "collectionForm",
                   attrs: {
-                    "label-position": "top",
                     model: _vm.collection,
                     rules: _vm.collectionFormRules,
+                    "label-position": "top",
                     "label-width": "120px"
                   },
                   nativeOn: {
@@ -651,12 +692,12 @@ var render = function() {
                               "current-files": _vm.collection.header_img
                                 ? [_vm.collection.header_img]
                                 : undefined,
-                              name: "Header Img",
                               selectable: 1,
-                              "picker-id": "header_img",
                               "open-on-mount": _vm.collection.header_img
                                 ? false
-                                : true
+                                : true,
+                              name: "Header Img",
+                              "picker-id": "header_img"
                             },
                             on: {
                               filesChosen: _vm.handleFilesChosen,
@@ -685,9 +726,9 @@ var render = function() {
                                 "el-button",
                                 {
                                   attrs: {
+                                    loading: _vm.loading,
                                     plain: "",
-                                    type: "success",
-                                    loading: _vm.loading
+                                    type: "success"
                                   },
                                   on: {
                                     click: function($event) {

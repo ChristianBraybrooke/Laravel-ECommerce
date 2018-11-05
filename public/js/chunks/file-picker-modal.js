@@ -7,8 +7,36 @@ webpackJsonp([33],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -71,155 +99,165 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
 exports.default = {
 
-    name: 'FilePickerComponent',
+  name: 'FilePickerComponent',
 
-    components: {
-        GalleriesComponent: function GalleriesComponent() {
-            return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleriesComponent.vue"));
-        }
-    },
-
-    props: {
-        openOnMount: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return false;
-            }
-        },
-        selectable: {
-            type: Number,
-            required: false,
-            default: function _default() {}
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        visible: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return false;
-            }
-        },
-        showPreview: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return true;
-            }
-        },
-        showBtn: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return false;
-            }
-        },
-        currentFiles: {
-            required: false
-        },
-        pickerId: {}
-    },
-
-    data: function data() {
-        return {
-            dialogVisible: false,
-            files: []
-        };
-    },
-
-
-    computed: {
-        fileSelected: function fileSelected() {
-            return Object.keys(this.files).length >= 1;
-        },
-
-        fileChunks: function fileChunks() {
-            return chunk(this.files, 4);
-        }
-    },
-
-    watch: {
-        dialogVisible: function dialogVisible(value) {
-            if (!value) {
-                this.$emit('closed:modal', value);
-            } else {
-                this.$emit('opened:modal', value);
-            }
-        },
-
-        visible: function visible(value) {
-            this.dialogVisible = value;
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('FilePickerModal.vue mounted.');
-
-        this.syncFiles();
-
-        if (this.openOnMount) {
-            this.openModal();
-        }
-    },
-
-
-    methods: {
-        syncFiles: function syncFiles() {
-            if (this.currentFiles) {
-                forEach(this.currentFiles, function (file) {
-                    this.files.push(file);
-                }.bind(this));
-            }
-        },
-        getFileUrl: function getFileUrl(file) {
-            var thumb = file.conversions ? file.conversions.thumbnail : null;
-            var url = file.url;
-
-            if (thumb) {
-                return thumb;
-            } else if (url) {
-                return url;
-            }
-
-            return file.response;
-        },
-        openModal: function openModal() {
-            this.dialogVisible = true;
-        },
-        closeModal: function closeModal() {
-            this.dialogVisible = false;
-        },
-        handleClose: function handleClose() {
-            this.files = [];
-            this.closeModal();
-            this.$emit('modalClosed', { files: this.files, id: this.pickerId });
-            if (this.currentFiles) {
-                forEach(this.currentFiles, function (file) {
-                    this.files.push(file);
-                }.bind(this));
-            }
-        },
-        handleFileChoose: function handleFileChoose() {
-            this.dialogVisible = false;
-            this.$emit('update:files', this.files);
-            this.$emit('filesChosen', { files: this.files, id: this.pickerId });
-        },
-        handleFileHighlighted: function handleFileHighlighted(data) {
-            this.files = data.selectedFiles;
-        },
-        handleIconClick: function handleIconClick(type) {},
-        hideDeletePopover: function hideDeletePopover(file) {
-            this.$refs['delete_popover_' + file.id][0].doClose();
-        },
-        deleteFile: function deleteFile(file) {
-            this.files.splice(this.files.indexOf(file), 1);
-            this.$emit('update:files', this.files);
-            this.$emit('filesUnChosen', { files: this.files, id: this.pickerId });
-        }
+  components: {
+    GalleriesComponent: function GalleriesComponent() {
+      return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleriesComponent.vue"));
     }
+  },
+
+  props: {
+    openOnMount: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
+    },
+    selectable: {
+      type: Number,
+      required: false,
+      default: function _default() {}
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    visible: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
+    },
+    showPreview: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return true;
+      }
+    },
+    showBtn: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
+    },
+    currentFiles: {
+      type: [Array, Object],
+      required: false,
+      default: function _default() {
+        return [];
+      }
+    },
+    pickerId: {
+      type: [Number, String],
+      required: false,
+      default: function _default() {
+        return null;
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      dialogVisible: false,
+      files: []
+    };
+  },
+
+
+  computed: {
+    fileSelected: function fileSelected() {
+      return Object.keys(this.files).length >= 1;
+    },
+
+    fileChunks: function fileChunks() {
+      return chunk(this.files, 4);
+    }
+  },
+
+  watch: {
+    dialogVisible: function dialogVisible(value) {
+      if (!value) {
+        this.$emit('closed:modal', value);
+      } else {
+        this.$emit('opened:modal', value);
+      }
+    },
+
+    visible: function visible(value) {
+      this.dialogVisible = value;
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('FilePickerModal.vue mounted.');
+
+    this.syncFiles();
+
+    if (this.openOnMount) {
+      this.openModal();
+    }
+  },
+
+
+  methods: {
+    syncFiles: function syncFiles() {
+      if (this.currentFiles) {
+        forEach(this.currentFiles, function (file) {
+          this.files.push(file);
+        }.bind(this));
+      }
+    },
+    getFileUrl: function getFileUrl(file) {
+      var thumb = file.conversions ? file.conversions.thumbnail : null;
+      var url = file.url;
+
+      if (thumb) {
+        return thumb;
+      } else if (url) {
+        return url;
+      }
+
+      return file.response;
+    },
+    openModal: function openModal() {
+      this.dialogVisible = true;
+    },
+    closeModal: function closeModal() {
+      this.dialogVisible = false;
+    },
+    handleClose: function handleClose() {
+      this.files = [];
+      this.closeModal();
+      this.$emit('modalClosed', { files: this.files, id: this.pickerId });
+      if (this.currentFiles) {
+        forEach(this.currentFiles, function (file) {
+          this.files.push(file);
+        }.bind(this));
+      }
+    },
+    handleFileChoose: function handleFileChoose() {
+      this.dialogVisible = false;
+      this.$emit('update:files', this.files);
+      this.$emit('filesChosen', { files: this.files, id: this.pickerId });
+    },
+    handleFileHighlighted: function handleFileHighlighted(data) {
+      this.files = data.selectedFiles;
+    },
+    handleIconClick: function handleIconClick(type) {},
+    hideDeletePopover: function hideDeletePopover(file) {
+      this.$refs['delete_popover_' + file.id][0].doClose();
+    },
+    deleteFile: function deleteFile(file) {
+      this.files.splice(this.files.indexOf(file), 1);
+      this.$emit('update:files', this.files);
+      this.$emit('filesUnChosen', { files: this.files, id: this.pickerId });
+    }
+  }
 
 };
 
@@ -233,7 +271,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.file_picker_window .el-dialog {\n    min-width: 620px!important;\n}\n@media (max-width: 700px) {\n.file_picker_window .el-dialog {\n      min-width: 350px!important;\n}\n}\n", ""]);
+exports.push([module.i, "\n.file_picker_window .el-dialog {\nmin-width: 620px!important;\n}\n@media (max-width: 700px) {\n.file_picker_window .el-dialog {\nmin-width: 350px!important;\n}\n}\n", ""]);
 
 // exports
 
@@ -758,10 +796,10 @@ var render = function() {
           attrs: {
             title: "File Picker: " + _vm.name,
             visible: _vm.dialogVisible,
-            width: "70%",
             "close-on-click-modal": false,
-            top: "7vh",
-            "before-close": _vm.handleClose
+            "before-close": _vm.handleClose,
+            width: "70%",
+            top: "7vh"
           },
           on: {
             "update:visible": function($event) {
@@ -809,7 +847,8 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    _vm._s(this.files.length <= 1 ? "Use File" : "Use Files")
+                    _vm._s(_vm.files.length > 1 ? "Use Files" : "Use File") +
+                      "\n      "
                   )
                 ]
               )
@@ -820,117 +859,103 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.fileChunks, function(chunk) {
-        return _vm.showPreview
-          ? [
-              _c(
-                "el-row",
-                {
-                  staticClass: "gallery_row",
-                  attrs: { gutter: 10, type: "flex" }
-                },
-                [
-                  _vm._l(chunk, function(file, index) {
-                    return [
-                      _c("el-col", [
-                        _c("div", { staticClass: "gallery_file_wrap" }, [
-                          _c(
-                            "div",
-                            { staticClass: "gallery_file_wrap_inner" },
-                            [
-                              _c(
-                                "el-popover",
-                                {
-                                  ref: "delete_popover_" + file.id,
-                                  refInFor: true,
-                                  attrs: { placement: "top", width: "160" }
-                                },
-                                [
-                                  _c("p", [
-                                    _vm._v("Remove " + _vm._s(file.name) + "?")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticStyle: {
-                                        "text-align": "right",
-                                        margin: "0"
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "el-button",
-                                        {
-                                          attrs: {
-                                            type: "primary",
-                                            size: "mini"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.hideDeletePopover(file)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("cancel")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "el-button",
-                                        {
-                                          attrs: {
-                                            type: "primary",
-                                            size: "mini"
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.deleteFile(file)
-                                            }
-                                          }
-                                        },
-                                        [_vm._v("confirm")]
-                                      )
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c("i", {
-                                    staticClass:
-                                      "el-icon-delete gallery_file_wrap_icon",
-                                    attrs: { slot: "reference", id: "delete" },
+      _vm.showPreview
+        ? _vm._l(_vm.fileChunks, function(chunk, key) {
+            return _c(
+              "el-row",
+              {
+                key: key,
+                staticClass: "gallery_row",
+                attrs: { gutter: 10, type: "flex" }
+              },
+              _vm._l(chunk, function(file, index) {
+                return _c("el-col", { key: index }, [
+                  _c("div", { staticClass: "gallery_file_wrap" }, [
+                    _c(
+                      "div",
+                      { staticClass: "gallery_file_wrap_inner" },
+                      [
+                        _c(
+                          "el-popover",
+                          {
+                            ref: "delete_popover_" + file.id,
+                            refInFor: true,
+                            attrs: { placement: "top", width: "160" }
+                          },
+                          [
+                            _c("p", [
+                              _vm._v("Remove " + _vm._s(file.name) + "?")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticStyle: {
+                                  "text-align": "right",
+                                  margin: "0"
+                                }
+                              },
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: { type: "primary", size: "mini" },
                                     on: {
                                       click: function($event) {
-                                        _vm.handleIconClick("delete", file)
+                                        _vm.hideDeletePopover(file)
                                       }
-                                    },
-                                    slot: "reference"
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                { staticClass: "gallery_file_wrap_title" },
-                                [_vm._v(_vm._s(file.name))]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("img", {
-                            staticStyle: { "max-width": "100%" },
-                            attrs: { src: _vm.getFileUrl(file), alt: file.name }
-                          })
+                                    }
+                                  },
+                                  [_vm._v("cancel")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: { type: "primary", size: "mini" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.deleteFile(file)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("confirm")]
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c("i", {
+                              staticClass:
+                                "el-icon-delete gallery_file_wrap_icon",
+                              attrs: { slot: "reference", id: "delete" },
+                              on: {
+                                click: function($event) {
+                                  _vm.handleIconClick("delete", file)
+                                }
+                              },
+                              slot: "reference"
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "gallery_file_wrap_title" }, [
+                          _vm._v(_vm._s(file.name))
                         ])
-                      ])
-                    ]
-                  })
-                ],
-                2
-              )
-            ]
-          : _vm._e()
-      })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticStyle: { "max-width": "100%" },
+                      attrs: { src: _vm.getFileUrl(file), alt: file.name }
+                    })
+                  ])
+                ])
+              })
+            )
+          })
+        : _vm._e()
     ],
     2
   )

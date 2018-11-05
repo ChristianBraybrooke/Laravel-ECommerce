@@ -1,4 +1,4 @@
-webpackJsonp([12],{
+webpackJsonp([10],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/config/Config.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,10 +7,93 @@ webpackJsonp([12],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -256,152 +339,150 @@ var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js");
+
 exports.default = {
 
-    name: 'Config',
+  name: 'Config',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+    },
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+    }
+  },
+
+  data: function data() {
+    return {
+      loading: false,
+      settings: {},
+      settingsErrors: {},
+      settingsForm: {},
+      collections: {},
+      shopData: {},
+      featured_product_types: {},
+      users: {},
+      currentTab: 'general'
+    };
+  },
+
+
+  computed: {
+    //
+  },
+
+  watch: {
+    //
+  },
+
+  mounted: function mounted() {
+    console.log('Config.vue mounted');
+    this.getSettings();
+    this.getCollections();
+    this.getUsers();
+  },
+
+
+  methods: _extends({}, (0, _vuex.mapActions)(['setShopData']), {
+    p: function p(path) {
+      var segments = path.split('.');
+      return function () {
+        var obj = this;
+        for (var i = 0; i < segments.length; i++) {
+          if (!obj) return;
+          obj = obj[segments[i]];
         }
+        return obj;
+      };
     },
-
-    props: [],
-
-    data: function data() {
-        return {
-            loading: false,
-            settings: {},
-            settingsErrors: {},
-            settingsForm: {},
-            collections: {},
-            shopData: {},
-            featured_product_types: {},
-            users: {},
-            currentTab: 'general'
-        };
+    ucFirst: function ucFirst(value) {
+      return upperFirst(value);
     },
+    getSettings: function getSettings() {
+      this.loading = true;
+      this.settingsErrors = {};
 
-
-    computed: {
-        //
-    },
-
-    watch: {
-        //
-    },
-
-    mounted: function mounted() {
-        console.log('Config.vue mounted');
-        this.getSettings();
-        this.getCollections();
-        this.getUsers();
-    },
-
-
-    methods: _extends({}, (0, _vuex.mapActions)(['setShopData']), {
-        p: function p(path) {
-            var segments = path.split('.');
-            return function () {
-                var obj = this;
-                for (var i = 0; i < segments.length; i++) {
-                    if (!obj) return;
-                    obj = obj[segments[i]];
-                }
-                return obj;
-            };
-        },
-        ucFirst: function ucFirst(value) {
-            return upperFirst(value);
-        },
-        getSettings: function getSettings() {
-            this.loading = true;
-            this.settingsErrors = {};
-
-            _apiService2.default.get({
-                path: 'settings'
-            }).then(function (data) {
-                this.loading = false;
-                this.settings = data.data;
-                this.setShopData(data.shop_data);
-                this.shopData = data.shop_data;
-                if (!this.settings['Admin Notifications']) {
-                    this.settings['Admin Notifications'] = [];
-                }
-
-                this.getFeaturedProductCollectionTypes();
-            }.bind(this)).catch(function (error) {
-                this.loading = false;
-                this.settingsErrors = error;
-            }.bind(this));
-        },
-        getCollections: function getCollections() {
-            _apiService2.default.get({
-                path: 'collections'
-            }).then(function (data) {
-                this.collections = data.data;
-            }.bind(this)).catch(function (error) {
-                this.settingsErrors = error;
-            }.bind(this));
-        },
-        getFeaturedProductCollectionTypes: function getFeaturedProductCollectionTypes() {
-
-            if (this.settings['Home Featured Product Collection']) {
-                _apiService2.default.get({
-                    path: 'collections/' + this.settings['Home Featured Product Collection'] + '/types'
-                }).then(function (data) {
-                    this.featured_product_types = data.data;
-                }.bind(this)).catch(function (error) {
-                    this.settingsErrors = error;
-                }.bind(this));
-            } else {
-                this.featured_product_types = {};
-            }
-        },
-        getUsers: function getUsers() {
-            _apiService2.default.get({
-                path: 'users',
-                params: {
-                    withRole: 'admin'
-                }
-            }).then(function (data) {
-                this.users = data.data;
-            }.bind(this)).catch(function (error) {
-                this.settingsErrors = error;
-            }.bind(this));
-        },
-        submitForm: function submitForm(formName) {
-            this.loading = true;
-            this.settingsErrors = {};
-
-            _apiService2.default.persist('post', {
-                path: 'settings',
-                object: {
-                    settings: this.settings
-                }
-            }).then(function (data) {
-                this.loading = false;
-                this.settings = data.data;
-            }.bind(this)).catch(function (error) {
-                this.loading = false;
-                this.settingsErrors = error;
-            }.bind(this));
-        },
-        displayFilePicker: function displayFilePicker(ref) {
-            if (this.$refs[ref]) {
-                this.$refs[ref].openModal();
-            }
-        },
-        handleFilesChosen: function handleFilesChosen(data) {
-            this.$set(this.settings, data.id, data.files);
-        },
-        handleFilesUnChosen: function handleFilesUnChosen(data) {
-            this.$set(this.settings, data.id, data.files);
+      _apiService2.default.get({
+        path: 'settings'
+      }).then(function (data) {
+        this.loading = false;
+        this.settings = data.data;
+        this.setShopData(data.shop_data);
+        this.shopData = data.shop_data;
+        if (!this.settings['Admin Notifications']) {
+          this.settings['Admin Notifications'] = [];
         }
-    })
+
+        this.getFeaturedProductCollectionTypes();
+      }.bind(this)).catch(function (error) {
+        this.loading = false;
+        this.settingsErrors = error;
+      }.bind(this));
+    },
+    getCollections: function getCollections() {
+      _apiService2.default.get({
+        path: 'collections'
+      }).then(function (data) {
+        this.collections = data.data;
+      }.bind(this)).catch(function (error) {
+        this.settingsErrors = error;
+      }.bind(this));
+    },
+    getFeaturedProductCollectionTypes: function getFeaturedProductCollectionTypes() {
+      if (this.settings['Home Featured Product Collection']) {
+        _apiService2.default.get({
+          path: 'collections/' + this.settings['Home Featured Product Collection'] + '/types'
+        }).then(function (data) {
+          this.featured_product_types = data.data;
+        }.bind(this)).catch(function (error) {
+          this.settingsErrors = error;
+        }.bind(this));
+      } else {
+        this.featured_product_types = {};
+      }
+    },
+    getUsers: function getUsers() {
+      _apiService2.default.get({
+        path: 'users',
+        params: {
+          withRole: 'admin'
+        }
+      }).then(function (data) {
+        this.users = data.data;
+      }.bind(this)).catch(function (error) {
+        this.settingsErrors = error;
+      }.bind(this));
+    },
+    submitForm: function submitForm(formName) {
+      this.loading = true;
+      this.settingsErrors = {};
+
+      _apiService2.default.persist('post', {
+        path: 'settings',
+        object: {
+          settings: this.settings
+        }
+      }).then(function (data) {
+        this.loading = false;
+        this.settings = data.data;
+      }.bind(this)).catch(function (error) {
+        this.loading = false;
+        this.settingsErrors = error;
+      }.bind(this));
+    },
+    displayFilePicker: function displayFilePicker(ref) {
+      if (this.$refs[ref]) {
+        this.$refs[ref].openModal();
+      }
+    },
+    handleFilesChosen: function handleFilesChosen(data) {
+      this.$set(this.settings, data.id, data.files);
+    },
+    handleFilesUnChosen: function handleFilesUnChosen(data) {
+      this.$set(this.settings, data.id, data.files);
+    }
+  })
 
 };
 
@@ -781,8 +862,8 @@ var render = function() {
                 {
                   ref: "settingsForm",
                   attrs: {
-                    "label-position": "top",
                     model: _vm.settings,
+                    "label-position": "top",
                     "label-width": "120px"
                   },
                   nativeOn: {
@@ -1439,42 +1520,55 @@ var render = function() {
                                 _vm._l(_vm.shopData.site_images, function(
                                   image
                                 ) {
-                                  return _vm.settings
-                                    ? _c(
-                                        "el-form-item",
-                                        {
-                                          key: image,
-                                          attrs: { label: image, prop: image }
-                                        },
-                                        [
-                                          _vm.settings
-                                            ? _c("file-picker-modal", {
-                                                attrs: {
-                                                  "current-files":
-                                                    _vm.settings[image] &&
-                                                    _vm.settings[image][0]
-                                                      ? [_vm.settings[image][0]]
-                                                      : undefined,
-                                                  "show-btn": true,
-                                                  name: image,
-                                                  selectable: 1,
-                                                  "picker-id": image
-                                                },
-                                                on: {
-                                                  "update:files": function(
-                                                    val
-                                                  ) {
-                                                    return (_vm.settings[
-                                                      image
-                                                    ] = val)
-                                                  }
-                                                }
-                                              })
-                                            : _vm._e()
-                                        ],
-                                        1
-                                      )
-                                    : _vm._e()
+                                  return _c(
+                                    "div",
+                                    { key: image },
+                                    [
+                                      _vm.settings
+                                        ? _c(
+                                            "el-form-item",
+                                            {
+                                              attrs: {
+                                                label: image,
+                                                prop: image
+                                              }
+                                            },
+                                            [
+                                              _vm.settings
+                                                ? _c("file-picker-modal", {
+                                                    attrs: {
+                                                      "current-files":
+                                                        _vm.settings[image] &&
+                                                        _vm.settings[image][0]
+                                                          ? [
+                                                              _vm.settings[
+                                                                image
+                                                              ][0]
+                                                            ]
+                                                          : undefined,
+                                                      "show-btn": true,
+                                                      name: image,
+                                                      selectable: 1,
+                                                      "picker-id": image
+                                                    },
+                                                    on: {
+                                                      "update:files": function(
+                                                        val
+                                                      ) {
+                                                        return (_vm.settings[
+                                                          image
+                                                        ] = val)
+                                                      }
+                                                    }
+                                                  })
+                                                : _vm._e()
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
                                 })
                               )
                             ],
@@ -1496,53 +1590,62 @@ var render = function() {
                                 _vm._l(
                                   _vm.shopData.collection_mappings,
                                   function(mapping) {
-                                    return _vm.settings
-                                      ? _c(
-                                          "el-form-item",
-                                          {
-                                            key: mapping,
-                                            attrs: {
-                                              label: mapping,
-                                              prop: mapping
-                                            }
-                                          },
-                                          [
-                                            _c(
-                                              "el-select",
+                                    return _c(
+                                      "div",
+                                      { key: mapping },
+                                      [
+                                        _vm.settings
+                                          ? _c(
+                                              "el-form-item",
                                               {
-                                                staticClass: "config_select",
                                                 attrs: {
-                                                  placeholder: "Select"
-                                                },
-                                                model: {
-                                                  value: _vm.settings[mapping],
-                                                  callback: function($$v) {
-                                                    _vm.$set(
-                                                      _vm.settings,
-                                                      mapping,
-                                                      $$v
-                                                    )
-                                                  },
-                                                  expression:
-                                                    "settings[mapping]"
+                                                  label: mapping,
+                                                  prop: mapping
                                                 }
                                               },
-                                              _vm._l(_vm.collections, function(
-                                                type
-                                              ) {
-                                                return _c("el-option", {
-                                                  key: type.name,
-                                                  attrs: {
-                                                    label: type.name,
-                                                    value: type.id
-                                                  }
-                                                })
-                                              })
+                                              [
+                                                _c(
+                                                  "el-select",
+                                                  {
+                                                    staticClass:
+                                                      "config_select",
+                                                    attrs: {
+                                                      placeholder: "Select"
+                                                    },
+                                                    model: {
+                                                      value:
+                                                        _vm.settings[mapping],
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          _vm.settings,
+                                                          mapping,
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression:
+                                                        "settings[mapping]"
+                                                    }
+                                                  },
+                                                  _vm._l(
+                                                    _vm.collections,
+                                                    function(type) {
+                                                      return _c("el-option", {
+                                                        key: type.name,
+                                                        attrs: {
+                                                          label: type.name,
+                                                          value: type.id
+                                                        }
+                                                      })
+                                                    }
+                                                  )
+                                                )
+                                              ],
+                                              1
                                             )
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e()
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
                                   }
                                 )
                               )
@@ -1573,9 +1676,9 @@ var render = function() {
                                 "el-button",
                                 {
                                   attrs: {
+                                    loading: _vm.loading,
                                     plain: "",
-                                    type: "success",
-                                    loading: _vm.loading
+                                    type: "success"
                                   },
                                   on: {
                                     click: function($event) {

@@ -1,4 +1,4 @@
-webpackJsonp([41],{
+webpackJsonp([43],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/FileUploadComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,12 @@ webpackJsonp([41],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
 //
 //
 //
@@ -47,87 +51,87 @@ var replace = __webpack_require__("./node_modules/lodash.replace/index.js");
 
 exports.default = {
 
-    name: 'FileUploadComponent',
+  name: 'FileUploadComponent',
 
-    components: {},
+  components: {},
 
-    props: {
-        galleryId: {
-            type: Number,
-            required: true
-        },
-        fileList: {
-            type: Array,
-            required: false,
-            default: function _default() {
-                return [];
-            }
-        }
+  props: {
+    galleryId: {
+      type: Number,
+      required: true
     },
-
-    data: function data() {
-        return {
-            dialogVisible: false,
-            dialogImageUrl: ''
-        };
-    },
-
-
-    computed: {
-        uploadUrl: function uploadUrl() {
-            var BASE_URL = ecommerceConfig.site_url + '/' + ecommerceConfig.api_prefix + '/';
-            return BASE_URL + 'media/upload';
-        },
-        uploadHeaders: function uploadHeaders() {
-            return {
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': window.laravel_token
-            };
-        },
-        uploadData: function uploadData() {
-            return {
-                'gallery': this.galleryId
-            };
-        }
-    },
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ImageUploadComponent.vue: Mounted');
-    },
-
-
-    methods: {
-        handlePictureCardPreview: function handlePictureCardPreview(file) {
-            this.dialogImageUrl = file.url;
-            this.dialogVisible = true;
-        },
-        handleRemove: function handleRemove(file, fileList) {
-            console.log(file, fileList);
-        },
-        handleChange: function handleChange(file, filelist) {
-            if (file.status === 'ready' && file.percentage === 0) {
-                this.$emit('fileSelected', file);
-            }
-        },
-        handleSuccess: function handleSuccess(response, file, fileList) {
-            this.$emit('fileUploadSuccess', { response: response, file: file, fileList: fileList });
-        },
-        handleUploadError: function handleUploadError(err, file, fileList) {
-            var err_data = JSON.parse(replace(err, 'Error: ' + err.status + ' ', ''));
-
-            this.$emit('fileUploadError', {
-                error: {
-                    status: err.status,
-                    data: err_data
-                },
-                file: file,
-                gallery: this.galleryId
-            });
-        },
-        handleBeforeUpload: function handleBeforeUpload(file) {}
+    fileList: {
+      type: Array,
+      required: false,
+      default: function _default() {
+        return [];
+      }
     }
+  },
+
+  data: function data() {
+    return {
+      dialogVisible: false,
+      dialogImageUrl: ''
+    };
+  },
+
+
+  computed: {
+    uploadUrl: function uploadUrl() {
+      var BASE_URL = this.ecommerceConfig.site_url + '/' + this.ecommerceConfig.api_prefix + '/';
+      return BASE_URL + 'media/upload';
+    },
+    uploadHeaders: function uploadHeaders() {
+      return {
+        'Accept': 'application/json',
+        'X-CSRF-TOKEN': window.laravel_token
+      };
+    },
+    uploadData: function uploadData() {
+      return {
+        'gallery': this.galleryId
+      };
+    }
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ImageUploadComponent.vue: Mounted');
+  },
+
+
+  methods: {
+    handlePictureCardPreview: function handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    handleRemove: function handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handleChange: function handleChange(file, filelist) {
+      if (file.status === 'ready' && file.percentage === 0) {
+        this.$emit('fileSelected', file);
+      }
+    },
+    handleSuccess: function handleSuccess(response, file, fileList) {
+      this.$emit('fileUploadSuccess', { response: response, file: file, fileList: fileList });
+    },
+    handleUploadError: function handleUploadError(err, file, fileList) {
+      var errorData = JSON.parse(replace(err, 'Error: ' + err.status + ' ', ''));
+
+      this.$emit('fileUploadError', {
+        error: {
+          status: err.status,
+          data: errorData
+        },
+        file: file,
+        gallery: this.galleryId
+      });
+    },
+    handleBeforeUpload: function handleBeforeUpload(file) {}
+  }
 
 };
 
@@ -334,7 +338,6 @@ var render = function() {
         {
           staticClass: "file_upload_box",
           attrs: {
-            "list-type": "picture-card",
             "with-credentials": true,
             action: _vm.uploadUrl,
             "on-preview": _vm.handlePictureCardPreview,
@@ -348,7 +351,8 @@ var render = function() {
             headers: _vm.uploadHeaders,
             "on-change": _vm.handleChange,
             "before-upload": _vm.handleBeforeUpload,
-            "on-error": _vm.handleUploadError
+            "on-error": _vm.handleUploadError,
+            "list-type": "picture-card"
           }
         },
         [
@@ -372,7 +376,7 @@ var render = function() {
         },
         [
           _c("img", {
-            attrs: { width: "100%", src: _vm.dialogImageUrl, alt: "" }
+            attrs: { src: _vm.dialogImageUrl, width: "100%", alt: "" }
           })
         ]
       )

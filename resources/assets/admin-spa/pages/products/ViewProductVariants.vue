@@ -1,68 +1,80 @@
 <template lang="html">
-    <div>
+  <div>
 
-        <product-page-layout :product-id="productId"
-                             :current-page="'/products/' + productId + '/variants'"
-                             :request-with="['variants.media']"
-                             :form="{variants: {data: []}}"
-                             :request-includes="['slug']">
+    <product-page-layout
+      :product-id="productId"
+      :current-page="'/products/' + productId + '/variants'"
+      :request-with="['variants.media']"
+      :form="{variants: {data: []}}"
+      :request-includes="['slug']">
 
-            <template slot="product_page"
-                      slot-scope="props">
+      <template
+        slot="product_page"
+        slot-scope="props">
 
-                <template v-if="props.productForm.variants">
-                    <el-card class="product_variant_card box-card" v-for="variant in props.productForm.variants.data" :key="variant.id">
-                        <product-variant-component :model="variant" :variants="props.productForm.variants.data"/>
-                    </el-card>
-                </template>
+        <template v-if="props.productForm.variants">
+          <el-card
+            v-for="variant in props.productForm.variants.data"
+            :key="variant.id"
+            class="product_variant_card box-card">
+            <product-variant-component
+              :model="variant"
+              :variants="props.productForm.variants.data"/>
+          </el-card>
+        </template>
 
-                <el-button type="primary" class="add_variant_btn" icon="el-icon-plus" @click="props.productForm.variants.data.push({main_img: {}})" plain>Add Variant</el-button>
-            </template>
+        <el-button
+          type="primary"
+          class="add_variant_btn"
+          icon="el-icon-plus"
+          plain
+          @click="props.productForm.variants.data.push({main_img: {}})">Add Variant</el-button>
+      </template>
 
-        </product-page-layout>
+    </product-page-layout>
 
-    </div>
+  </div>
 </template>
 
 <script>
 
 export default {
 
-      name: 'ViewProductVariants',
+  name: 'ViewProductVariants',
 
-      components: {
-          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
-          ProductVariantComponent: () => import(/* webpackChunkName: "product-variant-component" */'components/ProductVariantComponent'),
-      },
+  components: {
+    ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
+    ProductVariantComponent: () => import(/* webpackChunkName: "product-variant-component" */'components/ProductVariantComponent')
+  },
 
-      props: {
-          productId: {
-              type: String,
-              required: true,
-          },
-      },
+  props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
 
-      data () {
-          return {
-              //
-          }
-      },
+  data () {
+    return {
+      //
+    }
+  },
 
-      computed: {
-          //
-      },
+  computed: {
+    //
+  },
 
-      watch: {
-          //
-      },
+  watch: {
+    //
+  },
 
-      mounted () {
-          console.log('ViewProductVariants.vue mounted');
-      },
+  mounted () {
+    console.log('ViewProductVariants.vue mounted')
+  },
 
-      methods: {
+  methods: {
 
-      },
+  }
 
 }
 </script>

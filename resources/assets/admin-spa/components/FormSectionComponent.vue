@@ -1,69 +1,81 @@
 <template lang="html">
-    <div>
+  <div>
 
-      <template v-if="model.fields">
-          <form-field-component v-for="field in model.fields.data" :model="field" :section="model" :form="form" :key="field.id"></form-field-component>
-      </template>
+    <template v-if="model.fields">
+      <form-field-component
+        v-for="field in orderedFields"
+        :model="field"
+        :section="model"
+        :form="form"
+        :key="field.id"/>
+    </template>
 
-      <el-button type="info" size="mini" icon="el-icon-plus" plain @click="addField">Add Field</el-button>
+    <el-button
+      type="info"
+      size="mini"
+      icon="el-icon-plus"
+      plain
+      @click="addField">Add Field</el-button>
 
-    </div>
+  </div>
 </template>
 
 <script>
+var orderBy = require('lodash.orderby')
 
 export default {
 
-      name: 'FormSectionComponent',
+  name: 'FormSectionComponent',
 
-      components: {
-          FormFieldComponent: () => import(/* webpackChunkName: "form-field-component" */'components/FormFieldComponent'),
-      },
+  components: {
+    FormFieldComponent: () => import(/* webpackChunkName: "form-field-component" */'components/FormFieldComponent')
+  },
 
-      props: {
-          form: {
-              type: Object,
-              required: true,
-          },
-          model: {
-              type: Object,
-              required: true,
-          },
-      },
+  props: {
+    form: {
+      type: Object,
+      required: true
+    },
+    model: {
+      type: Object,
+      required: true
+    }
+  },
 
-      data () {
-          return {
-              loading: false,
-          }
-      },
+  data () {
+    return {
+      loading: false
+    }
+  },
 
-      computed: {
+  computed: {
+    orderedFields () {
+      return this.model.fields.data.length >= 1 ? orderBy(this.model.fields.data, ['order'], ['asc']) : []
+    }
+  },
 
-      },
+  watch: {
 
-      watch: {
+  },
 
-      },
+  mounted () {
+    console.log('FormSectionComponent.vue Mounted')
+  },
 
-      mounted () {
-          console.log('FormSectionComponent.vue Mounted');
-      },
+  methods: {
 
-      methods: {
+    addField () {
+      this.model.fields.data.push({
+        rules: {
+          required: false
+        },
+        options: [
 
-          addField()
-          {
-              this.model.fields.data.push({
-                  rules: {
-                      required: false,
-                  },
-                  options: [
+        ]
+      })
+    }
 
-                  ]
-              });
-          },
-
-      }
+  }
 }
 </script>
 

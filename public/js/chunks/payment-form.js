@@ -1,4 +1,4 @@
-webpackJsonp([39],{
+webpackJsonp([40],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/PaymentForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,10 +7,83 @@ webpackJsonp([39],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -166,124 +239,125 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
 
-    name: 'PaymentForm',
+  name: 'PaymentForm',
 
-    components: {
-        CardPaymentForm: function CardPaymentForm() {
-            return __webpack_require__.e/* import() */(49).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
-        },
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        }
+  components: {
+    CardPaymentForm: function CardPaymentForm() {
+      return __webpack_require__.e/* import() */(50).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
     },
-
-    props: {
-        order: {
-            required: true,
-            type: Object
-        },
-        showNoneOption: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return false;
-            }
-        },
-        startingAmount: {
-            required: false,
-            type: [String, Number],
-            default: function _default() {
-                return null;
-            }
-        },
-        disableAmount: {
-            required: false,
-            type: Boolean,
-            default: function _default() {
-                return false;
-            }
-        },
-        onPaymentProcessed: {
-            required: false,
-            default: function _default() {
-                return function (payment) {};
-            }
-        }
-    },
-
-    data: function data() {
-        return {
-            activePaymentTab: 'card',
-            loading: false,
-            errors: {},
-            model: {
-                order: {}
-            }
-        };
-    },
-
-
-    computed: _extends({}, (0, _vuex.mapGetters)(['shopData'])),
-
-    watch: {
-        activePaymentTab: function activePaymentTab(val) {
-            this.errors = {};
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('PaymentForm.vue mounted!');
-
-        this.model.payment_amount = this.startingAmount;
-    },
-
-
-    methods: {
-        onTokenCreation: function onTokenCreation(error) {
-            if (!error) {
-                this.processPayment();
-            }
-        },
-        onCardFormSubmit: function onCardFormSubmit() {
-            this.$refs['paymentForm'].validate();
-        },
-        processPayment: function processPayment() {
-            var _this = this;
-
-            if (this.activePaymentTab !== 'none') {
-                this.$refs['paymentForm'].validate(function (valid, errors) {
-                    if (valid) {
-                        if (_this.activePaymentTab !== 'other') {
-                            _this.model.payment_method = _this.activePaymentTab;
-                        }
-                        _this.model.order.id = _this.order.id;
-                        _this.loading = true;
-                        _this.model.include = ['payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source'];
-                        _apiService2.default.persist('post', {
-                            path: 'payments',
-                            object: _this.model
-                        }).then(function (data) {
-                            _this.onPaymentProcessed(data.data);
-                            _this.loading = false;
-                            _this.model = {
-                                order: {}
-                            };
-                            _this.errors = {};
-                        }).catch(function (error) {
-                            _this.errors = error;
-                            _this.loading = false;
-                        });
-                    } else {
-                        _this.errors = {
-                            message: 'There are required feilds empty below.'
-                        };
-                    }
-                });
-            } else {
-                this.onPaymentProcessed({});
-            }
-        }
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     }
+  },
+
+  props: {
+    order: {
+      required: true,
+      type: Object
+    },
+    showNoneOption: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return false;
+      }
+    },
+    startingAmount: {
+      required: false,
+      type: [String, Number],
+      default: function _default() {
+        return null;
+      }
+    },
+    disableAmount: {
+      required: false,
+      type: Boolean,
+      default: function _default() {
+        return false;
+      }
+    },
+    onPaymentProcessed: {
+      required: false,
+      type: Function,
+      default: function _default() {
+        return function (payment) {};
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      activePaymentTab: 'card',
+      loading: false,
+      errors: {},
+      model: {
+        order: {}
+      }
+    };
+  },
+
+
+  computed: _extends({}, (0, _vuex.mapGetters)(['shopData'])),
+
+  watch: {
+    activePaymentTab: function activePaymentTab(val) {
+      this.errors = {};
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('PaymentForm.vue mounted!');
+
+    this.model.payment_amount = this.startingAmount;
+  },
+
+
+  methods: {
+    onTokenCreation: function onTokenCreation(error) {
+      if (!error) {
+        this.processPayment();
+      }
+    },
+    onCardFormSubmit: function onCardFormSubmit() {
+      this.$refs['paymentForm'].validate();
+    },
+    processPayment: function processPayment() {
+      var _this = this;
+
+      if (this.activePaymentTab !== 'none') {
+        this.$refs['paymentForm'].validate(function (valid, errors) {
+          if (valid) {
+            if (_this.activePaymentTab !== 'other') {
+              _this.model.payment_method = _this.activePaymentTab;
+            }
+            _this.model.order.id = _this.order.id;
+            _this.loading = true;
+            _this.model.include = ['payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source'];
+            _apiService2.default.persist('post', {
+              path: 'payments',
+              object: _this.model
+            }).then(function (data) {
+              _this.onPaymentProcessed(data.data);
+              _this.loading = false;
+              _this.model = {
+                order: {}
+              };
+              _this.errors = {};
+            }).catch(function (error) {
+              _this.errors = error;
+              _this.loading = false;
+            });
+          } else {
+            _this.errors = {
+              message: 'There are required feilds empty below.'
+            };
+          }
+        });
+      } else {
+        this.onPaymentProcessed({});
+      }
+    }
+  }
 
 };
 
@@ -297,7 +371,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -364,9 +438,6 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Amount",
-                                    size: "small",
-                                    prop: "payment_amount",
                                     disabled: _vm.disableAmount,
                                     rules: [
                                       {
@@ -374,7 +445,10 @@ var render = function() {
                                         message: "Payment amount is required.",
                                         trigger: "blur,change"
                                       }
-                                    ]
+                                    ],
+                                    label: "Payment Amount",
+                                    size: "small",
+                                    prop: "payment_amount"
                                   }
                                 },
                                 [
@@ -389,11 +463,11 @@ var render = function() {
                                       ),
                                       _c("el-input-number", {
                                         attrs: {
-                                          size: "small",
                                           autofocus: true,
                                           controls: false,
                                           min: 1,
                                           precision: 2,
+                                          size: "small",
                                           "controls-position": "right"
                                         },
                                         model: {
@@ -460,11 +534,11 @@ var render = function() {
                                             [
                                               _c("el-input", {
                                                 attrs: {
-                                                  type: "textarea",
                                                   autosize: {
                                                     minRows: 2,
                                                     maxRows: 4
-                                                  }
+                                                  },
+                                                  type: "textarea"
                                                 },
                                                 model: {
                                                   value:
@@ -518,9 +592,6 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Amount",
-                                    size: "small",
-                                    prop: "payment_amount",
                                     disabled: _vm.disableAmount,
                                     rules: [
                                       {
@@ -528,7 +599,10 @@ var render = function() {
                                         message: "Payment amount is required.",
                                         trigger: "blur,change"
                                       }
-                                    ]
+                                    ],
+                                    label: "Payment Amount",
+                                    size: "small",
+                                    prop: "payment_amount"
                                   }
                                 },
                                 [
@@ -543,11 +617,11 @@ var render = function() {
                                       ),
                                       _c("el-input-number", {
                                         attrs: {
-                                          size: "small",
                                           autofocus: true,
                                           controls: false,
                                           min: 1,
                                           precision: 2,
+                                          size: "small",
                                           "controls-position": "right"
                                         },
                                         model: {
@@ -579,9 +653,6 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Reference",
-                                    size: "small",
-                                    prop: "payment_reference",
                                     rules: [
                                       {
                                         required: true,
@@ -589,7 +660,10 @@ var render = function() {
                                           "Payment reference is required.",
                                         trigger: "blur,change"
                                       }
-                                    ]
+                                    ],
+                                    label: "Payment Reference",
+                                    size: "small",
+                                    prop: "payment_reference"
                                   }
                                 },
                                 [
@@ -642,8 +716,8 @@ var render = function() {
                                 [
                                   _c("el-input", {
                                     attrs: {
-                                      type: "textarea",
-                                      autosize: { minRows: 2, maxRows: 4 }
+                                      autosize: { minRows: 2, maxRows: 4 },
+                                      type: "textarea"
                                     },
                                     model: {
                                       value: _vm.model.payment_notes,
@@ -688,9 +762,6 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Amount",
-                                    size: "small",
-                                    prop: "payment_amount",
                                     disabled: _vm.disableAmount,
                                     rules: [
                                       {
@@ -698,7 +769,10 @@ var render = function() {
                                         message: "Payment amount is required.",
                                         trigger: "blur,change"
                                       }
-                                    ]
+                                    ],
+                                    label: "Payment Amount",
+                                    size: "small",
+                                    prop: "payment_amount"
                                   }
                                 },
                                 [
@@ -713,11 +787,11 @@ var render = function() {
                                       ),
                                       _c("el-input-number", {
                                         attrs: {
-                                          size: "small",
                                           autofocus: true,
                                           controls: false,
                                           min: 1,
                                           precision: 2,
+                                          size: "small",
                                           "controls-position": "right"
                                         },
                                         model: {
@@ -758,16 +832,16 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Method",
-                                    size: "small",
-                                    prop: "payment_method",
                                     rules: [
                                       {
                                         required: true,
                                         message: "Payment method is required.",
                                         trigger: "blur,change"
                                       }
-                                    ]
+                                    ],
+                                    label: "Payment Method",
+                                    size: "small",
+                                    prop: "payment_method"
                                   }
                                 },
                                 [
@@ -803,9 +877,6 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Reference",
-                                    size: "small",
-                                    prop: "payment_reference",
                                     rules: [
                                       {
                                         required: true,
@@ -813,7 +884,10 @@ var render = function() {
                                           "Payment reference is required.",
                                         trigger: "blur,change"
                                       }
-                                    ]
+                                    ],
+                                    label: "Payment Reference",
+                                    size: "small",
+                                    prop: "payment_reference"
                                   }
                                 },
                                 [
@@ -866,8 +940,8 @@ var render = function() {
                                 [
                                   _c("el-input", {
                                     attrs: {
-                                      type: "textarea",
-                                      autosize: { minRows: 2, maxRows: 4 }
+                                      autosize: { minRows: 2, maxRows: 4 },
+                                      type: "textarea"
                                     },
                                     model: {
                                       value: _vm.model.payment_notes,
@@ -915,7 +989,7 @@ var render = function() {
                           _c(
                             "el-button",
                             {
-                              attrs: { type: "success", loading: _vm.loading },
+                              attrs: { loading: _vm.loading, type: "success" },
                               on: { click: _vm.processPayment }
                             },
                             [_vm._v("Process Payment")]

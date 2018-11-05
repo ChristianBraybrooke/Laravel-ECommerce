@@ -7,8 +7,47 @@ webpackJsonp([37],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -90,96 +129,96 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'AddressForm',
+  name: 'AddressForm',
 
-    components: {},
+  components: {},
 
-    props: {
-        form: {
-            type: Object,
-            required: true
-        },
-        type: {
-            type: String,
-            required: false,
-            default: function _default() {
-                return '';
-            }
-        },
-        span: {
-            type: Number,
-            required: false,
-            default: function _default() {
-                return 8;
-            }
-        },
-        offset: {
-            type: Number,
-            required: false,
-            default: function _default() {
-                return 4;
-            }
-        },
-        required: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return true;
-            }
-        },
-        prop: {
-            type: String,
-            required: false,
-            default: function _default() {
-                return '';
-            }
-        },
-        prefixProp: {
-            type: Boolean,
-            required: false,
-            default: function _default() {
-                return false;
-            }
-        }
+  props: {
+    form: {
+      type: Object,
+      required: true
     },
-
-    data: function data() {
-        return {
-            loading: false
-        };
+    type: {
+      type: String,
+      required: false,
+      default: function _default() {
+        return '';
+      }
     },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('AddressForm.vue Mounted');
+    span: {
+      type: Number,
+      required: false,
+      default: function _default() {
+        return 8;
+      }
     },
-
-
-    methods: {
-
-        /**
-         * Format the input label name based on the type of address
-         *
-         * @param String name
-         * @return String
-         */
-        getFormatedLabel: function getFormatedLabel(name) {
-            var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-            if (this.type) {
-                if (prop) {
-                    return this.type + '_' + name;
-                }
-                return this.capitalize(this.type) + ' ' + name;
-            } else {
-                return name;
-            }
-        }
+    offset: {
+      type: Number,
+      required: false,
+      default: function _default() {
+        return 4;
+      }
+    },
+    required: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return true;
+      }
+    },
+    prop: {
+      type: String,
+      required: false,
+      default: function _default() {
+        return '';
+      }
+    },
+    prefixProp: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
     }
+  },
+
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('AddressForm.vue Mounted');
+  },
+
+
+  methods: {
+
+    /**
+           * Format the input label name based on the type of address
+           *
+           * @param String name
+           * @return String
+           */
+    getFormatedLabel: function getFormatedLabel(name) {
+      var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      if (this.type) {
+        if (prop) {
+          return this.type + '_' + name;
+        }
+        return this.capitalize(this.type) + ' ' + name;
+      } else {
+        return name;
+      }
+    }
+  }
 };
 
 /***/ }),
@@ -192,7 +231,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -232,13 +271,8 @@ var render = function() {
                 {
                   attrs: {
                     label: _vm.getFormatedLabel("Address Line 1"),
-                    size: "small",
                     prop: _vm.prop ? _vm.prop + ".line_1" : "line_1",
-                    rules: {
-                      required: _vm.required,
-                      message: "Line 1 is required",
-                      trigger: "blur"
-                    }
+                    size: "small"
                   }
                 },
                 [
@@ -283,8 +317,8 @@ var render = function() {
                 {
                   attrs: {
                     label: _vm.getFormatedLabel("Address Line 2"),
-                    size: "small",
-                    prop: _vm.prop ? _vm.prop + ".line_2" : "line_2"
+                    prop: _vm.prop ? _vm.prop + ".line_2" : "line_2",
+                    size: "small"
                   }
                 },
                 [
@@ -336,13 +370,8 @@ var render = function() {
                 {
                   attrs: {
                     label: _vm.getFormatedLabel("Address Town"),
-                    size: "small",
                     prop: _vm.prop ? _vm.prop + ".town" : "town",
-                    rules: {
-                      required: _vm.required,
-                      message: "Town is required",
-                      trigger: "blur"
-                    }
+                    size: "small"
                   }
                 },
                 [
@@ -387,13 +416,8 @@ var render = function() {
                 {
                   attrs: {
                     label: _vm.getFormatedLabel("Address County"),
-                    size: "small",
                     prop: _vm.prop ? _vm.prop + ".county" : "county",
-                    rules: {
-                      required: _vm.required,
-                      message: "County is required",
-                      trigger: "blur"
-                    }
+                    size: "small"
                   }
                 },
                 [
@@ -445,13 +469,8 @@ var render = function() {
                 {
                   attrs: {
                     label: _vm.getFormatedLabel("Address Postcode"),
-                    size: "small",
                     prop: _vm.prop ? _vm.prop + ".postcode" : "postcode",
-                    rules: {
-                      required: _vm.required,
-                      message: "Postcode is required",
-                      trigger: "blur"
-                    }
+                    size: "small"
                   }
                 },
                 [
@@ -497,13 +516,8 @@ var render = function() {
                 {
                   attrs: {
                     label: _vm.getFormatedLabel("Address Country"),
-                    size: "small",
                     prop: _vm.prop ? _vm.prop + ".country" : "country",
-                    rules: {
-                      required: _vm.required,
-                      message: "Country is required",
-                      trigger: "blur"
-                    }
+                    size: "small"
                   }
                 },
                 [

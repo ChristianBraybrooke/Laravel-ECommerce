@@ -1,4 +1,4 @@
-webpackJsonp([42],{
+webpackJsonp([44],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/PageLayout.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,11 @@ webpackJsonp([42],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
 //
 //
 //
@@ -37,48 +40,48 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'NewOrderStepOne',
+  name: 'NewOrderStepOne',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+    }
+  },
+
+  props: {
+    pages: {
+      required: true,
+      type: Array
     },
-
-    props: {
-        pages: {
-            required: true,
-            type: Array
-        },
-        currentPage: {
-            required: true,
-            type: String
-        },
-        pageErrors: {
-            required: false,
-            type: Object,
-            default: function _default() {
-                return {};
-            }
-        }
-
+    currentPage: {
+      required: true,
+      type: String
     },
-
-    data: function data() {
+    pageErrors: {
+      required: false,
+      type: Object,
+      default: function _default() {
         return {};
-    },
+      }
+    }
+
+  },
+
+  data: function data() {
+    return {};
+  },
 
 
-    computed: {},
+  computed: {},
 
-    watch: {},
+  watch: {},
 
-    mounted: function mounted() {
-        console.log('PageLayout.vue Mounted');
-    },
+  mounted: function mounted() {
+    console.log('PageLayout.vue Mounted');
+  },
 
 
-    methods: {}
+  methods: {}
 };
 
 /***/ }),
@@ -91,7 +94,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -117,16 +120,16 @@ var render = function() {
         {
           staticStyle: { "margin-bottom": "20px" },
           attrs: {
-            mode: "horizontal",
             "default-active": _vm.currentPage,
-            router: true
+            router: true,
+            mode: "horizontal"
           }
         },
         _vm._l(_vm.pages, function(page) {
           return _c(
             "el-menu-item",
             { key: page.index, attrs: { router: true, index: page.index } },
-            [_vm._v("\n\n            " + _vm._s(page.name) + "\n\n        ")]
+            [_vm._v("\n\n      " + _vm._s(page.name) + "\n\n    ")]
           )
         })
       ),

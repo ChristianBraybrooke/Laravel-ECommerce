@@ -1,4 +1,4 @@
-webpackJsonp([22],{
+webpackJsonp([20],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/menus/Menus.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,8 +7,15 @@ webpackJsonp([22],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -30,54 +37,54 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = {
 
-    name: 'Menus',
+  name: 'Menus',
 
-    components: {
-        DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
-        }
-    },
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+    }
+  },
 
-    props: {},
+  props: {},
 
-    data: function data() {
-        return {
-            menusCreateForm: {},
-            tableOptions: {
-                collumns: [{
-                    prop: 'id',
-                    sortable: true,
-                    label: 'ID',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'name',
-                    sortable: true,
-                    label: 'Name',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'created_at.human',
-                    sortable: true,
-                    label: 'Created',
-                    align: 'left',
-                    resizable: true
-                }]
-            }
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('Menus.vue Mounted');
-    },
+  data: function data() {
+    return {
+      menusCreateForm: {},
+      tableOptions: {
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name',
+          sortable: true,
+          label: 'Name',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'created_at.human',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }]
+      }
+    };
+  },
 
 
-    methods: {}
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('Menus.vue Mounted');
+  },
+
+
+  methods: {}
 };
 
 /***/ }),
@@ -90,7 +97,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -106,10 +113,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("data-table", {
     attrs: {
-      "type-name": "menu",
-      "bulk-update-url": "menus/bulk",
       "create-form": _vm.menusCreateForm,
-      "table-options": _vm.tableOptions
+      "table-options": _vm.tableOptions,
+      "type-name": "menu",
+      "bulk-update-url": "menus/bulk"
     },
     scopedSlots: _vm._u([
       {

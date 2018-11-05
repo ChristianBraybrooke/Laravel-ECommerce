@@ -1,322 +1,359 @@
 <template lang="html">
 
-    <div v-loading="loading">
+  <div v-loading="loading">
 
-        <div v-if="mergedTableOptions.showHeader">
+    <div v-if="mergedTableOptions.showHeader">
 
-            <el-row align="middle">
-              <el-col :sm="(mergedTableOptions.showNewBtn || mergedTableOptions.showRefreshBtn) ? 12 : 24" v-if="mergedTableOptions.showTitle"><h1 class="page_title">{{ capitalTypeNamePlural }}</h1></el-col>
-              <el-col v-if="mergedTableOptions.bulkOptions.length === 0 && !mergedTableOptions.showTitle && mergedTableOptions.showSearch" :sm="12">
-                  <el-input placeholder="Search"
-                            v-if="mergedTableOptions.showSearch"
-                            v-model="search">
-                            <i slot="prefix" class="el-input__icon el-icon-search"></i>
-                  </el-input>
-              </el-col>
-              <el-col :sm="mergedTableOptions.showTitle ? 12 : 24">
-                <slot name="createButton">
-                    <el-button v-if="mergedTableOptions.showNewBtn" @click="handleCreateData" class="create_btn" type="primary" plain>New {{ capitalTypeName }}</el-button>
-                </slot>
-                <el-button v-if="mergedTableOptions.showRefreshBtn" class="refresh_btn" @click="getData" type="info" plain><i class="el-icon-refresh"></i></el-button>
-              </el-col>
-            </el-row>
+      <el-row align="middle">
+        <el-col
+          v-if="mergedTableOptions.showTitle"
+          :sm="(mergedTableOptions.showNewBtn || mergedTableOptions.showRefreshBtn) ? 12 : 24"><h1 class="page_title">{{ capitalTypeNamePlural }}</h1></el-col>
+        <el-col
+          v-if="mergedTableOptions.bulkOptions.length === 0 && !mergedTableOptions.showTitle && mergedTableOptions.showSearch"
+          :sm="12">
+          <el-input
+            v-if="mergedTableOptions.showSearch"
+            v-model="search"
+            placeholder="Search">
+            <i
+              slot="prefix"
+              class="el-input__icon el-icon-search"/>
+          </el-input>
+        </el-col>
+        <el-col :sm="mergedTableOptions.showTitle ? 12 : 24">
+          <slot name="createButton">
+            <el-button
+              v-if="mergedTableOptions.showNewBtn"
+              class="create_btn"
+              type="primary"
+              plain
+              @click="handleCreateData">New {{ capitalTypeName }}</el-button>
+          </slot>
+          <el-button
+            v-if="mergedTableOptions.showRefreshBtn"
+            class="refresh_btn"
+            type="info"
+            plain
+            @click="getData"><i class="el-icon-refresh"/></el-button>
+        </el-col>
+      </el-row>
 
-            <hr class="page_hr" v-if="mergedTableOptions.showHeadHr">
-
-        </div>
-
-        <errors v-if="Object.keys(dataErrors).length > 0" :errors="dataErrors"></errors>
-
-        <el-row class="table_header" v-if="mergedTableOptions.bulkOptions.length >= 1 || mergedTableOptions.showSearch && mergedTableOptions.showTitle">
-            <el-col :lg="4" :md="8" :sm="12" :xs="16">
-              <el-select class="bulk_select" size="large" v-model="bulkOptionValue" placeholder="Bulk actions">
-                <el-option
-                  v-for="item in mergedTableOptions.bulkOptions"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-              </el-select>
-            </el-col>
-            <el-col :lg="2" :md="2" :sm="12" :xs="8">
-              <el-button @click="handleBulkOptionsApply" :disabled="bulkOptionsDisabled" class="apply_btn" type="success" plain v-if="mergedTableOptions.bulkOptions.length >= 1">Apply</el-button>
-            </el-col>
-            <el-col :lg="{span: 8, offset: 10}" :md="{span: 8, offset: 6}" class="table_search_col">
-                <el-input placeholder="Search"
-                          v-if="mergedTableOptions.showSearch"
-                          v-model="search">
-                          <i slot="prefix" class="el-input__icon el-icon-search"></i>
-                </el-input>
-            </el-col>
-        </el-row>
-
-        <el-row class="table_meta" type="flex">
-            <el-col>
-                <small>Showing: <strong>{{ Data ? Data.length : '' }}</strong> of <strong>{{ paginationMeta.total }}</strong></small>
-            </el-col>
-        </el-row>
-
-        <el-table
-            :data="Data"
-            :stripe="mergedTableOptions.stripe"
-            :border="mergedTableOptions.stripe"
-            :row-style="tableRowStyle"
-            :row-class-name="tableRowClass"
-            :cell-style="tableCellStyle"
-            style="width: 100%"
-            @selection-change="handleSelectionChange"
-            @sort-change="handleSortChange">
-
-            <el-table-column
-                type="selection"
-                width="55">
-            </el-table-column>
-
-            <template v-for="col in mergedTableOptions.collumns">
-                <el-table-column
-                    :prop="col.prop"
-                    :width="col.width"
-                    :formatter="col.formatter ? col.formatter : null"
-                    sortable
-                    :label="col.label">
-                </el-table-column>
-            </template>
-
-            <el-table-column
-                label="Actions">
-                <template slot-scope="scope">
-
-                    <slot name="actionButtons" :row="scope.row" :delete="deleteData" :edit-path-formated="editPathFormated">
-                        <router-link :to="{ path: editPathFormated + '/' + scope.row.id }" v-if="mergedTableOptions.viewText">
-                            <el-button
-                              size="mini"
-                              class="action_btn view_btn">{{ mergedTableOptions.viewText }}
-                            </el-button>
-                        </router-link>
-
-                        <el-button
-                          v-if="mergedTableOptions.deleteText"
-                          size="mini"
-                          type="danger"
-                          class="action_btn delete_btn"
-                          @click="deleteData(scope.row)">{{ mergedTableOptions.deleteText }}
-                        </el-button>
-                    </slot>
-                </template>
-            </el-table-column>
-        </el-table>
-
-        <el-row class="table_footer">
-            <el-col>
-                <el-pagination
-                    :page-sizes="perPages"
-                    :page-size="paginationMeta.perPage"
-                    layout="sizes, prev, pager, next"
-                    :total="paginationMeta.total"
-                    v-on:size-change="handleSizeChange"
-                    v-on:current-change="handlePageChange">
-                </el-pagination>
-            </el-col>
-        </el-row>
-
-
-        <el-dialog
-            :title="'Create New ' + capitalTypeName"
-            :visible.sync="dialogVisible"
-            :width="fullModal ? '100%' : '70%'"
-            :fullscreen="fullModal">
-
-            <errors v-if="Object.keys(createErrors).length > 0" :errors="createErrors"></errors>
-
-            <el-form label-position="top" :rules="createFormRules" ref="createForm" :model="createFormData" @submit.native.prevent @keyup.enter.native="createData">
-
-              <slot name="createForm" :model="createFormData">
-
-                <el-form-item :label="capitalTypeName + ' name'" prop="name">
-                  <el-input :autofocus="true" v-model="createFormData.name" auto-complete="off"></el-input>
-                </el-form-item>
-
-                <el-form-item prop="live">
-                  <el-checkbox-group v-model="createFormData.live">
-                    <el-checkbox label="Live" name="live"></el-checkbox>
-                  </el-checkbox-group>
-                </el-form-item>
-
-
-              </slot>
-
-            </el-form>
-
-            <span slot="footer" class="dialog-footer">
-              <el-button v-on:click="clearCreateData">Cancel</el-button>
-              <el-button type="primary" v-on:click="createData">Create</el-button>
-            </span>
-        </el-dialog>
-
-        <el-dialog
-            :title="queueModalTitle"
-            :visible.sync="queueDialogVisible"
-            :close-on-click-modal="false"
-            :show-close="false"
-            :close-on-press-escape="false"
-            width="30%">
-
-            <h1 style="text-align:center;"><i class="el-icon-loading"></i></h1>
-            <h3 style="text-align:center;">{{ queueModalMessage }}</h3>
-
-
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="queueDialogVisible = false">Close</el-button>
-              <el-button type="primary" :disabled="queueModalBtnDisabled" @click="handleQueueModalAction">{{ queueModalBtn }}</el-button>
-            </span>
-        </el-dialog>
+      <hr
+        v-if="mergedTableOptions.showHeadHr"
+        class="page_hr">
 
     </div>
 
+    <errors
+      v-if="Object.keys(dataErrors).length > 0"
+      :errors="dataErrors"/>
+
+    <el-row
+      v-if="mergedTableOptions.bulkOptions.length >= 1 || mergedTableOptions.showSearch && mergedTableOptions.showTitle"
+      class="table_header">
+      <el-col
+        :lg="4"
+        :md="8"
+        :sm="12"
+        :xs="16">
+        <el-select
+          v-model="bulkOptionValue"
+          class="bulk_select"
+          size="large"
+          placeholder="Bulk actions">
+          <el-option
+            v-for="item in mergedTableOptions.bulkOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"/>
+        </el-select>
+      </el-col>
+      <el-col
+        :lg="2"
+        :md="2"
+        :sm="12"
+        :xs="8">
+        <el-button
+          v-if="mergedTableOptions.bulkOptions.length >= 1"
+          :disabled="bulkOptionsDisabled"
+          class="apply_btn"
+          type="success"
+          plain
+          @click="handleBulkOptionsApply">Apply</el-button>
+      </el-col>
+      <el-col
+        :lg="{span: 8, offset: 10}"
+        :md="{span: 8, offset: 6}"
+        class="table_search_col">
+        <el-input
+          v-if="mergedTableOptions.showSearch"
+          v-model="search"
+          placeholder="Search">
+          <i
+            slot="prefix"
+            class="el-input__icon el-icon-search"/>
+        </el-input>
+      </el-col>
+    </el-row>
+
+    <el-row
+      class="table_meta"
+      type="flex">
+      <el-col>
+        <small>Showing: <strong>{{ Data ? Data.length : '' }}</strong> of <strong>{{ paginationMeta.total }}</strong></small>
+      </el-col>
+    </el-row>
+
+    <el-table
+      :data="Data"
+      :stripe="mergedTableOptions.stripe"
+      :border="mergedTableOptions.stripe"
+      :row-style="tableRowStyle"
+      :row-class-name="tableRowClass"
+      :cell-style="tableCellStyle"
+      style="width: 100%"
+      @selection-change="handleSelectionChange"
+      @sort-change="handleSortChange"
+      @header-dragend="tableColWidthChanged">
+
+      <el-table-column
+        type="selection"
+        width="55"/>
+
+      <el-table-column
+        v-for="(col, key) in mergedTableOptions.collumns"
+        :key="key"
+        :prop="col.prop"
+        :width="col.width"
+        :formatter="col.formatter ? col.formatter : null"
+        :label="col.label"
+        sortable/>
+
+      <el-table-column
+        label="Actions">
+        <template slot-scope="scope">
+
+          <slot
+            :row="scope.row"
+            :delete="deleteData"
+            :edit-path-formated="editPathFormated"
+            name="actionButtons">
+            <router-link
+              v-if="mergedTableOptions.viewText"
+              :to="{ path: editPathFormated + '/' + scope.row.id }">
+              <el-button
+                size="mini"
+                class="action_btn view_btn">{{ mergedTableOptions.viewText }}
+              </el-button>
+            </router-link>
+
+            <el-button
+              v-if="mergedTableOptions.deleteText"
+              size="mini"
+              type="danger"
+              class="action_btn delete_btn"
+              @click="deleteData(scope.row)">{{ mergedTableOptions.deleteText }}
+            </el-button>
+          </slot>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-row class="table_footer">
+      <el-col>
+        <el-pagination
+          :page-sizes="perPages"
+          :page-size="paginationMeta.perPage"
+          :total="paginationMeta.total"
+          layout="sizes, prev, pager, next"
+          @size-change="handleSizeChange"
+          @current-change="handlePageChange"/>
+      </el-col>
+    </el-row>
+
+    <el-dialog
+      :title="'Create New ' + capitalTypeName"
+      :visible.sync="dialogVisible"
+      :width="fullModal ? '100%' : '70%'"
+      :fullscreen="fullModal">
+
+      <errors
+        v-if="Object.keys(createErrors).length > 0"
+        :errors="createErrors"/>
+
+      <el-form
+        ref="createForm"
+        :rules="createFormRules"
+        :model="createFormData"
+        label-position="top"
+        @submit.native.prevent
+        @keyup.enter.native="createData">
+
+        <slot
+          :model="createFormData"
+          name="createForm">
+
+          <el-form-item
+            :label="capitalTypeName + ' name'"
+            prop="name">
+            <el-input
+              :autofocus="true"
+              v-model="createFormData.name"
+              auto-complete="off"/>
+          </el-form-item>
+
+          <el-form-item prop="live">
+            <el-checkbox-group v-model="createFormData.live">
+              <el-checkbox
+                label="Live"
+                name="live"/>
+            </el-checkbox-group>
+          </el-form-item>
+
+        </slot>
+
+      </el-form>
+
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button @click="clearCreateData">Cancel</el-button>
+        <el-button
+          type="primary"
+          @click="createData">Create</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog
+      :title="queueModalTitle"
+      :visible.sync="queueDialogVisible"
+      :close-on-click-modal="false"
+      :show-close="false"
+      :close-on-press-escape="false"
+      width="30%">
+
+      <h1 style="text-align:center;"><i class="el-icon-loading"/></h1>
+      <h3 style="text-align:center;">{{ queueModalMessage }}</h3>
+
+      <span
+        slot="footer"
+        class="dialog-footer">
+        <el-button @click="queueDialogVisible = false">Close</el-button>
+        <el-button
+          :disabled="queueModalBtnDisabled"
+          type="primary"
+          @click="handleQueueModalAction">{{ queueModalBtn }}</el-button>
+      </span>
+    </el-dialog>
+
+  </div>
 
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 import api from 'services/api-service.js'
-import router from '../router'
-import collumn_util from "utils/collumn"
-import order_util from 'utils/order'
-import TableCollumn from 'components/TableCollumn'
-import Payments from 'components/Payments'
-import OrderNotes from 'components/OrderNotes'
-
+import columnUtil from 'utils/collumn'
 var throttle = require('lodash.throttle')
-var bind = require('lodash.bind')
 var findKey = require('lodash.findkey')
-var forEach = require('lodash.foreach')
-var find = require('lodash.find')
-var findIndex = require('lodash.findindex')
 
 export default {
   name: 'DataTable',
 
   components: {
-    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-    OrderNotes,
-    Payments,
-    TableCollumn
-  },
-
-  mounted() {
-    console.log('DataTable.vue Mounted.');
-    Object.assign(this.mergedTableOptions,this.defaultTableOptions,this.tableOptions);
-    this.getData();
-
-    if(this.objectHas(ecommerceConfig, `aditional_cols.${this.tableOptions.typeNamePlural}`)) {
-        forEach(ecommerceConfig.aditional_cols[this.tableOptions.typeNamePlural], col => {
-            var col_index = findIndex(this.mergedTableOptions.collumns, ['prop', col.prop]);
-            col.formatter = function(row) { return <table-collumn col={col} row={row}/> };
-            if (col_index === -1) {
-                this.mergedTableOptions.collumns.push(col);
-            } else {
-                this.mergedTableOptions.collumns[col_index] = col;
-            }
-        })
-    }
-  },
-
-  watch: {
-    search: function (value) {
-        this.handleSearchChange(value);
-    }
+    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
   },
 
   props: {
-      typeName: {
-          type: String,
-          required: true,
-      },
-      typeNamePlural: {
-          type: String,
-          required: false,
-          default () {
-              return this.typeName + 's'
-          }
-      },
-      requestWith: {
-          type: [String, Array],
-          required: false,
-          default () {
+    typeName: {
+      type: String,
+      required: true
+    },
+    typeNamePlural: {
+      type: String,
+      required: false,
+      default () {
+        return this.typeName + 's'
+      }
+    },
+    requestWith: {
+      type: [String, Array],
+      required: false,
+      default () {
 
-          }
-      },
-      requestIncludes: {
-          type: [String, Array],
-          required: false,
-          default () {
-              return [];
-          }
-      },
-      baseUrl: {
-          type: String,
-          required: false,
-          default () {
-              return this.typeNamePlural
-          }
-      },
-      bulkUpdateUrl: {
-          type: String,
-          required: false,
-          default () {
+      }
+    },
+    requestIncludes: {
+      type: [String, Array],
+      required: false,
+      default () {
+        return []
+      }
+    },
+    baseUrl: {
+      type: String,
+      required: false,
+      default () {
+        return this.typeNamePlural
+      }
+    },
+    bulkUpdateUrl: {
+      type: String,
+      required: false,
+      default () {
 
-          }
-      },
-      editPath: {
-          type: String,
-          required: false,
-          default () {
-              return null
-          }
-      },
-      fullModal: {
-          type: Boolean,
-          required: false,
-          default () {
-              return false;
-          }
-      },
-      tableOptions: {
-          type: Object,
-          required: false,
-          default() {
-              return {};
-          }
-      },
-      withParams: {
-          type: Object,
-          required: false,
-          default() {
-              return {};
-          }
-      },
-      createForm: {
-          type: Object,
-          required: false,
-          default() {
-              return {};
-          }
-      },
-      createFormRules: {
-          type: Object,
-          required: false,
-          default() {
-              return {
-                  name: [
-                    { required: true, message: this.typeName + ' name is required', trigger: 'blur' },
-                    { min: 3, max: 200, message: this.typeName + ' length should be more than 3 characters', trigger: 'blur' }
-                  ],
-              }
-          }
-      },
+      }
+    },
+    editPath: {
+      type: String,
+      required: false,
+      default () {
+        return null
+      }
+    },
+    fullModal: {
+      type: Boolean,
+      required: false,
+      default () {
+        return false
+      }
+    },
+    tableOptions: {
+      type: Object,
+      required: false,
+      default () {
+        return {}
+      }
+    },
+    withParams: {
+      type: Object,
+      required: false,
+      default () {
+        return {}
+      }
+    },
+    createForm: {
+      type: Object,
+      required: false,
+      default () {
+        return {}
+      }
+    },
+    createFormRules: {
+      type: Object,
+      required: false,
+      default () {
+        return {
+          name: [
+            { required: true, message: this.typeName + ' name is required', trigger: 'blur' },
+            { min: 3, max: 200, message: this.typeName + ' length should be more than 3 characters', trigger: 'blur' }
+          ]
+        }
+      }
+    }
   },
 
-  data() {
+  data () {
     return {
       Data: [],
       createFormData: this.createForm,
@@ -325,69 +362,69 @@ export default {
         perPage: 0,
         orderBy: 'id',
         ascending: 0,
-        currentPage: 1,
+        currentPage: 1
       },
       mergedTableOptions: {
-          bulkOptions: []
+        bulkOptions: []
       },
       defaultTableOptions: {
-          border: true,
-          stripe: true,
-          showSearch: true,
-          showHeader: true,
-          showNewBtn: true,
-          showRefreshBtn: true,
-          showHeadHr: true,
-          showTitle: true,
-          viewText: 'View',
-          deleteText: 'Delete',
-          collumns: [
-              {
-                  prop: 'id',
-                  sortable: true,
-                  label: 'ID',
-                  align: 'left',
-                  resizable: false
-              },
-              {
-                  prop: 'name',
-                  sortable: true,
-                  label: 'Name',
-                  align: 'left',
-                  resizable: false
-              },
-              {
-                  prop: 'created_at.human',
-                  sortable: true,
-                  label: 'Created',
-                  align: 'left',
-                  resizable: false
-              },
-              {
-                  prop: 'live_at.live',
-                  sortable: false,
-                  label: 'Live',
-                  align: 'left',
-                  formatter: function(row, column, cellValue) {
-                      return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>;
-                  },
-                  resizable: true
-              },
-          ],
-          bulkOptions: [
-              {
-                value: 'delete',
-                label: 'Delete'
-              },
-              {
-                value: 'draft',
-                label: 'Mark Draft'
-              },
-              {
-                value: 'live',
-                label: 'Mark Live'
-              },
-          ],
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [
+          {
+            prop: 'id',
+            sortable: true,
+            label: 'ID',
+            align: 'left',
+            resizable: false
+          },
+          {
+            prop: 'name',
+            sortable: true,
+            label: 'Name',
+            align: 'left',
+            resizable: false
+          },
+          {
+            prop: 'created_at.human',
+            sortable: true,
+            label: 'Created',
+            align: 'left',
+            resizable: false
+          },
+          {
+            prop: 'live_at.live',
+            sortable: false,
+            label: 'Live',
+            align: 'left',
+            formatter: function (row, column, cellValue) {
+              return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>
+            },
+            resizable: true
+          }
+        ],
+        bulkOptions: [
+          {
+            value: 'delete',
+            label: 'Delete'
+          },
+          {
+            value: 'draft',
+            label: 'Mark Draft'
+          },
+          {
+            value: 'live',
+            label: 'Mark Live'
+          }
+        ]
       },
       shopData: {},
       queueModalBtnDisabled: true,
@@ -398,91 +435,102 @@ export default {
       dataErrors: {},
       loading: false,
       dialogVisible: false,
-      createErrors: {},
+      createErrors: {}
     }
   },
 
   computed: {
 
-      perPages()
-      {
-          var total = this.paginationMeta.total;
-          return  (total <= 15 ) ? [15] : (total <= 30 ) ? [15, 30] : (total <= 100 ) ?  [15, 30, 100] : [15, 30, 100, 250];
-      },
+    perPages () {
+      var total = this.paginationMeta.total
+      return (total <= 15) ? [15] : (total <= 30) ? [15, 30] : (total <= 100) ? [15, 30, 100] : [15, 30, 100, 250]
+    },
 
-      bulkOptionsDisabled()
-      {
-          if (this.bulkSelected.length >= 1 && this.bulkOptionValue) {
-            return false;
-          }
-          return true
-      },
+    bulkOptionsDisabled () {
+      if (this.bulkSelected.length >= 1 && this.bulkOptionValue) {
+        return false
+      }
+      return true
+    },
 
-      editPathFormated()
-      {
-          return this.editPath ? this.editPath : this.typeNamePlural;
-      },
+    editPathFormated () {
+      return this.editPath ? this.editPath : this.typeNamePlural
+    },
 
-      queueModalTitle()
-      {
-          if(this.bulkOptionValue) {
-              // var str = this.bulkOptionValue;
-              // str = str.replace(/_/g, ' ');
-              // return this.capitalize(str);
-          }
+    queueModalTitle () {
+      if (this.bulkOptionValue) {
+        // var str = this.bulkOptionValue;
+        // str = str.replace(/_/g, ' ');
+        // return this.capitalize(str);
+      }
 
-          return '';
-      },
+      return ''
+    },
 
-      queueModalMessage()
-      {
-          var key = findKey(this.mergedTableOptions.bulkOptions, ['value', this.bulkOptionValue]);
+    queueModalMessage () {
+      var key = findKey(this.mergedTableOptions.bulkOptions, ['value', this.bulkOptionValue])
 
-          if (key) {
-            return this.mergedTableOptions.bulkOptions[key].queue_message;
-          }
+      if (key) {
+        return this.mergedTableOptions.bulkOptions[key].queue_message
+      }
 
-          return '';
+      return ''
+    },
 
-      },
+    queueModalBtn () {
+      var key = findKey(this.mergedTableOptions.bulkOptions, ['value', this.bulkOptionValue])
 
-      queueModalBtn()
-      {
-          var key = findKey(this.mergedTableOptions.bulkOptions, ['value', this.bulkOptionValue]);
+      if (key) {
+        return this.mergedTableOptions.bulkOptions[key].queue_action
+      }
 
-          if (key) {
-            return this.mergedTableOptions.bulkOptions[key].queue_action;
-          }
+      return ''
+    },
 
-          return '';
+    capitalTypeName () {
+      return this.capitalize(this.typeName)
+    },
 
-      },
+    capitalTypeNamePlural () {
+      return this.capitalize(this.typeNamePlural)
+    },
 
-      capitalTypeName()
-      {
-          return this.capitalize(this.typeName);
-      },
+    colourRules () {
+      return this.objectHas(this.ecommerceConfig, `col_colours.${this.typeNamePlural}`) ? this.ecommerceConfig.col_colours[this.typeNamePlural] : []
+    },
 
-      capitalTypeNamePlural()
-      {
-          return this.capitalize(this.typeNamePlural)
-      },
+    additonalCols () {
+      return this.objectHas(this.ecommerceConfig, `aditional_cols.${this.typeNamePlural}`) ? this.ecommerceConfig.aditional_cols[this.typeNamePlural] : []
+    },
 
-      colourRules()
-      {
-          return this.objectHas(ecommerceConfig, `col_colours.${this.typeNamePlural}`) ? ecommerceConfig.col_colours[this.typeNamePlural] : [];
-      },
+    tableDataFromStorage () {
+      var tableData = window.localStorage.getItem('commerceTableData')
+      return tableData ? JSON.parse(tableData) : {}
+    },
 
-      additonalCols()
-      {
-          return this.objectHas(ecommerceConfig, `aditional_cols.${this.typeNamePlural}`) ? ecommerceConfig.aditional_cols[this.typeNamePlural] : [];
-      },
+    thisTableDataFromStorage () {
+      var newObj = {}
+      newObj[this.typeName] = {}
+      return this.tableDataFromStorage[this.typeName] ? JSON.parse(this.tableDataFromStorage.typeName) : newObj
+    }
+  },
+
+  watch: {
+    search: function (value) {
+      this.handleSearchChange(value)
+    }
+  },
+
+  mounted () {
+    console.log('DataTable.vue Mounted.')
+    Object.assign(this.mergedTableOptions, this.defaultTableOptions, this.tableOptions)
+    this.getData()
   },
 
   methods: {
 
     ...mapActions([
-        'setShopData',
+      'setShopData'
     ]),
 
     /**
@@ -490,40 +538,39 @@ export default {
      *
      * @return void
      */
-    getData: throttle(function ()
-    {
-        this.loading = true;
-        this.dataErrors = {};
+    getData: throttle(function () {
+      this.loading = true
+      this.dataErrors = {}
 
-        const params = Object.assign(this.withParams, {
-            with: this.requestWith,
-            include: this.requestIncludes,
-            limit: this.paginationMeta.perPage,
-            ascending: this.paginationMeta.ascending,
-            orderBy: this.paginationMeta.orderBy,
-            page: this.paginationMeta.currentPage,
-            search: this.search
-        });
+      const params = Object.assign(this.withParams, {
+        with: this.requestWith,
+        include: this.requestIncludes,
+        limit: this.paginationMeta.perPage,
+        ascending: this.paginationMeta.ascending,
+        orderBy: this.paginationMeta.orderBy,
+        page: this.paginationMeta.currentPage,
+        search: this.search
+      })
 
-        api.get({
-          path: this.baseUrl ? this.baseUrl : this.typeName,
-          params: params
-        })
+      api.get({
+        path: this.baseUrl ? this.baseUrl : this.typeName,
+        params: params
+      })
         .then(function (data) {
-            this.Data = data.data;
-            this.setShopData(data.shop_data);
-            this.shopData = data.shop_data;
-            this.paginationMeta = {
-                total: data.meta.total,
-                perPage: parseInt(data.meta.per_page),
-                currentPage: data.meta.current_page
-            };
-            this.loading = false;
+          this.Data = data.data
+          this.setShopData(data.shop_data)
+          this.shopData = data.shop_data
+          this.paginationMeta = {
+            total: data.meta.total,
+            perPage: parseInt(data.meta.per_page),
+            currentPage: data.meta.current_page
+          }
+          this.loading = false
         }.bind(this))
         .catch(function (errors) {
-            this.dataErrors = errors;
-            this.loading = false;
-        }.bind(this));
+          this.dataErrors = errors
+          this.loading = false
+        }.bind(this))
     }, 1000),
 
     /**
@@ -533,36 +580,34 @@ export default {
      * @param Bool modal
      * @return void
      */
-    updateData(object, modal)
-    {
-        this.loading = true;
+    updateData (object, modal) {
+      this.loading = true
 
-        api.persist('post', {
-            path: this.bulkUpdateUrl ? this.bulkUpdateUrl : this.typeName + '/bulk',
-            object: {
-              data: object,
-              action: this.bulkOptionValue,
-            }
-        })
+      api.persist('post', {
+        path: this.bulkUpdateUrl ? this.bulkUpdateUrl : this.typeName + '/bulk',
+        object: {
+          data: object,
+          action: this.bulkOptionValue
+        }
+      })
         .then(function (data) {
-            this.getData();
+          this.getData()
 
-            this.$message({
-              message: data.message,
-              type: 'success',
-              showClose: true,
-            });
+          this.$message({
+            message: data.message,
+            type: 'success',
+            showClose: true
+          })
 
-            if (modal) {
-                this.queueDialogVisible = true;
-            }
+          if (modal) {
+            this.queueDialogVisible = true
+          }
 
-            this.loading = false;
-
+          this.loading = false
         }.bind(this))
         .catch(function (errors) {
-            this.dataErrors = errors;
-            this.loading = false;
+          this.dataErrors = errors
+          this.loading = false
         }.bind(this))
     },
 
@@ -573,28 +618,25 @@ export default {
      * @param Object row
      * @return void
      */
-    deleteData(row)
-    {
-        this.dataErrors = {};
+    deleteData (row) {
+      this.dataErrors = {}
 
-        api.delete({
-          path: (this.baseUrl ? this.baseUrl : this.typeName) + '/' + row.id,
-        })
+      api.delete({
+        path: (this.baseUrl ? this.baseUrl : this.typeName) + '/' + row.id
+      })
         .then(function () {
-            this.Data.splice(this.Data.indexOf(row), 1);
-            this.dataErrors = {};
-            this.paginationMeta.total = this.paginationMeta.total - 1;
+          this.Data.splice(this.Data.indexOf(row), 1)
+          this.dataErrors = {}
+          this.paginationMeta.total = this.paginationMeta.total - 1
 
-            this.$message({
-              message: 'Successfully deleted '+ this.typeName +': ' + row.name,
-              type: 'success',
-              showClose: true,
-            });
-
-
+          this.$message({
+            message: 'Successfully deleted ' + this.typeName + ': ' + row.name,
+            type: 'success',
+            showClose: true
+          })
         }.bind(this))
         .catch(function (errors) {
-            this.dataErrors = errors;
+          this.dataErrors = errors
         }.bind(this))
     },
 
@@ -603,11 +645,10 @@ export default {
      *
      * @return void
      */
-    clearCreateData()
-    {
-        this.dialogVisible = false;
-        this.createErrors = {};
-        this.$refs.createForm.resetFields();
+    clearCreateData () {
+      this.dialogVisible = false
+      this.createErrors = {}
+      this.$refs.createForm.resetFields()
     },
 
     /**
@@ -615,38 +656,34 @@ export default {
      *
      * @return void
      */
-    createData()
-    {
-        this.$refs.createForm.validate((valid) => {
-          if (valid) {
+    createData () {
+      this.$refs.createForm.validate((valid) => {
+        if (valid) {
+          this.createFormData.with = this.requestWith
+          this.createFormData.include = this.requestIncludes
 
-            this.createFormData.with = this.requestWith;
-            this.createFormData.include = this.requestIncludes;
-
-            api.persist('post', {
-              path: this.baseUrl ? this.baseUrl : this.typeName,
-              object: this.createFormData
-            })
+          api.persist('post', {
+            path: this.baseUrl ? this.baseUrl : this.typeName,
+            object: this.createFormData
+          })
             .then(function (data) {
-                this.addModel(data);
-                this.dialogVisible = false;
-                this.clearCreateData();
+              this.addModel(data)
+              this.dialogVisible = false
+              this.clearCreateData()
 
-                this.$message({
-                  message: 'Successfully created '+ this.typeName +': ' + data.data.name,
-                  type: 'success',
-                  showClose: true,
-                });
-
+              this.$message({
+                message: 'Successfully created ' + this.typeName + ': ' + data.data.name,
+                type: 'success',
+                showClose: true
+              })
             }.bind(this))
             .catch(function (errors) {
-                this.createErrors = errors;
+              this.createErrors = errors
             }.bind(this))
+        } else {
 
-          } else {
-
-          }
-        });
+        }
+      })
     },
 
     /**
@@ -655,17 +692,16 @@ export default {
      * @param Object data
      * @return void
      */
-    addModel(data)
-    {
-      this.Data.unshift(data.data);
+    addModel (data) {
+      this.Data.unshift(data.data)
 
       if (this.Data) {
-          if (this.Data.length > this.paginationMeta.perPage) {
-            this.Data.splice(this.paginationMeta.perPage);
-          }
+        if (this.Data.length > this.paginationMeta.perPage) {
+          this.Data.splice(this.paginationMeta.perPage)
+        }
       }
 
-      this.paginationMeta.total = this.paginationMeta.total + 1;
+      this.paginationMeta.total = this.paginationMeta.total + 1
     },
 
     /**
@@ -674,9 +710,8 @@ export default {
      * @param Object evt
      * @return void
      */
-    handleSelectionChange(evt)
-    {
-        this.bulkSelected = evt;
+    handleSelectionChange (evt) {
+      this.bulkSelected = evt
     },
 
     /**
@@ -685,11 +720,10 @@ export default {
      * @param Int perPage
      * @return void
      */
-    handleSizeChange(perPage)
-    {
-        this.paginationMeta.perPage = perPage;
+    handleSizeChange (perPage) {
+      this.paginationMeta.perPage = perPage
 
-        this.getData();
+      this.getData()
     },
 
     /**
@@ -698,11 +732,10 @@ export default {
      * @param Int page
      * @return void
      */
-    handlePageChange(page)
-    {
-        this.paginationMeta.currentPage = page;
+    handlePageChange (page) {
+      this.paginationMeta.currentPage = page
 
-        this.getData();
+      this.getData()
     },
 
     /**
@@ -711,13 +744,12 @@ export default {
      * @param Object change
      * @return void
      */
-    handleSortChange(change)
-    {
-        console.log(change);
-        this.paginationMeta.ascending = change.order === 'ascending' ? 1 : 0;
-        this.paginationMeta.orderBy = change.prop ? change.prop : 'id';
+    handleSortChange (change) {
+      console.log(change)
+      this.paginationMeta.ascending = change.order === 'ascending' ? 1 : 0
+      this.paginationMeta.orderBy = change.prop ? change.prop : 'id'
 
-        this.getData();
+      this.getData()
     },
 
     /**
@@ -726,9 +758,8 @@ export default {
      * @param String value
      * @return void
      */
-    handleSearchChange(value)
-    {
-        this.getData();
+    handleSearchChange (value) {
+      this.getData()
     },
 
     /**
@@ -736,15 +767,14 @@ export default {
      *
      * @return void
      */
-    handleBulkOptionsApply()
-    {
-        var modal = false;
+    handleBulkOptionsApply () {
+      var modal = false
 
-        if (this.bulkOptionValue.action) {
-            this.bulkOptionValue.action(this.Data, this.shopData, this.bulkSelected);
-        } else {
-            this.updateData(this.bulkSelected, modal);
-        }
+      if (this.bulkOptionValue.action) {
+        this.bulkOptionValue.action(this.Data, this.shopData, this.bulkSelected)
+      } else {
+        this.updateData(this.bulkSelected, modal)
+      }
     },
 
     /**
@@ -752,8 +782,7 @@ export default {
      *
      * @return void
      */
-    handleQueueModalAction()
-    {
+    handleQueueModalAction () {
 
     },
 
@@ -762,33 +791,62 @@ export default {
      *
      * @return void
      */
-    handleCreateData()
-    {
-        this.dialogVisible = true;
-        this.$emit('createNew', this.Data);
+    handleCreateData () {
+      this.dialogVisible = true
+      this.$emit('createNew', this.Data)
     },
 
-    tableRowStyle({row, rowIndex})
-    {
-        var row_colour = collumn_util.getRowColour(this.colourRules, row);
+    tableRowStyle ({ row, rowIndex }) {
+      var rowColour = columnUtil.getRowColour(this.colourRules, row)
 
-        return `background: ${row_colour}!important`;
+      return `background: ${rowColour}!important`
     },
 
-    tableCellStyle({row, column, rowIndex, columnIndex})
-    {
-        var colour = collumn_util.getColColour(this.additonalCols, column, row);
-        return colour ? `background: ${colour}!important` : null;
+    tableCellStyle ({ row, column, rowIndex, columnIndex }) {
+      var colour = columnUtil.getColColour(this.additonalCols, column, row)
+      return colour ? `background: ${colour}!important` : null
     },
 
-    tableRowClass({row, rowIndex})
-    {
-        var row_has_colour = collumn_util.getRowColour(this.colourRules, row);
+    tableRowClass ({ row, rowIndex }) {
+      var rowHasColour = columnUtil.getRowColour(this.colourRules, row)
 
-        if (!row_has_colour) {
-            return ''
-        }
-        return 'row_has_colour';
+      if (!rowHasColour) {
+        return ''
+      }
+      return 'rowHasColour'
+    },
+
+    tableColWidthChanged (newWidth, oldWidth, column, event) {
+      var tableData = this.tableDataFromStorage
+      var thisTableData = this.thisTableDataFromStorage
+
+
+      var newWidthColumn = {}
+      newWidthColumn[column.property] = newWidth
+
+
+      if (!thisTableData.columns) {
+        thisTableData.columns = {}
+      }
+
+      thisTableData.columns = {
+        ...cols,
+        ...newWidthColumn
+      }
+
+
+      var tableData = {
+        ...tableData,
+        ...thisTableData
+      }
+
+      window.localStorage.setItem('commerceTableData', JSON.stringify(tableData))
+    },
+
+    getColumnWidth (column) {
+      var tableData = this.tableDataFromStorage
+
+      // if (tableData[this.typeName])
     }
 
   }
@@ -796,14 +854,22 @@ export default {
 </script>
 
 <style lang="css">
-.el-table--striped .el-table__body tr.row_has_colour.el-table__row--striped td {
+.el-table--striped .el-table__body tr.rowHasColour.el-table__row--striped td {
     background-color: initial!important;
 }
-.el-table--enable-row-hover .el-table__body tr.row_has_colour:hover > td {
+.el-table--enable-row-hover .el-table__body tr.rowHasColour:hover > td {
     background-color: initial!important;
 }
 .table_col_list {
     font-size: 12px;
     line-height: 1.2;
+
+    margin-block-start: 0;
+    padding-inline-start: 0px;
+}
+.table_col_list li:not(:first-child) {
+    border-top: dashed 0.5px;
+    padding-top: 5px;
+    margin-top: 5px;
 }
 </style>

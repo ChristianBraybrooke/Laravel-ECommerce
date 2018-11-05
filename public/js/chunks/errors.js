@@ -7,8 +7,11 @@ webpackJsonp([31],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
 //
 //
 //
@@ -36,19 +39,18 @@ Object.defineProperty(exports, "__esModule", {
 //
 
 exports.default = {
-    name: 'Errors',
+  name: 'Errors',
 
-    mounted: function mounted() {
-        console.log('Errors: Mounted');
-    },
-
-
-    props: {
-        errors: {
-            type: Object,
-            required: true
-        }
+  props: {
+    errors: {
+      type: Object,
+      required: true
     }
+  },
+
+  mounted: function mounted() {
+    console.log('Errors: Mounted');
+  }
 };
 
 /***/ }),
@@ -91,12 +93,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm._l(_vm.errors.errors, function(error) {
-            return _vm.errors.errors &&
-              Object.keys(_vm.errors.errors).length > 0
-              ? _c(
+          _vm.errors.errors && Object.keys(_vm.errors.errors).length > 0
+            ? _vm._l(_vm.errors.errors, function(error, key) {
+                return _c(
                   "div",
-                  { staticClass: "error_messages" },
+                  { key: key, staticClass: "error_messages" },
                   [
                     _c("el-alert", {
                       attrs: {
@@ -108,8 +109,8 @@ var render = function() {
                   ],
                   1
                 )
-              : _vm._e()
-          })
+              })
+            : _vm._e()
         ],
         2
       )

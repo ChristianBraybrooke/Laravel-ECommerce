@@ -1,110 +1,132 @@
 <template lang="html">
-    <div>
+  <div>
 
-        <product-page-layout :product-id="productId"
-                             :current-page="'/products/' + productId + '/ordering'"
-                             :form-loaded="formLoaded"
-                             :request-with="['orderForm', 'frontendForm']">
+    <product-page-layout
+      :product-id="productId"
+      :current-page="'/products/' + productId + '/ordering'"
+      :form-loaded="formLoaded"
+      :request-with="['orderForm', 'frontendForm']">
 
-            <template slot="product_page"
-                      slot-scope="props">
+      <template
+        slot="product_page"
+        slot-scope="props">
 
+        <el-row :gutter="20">
+          <el-col
+            :md="6"
+            :sm="12"
+            :xs="24">
+            <el-form-item
+              v-if="props.productForm.order_form"
+              label="Order Form"
+              prop="order_form.id"
+              size="small">
+              <el-select
+                v-model="props.productForm.order_form.id"
+                class="collection_type_select"
+                filterable
+                placeholder="Select">
+                <el-option
+                  v-for="form in forms"
+                  :key="form.id"
+                  :label="form.name"
+                  :value="form.id"/>
+              </el-select>
+            </el-form-item>
+          </el-col>
 
-                <el-row :gutter="20">
-                    <el-col :md="6" :sm="12" :xs="24">
-                        <el-form-item label="Order Form" prop="order_form.id" size="small" v-if="props.productForm.order_form">
-                            <el-select class="collection_type_select" v-model="props.productForm.order_form.id" filterable placeholder="Select">
-                                <el-option v-for="form in forms"
-                                           :key="form.id"
-                                           :label="form.name"
-                                           :value="form.id">
-                                </el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
+          <el-col
+            :md="6"
+            :sm="12"
+            :xs="24">
+            <el-form-item
+              v-if="props.productForm.frontend_form"
+              label="Frontend Order Form"
+              prop="frontend_form.id"
+              size="small">
+              <el-select
+                v-model="props.productForm.frontend_form.id"
+                class="collection_type_select"
+                filterable
+                placeholder="Select">
+                <el-option
+                  v-for="form in forms"
+                  :key="form.id"
+                  :label="form.name"
+                  :value="form.id"/>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
 
-                    <el-col :md="6" :sm="12" :xs="24">
-                        <el-form-item label="Frontend Order Form" prop="frontend_form.id" size="small" v-if="props.productForm.frontend_form">
-                            <el-select class="collection_type_select" v-model="props.productForm.frontend_form.id" filterable placeholder="Select">
-                                <el-option v-for="form in forms"
-                                           :key="form.id"
-                                           :label="form.name"
-                                           :value="form.id">
-                                </el-option>
-                            </el-select>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
+      </template>
 
-            </template>
+    </product-page-layout>
 
-        </product-page-layout>
-
-    </div>
+  </div>
 </template>
 
 <script>
-import api from "services/api-service";
+import api from 'services/api-service'
 
 export default {
 
-      name: 'ViewProductOrdering',
+  name: 'ViewProductOrdering',
 
-      components: {
-          ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout'),
-      },
+  components: {
+    ProductPageLayout: () => import(/* webpackChunkName: "product-page-layout" */'./ProductPageLayout')
+  },
 
-      props: {
-          productId: {
-              type: String,
-              required: true,
-          },
-      },
+  props: {
+    productId: {
+      type: String,
+      required: true
+    }
+  },
 
-      data () {
-          return {
-              forms: {},
-              formErrors: {},
-          }
-      },
+  data () {
+    return {
+      forms: {},
+      formErrors: {}
+    }
+  },
 
-      computed: {
-          //
-      },
+  computed: {
+    //
+  },
 
-      watch: {
-          //
-      },
+  watch: {
+    //
+  },
 
-      mounted () {
-          console.log('ViewProductOrdering.vue mounted');
-          this.getForms();
-      },
+  mounted () {
+    console.log('ViewProductOrdering.vue mounted')
+    this.getForms()
+  },
 
-      methods: {
+  methods: {
 
-          formLoaded(data) {
-              if (!data.order_form) {
-                  this.$set(data, 'order_form', {});
-              }
-              if (!data.frontend_form) {
-                  this.$set(data, 'frontend_form', {});
-              }
-          },
+    formLoaded (data) {
+      if (!data.order_form) {
+        this.$set(data, 'order_form', {})
+      }
+      if (!data.frontend_form) {
+        this.$set(data, 'frontend_form', {})
+      }
+    },
 
-          getForms()
-          {
-              api.get({
-                  path: 'forms'
-              })
-              .then(function (data) {
-                  this.forms = data.data;
-              }.bind(this))
-              .catch(function (error) {
-                  this.formErrors = error;
-              }.bind(this));
-          }
-      },
+    getForms () {
+      api.get({
+        path: 'forms'
+      })
+        .then(function (data) {
+          this.forms = data.data
+        }.bind(this))
+        .catch(function (error) {
+          this.formErrors = error
+        }.bind(this))
+    }
+  }
 
 }
 </script>

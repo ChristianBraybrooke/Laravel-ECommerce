@@ -50,10 +50,20 @@ class InvoiceController extends Controller
                             })
                             ->get();
         } else {
-            $orders = [];
+            $orders = collect([]);
         }
 
-        $pdf = PDF::loadView('ecommerce::pdfs.invoice', ['orders' => $orders]);
-        return $pdf->download('invoice.pdf');
+        $firstOrder = optional($orders->first());
+        $pdfName = strtolower("order-{$firstOrder->id}-{$firstOrder->status}");
+
+        $pdf = PDF::loadView('ecommerce::pdfs.invoice', ['orders' => $orders])
+                  ->setPaper('a4')
+                  ->setOrientation('portrait')
+                  ->setOption('print-media-type', true)
+                  ->setOption('images', true)
+                  ->setOption('lowquality', true)
+                  ->setOption('image-dpi', 300)
+                  ->setOption('image-quality', 50);
+        return $pdf->download("{$pdfName}.pdf");
     }
 }

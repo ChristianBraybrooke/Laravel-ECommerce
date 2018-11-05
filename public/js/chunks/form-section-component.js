@@ -1,4 +1,4 @@
-webpackJsonp([47],{
+webpackJsonp([49],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/FormSectionComponent.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([47],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 //
 //
@@ -21,55 +21,70 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
+var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
 
 exports.default = {
 
-    name: 'FormSectionComponent',
+  name: 'FormSectionComponent',
 
-    components: {
-        FormFieldComponent: function FormFieldComponent() {
-            return __webpack_require__.e/* import() */(48).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormFieldComponent.vue"));
-        }
-    },
-
-    props: {
-        form: {
-            type: Object,
-            required: true
-        },
-        model: {
-            type: Object,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            loading: false
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('FormSectionComponent.vue Mounted');
-    },
-
-
-    methods: {
-        addField: function addField() {
-            this.model.fields.data.push({
-                rules: {
-                    required: false
-                },
-                options: []
-            });
-        }
+  components: {
+    FormFieldComponent: function FormFieldComponent() {
+      return __webpack_require__.e/* import() */(42).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormFieldComponent.vue"));
     }
+  },
+
+  props: {
+    form: {
+      type: Object,
+      required: true
+    },
+    model: {
+      type: Object,
+      required: true
+    }
+  },
+
+  data: function data() {
+    return {
+      loading: false
+    };
+  },
+
+
+  computed: {
+    orderedFields: function orderedFields() {
+      return this.model.fields.data.length >= 1 ? orderBy(this.model.fields.data, ['order'], ['asc']) : [];
+    }
+  },
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('FormSectionComponent.vue Mounted');
+  },
+
+
+  methods: {
+    addField: function addField() {
+      this.model.fields.data.push({
+        rules: {
+          required: false
+        },
+        options: []
+      });
+    }
+  }
 };
 
 /***/ }),
@@ -82,7 +97,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -100,7 +115,7 @@ var render = function() {
     "div",
     [
       _vm.model.fields
-        ? _vm._l(_vm.model.fields.data, function(field) {
+        ? _vm._l(_vm.orderedFields, function(field) {
             return _c("form-field-component", {
               key: field.id,
               attrs: { model: field, section: _vm.model, form: _vm.form }

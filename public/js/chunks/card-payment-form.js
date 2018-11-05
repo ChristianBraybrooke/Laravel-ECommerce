@@ -1,4 +1,4 @@
-webpackJsonp([49],{
+webpackJsonp([50],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/CardPaymentForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([49],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 //
 //
@@ -87,275 +87,308 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-var stripe = Stripe(ecommerceConfig.stripe_public_key),
-    elements = stripe.elements(),
-    card = undefined;
+var stripe = window.Stripe(window.ecommerceConfig.stripe_public_key);
+
+var elements = stripe.elements();
 
 exports.default = {
 
-    name: 'CardPaymentForm',
+  name: 'CardPaymentForm',
 
-    components: {},
-
-    props: {
-        model: {
-            type: Object,
-            required: true
-        },
-        onTokenCreation: {
-            type: Function,
-            required: false,
-            default: function _default() {
-                return function (has_error, token_object, error_object) {};
-            }
-        },
-        onFormSubmit: {
-            type: Function,
-            required: false,
-            default: function _default() {
-                return function () {};
-            }
-        },
-        size: {
-            type: String,
-            required: false,
-            default: function _default() {
-                return '';
-            }
-        }
+  props: {
+    model: {
+      type: Object,
+      required: true
     },
-
-    data: function data() {
-        return {
-            cardErrors: {
-                number: null,
-                date: null,
-                cvc: null
-            },
-            loading: false,
-            cardNumberElement: undefined,
-            cardExpiryElement: undefined,
-            cardCvcElement: undefined
-        };
+    onTokenCreation: {
+      type: Function,
+      required: false,
+      default: function _default() {
+        return function (hasError, tokenObject, errorObject) {};
+      }
     },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('CardPaymentForm.vue Mounted');
-        this.setupStripe();
+    onFormSubmit: {
+      type: Function,
+      required: false,
+      default: function _default() {
+        return function () {};
+      }
     },
-    destroyed: function destroyed() {
-        this.clearForm(true);
-    },
+    size: {
+      type: String,
+      required: false,
+      default: function _default() {
+        return '';
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      cardErrors: {
+        number: null,
+        date: null,
+        cvc: null
+      },
+      loading: false,
+      cardNumberElement: undefined,
+      cardExpiryElement: undefined,
+      cardCvcElement: undefined
+    };
+  },
 
 
-    methods: {
+  computed: {},
 
-        /**
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('CardPaymentForm.vue Mounted');
+    this.setupStripe();
+  },
+  destroyed: function destroyed() {
+    this.clearForm(true);
+  },
+
+
+  methods: {
+
+    /**
          * Setup the stripe element on the page.
          *
          * @return void
          */
-        setupStripe: function setupStripe() {
-            var is_mini = this.size.includes('mini');
-            var is_small = this.size.includes('small');
-            var is_medium = this.size.includes('medium');
-            var color = '#606266';
-            var placeholder_color = '#c0c4cc';
+    setupStripe: function setupStripe() {
+      var isMini = this.size.includes('mini');
+      var isSmall = this.size.includes('small');
+      var isMedium = this.size.includes('medium');
+      var color = '#606266';
+      var placeholderColor = '#c0c4cc';
 
-            var style = {
-                base: {
-                    fontSize: is_mini ? '12px' : is_small ? '13px' : is_medium ? '14px' : '14px',
-                    color: color,
-                    fontSmoothing: 'antialiased',
-                    fontFamily: 'Helvetica Neue',
-                    '::placeholder': {
-                        color: placeholder_color
-                    }
-                },
-                'invalid': {
-                    'color': color
-                }
-            };
-
-            // Create the card number element.
-            this.cardNumberElement = elements.create('cardNumber', {
-                style: style
-            });
-            this.cardNumberElement.mount(this.$refs.cardNumber);
-
-            // Create the expiry date element.
-            this.cardExpiryElement = elements.create('cardExpiry', {
-                style: style
-            });
-            this.cardExpiryElement.mount(this.$refs.cardExpiry);
-
-            // Create the cvc element.
-            this.cardCvcElement = elements.create('cardCvc', {
-                style: style
-            });
-            this.cardCvcElement.mount(this.$refs.cardCvc);
-
-            this.listenForEvents();
+      var style = {
+        base: {
+          fontSize: isMini ? '12px' : isSmall ? '13px' : isMedium ? '14px' : '14px',
+          color: color,
+          fontSmoothing: 'antialiased',
+          fontFamily: 'Helvetica Neue',
+          '::placeholder': {
+            color: placeholderColor
+          }
         },
+        'invalid': {
+          'color': color
+        }
+
+        // Create the card number element.
+      };this.cardNumberElement = elements.create('cardNumber', {
+        style: style
+      });
+      this.cardNumberElement.mount(this.$refs.cardNumber);
+
+      // Create the expiry date element.
+      this.cardExpiryElement = elements.create('cardExpiry', {
+        style: style
+      });
+      this.cardExpiryElement.mount(this.$refs.cardExpiry);
+
+      // Create the cvc element.
+      this.cardCvcElement = elements.create('cardCvc', {
+        style: style
+      });
+      this.cardCvcElement.mount(this.$refs.cardCvc);
+
+      this.listenForEvents();
+    },
 
 
-        /**
+    /**
          * Listen for stripe events.
          *
          * @return void
          */
-        listenForEvents: function listenForEvents() {
-            // Card number change event.
-            this.cardNumberElement.on('change', function (event, value) {
-                // Switch brand logo.
-                if (event.brand) {
-                    this.setBrandIcon(event.brand);
-                }
+    listenForEvents: function listenForEvents() {
+      // Card number change event.
+      this.cardNumberElement.on('change', function (event, value) {
+        // Switch brand logo.
+        if (event.brand) {
+          this.setBrandIcon(event.brand);
+        }
 
-                // Focus on next element.
-                if (event.complete) {
-                    this.cardExpiryElement.focus();
-                }
+        // Focus on next element.
+        if (event.complete) {
+          this.cardExpiryElement.focus();
+        }
 
-                this.setOutcome(event, 'number_change');
-            }.bind(this));
+        this.setOutcome(event, 'number_change');
+      }.bind(this));
 
-            // Card expiry change event.
-            this.cardExpiryElement.on('change', function (event) {
-                // Focus on next element.
-                if (event.complete) {
-                    this.cardCvcElement.focus();
-                }
+      // Card expiry change event.
+      this.cardExpiryElement.on('change', function (event) {
+        // Focus on next element.
+        if (event.complete) {
+          this.cardCvcElement.focus();
+        }
 
-                this.setOutcome(event, 'expiry_change');
-            }.bind(this));
+        this.setOutcome(event, 'expiry_change');
+      }.bind(this));
 
-            // Card cvc change event.
-            this.cardCvcElement.on('change', function (event) {
-                // Focus on next element.
-                if (event.complete) {
-                    // $payment_submit.focus();
-                }
+      // Card cvc change event.
+      this.cardCvcElement.on('change', function (event) {
+        // Focus on next element.
+        if (event.complete) {
+          // $payment_submit.focus();
+        }
 
-                this.setOutcome(event, 'cvc_change');
-            }.bind(this));
-        },
+        this.setOutcome(event, 'cvc_change');
+      }.bind(this));
+    },
 
 
-        /**
+    /**
          * Set the card brand icon.
          *
          * @var string brand
          * @return void
          */
-        setBrandIcon: function setBrandIcon(brand) {
-            console.log(brand);
-        },
+    setBrandIcon: function setBrandIcon(brand) {
+      console.log(brand);
+    },
 
 
-        /**
+    /**
          * Determine what happens on events.
          *
          * @var Object result
          * @var Mixed type
          * @return void
          */
-        setOutcome: function setOutcome(result) {
-            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    setOutcome: function setOutcome(result) {
+      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-            // Hide card number error elements.
-            if (type == 'number_change') {
-                this.cardErrors.number = null;
-            }
+      // Hide card number error elements.
+      if (type === 'number_change') {
+        this.cardErrors.number = null;
+      }
 
-            // Hide card expiry error elements.
-            if (type == 'expiry_change') {
-                this.cardErrors.date = null;
-            }
+      // Hide card expiry error elements.
+      if (type === 'expiry_change') {
+        this.cardErrors.date = null;
+      }
 
-            // Hide card cvc error elements.
-            if (type == 'cvc_change') {
-                this.cardErrors.cvc = null;
-            }
+      // Hide card cvc error elements.
+      if (type === 'cvc_change') {
+        this.cardErrors.cvc = null;
+      }
 
-            if (result.token) {
-                // Tell the parent that a token has been created.
-                this.onTokenCreation(false, result.token, {});
-                this.$set(this.model, 'payment_token', result.token.id);
+      if (result.token) {
+        // Tell the parent that a token has been created.
+        this.onTokenCreation(false, result.token, {});
+        this.$set(this.model, 'payment_token', result.token.id);
 
-                this.clearForm();
+        this.clearForm();
 
-                // Submit the form:
-                this.loading = false;
-            } else if (result.error) {
-                // Tell the parent that a token hasn't been created.
-                this.onTokenCreation(true, {}, result.error);
+        // Submit the form:
+        this.loading = false;
+      } else if (result.error) {
+        // Tell the parent that a token hasn't been created.
+        this.onTokenCreation(true, {}, result.error);
 
-                // Re-enable the submit button.
-                this.loading = false;
+        // Re-enable the submit button.
+        this.loading = false;
 
-                // Display error
-                this.handleError(result.error);
-            }
-        },
+        // Display error
+        this.handleError(result.error);
+      }
+    },
 
 
-        /**
+    /**
          * Determine what happens on error.
          *
          * @var Object error
          * @return void
          */
-        handleError: function handleError(error) {
-            // The error was a validation_error
-            if (error.type === 'validation_error' && error.code) {
+    handleError: function handleError(error) {
+      // The error was a validation_error
+      if (error.type === 'validation_error' && error.code) {
+        var code = error.code;
 
-                var code = error.code;
-
-                // Card Number error has occured.
-                if (~code.indexOf("number")) {
-                    this.cardErrors.number = error.message;
-                }
-
-                // Expiry error has occured.
-                if (~code.indexOf("expiry")) {
-                    this.cardErrors.date = error.message;
-                }
-
-                // CVC error has occured.
-                if (~code.indexOf("cvc")) {
-                    this.cardErrors.cvc = error.message;
-                }
-            } else {
-                // Another type of error occured.
-
-            }
-        },
-        clearForm: function clearForm() {
-            var destroy = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-            var method = 'clear';
-            if (destroy) {
-                method = 'destroy';
-            }
-            this.cardNumberElement[method](this.$refs.cardNumber);
-            this.cardExpiryElement[method](this.$refs.cardExpiry);
-            this.cardCvcElement[method](this.$refs.cardCvc);
-        },
-        createToken: function createToken() {
-            this.onFormSubmit();
-            this.loading = true;
-            stripe.createToken(this.cardNumberElement, {
-                name: 'Christian Braybrooke'
-            }).then(this.setOutcome);
+        // Card Number error has occured.
+        if (~code.indexOf('number')) {
+          this.cardErrors.number = error.message;
         }
+
+        // Expiry error has occured.
+        if (~code.indexOf('expiry')) {
+          this.cardErrors.date = error.message;
+        }
+
+        // CVC error has occured.
+        if (~code.indexOf('cvc')) {
+          this.cardErrors.cvc = error.message;
+        }
+      } else {
+        // Another type of error occured.
+
+      }
+    },
+    clearForm: function clearForm() {
+      var destroy = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      var method = 'clear';
+      if (destroy) {
+        method = 'destroy';
+      }
+      this.cardNumberElement[method](this.$refs.cardNumber);
+      this.cardExpiryElement[method](this.$refs.cardExpiry);
+      this.cardCvcElement[method](this.$refs.cardCvc);
+    },
+    createToken: function createToken() {
+      this.onFormSubmit();
+      this.loading = true;
+      stripe.createToken(this.cardNumberElement, {
+        name: this.model.cardholder_name
+      }).then(this.setOutcome);
     }
+  }
 
 };
 
@@ -369,7 +402,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Colors\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Background\n-------------------------- */\n/* Border\n-------------------------- */\n/* Box-shadow\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Font\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* Message Box\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Break-point\n--------------------------*/\n/* Custom */\n/* Menu\n-------------------------- */\n.stripe_input[data-v-62bd92a4] {\n  -webkit-appearance: none;\n  background-color: #fff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  border-color: #dcdfe6;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  display: inherit;\n  font-size: 14px;\n  line-height: 1;\n  outline: none;\n  padding: 12px 15px;\n  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n  height: 40px;\n}\n.stripe_input[data-v-62bd92a4]:hover {\n  cursor: text;\n  border: 1px solid #dcdfe6;\n  border-color: #c0c4cc;\n}\n.stripe_input.StripeElement--focus[data-v-62bd92a4] {\n  border: 1px solid #dcdfe6;\n  border-color: #409eff;\n}\n.stripe_input.StripeElement--invalid[data-v-62bd92a4] {\n  border: 1px solid #dcdfe6;\n  border-color: #f56c6c;\n}\n.stripe_input.StripeElement--complete[data-v-62bd92a4] {\n  border: 1px solid #dcdfe6;\n  border-color: #67c23a;\n}\n.stripe_input.medium[data-v-62bd92a4] {\n  font-size: 14px;\n  height: 36px;\n  padding: 10px 15px;\n}\n.stripe_input.small[data-v-62bd92a4] {\n  font-size: 13px;\n  height: 32px;\n  padding: 8.5px 15px;\n}\n.stripe_input.mini[data-v-62bd92a4] {\n  font-size: 12px;\n  height: 28px;\n  padding: 7px 15px;\n}\n.el-card.secure_payment_form[data-v-62bd92a4] {\n  margin: 20px 0px;\n}\n", ""]);
+exports.push([module.i, "/* Element Chalk Variables */\n/* Transition\n-------------------------- */\n/* Colors\n-------------------------- */\n/* 53a8ff */\n/* 66b1ff */\n/* 79bbff */\n/* 8cc5ff */\n/* a0cfff */\n/* b3d8ff */\n/* c6e2ff */\n/* d9ecff */\n/* ecf5ff */\n/* Link\n-------------------------- */\n/* Background\n-------------------------- */\n/* Border\n-------------------------- */\n/* Box-shadow\n-------------------------- */\n/* Fill\n-------------------------- */\n/* Font\n-------------------------- */\n/* Size\n-------------------------- */\n/* z-index\n-------------------------- */\n/* Disable base\n-------------------------- */\n/* Icon\n-------------------------- */\n/* Checkbox\n-------------------------- */\n/* Radio\n-------------------------- */\n/* Select\n-------------------------- */\n/* Alert\n-------------------------- */\n/* Message Box\n-------------------------- */\n/* Message\n-------------------------- */\n/* Notification\n-------------------------- */\n/* Input\n-------------------------- */\n/* Cascader\n-------------------------- */\n/* Group\n-------------------------- */\n/* Tab\n-------------------------- */\n/* Button\n-------------------------- */\n/* cascader\n-------------------------- */\n/* Switch\n-------------------------- */\n/* Dialog\n-------------------------- */\n/* Table\n-------------------------- */\n/* Pagination\n-------------------------- */\n/* Popover\n-------------------------- */\n/* Tooltip\n-------------------------- */\n/* Tag\n-------------------------- */\n/* Tree\n-------------------------- */\n/* Dropdown\n-------------------------- */\n/* Badge\n-------------------------- */\n/* Card\n--------------------------*/\n/* Slider\n--------------------------*/\n/* Steps\n--------------------------*/\n/* Menu\n--------------------------*/\n/* Rate\n--------------------------*/\n/* DatePicker\n--------------------------*/\n/* Loading\n--------------------------*/\n/* Scrollbar\n--------------------------*/\n/* Carousel\n--------------------------*/\n/* Collapse\n--------------------------*/\n/* Transfer\n--------------------------*/\n/* Header\n  --------------------------*/\n/* Footer\n--------------------------*/\n/* Main\n--------------------------*/\n/* Break-point\n--------------------------*/\n/* Custom */\n/* Menu\n-------------------------- */\n.stripe_input[data-v-62bd92a4] {\n  -webkit-appearance: none;\n  background-color: #fff;\n  background-image: none;\n  border-radius: 4px;\n  border: 1px solid #dcdfe6;\n  border-color: #dcdfe6;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  display: inherit;\n  font-size: 14px;\n  line-height: 1;\n  outline: none;\n  padding: 12px 15px;\n  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);\n  width: 100%;\n  height: 40px;\n}\n.stripe_input[data-v-62bd92a4]:hover {\n  cursor: text;\n  border: 1px solid #dcdfe6;\n  border-color: #c0c4cc;\n}\n.stripe_input.StripeElement--focus[data-v-62bd92a4] {\n  border: 1px solid #dcdfe6;\n  border-color: #2294ad;\n}\n.stripe_input.StripeElement--invalid[data-v-62bd92a4] {\n  border: 1px solid #dcdfe6;\n  border-color: #f56c6c;\n}\n.stripe_input.StripeElement--complete[data-v-62bd92a4] {\n  border: 1px solid #dcdfe6;\n  border-color: #67c23a;\n}\n.stripe_input.medium[data-v-62bd92a4] {\n  font-size: 14px;\n  height: 36px;\n  padding: 10px 15px;\n}\n.stripe_input.small[data-v-62bd92a4] {\n  font-size: 13px;\n  height: 32px;\n  padding: 8.5px 15px;\n}\n.stripe_input.mini[data-v-62bd92a4] {\n  font-size: 12px;\n  height: 28px;\n  padding: 7px 15px;\n}\n.el-card.secure_payment_form[data-v-62bd92a4] {\n  margin: 20px 0px;\n}\n", ""]);
 
 // exports
 
@@ -436,15 +469,15 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Cardholder Name",
-                                    size: "small",
-                                    prop: "cardholder_name",
                                     rules: [
                                       {
                                         required: true,
                                         message: "Cardholder name is required."
                                       }
-                                    ]
+                                    ],
+                                    label: "Cardholder Name",
+                                    size: "small",
+                                    prop: "cardholder_name"
                                   }
                                 },
                                 [
@@ -500,11 +533,11 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "\n                                        " +
+                                                "\n                    " +
                                                   _vm._s(
                                                     _vm.cardErrors.number
                                                   ) +
-                                                  "\n                                    "
+                                                  "\n                  "
                                               )
                                             ]
                                           )
@@ -556,9 +589,9 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "\n                                        " +
+                                                "\n                    " +
                                                   _vm._s(_vm.cardErrors.date) +
-                                                  "\n                                    "
+                                                  "\n                  "
                                               )
                                             ]
                                           )
@@ -603,9 +636,9 @@ var render = function() {
                                             },
                                             [
                                               _vm._v(
-                                                "\n                                        " +
+                                                "\n                    " +
                                                   _vm._s(_vm.cardErrors.cvc) +
-                                                  "\n                                    "
+                                                  "\n                  "
                                               )
                                             ]
                                           )
@@ -650,7 +683,7 @@ var render = function() {
                   _c(
                     "el-button",
                     {
-                      attrs: { type: "success", loading: _vm.loading },
+                      attrs: { loading: _vm.loading, type: "success" },
                       on: { click: _vm.createToken }
                     },
                     [_vm._v("Process Payment")]

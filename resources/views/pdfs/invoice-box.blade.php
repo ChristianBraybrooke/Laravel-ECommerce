@@ -3,20 +3,20 @@
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
             <td colspan="4">
-                {{-- <table> --}}
-                    <tr>
-                        <td class="title" colspan="2">
-                            @if (isset($logo) && $logo->url)
-                                <img src="{{ asset($logo->url) }}" style="width:100%; max-width:220px;">
-                            @endif
-                        </td>
+                <tr>
+                    <td class="title" colspan="2">
+                        @if (isset($logo) && $logo->url)
+                            {{-- <img src="{{ asset($logo->url) }}" alt="{{ asset($logo->url) }}" style="width:auto; max-height: 50px;"> --}}
 
-                        <td colspan="2">
-                            Invoice #: {{ $order->invoice['number'] ?? '' }}<br>
-                            Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
-                        </td>
-                    </tr>
-                {{-- </table> --}}
+                            <img src="data:image/jpeg;base64, {{ base64_encode(@file_get_contents(asset($logo->url))) }}" alt="{{ url(optional($logo)->url) }}" style="width:auto; max-height: 50px;">
+                        @endif
+                    </td>
+
+                    <td colspan="2">
+                        {{ $order->status }} #: {{ $order->invoice['number'] ?? '' }}<br>
+                        Created: {{ $order->invoice['issued_at'] ?? '' }}<br>
+                    </td>
+                </tr>
             </td>
         </tr>
 
@@ -24,14 +24,14 @@
             <td colspan="2">
                 <strong>Delivery Address</strong> <br>
                 @foreach ($order->shipping_address as $key => $shipping_address)
-                    {{ $shipping_address }} @if ($shipping_address) <br> @endif
+                    @if ($shipping_address)<p class="address_line">{{ $shipping_address }}</p>@endif
                 @endforeach
             </td>
 
             <td colspan="2">
                 <strong>Billing Address</strong> <br>
                 @foreach ($order->billing_address as $key => $billing_address)
-                    {{ $billing_address }} @if ($billing_address) <br> @endif
+                    @if ($billing_address)<p class="address_line">{{ $billing_address }}</p>@endif
                 @endforeach
             </td>
         </tr>
@@ -110,27 +110,25 @@
         @foreach ($order->items as $key => $item)
 
             <tr class="item @if ($loop->last) last @endif">
-                <td>
-                    {{ $item['name'] ?? '' }}
+                <td style="max-width: 200px;">
+                    @php($variant = $item['variant']['name'] ?? null)
+                    @if ($variant)<strong>{{ $variant }}</strong>/ @endif{{ $item['name'] ?? '' }}
 
                     @if ($item['order_form'] ?? false)
                       @component('ecommerce::pdfs.order-form-options', ['form' => $item['order_form'], 'options' => $item['options'] ?? []])
                       @endcomponent
                     @else
                         @if (!empty($item['options'] ?? ''))
-                            <ul>
+                            <ul class="options_list">
                                 @foreach ($item['options'] as $key => $options)
                                     @if (is_array($options['value'] ?? $options))
-                                        <li class="cart_option font-weight-bold">{{ ucfirst($key) }}</li>
-                                        <ul>
-                                            <li class="cart_option"><span class="font-weight-bold">
-                                                @foreach ($options['value'] ?? $options  as $key => $option)
-                                                  <strong>{{ ucfirst($key) }}</strong>: </span>{{ $option['value'] ?? $option }}@if (!$loop->last),@endif
-                                                @endforeach
-                                            </li>
-                                        </ul>
+                                      <li class="cart_option font-weight-bold">
+                                        @foreach ($options['value'] ?? $options  as $key => $option)
+                                          <strong>{{ ucfirst($key) }}</strong>: </span>{{ $option['value'] ?? $option }}@if (!$loop->last),@endif
+                                        @endforeach
+                                      </li>
                                     @else
-                                            <li class="cart_option"><strong>{{ ucfirst($key) }}</strong> {{ $options['value'] ?? $options }}</li>
+                                      <li class="cart_option"><strong>{{ ucfirst($key) }}</strong> {{ $options['value'] ?? $options }}</li>
                                     @endif
                                 @endforeach
                             </ul>
@@ -153,17 +151,19 @@
         @endforeach
 
         @foreach ($order->cart['totals'] ?? [] as $key => $total)
-            <tr class="total @if ($loop->last) last @endif">
-                <td></td>
-                <td></td>
-                <td>{{ $key }}: </td>
-                <td>
-                    {{ ($order->cart['currency'] ?? '£') . $total }}
-                </td>
-            </tr>
+            @if ($total > 0 && ($key !== 'Total' || $key !== 'VAT'))
+              <tr class="total @if ($loop->last) last @endif">
+                  <td></td>
+                  <td></td>
+                  <td>{{ $key }}: </td>
+                  <td>
+                      {{ ($order->cart['currency'] ?? '£') . $total }}
+                  </td>
+              </tr>
+            @endif
         @endforeach
     </table>
 </div>
-@if (isset($page_break) && $page_break)
-    <div class="page_break"></div>
+@if (isset($page_break) && $page_break === true)
+    {{-- <div class="page_break"></div> --}}
 @endif

@@ -21,31 +21,39 @@ let mix = require('laravel-mix');
          chunkFilename: 'js/chunks/[name].js',
      },
      module: {
-         loaders: [
-           {
-               test: /\.jsx$/,
-               loader: 'babel'
-           },
-           {
-               test: /\.js$/,
-               loader: 'babel',
-               exclude: /node_modules/
-           },
-           {
-               test: /\.ejs$/,
-               loader: 'ejs-loader',
-           },
-          ],
+       rules: [
+         {
+           enforce: 'pre',
+           test: /\.(js|vue)$/,
+           loader: 'eslint-loader',
+           exclude: /node_modules/
+         }
+       ],
+       loaders: [
+         {
+             test: /\.jsx$/,
+             loader: 'babel'
+         },
+         {
+             test: /\.js$/,
+             loader: 'babel',
+             exclude: /node_modules/
+         },
+         {
+             test: /\.ejs$/,
+             loader: 'ejs-loader',
+         },
+        ]
       },
       resolve: {
-          alias: {
-              'vue$': 'vue/dist/vue.runtime.esm.js',
-              'axios': 'axios/dist/axios.min.js',
-              'components': path.resolve(appPath, 'components'),
-              'pages': path.resolve(appPath, 'pages'),
-              'services': path.resolve(appPath, 'services'),
-              'utils': path.resolve(appPath, 'utils'),
-          }
+        alias: {
+            'vue$': 'vue/dist/vue.runtime.esm.js',
+            'axios': 'axios/dist/axios.min.js',
+            'components': path.resolve(appPath, 'components'),
+            'pages': path.resolve(appPath, 'pages'),
+            'services': path.resolve(appPath, 'services'),
+            'utils': path.resolve(appPath, 'utils'),
+        }
       }
  });
 

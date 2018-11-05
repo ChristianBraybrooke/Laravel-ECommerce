@@ -7,8 +7,29 @@ webpackJsonp([9],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -48,100 +69,98 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
 
 exports.default = {
 
-    name: 'Users',
+  name: 'Users',
 
-    components: {
-        DataTable: function DataTable() {
-            return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
-        }
-    },
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+    }
+  },
 
-    props: [],
+  data: function data() {
+    return {
+      usersCreateForm: {},
+      createFormRules: {
+        first_name: [{ required: true, message: 'The first name is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The first name length should be more than 3 characters', trigger: 'blur' }],
+        last_name: [{ required: true, message: 'The last name is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The last name length should be more than 3 characters', trigger: 'blur' }],
+        email: [{ required: true, message: 'The email is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The email length should be more than 3 characters', trigger: 'blur' }],
+        password: [{ required: true, message: 'The password is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The password length should be more than 3 characters', trigger: 'blur' }]
+      },
+      tableOptions: {
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name.full',
+          sortable: true,
+          label: 'Name',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'email',
+          sortable: true,
+          label: 'Email',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'roles.data',
+          sortable: true,
+          label: 'Roles',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, column, cellValue) {
+            var roles = [];
+            cellValue.forEach(function (role) {
+              roles.push(upperFirst(role.name));
+            });
 
-    data: function data() {
-        return {
-            usersCreateForm: {},
-            createFormRules: {
-                first_name: [{ required: true, message: 'The first name is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The first name length should be more than 3 characters', trigger: 'blur' }],
-                last_name: [{ required: true, message: 'The last name is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The last name length should be more than 3 characters', trigger: 'blur' }],
-                email: [{ required: true, message: 'The email is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The email length should be more than 3 characters', trigger: 'blur' }],
-                password: [{ required: true, message: 'The password is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The password length should be more than 3 characters', trigger: 'blur' }]
-            },
-            tableOptions: {
-                border: true,
-                stripe: true,
-                showSearch: true,
-                showHeader: true,
-                showNewBtn: true,
-                showRefreshBtn: true,
-                showHeadHr: true,
-                showTitle: true,
-                viewText: 'View',
-                deleteText: 'Delete',
-                collumns: [{
-                    prop: 'id',
-                    sortable: true,
-                    label: 'ID',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'name.full',
-                    sortable: true,
-                    label: 'Name',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'email',
-                    sortable: true,
-                    label: 'Email',
-                    align: 'left',
-                    resizable: true
-                }, {
-                    prop: 'roles.data',
-                    sortable: true,
-                    label: 'Roles',
-                    align: 'left',
-                    resizable: true,
-                    formatter: function formatter(row, column, cellValue) {
-                        var roles = [];
-                        cellValue.forEach(function (role) {
-                            roles.push(upperFirst(role.name));
-                        }.bind(this));
-
-                        return roles.join(', ');
-                    }
-                }, {
-                    prop: 'created_at.human',
-                    sortable: true,
-                    label: 'Created',
-                    align: 'left',
-                    resizable: true
-                }],
-                bulkOptions: [{
-                    value: 'delete',
-                    label: 'Delete'
-                }, {
-                    value: 'draft',
-                    label: 'Mark Draft'
-                }, {
-                    value: 'live',
-                    label: 'Mark Live'
-                }]
-            }
-        };
-    },
+            return roles.join(', ');
+          }
+        }, {
+          prop: 'created_at.human',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }],
+        bulkOptions: [{
+          value: 'delete',
+          label: 'Delete'
+        }, {
+          value: 'draft',
+          label: 'Mark Draft'
+        }, {
+          value: 'live',
+          label: 'Mark Live'
+        }]
+      }
+    };
+  },
 
 
-    computed: {},
+  computed: {},
 
-    watch: {},
+  watch: {},
 
-    mounted: function mounted() {
-        console.log('Users.vue mounted.');
-    },
+  mounted: function mounted() {
+    console.log('Users.vue mounted.');
+  },
 
 
-    methods: {}
+  methods: {}
 
 };
 
@@ -155,7 +174,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -482,11 +501,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("data-table", {
     attrs: {
-      "type-name": "user",
-      "request-with": "roles",
       "table-options": _vm.tableOptions,
       "create-form": _vm.usersCreateForm,
-      "create-form-rules": _vm.createFormRules
+      "create-form-rules": _vm.createFormRules,
+      "type-name": "user",
+      "request-with": "roles"
     },
     scopedSlots: _vm._u([
       {

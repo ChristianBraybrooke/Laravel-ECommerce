@@ -1,126 +1,121 @@
 <template lang="html">
 
-  <data-table type-name="page"
-              bulk-update-url="pages/bulk"
-              :request-includes="['live_at', 'created_at', 'in_menu']"
-              :table-options="tableOptions"
-              :create-form="usersCreateForm">
-
-  </data-table>
+  <data-table
+    :request-includes="['live_at', 'created_at', 'in_menu']"
+    :table-options="tableOptions"
+    :create-form="usersCreateForm"
+    type-name="page"
+    bulk-update-url="pages/bulk"/>
 
 </template>
 
 <script>
 export default {
 
-      name: 'Pages',
+  name: 'Pages',
 
-      components: {
-          DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable')
-      },
+  components: {
+    DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable')
+  },
 
-      props: [
-
-      ],
-
-      data () {
-          return {
-              usersCreateForm: {},
-              tableOptions: {
-                  border: true,
-                  stripe: true,
-                  showSearch: true,
-                  showHeader: true,
-                  showNewBtn: true,
-                  showRefreshBtn: true,
-                  showHeadHr: true,
-                  showTitle: true,
-                  viewText: 'View',
-                  deleteText: 'Delete',
-                  collumns: [
-                      {
-                          prop: 'id',
-                          sortable: true,
-                          label: 'ID',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'name',
-                          sortable: true,
-                          label: 'Name',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'created_at.human',
-                          sortable: true,
-                          label: 'Created',
-                          align: 'left',
-                          resizable: true
-                      },
-                      {
-                          prop: 'live_at.live',
-                          sortable: true,
-                          label: 'Live',
-                          align: 'left',
-                          formatter: function(row, column, cellValue) {
-                              return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>;
-                          },
-                          resizable: true
-                      },
-                      {
-                          prop: 'in_menu',
-                          sortable: true,
-                          label: 'In Menu',
-                          align: 'left',
-                          formatter: function(row, column, cellValue) {
-                              return row.in_menu ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>;
-                          },
-                          resizable: true
-                      },
-                  ],
-                  bulkOptions: [
-                      {
-                        value: 'delete',
-                        label: 'Delete'
-                      },
-                      {
-                        value: 'draft',
-                        label: 'Mark Draft'
-                      },
-                      {
-                        value: 'live',
-                        label: 'Mark Live'
-                      },
-                      {
-                        value: 'in_menu',
-                        label: 'Put In Menu'
-                      },
-                      {
-                        value: 'out_menu',
-                        label: 'Take Out Menu'
-                      },
-                  ],
-              }
+  data () {
+    return {
+      usersCreateForm: {},
+      tableOptions: {
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [
+          {
+            prop: 'id',
+            sortable: true,
+            label: 'ID',
+            align: 'left',
+            resizable: true
+          },
+          {
+            prop: 'name',
+            sortable: true,
+            label: 'Name',
+            align: 'left',
+            resizable: true
+          },
+          {
+            prop: 'created_at.human',
+            sortable: true,
+            label: 'Created',
+            align: 'left',
+            resizable: true
+          },
+          {
+            prop: 'live_at.live',
+            sortable: true,
+            label: 'Live',
+            align: 'left',
+            formatter: function (row, column, cellValue) {
+              return row.live_at.live ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>
+            },
+            resizable: true
+          },
+          {
+            prop: 'in_menu',
+            sortable: true,
+            label: 'In Menu',
+            align: 'left',
+            formatter: function (row, column, cellValue) {
+              return row.in_menu ? <i class="el-icon-check"></i> : <i class="el-icon-close"></i>
+            },
+            resizable: true
           }
-      },
+        ],
+        bulkOptions: [
+          {
+            value: 'delete',
+            label: 'Delete'
+          },
+          {
+            value: 'draft',
+            label: 'Mark Draft'
+          },
+          {
+            value: 'live',
+            label: 'Mark Live'
+          },
+          {
+            value: 'in_menu',
+            label: 'Put In Menu'
+          },
+          {
+            value: 'out_menu',
+            label: 'Take Out Menu'
+          }
+        ]
+      }
+    }
+  },
 
-      computed: {
+  computed: {
 
-      },
+  },
 
-      watch: {
+  watch: {
 
-      },
+  },
 
-      mounted () {
-          console.log('Pages.vue mounted');
-      },
+  mounted () {
+    console.log('Pages.vue mounted')
+  },
 
-      methods: {
+  methods: {
 
-      },
+  }
 
 }
 </script>

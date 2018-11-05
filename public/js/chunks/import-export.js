@@ -1,4 +1,4 @@
-webpackJsonp([14],{
+webpackJsonp([12],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/reports/ImportExport.vue":
 /***/ (function(module, exports, __webpack_require__) {
@@ -7,7 +7,7 @@ webpackJsonp([14],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
@@ -110,99 +110,120 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js"); /
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
 
-    name: 'ImportExport',
+  name: 'ImportExport',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
-
-    props: {},
-
-    data: function data() {
-        return {
-            loading: false,
-            ImportExportErrors: {},
-            currentTab: 'import',
-            importForm: {},
-            imports: []
-        };
-    },
-
-
-    computed: {},
-
-    watch: {},
-
-    mounted: function mounted() {
-        console.log('ImportExport.vue Mounted.');
-        this.getImports();
-    },
-
-
-    methods: {
-        handleFilesChosen: function handleFilesChosen(data) {
-            this.$set(this.importForm, data.id, data.files);
-        },
-        tableRowClassName: function tableRowClassName(_ref) {
-            var row = _ref.row,
-                rowIndex = _ref.rowIndex;
-
-            if (row.status === 'Failed') {
-                return 'danger-row';
-            } else if (row.status === 'Pending') {
-                return 'warning-row';
-            }
-            return '';
-        },
-        handleFilesUnChosen: function handleFilesUnChosen(data) {
-            this.$set(this.importForm, data.id, data.files);
-        },
-
-
-        getImports: throttle(function () {
-            this.loading = true;
-            _apiService2.default.get({
-                path: 'imports'
-            }).then(function (data) {
-                this.loading = false;
-                this.imports = data.data;
-            }.bind(this)).catch(function (error) {
-                this.loading = false;
-                this.ImportExportErrors = error;
-            }.bind(this));
-        }),
-
-        submitForm: function submitForm(ref, path) {
-            var _this = this;
-
-            this.$refs[ref].validate(function (valid) {
-                if (valid) {
-                    _this.loading = true;
-                    _this.ImportExportErrors = {};
-
-                    _apiService2.default.persist("post", {
-                        path: path,
-                        object: _this.importForm
-                    }).then(function (data) {
-                        this.loading = false;
-                        this.imports.unshift(data.data);
-                        this.importForm = {};
-                    }.bind(_this)).catch(function (error) {
-                        this.loading = false;
-                        this.ImportExportErrors = error;
-                    }.bind(_this));
-                } else {}
-            });
-        }
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
     }
+  },
+
+  props: {},
+
+  data: function data() {
+    return {
+      loading: false,
+      ImportExportErrors: {},
+      currentTab: 'import',
+      importForm: {},
+      imports: []
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('ImportExport.vue Mounted.');
+    this.getImports();
+  },
+
+
+  methods: {
+    handleFilesChosen: function handleFilesChosen(data) {
+      this.$set(this.importForm, data.id, data.files);
+    },
+    tableRowClassName: function tableRowClassName(_ref) {
+      var row = _ref.row,
+          rowIndex = _ref.rowIndex;
+
+      if (row.status === 'Failed') {
+        return 'danger-row';
+      } else if (row.status === 'Pending') {
+        return 'warning-row';
+      }
+      return '';
+    },
+    handleFilesUnChosen: function handleFilesUnChosen(data) {
+      this.$set(this.importForm, data.id, data.files);
+    },
+
+
+    getImports: throttle(function () {
+      this.loading = true;
+      _apiService2.default.get({
+        path: 'imports'
+      }).then(function (data) {
+        this.loading = false;
+        this.imports = data.data;
+      }.bind(this)).catch(function (error) {
+        this.loading = false;
+        this.ImportExportErrors = error;
+      }.bind(this));
+    }),
+
+    submitForm: function submitForm(ref, path) {
+      var _this = this;
+
+      this.$refs[ref].validate(function (valid) {
+        if (valid) {
+          _this.loading = true;
+          _this.ImportExportErrors = {};
+
+          _apiService2.default.persist('post', {
+            path: path,
+            object: _this.importForm
+          }).then(function (data) {
+            this.loading = false;
+            this.imports.unshift(data.data);
+            this.importForm = {};
+          }.bind(_this)).catch(function (error) {
+            this.loading = false;
+            this.ImportExportErrors = error;
+          }.bind(_this));
+        } else {}
+      });
+    }
+  }
 
 };
 
@@ -309,9 +330,9 @@ var render = function() {
                           staticStyle: { "margin-bottom": "50px" },
                           attrs: {
                             data: _vm.imports,
-                            size: "mini",
                             "row-class-name": _vm.tableRowClassName,
-                            stripe: true
+                            stripe: true,
+                            size: "mini"
                           }
                         },
                         [
@@ -352,8 +373,8 @@ var render = function() {
                 {
                   ref: "importForm",
                   attrs: {
-                    "label-position": "left",
                     model: _vm.importForm,
+                    "label-position": "left",
                     "label-width": "120px"
                   }
                 },
@@ -362,15 +383,15 @@ var render = function() {
                     "el-form-item",
                     {
                       attrs: {
-                        label: "Import Into",
-                        prop: "import_into",
                         rules: [
                           {
                             required: true,
                             message: "Import into field is required",
                             trigger: "blur"
                           }
-                        ]
+                        ],
+                        label: "Import Into",
+                        prop: "import_into"
                       }
                     },
                     [
@@ -409,15 +430,15 @@ var render = function() {
                     "el-form-item",
                     {
                       attrs: {
-                        label: "Choose File",
-                        prop: "import_files",
                         rules: [
                           {
                             required: true,
                             message: "Import file is required",
                             trigger: "blur"
                           }
-                        ]
+                        ],
+                        label: "Choose File",
+                        prop: "import_files"
                       }
                     },
                     [
@@ -426,8 +447,8 @@ var render = function() {
                         attrs: {
                           "current-files": undefined,
                           "show-btn": true,
-                          name: "File to Import",
                           selectable: 1,
+                          name: "File to Import",
                           "picker-id": "import_files"
                         },
                         on: {
@@ -443,9 +464,9 @@ var render = function() {
                     "el-button",
                     {
                       attrs: {
+                        loading: _vm.loading,
                         plain: "",
-                        type: "success",
-                        loading: _vm.loading
+                        type: "success"
                       },
                       on: {
                         click: function($event) {

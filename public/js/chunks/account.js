@@ -7,10 +7,44 @@ webpackJsonp([6],{
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -80,95 +114,95 @@ var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
 
 exports.default = {
 
-    name: 'Account',
+  name: 'Account',
 
-    components: {
-        Errors: function Errors() {
-            return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
-        },
-        FilePickerModal: function FilePickerModal() {
-            return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
-        }
+  components: {
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
+    FilePickerModal: function FilePickerModal() {
+      return __webpack_require__.e/* import() */(33/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FilePickerModal.vue"));
+    }
+  },
 
-    props: {},
+  props: {},
 
-    data: function data() {
-        var passwordValidator = function passwordValidator(rule, value, callback) {
-            var validator = zxcvbn(value);
+  data: function data() {
+    var passwordValidator = function passwordValidator(rule, value, callback) {
+      var validator = zxcvbn(value);
 
-            if (value && validator.score <= 2) {
-                var errorMsg = validator.feedback.warning ? validator.feedback.warning : validator.feedback.suggestions.join(' ');
-                return callback(new Error(errorMsg));
-            } else if (!value) {
-                return callback();
-            } else {
-                callback();
-            }
-        };
-        return {
-            loading: true,
-            userFormRules: {
-                password: [{ validator: passwordValidator, trigger: 'change' }]
-            },
-            passwordShow: false
-        };
+      if (value && validator.score <= 2) {
+        var errorMsg = validator.feedback.warning ? validator.feedback.warning : validator.feedback.suggestions.join(' ');
+        return callback(new Error(errorMsg));
+      } else if (!value) {
+        return callback();
+      } else {
+        callback();
+      }
+    };
+    return {
+      loading: true,
+      userFormRules: {
+        password: [{ validator: passwordValidator, trigger: 'change' }]
+      },
+      passwordShow: false
+    };
+  },
+
+
+  computed: _extends({}, (0, _vuex.mapGetters)(['user', 'userErrors'])),
+
+  watch: {
+    user: {
+      handler: function handler(user) {
+        this.$store.commit('UPDATE_USER', user);
+      },
+      deep: true
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('Account.vue mounted');
+
+    this.getUser().then(function () {
+      this.loading = false;
+    }.bind(this)).catch(function () {
+      this.loading = false;
+    }.bind(this));
+  },
+
+
+  methods: _extends({}, (0, _vuex.mapActions)(['getUser', 'updateUser', 'updateUserModel']), {
+
+    /**
+           * Show or hide the password.
+           *
+           * @return void
+           */
+    handlePassView: function handlePassView() {
+      this.passwordShow = !this.passwordShow;
     },
+    submitForm: function submitForm(formName) {
+      var _this = this;
 
+      this.loading = true;
+      this.$refs[formName].validate(function (valid) {
+        // if (valid) {
+        _this.updateUser().then(function () {
+          this.loading = false;
 
-    computed: _extends({}, (0, _vuex.mapGetters)(['user', 'userErrors'])),
-
-    watch: {
-        user: {
-            handler: function handler(user) {
-                this.$store.commit('UPDATE_USER', user);
-            },
-            deep: true
-        }
-    },
-
-    mounted: function mounted() {
-        console.log('Account.vue mounted');
-
-        this.getUser().then(function () {
-            this.loading = false;
-        }.bind(this)).catch(function () {
-            this.loading = false;
-        }.bind(this));
-    },
-
-
-    methods: _extends({}, (0, _vuex.mapActions)(['getUser', 'updateUser', 'updateUserModel']), {
-
-        /**
-         * Show or hide the password.
-         *
-         * @return void
-         */
-        handlePassView: function handlePassView() {
-            this.passwordShow = !this.passwordShow;
-        },
-        submitForm: function submitForm(formName) {
-            var _this = this;
-
-            this.loading = true;
-            this.$refs[formName].validate(function (valid) {
-                // if (valid) {
-                _this.updateUser().then(function () {
-                    this.loading = false;
-
-                    this.$message({
-                        message: 'Account updated',
-                        type: 'success',
-                        showClose: true
-                    });
-                }.bind(_this)).catch(function () {
-                    this.loading = false;
-                }.bind(_this));
-                // }
-            });
-        }
-    })
+          this.$message({
+            message: 'Account updated',
+            type: 'success',
+            showClose: true
+          });
+        }.bind(_this)).catch(function () {
+          this.loading = false;
+        }.bind(_this));
+        // }
+      });
+    }
+  })
 
 };
 
@@ -182,7 +216,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -241,9 +275,9 @@ var render = function() {
                 {
                   ref: "userForm",
                   attrs: {
-                    "label-position": "top",
                     model: _vm.user,
                     rules: _vm.userFormRules,
+                    "label-position": "top",
                     "label-width": "120px"
                   },
                   nativeOn: {
@@ -417,9 +451,9 @@ var render = function() {
                                 "el-button",
                                 {
                                   attrs: {
+                                    loading: _vm.loading,
                                     plain: "",
-                                    type: "success",
-                                    loading: _vm.loading
+                                    type: "success"
                                   },
                                   on: {
                                     click: function($event) {
