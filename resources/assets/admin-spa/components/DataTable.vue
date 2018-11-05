@@ -113,7 +113,8 @@
       :cell-style="tableCellStyle"
       style="width: 100%"
       @selection-change="handleSelectionChange"
-      @sort-change="handleSortChange">
+      @sort-change="handleSortChange"
+      @header-dragend="tableColWidthChanged">
 
       <el-table-column
         type="selection"
@@ -500,6 +501,17 @@ export default {
 
     additonalCols () {
       return this.objectHas(this.ecommerceConfig, `aditional_cols.${this.typeNamePlural}`) ? this.ecommerceConfig.aditional_cols[this.typeNamePlural] : []
+    },
+
+    tableDataFromStorage () {
+      var tableData = window.localStorage.getItem('commerceTableData')
+      return tableData ? JSON.parse(tableData) : {}
+    },
+
+    thisTableDataFromStorage () {
+      var newObj = {}
+      newObj[this.typeName] = {}
+      return this.tableDataFromStorage[this.typeName] ? JSON.parse(this.tableDataFromStorage.typeName) : newObj
     }
   },
 
@@ -802,6 +814,39 @@ export default {
         return ''
       }
       return 'rowHasColour'
+    },
+
+    tableColWidthChanged (newWidth, oldWidth, column, event) {
+      var tableData = this.tableDataFromStorage
+      var thisTableData = this.thisTableDataFromStorage
+
+
+      var newWidthColumn = {}
+      newWidthColumn[column.property] = newWidth
+
+
+      if (!thisTableData.columns) {
+        thisTableData.columns = {}
+      }
+
+      thisTableData.columns = {
+        ...cols,
+        ...newWidthColumn
+      }
+
+
+      var tableData = {
+        ...tableData,
+        ...thisTableData
+      }
+
+      window.localStorage.setItem('commerceTableData', JSON.stringify(tableData))
+    },
+
+    getColumnWidth (column) {
+      var tableData = this.tableDataFromStorage
+
+      // if (tableData[this.typeName])
     }
 
   }

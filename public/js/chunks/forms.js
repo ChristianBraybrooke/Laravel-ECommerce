@@ -1,1 +1,260 @@
-webpackJsonp([22],{"B/U8":function(e,t){e.exports={render:function(){var e=this,t=e.$createElement,r=e._self._c||t;return r("data-table",{attrs:{"table-options":e.tableOptions,"create-form":e.formCreateForm,"create-form-rules":e.formCreateFormRules,"type-name":"form","request-with":""},scopedSlots:e._u([{key:"createForm",fn:function(t){return[r("el-form-item",{attrs:{label:"Form Name",prop:"name"}},[r("el-input",{attrs:{autofocus:!0,"auto-complete":"off"},model:{value:e.formCreateForm.name,callback:function(t){e.$set(e.formCreateForm,"name",t)},expression:"formCreateForm.name"}})],1)]}}])})},staticRenderFns:[]}},JyTy:function(e,t,r){(e.exports=r("FZ+f")(!1)).push([e.i,"",""])},X5cQ:function(e,t,r){var o=r("VU/8")(r("iujp"),r("B/U8"),!1,function(e){r("YpLD")},null,null);e.exports=o.exports},YpLD:function(e,t,r){var o=r("JyTy");"string"===typeof o&&(o=[[e.i,o,""]]),o.locals&&(e.exports=o.locals);r("rjj0")("612c0760",o,!0,{})},iujp:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default={name:"Forms",components:{DataTable:function(){return r.e(32).then(r.bind(null,"bnM4"))}},data:function(){return{formCreateForm:{},formCreateFormRules:{name:[{required:!0,message:"The name is required",trigger:"blur"}]},tableOptions:{border:!0,stripe:!0,showSearch:!0,showHeader:!0,showNewBtn:!0,showRefreshBtn:!0,showHeadHr:!0,showTitle:!0,viewText:"View",deleteText:"Delete",collumns:[{prop:"id",sortable:!0,label:"ID",align:"left",resizable:!0},{prop:"name",sortable:!0,label:"Name",align:"left",resizable:!0},{prop:"created_at.human",sortable:!0,label:"Created",align:"left",resizable:!0}],bulkOptions:[{value:"delete",label:"Delete"}]}}},computed:{},watch:{},mounted:function(){},methods:{}}}});
+webpackJsonp([22],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+
+  name: 'Forms',
+
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+    }
+  },
+
+  data: function data() {
+    return {
+      formCreateForm: {},
+      formCreateFormRules: {
+        name: [{ required: true, message: 'The name is required', trigger: 'blur' }]
+      },
+      tableOptions: {
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name',
+          sortable: true,
+          label: 'Name',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'created_at.human',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }],
+        bulkOptions: [{
+          value: 'delete',
+          label: 'Delete'
+        }]
+      }
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('Forms.vue mounted.');
+  },
+
+
+  methods: {}
+
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c224e332\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-c224e332\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("data-table", {
+    attrs: {
+      "table-options": _vm.tableOptions,
+      "create-form": _vm.formCreateForm,
+      "create-form-rules": _vm.formCreateFormRules,
+      "type-name": "form",
+      "request-with": ""
+    },
+    scopedSlots: _vm._u([
+      {
+        key: "createForm",
+        fn: function(props) {
+          return [
+            _c(
+              "el-form-item",
+              { attrs: { label: "Form Name", prop: "name" } },
+              [
+                _c("el-input", {
+                  attrs: { autofocus: true, "auto-complete": "off" },
+                  model: {
+                    value: _vm.formCreateForm.name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.formCreateForm, "name", $$v)
+                    },
+                    expression: "formCreateForm.name"
+                  }
+                })
+              ],
+              1
+            )
+          ]
+        }
+      }
+    ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c224e332", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c224e332\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c224e332\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("398cdb9e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c224e332\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Forms.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c224e332\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Forms.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/pages/forms/Forms.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c224e332\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-c224e332\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/forms/Forms.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/pages/forms/Forms.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c224e332", Component.options)
+  } else {
+    hotAPI.reload("data-v-c224e332", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
