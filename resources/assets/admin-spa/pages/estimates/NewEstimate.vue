@@ -6,14 +6,14 @@
       class="breadcrumbs"
       separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ name: 'estimates' }">Estimates</el-breadcrumb-item>
-      <el-breadcrumb-item>New Estimate</el-breadcrumb-item>
+      <el-breadcrumb-item>New {{ documentName }}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <el-row
       align="middle"
       type="flex">
       <el-col :span="12">
-        <h1 class="page_title">New Estimate</h1>
+        <h1 class="page_title">New {{ documentName }}</h1>
       </el-col>
     </el-row>
 
@@ -165,7 +165,7 @@
       <el-col :md="{span:24}">
         <el-button
           type="primary"
-          @click="processSubmit()">Create Estimate</el-button>
+          @click="processSubmit()">Create {{ documentName }}</el-button>
       </el-col>
     </el-row>
 
@@ -187,12 +187,20 @@ export default {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
   },
 
+  props: {
+    isProForma: {
+      type: Boolean,
+      required: false,
+      default: () => { return false }
+    }
+  },
+
   data () {
     return {
       loading: false,
       errors: {},
       order: {
-        status: 'Estimate',
+        status: null,
         customer: {},
         shipping_rate: 60,
         discount_rate: 0,
@@ -214,11 +222,17 @@ export default {
   computed: {
     orderTotals () {
       return orderUtil.totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount'])
+    },
+
+    documentName () {
+      return this.isProForma ? 'Pro-Forma' : 'Estimate'
     }
   },
 
   mounted () {
     console.log('NewEstimate.vue mounted!')
+
+    this.order.status = this.documentName
   },
 
   methods: {

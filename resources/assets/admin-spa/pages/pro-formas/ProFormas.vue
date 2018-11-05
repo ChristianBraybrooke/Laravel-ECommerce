@@ -11,7 +11,7 @@
     request-with="content">
 
     <template slot="createButton">
-      <router-link :to="{ name: 'estimates.new'}">
+      <router-link :to="{ name: 'estimates.new', params: { isProForma: true } }">
         <el-button
           class="create_btn"
           type="primary"

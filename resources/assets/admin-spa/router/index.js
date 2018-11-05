@@ -108,6 +108,7 @@ const router = new Router({
     {
       path: '/new-estimate',
       component: NewEstimate,
+      props: true,
       name: 'estimates.new',
       meta: { title: 'Admin: New Estimate' }
     },

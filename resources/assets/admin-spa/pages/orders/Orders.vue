@@ -177,7 +177,7 @@ export default {
             prop: 'name',
             sortable: true,
             label: 'Customer',
-            width: '150px',
+            width: '140px',
             formatter: function (row, column, cellValue) {
               var lines = []
               var address = []
@@ -202,8 +202,8 @@ export default {
           {
             prop: 'created_at.date',
             sortable: true,
-            label: 'Order Placed',
-            width: '120px',
+            label: 'Date',
+            width: '100px',
             align: 'left',
             resizable: false
           },
@@ -211,7 +211,7 @@ export default {
             prop: 'items',
             sortable: true,
             label: 'Products',
-            width: '100px',
+            width: '150px',
             align: 'left',
             resizable: false,
             formatter: function (row, column, cellValue) {
@@ -225,10 +225,11 @@ export default {
                 items.push(<li>{item.quantity + ' * ' + item.name}</li>)
               })
 
-              return <el-popover trigger="hover" placement="top">
-                <ul class="order_items_list table_col_list">{items}</ul>
-                <div slot="reference"><strong>{total.length} items</strong></div>
-              </el-popover>
+              return <ul class="order_items_list table_col_list">{items}</ul>
+              // return <el-popover trigger="hover" placement="top">
+              //   <ul class="order_items_list table_col_list">{items}</ul>
+              //   <div slot="reference"><strong>{total.length} items</strong></div>
+              // </el-popover>
             }
           },
           {
