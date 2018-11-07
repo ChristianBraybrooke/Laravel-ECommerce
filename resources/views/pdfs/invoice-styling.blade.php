@@ -84,6 +84,21 @@ p.address_line {
     line-height: 1.5;
     padding: 0;
 }
+.footer_text {
+  padding-top: 40px;
+  text-align: center;
+}
+.footer_text p {
+  padding: 0;
+  margin: 2px;
+  font-size: 12px;
+}
+.footer_text p strong {
+  font-size: 14px;
+}
+.footer_text p span {
+  font-weight: bold;
+}
 
 @media only screen and (max-width: 600px) {
     .invoice-box table tr.top table td {

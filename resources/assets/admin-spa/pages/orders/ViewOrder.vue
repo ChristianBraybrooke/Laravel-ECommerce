@@ -435,6 +435,7 @@ export default {
       this.orderErrors = {}
       this.loading = true
       this.order.with = ['content', 'payments']
+      this.order.include = [ 'payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source', 'payment.refunded', 'payment.notes' ]
 
       api.persist('put', {
         path: 'orders/' + this.orderId,

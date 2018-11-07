@@ -8,7 +8,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import VueClipboard from 'vue-clipboard2'
 import { codeConverter } from 'utils/currency'
 
-window.ecommerceConfig.web_version = '0.0.72'
+window.ecommerceConfig.web_version = '0.0.74'
 
 window.has = require('lodash.has')
 var numeral = require('numeral')
@@ -66,7 +66,9 @@ Vue.mixin({
     capitalize (str) {
       var lower = str.toLowerCase()
       return lower.replace(/(^| )(\w)/g, function (x) {
-        return x.toUpperCase()
+        if (x) {
+          return x.toUpperCase()
+        }
       })
     },
 

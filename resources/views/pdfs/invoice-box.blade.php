@@ -165,3 +165,36 @@
 @if (isset($page_break) && $page_break === true)
     {{-- <div class="page_break"></div> --}}
 @endif
+
+<div class="footer_text">
+  <p><strong>{{ Setting::get('Company Name') }}</strong></p>
+  <p>{{ Setting::get('Company Address') }}</p>
+  <p>
+    @if (Setting::get('Company No'))
+      <span>Company Number: </span>{{ Setting::get('Company No') }}
+      @if (Setting::get('Company Vat No'))
+        |
+      @endif
+    @endif
+    @if (Setting::get('Company Vat No'))
+      <span>Company VAT Number: </span>{{ Setting::get('Company Vat No') }}
+    @endif
+  </p>
+  <p>
+    <span>Bank Information: </span>
+    @if (Setting::get('Company Bank'))
+      {{ Setting::get('Company Bank')  }} -
+    @endif
+    @if (Setting::get('Company Bank Sort Code'))
+      {{ Setting::get('Company Bank Sort Code')  }} -
+    @endif
+    @if (Setting::get('Company Bank AC Number'))
+      {{ Setting::get('Company Bank AC Number')  }}
+    @endif
+  </p>
+  <p style="margin-top: 10px;">
+    @if (Setting::get('Footer Text'))
+      {{ Setting::get('Footer Text') }}
+    @endif
+  </p>
+</div>

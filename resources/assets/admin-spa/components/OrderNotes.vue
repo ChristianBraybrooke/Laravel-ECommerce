@@ -1,6 +1,7 @@
 <template lang="html">
   <div>
     <el-button
+      :type="buttonType"
       size="mini"
       @click="openModal">Notes</el-button>
 
@@ -76,7 +77,35 @@ export default {
   },
 
   computed: {
+    hasContent () {
+      var hasContent = false
 
+      Object.keys(this.notes).forEach((key) => {
+        if (this.notes[key]) {
+          hasContent = true
+        }
+      })
+      return hasContent
+    },
+    completed () {
+      var completed = false
+
+      Object.keys(this.notes).forEach((key) => {
+        if (key === 'completed checkbox' && this.notes[key]) {
+          completed = true
+        }
+      })
+      return completed
+    },
+    buttonType () {
+      if (this.completed) {
+        return 'success'
+      }
+      if (this.hasContent) {
+        return 'danger'
+      }
+      return ''
+    }
   },
 
   watch: {

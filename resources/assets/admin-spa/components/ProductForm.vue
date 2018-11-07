@@ -577,16 +577,32 @@ export default {
 
     addProduct (addAnother = false) {
       if (this.objectHas(this.form, 'product.id') && this.objectHas(this.form, 'product.quantity')) {
-        console.log(this.form.product.quantity)
         this.onProductAdd(this.form.product)
         if (!addAnother) {
           this.showModal = false
           this.clearAll()
+        } else {
+          this.$confirm('Would you like to clear the form?', '', {
+            distinguishCancelAndClose: true,
+            confirmButtonText: 'Clear',
+            cancelButtonText: "Don't Clear"
+          })
+            .then(_ => {
+              this.clearAll()
+              this.$message({
+                message: 'Product Added and Form Cleared!',
+                type: 'success'
+              })
+            })
+            .catch((action) => {
+              if (action === 'cancel') {
+                this.$message({
+                  message: 'Product Added and Form Saved!',
+                  type: 'success'
+                })
+              }
+            })
         }
-        this.$message({
-          message: 'Product Added!',
-          type: 'success'
-        })
       } else {
         this.$message({
           message: 'Please choose a product and quantity!',

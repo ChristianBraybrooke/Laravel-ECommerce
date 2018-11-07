@@ -152,7 +152,9 @@ export default {
             formatter: function (row, column, cellValue) {
               var notesIndex = findIndex(row.content.data, ['content_name', 'Notes'])
               var hasIndex = notesIndex !== -1
-              return <order-notes notes={hasIndex ? row.content.data[notesIndex].content : {}} on-notes-save={() => this.apiAction(row, 'Notes')} />
+              var content = hasIndex ? row.content.data[notesIndex].content : {}
+
+              return <order-notes notes={content} on-notes-save={() => this.apiAction(row, 'Notes')} />
             }.bind(this)
           },
           {

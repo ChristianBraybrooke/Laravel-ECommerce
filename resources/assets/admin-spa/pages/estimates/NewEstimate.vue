@@ -29,115 +29,8 @@
       label-position="top"
       @submit.native.prevent>
 
-      <el-row :gutter="20">
+      <customer-information-form :form="order" />
 
-        <el-col :md="{span:8, offset: 4}">
-          <el-form-item
-            label="Customer Company"
-            size="small"
-            prop="customer.company">
-            <el-input
-              :autofocus="true"
-              v-model="order.customer.company"
-              auto-complete="off"/>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row :gutter="20">
-
-        <el-col :md="{span:8, offset: 4}">
-          <el-form-item
-            label="Customer First Name"
-            size="small"
-            prop="customer.first_name">
-            <el-input
-              :autofocus="true"
-              v-model="order.customer.first_name"
-              auto-complete="off"/>
-          </el-form-item>
-        </el-col>
-        <el-col :md="8">
-          <el-form-item
-            label="Customer Last Name"
-            size="small"
-            prop="customer.last_name">
-            <el-input
-              :autofocus="true"
-              v-model="order.customer.last_name"
-              auto-complete="off"/>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row :gutter="20">
-        <el-col :md="{span:8, offset: 4}">
-          <el-form-item
-            label="Customer Phone"
-            size="small"
-            prop="customer.phone">
-            <el-input
-              :autofocus="true"
-              v-model="order.customer.phone"
-              auto-complete="off"/>
-          </el-form-item>
-        </el-col>
-        <el-col :md="8">
-          <el-form-item
-            label="Customer Email"
-            size="small"
-            prop="customer.email">
-            <el-input
-              :autofocus="true"
-              v-model="order.customer.email"
-              auto-complete="off"/>
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <hr>
-
-      <el-row :gutter="20">
-        <el-col :md="{span:24}">
-          <el-form-item
-            label="Address"
-            size="small"
-            prop="needs_address">
-
-            <div>
-              <el-radio-group
-                v-model="order.needs_address"
-                size="small">
-                <el-radio-button label="Needs Address" />
-                <el-radio-button label="No Address"/>
-              </el-radio-group>
-            </div>
-
-          </el-form-item>
-        </el-col>
-      </el-row>
-
-      <el-row
-        v-if="order.needs_address === 'Needs Address'"
-        :gutter="20">
-        <el-col :md="12">
-          <h5>Shipping Address</h5>
-          <address-form
-            :form="order.billing_address"
-            prop="billing_address"/>
-        </el-col>
-
-        <el-col :md="12">
-          <h5>Billing Address</h5>
-          <el-col :md="{span:24}">
-            <el-checkbox v-model="order.use_billing_for_shipping">Same As Billing Address</el-checkbox>
-          </el-col>
-          <address-form
-            v-if="!order.use_billing_for_shipping"
-            :form="order.shipping_address"
-            prop="shipping_address"/>
-        </el-col>
-      </el-row>
     </el-form>
 
     <el-row
@@ -184,7 +77,8 @@ export default {
     ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
     AddressForm: () => import(/* webpackChunkName: "address-form" */'components/AddressForm'),
-    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors')
+    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
+    CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm')
   },
 
   props: {

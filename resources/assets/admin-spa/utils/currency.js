@@ -17,7 +17,7 @@ export let currencySymbols = {
 }
 
 export let codeConverter = function (currencyName, fallback = '') {
-  currencyName = currencyName.toUpperCase()
+  currencyName = currencyName ? currencyName.toUpperCase() : ''
 
   if (currencySymbols[currencyName] !== undefined) {
     return currencySymbols[currencyName]

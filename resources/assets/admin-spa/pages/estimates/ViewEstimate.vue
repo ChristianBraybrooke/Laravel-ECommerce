@@ -9,6 +9,11 @@
     </el-breadcrumb>
 
     <print-download-button :order-id="estimateId" />
+    <router-link :to="{ name: 'orders.view', params: { orderId: `${estimate.id}` } }">
+      <el-button
+        type="info"
+        size="mini">Edit Order</el-button>
+    </router-link>
 
     <errors
       v-if="Object.keys(errors).length > 0"

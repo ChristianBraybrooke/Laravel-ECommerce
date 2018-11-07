@@ -36,6 +36,12 @@ class ProcessOrderUpdate implements ShouldQueue
             ])->dispatch($event->model);
         }
 
+        if (isset($event->model->status) && $event->model->getOriginal('status') === Order::$statuses['STATUS_AWAITING_PAYMENT']) {
+            if ($event->model->payment_amount == $event->model->cart['totals']['Total']) {
+                $event->model->update(['status' => Order::$statuses['STATUS_PROCESSING']]);
+            }
+        }
+
         if (isset($event->model->status) && $event->model->getOriginal('status') !== Order::$statuses['STATUS_COMPLETED'] && $event->model->status === Order::$statuses['STATUS_COMPLETED']) {
             Notification::route('mail', $event->model->user_email)
             ->notify(new SendOrderCompleteNotification($event->model));

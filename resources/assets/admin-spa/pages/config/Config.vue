@@ -239,6 +239,122 @@
               </el-tab-pane>
 
               <el-tab-pane
+                label="Order PDFs"
+                name="pdfs">
+
+                <el-row :gutter="20">
+                  <el-col :md="12">
+                    <h5>Address</h5>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:16, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company Name"
+                      prop="Company Name"
+                      size="small">
+                      <el-input v-model="settings['Company Name']"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:16, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company Address"
+                      prop="Company Address"
+                      size="small">
+                      <el-input v-model="settings['Company Address']"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="12">
+                    <h5>Bank Details</h5>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:8, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company Bank"
+                      prop="Company Bank"
+                      size="small">
+                      <el-input v-model="settings['Company Bank']"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:8, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company Bank Sort Code"
+                      prop="Company Bank Sort Code"
+                      size="small">
+                      <el-input v-model="settings['Company Bank Sort Code']"/>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :md="{span:8}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company Bank AC Number"
+                      prop="Company Bank AC Number"
+                      size="small">
+                      <el-input v-model="settings['Company Bank AC Number']"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="12">
+                    <h5>Other</h5>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:8, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company No"
+                      prop="Company No"
+                      size="small">
+                      <el-input v-model="settings['Company No']"/>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :md="{span:8}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Company Vat No"
+                      prop="Company Vat No"
+                      size="small">
+                      <el-input v-model="settings['Company Vat No']"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:16, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="Footer Text"
+                      prop="Footer Text"
+                      size="small">
+                      <el-input
+                        v-model="settings['Footer Text']"
+                        type="textarea"/>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+              </el-tab-pane>
+
+              <el-tab-pane
                 label="Site Images"
                 name="site_images">
                 <el-col

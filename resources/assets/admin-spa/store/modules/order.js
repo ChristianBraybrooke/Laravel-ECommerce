@@ -20,7 +20,7 @@ const state = {
       }
     },
     use_billing_for_shipping: true,
-    status: 'STATUS_DRAFT',
+    status: 'STATUS_AWAITING_PAYMENT',
     needs_address: 'Needs Address'
   }
 }
@@ -88,7 +88,7 @@ const mutations = {
         }
       },
       use_billing_for_shipping: true,
-      status: 'STATUS_DRAFT',
+      status: 'STATUS_AWAITING_PAYMENT',
       needs_address: 'Needs Address'
     }
   },

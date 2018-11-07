@@ -3,6 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
 use Order;
+use App\User;
 use Illuminate\Http\Request;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
 use ChrisBraybrooke\ECommerce\Http\Resources\OrdersResource;
@@ -77,6 +78,34 @@ class ApiOrdersController extends Controller
 
           'cart_data' => $cart_data
         ]);
+
+        if (!$request->filled('customer.id') && $request->filled('customer.email')) {
+            $user = User::updateOrCreate(
+                [
+                    'email' => $request->input('customer.email')
+                ],
+                [
+                    'first_name' => $request->input('customer.first_name'),
+                    'last_name' => $request->input('customer.last_name'),
+                    'company' => $request->input('customer.company'),
+                    'phone' => $request->input('customer.phone'),
+                    'password' => bcrypt(str_random(40)),
+                    'billing_address_line1' => $request->input('billing_address.line1'),
+                    'billing_address_line2' => $request->input('billing_address.line2'),
+                    'billing_address_town' =>$request->input('billing_address.town') ,
+                    'billing_address_county' => $request->input('billing_address.county'),
+                    'billing_address_postcode' => $request->input('billing_address.postcode'),
+                    'billing_address_country' => $request->input('billing_address.country'),
+                    'shipping_address_line1' => $request->input('shipping_address.line1'),
+                    'shipping_address_line2' => $request->input('shipping_address.line2'),
+                    'shipping_address_town' => $request->input('shipping_address.town'),
+                    'shipping_address_county' => $request->input('shipping_address.county'),
+                    'shipping_address_postcode' => $request->input('shipping_address.postcode'),
+                ]
+            );
+            $user->assignRole('customer');
+            $order->update(['user_id' => $user->id]);
+        }
 
         $order->load($request->with ?: []);
 
