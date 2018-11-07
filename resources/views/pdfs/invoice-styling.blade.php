@@ -102,6 +102,8 @@ p.address_line {
 .options_list {
   margin-block-start: 0;
   margin-block-end: 0;
+  padding-inline-start: 20px;
+  line-height: 1.4;
 }
 
 /** RTL **/
