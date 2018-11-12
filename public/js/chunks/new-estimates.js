@@ -1,1 +1,442 @@
-webpackJsonp([24],{"+hWg":function(t,r,e){"use strict";Object.defineProperty(r,"__esModule",{value:!0});var o=s(e("nCXa")),n=s(e("GzQy"));function s(t){return t&&t.__esModule?t:{default:t}}r.default={name:"NewEstimate",components:{ProductForm:function(){return e.e(36).then(e.bind(null,"mBvu"))},ProductTable:function(){return e.e(35).then(e.bind(null,"tAls"))},AddressForm:function(){return e.e(37).then(e.bind(null,"G1R4"))},Errors:function(){return e.e(31).then(e.bind(null,"DqGP"))},CustomerInformationForm:function(){return e.e(41).then(e.bind(null,"jTxB"))}},props:{isProForma:{type:Boolean,required:!1,default:function(){return!1}}},data:function(){return{loading:!1,errors:{},order:{status:null,customer:{},shipping_rate:60,discount_rate:0,billing_address:{},shipping_address:{},items:[],cart:{totals:{Shipping:60,Discount:0}},use_billing_for_shipping:!1,needs_address:"No Address"}}},computed:{orderTotals:function(){return o.default.totals(this.order.items,this.order.cart.totals.Shipping,this.order.cart.totals.Discount)},documentName:function(){return this.isProForma?"Pro-Forma":"Estimate"}},mounted:function(){this.order.status=this.documentName},methods:{addProductToTable:function(t){this.order.items.push(t)},processSubmit:function(){var t=this;this.loading=!0,this.errors={},n.default.persist("post",{path:"orders",object:this.order}).then(function(r){t.loading=!1,t.$router.push({name:"orders.view",params:{orderId:r.data.id.toString()}})}).catch(function(r){t.loading=!1,t.errors=r})}}}},"3OGr":function(t,r,e){var o=e("VU/8")(e("+hWg"),e("KpVq"),!1,function(t){e("QFrS")},null,null);t.exports=o.exports},KpVq:function(t,r){t.exports={render:function(){var t=this,r=t.$createElement,e=t._self._c||r;return e("div",{directives:[{name:"loading",rawName:"v-loading",value:t.loading,expression:"loading"}]},[e("el-breadcrumb",{staticClass:"breadcrumbs",attrs:{"separator-class":"el-icon-arrow-right"}},[e("el-breadcrumb-item",{attrs:{to:{name:"estimates"}}},[t._v("Estimates")]),t._v(" "),e("el-breadcrumb-item",[t._v("New "+t._s(t.documentName))])],1),t._v(" "),e("el-row",{attrs:{align:"middle",type:"flex"}},[e("el-col",{attrs:{span:12}},[e("h1",{staticClass:"page_title"},[t._v("New "+t._s(t.documentName))])])],1),t._v(" "),e("hr",{staticClass:"page_hr"}),t._v(" "),Object.keys(t.errors).length>0?e("errors",{attrs:{errors:t.errors}}):t._e(),t._v(" "),e("el-form",{ref:"orderForm",attrs:{model:t.order,"label-position":"top"},nativeOn:{submit:function(t){t.preventDefault()}}},[e("customer-information-form",{attrs:{form:t.order}})],1),t._v(" "),e("el-row",{staticStyle:{"margin-top":"20px","margin-bottom":"20px"},attrs:{gutter:20}},[e("el-col",{attrs:{span:12}},[e("product-form",{attrs:{"on-product-add":t.addProductToTable}})],1)],1),t._v(" "),t.order.items?e("el-row",{attrs:{gutter:20}},[e("el-col",{attrs:{span:24}},[e("product-table",{attrs:{editable:!0,order:t.order,"order-totals":t.orderTotals}})],1)],1):t._e(),t._v(" "),e("el-row",{staticStyle:{"margin-top":"40px"},attrs:{gutter:20}},[e("el-col",{attrs:{md:{span:24}}},[e("el-button",{attrs:{type:"primary"},on:{click:function(r){t.processSubmit()}}},[t._v("Create "+t._s(t.documentName))])],1)],1)],1)},staticRenderFns:[]}},QFrS:function(t,r,e){var o=e("T2qj");"string"===typeof o&&(o=[[t.i,o,""]]),o.locals&&(t.exports=o.locals);e("rjj0")("61c69a66",o,!0,{})},T2qj:function(t,r,e){(t.exports=e("FZ+f")(!1)).push([t.i,"",""])}});
+webpackJsonp([24],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _order = __webpack_require__("./resources/assets/admin-spa/utils/order.js");
+
+var _order2 = _interopRequireDefault(_order);
+
+var _apiService = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+
+var _apiService2 = _interopRequireDefault(_apiService);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+
+  name: 'NewEstimate',
+
+  components: {
+    ProductForm: function ProductForm() {
+      return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductForm.vue"));
+    },
+    ProductTable: function ProductTable() {
+      return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
+    },
+    AddressForm: function AddressForm() {
+      return __webpack_require__.e/* import() */(37).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/AddressForm.vue"));
+    },
+    Errors: function Errors() {
+      return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
+    },
+    CustomerInformationForm: function CustomerInformationForm() {
+      return __webpack_require__.e/* import() */(41).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CustomerInformationForm.vue"));
+    }
+  },
+
+  props: {
+    isProForma: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      loading: false,
+      errors: {},
+      order: {
+        status: null,
+        customer: {},
+        shipping_rate: 60,
+        discount_rate: 0,
+        billing_address: {},
+        shipping_address: {},
+        items: [],
+        cart: {
+          totals: {
+            Shipping: 60,
+            Discount: 0
+          }
+        },
+        use_billing_for_shipping: false,
+        needs_address: 'No Address'
+      }
+    };
+  },
+
+
+  computed: {
+    orderTotals: function orderTotals() {
+      return _order2.default.totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount']);
+    },
+    documentName: function documentName() {
+      return this.isProForma ? 'Pro-Forma' : 'Estimate';
+    }
+  },
+
+  mounted: function mounted() {
+    console.log('NewEstimate.vue mounted!');
+
+    this.order.status = this.documentName;
+  },
+
+
+  methods: {
+    addProductToTable: function addProductToTable(product) {
+      this.order.items.push(product);
+    },
+    processSubmit: function processSubmit() {
+      var _this = this;
+
+      this.loading = true;
+      this.errors = {};
+
+      _apiService2.default.persist('post', {
+        path: 'orders',
+        object: this.order
+      }).then(function (data) {
+        _this.loading = false;
+        _this.$router.push({ name: 'orders.view', params: { orderId: data.data.id.toString() } });
+      }).catch(function (error) {
+        _this.loading = false;
+        _this.errors = error;
+      });
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a173688\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2a173688\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.loading,
+          expression: "loading"
+        }
+      ]
+    },
+    [
+      _c(
+        "el-breadcrumb",
+        {
+          staticClass: "breadcrumbs",
+          attrs: { "separator-class": "el-icon-arrow-right" }
+        },
+        [
+          _c("el-breadcrumb-item", { attrs: { to: { name: "estimates" } } }, [
+            _vm._v("Estimates")
+          ]),
+          _vm._v(" "),
+          _c("el-breadcrumb-item", [_vm._v("New " + _vm._s(_vm.documentName))])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { attrs: { align: "middle", type: "flex" } },
+        [
+          _c("el-col", { attrs: { span: 12 } }, [
+            _c("h1", { staticClass: "page_title" }, [
+              _vm._v("New " + _vm._s(_vm.documentName))
+            ])
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("hr", { staticClass: "page_hr" }),
+      _vm._v(" "),
+      Object.keys(_vm.errors).length > 0
+        ? _c("errors", { attrs: { errors: _vm.errors } })
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "el-form",
+        {
+          ref: "orderForm",
+          attrs: { model: _vm.order, "label-position": "top" },
+          nativeOn: {
+            submit: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [_c("customer-information-form", { attrs: { form: _vm.order } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        {
+          staticStyle: { "margin-top": "20px", "margin-bottom": "20px" },
+          attrs: { gutter: 20 }
+        },
+        [
+          _c(
+            "el-col",
+            { attrs: { span: 12 } },
+            [
+              _c("product-form", {
+                attrs: { "on-product-add": _vm.addProductToTable }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.order.items
+        ? _c(
+            "el-row",
+            { attrs: { gutter: 20 } },
+            [
+              _c(
+                "el-col",
+                { attrs: { span: 24 } },
+                [
+                  _c("product-table", {
+                    attrs: {
+                      editable: true,
+                      order: _vm.order,
+                      "order-totals": _vm.orderTotals
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "el-row",
+        { staticStyle: { "margin-top": "40px" }, attrs: { gutter: 20 } },
+        [
+          _c(
+            "el-col",
+            { attrs: { md: { span: 24 } } },
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.processSubmit()
+                    }
+                  }
+                },
+                [_vm._v("Create " + _vm._s(_vm.documentName))]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2a173688", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a173688\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a173688\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("65343773", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a173688\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewEstimate.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a173688\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewEstimate.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/pages/estimates/NewEstimate.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2a173688\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2a173688\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/estimates/NewEstimate.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/pages/estimates/NewEstimate.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2a173688", Component.options)
+  } else {
+    hotAPI.reload("data-v-2a173688", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});

@@ -1,1 +1,683 @@
-webpackJsonp([9],{DBid:function(e,r,t){var a=t("VU/8")(t("JKrk"),t("sxqf"),!1,function(e){t("npoa")},null,null);e.exports=a.exports},Fntp:function(e,r,t){(function(r){var t=1/0,a="[object Symbol]",s="[\\ud800-\\udfff]",o="[\\u0300-\\u036f\\ufe20-\\ufe23\\u20d0-\\u20f0]",l="\\ud83c[\\udffb-\\udfff]",u="[^\\ud800-\\udfff]",n="(?:\\ud83c[\\udde6-\\uddff]){2}",i="[\\ud800-\\udbff][\\udc00-\\udfff]",f="(?:"+o+"|"+l+")"+"?",m="[\\ufe0e\\ufe0f]?"+f+("(?:\\u200d(?:"+[u,n,i].join("|")+")[\\ufe0e\\ufe0f]?"+f+")*"),c="(?:"+[u+o+"?",o,n,i,s].join("|")+")",p=RegExp(l+"(?="+l+")|"+c+m,"g"),d=RegExp("[\\u200d\\ud800-\\udfff\\u0300-\\u036f\\ufe20-\\ufe23\\u20d0-\\u20f0\\ufe0e\\ufe0f]"),b="object"==typeof r&&r&&r.Object===Object&&r,h="object"==typeof self&&self&&self.Object===Object&&self,g=b||h||Function("return this")();function v(e){return d.test(e)}function F(e){return v(e)?function(e){return e.match(p)||[]}(e):function(e){return e.split("")}(e)}var w=Object.prototype.toString,x=g.Symbol,_=x?x.prototype:void 0,j=_?_.toString:void 0;function C(e){if("string"==typeof e)return e;if(function(e){return"symbol"==typeof e||function(e){return!!e&&"object"==typeof e}(e)&&w.call(e)==a}(e))return j?j.call(e):"";var r=e+"";return"0"==r&&1/e==-t?"-0":r}function y(e,r,t){var a=e.length;return t=void 0===t?a:t,!r&&t>=a?e:function(e,r,t){var a=-1,s=e.length;r<0&&(r=-r>s?0:s+r),(t=t>s?s:t)<0&&(t+=s),s=r>t?0:t-r>>>0,r>>>=0;for(var o=Array(s);++a<s;)o[a]=e[a+r];return o}(e,r,t)}var T,k=(T="toUpperCase",function(e){var r,t=v(e=null==(r=e)?"":C(r))?F(e):void 0,a=t?t[0]:e.charAt(0),s=t?y(t,1).join(""):e.slice(1);return a[T]()+s});e.exports=k}).call(r,t("DuR2"))},JKrk:function(e,r,t){"use strict";Object.defineProperty(r,"__esModule",{value:!0});var a=t("Fntp");r.default={name:"Users",components:{DataTable:function(){return t.e(32).then(t.bind(null,"bnM4"))}},data:function(){return{usersCreateForm:{},createFormRules:{first_name:[{required:!0,message:"The first name is required",trigger:"blur"},{min:3,max:200,message:"The first name length should be more than 3 characters",trigger:"blur"}],last_name:[{required:!0,message:"The last name is required",trigger:"blur"},{min:3,max:200,message:"The last name length should be more than 3 characters",trigger:"blur"}],email:[{required:!0,message:"The email is required",trigger:"blur"},{min:3,max:200,message:"The email length should be more than 3 characters",trigger:"blur"}],password:[{required:!0,message:"The password is required",trigger:"blur"},{min:3,max:200,message:"The password length should be more than 3 characters",trigger:"blur"}]},tableOptions:{border:!0,stripe:!0,showSearch:!0,showHeader:!0,showNewBtn:!0,showRefreshBtn:!0,showHeadHr:!0,showTitle:!0,viewText:"View",deleteText:"Delete",collumns:[{prop:"id",sortable:!0,label:"ID",align:"left",resizable:!0},{prop:"name.full",sortable:!0,label:"Name",align:"left",resizable:!0},{prop:"email",sortable:!0,label:"Email",align:"left",resizable:!0},{prop:"roles.data",sortable:!0,label:"Roles",align:"left",resizable:!0,formatter:function(e,r,t){var s=[];return t.forEach(function(e){s.push(a(e.name))}),s.join(", ")}},{prop:"created_at.human",sortable:!0,label:"Created",align:"left",resizable:!0}],bulkOptions:[{value:"delete",label:"Delete"},{value:"draft",label:"Mark Draft"},{value:"live",label:"Mark Live"}]}}},computed:{},watch:{},mounted:function(){},methods:{}}},j640:function(e,r,t){(e.exports=t("FZ+f")(!1)).push([e.i,"",""])},npoa:function(e,r,t){var a=t("j640");"string"===typeof a&&(a=[[e.i,a,""]]),a.locals&&(e.exports=a.locals);t("rjj0")("532813da",a,!0,{})},sxqf:function(e,r){e.exports={render:function(){var e=this,r=e.$createElement,t=e._self._c||r;return t("data-table",{attrs:{"table-options":e.tableOptions,"create-form":e.usersCreateForm,"create-form-rules":e.createFormRules,"type-name":"user","request-with":"roles"},scopedSlots:e._u([{key:"createForm",fn:function(r){return[t("el-form-item",{attrs:{label:"First Name",prop:"first_name"}},[t("el-input",{attrs:{autofocus:!0,"auto-complete":"off"},model:{value:e.usersCreateForm.first_name,callback:function(r){e.$set(e.usersCreateForm,"first_name",r)},expression:"usersCreateForm.first_name"}})],1),e._v(" "),t("el-form-item",{attrs:{label:"Last Name",prop:"last_name"}},[t("el-input",{attrs:{autofocus:!0,"auto-complete":"off"},model:{value:e.usersCreateForm.last_name,callback:function(r){e.$set(e.usersCreateForm,"last_name",r)},expression:"usersCreateForm.last_name"}})],1),e._v(" "),t("el-form-item",{attrs:{label:"Email",prop:"email"}},[t("el-input",{attrs:{autofocus:!0,"auto-complete":"off"},model:{value:e.usersCreateForm.email,callback:function(r){e.$set(e.usersCreateForm,"email",r)},expression:"usersCreateForm.email"}})],1),e._v(" "),t("el-form-item",{attrs:{label:"Password",prop:"password"}},[t("el-input",{attrs:{autofocus:!0,"auto-complete":"off"},model:{value:e.usersCreateForm.password,callback:function(r){e.$set(e.usersCreateForm,"password",r)},expression:"usersCreateForm.password"}})],1)]}}])})},staticRenderFns:[]}}});
+webpackJsonp([9],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/users/Users.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js");
+
+exports.default = {
+
+  name: 'Users',
+
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+    }
+  },
+
+  data: function data() {
+    return {
+      usersCreateForm: {},
+      createFormRules: {
+        first_name: [{ required: true, message: 'The first name is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The first name length should be more than 3 characters', trigger: 'blur' }],
+        last_name: [{ required: true, message: 'The last name is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The last name length should be more than 3 characters', trigger: 'blur' }],
+        email: [{ required: true, message: 'The email is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The email length should be more than 3 characters', trigger: 'blur' }],
+        password: [{ required: true, message: 'The password is required', trigger: 'blur' }, { min: 3, max: 200, message: 'The password length should be more than 3 characters', trigger: 'blur' }]
+      },
+      tableOptions: {
+        border: true,
+        stripe: true,
+        showSearch: true,
+        showHeader: true,
+        showNewBtn: true,
+        showRefreshBtn: true,
+        showHeadHr: true,
+        showTitle: true,
+        viewText: 'View',
+        deleteText: 'Delete',
+        collumns: [{
+          prop: 'id',
+          sortable: true,
+          label: 'ID',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name.full',
+          sortable: true,
+          label: 'Name',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'email',
+          sortable: true,
+          label: 'Email',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'roles.data',
+          sortable: true,
+          label: 'Roles',
+          align: 'left',
+          resizable: true,
+          formatter: function formatter(row, column, cellValue) {
+            var roles = [];
+            cellValue.forEach(function (role) {
+              roles.push(upperFirst(role.name));
+            });
+
+            return roles.join(', ');
+          }
+        }, {
+          prop: 'created_at.human',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }],
+        bulkOptions: [{
+          value: 'delete',
+          label: 'Delete'
+        }, {
+          value: 'draft',
+          label: 'Mark Draft'
+        }, {
+          value: 'live',
+          label: 'Mark Live'
+        }]
+      }
+    };
+  },
+
+
+  computed: {},
+
+  watch: {},
+
+  mounted: function mounted() {
+    console.log('Users.vue mounted.');
+  },
+
+
+  methods: {}
+
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c6f4259\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/users/Users.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash.upperfirst/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/** Used to compose unicode character classes. */
+var rsAstralRange = '\\ud800-\\udfff',
+    rsComboMarksRange = '\\u0300-\\u036f\\ufe20-\\ufe23',
+    rsComboSymbolsRange = '\\u20d0-\\u20f0',
+    rsVarRange = '\\ufe0e\\ufe0f';
+
+/** Used to compose unicode capture groups. */
+var rsAstral = '[' + rsAstralRange + ']',
+    rsCombo = '[' + rsComboMarksRange + rsComboSymbolsRange + ']',
+    rsFitz = '\\ud83c[\\udffb-\\udfff]',
+    rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
+    rsNonAstral = '[^' + rsAstralRange + ']',
+    rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
+    rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
+    rsZWJ = '\\u200d';
+
+/** Used to compose unicode regexes. */
+var reOptMod = rsModifier + '?',
+    rsOptVar = '[' + rsVarRange + ']?',
+    rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*',
+    rsSeq = rsOptVar + reOptMod + rsOptJoin,
+    rsSymbol = '(?:' + [rsNonAstral + rsCombo + '?', rsCombo, rsRegional, rsSurrPair, rsAstral].join('|') + ')';
+
+/** Used to match [string symbols](https://mathiasbynens.be/notes/javascript-unicode). */
+var reUnicode = RegExp(rsFitz + '(?=' + rsFitz + ')|' + rsSymbol + rsSeq, 'g');
+
+/** Used to detect strings with [zero-width joiners or code points from the astral planes](http://eev.ee/blog/2015/09/12/dark-corners-of-unicode/). */
+var reHasUnicode = RegExp('[' + rsZWJ + rsAstralRange  + rsComboMarksRange + rsComboSymbolsRange + rsVarRange + ']');
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/**
+ * Converts an ASCII `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function asciiToArray(string) {
+  return string.split('');
+}
+
+/**
+ * Checks if `string` contains Unicode symbols.
+ *
+ * @private
+ * @param {string} string The string to inspect.
+ * @returns {boolean} Returns `true` if a symbol is found, else `false`.
+ */
+function hasUnicode(string) {
+  return reHasUnicode.test(string);
+}
+
+/**
+ * Converts `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function stringToArray(string) {
+  return hasUnicode(string)
+    ? unicodeToArray(string)
+    : asciiToArray(string);
+}
+
+/**
+ * Converts a Unicode `string` to an array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the converted array.
+ */
+function unicodeToArray(string) {
+  return string.match(reUnicode) || [];
+}
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/** Built-in value references. */
+var Symbol = root.Symbol;
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolToString = symbolProto ? symbolProto.toString : undefined;
+
+/**
+ * The base implementation of `_.slice` without an iteratee call guard.
+ *
+ * @private
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function baseSlice(array, start, end) {
+  var index = -1,
+      length = array.length;
+
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start);
+  }
+  end = end > length ? length : end;
+  if (end < 0) {
+    end += length;
+  }
+  length = start > end ? 0 : ((end - start) >>> 0);
+  start >>>= 0;
+
+  var result = Array(length);
+  while (++index < length) {
+    result[index] = array[index + start];
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.toString` which doesn't convert nullish
+ * values to empty strings.
+ *
+ * @private
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ */
+function baseToString(value) {
+  // Exit early for strings to avoid a performance hit in some environments.
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+/**
+ * Casts `array` to a slice if it's needed.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {number} start The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the cast slice.
+ */
+function castSlice(array, start, end) {
+  var length = array.length;
+  end = end === undefined ? length : end;
+  return (!start && end >= length) ? array : baseSlice(array, start, end);
+}
+
+/**
+ * Creates a function like `_.lowerFirst`.
+ *
+ * @private
+ * @param {string} methodName The name of the `String` case method to use.
+ * @returns {Function} Returns the new case function.
+ */
+function createCaseFirst(methodName) {
+  return function(string) {
+    string = toString(string);
+
+    var strSymbols = hasUnicode(string)
+      ? stringToArray(string)
+      : undefined;
+
+    var chr = strSymbols
+      ? strSymbols[0]
+      : string.charAt(0);
+
+    var trailing = strSymbols
+      ? castSlice(strSymbols, 1).join('')
+      : string.slice(1);
+
+    return chr[methodName]() + trailing;
+  };
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Converts `value` to a string. An empty string is returned for `null`
+ * and `undefined` values. The sign of `-0` is preserved.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {string} Returns the string.
+ * @example
+ *
+ * _.toString(null);
+ * // => ''
+ *
+ * _.toString(-0);
+ * // => '-0'
+ *
+ * _.toString([1, 2, 3]);
+ * // => '1,2,3'
+ */
+function toString(value) {
+  return value == null ? '' : baseToString(value);
+}
+
+/**
+ * Converts the first character of `string` to upper case.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category String
+ * @param {string} [string=''] The string to convert.
+ * @returns {string} Returns the converted string.
+ * @example
+ *
+ * _.upperFirst('fred');
+ * // => 'Fred'
+ *
+ * _.upperFirst('FRED');
+ * // => 'FRED'
+ */
+var upperFirst = createCaseFirst('toUpperCase');
+
+module.exports = upperFirst;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1c6f4259\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/users/Users.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("data-table", {
+    attrs: {
+      "table-options": _vm.tableOptions,
+      "create-form": _vm.usersCreateForm,
+      "create-form-rules": _vm.createFormRules,
+      "type-name": "user",
+      "request-with": "roles"
+    },
+    scopedSlots: _vm._u([
+      {
+        key: "createForm",
+        fn: function(props) {
+          return [
+            _c(
+              "el-form-item",
+              { attrs: { label: "First Name", prop: "first_name" } },
+              [
+                _c("el-input", {
+                  attrs: { autofocus: true, "auto-complete": "off" },
+                  model: {
+                    value: _vm.usersCreateForm.first_name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.usersCreateForm, "first_name", $$v)
+                    },
+                    expression: "usersCreateForm.first_name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-form-item",
+              { attrs: { label: "Last Name", prop: "last_name" } },
+              [
+                _c("el-input", {
+                  attrs: { autofocus: true, "auto-complete": "off" },
+                  model: {
+                    value: _vm.usersCreateForm.last_name,
+                    callback: function($$v) {
+                      _vm.$set(_vm.usersCreateForm, "last_name", $$v)
+                    },
+                    expression: "usersCreateForm.last_name"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-form-item",
+              { attrs: { label: "Email", prop: "email" } },
+              [
+                _c("el-input", {
+                  attrs: { autofocus: true, "auto-complete": "off" },
+                  model: {
+                    value: _vm.usersCreateForm.email,
+                    callback: function($$v) {
+                      _vm.$set(_vm.usersCreateForm, "email", $$v)
+                    },
+                    expression: "usersCreateForm.email"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-form-item",
+              { attrs: { label: "Password", prop: "password" } },
+              [
+                _c("el-input", {
+                  attrs: { autofocus: true, "auto-complete": "off" },
+                  model: {
+                    value: _vm.usersCreateForm.password,
+                    callback: function($$v) {
+                      _vm.$set(_vm.usersCreateForm, "password", $$v)
+                    },
+                    expression: "usersCreateForm.password"
+                  }
+                })
+              ],
+              1
+            )
+          ]
+        }
+      }
+    ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1c6f4259", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c6f4259\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/users/Users.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c6f4259\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/users/Users.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("0137fd04", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c6f4259\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Users.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c6f4259\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Users.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/pages/users/Users.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1c6f4259\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/users/Users.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/users/Users.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-1c6f4259\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/users/Users.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/pages/users/Users.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1c6f4259", Component.options)
+  } else {
+    hotAPI.reload("data-v-1c6f4259", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});
