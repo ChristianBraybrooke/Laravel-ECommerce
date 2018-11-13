@@ -73,6 +73,7 @@
           </a>
 
           <print-download-button
+            :key="props.row.id"
             :download="false"
             :print-button="{ style: '', class:'action_btn view_btn', size: 'mini', type: '', text: 'Print Delivery Note' }"
             :delivery-note="true"
@@ -102,6 +103,7 @@ import TableCollumn from 'components/TableCollumn'
 import Payments from 'components/Payments'
 import OrderNotes from 'components/OrderNotes'
 import orderUtil from 'utils/order'
+import PrintDownloadButton from 'components/PrintDownloadButton'
 var forEach = require('lodash.foreach')
 var findIndex = require('lodash.findindex')
 
@@ -114,7 +116,7 @@ export default {
     OrderNotes: OrderNotes,
     Payments: Payments,
     TableCollumn,
-    PrintDownloadButton: () => import(/* webpackChunkName: "print-download-button" */'components/PrintDownloadButton')
+    PrintDownloadButton
   },
 
   data () {
