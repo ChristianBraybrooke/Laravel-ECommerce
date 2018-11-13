@@ -22,9 +22,9 @@
     </el-button>
 
     <iframe
-      id="printLinkIframe"
+      :id="`printLinkIframe${orderId}`"
       :src="printUrl"
-      name="printLinkIframe"
+      :name="`printLinkIframe${orderId}`"
       style="position:absolute;top:-9999px;left:-9999px;border:0px;overfow:none; z-index:-1"
       @load="loading = false"/>
   </div>
@@ -118,8 +118,8 @@ export default {
           '_blank'
         )
       } else {
-        frames['printLinkIframe'].focus()
-        frames['printLinkIframe'].print()
+        frames[`printLinkIframe${this.orderId}`].focus()
+        frames[`printLinkIframe${this.orderId}`].print()
       }
     }
   }
