@@ -2675,6 +2675,13 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js"); //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
 
@@ -2688,7 +2695,10 @@ exports.default = {
     },
     OrderNotes: _OrderNotes2.default,
     Payments: _Payments2.default,
-    TableCollumn: _TableCollumn2.default
+    TableCollumn: _TableCollumn2.default,
+    PrintDownloadButton: function PrintDownloadButton() {
+      return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PrintDownloadButton.vue"));
+    }
   },
 
   data: function data() {
@@ -31232,6 +31242,22 @@ var render = function() {
                         ],
                         1
                       ),
+                      _vm._v(" "),
+                      _c("print-download-button", {
+                        attrs: {
+                          download: false,
+                          "print-button": {
+                            style: "",
+                            class: "action_btn view_btn",
+                            size: "mini",
+                            type: "",
+                            text: "Print Delivery Note"
+                          },
+                          "delivery-note": true,
+                          "order-id": props.row.id,
+                          "btn-class": "action_btn view_btn"
+                        }
+                      }),
                       _vm._v(" "),
                       _c(
                         "el-button",

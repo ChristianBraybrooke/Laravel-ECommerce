@@ -40,6 +40,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 var _vuex = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 
@@ -52,12 +54,43 @@ exports.default = {
     orderId: {
       type: [String, Number],
       required: true
+    },
+
+    download: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return true;
+      }
+    },
+
+    printButton: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+
+    deliveryNote: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
     }
   },
 
   data: function data() {
     return {
-      loading: true
+      loading: true,
+      defaultPrintButton: {
+        class: '',
+        type: 'success',
+        size: 'small',
+        style: 'float:right; margin-bottom:20px; margin-right:10px;',
+        text: 'Print'
+      }
     };
   },
 
@@ -67,7 +100,13 @@ exports.default = {
       return '/ecommerce-templates/invoice-download?reports=' + this.orderId;
     },
     printUrl: function printUrl() {
+      if (this.deliveryNote) {
+        return this.shopData.url + '/ecommerce-templates/delivery-note?orders=' + this.orderId;
+      }
       return this.shopData.url + '/ecommerce-templates/invoice?reports=' + this.orderId;
+    },
+    internalPrintButton: function internalPrintButton() {
+      return _extends({}, this.defaultPrintButton, this.printButton);
     }
   }, (0, _vuex.mapGetters)(['shopData'])),
 
@@ -98,7 +137,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -114,38 +153,42 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { display: "inline" } },
     [
-      _c(
-        "a",
-        {
-          staticStyle: { float: "right", "margin-bottom": "20px" },
-          attrs: { href: _vm.downloadLink, target: "_blank" }
-        },
-        [
-          _c(
-            "el-button",
+      _vm.download
+        ? _c(
+            "a",
             {
-              staticClass: "action_btn view_btn",
-              attrs: { size: "small", plain: "" }
+              class: _vm.btnClass,
+              attrs: { href: _vm.downloadLink, target: "_blank" }
             },
-            [_vm._v("Download PDF\n    ")]
+            [
+              _c(
+                "el-button",
+                {
+                  staticClass: "action_btn view_btn",
+                  attrs: { size: "small", plain: "" }
+                },
+                [_vm._v("Download PDF\n    ")]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "el-button",
         {
-          staticStyle: {
-            float: "right",
-            "margin-bottom": "20px",
-            "margin-right": "10px"
+          class: _vm.internalPrintButton.class,
+          style: _vm.internalPrintButton.style,
+          attrs: {
+            disabled: _vm.loading,
+            size: _vm.internalPrintButton.size,
+            type: _vm.internalPrintButton.type
           },
-          attrs: { disabled: _vm.loading, size: "small", type: "success" },
           on: { click: _vm.printInvoice }
         },
-        [_vm._v("Print\n  ")]
+        [_vm._v(_vm._s(_vm.internalPrintButton.text) + "\n  ")]
       ),
       _vm._v(" "),
       _c("iframe", {

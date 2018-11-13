@@ -1,9 +1,10 @@
 <template lang="html">
-  <div>
+  <div style="display: inline;">
     <a
+      v-if="download"
       :href="downloadLink"
-      target="_blank"
-      style="float:right; margin-bottom:20px;">
+      :class="btnClass"
+      target="_blank">
       <el-button
         size="small"
         plain
@@ -13,10 +14,11 @@
 
     <el-button
       :disabled="loading"
-      size="small"
-      style="float:right; margin-bottom:20px; margin-right:10px"
-      type="success"
-      @click="printInvoice">Print
+      :style="internalPrintButton.style"
+      :class="internalPrintButton.class"
+      :size="internalPrintButton.size"
+      :type="internalPrintButton.type"
+      @click="printInvoice">{{ internalPrintButton.text }}
     </el-button>
 
     <iframe
@@ -42,12 +44,37 @@ export default {
     orderId: {
       type: [String, Number],
       required: true
+    },
+
+    download: {
+      type: Boolean,
+      required: false,
+      default: () => { return true }
+    },
+
+    printButton: {
+      type: Object,
+      required: false,
+      default: () => { return {} }
+    },
+
+    deliveryNote: {
+      type: Boolean,
+      required: false,
+      default: () => { return false }
     }
   },
 
   data () {
     return {
-      loading: true
+      loading: true,
+      defaultPrintButton: {
+        class: '',
+        type: 'success',
+        size: 'small',
+        style: 'float:right; margin-bottom:20px; margin-right:10px;',
+        text: 'Print'
+      }
     }
   },
 
@@ -57,7 +84,17 @@ export default {
     },
 
     printUrl () {
+      if (this.deliveryNote) {
+        return `${this.shopData.url}/ecommerce-templates/delivery-note?orders=${this.orderId}`
+      }
       return `${this.shopData.url}/ecommerce-templates/invoice?reports=${this.orderId}`
+    },
+
+    internalPrintButton () {
+      return {
+        ...this.defaultPrintButton,
+        ...this.printButton
+      }
     },
 
     ...mapGetters([

@@ -72,6 +72,13 @@
             </el-button>
           </a>
 
+          <print-download-button
+            :download="false"
+            :print-button="{ style: '', class:'action_btn view_btn', size: 'mini', type: '', text: 'Print Delivery Note' }"
+            :delivery-note="true"
+            :order-id="props.row.id"
+            btn-class="action_btn view_btn"/>
+
           <el-button
             size="mini"
             type="danger"
@@ -106,7 +113,8 @@ export default {
     DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
     OrderNotes: OrderNotes,
     Payments: Payments,
-    TableCollumn
+    TableCollumn,
+    PrintDownloadButton: () => import(/* webpackChunkName: "print-download-button" */'components/PrintDownloadButton')
   },
 
   data () {
