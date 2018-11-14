@@ -145,21 +145,4 @@
       <span>Company VAT Number: </span>{{ Setting::get('Company Vat No') }}
     @endif
   </p>
-  <p>
-    <span>Bank Information: </span>
-    @if (Setting::get('Company Bank'))
-      {{ Setting::get('Company Bank')  }} -
-    @endif
-    @if (Setting::get('Company Bank Sort Code'))
-      {{ Setting::get('Company Bank Sort Code')  }} -
-    @endif
-    @if (Setting::get('Company Bank AC Number'))
-      {{ Setting::get('Company Bank AC Number')  }}
-    @endif
-  </p>
-  <p style="margin-top: 10px;">
-    @if (Setting::get('Footer Text'))
-      {{ Setting::get('Footer Text') }}
-    @endif
-  </p>
 </div>
