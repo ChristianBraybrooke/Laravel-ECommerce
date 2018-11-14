@@ -64,7 +64,7 @@
     border-top: 2px solid #eee;
 }
 .details {
-    line-height: 0.5;
+    line-height: 1;
 }
 .page_break {
   position: relative;
