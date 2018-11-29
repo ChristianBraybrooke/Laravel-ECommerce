@@ -30,6 +30,8 @@ class UserResource extends Resource
                 'county' => $this->billing_address_county,
                 'postcode' => $this->billing_address_postcode,
                 'country' => $this->billing_address_country,
+                'company' => $this->billing_address_company,
+                'name' => $this->billing_address_name,
             ],
             'shipping_address' => [
                 'line_1' => $this->shipping_address_line1,
@@ -37,7 +39,9 @@ class UserResource extends Resource
                 'town' => $this->shipping_address_town,
                 'county' => $this->shipping_address_county,
                 'postcode' => $this->shipping_address_postcode,
-                'country' => $this->shipping_address_country
+                'country' => $this->shipping_address_country,
+                'company' => $this->shipping_address_company,
+                'name' => $this->shipping_address_name,
             ],
             'gender' => $this->gender,
             'phone' => $this->phone,

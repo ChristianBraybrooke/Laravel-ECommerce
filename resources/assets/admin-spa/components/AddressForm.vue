@@ -4,6 +4,43 @@
     <el-row :gutter="20">
       <el-col :md="{span:span, offset: offset}">
         <el-form-item
+          :label="getFormatedLabel('Address Name')"
+          :prop="prop ? prop + '.name' : 'name'"
+          size="small">
+          <el-input
+            v-if="prop && prefixProp"
+            :autofocus="true"
+            v-model="form[prop].name"
+            auto-complete="off"/>
+          <el-input
+            v-else
+            :autofocus="true"
+            v-model="form[getFormatedLabel('name', true)]"
+            auto-complete="off"/>
+        </el-form-item>
+      </el-col>
+      <el-col :md="span">
+        <el-form-item
+          :label="getFormatedLabel('Address Company')"
+          :prop="prop ? prop + '.company' : 'company'"
+          size="small">
+          <el-input
+            v-if="prop && prefixProp"
+            :autofocus="true"
+            v-model="form[prop].company"
+            auto-complete="off"/>
+          <el-input
+            v-else
+            :autofocus="true"
+            v-model="form[getFormatedLabel('company', true)]"
+            auto-complete="off"/>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="20">
+      <el-col :md="{span:span, offset: offset}">
+        <el-form-item
           :label="getFormatedLabel('Address Line 1')"
           :prop="prop ? prop + '.line_1' : 'line_1'"
           size="small">

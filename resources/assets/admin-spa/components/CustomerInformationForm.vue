@@ -116,7 +116,7 @@
           :form="form.shipping_address"
           prop="shipping_address"/>
         <el-col :md="{span:24}">
-          <el-checkbox v-model="form.use_billing_for_shipping">Same As Billing Address</el-checkbox>
+          <el-checkbox v-model="form.use_billing_for_shipping">Same As Shipping Address</el-checkbox>
         </el-col>
       </el-col>
     </el-row>

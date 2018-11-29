@@ -42,7 +42,11 @@ class Order extends Model implements OrderContract
     private function responsableSearch()
     {
         return [
-            'id'
+            'id',
+            'user_first_name',
+            'user_last_name',
+            'user_email',
+            'user_phone'
         ];
     }
 
@@ -174,7 +178,8 @@ class Order extends Model implements OrderContract
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent'
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company'
     ];
 
     /**
@@ -190,7 +195,8 @@ class Order extends Model implements OrderContract
         'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent'
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company'
     ];
 
     /**
@@ -249,7 +255,8 @@ class Order extends Model implements OrderContract
     protected function formatAddress($type)
     {
         return [
-            'Name' => $this->customer['full_name'],
+            'name' => ucfirst($this->{$type . '_address_name'}),
+            'company' => ucfirst($this->{$type . '_address_company'}),
             'line_1' => ucfirst($this->{$type . '_address_line1'}),
             'line_2' => ucfirst($this->{$type . '_address_line2'}),
             'town' => ucfirst($this->{$type . '_address_town'}),

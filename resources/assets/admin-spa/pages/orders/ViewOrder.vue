@@ -92,6 +92,59 @@
           <div
             slot="header"
             class="clearfix">
+            <span>Billing Address</span>
+            <el-button
+              style="float: right; padding: 3px 0"
+              type="text"
+              @click="edit_billing = !edit_billing">{{ edit_billing ? 'Cancel' : 'Edit' }}</el-button>
+          </div>
+
+          <template v-if="!edit_billing">
+            <div
+              v-for="(line, key) in order.billing_address"
+              :key="key"
+              class="text item">
+              <strong
+              v-if="!edit_billing">{{ formatAddressLabel(key) }}:</strong> {{ line }}
+            </div>
+          </template>
+
+          <el-form
+            v-if="edit_billing"
+            ref="editShippingForm"
+            :model="order.billing_address"
+            label-width="120px"
+            size="mini">
+            <el-form-item
+              v-for="(line, key) in order.billing_address"
+              :label="formatAddressLabel(key)"
+              :key="key"
+              :prop="key">
+              <el-input
+                :autofocus="true"
+                v-model="order.billing_address[key]"
+                auto-complete="off"
+                clearable/>
+            </el-form-item>
+
+            <el-form-item>
+              <el-button
+                :loading="loading"
+                type="primary"
+                @click="updateOrder()">Save</el-button>
+            </el-form-item>
+          </el-form>
+
+        </el-card>
+      </el-col>
+      <el-col
+        :md="24"
+        :lg="12"
+        style="margin-bottom: 50px;">
+        <el-card class="box-card">
+          <div
+            slot="header"
+            class="clearfix">
             <span>Shipping Address <el-tag
               v-if="order.use_billing_for_shipping"
               size="mini">Using Billing</el-tag></span>
@@ -101,12 +154,14 @@
               @click="edit_shipping = !edit_shipping">{{ edit_shipping ? 'Cancel' : 'Edit' }}</el-button>
           </div>
 
-          <div
-            v-for="(line, key) in order.shipping_address"
-            :key="key"
-            class="text item">
-            <strong v-if="!edit_shipping">{{ formatAddressLabel(key) }}:</strong> {{ line }}
-          </div>
+          <template v-if="!edit_shipping">
+            <div
+              v-for="(line, key) in order.shipping_address"
+              :key="key"
+              class="text item">
+              <strong v-if="!edit_shipping">{{ formatAddressLabel(key) }}:</strong> {{ line }}
+            </div>
+          </template>
 
           <el-form
             v-if="edit_shipping"
@@ -142,57 +197,6 @@
                 @click="updateOrder()">Save</el-button>
             </el-form-item>
 
-          </el-form>
-
-        </el-card>
-      </el-col>
-      <el-col
-        :md="24"
-        :lg="12"
-        style="margin-bottom: 50px;">
-        <el-card class="box-card">
-          <div
-            slot="header"
-            class="clearfix">
-            <span>Billing Address</span>
-            <el-button
-              style="float: right; padding: 3px 0"
-              type="text"
-              @click="edit_billing = !edit_billing">{{ edit_billing ? 'Cancel' : 'Edit' }}</el-button>
-          </div>
-
-          <div
-            v-for="(line, key) in order.billing_address"
-            :key="key"
-            class="text item">
-            <strong
-            v-if="!edit_billing">{{ formatAddressLabel(key) }}:</strong> {{ line }}
-          </div>
-
-          <el-form
-            v-if="edit_billing"
-            ref="editShippingForm"
-            :model="order.billing_address"
-            label-width="120px"
-            size="mini">
-            <el-form-item
-              v-for="(line, key) in order.billing_address"
-              :label="formatAddressLabel(key)"
-              :key="key"
-              :prop="key">
-              <el-input
-                :autofocus="true"
-                v-model="order.billing_address[key]"
-                auto-complete="off"
-                clearable/>
-            </el-form-item>
-
-            <el-form-item>
-              <el-button
-                :loading="loading"
-                type="primary"
-                @click="updateOrder()">Save</el-button>
-            </el-form-item>
           </el-form>
 
         </el-card>

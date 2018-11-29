@@ -30,11 +30,11 @@ class ShopResource extends Resource
               return $mappings;
           }),
           'collection_mappings_values' => $this->when(Auth::guard('api')->check(), function () use ($mappings) {
-              $values = [];
-              foreach ($mappings as $key => $mapping) {
+            $values = [];
+            foreach ($mappings as $key => $mapping) {
                   $values[$mapping] = Setting::get($mapping);
-              }
-              return $values;
+            }
+            return $values;
           }),
           'site_images' => $this->when(Auth::guard('api')->check(), function () {
               return config('ecommerce.shop_data.site_images');

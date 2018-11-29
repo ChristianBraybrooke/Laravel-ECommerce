@@ -21,7 +21,9 @@ class OrdersResource extends ResourceCollection
         $shop = new ShopResource($request);
         return [
             'data' => $this->collection,
-            'shop_data' => $shop->toArray($request)
+            $this->mergeWhen(!requestIncludes('no_shop_data'), [
+              'shop_data' => requestIncludes('no_shop_data') ? null : $shop->toArray($request)
+            ])
         ];
     }
 }

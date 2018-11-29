@@ -121,6 +121,10 @@ class ApiUsersController extends Controller
             'billing_address_county' => $request->has('billing_address_county') ? $request->billing_address_county : $user->billing_address_county,
             'billing_address_postcode' => $request->has('billing_address_postcode') ? $request->billing_address_postcode : $user->billing_address_postcode,
             'billing_address_country' => $request->has('billing_address_country') ? $request->billing_address_country : $user->billing_address_country,
+            'billing_address_name' => $request->has('billing_address_name') ? $request->billing_address_name : $user->billing_address_name,
+            'billing_address_company' => $request->has('billing_address_company') ? $request->billing_address_company : $user->billing_address_company,
+            'shipping_address_name' => $request->has('shipping_address_name') ? $request->shipping_address_name : $user->shipping_address_name,
+            'shipping_address_company' => $request->has('shipping_address_company') ? $request->shipping_address_company : $user->shipping_address_company
         ]);
 
         if ($request->filled('password')) {

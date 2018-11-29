@@ -39,9 +39,13 @@ class User extends Authenticatable
      * @var array
      */
     protected static $logAttributes = [
-      'first_name', 'last_name', 'gender', 'dob', 'company', 'phone', 'email', 'marketing_preferences', 'billing_address_line1', 'billing_address_line2', 'billing_address_town', 'billing_address_county', 'billing_address_postcode', 'billing_address_country', 'shipping_address_line1', 'shipping_address_line2',
-      'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4', 'payment_source_exp_month',
-      'payment_source_exp_year'
+      'name', 'first_name', 'last_name', 'gender', 'dob', 'company', 'phone', 'email', 'password', 'timezone', 'language',
+      'stripe_id', 'last_login', 'marketing_preferences', 'billing_address_line1', 'billing_address_line2',
+      'billing_address_town', 'billing_address_county', 'billing_address_postcode',
+      'billing_address_country', 'shipping_address_line1', 'shipping_address_line2', 'shipping_address_town',
+      'shipping_address_county', 'shipping_address_postcode', 'payment_source_id', 'payment_source_brand',
+      'payment_source_country', 'payment_source_last4', 'payment_source_exp_month', 'payment_source_exp_year', 'billing_address_name',
+      'billing_address_company', 'shipping_address_name', 'shipping_address_company'
     ];
 
     /**
@@ -55,7 +59,8 @@ class User extends Authenticatable
         'billing_address_town', 'billing_address_county', 'billing_address_postcode',
         'billing_address_country', 'shipping_address_line1', 'shipping_address_line2', 'shipping_address_town',
         'shipping_address_county', 'shipping_address_postcode', 'payment_source_id', 'payment_source_brand',
-        'payment_source_country', 'payment_source_last4', 'payment_source_exp_month', 'payment_source_exp_year'
+        'payment_source_country', 'payment_source_last4', 'payment_source_exp_month', 'payment_source_exp_year', 'billing_address_name',
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company'
     ];
 
     /**

@@ -200,7 +200,11 @@ export default {
               billing_address_town: this.user.billing_address.town,
               billing_address_county: this.user.billing_address.county,
               billing_address_postcode: this.user.billing_address.postcode,
-              billing_address_country: this.user.billing_address.country
+              billing_address_country: this.user.billing_address.country,
+              billing_address_name: this.user.billing_address.name,
+              billing_address_company: this.user.billing_address.company,
+              shipping_address_name: this.user.shipping_address.name,
+              shipping_address_company: this.user.shipping_address.company
             }
           })
             .then(data => {

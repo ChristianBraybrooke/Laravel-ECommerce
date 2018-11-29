@@ -12,7 +12,7 @@
     <data-table
       :full-modal="true"
       :request-with="['content', 'payments']"
-      :request-includes="['payment.amount', 'payment.method', 'payment.refunded']"
+      :request-includes="['payment.amount', 'payment.method', 'payment.refunded', 'no_shop_data']"
       :with-params="{withOutStatuses: ['STATUS_ESTIMATE', 'STATUS_DRAFT', 'STATUS_PROFORMA', 'STATUS_PAYMENT_FAILED', 'STATUS_CANCELLED']}"
       :table-options="tableOptions"
       :create-form="ordersCreateForm"

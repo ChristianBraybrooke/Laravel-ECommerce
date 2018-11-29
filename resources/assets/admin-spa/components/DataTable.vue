@@ -723,9 +723,7 @@ export default {
      */
     handleSizeChange (perPage) {
       this.paginationMeta.perPage = perPage
-
       this.saveLocalData('perPage', perPage)
-
       this.getData()
     },
 
@@ -737,7 +735,6 @@ export default {
      */
     handlePageChange (page) {
       this.paginationMeta.currentPage = page
-
       this.getData()
     },
 
@@ -762,6 +759,7 @@ export default {
      * @return void
      */
     handleSearchChange (value) {
+      this.paginationMeta.currentPage = 1
       this.getData()
     },
 

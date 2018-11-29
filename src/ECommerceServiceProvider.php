@@ -39,7 +39,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.79';
+    const VERSION = '0.0.80';
 
     /**
      * Bootstrap the application events.
@@ -523,6 +523,24 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/create_prices_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 2).'_create_prices_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddAddressInformationToOrdersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_address_information_to_orders_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_add_address_information_to_orders_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddAddressInformationToUsersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_address_information_to_users_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 2).'_add_address_information_to_users_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

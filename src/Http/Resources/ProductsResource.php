@@ -23,7 +23,7 @@ class ProductsResource extends ResourceCollection
             'data' => $this->collection,
             $this->mergeWhen(!requestIncludes('no_shop_data'), [
               'shop_data' => requestIncludes('no_shop_data') ? null : $shop->toArray($request)
-           ])
+            ])
         ];
     }
 }

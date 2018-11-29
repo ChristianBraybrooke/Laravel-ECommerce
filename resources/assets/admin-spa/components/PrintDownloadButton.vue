@@ -3,7 +3,6 @@
     <a
       v-if="download"
       :href="downloadLink"
-      :class="btnClass"
       target="_blank">
       <el-button
         size="small"

@@ -52,12 +52,15 @@ class ApiOrdersController extends Controller
             $request->input('cart.totals.Discount')
         );
 
+        $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
+
         $order = $order->create([
           'user_id' => $request->has('customer.id') ? $request->input('customer.id') : null,
           'user_first_name' => $request->input('customer.first_name'),
           'user_last_name' => $request->input('customer.last_name'),
           'user_email' => $request->input('customer.email'),
           'user_phone' => $request->input('customer.phone'),
+          'user_company' => $request->input('customer.company'),
 
           'billing_address_line1' => $request->input('billing_address.line_1'),
           'billing_address_line2' => $request->input('billing_address.line_2'),
@@ -65,6 +68,8 @@ class ApiOrdersController extends Controller
           'billing_address_county' => $request->input('billing_address.county'),
           'billing_address_postcode' => $request->input('billing_address.postcode'),
           'billing_address_country' => $request->input('billing_address.country'),
+          'billing_address_name' => $request->input('billing_address.name') ?: $customerName,
+          'billing_address_company' => $request->input('billing_address.company') ?: $request->input('customer.company'),
           'use_billing_for_shipping' => $use_billing_for_shipping,
 
           'shipping_address_line1' => !$use_billing_for_shipping ? $request->input('shipping_address.line_1') : null,
@@ -73,6 +78,8 @@ class ApiOrdersController extends Controller
           'shipping_address_county' => !$use_billing_for_shipping ? $request->input('shipping_address.county') : null,
           'shipping_address_postcode' => !$use_billing_for_shipping ? $request->input('shipping_address.postcode') : null,
           'shipping_address_country' => !$use_billing_for_shipping ? $request->input('shipping_address.country') : null,
+          'shipping_address_name' => !$use_billing_for_shipping ? ($request->input('shipping_address.name') ?: $customerName) : null,
+          'shipping_address_company' => !$use_billing_for_shipping ? ($request->input('shipping_address.company') ?: $request->input('customer.company')) : null,
 
           'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->setStatusFromName('Draft'),
 
@@ -101,6 +108,10 @@ class ApiOrdersController extends Controller
                     'shipping_address_town' => $request->input('shipping_address.town'),
                     'shipping_address_county' => $request->input('shipping_address.county'),
                     'shipping_address_postcode' => $request->input('shipping_address.postcode'),
+                    'shipping_address_name' => $request->input('shipping_address.name'),
+                    'shipping_address_company' => $request->input('shipping_address.company'),
+                    'shipping_address_name' => $request->input('shipping_address.name'),
+                    'shipping_address_company' => $request->input('shipping_address.company'),
                 ]
             );
             $user->assignRole('customer');
@@ -141,6 +152,8 @@ class ApiOrdersController extends Controller
             $request->input('cart.totals.Discount')
         );
 
+        $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
+
         $order->update([
             'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->getAttributes()['status'],
             'user_id' => $request->input('customer.id'),
@@ -155,6 +168,8 @@ class ApiOrdersController extends Controller
             'billing_address_county' => $request->input('billing_address.county'),
             'billing_address_postcode' => $request->input('billing_address.postcode'),
             'billing_address_country' => $request->input('billing_address.country'),
+            'billing_address_name' => $request->input('billing_address.name') ?: $customerName,
+            'billing_address_company' => $request->input('billing_address.company') ?: $request->input('customer.company'),
 
             'shipping_address_line1' => $request->has('shipping_address.line_1') ? $request->input('shipping_address.line_1') : $order->shipping_address_line1,
             'shipping_address_line2' => $request->has('shipping_address.line_2') ? $request->input('shipping_address.line_2') : $order->shipping_address_line2,
@@ -162,6 +177,8 @@ class ApiOrdersController extends Controller
             'shipping_address_county' => $request->has('shipping_address.county') ? $request->input('shipping_address.county') : $order->shipping_address_county,
             'shipping_address_postcode' => $request->has('shipping_address.postcode') ? $request->input('shipping_address.postcode') : $order->shipping_address_postcode,
             'shipping_address_country' => $request->has('shipping_address.country') ? $request->input('shipping_address.country') : $order->shipping_address_country,
+            'shipping_address_name' => $request->has('shipping_address.name') ? ($request->input('shipping_address.name') ?: $customerName) : $order->shipping_address_name,
+            'shipping_address_company' => $request->has('shipping_address.company') ? ($request->input('shipping_address.company') ?: $request->input('customer.company')) : $order->shipping_address_company,
 
             'use_billing_for_shipping' => $request->use_billing_for_shipping,
 
