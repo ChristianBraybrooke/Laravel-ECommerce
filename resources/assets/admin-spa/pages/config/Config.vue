@@ -239,6 +239,47 @@
               </el-tab-pane>
 
               <el-tab-pane
+                label="Pricing"
+                name="pricing">
+
+                <el-row :gutter="20">
+                  <el-col :md="12">
+                    <h5>VAT</h5>
+                  </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                  <el-col :md="{span:8, offset: 4}">
+                    <el-form-item
+                      v-if="settings"
+                      label="VAT Included"
+                      prop="VAT Included"
+                      size="small">
+                      <el-switch
+                        v-model="settings['VAT Included']"
+                        active-text="VAT Included"
+                        inactive-text="VAT Extra" />
+                    </el-form-item>
+                  </el-col>
+                  <el-col :md="{span:8}">
+                    <el-form-item
+                      v-if="settings"
+                      label="VAT Amount"
+                      prop="VAT Amount"
+                      size="small">
+                      <el-input-number
+                        v-model="settings['VAT Amount']"
+                        :precision="2"
+                        :step="0.1"
+                        :max="1"
+                        :min="0" />
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+
+              </el-tab-pane>
+
+              <el-tab-pane
                 label="Order PDFs"
                 name="pdfs">
 

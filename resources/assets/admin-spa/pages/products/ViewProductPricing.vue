@@ -14,7 +14,7 @@
             :lg="12"
             :md="24">
             <el-form-item
-              label="Price"
+              :label="includesVat ? 'Price (includes VAT)' : 'Price (excludes VAT)'"
               prop="price">
               <el-input
                 :autofocus="true"
@@ -57,7 +57,11 @@ export default {
   computed: {
     ...mapGetters([
       'shopData'
-    ])
+    ]),
+
+    includesVat () {
+      return window.ecommerceConfig.vat_included
+    }
   },
 
   watch: {

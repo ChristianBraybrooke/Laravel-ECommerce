@@ -242,8 +242,8 @@ function formatOrderItems($request_items = [], $shipping_rate = 0, $discount_rat
     $total_ex_vat = $order_subtotal + $order_extras + $order_shipping;
     $discount_amount = $total_ex_vat * ((float)$order_discount / 100);
     $total_ex_vat = $total_ex_vat - $discount_amount;
-    $order_vat = $total_ex_vat * 0.2;
-    $order_total = $total_ex_vat + $order_vat;
+    $order_vat = Setting::get('VAT Included') ? ($total_ex_vat / (Setting::get('VAT Amount') + 1)) * Setting::get('VAT Amount') : $total_ex_vat * Setting::get('VAT Amount');
+    $order_total = Setting::get('VAT Included') ? $total_ex_vat  : $total_ex_vat + $order_vat;
 
     $cart_data = [
         'items' => $items,

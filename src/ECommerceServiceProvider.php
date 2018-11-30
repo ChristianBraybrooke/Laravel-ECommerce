@@ -28,6 +28,7 @@ use ChrisBraybrooke\ECommerce\Commands\InitialSetupCommand;
 use ChrisBraybrooke\ECommerce\Commands\CreateAdminCommand;
 use ChrisBraybrooke\ECommerce\Commands\PublishAdminCommand;
 use Order;
+use Setting;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -39,7 +40,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.80';
+    const VERSION = '0.0.81';
 
     /**
      * Bootstrap the application events.
@@ -202,6 +203,8 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             'api_prefix' => (string)config('ecommerce.api_uri', 'api/ecommerce'),
             'theme_color' => (string)config('ecommerce.theme_color', '#409eff'),
             'stripe_public_key' => config('services.stripe.key'),
+            'vat_included' => Setting::get('VAT Included') ?: false,
+            'vat_amount' => Setting::get('VAT Amount'),
             'orders' => [
                 'statuses' => Order::$statuses,
             ],

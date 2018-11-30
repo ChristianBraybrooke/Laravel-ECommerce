@@ -2,6 +2,8 @@ import { operators } from 'utils/operators'
 import priceUtil from 'utils/price'
 
 var forEach = require('lodash.foreach')
+var vatIncluded = window.ecommerceConfig.vat_included
+var vatAmount = window.ecommerceConfig.vat_amount
 
 export default {
 
@@ -58,8 +60,9 @@ export default {
     var totalExVat = (priceUtil.normalise(subTotal) + priceUtil.normalise(extras) + priceUtil.normalise(shipping))
     var discountAmount = totalExVat * (parseInt(discount) / 100)
     totalExVat = (totalExVat - discountAmount)
-    var vat = totalExVat * 0.2
-    var total = totalExVat + vat
+    var vat = vatIncluded ? (totalExVat / (vatAmount + 1)) * vatAmount : totalExVat * vatAmount
+    var total = vatIncluded ? (totalExVat) : (totalExVat + vat)
+
     return [
       {
         total: 'Sub-Total',
@@ -78,7 +81,7 @@ export default {
         value: discount
       },
       {
-        total: 'VAT',
+        total: `VAT ${vatIncluded ? '(included)' : ''}`,
         value: priceUtil.normalise(vat)
       },
       {
