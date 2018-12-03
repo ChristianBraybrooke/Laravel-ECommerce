@@ -84,9 +84,9 @@ export default {
 
     printUrl () {
       if (this.deliveryNote) {
-        return `${this.getSiteBaseURL}/ecommerce-templates/delivery-note?orders=${this.orderId}`
+        return `${this.getSiteBaseURL}ecommerce-templates/delivery-note?orders=${this.orderId}`
       }
-      return `${this.getSiteBaseURL}/ecommerce-templates/invoice?reports=${this.orderId}`
+      return `${this.getSiteBaseURL}ecommerce-templates/invoice?reports=${this.orderId}`
     },
 
     internalPrintButton () {
