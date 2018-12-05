@@ -154,7 +154,8 @@ export default {
         value = {}
       }
 
-      return <addition-form form-name={addition.form_name}
+      return <addition-form key={this.col.id}
+        form-name={addition.form_name}
         amount-prefix={addition.amount_prefix}
         format-amount={addition.format_amount}
         individual-name={addition.individual_name}

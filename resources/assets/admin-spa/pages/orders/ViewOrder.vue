@@ -214,24 +214,37 @@
             <span>Customer Information</span>
             <el-button
               style="float: right; padding: 3px 0"
-              type="text">Edit</el-button>
+              type="text"
+              @click="customerEditable = !customerEditable">{{ customerEditable ? 'Cancel' : 'Edit' }}</el-button>
           </div>
 
-          <div
-            v-if="order.customer"
-            class="text item">
-            <strong>Name:</strong> {{ order.customer.full_name }}
-          </div>
-          <div
-            v-if="order.customer"
-            class="text item">
-            <strong>Email:</strong> {{ order.customer.email }}
-          </div>
-          <div
-            v-if="order.customer"
-            class="text item">
-            <strong>Phone:</strong> {{ order.customer.phone }}
-          </div>
+          <template v-if="!customerEditable">
+            <div
+              v-if="order.customer"
+              class="text item">
+              <strong>Name:</strong> {{ order.customer.full_name }}
+            </div>
+            <div
+              v-if="order.customer"
+              class="text item">
+              <strong>Email:</strong> {{ order.customer.email }}
+            </div>
+            <div
+              v-if="order.customer"
+              class="text item">
+              <strong>Phone:</strong> {{ order.customer.phone }}
+            </div>
+          </template>
+          <template v-else>
+            <el-form :model="order.customer">
+              <customer-details-form :form="order.customer" />
+            </el-form>
+            <el-button
+              :loading="loading"
+              type="primary"
+              size="small"
+              @click="updateOrder(); customerEditable = false">Save</el-button>
+          </template>
 
         </el-card>
       </el-col>
@@ -313,6 +326,7 @@ export default {
   components: {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
+    CustomerDetailsForm: () => import(/* webpackChunkName: "customer-details-form" */'components/CustomerDetailsForm'),
     Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
     ContentComponent,
     ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
@@ -340,6 +354,7 @@ export default {
       invoiceLoaded: false,
       orderStatuses: {},
       printUrl: null,
+      customerEditable: false,
       deliveryDateOptions: {
         shortcuts: [
           {
