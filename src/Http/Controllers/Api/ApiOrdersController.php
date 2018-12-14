@@ -154,11 +154,14 @@ class ApiOrdersController extends Controller
 
         $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
 
+        $firstName = $request->filled('customer.full_name') ? str_before($request->input('customer.full_name'), ' ') : $request->input('customer.first_name');
+        $lastName = $request->filled('customer.full_name') ? str_after($request->input('customer.full_name'), ' ') : $request->input('customer.last_name');
+
         $order->update([
             'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->getAttributes()['status'],
             'user_id' => $request->input('customer.id'),
-            'user_first_name' => $request->input('customer.first_name'),
-            'user_last_name' => $request->input('customer.last_name'),
+            'user_first_name' => $firstName,
+            'user_last_name' => $lastName,
             'user_email' => $request->input('customer.email'),
             'user_phone' => $request->input('customer.phone'),
 

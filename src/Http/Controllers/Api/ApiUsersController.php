@@ -108,7 +108,7 @@ class ApiUsersController extends Controller
             'language' => $request->language ?: $user->language,
             'stripe_id' => $request->stripe_id ?: $user->stripe_id,
             'last_login' => $request->last_login ?: $user->last_login,
-            'marketing_preferences' => $request->marketing_preferences ?: $user->marketing_preferences,
+            'marketing_preferences' => $request->markexting_preferences ?: $user->marketing_preferences,
             'shipping_address_line1' => $request->has('shipping_address_line_1') ? $request->shipping_address_line_1 : $user->shipping_address_line1,
             'shipping_address_line2' => $request->has('shipping_address_line_2') ? $request->shipping_address_line_2 : $user->shipping_address_line2,
             'shipping_address_town' => $request->has('shipping_address_town') ? $request->shipping_address_town : $user->shipping_address_town,
