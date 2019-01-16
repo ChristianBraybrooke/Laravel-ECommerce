@@ -96,9 +96,8 @@ class ApiOrdersController extends Controller
                     'last_name' => $request->input('customer.last_name'),
                     'company' => $request->input('customer.company'),
                     'phone' => $request->input('customer.phone'),
-                    'password' => bcrypt(str_random(40)),
-                    'billing_address_line1' => $request->input('billing_address.line1'),
-                    'billing_address_line2' => $request->input('billing_address.line2'),
+                    'billing_address_line1' => $request->input('billing_address.line_1'),
+                    'billing_address_line2' => $request->input('billing_address.line_2'),
                     'billing_address_town' =>$request->input('billing_address.town') ,
                     'billing_address_county' => $request->input('billing_address.county'),
                     'billing_address_postcode' => $request->input('billing_address.postcode'),
@@ -116,6 +115,19 @@ class ApiOrdersController extends Controller
             );
             $user->assignRole('customer');
             $order->update(['user_id' => $user->id]);
+        } elseif ($request->filled('customer.id') && $request->input('save_billing_address')) {
+            $user = User::find($request->input('customer.id'));
+
+            if ($user) {
+                $user->update([
+                    'billing_address_line1' => $request->input('billing_address.line_1'),
+                    'billing_address_line2' => $request->input('billing_address.line_2'),
+                    'billing_address_town' =>$request->input('billing_address.town') ,
+                    'billing_address_county' => $request->input('billing_address.county'),
+                    'billing_address_postcode' => $request->input('billing_address.postcode'),
+                    'billing_address_country' => $request->input('billing_address.country')
+                ]);
+            }
         }
 
         $order->load($request->with ?: []);

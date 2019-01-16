@@ -105,6 +105,9 @@
           :span="12"
           :form="form.billing_address"
           prop="billing_address"/>
+        <el-col :md="{span:24}">
+          <el-checkbox v-model="form.save_billing_address">Save Billing Address</el-checkbox>
+        </el-col>
       </el-col>
 
       <el-col :md="8">

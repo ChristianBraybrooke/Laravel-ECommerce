@@ -76,7 +76,6 @@ export default {
   components: {
     ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
-    AddressForm: () => import(/* webpackChunkName: "address-form" */'components/AddressForm'),
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
     CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm')
   },

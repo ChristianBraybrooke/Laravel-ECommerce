@@ -249,7 +249,7 @@ export default {
 
     shippingRowFormatter (value) {
       var options = []
-      forEach(range(0, 250, 10), function (range) {
+      forEach(range(0, 510, 10), function (range) {
         options.push(<el-option key={range} value={range} label={this.formatPrice(range, this.shopData.currency)}></el-option>)
       }.bind(this))
 

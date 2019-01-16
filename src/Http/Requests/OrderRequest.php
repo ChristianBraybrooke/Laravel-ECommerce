@@ -29,7 +29,7 @@ class OrderRequest extends FormRequest
                 'customer.first_name' => 'required',
                 'customer.last_name' => 'required',
                 'customer.email' => 'required',
-                'customer.phone' => 'required'
+                // 'customer.phone' => 'required'
             ];
             if ($this->has('use_billing_for_shipping') && $this->use_billing_for_shipping) {
                 $address = [
