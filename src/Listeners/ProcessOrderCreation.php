@@ -6,8 +6,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Notification;
 use ChrisBraybrooke\ECommerce\Notifications\SendAdminOrderNotification;
-use ChrisBraybrooke\ECommerce\Notifications\SendOrderNotification;
-use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
 use Setting;
 use App\User;
 use Order;
@@ -32,14 +30,14 @@ class ProcessOrderCreation implements ShouldQueue
      */
     public function handle($event)
     {
-        if (isset($event->model->status) && $event->model->status === Order::$statuses['STATUS_PROCESSING']) {
-            CreateOrderInvoicePdf::withChain([
-                new SendOrderNotification($event->model),
-            ])->dispatch($event->model);
+        $order = $event->model;
+
+        if ($order->status === Order::$statuses['STATUS_PROCESSING']) {
+            $order->createInvoiceAndSend();
         }
 
-        if (!$event->model->ref) {
-            $event->model->update(['ref' => $event->model->id]);
+        if (!$order->ref) {
+            $order->update(['ref' => $order->id]);
         }
 
         $admin_ids = Setting::get('Admin Notifications');

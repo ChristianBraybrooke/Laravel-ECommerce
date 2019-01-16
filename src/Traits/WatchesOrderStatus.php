@@ -3,6 +3,7 @@
 namespace ChrisBraybrooke\ECommerce\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Order;
 
 trait WatchesOrderStatus
 {
@@ -17,16 +18,8 @@ trait WatchesOrderStatus
 
         static::updated(function (Model $model) {
             if ($model->oldStatus !== $model->status) {
-                $this->handleOrderStatusChange($model)
+                $model->fireStatusChangeEvent($model->oldStatus);
             }
         });
-    }
-
-    private function handleOrderStatusChange(Model $model)
-    {
-        // Status has changed to processing.
-        // if ($model->getOriginal('status') !== Order::$statuses['STATUS_PROCESSING'] && $event->model->status === Order::$statuses['STATUS_PROCESSING']) {
-        //
-        // }
     }
 }

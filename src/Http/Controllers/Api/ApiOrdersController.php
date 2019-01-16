@@ -96,6 +96,7 @@ class ApiOrdersController extends Controller
                     'last_name' => $request->input('customer.last_name'),
                     'company' => $request->input('customer.company'),
                     'phone' => $request->input('customer.phone'),
+                    'password' => bcrypt(str_random(40)),
                     'billing_address_line1' => $request->input('billing_address.line_1'),
                     'billing_address_line2' => $request->input('billing_address.line_2'),
                     'billing_address_town' =>$request->input('billing_address.town') ,

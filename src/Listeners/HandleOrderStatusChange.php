@@ -4,11 +4,10 @@ namespace ChrisBraybrooke\ECommerce\Listeners;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
-use ChrisBraybrooke\ECommerce\Jobs\SendOrderNotification;
+use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Order;
 
-class ProcessOrderUpdate implements ShouldQueue
+class HandleOrderStatusChange
 {
     /**
      * Create the event listener.
@@ -30,10 +29,12 @@ class ProcessOrderUpdate implements ShouldQueue
     {
         $order = $event->model;
 
-        if ($order->status === Order::$statuses['STATUS_AWAITING_PAYMENT']) {
-            if ($order->isFullyPaid()) {
-                $order->updateStatus('STATUS_PROCESSING');
-            }
+        if ($order->status === Order::$statuses['STATUS_PROCESSING']) {
+            $order->createInvoiceAndSend();
+        }
+
+        if ($order->status === Order::$statuses['STATUS_COMPLETED']) {
+            $order->sendCompleteNotification();
         }
     }
 }

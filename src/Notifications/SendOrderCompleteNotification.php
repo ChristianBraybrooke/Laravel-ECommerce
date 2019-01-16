@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Order;
 
 class SendOrderCompleteNotification extends Notification
 {
@@ -18,7 +19,7 @@ class SendOrderCompleteNotification extends Notification
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
     }
@@ -50,7 +51,7 @@ class SendOrderCompleteNotification extends Notification
                     ->line('Your ' . config('app.name', 'TCO') . ' order has been marked as complete.')
                     ->line('This means that your order is almost with you, and somebody will be in touch about delivery.')
                     ->line("Please find your invoice for {$this->order->cart['currency']}{$this->order->cart['totals']['Total']} attached below.")
-                    ->action('View Invoice', $invoice->getFullUrl())
+                    ->action('View Invoice', $invoice ? $invoice->getFullUrl() : '')
                     ->line('Thank you for shoping with us!');
     }
 

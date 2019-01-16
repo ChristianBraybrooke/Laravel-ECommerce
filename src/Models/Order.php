@@ -12,14 +12,19 @@ use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 use ChrisBraybrooke\ECommerce\Events\OrderCreated;
 use ChrisBraybrooke\ECommerce\Events\OrderUpdated;
 use ChrisBraybrooke\ECommerce\Events\OrderUpdating;
+use ChrisBraybrooke\ECommerce\Events\OrderStatusChanged;
 use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
+use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
+use ChrisBraybrooke\ECommerce\Jobs\SendOrderNotification;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use ChrisBraybrooke\ECommerce\Notifications\SendOrderCompleteNotification;
 use Cart;
 use Setting;
 use Product;
 use ReflectionClass;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Notification;
 
 class Order extends Model implements OrderContract
 {
@@ -52,6 +57,26 @@ class Order extends Model implements OrderContract
             'user_email',
             'user_phone'
         ];
+    }
+
+    /**
+     * The default collumn to order results by.
+     *
+     * @return string
+     */
+    private function responsableOrderBy()
+    {
+        return "invoiced_at";
+    }
+
+    /**
+     * The default direction of models.
+     *
+     * @return string
+     */
+    private function responsableDirection()
+    {
+        return "DESC";
     }
 
     /**
@@ -425,16 +450,16 @@ class Order extends Model implements OrderContract
         return $amount;
     }
 
-    // /**
-    //  * Format the status information
-    //  *
-    //  * @param $value
-    //  * @return string
-    //  */
-    // public function getStatusAttribute($value)
-    // {
-    //     return isset(static::$statuses[$value]) ? static::$statuses[$value] : null;
-    // }
+    /**
+     * Format the status information
+     *
+     * @param $value
+     * @return string
+     */
+    public function getStatusAttribute($value)
+    {
+        return isset(static::$statuses[$value]) ? static::$statuses[$value] : null;
+    }
 
     /**
      * Get the name for the invoice.
@@ -461,5 +486,94 @@ class Order extends Model implements OrderContract
         }
 
         return false;
+    }
+
+    /**
+     * Create the inoice PDF for this order and then send to the customer.
+     *
+     * @return \App\Order
+     */
+    public function createInvoiceAndSend()
+    {
+        CreateOrderInvoicePdf::withChain([
+            new SendOrderNotification($this),
+        ])->dispatch($this);
+
+        return $this;
+    }
+
+    /**
+     * Mark this order as been invoiced.
+     *
+     * @return \App\Order
+     */
+    public function hasBeenInvoiced()
+    {
+        $this->update(['invoiced_at' => now()->toDateTimeString()]);
+    }
+
+    /**
+     * Fire an event when the order status is changed.
+     *
+     * @param string $oldStatus
+     * @return void
+     */
+    public function fireStatusChangeEvent($oldStatus)
+    {
+        event(new OrderStatusChanged($this, $oldStatus));
+    }
+
+    /**
+     * Check if the order has been fully paid for.
+     *
+     * @return bool
+     */
+    public function isFullyPaid()
+    {
+        return $this->payment_amount == $this->cart['totals']['Total'];
+    }
+
+    /**
+     * Update the order status
+     *
+     * @param string $status
+     * @return \App\Order
+     */
+    public function updateStatus($status)
+    {
+        if (!static::$statuses[$status]) {
+            abort(404, 'Order status not found!');
+        }
+
+        $this->update(['status' => $status]);
+
+        return $this;
+    }
+
+    /**
+     * Send a notification to the customer when the order is complete.
+     *
+     * @param string $status
+     * @return \App\Order
+     */
+    public function sendCompleteNotification()
+    {
+        Notification::route('mail', $this->user_email)
+            ->notify(new SendOrderCompleteNotification($this));
+
+        activity()
+            ->performedOn($this)
+            ->log("Order complete email sent to {$this->user_email}");
+    }
+
+    /**
+     * Format the invoiced_at attribute.
+     *
+     * @var array
+     * @return array
+     */
+    public function getInvoicedAtAttribute($value)
+    {
+        return $value ? $this->dateAdapter($value) : $this->created_at;
     }
 }

@@ -212,7 +212,7 @@ export default {
             resizable: false
           },
           {
-            prop: 'created_at.date',
+            prop: 'invoiced_at.date',
             sortable: true,
             label: 'Date',
             width: '100px',

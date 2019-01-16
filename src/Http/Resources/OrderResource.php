@@ -19,7 +19,7 @@ class OrderResource extends Resource
     {
         return [
             'id' => $this->id,
-            'ref_number' => $this->ref_number,
+            'ref_number' => $this->ref,
             'status' => $this->status,
             'invoice' => $this->invoice,
             'customer' => $this->customer,
@@ -35,6 +35,7 @@ class OrderResource extends Resource
             'shipping_email_sent' => $this->shipping_email_sent,
             'payments' => new PaymentsResource($this->whenLoaded('payments')),
             'content' => new ContentsResource($this->whenLoaded('content')),
+            'invoiced_at' => $this->invoiced_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];
