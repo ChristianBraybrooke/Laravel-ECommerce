@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\WatchesOrderStatus;
 use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
 use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
 use ChrisBraybrooke\ECommerce\Events\OrderCreated;
 use ChrisBraybrooke\ECommerce\Events\OrderUpdated;
+use ChrisBraybrooke\ECommerce\Events\OrderUpdating;
 use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cart;
@@ -17,10 +19,12 @@ use Setting;
 use Product;
 use ReflectionClass;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model implements OrderContract
 {
-    use  LogsActivity, ResponsableTrait, FormatDatesTrait, HasMediaAttached, HasContentAttached;
+    use  LogsActivity, ResponsableTrait, FormatDatesTrait, HasMediaAttached, HasContentAttached, SoftDeletes,
+    WatchesOrderStatus;
 
     public static $statuses = [
       'STATUS_DRAFT' => 'Draft',
@@ -154,6 +158,7 @@ class Order extends Model implements OrderContract
     protected $dispatchesEvents = [
         'created' => OrderCreated::class,
         'updated' => OrderUpdated::class,
+        'updating' => OrderUpdating::class
     ];
 
     /**
@@ -179,7 +184,8 @@ class Order extends Model implements OrderContract
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
         'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
-        'billing_address_company', 'shipping_address_name', 'shipping_address_company'
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company', 'ref', 'invoiced_at',
+        'deleted_at'
     ];
 
     /**
@@ -196,7 +202,8 @@ class Order extends Model implements OrderContract
         'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
         'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
         'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
-        'billing_address_company', 'shipping_address_name', 'shipping_address_company'
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company', 'ref', 'invoiced_at',
+        'deleted_at'
     ];
 
     /**
@@ -209,6 +216,13 @@ class Order extends Model implements OrderContract
         'use_billing_for_shipping' => 'boolean',
         'send_auto_emails' => 'boolean',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at', 'invoiced_at'];
 
     /**
      * The attributes that should be appended.
@@ -411,16 +425,16 @@ class Order extends Model implements OrderContract
         return $amount;
     }
 
-    /**
-     * Format the status information
-     *
-     * @param $value
-     * @return string
-     */
-    public function getStatusAttribute($value)
-    {
-        return isset(static::$statuses[$value]) ? static::$statuses[$value] : null;
-    }
+    // /**
+    //  * Format the status information
+    //  *
+    //  * @param $value
+    //  * @return string
+    //  */
+    // public function getStatusAttribute($value)
+    // {
+    //     return isset(static::$statuses[$value]) ? static::$statuses[$value] : null;
+    // }
 
     /**
      * Get the name for the invoice.

@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddRefCollumnToOrdersTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('ref')->nullable();
+            $table->dateTime('invoiced_at')->nullable();
+            $table->softDeletes();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('ref');
+            $table->dropColumn('invoiced_at');
+            $table->dropSoftDeletes();
+        });
+    }
+}

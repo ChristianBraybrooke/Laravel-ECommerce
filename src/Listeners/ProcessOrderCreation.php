@@ -38,6 +38,10 @@ class ProcessOrderCreation implements ShouldQueue
             ])->dispatch($event->model);
         }
 
+        if (!$event->model->ref) {
+            $event->model->update(['ref' => $event->model->id]);
+        }
+
         $admin_ids = Setting::get('Admin Notifications');
         $cart_id = $event->model->cart_data['id'] ?? false;
         if ($admin_ids && $cart_id) {

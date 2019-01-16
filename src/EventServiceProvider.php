@@ -36,6 +36,9 @@ class EventServiceProvider extends ServiceProvider
         'ChrisBraybrooke\ECommerce\Events\OrderUpdated' => [
             'ChrisBraybrooke\ECommerce\Listeners\ProcessOrderUpdate',
         ],
+        'ChrisBraybrooke\ECommerce\Events\OrderUpdating' => [
+            'ChrisBraybrooke\ECommerce\Listeners\ProcessOrderUpdating',
+        ],
         'ChrisBraybrooke\ECommerce\Events\ImportCreated' => [
         ],
         'ChrisBraybrooke\ECommerce\Events\ImportUpdated' => [

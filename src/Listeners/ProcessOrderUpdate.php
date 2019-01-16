@@ -34,6 +34,8 @@ class ProcessOrderUpdate implements ShouldQueue
             CreateOrderInvoicePdf::withChain([
                 new SendOrderNotification($event->model),
             ])->dispatch($event->model);
+
+            $event->model->update(['invoice_at' => now()->toDateTimeString()]);
         }
 
         if (isset($event->model->status) && $event->model->getOriginal('status') === Order::$statuses['STATUS_AWAITING_PAYMENT']) {

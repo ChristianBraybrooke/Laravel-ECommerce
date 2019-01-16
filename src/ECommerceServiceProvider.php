@@ -547,6 +547,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'ecommerce-migrations');
         }
+
+        if (! class_exists('AddRefCollumnToOrdersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_ref_collumn_to_orders_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 3).'_add_ref_collumn_to_orders_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
     }
 
     /**
