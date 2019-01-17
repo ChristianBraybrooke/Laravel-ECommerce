@@ -350,6 +350,11 @@ export default {
           ]
         }
       }
+    },
+    basePaginationMeta: {
+      type: Object,
+      required: false,
+      default: () => { return {} }
     }
   },
 
@@ -523,6 +528,12 @@ export default {
 
   mounted () {
     console.log('DataTable.vue Mounted.')
+
+    this.paginationMeta = {
+      ...this.paginationMeta,
+      ...this.basePaginationMeta
+    }
+
     Object.assign(this.mergedTableOptions, this.defaultTableOptions, this.tableOptions)
     this.paginationMeta.perPage = this.thisTableDataFromStorage.perPage
     this.getData()

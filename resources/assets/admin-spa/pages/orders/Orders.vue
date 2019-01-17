@@ -14,6 +14,7 @@
       :request-with="['content', 'payments']"
       :request-includes="['payment.amount', 'payment.method', 'payment.refunded', 'no_shop_data']"
       :with-params="{withOutStatuses: ['STATUS_ESTIMATE', 'STATUS_DRAFT', 'STATUS_PROFORMA', 'STATUS_PAYMENT_FAILED', 'STATUS_CANCELLED']}"
+      :base-pagination-meta="{ orderBy: 'invoiced_at' }"
       :table-options="tableOptions"
       :create-form="ordersCreateForm"
       :create-form-rules="createFormRules"
