@@ -19,7 +19,7 @@ class OrderResource extends Resource
     {
         return [
             'id' => $this->id,
-            'ref_number' => $this->ref,
+            'ref' => $this->ref,
             'status' => $this->status,
             'invoice' => $this->invoice,
             'customer' => $this->customer,

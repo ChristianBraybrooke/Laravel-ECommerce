@@ -36,6 +36,14 @@ class ProcessOrderCreation implements ShouldQueue
             $order->createInvoiceAndSend();
         }
 
+        if ($order->status === Order::$statuses['STATUS_AWAITING_PAYMENT']) {
+            $order->hasBeenInvoiced();
+
+            if ($order->isFullyPaid()) {
+                $order->updateStatus('STATUS_PROCESSING');
+            }
+        }
+
         if (!$order->ref) {
             $order->update(['ref' => $order->id]);
         }

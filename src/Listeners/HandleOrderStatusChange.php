@@ -36,5 +36,9 @@ class HandleOrderStatusChange
         if ($order->status === Order::$statuses['STATUS_COMPLETED']) {
             $order->sendCompleteNotification();
         }
+
+        if ($order->status === Order::$statuses['STATUS_AWAITING_PAYMENT']) {
+            $order->hasBeenInvoiced();
+        }
     }
 }

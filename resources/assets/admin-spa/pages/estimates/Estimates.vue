@@ -1,4 +1,7 @@
-<template lang="html">
+<figure class="figure">
+  <img data-src="" class="img-rounded" alt="">
+  <figcaption class="figure-caption"></figcaption>
+</figure><template lang="html">
   <data-table
     :with-params="{withStatus: 'estimate'}"
     :table-options="tableOptions"
@@ -35,7 +38,7 @@
           </el-button>
         </router-link>
 
-        <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref_number + '&body=Hello ' + props.row.customer.first_name + ','">
+        <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref + '&body=Hello ' + props.row.customer.first_name + ','">
           <el-button
             size="mini"
             plain
@@ -93,7 +96,7 @@ export default {
       tableOptions: {
         collumns: [
           {
-            prop: 'ref_number',
+            prop: 'ref',
             sortable: true,
             label: 'Ref',
             align: 'left',

@@ -27,6 +27,7 @@ use File;
 use ChrisBraybrooke\ECommerce\Commands\InitialSetupCommand;
 use ChrisBraybrooke\ECommerce\Commands\CreateAdminCommand;
 use ChrisBraybrooke\ECommerce\Commands\PublishAdminCommand;
+use ChrisBraybrooke\ECommerce\Commands\SetOrderRefsAndInvoicedAtDates;
 use Order;
 use Setting;
 
@@ -40,7 +41,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.87';
+    const VERSION = '0.0.88';
 
     /**
      * Bootstrap the application events.
@@ -77,6 +78,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 InitialSetupCommand::class,
                 CreateAdminCommand::class,
                 PublishAdminCommand::class,
+                SetOrderRefsAndInvoicedAtDates::class
             ]);
         }
     }

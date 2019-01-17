@@ -5,7 +5,7 @@
       class="breadcrumbs"
       separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ name: 'estimates' }">Estimates</el-breadcrumb-item>
-      <el-breadcrumb-item v-if="estimate.id">{{ estimate.ref_number }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-if="estimate.id">{{ estimate.ref }}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <print-download-button :order-id="estimateId" />

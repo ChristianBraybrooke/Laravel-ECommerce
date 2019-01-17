@@ -12,6 +12,7 @@ use ChrisBraybrooke\ECommerce\Http\Requests\CheckoutRequest;
 use ChrisBraybrooke\ECommerce\Http\Requests\OrderUpdateRequest;
 use ChrisBraybrooke\ECommerce\Http\Requests\OrderRequest;
 use ChrisBraybrooke\ECommerce\Services\PaymentService;
+use Illuminate\Validation\Rule;
 
 class ApiOrdersController extends Controller
 {
@@ -30,7 +31,7 @@ class ApiOrdersController extends Controller
         $orders = Order::with($request->with ?: [])
                        ->withOutStatuses($request->withOutStatuses)
                        ->withStatus($request->withStatus)
-                       ->basicResponse();
+                       ->responseAdapter();
 
         return new OrdersResource($orders);
     }
@@ -51,6 +52,13 @@ class ApiOrdersController extends Controller
             $request->input('cart.totals.Shipping'),
             $request->input('cart.totals.Discount')
         );
+
+        $this->validate($request, [
+            'ref' => [
+                'required',
+                Rule::unique('orders'),
+            ]
+        ]);
 
         $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
 
@@ -83,7 +91,9 @@ class ApiOrdersController extends Controller
 
           'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->setStatusFromName('Draft'),
 
-          'cart_data' => $cart_data
+          'cart_data' => $cart_data,
+
+          'ref' => $request->ref
         ]);
 
         if (!$request->filled('customer.id') && $request->filled('customer.email')) {
@@ -165,6 +175,13 @@ class ApiOrdersController extends Controller
             $request->input('cart.totals.Discount')
         );
 
+        $this->validate($request, [
+            'ref' => [
+                'required',
+                Rule::unique('orders')->ignore($order->id),
+            ]
+        ]);
+
         $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
 
         $firstName = $request->filled('customer.full_name') ? str_before($request->input('customer.full_name'), ' ') : $request->input('customer.first_name');
@@ -198,7 +215,9 @@ class ApiOrdersController extends Controller
 
             'use_billing_for_shipping' => $request->use_billing_for_shipping,
 
-            'cart_data' => $cart_data
+            'cart_data' => $cart_data,
+
+            'ref' => $request->ref
         ]);
 
         if ($request->filled('content.data')) {

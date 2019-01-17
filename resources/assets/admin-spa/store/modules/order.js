@@ -6,6 +6,7 @@ var forEach = require('lodash.foreach')
 const state = {
   order: {
     customer: {},
+    ref: 0,
     billing_address: {
       country: 'United Kingdom'
     },

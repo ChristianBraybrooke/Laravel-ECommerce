@@ -46,7 +46,7 @@
             </el-button>
           </router-link>
 
-          <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref_number + '&body=Hello ' + props.row.customer.first_name + ',%0A%0A'">
+          <a :href="'mailto:' + props.row.customer.email + '?subject=Order Ref ' + props.row.ref + '&body=Hello ' + props.row.customer.first_name + ',%0A%0A'">
             <el-button
               size="mini"
               plain
@@ -168,7 +168,7 @@ export default {
             }.bind(this)
           },
           {
-            prop: 'ref_number',
+            prop: 'ref',
             width: '130px',
             sortable: true,
             label: 'Ref',
@@ -182,7 +182,7 @@ export default {
               } else if (row.status === 'Completed') {
                 btn = <el-button class="order_dispatch_btn" type="danger" size="mini" on-click={() => this.dispatchOrder(row, 'Processing')}>Reverse Dispatch</el-button>
               }
-              return <div class="order_dispatch"><span class={btn ? 'order_dispatch_text' : ''}>{row.ref_number}</span>{btn}</div>
+              return <div class="order_dispatch"><span class={btn ? 'order_dispatch_text' : ''}>{row.ref}</span>{btn}</div>
             }.bind(this)
           },
           {
@@ -444,7 +444,7 @@ export default {
         }
       })
 
-      return 'mailto:?subject=Order Ref ' + row.ref_number + '&body=Hello,%0A%0A The delivery details are as follows: %0A%0A' + deliveryDetails.join('%0A')
+      return 'mailto:?subject=Order Ref ' + row.ref + '&body=Hello,%0A%0A The delivery details are as follows: %0A%0A' + deliveryDetails.join('%0A')
     },
 
     paymentAdded (row, payment) {

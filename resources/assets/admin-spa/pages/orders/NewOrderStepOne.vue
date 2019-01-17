@@ -42,6 +42,10 @@
         </el-col>
       </el-row>
 
+      <order-ref :form="order" />
+
+      <hr>
+
       <customer-information-form :form="order" />
 
       <el-row
@@ -74,7 +78,8 @@ export default {
 
   components: {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-    CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm')
+    CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm'),
+    OrderRef: () => import(/* webpackChunkName: "order-ref" */'components/OrderRef')
   },
 
   props: {

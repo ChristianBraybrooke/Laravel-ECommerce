@@ -13,7 +13,7 @@
       align="middle"
       type="flex">
       <el-col :span="12">
-        <h1 class="page_title">New {{ documentName }}</h1>
+        <h1 class="page_title">New {{ documentName }} {{ order.ref ? `- ${order.ref}` : '' }}</h1>
       </el-col>
     </el-row>
 
@@ -28,6 +28,10 @@
       :model="order"
       label-position="top"
       @submit.native.prevent>
+
+      <order-ref :form="order" />
+
+      <hr>
 
       <customer-information-form :form="order" />
 
@@ -77,7 +81,8 @@ export default {
     ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-    CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm')
+    CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm'),
+    OrderRef: () => import(/* webpackChunkName: "order-ref" */'components/OrderRef')
   },
 
   props: {

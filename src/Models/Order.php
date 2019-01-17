@@ -55,7 +55,8 @@ class Order extends Model implements OrderContract
             'user_first_name',
             'user_last_name',
             'user_email',
-            'user_phone'
+            'user_phone',
+            'ref'
         ];
     }
 
@@ -67,6 +68,20 @@ class Order extends Model implements OrderContract
     private function responsableOrderBy()
     {
         return "invoiced_at";
+    }
+
+    /**
+     * Which collumns to use for search.
+     *
+     * @return array
+     */
+    private function responsableOrderByAlias()
+    {
+        return [
+            'id' => 'id',
+            'ref' => 'ref',
+            'created_at' => 'created_at',
+        ];
     }
 
     /**

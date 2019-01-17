@@ -48,7 +48,9 @@ class CreateOrderInvoicePdf implements ShouldQueue
             $this->order->media()->sync([$invoice->id => ['media_location' => 'invoice']]);
         }
 
-        $this->order->hasBeenInvoiced();
+        if (!$this->order->getOriginal('invoiced_at')) {
+            $this->order->hasBeenInvoiced();
+        }
 
         activity()
            ->performedOn($this->order)
