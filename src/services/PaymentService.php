@@ -67,7 +67,7 @@ class PaymentService
                 'source' => $details['token'],
                 'amount' => $details['amount'],
                 'currency' => strtolower($details['currency']),
-                'customer' => $details['stripe_id'] ?? (Auth::check() && Auth::user()->stripe_id ?: null),
+                'customer' => $details['stripe_id'] ?? (optional(Auth::user())->stripe_id ? Auth::user()->stripe_id : null),
                 'description' => $details['description'] ?? null,
                 'metadata' => $details['metadata'] ?? null,
             ]);
