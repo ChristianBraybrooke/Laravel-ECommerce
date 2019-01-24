@@ -31,7 +31,7 @@ class ApiOrdersController extends Controller
         $orders = Order::with($request->with ?: [])
                        ->withOutStatuses($request->withOutStatuses)
                        ->withStatus($request->withStatus)
-                       ->responseAdapter();
+                       ->basicResponse();
 
         return new OrdersResource($orders);
     }
