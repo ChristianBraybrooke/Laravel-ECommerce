@@ -265,7 +265,7 @@ export default {
               var payments = []
               row.payments.data.forEach((payment) => {
                 if (!payment.refunded) {
-                  payments.push(<li>{this.formatPrice(payment.amount, row.cart.currency)} by <strong>{payment.method}</strong></li>)
+                  payments.push(<li>{this.formatPrice(payment.amount, row.cart.currency)} by <strong>{payment.method}</strong> on <strong>{payment.created_at.date} ({payment.created_at.human})</strong></li>)
                 }
               })
               var paymentInfo = payments.length > 0 ? <ul class="order_items_list table_col_list">{payments}</ul> : <span>No Payment Information</span>
