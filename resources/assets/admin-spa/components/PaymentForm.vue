@@ -107,6 +107,25 @@
             :gutter="20">
             <el-col :md="{span:16, offset: 4}">
               <el-form-item
+                label="Payment Date"
+                size="small"
+                prop="payment_date">
+                <el-date-picker
+                  v-model="model.payment_date"
+                  :default-value="defaultPaymentDate"
+                  :picker-picker-options="paymentDateOptions"
+                  type="date"
+                  format="dd/MM/yyyy"
+                  value-format="dd-MM-yyyy"
+                  placeholder="dd/MM/yyyy"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row
+            v-if="activePaymentTab === 'bacs'"
+            :gutter="20">
+            <el-col :md="{span:16, offset: 4}">
+              <el-form-item
                 label="Payment Notes"
                 size="small"
                 prop="payment_notes">
@@ -170,6 +189,25 @@
                   :autofocus="true"
                   v-model="model.payment_reference"
                   auto-complete="off"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row
+            v-if="activePaymentTab === 'other'"
+            :gutter="20">
+            <el-col :md="{span:16, offset: 4}">
+              <el-form-item
+                label="Payment Date"
+                size="small"
+                prop="payment_date">
+                <el-date-picker
+                  v-model="model.payment_date"
+                  :default-value="defaultPaymentDate"
+                  :picker-picker-options="paymentDateOptions"
+                  type="date"
+                  format="dd/MM/yyyy"
+                  value-format="dd-MM-yyyy"
+                  placeholder="dd/MM/yyyy"/>
               </el-form-item>
             </el-col>
           </el-row>
@@ -261,6 +299,43 @@ export default {
       default () {
         return function (payment) {}
       }
+    },
+    defaultPaymentDate: {
+      required: false,
+      type: Date,
+      default: () => { return new Date() }
+    },
+    paymentDateOptions: {
+      required: false,
+      type: Object,
+      default: () => {
+        return {
+          shortcuts: [
+            {
+              text: 'Today',
+              onClick (picker) {
+                picker.$emit('pick', new Date())
+              }
+            },
+            {
+              text: 'Yesterday',
+              onClick (picker) {
+                const date = new Date()
+                date.setTime(date.getTime() - 3600 * 1000 * 24)
+                picker.$emit('pick', date)
+              }
+            },
+            {
+              text: 'A week ago',
+              onClick (picker) {
+                const date = new Date()
+                date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+                picker.$emit('pick', date)
+              }
+            }
+          ]
+        }
+      }
     }
   },
 
@@ -270,7 +345,8 @@ export default {
       loading: false,
       errors: {},
       model: {
-        order: {}
+        order: {},
+        payment_date: null
       }
     }
   },
@@ -290,6 +366,7 @@ export default {
   mounted () {
     console.log('PaymentForm.vue mounted!')
 
+    this.model.payment_date = this.defaultPaymentDate
     this.model.payment_amount = this.startingAmount
   },
 

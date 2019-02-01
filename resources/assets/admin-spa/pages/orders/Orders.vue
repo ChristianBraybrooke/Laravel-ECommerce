@@ -73,13 +73,13 @@
             </el-button>
           </a>
 
-          <print-download-button
+          <!-- <print-download-button
             :key="props.row.id"
             :download="false"
             :print-button="{ style: '', class:'action_btn view_btn', size: 'mini', type: '', text: 'Print Delivery Note' }"
             :delivery-note="true"
             :order-id="props.row.id"
-            btn-class="action_btn view_btn"/>
+            btn-class="action_btn view_btn"/> -->
 
           <el-button
             size="mini"
@@ -114,8 +114,8 @@ export default {
 
   components: {
     DataTable: () => import(/* webpackChunkName: "data-table" */'components/DataTable'),
-    OrderNotes: OrderNotes,
-    Payments: Payments,
+    OrderNotes,
+    Payments,
     TableCollumn,
     PrintDownloadButton
   },
@@ -271,7 +271,8 @@ export default {
               var paymentInfo = payments.length > 0 ? <ul class="order_items_list table_col_list">{payments}</ul> : <span>No Payment Information</span>
               return <el-popover trigger="click" placement="top">
                 {paymentInfo}
-                <payments payments={row.payments.data}
+                <Payments
+                  payments={row.payments.data}
                   order={row}
                   show-payments={false}
                   form-starting-amount={row.cart.totals.Total - row.payment_amount}
@@ -281,7 +282,7 @@ export default {
                       type="success" size="mini"
                       plain>Make Payment</el-button>
                   }
-                </payments>
+                </Payments>
                 <div slot="reference"><strong>{this.formatPrice(orderUtil.paymentTotal(row.payments.data), row.cart.currency)}</strong></div>
               </el-popover>
             },
@@ -362,9 +363,7 @@ export default {
               {options}
             </el-select>
 
-            <div slot="reference">
-              <el-tag type={type} size="medium">{ row.status }</el-tag>
-            </div>
+            <el-tag slot="reference" type={type} size="medium">{ row.status }</el-tag>
           </el-popover>
         }.bind(this),
         align: 'left',

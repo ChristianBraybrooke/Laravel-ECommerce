@@ -244,36 +244,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PaymentForm',
   components: {
     CardPaymentForm: function CardPaymentForm() {
-      return __webpack_require__.e/* import() */(54).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
+      return __webpack_require__.e/* import() */(53).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CardPaymentForm.vue"));
     },
     Errors: function Errors() {
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
@@ -311,41 +288,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       default: function _default() {
         return function (payment) {};
       }
-    },
-    defaultPaymentDate: {
-      required: false,
-      type: Date,
-      default: function _default() {
-        return new Date();
-      }
-    },
-    paymentDateOptions: {
-      required: false,
-      type: Object,
-      default: function _default() {
-        return {
-          shortcuts: [{
-            text: 'Today',
-            onClick: function onClick(picker) {
-              picker.$emit('pick', new Date());
-            }
-          }, {
-            text: 'Yesterday',
-            onClick: function onClick(picker) {
-              var date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24);
-              picker.$emit('pick', date);
-            }
-          }, {
-            text: 'A week ago',
-            onClick: function onClick(picker) {
-              var date = new Date();
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', date);
-            }
-          }]
-        };
-      }
     }
   },
   data: function data() {
@@ -354,8 +296,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       loading: false,
       errors: {},
       model: {
-        order: {},
-        payment_date: null
+        order: {}
       }
     };
   },
@@ -367,7 +308,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     console.log('PaymentForm.vue mounted!');
-    this.model.payment_date = this.defaultPaymentDate;
     this.model.payment_amount = this.startingAmount;
   },
   methods: {
@@ -430,7 +370,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -767,54 +707,6 @@ var render = function() {
                                 "el-form-item",
                                 {
                                   attrs: {
-                                    label: "Payment Date",
-                                    size: "small",
-                                    prop: "payment_date"
-                                  }
-                                },
-                                [
-                                  _c("el-date-picker", {
-                                    attrs: {
-                                      "default-value": _vm.defaultPaymentDate,
-                                      "picker-picker-options":
-                                        _vm.paymentDateOptions,
-                                      type: "date",
-                                      format: "dd/MM/yyyy",
-                                      "value-format": "dd-MM-yyyy",
-                                      placeholder: "dd/MM/yyyy"
-                                    },
-                                    model: {
-                                      value: _vm.model.payment_date,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.model, "payment_date", $$v)
-                                      },
-                                      expression: "model.payment_date"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.activePaymentTab === "bacs"
-                    ? _c(
-                        "el-row",
-                        { attrs: { gutter: 20 } },
-                        [
-                          _c(
-                            "el-col",
-                            { attrs: { md: { span: 16, offset: 4 } } },
-                            [
-                              _c(
-                                "el-form-item",
-                                {
-                                  attrs: {
                                     label: "Payment Notes",
                                     size: "small",
                                     prop: "payment_notes"
@@ -1047,13 +939,8 @@ var render = function() {
                                 [
                                   _c("el-date-picker", {
                                     attrs: {
-                                      "default-value": _vm.defaultPaymentDate,
-                                      "picker-picker-options":
-                                        _vm.paymentDateOptions,
                                       type: "date",
-                                      format: "dd/MM/yyyy",
-                                      "value-format": "dd-MM-yyyy",
-                                      placeholder: "dd/MM/yyyy"
+                                      placeholder: "Pick a day"
                                     },
                                     model: {
                                       value: _vm.model.payment_date,

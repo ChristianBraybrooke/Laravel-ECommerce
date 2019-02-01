@@ -50,7 +50,7 @@ class ApiPaymentsController extends Controller
         $payment = $payment->create([
             'order_id' => $request->input('order.id'),
             'refunded' => false,
-            'notes' => $request->payment_notes,
+            'notes' => $request->payment_notes ?: '',
             'reference' => $reference,
             'method' => $request->payment_method,
             'currency' => $currency,
@@ -62,6 +62,7 @@ class ApiPaymentsController extends Controller
             'source_last4' => $source['last4'] ?? null,
             'source_exp_month' => $source['exp_month'] ?? null,
             'source_exp_year' => $source['exp_year'] ?? null,
+            'created_at' => $request->payment_date ? Carbon::parse($request->payment_date) : now()
         ]);
 
         return new PaymentResource($payment);

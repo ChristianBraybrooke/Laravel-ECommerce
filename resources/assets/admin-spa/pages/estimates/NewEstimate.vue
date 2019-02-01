@@ -42,6 +42,7 @@
       style="margin-top: 20px; margin-bottom: 20px;">
       <el-col :span="12">
         <product-form :on-product-add="addProductToTable"/>
+        <new-product-form :on-product-add="addProductToTable"/>
       </el-col>
     </el-row>
 
@@ -79,6 +80,7 @@ export default {
 
   components: {
     ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+    NewProductForm: () => import(/* webpackChunkName: "new-product-form" */'components/NewProductForm'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
     CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm'),

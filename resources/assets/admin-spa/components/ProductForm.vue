@@ -458,13 +458,10 @@ export default {
           options: {}
         }
       }
-      console.log(`Quantity 2: ${this.form.product.quantity}`)
     }
   },
 
   mounted () {
-    console.log('ProductForm.vue Mounted')
-
     this.clearAll()
 
     Object.assign(this.mergedButton, this.defaultButton, this.button)

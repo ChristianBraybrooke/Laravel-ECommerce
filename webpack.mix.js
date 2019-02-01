@@ -80,7 +80,7 @@ mix.setPublicPath('public')
    .styles(['node_modules/normalize.css/normalize.css'], 'public/css/reset.css')
    .copy('node_modules/element-ui/lib/theme-chalk/fonts/', 'public/fonts')
    .sass('resources/assets/admin-spa/sass/admin.scss', 'public/css/admin.css')
-   .extract(['vue', 'element-ui', 'vue-router', 'vuex', 'axios'])
+   .extract(['vue', 'element-ui', 'vue-router', 'vuex', 'axios', 'vue-quill-editor'])
    .version();
 
 if (!mix.inProduction()) {

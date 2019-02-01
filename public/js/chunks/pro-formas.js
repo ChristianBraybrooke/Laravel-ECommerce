@@ -1,1 +1,521 @@
-webpackJsonp([19],{"8rtG":function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n,a=r("GzQy"),o=(n=a)&&n.__esModule?n:{default:n};var s=r("P/uL");e.default={name:"ProFormas",components:{DataTable:function(){return r.e(32).then(r.bind(null,"bnM4"))}},props:{},data:function(){var t=this.$createElement;return{loading:!1,errors:{},tableOptions:{collumns:[{prop:"ref",sortable:!0,label:"Ref",align:"left",resizable:!0},{prop:"name",sortable:!0,label:"Customer",formatter:function(e,r,n){var a=this,o=[],i=[];return s(e.shipping_address,function(e,r){e&&i.push(e),o.push(t("li",[e]))}),t("el-popover",{attrs:{trigger:"hover",placement:"top"}},[t("ul",{class:"order_address_list table_col_list"},[o]),t("el-button",{attrs:{size:"mini",plain:!0},on:{click:function(){return a.copy(i.join(", "))}}},["Copy"]),t("div",{slot:"reference"},[t("strong",[e.customer.first_name," ",e.customer.last_name])])])}.bind(this),align:"left",resizable:!1},{prop:"created_at.date",sortable:!0,label:"Created",align:"left",resizable:!0},{prop:"items",sortable:!0,label:"Summary",align:"left",resizable:!1,formatter:function(e,r,n){var a=[],o=[];return s(e.items,function(e){Array(e.quantity).fill().map(function(t,e){return e*e}).forEach(function(){o.push(e.name)}),a.push(t("li",[e.quantity+" * "+e.name]))}),t("el-popover",{attrs:{trigger:"hover",placement:"top"}},[t("ul",{class:"order_items_list table_col_list"},[a]),t("div",{slot:"reference"},[t("strong",[o.length," items"])])])}},{prop:"amount",sortable:!0,label:"Total",formatter:function(t,e,r){return t.cart.currency?t.cart.currency+t.cart.totals.Total:"-"},align:"left",resizable:!0},{prop:"invoice",sortable:!0,label:"Create Invoice",formatter:function(e,r,n){var a=this;return t("el-button",{on:{click:function(){return a.createInvoice(e)}},attrs:{type:"success",size:"mini",plain:!0},class:"action_btn"},["Create Invoice"])}.bind(this),align:"left",resizable:!0}]}}},computed:{},watch:{},mounted:function(){},methods:{createInvoice:function(t){var e=this,r=window.ecommerceConfig.orders.statuses;t.status=r.STATUS_PROCESSING,o.default.persist("put",{path:"orders/"+t.id,object:t}).then(function(t){e.$router.push({name:"orders"})}).catch(function(t){e.errors=t})}}}},"A3+M":function(t,e,r){var n=r("VU/8")(r("8rtG"),r("MW7n"),!1,function(t){r("uo2u")},null,null);t.exports=n.exports},E4Gz:function(t,e,r){(t.exports=r("FZ+f")(!1)).push([t.i,"",""])},MW7n:function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("data-table",{attrs:{"with-params":{withStatus:["STATUS_PROFORMA","STATUS_DRAFT","STATUS_CANCELLED","STATUS_AWAITING_PAYMENT","STATUS_PAYMENT_FAILED"]},"table-options":t.tableOptions,"request-includes":["created_at"],"create-form":{},"type-name":"Pro Forma Order","base-url":"orders","edit-path":"orders","bulk-update-url":"orders/bulk","request-with":"content"},scopedSlots:t._u([{key:"actionButtons",fn:function(e){return[r("el-popover",{attrs:{trigger:"click",placement:"top"}},[r("router-link",{attrs:{to:{path:e.editPathFormated+"/"+e.row.id}}},[r("el-button",{staticClass:"action_btn view_btn",attrs:{size:"mini",type:"success"}},[t._v("View\n        ")])],1),t._v(" "),r("a",{attrs:{href:"mailto:"+e.row.customer.email+"?subject=Order Ref "+e.row.ref+"&body=Hello "+e.row.customer.first_name+","}},[r("el-button",{staticClass:"action_btn view_btn",attrs:{size:"mini",plain:""}},[t._v("Email Customer\n        ")])],1),t._v(" "),r("a",{attrs:{href:"/ecommerce-templates/invoice-download?reports="+e.row.id,target:"_blank"}},[r("el-button",{staticClass:"action_btn view_btn",attrs:{size:"mini",plain:""}},[t._v("Download PDF\n        ")])],1),t._v(" "),r("el-button",{staticClass:"action_btn view_btn",attrs:{size:"mini",type:"danger"},on:{click:function(t){e.delete(e.row)}}},[t._v("Delete\n      ")]),t._v(" "),r("div",{attrs:{slot:"reference"},slot:"reference"},[r("el-button",{attrs:{size:"mini"}},[t._v("Actions")])],1)],1)]}}])},[r("template",{slot:"createButton"},[r("router-link",{attrs:{to:{name:"estimates.new",params:{isProForma:!0}}}},[r("el-button",{staticClass:"create_btn",attrs:{type:"primary",plain:""}},[t._v("New Pro-Forma")])],1)],1)],2)},staticRenderFns:[]}},uo2u:function(t,e,r){var n=r("E4Gz");"string"===typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);r("rjj0")("1196cb3d",n,!0,{})}});
+webpackJsonp([19],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ProFormas',
+  components: {
+    DataTable: function DataTable() {
+      return __webpack_require__.e/* import() */(32/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/DataTable.vue"));
+    }
+  },
+  props: {},
+  data: function data() {
+    var h = this.$createElement;
+    return {
+      loading: false,
+      errors: {},
+      tableOptions: {
+        collumns: [{
+          prop: 'ref',
+          sortable: true,
+          label: 'Ref',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'name',
+          sortable: true,
+          label: 'Customer',
+          formatter: function (row, column, cellValue) {
+            var _this = this;
+
+            var lines = [];
+            var address = [];
+            forEach(row.shipping_address, function (line, key) {
+              if (line) {
+                address.push(line);
+              }
+
+              lines.push(h("li", [line]));
+            });
+            return h("el-popover", {
+              "attrs": {
+                "trigger": "hover",
+                "placement": "top"
+              }
+            }, [h("ul", {
+              "class": "order_address_list table_col_list"
+            }, [lines]), h("el-button", {
+              "attrs": {
+                "size": "mini",
+                "plain": true
+              },
+              "on": {
+                "click": function click() {
+                  return _this.copy(address.join(', '));
+                }
+              }
+            }, ["Copy"]), h("div", {
+              "slot": "reference"
+            }, [h("strong", [row.customer.first_name, " ", row.customer.last_name])])]); // return <div><ul class="order_address_list table_col_list">{lines}</ul><el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy</el-button></div>
+          }.bind(this),
+          align: 'left',
+          resizable: false
+        }, {
+          prop: 'created_at.date',
+          sortable: true,
+          label: 'Created',
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'items',
+          sortable: true,
+          label: 'Summary',
+          align: 'left',
+          resizable: false,
+          formatter: function formatter(row, column, cellValue) {
+            var items = [];
+            var total = [];
+            forEach(row.items, function (item) {
+              var realQuantity = Array(item.quantity).fill().map(function (_, i) {
+                return i * i;
+              });
+              realQuantity.forEach(function () {
+                total.push(item.name);
+              });
+              items.push(h("li", [item.quantity + ' * ' + item.name]));
+            });
+            return h("el-popover", {
+              "attrs": {
+                "trigger": "hover",
+                "placement": "top"
+              }
+            }, [h("ul", {
+              "class": "order_items_list table_col_list"
+            }, [items]), h("div", {
+              "slot": "reference"
+            }, [h("strong", [total.length, " items"])])]);
+          }
+        }, {
+          prop: 'amount',
+          sortable: true,
+          label: 'Total',
+          formatter: function formatter(row, column, cellValue) {
+            return row.cart.currency ? row.cart.currency + row.cart.totals.Total : '-';
+          },
+          align: 'left',
+          resizable: true
+        }, {
+          prop: 'invoice',
+          sortable: true,
+          label: 'Create Invoice',
+          formatter: function (row, column, cellValue) {
+            var _this2 = this;
+
+            return h("el-button", {
+              "on": {
+                "click": function click() {
+                  return _this2.createInvoice(row);
+                }
+              },
+              "attrs": {
+                "type": "success",
+                "size": "mini",
+                "plain": true
+              },
+              "class": "action_btn"
+            }, ["Create Invoice"]);
+          }.bind(this),
+          align: 'left',
+          resizable: true
+        }]
+      }
+    };
+  },
+  computed: {},
+  watch: {},
+  mounted: function mounted() {
+    console.log('ProFormas.vue mounted!');
+  },
+  methods: {
+    createInvoice: function createInvoice(val) {
+      var _this3 = this;
+
+      var status = window.ecommerceConfig.orders.statuses;
+      val.status = status.STATUS_PROCESSING;
+      __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].persist('put', {
+        path: 'orders/' + val.id,
+        object: val
+      }).then(function (data) {
+        _this3.$router.push({
+          name: 'orders'
+        });
+      }).catch(function (error) {
+        _this3.errors = error;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09c979a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-09c979a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "data-table",
+    {
+      attrs: {
+        "with-params": {
+          withStatus: [
+            "STATUS_PROFORMA",
+            "STATUS_DRAFT",
+            "STATUS_CANCELLED",
+            "STATUS_AWAITING_PAYMENT",
+            "STATUS_PAYMENT_FAILED"
+          ]
+        },
+        "table-options": _vm.tableOptions,
+        "request-includes": ["created_at"],
+        "create-form": {},
+        "type-name": "Pro Forma Order",
+        "base-url": "orders",
+        "edit-path": "orders",
+        "bulk-update-url": "orders/bulk",
+        "request-with": "content"
+      },
+      scopedSlots: _vm._u([
+        {
+          key: "actionButtons",
+          fn: function(props) {
+            return [
+              _c(
+                "el-popover",
+                { attrs: { trigger: "click", placement: "top" } },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: {
+                          path: props.editPathFormated + "/" + props.row.id
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          staticClass: "action_btn view_btn",
+                          attrs: { size: "mini", type: "success" }
+                        },
+                        [_vm._v("View\n        ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href:
+                          "mailto:" +
+                          props.row.customer.email +
+                          "?subject=Order Ref " +
+                          props.row.ref +
+                          "&body=Hello " +
+                          props.row.customer.first_name +
+                          ","
+                      }
+                    },
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          staticClass: "action_btn view_btn",
+                          attrs: { size: "mini", plain: "" }
+                        },
+                        [_vm._v("Email Customer\n        ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href:
+                          "/ecommerce-templates/invoice-download?reports=" +
+                          props.row.id,
+                        target: "_blank"
+                      }
+                    },
+                    [
+                      _c(
+                        "el-button",
+                        {
+                          staticClass: "action_btn view_btn",
+                          attrs: { size: "mini", plain: "" }
+                        },
+                        [_vm._v("Download PDF\n        ")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-button",
+                    {
+                      staticClass: "action_btn view_btn",
+                      attrs: { size: "mini", type: "danger" },
+                      on: {
+                        click: function($event) {
+                          props.delete(props.row)
+                        }
+                      }
+                    },
+                    [_vm._v("Delete\n      ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { attrs: { slot: "reference" }, slot: "reference" },
+                    [
+                      _c("el-button", { attrs: { size: "mini" } }, [
+                        _vm._v("Actions")
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]
+          }
+        }
+      ])
+    },
+    [
+      _c(
+        "template",
+        { slot: "createButton" },
+        [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to: { name: "estimates.new", params: { isProForma: true } }
+              }
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  staticClass: "create_btn",
+                  attrs: { type: "primary", plain: "" }
+                },
+                [_vm._v("New Pro-Forma")]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-09c979a2", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09c979a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09c979a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("667a3080", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09c979a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProFormas.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09c979a2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProFormas.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-09c979a2\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-09c979a2\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/pages/pro-formas/ProFormas.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/pages/pro-formas/ProFormas.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-09c979a2", Component.options)
+  } else {
+    hotAPI.reload("data-v-09c979a2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ })
+
+});

@@ -19,7 +19,7 @@ class Payment extends Model
      */
     protected $fillable = [
         'order_id', 'reference', 'method', 'currency', 'amount', 'fee', 'source_id', 'source_brand',
-        'source_country', 'source_last4', 'source_exp_month', 'source_exp_year', 'refunded', 'notes'
+        'source_country', 'source_last4', 'source_exp_month', 'source_exp_year', 'refunded', 'notes', 'created_at'
     ];
 
     /**
