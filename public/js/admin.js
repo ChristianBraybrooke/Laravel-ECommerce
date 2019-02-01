@@ -17320,7 +17320,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-window.ecommerceConfig.web_version = '0.0.90';
+window.ecommerceConfig.web_version = '0.0.93';
 window.has = __webpack_require__("./node_modules/lodash.has/index.js");
 
 var numeral = __webpack_require__("./node_modules/numeral/numeral.js");

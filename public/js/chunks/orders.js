@@ -2882,7 +2882,7 @@ var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
             var payments = [];
             row.payments.data.forEach(function (payment) {
               if (!payment.refunded) {
-                payments.push(h("li", [_this4.formatPrice(payment.amount, row.cart.currency), " by ", h("strong", [payment.method])]));
+                payments.push(h("li", [_this4.formatPrice(payment.amount, row.cart.currency), " by ", h("strong", [payment.method]), " on ", h("strong", [payment.created_at.date, " (", payment.created_at.human, ")"])]));
               }
             });
             var paymentInfo = payments.length > 0 ? h("ul", {

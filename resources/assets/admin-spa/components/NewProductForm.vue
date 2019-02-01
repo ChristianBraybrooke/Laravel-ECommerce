@@ -17,8 +17,6 @@
       :visible.sync="showModal"
       :width="mergedDialog.width">
 
-      Ready for customisation {{ readyForCustomisationForm }}
-
       <div v-loading="loading">
         <el-form
           ref="productAddForm"
@@ -130,12 +128,79 @@
                 </el-form-item>
               </el-col>
             </el-row>
-
-            {{ customisationForm.product }}
-
           </div>
 
         </el-form>
+
+        <el-form
+          ref="productCustomisationForm"
+          :model="customisationForm"
+          label-position="top"
+          @submit.native.prevent>
+
+          <div v-show="customisationForm.product.id">
+            <template v-if="customisationForm.product.order_form">
+              <div
+                v-for="section in customisationForm.product.order_form.sections.data"
+                v-show="section.fields.data.length > 0"
+                :key="section.id">
+                <el-row
+                  :gutter="20">
+                  <el-col :md="12">
+                    <h5>{{ section.name }}</h5>
+                  </el-col>
+                </el-row>
+
+                <div
+                  class="form_option_section">
+                  <el-row
+                    :gutter="20">
+                    <el-col :md="{span:16, offset: 4}">
+                      <div
+                        v-for="field in section.fields.data"
+                        :key="field.id">
+                        <component
+                          :is="`${field.type}-form-field`"
+                          :form="customisationForm.options"
+                          :product="customisationForm.product"
+                          :section="section"
+                          :field="field"
+                          :prop="`${field.name}`"/>
+                      </div>
+                    </el-col>
+                  </el-row>
+                </div>
+                <hr>
+              </div>
+            </template>
+          </div>
+
+        </el-form>
+
+        <span
+          slot="footer"
+          class="dialog-footer">
+          <el-button
+            v-if="!editForm"
+            @click="closeAndClearModal()">{{ editForm ? 'Discard Changes' : 'Cancel' }}
+          </el-button>
+          <el-button
+            v-if="!editForm"
+            :disabled="!readyForCustomisationForm"
+            type="primary"
+            plain>Finish & Add Another
+          </el-button>
+          <el-button
+            v-if="!editForm"
+            :disabled="!readyForCustomisationForm"
+            type="primary">Finish
+          </el-button>
+          <el-button
+            v-if="editForm"
+            type="primary">Save Changes
+          </el-button>
+        </span>
+
       </div>
 
     </el-dialog>
@@ -145,12 +210,21 @@
 <script>
 import { mapGetters } from 'vuex'
 import api from 'services/api-service'
+import RadioFormField from 'components/product-form/RadioFormField'
+import NumberFormField from 'components/product-form/NumberFormField'
+import SelectFormField from 'components/product-form/SelectFormField'
+import TextFormField from 'components/product-form/TextFormField'
+import TextareaFormField from 'components/product-form/TextareaFormField'
 
 export default {
   name: 'NewProductForm',
 
   components: {
-
+    RadioFormField,
+    NumberFormField,
+    SelectFormField,
+    TextFormField,
+    TextareaFormField
   },
 
   props: {
@@ -207,7 +281,14 @@ export default {
     return {
       loading: true,
       customisationForm: {
-        product: {}
+        options: {},
+        product: {
+          order_form: {
+            sections: {
+              data: []
+            }
+          }
+        }
       },
       form: {
         category: {
@@ -308,6 +389,8 @@ export default {
     'form.product.id': function (val) {
       if (this.readyForCustomisationForm) {
         this.setCustomisationProduct(this.form.product)
+      } else {
+        this.resetCustomisationForm()
       }
     },
     'form.variant.id': function (val) {
@@ -367,12 +450,25 @@ export default {
       this.resetForm()
     },
 
+    resetCustomisationForm () {
+      this.customisationForm = {
+        options: {},
+        product: {
+          order_form: {
+            sections: {
+              data: []
+            }
+          }
+        }
+      }
+    },
+
     setCustomisationProduct (val) {
       var product = {
         ...{},
         ...val
       }
-      this.$set(this.customisationForm.product, product)
+      this.customisationForm.product = product
     },
 
     openModal () {
