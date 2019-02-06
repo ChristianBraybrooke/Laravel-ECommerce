@@ -94,7 +94,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'ProductPageLayout',
   components: {
     PageLayout: function PageLayout() {
-      return __webpack_require__.e/* import() */(45).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/PageLayout.vue"));
+      return __webpack_require__.e/* import() */(46).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/PageLayout.vue"));
     }
   },
   props: {

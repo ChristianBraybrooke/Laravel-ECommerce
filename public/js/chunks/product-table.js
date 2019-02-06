@@ -1,4 +1,682 @@
-webpackJsonp([35,36],{
+webpackJsonp([35,36,42],{
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/NewProductForm.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_utils_operators__ = __webpack_require__("./resources/assets/admin-spa/utils/operators.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_services_api_service__ = __webpack_require__("./resources/assets/admin-spa/services/api-service.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_components_product_form_RadioFormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/RadioFormField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_components_product_form_RadioFormField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_components_product_form_RadioFormField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_components_product_form_NumberFormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/NumberFormField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_components_product_form_NumberFormField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_components_product_form_NumberFormField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_product_form_SelectFormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/SelectFormField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_components_product_form_SelectFormField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_components_product_form_SelectFormField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_components_product_form_TextFormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/TextFormField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_components_product_form_TextFormField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_components_product_form_TextFormField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_components_product_form_TextareaFormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/TextareaFormField.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_components_product_form_TextareaFormField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_components_product_form_TextareaFormField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_lodash_clone__ = __webpack_require__("./node_modules/lodash.clone/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_lodash_clone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_lodash_clone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_lodash_range__ = __webpack_require__("./node_modules/lodash.range/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_lodash_range___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_lodash_range__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_lodash_foreach__ = __webpack_require__("./node_modules/lodash.foreach/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_lodash_foreach___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_lodash_foreach__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'NewProductForm',
+  components: {
+    RadioFormField: __WEBPACK_IMPORTED_MODULE_3_components_product_form_RadioFormField___default.a,
+    NumberFormField: __WEBPACK_IMPORTED_MODULE_4_components_product_form_NumberFormField___default.a,
+    SelectFormField: __WEBPACK_IMPORTED_MODULE_5_components_product_form_SelectFormField___default.a,
+    TextFormField: __WEBPACK_IMPORTED_MODULE_6_components_product_form_TextFormField___default.a,
+    TextareaFormField: __WEBPACK_IMPORTED_MODULE_7_components_product_form_TextareaFormField___default.a
+  },
+  props: {
+    button: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+    dialog: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+    onProductAdd: {
+      type: Function,
+      required: false,
+      default: function _default() {}
+    },
+    editForm: {
+      type: Boolean,
+      required: false,
+      default: function _default() {
+        return false;
+      }
+    },
+    product: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+    onModalClose: {
+      type: Function,
+      required: false,
+      default: function _default(instance, confirm) {
+        if (confirm) {
+          instance.$confirm('Are you sure to close the product selector?').then(function (_) {
+            instance.clearAll();
+            instance.showModal = false;
+          }).catch(function (_) {});
+        } else {
+          instance.clearAll();
+          instance.showModal = false;
+        }
+      }
+    },
+    includes: {
+      type: Array,
+      required: false,
+      default: function _default() {
+        return [];
+      }
+    },
+    with: {
+      type: Array,
+      required: false,
+      default: function _default() {
+        return [];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      loading: true,
+      customisationForm: {
+        quantity: 1,
+        options: {},
+        product: {
+          order_form: {
+            sections: {
+              data: []
+            }
+          }
+        }
+      },
+      form: {
+        category: {
+          products: {
+            data: []
+          }
+        },
+        product: {
+          variants: {
+            data: []
+          }
+        },
+        variant: {}
+      },
+      showModal: false,
+      productCollection: {
+        types: {
+          data: []
+        }
+      },
+      editPrice: false,
+      clonedPrice: '0.00'
+    };
+  },
+  computed: _objectSpread({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])(['shopData']), {
+    quantityRange: function quantityRange() {
+      return __WEBPACK_IMPORTED_MODULE_9_lodash_range___default()(1, 250);
+    },
+    defaultButton: function defaultButton() {
+      return {
+        text: 'Add Product (New)',
+        loading: 'Loading Products',
+        type: 'success',
+        size: 'large',
+        plain: false,
+        class: ''
+      };
+    },
+    mergedButton: function mergedButton() {
+      return _objectSpread({}, this.defaultButton, this.button);
+    },
+    defaultDialog: function defaultDialog() {
+      return {
+        title: "".concat(this.editForm ? 'Edit' : 'Add', " Product"),
+        closeOnClick: true,
+        width: '70%'
+      };
+    },
+    mergedDialog: function mergedDialog() {
+      return _objectSpread({}, this.defaultDialog, this.dialog);
+    },
+    defaultIncludes: function defaultIncludes() {
+      return ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description', 'order', 'rules'];
+    },
+    mergedIncludes: function mergedIncludes() {
+      return [].concat(_toConsumableArray(this.defaultIncludes), _toConsumableArray(this.includes));
+    },
+    defaultWith: function defaultWith() {
+      return ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant', 'types.products.orderForm.sections.fields'];
+    },
+    mergedWith: function mergedWith() {
+      return [].concat(_toConsumableArray(this.defaultWith), _toConsumableArray(this.with));
+    },
+    readyForCustomisationForm: function readyForCustomisationForm() {
+      if (this.editForm) {
+        return true;
+      }
+
+      if (this.form.product.id && this.form.product.variants.data.length === 0) {
+        return true;
+      }
+
+      if (this.form.variant.id) {
+        return true;
+      }
+    },
+    mergedProduct: function mergedProduct() {
+      return _objectSpread({}, this.customisationForm.product, {
+        quantity: this.customisationForm.quantity
+      }, {
+        options: this.customisationForm.options
+      });
+    }
+  }),
+  watch: {
+    'form.category.id': function formCategoryId(val) {
+      this.resetForm();
+    },
+    'form.product.id': function formProductId(val) {
+      if (this.readyForCustomisationForm) {
+        this.setCustomisationProduct(this.form.product);
+      }
+
+      this.resetCustomisationForm();
+      this.resetVariant();
+    },
+    'form.variant.id': function formVariantId(val) {
+      this.resetCustomisationForm();
+
+      if (this.readyForCustomisationForm) {
+        this.setCustomisationProduct(this.form.variant);
+      }
+    }
+  },
+  mounted: function mounted() {
+    if (this.editForm) {
+      this.loading = false;
+      this.setupEditForm();
+    } else {
+      this.getData();
+    }
+  },
+  methods: {
+    getData: function getData() {
+      if (this.shopData.collection_mappings_values) {
+        var productCatId = this.shopData.collection_mappings_values['Product Categories Collection'];
+        this.loading = true;
+        __WEBPACK_IMPORTED_MODULE_2_services_api_service__["a" /* default */].get({
+          path: 'collections/' + productCatId,
+          params: {
+            include: this.mergedIncludes,
+            with: this.mergedWith
+          }
+        }).then(function (data) {
+          this.productCollection = data.data;
+          this.loading = false;
+        }.bind(this)).catch(function (error) {
+          this.loading = false;
+          this.errors = error;
+        }.bind(this));
+      }
+    },
+    resetForm: function resetForm() {
+      this.form.product = {
+        variants: {
+          data: []
+        }
+      };
+      this.form.variant = {};
+    },
+    clearAll: function clearAll() {
+      this.form.category = {
+        products: {
+          data: []
+        }
+      };
+      this.clonedPrice = '0.00';
+      this.resetForm();
+    },
+    resetVariant: function resetVariant() {
+      this.form.variant = {};
+    },
+    resetCustomisationForm: function resetCustomisationForm() {
+      this.customisationForm = {
+        quantity: 1,
+        options: {},
+        product: {
+          order_form: {
+            sections: {
+              data: []
+            }
+          }
+        }
+      };
+    },
+    setCustomisationProduct: function setCustomisationProduct(val) {
+      var product = _objectSpread({}, {}, val);
+
+      this.clonedPrice = __WEBPACK_IMPORTED_MODULE_8_lodash_clone___default()(product.price);
+      this.customisationForm.product = product;
+    },
+    calculateDynamicVisible: function calculateDynamicVisible(rules) {
+      if (rules.dynamic) {
+        var optionKey = null;
+        this.customisationForm.product.order_form.sections.data.forEach(function (section) {
+          section.fields.data.forEach(function (field) {
+            if (field.id === rules.show_if_att) {
+              optionKey = field.name;
+            }
+          });
+        });
+
+        if (this.customisationForm.options[optionKey]) {
+          if (this.customisationForm.options[optionKey].value) {
+            return this.customisationForm.options[optionKey].value === rules.show_if_value;
+          }
+
+          return this.customisationForm.options[optionKey] === rules.show_if_value;
+        }
+
+        return false;
+      }
+
+      return true;
+    },
+    handleEditPrice: function handleEditPrice() {
+      if (this.editPrice) {
+        this.customisationForm.product.price = __WEBPACK_IMPORTED_MODULE_8_lodash_clone___default()(this.clonedPrice);
+      }
+
+      this.editPrice = !this.editPrice;
+    },
+    adjustPrice: function adjustPrice(val) {
+      this.customisationForm.product.price = val;
+    },
+    formattedPrices: function formattedPrices(product) {
+      var basePrice = this.simplePrice(product.price);
+      var baseWithExtras = basePrice;
+      var extras = 0;
+
+      if (product.options) {
+        __WEBPACK_IMPORTED_MODULE_10_lodash_foreach___default()(product.options, function (option) {
+          if (option) {
+            if (option.price_mutator && option.price_value) {
+              baseWithExtras = __WEBPACK_IMPORTED_MODULE_1_utils_operators__["a" /* operators */][option.price_mutator](baseWithExtras, option.price_value);
+              extras = __WEBPACK_IMPORTED_MODULE_1_utils_operators__["a" /* operators */][option.price_mutator](extras, option.price_value);
+            }
+          }
+        });
+      }
+
+      var quantity = this.customisationForm.quantity;
+      var total = baseWithExtras * quantity;
+      extras = extras * quantity;
+      return {
+        'Base Price': this.formatPrice(basePrice),
+        'Sub-Total': this.formatPrice(basePrice * quantity),
+        'Extras': this.formatPrice(extras),
+        'Total': this.formatPrice(total)
+      };
+    },
+    addProduct: function addProduct() {
+      var addAnother = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (this.customisationForm.quantity >= 1) {
+        var product = this.mergedProduct;
+        this.onProductAdd(product);
+
+        if (!addAnother) {
+          this.$message({
+            message: 'Product Added!',
+            type: 'success'
+          });
+          this.closeAndClearModal(false);
+        } else {
+          this.clearAll();
+          this.$message({
+            message: 'Product Added and Form Cleared!',
+            type: 'success'
+          });
+        }
+      }
+    },
+    openModal: function openModal() {
+      if (this.editForm) {
+        this.setupEditForm();
+      }
+
+      this.showModal = true;
+    },
+    setupEditForm: function setupEditForm() {
+      var product = this.product;
+      console.log(product); // this.$set(this.form.product, product)
+
+      this.customisationForm.product = product;
+      this.$set(this.customisationForm.options, product.options);
+      this.customisationForm.quantity = product.quantity;
+    },
+    closeAndClearModal: function closeAndClearModal() {
+      var confirm = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      this.onModalClose(this, confirm);
+    }
+  }
+});
+
+/***/ }),
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/ProductForm.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -657,7 +1335,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_ProductForm__ = __webpack_require__("./resources/assets/admin-spa/components/ProductForm.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_components_ProductForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_components_ProductForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_utils_order__ = __webpack_require__("./resources/assets/admin-spa/utils/order.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_components_NewProductForm__ = __webpack_require__("./resources/assets/admin-spa/components/NewProductForm.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_components_NewProductForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_components_NewProductForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_utils_order__ = __webpack_require__("./resources/assets/admin-spa/utils/order.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -711,6 +1391,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var range = __webpack_require__("./node_modules/lodash.range/index.js");
 
 var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
@@ -721,7 +1402,8 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     Errors: function Errors() {
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
-    ProductForm: __WEBPACK_IMPORTED_MODULE_1_components_ProductForm___default.a
+    ProductForm: __WEBPACK_IMPORTED_MODULE_1_components_ProductForm___default.a,
+    NewProductForm: __WEBPACK_IMPORTED_MODULE_2_components_NewProductForm___default.a
   },
   props: {
     editable: {
@@ -800,19 +1482,19 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
         prop: 'subtotal',
         label: 'Sub-Total',
         formatter: function (row, column, cellValue) {
-          return this.formatPrice(__WEBPACK_IMPORTED_MODULE_2_utils_order__["a" /* default */].productSubTotal(row), this.shopData.currency);
+          return this.formatPrice(__WEBPACK_IMPORTED_MODULE_3_utils_order__["a" /* default */].productSubTotal(row), this.shopData.currency);
         }.bind(this)
       }, {
         prop: 'extras',
         label: 'Extras',
         formatter: function (row, column, cellValue) {
-          return this.formatPrice(__WEBPACK_IMPORTED_MODULE_2_utils_order__["a" /* default */].productExtras(row), this.shopData.currency);
+          return this.formatPrice(__WEBPACK_IMPORTED_MODULE_3_utils_order__["a" /* default */].productExtras(row), this.shopData.currency);
         }.bind(this)
       }, {
         prop: 'total',
         label: 'Total',
         formatter: function (row, column, cellValue) {
-          return this.formatPrice(__WEBPACK_IMPORTED_MODULE_2_utils_order__["a" /* default */].productTotal(row), this.shopData.currency);
+          return this.formatPrice(__WEBPACK_IMPORTED_MODULE_3_utils_order__["a" /* default */].productTotal(row), this.shopData.currency);
         }.bind(this)
       }];
 
@@ -919,7 +1601,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
       var _this2 = this;
 
       var h = this.$createElement;
-      return h("span", [h("product-form", {
+      return h("span", [h("new-product-form", {
         "attrs": {
           "edit-form": true,
           "product": row,
@@ -1020,6 +1702,175 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'FormItem',
+  props: {
+    field: {
+      type: Object,
+      required: true
+    },
+    prop: {
+      required: true,
+      type: String
+    },
+    size: {
+      required: false,
+      type: String,
+      default: function _default() {
+        return 'small';
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormField.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'NumberFormField',
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormField.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'RadioFormField',
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormField.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'SelectFormField',
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormField.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TextFormField',
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormField__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormField.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'TextareaFormField',
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0222abc7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/ProductForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1035,6 +1886,66 @@ exports.push([module.i, "\n.product_form_radio .el-radio-button {\n    margin: 5
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16f61edc\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-348a6b8b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-454b33f8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5767ea6e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-626e365b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/ProductTable.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1043,7 +1954,52 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6594f8b8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-95f46cc8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-daa94062\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/NewProductForm.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tooltip_wrap[data-v-daa94062] {\n  float: left;\n}\n", ""]);
 
 // exports
 
@@ -6928,6 +7884,174 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-16f61edc\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form-item",
+    { attrs: { field: _vm.field, prop: _vm.prop } },
+    [
+      _c(
+        "el-radio-group",
+        {
+          staticClass: "product_form_radio",
+          model: {
+            value: _vm.form[_vm.prop],
+            callback: function($$v) {
+              _vm.$set(_vm.form, _vm.prop, $$v)
+            },
+            expression: "form[prop]"
+          }
+        },
+        _vm._l(_vm.field.options, function(option) {
+          return _c(
+            "el-radio-button",
+            { key: option.id, attrs: { label: option } },
+            [_vm._v("\n      " + _vm._s(_vm.optionLabel(option)) + "\n    ")]
+          )
+        }),
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-16f61edc", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-348a6b8b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form-item",
+    { attrs: { field: _vm.field, prop: _vm.prop } },
+    [
+      _c("el-input", {
+        attrs: { type: "textarea" },
+        model: {
+          value: _vm.form[_vm.prop],
+          callback: function($$v) {
+            _vm.$set(_vm.form, _vm.prop, $$v)
+          },
+          expression: "form[prop]"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-348a6b8b", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-454b33f8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form-item",
+    { attrs: { field: _vm.field, prop: _vm.prop } },
+    [
+      _c("el-input", {
+        model: {
+          value: _vm.form[_vm.prop],
+          callback: function($$v) {
+            _vm.$set(_vm.form, _vm.prop, $$v)
+          },
+          expression: "form[prop]"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-454b33f8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5767ea6e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form-item",
+    { attrs: { field: _vm.field, prop: _vm.prop } },
+    [
+      _c(
+        "el-select",
+        {
+          attrs: { filterable: "" },
+          model: {
+            value: _vm.form[_vm.prop],
+            callback: function($$v) {
+              _vm.$set(_vm.form, _vm.prop, $$v)
+            },
+            expression: "form[prop]"
+          }
+        },
+        _vm._l(_vm.field.options, function(option) {
+          return _c("el-option", {
+            key: option.id,
+            attrs: { value: option, label: _vm.optionLabel(option) }
+          })
+        }),
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5767ea6e", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-626e365b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/ProductTable.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7014,6 +8138,986 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6594f8b8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "el-form-item",
+    { attrs: { label: _vm.field.name, prop: _vm.prop, size: _vm.size } },
+    [_vm._t("default")],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6594f8b8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-95f46cc8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form-item",
+    { attrs: { field: _vm.field, prop: _vm.prop } },
+    [
+      _c("el-input-number", {
+        attrs: { "controls-position": "right" },
+        model: {
+          value: _vm.form[_vm.prop],
+          callback: function($$v) {
+            _vm.$set(_vm.form, _vm.prop, $$v)
+          },
+          expression: "form[prop]"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-95f46cc8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-daa94062\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/NewProductForm.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "el-button",
+        {
+          class: _vm.mergedButton.class,
+          attrs: {
+            loading: _vm.loading,
+            size: _vm.mergedButton.size,
+            plain: _vm.mergedButton.plain,
+            type: _vm.mergedButton.type
+          },
+          on: { click: _vm.openModal }
+        },
+        [
+          _vm._v(
+            _vm._s(
+              _vm.loading ? _vm.mergedButton.loading : _vm.mergedButton.text
+            ) + "\n  "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm.showModal
+        ? _c(
+            "el-dialog",
+            {
+              attrs: {
+                title: _vm.mergedDialog.title,
+                "close-on-click-modal": _vm.mergedDialog.closeOnClick,
+                "before-close": _vm.closeAndClearModal,
+                visible: _vm.showModal,
+                width: _vm.mergedDialog.width
+              },
+              on: {
+                "update:visible": function($event) {
+                  _vm.showModal = $event
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "loading",
+                      rawName: "v-loading",
+                      value: _vm.loading,
+                      expression: "loading"
+                    }
+                  ]
+                },
+                [
+                  _c(
+                    "el-form",
+                    {
+                      ref: "productAddForm",
+                      attrs: { model: _vm.form, "label-position": "top" },
+                      nativeOn: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                        }
+                      }
+                    },
+                    [
+                      !_vm.editForm
+                        ? _c(
+                            "div",
+                            { staticClass: "form_option_section" },
+                            [
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c("el-col", { attrs: { md: 12 } }, [
+                                    _c("h5", [_vm._v("Product Type")])
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                { attrs: { gutter: 20 } },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 16, offset: 4 } } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          attrs: {
+                                            label: "Choose Category",
+                                            prop: "category"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            [
+                                              _c(
+                                                "el-radio-group",
+                                                {
+                                                  staticClass:
+                                                    "product_form_radio",
+                                                  model: {
+                                                    value: _vm.form.category,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "category",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.category"
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  _vm.productCollection.types
+                                                    .data,
+                                                  function(type) {
+                                                    return _c(
+                                                      "el-radio-button",
+                                                      {
+                                                        key: type.id,
+                                                        attrs: { label: type }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(type.name) +
+                                                            "\n                    "
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.form.category.id,
+                                      expression: "form.category.id"
+                                    }
+                                  ],
+                                  attrs: { gutter: 20 }
+                                },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 16, offset: 4 } } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          attrs: {
+                                            label: "Choose Product",
+                                            prop: "productFirst"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            [
+                                              _c(
+                                                "el-radio-group",
+                                                {
+                                                  staticClass:
+                                                    "product_form_radio",
+                                                  model: {
+                                                    value: _vm.form.product,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "product",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.product"
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  _vm.form.category.products
+                                                    .data,
+                                                  function(product) {
+                                                    return _c(
+                                                      "div",
+                                                      {
+                                                        key: product.id,
+                                                        staticClass:
+                                                          "tooltip_wrap"
+                                                      },
+                                                      [
+                                                        !parseInt(
+                                                          product.price
+                                                        ) == 0
+                                                          ? _c(
+                                                              "el-tooltip",
+                                                              {
+                                                                attrs: {
+                                                                  content:
+                                                                    _vm.shopData
+                                                                      .currency +
+                                                                    product.price,
+                                                                  placement:
+                                                                    "top",
+                                                                  effect:
+                                                                    "light"
+                                                                }
+                                                              },
+                                                              [
+                                                                _c(
+                                                                  "el-radio-button",
+                                                                  {
+                                                                    attrs: {
+                                                                      label: product
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        product.name
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ],
+                                                              1
+                                                            )
+                                                          : _c(
+                                                              "el-radio-button",
+                                                              {
+                                                                attrs: {
+                                                                  label: product
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    product.name
+                                                                  ) +
+                                                                    "\n                      "
+                                                                )
+                                                              ]
+                                                            )
+                                                      ],
+                                                      1
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "el-row",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value:
+                                        _vm.form.product.variants.data.length >=
+                                        1,
+                                      expression:
+                                        "form.product.variants.data.length >= 1"
+                                    }
+                                  ],
+                                  attrs: { gutter: 20 }
+                                },
+                                [
+                                  _c(
+                                    "el-col",
+                                    { attrs: { md: { span: 16, offset: 4 } } },
+                                    [
+                                      _c(
+                                        "el-form-item",
+                                        {
+                                          attrs: {
+                                            label: "Choose Variant",
+                                            prop: "variant"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            [
+                                              _vm.form.product.variants.data
+                                                .length < 10
+                                                ? _c(
+                                                    "el-radio-group",
+                                                    {
+                                                      staticClass:
+                                                        "product_form_radio",
+                                                      model: {
+                                                        value: _vm.form.variant,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            _vm.form,
+                                                            "variant",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "form.variant"
+                                                      }
+                                                    },
+                                                    _vm._l(
+                                                      _vm.form.product.variants
+                                                        .data,
+                                                      function(variant) {
+                                                        return _c(
+                                                          "el-tooltip",
+                                                          {
+                                                            key: variant.id,
+                                                            attrs: {
+                                                              content:
+                                                                _vm.shopData
+                                                                  .currency +
+                                                                variant.price,
+                                                              placement: "top",
+                                                              effect: "light"
+                                                            }
+                                                          },
+                                                          [
+                                                            _c(
+                                                              "el-radio-button",
+                                                              {
+                                                                attrs: {
+                                                                  label: variant
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  "\n                        " +
+                                                                    _vm._s(
+                                                                      variant.name
+                                                                    ) +
+                                                                    "\n                      "
+                                                                )
+                                                              ]
+                                                            )
+                                                          ],
+                                                          1
+                                                        )
+                                                      }
+                                                    ),
+                                                    1
+                                                  )
+                                                : _c(
+                                                    "el-select",
+                                                    {
+                                                      attrs: {
+                                                        size: "small",
+                                                        filterable: "",
+                                                        "value-key": "id"
+                                                      },
+                                                      model: {
+                                                        value: _vm.form.variant,
+                                                        callback: function(
+                                                          $$v
+                                                        ) {
+                                                          _vm.$set(
+                                                            _vm.form,
+                                                            "variant",
+                                                            $$v
+                                                          )
+                                                        },
+                                                        expression:
+                                                          "form.variant"
+                                                      }
+                                                    },
+                                                    _vm._l(
+                                                      _vm.form.product.variants
+                                                        .data,
+                                                      function(variant) {
+                                                        return _c(
+                                                          "el-option",
+                                                          {
+                                                            key: variant.id,
+                                                            attrs: {
+                                                              label:
+                                                                variant.name +
+                                                                " - " +
+                                                                (_vm.shopData
+                                                                  .currency +
+                                                                  variant.price),
+                                                              value: variant
+                                                            }
+                                                          },
+                                                          [
+                                                            _vm._v(
+                                                              "\n                      " +
+                                                                _vm._s(
+                                                                  variant.name
+                                                                ) +
+                                                                " - "
+                                                            ),
+                                                            _c("strong", [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm.shopData
+                                                                    .currency +
+                                                                    variant.price
+                                                                )
+                                                              )
+                                                            ])
+                                                          ]
+                                                        )
+                                                      }
+                                                    ),
+                                                    1
+                                                  )
+                                            ],
+                                            1
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form",
+                    {
+                      ref: "productCustomisationForm",
+                      attrs: {
+                        model: _vm.customisationForm,
+                        "label-position": "top"
+                      },
+                      nativeOn: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.customisationForm.product.id,
+                              expression: "customisationForm.product.id"
+                            }
+                          ]
+                        },
+                        [
+                          _vm.customisationForm.product.order_form
+                            ? _vm._l(
+                                _vm.customisationForm.product.order_form
+                                  .sections.data,
+                                function(section) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: section.fields.data.length > 0,
+                                          expression:
+                                            "section.fields.data.length > 0"
+                                        }
+                                      ],
+                                      key: section.id
+                                    },
+                                    [
+                                      _c(
+                                        "el-row",
+                                        { attrs: { gutter: 20 } },
+                                        [
+                                          _c("el-col", { attrs: { md: 12 } }, [
+                                            _c("h5", [
+                                              _vm._v(_vm._s(section.name))
+                                            ])
+                                          ])
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "form_option_section" },
+                                        [
+                                          _c(
+                                            "el-row",
+                                            { attrs: { gutter: 20 } },
+                                            [
+                                              _c(
+                                                "el-col",
+                                                {
+                                                  attrs: {
+                                                    md: { span: 16, offset: 4 }
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  section.fields.data,
+                                                  function(field) {
+                                                    return _c(
+                                                      "div",
+                                                      { key: field.id },
+                                                      [
+                                                        _vm.calculateDynamicVisible(
+                                                          field.rules
+                                                        )
+                                                          ? _c(
+                                                              field.type +
+                                                                "-form-field",
+                                                              {
+                                                                tag:
+                                                                  "component",
+                                                                attrs: {
+                                                                  form:
+                                                                    _vm
+                                                                      .customisationForm
+                                                                      .options,
+                                                                  product:
+                                                                    _vm
+                                                                      .customisationForm
+                                                                      .product,
+                                                                  section: section,
+                                                                  field: field,
+                                                                  prop:
+                                                                    "" +
+                                                                    field.name
+                                                                }
+                                                              }
+                                                            )
+                                                          : _vm._e()
+                                                      ],
+                                                      1
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("hr")
+                                    ],
+                                    1
+                                  )
+                                }
+                              )
+                            : _vm._e()
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.readyForCustomisationForm
+                        ? [
+                            _c(
+                              "el-row",
+                              { attrs: { gutter: 20 } },
+                              [
+                                _c("el-col", { attrs: { md: 12 } }, [
+                                  _c("h5", [_vm._v("Quantity")])
+                                ])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-row",
+                              { attrs: { gutter: 20 } },
+                              [
+                                _c(
+                                  "el-col",
+                                  { attrs: { md: { span: 16, offset: 4 } } },
+                                  [
+                                    _c(
+                                      "el-form-item",
+                                      {
+                                        attrs: {
+                                          label: "Quantity",
+                                          size: "small",
+                                          prop: "quantity"
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "el-select",
+                                          {
+                                            model: {
+                                              value:
+                                                _vm.customisationForm.quantity,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.customisationForm,
+                                                  "quantity",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "customisationForm.quantity"
+                                            }
+                                          },
+                                          _vm._l(_vm.quantityRange, function(
+                                            range
+                                          ) {
+                                            return _c(
+                                              "el-option",
+                                              {
+                                                key: range,
+                                                attrs: { value: range }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                    " +
+                                                    _vm._s(range) +
+                                                    "\n                  "
+                                                )
+                                              ]
+                                            )
+                                          }),
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-row",
+                              { attrs: { gutter: 20 } },
+                              [
+                                _c(
+                                  "el-col",
+                                  { attrs: { md: 12 } },
+                                  [
+                                    _c("h5", [_vm._v("Price")]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "el-button",
+                                      {
+                                        attrs: {
+                                          type: _vm.editPrice
+                                            ? "warning"
+                                            : "primary",
+                                          size: "mini",
+                                          plain: ""
+                                        },
+                                        on: { click: _vm.handleEditPrice }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.editPrice
+                                              ? "Reset Price"
+                                              : "Edit Price"
+                                          )
+                                        )
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-row",
+                              { attrs: { gutter: 20 } },
+                              _vm._l(
+                                _vm.formattedPrices(
+                                  _vm.customisationForm.product
+                                ),
+                                function(value, key) {
+                                  return _c(
+                                    "el-col",
+                                    {
+                                      key: key,
+                                      attrs: { md: { span: 16, offset: 4 } }
+                                    },
+                                    [
+                                      _c("p", [
+                                        _c("strong", [
+                                          _vm._v(_vm._s(key) + ":")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value:
+                                                  key !== "Base Price" ||
+                                                  (!_vm.editPrice &&
+                                                    key === "Base Price"),
+                                                expression:
+                                                  "key !== 'Base Price' || !editPrice && key === 'Base Price'"
+                                              }
+                                            ]
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(_vm.shopData.currency) +
+                                                _vm._s(value)
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value:
+                                                _vm.editPrice &&
+                                                key === "Base Price",
+                                              expression:
+                                                "editPrice && key === 'Base Price'"
+                                            }
+                                          ],
+                                          staticClass: "price_changer"
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            { staticClass: "currency" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(_vm.shopData.currency)
+                                              )
+                                            ]
+                                          ),
+                                          _c("el-input-number", {
+                                            attrs: {
+                                              value: _vm.simplePrice(
+                                                _vm.customisationForm.product
+                                                  .price
+                                              ),
+                                              size: "mini",
+                                              "controls-position": "right"
+                                            },
+                                            on: { change: _vm.adjustPrice }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                }
+                              ),
+                              1
+                            )
+                          ]
+                        : _vm._e()
+                    ],
+                    2
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "dialog-footer",
+                      attrs: { slot: "footer" },
+                      slot: "footer"
+                    },
+                    [
+                      !_vm.editForm
+                        ? _c(
+                            "el-button",
+                            {
+                              on: {
+                                click: function($event) {
+                                  _vm.closeAndClearModal()
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(
+                                  _vm.editForm ? "Discard Changes" : "Cancel"
+                                ) + "\n        "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.editForm
+                        ? _c(
+                            "el-button",
+                            {
+                              attrs: {
+                                disabled: !_vm.readyForCustomisationForm,
+                                type: "primary",
+                                plain: ""
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.addProduct(true)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n          Finish & Add Another\n        "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      !_vm.editForm
+                        ? _c(
+                            "el-button",
+                            {
+                              attrs: {
+                                disabled: !_vm.readyForCustomisationForm,
+                                type: "primary"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.addProduct()
+                                }
+                              }
+                            },
+                            [_vm._v("Finish\n        ")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.editForm
+                        ? _c("el-button", { attrs: { type: "primary" } }, [
+                            _vm._v("Save Changes\n        ")
+                          ])
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ]
+          )
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-daa94062", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0222abc7\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/ProductForm.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7031,6 +9135,114 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0222abc7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProductForm.vue", function() {
      var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0222abc7\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProductForm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16f61edc\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16f61edc\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("6d08235e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16f61edc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RadioFormField.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16f61edc\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RadioFormField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-348a6b8b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-348a6b8b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("6c8ac646", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-348a6b8b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextareaFormField.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-348a6b8b\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextareaFormField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-454b33f8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-454b33f8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("789f46f6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-454b33f8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextFormField.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-454b33f8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextFormField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5767ea6e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5767ea6e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("4341ca10", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5767ea6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SelectFormField.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5767ea6e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SelectFormField.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -7068,6 +9280,87 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6594f8b8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6594f8b8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("10ca8248", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6594f8b8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormItem.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6594f8b8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FormItem.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-95f46cc8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-95f46cc8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("4181490c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-95f46cc8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NumberFormField.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-95f46cc8\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NumberFormField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-daa94062\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/NewProductForm.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-daa94062\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/NewProductForm.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("53a30c58", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-daa94062\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewProductForm.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-daa94062\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NewProductForm.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/module.js":
 /***/ (function(module, exports) {
 
@@ -7093,6 +9386,58 @@ module.exports = function(module) {
 	}
 	return module;
 };
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/NewProductForm.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-daa94062\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/NewProductForm.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/NewProductForm.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-daa94062\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/NewProductForm.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-daa94062"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/NewProductForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-daa94062", Component.options)
+  } else {
+    hotAPI.reload("data-v-daa94062", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
@@ -7190,6 +9535,371 @@ if (false) {(function () {
     hotAPI.createRecord("data-v-626e365b", Component.options)
   } else {
     hotAPI.reload("data-v-626e365b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/FormField.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormItem__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormItem.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FormItem__);
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  props: {
+    form: {
+      type: Object,
+      required: true
+    },
+    product: {
+      type: Object,
+      required: true
+    },
+    section: {
+      type: Object,
+      required: false,
+      default: function _default() {
+        return {};
+      }
+    },
+    field: {
+      type: Object,
+      required: true
+    },
+    prop: {
+      type: String,
+      required: true
+    }
+  },
+  components: {
+    FormItem: __WEBPACK_IMPORTED_MODULE_0__FormItem___default.a
+  },
+  methods: {
+    optionLabel: function optionLabel(option) {
+      if (option) {
+        if (option.price_mutator && option.price_value) {
+          return option.name + ' (' + option.price_mutator + ' £' + option.price_value + ')';
+        }
+
+        return option.name;
+      }
+
+      return '';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/FormItem.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6594f8b8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6594f8b8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/FormItem.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/product-form/FormItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6594f8b8", Component.options)
+  } else {
+    hotAPI.reload("data-v-6594f8b8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/NumberFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-95f46cc8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-95f46cc8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/NumberFormField.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/product-form/NumberFormField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-95f46cc8", Component.options)
+  } else {
+    hotAPI.reload("data-v-95f46cc8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/RadioFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-16f61edc\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-16f61edc\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/RadioFormField.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/product-form/RadioFormField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-16f61edc", Component.options)
+  } else {
+    hotAPI.reload("data-v-16f61edc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/SelectFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5767ea6e\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-5767ea6e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/SelectFormField.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/product-form/SelectFormField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5767ea6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-5767ea6e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/TextFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-454b33f8\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-454b33f8\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/TextFormField.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/product-form/TextFormField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-454b33f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-454b33f8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/admin-spa/components/product-form/TextareaFormField.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-348a6b8b\",\"scoped\":false,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-348a6b8b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/admin-spa/components/product-form/TextareaFormField.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin-spa/components/product-form/TextareaFormField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-348a6b8b", Component.options)
+  } else {
+    hotAPI.reload("data-v-348a6b8b", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true

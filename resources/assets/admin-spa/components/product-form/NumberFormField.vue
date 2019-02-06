@@ -1,10 +1,20 @@
 <template lang="html">
-  <div />
+  <form-item
+    :field="field"
+    :prop="prop">
+    <el-input-number
+      v-model="form[prop]"
+      controls-position="right"/>
+  </form-item>
 </template>
 
 <script>
+import FormField from './FormField'
+
 export default {
-  name: 'NumberFormField'
+  name: 'NumberFormField',
+
+  mixins: [FormField]
 }
 </script>
 

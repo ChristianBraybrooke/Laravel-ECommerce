@@ -1,4 +1,4 @@
-webpackJsonp([42],{
+webpackJsonp([43],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/GalleryComponent.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -178,7 +178,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
   name: 'GalleryComponent',
   components: {
     FileUploadComponent: function FileUploadComponent() {
-      return __webpack_require__.e/* import() */(44).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FileUploadComponent.vue"));
+      return __webpack_require__.e/* import() */(45).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FileUploadComponent.vue"));
     },
     Errors: function Errors() {
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));

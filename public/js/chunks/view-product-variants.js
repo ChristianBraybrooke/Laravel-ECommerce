@@ -50,7 +50,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
     },
     ProductVariantComponent: function ProductVariantComponent() {
-      return __webpack_require__.e/* import() */(46).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductVariantComponent.vue"));
+      return __webpack_require__.e/* import() */(47).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductVariantComponent.vue"));
     }
   },
   props: {

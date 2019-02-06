@@ -64,7 +64,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
       return __webpack_require__.e/* import() */(34).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/products/ProductPageLayout.vue"));
     },
     ProductCustomisationComponent: function ProductCustomisationComponent() {
-      return __webpack_require__.e/* import() */(48).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
+      return __webpack_require__.e/* import() */(49).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductCustomisationComponent.vue"));
     }
   },
   props: {

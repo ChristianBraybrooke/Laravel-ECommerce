@@ -160,6 +160,7 @@
                         v-for="field in section.fields.data"
                         :key="field.id">
                         <component
+                          v-if="calculateDynamicVisible(field.rules)"
                           :is="`${field.type}-form-field`"
                           :form="customisationForm.options"
                           :product="customisationForm.product"
@@ -175,6 +176,61 @@
             </template>
           </div>
 
+          <template v-if="readyForCustomisationForm">
+            <el-row :gutter="20">
+              <el-col :md="12">
+                <h5>Quantity</h5>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="{span:16, offset: 4}">
+                <el-form-item
+                  label="Quantity"
+                  size="small"
+                  prop="quantity">
+                  <el-select v-model="customisationForm.quantity">
+                    <el-option
+                      v-for="range in quantityRange"
+                      :key="range"
+                      :value="range">
+                      {{ range }}
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col :md="12">
+                <h5>Price</h5>
+                <el-button
+                  :type="editPrice ? 'warning' : 'primary'"
+                  size="mini"
+                  plain
+                  @click="handleEditPrice">{{ editPrice ? 'Reset Price' : 'Edit Price' }}</el-button>
+              </el-col>
+            </el-row>
+
+            <el-row :gutter="20">
+              <el-col
+                v-for="(value, key) in formattedPrices(customisationForm.product)"
+                :key="key"
+                :md="{span:16, offset: 4}">
+                <p><strong>{{ key }}:</strong> <span v-show="key !== 'Base Price' || !editPrice && key === 'Base Price'">{{ shopData.currency }}{{ value }}</span></p>
+                <div
+                  v-show="editPrice && key === 'Base Price'"
+                  class="price_changer">
+                  <span class="currency">{{ shopData.currency }}</span><el-input-number
+                    :value="simplePrice(customisationForm.product.price)"
+                    size="mini"
+                    controls-position="right"
+                    @change="adjustPrice"/>
+                </div>
+              </el-col>
+            </el-row>
+          </template>
+
         </el-form>
 
         <span
@@ -188,12 +244,15 @@
             v-if="!editForm"
             :disabled="!readyForCustomisationForm"
             type="primary"
-            plain>Finish & Add Another
+            plain
+            @click="addProduct(true)">
+            Finish & Add Another
           </el-button>
           <el-button
             v-if="!editForm"
             :disabled="!readyForCustomisationForm"
-            type="primary">Finish
+            type="primary"
+            @click="addProduct()">Finish
           </el-button>
           <el-button
             v-if="editForm"
@@ -209,12 +268,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { operators } from 'utils/operators'
 import api from 'services/api-service'
 import RadioFormField from 'components/product-form/RadioFormField'
 import NumberFormField from 'components/product-form/NumberFormField'
 import SelectFormField from 'components/product-form/SelectFormField'
 import TextFormField from 'components/product-form/TextFormField'
 import TextareaFormField from 'components/product-form/TextareaFormField'
+
+import clone from 'lodash.clone'
+import range from 'lodash.range'
+import forEach from 'lodash.foreach'
 
 export default {
   name: 'NewProductForm',
@@ -256,13 +320,18 @@ export default {
     onModalClose: {
       type: Function,
       required: false,
-      default: (instance) => {
-        instance.$confirm('Are you sure to close the product selector?')
-          .then(_ => {
-            instance.clearAll()
-            instance.showModal = false
-          })
-          .catch(_ => {})
+      default: (instance, confirm) => {
+        if (confirm) {
+          instance.$confirm('Are you sure to close the product selector?')
+            .then(_ => {
+              instance.clearAll()
+              instance.showModal = false
+            })
+            .catch(_ => {})
+        } else {
+          instance.clearAll()
+          instance.showModal = false
+        }
       }
     },
     includes: {
@@ -281,6 +350,7 @@ export default {
     return {
       loading: true,
       customisationForm: {
+        quantity: 1,
         options: {},
         product: {
           order_form: {
@@ -308,7 +378,9 @@ export default {
         types: {
           data: []
         }
-      }
+      },
+      editPrice: false,
+      clonedPrice: '0.00'
     }
   },
 
@@ -316,6 +388,10 @@ export default {
     ...mapGetters([
       'shopData'
     ]),
+
+    quantityRange () {
+      return range(1, 250)
+    },
 
     defaultButton () {
       return {
@@ -373,11 +449,22 @@ export default {
     },
 
     readyForCustomisationForm () {
+      if (this.editForm) {
+        return true
+      }
       if (this.form.product.id && this.form.product.variants.data.length === 0) {
         return true
       }
       if (this.form.variant.id) {
         return true
+      }
+    },
+
+    mergedProduct () {
+      return {
+        ...this.customisationForm.product,
+        ...{ quantity: this.customisationForm.quantity },
+        ...{ options: this.customisationForm.options }
       }
     }
   },
@@ -389,11 +476,12 @@ export default {
     'form.product.id': function (val) {
       if (this.readyForCustomisationForm) {
         this.setCustomisationProduct(this.form.product)
-      } else {
-        this.resetCustomisationForm()
       }
+      this.resetCustomisationForm()
+      this.resetVariant()
     },
     'form.variant.id': function (val) {
+      this.resetCustomisationForm()
       if (this.readyForCustomisationForm) {
         this.setCustomisationProduct(this.form.variant)
       }
@@ -403,7 +491,7 @@ export default {
   mounted () {
     if (this.editForm) {
       this.loading = false
-      this.form.product = this.product
+      this.setupEditForm()
     } else {
       this.getData()
     }
@@ -447,11 +535,17 @@ export default {
           data: []
         }
       }
+      this.clonedPrice = '0.00'
       this.resetForm()
+    },
+
+    resetVariant () {
+      this.form.variant = {}
     },
 
     resetCustomisationForm () {
       this.customisationForm = {
+        quantity: 1,
         options: {},
         product: {
           order_form: {
@@ -468,18 +562,108 @@ export default {
         ...{},
         ...val
       }
+      this.clonedPrice = clone(product.price)
       this.customisationForm.product = product
+    },
+
+    calculateDynamicVisible (rules) {
+      if (rules.dynamic) {
+        var optionKey = null
+        this.customisationForm.product.order_form.sections.data.forEach((section) => {
+          section.fields.data.forEach((field) => {
+            if (field.id === rules.show_if_att) {
+              optionKey = field.name
+            }
+          })
+        })
+        if (this.customisationForm.options[optionKey]) {
+          if (this.customisationForm.options[optionKey].value) {
+            return this.customisationForm.options[optionKey].value === rules.show_if_value
+          }
+          return this.customisationForm.options[optionKey] === rules.show_if_value
+        }
+        return false
+      }
+      return true
+    },
+
+    handleEditPrice () {
+      if (this.editPrice) {
+        this.customisationForm.product.price = clone(this.clonedPrice)
+      }
+      this.editPrice = !this.editPrice
+    },
+
+    adjustPrice (val) {
+      this.customisationForm.product.price = val
+    },
+
+    formattedPrices (product) {
+      var basePrice = this.simplePrice(product.price)
+      var baseWithExtras = basePrice
+      var extras = 0
+      if (product.options) {
+        forEach(product.options, (option) => {
+          if (option) {
+            if (option.price_mutator && option.price_value) {
+              baseWithExtras = operators[option.price_mutator](baseWithExtras, option.price_value)
+              extras = operators[option.price_mutator](extras, option.price_value)
+            }
+          }
+        })
+      }
+
+      var quantity = this.customisationForm.quantity
+      var total = baseWithExtras * quantity
+      extras = extras * quantity
+      return {
+        'Base Price': this.formatPrice(basePrice),
+        'Sub-Total': this.formatPrice(basePrice * quantity),
+        'Extras': this.formatPrice(extras),
+        'Total': this.formatPrice(total)
+      }
+    },
+
+    addProduct (addAnother = false) {
+      if (this.customisationForm.quantity >= 1) {
+        var product = this.mergedProduct
+        this.onProductAdd(product)
+
+        if (!addAnother) {
+          this.$message({
+            message: 'Product Added!',
+            type: 'success'
+          })
+          this.closeAndClearModal(false)
+        } else {
+          this.clearAll()
+          this.$message({
+            message: 'Product Added and Form Cleared!',
+            type: 'success'
+          })
+        }
+      }
     },
 
     openModal () {
       if (this.editForm) {
-        this.form.product = this.product
+        this.setupEditForm()
       }
       this.showModal = true
     },
 
-    closeAndClearModal () {
-      this.onModalClose(this)
+    setupEditForm () {
+      var product = this.product
+      console.log(product)
+      // this.$set(this.form.product, product)
+      this.customisationForm.product = product
+
+      this.$set(this.customisationForm.options, product.options)
+      this.customisationForm.quantity = product.quantity
+    },
+
+    closeAndClearModal (confirm = true) {
+      this.onModalClose(this, confirm)
     }
   }
 }

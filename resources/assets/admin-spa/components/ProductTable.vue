@@ -36,6 +36,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ProductForm from 'components/ProductForm'
+import NewProductForm from 'components/NewProductForm'
 import orderUtil from 'utils/order'
 
 var range = require('lodash.range')
@@ -47,7 +48,8 @@ export default {
 
   components: {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-    ProductForm: ProductForm
+    ProductForm: ProductForm,
+    NewProductForm: NewProductForm
   },
 
   props: {
@@ -242,7 +244,7 @@ export default {
 
     itemRowActionsFormatter (row, column, cellValue) {
       return <span>
-        <product-form edit-form={true} product={row} button={{ text: 'Edit Product', size: 'mini' }}></product-form>
+        <new-product-form edit-form={true} product={row} button={{ text: 'Edit Product', size: 'mini' }}></new-product-form>
         <el-button size="mini" type="danger" on-click={ () => this.deleteRow(row) }>Delete</el-button>
       </span>
     },

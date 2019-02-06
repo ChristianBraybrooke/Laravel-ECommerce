@@ -1,10 +1,20 @@
 <template lang="html">
-  <div />
+  <form-item
+    :field="field"
+    :prop="prop">
+    <el-input
+      v-model="form[prop]"
+      type="textarea"/>
+  </form-item>
 </template>
 
 <script>
+import FormField from './FormField'
+
 export default {
-  name: 'TextareaFormField'
+  name: 'TextareaFormField',
+
+  mixins: [FormField]
 }
 </script>
 

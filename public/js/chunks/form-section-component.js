@@ -33,7 +33,7 @@ var orderBy = __webpack_require__("./node_modules/lodash.orderby/index.js");
   name: 'FormSectionComponent',
   components: {
     FormFieldComponent: function FormFieldComponent() {
-      return __webpack_require__.e/* import() */(43).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormFieldComponent.vue"));
+      return __webpack_require__.e/* import() */(44).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/FormFieldComponent.vue"));
     }
   },
   props: {

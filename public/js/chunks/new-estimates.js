@@ -89,7 +89,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductForm.vue"));
     },
     NewProductForm: function NewProductForm() {
-      return __webpack_require__.e/* import() */(51).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
+      return __webpack_require__.e/* import() */(42).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
     },
     ProductTable: function ProductTable() {
       return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));

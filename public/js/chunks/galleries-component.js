@@ -118,7 +118,7 @@ var head = __webpack_require__("./node_modules/lodash.head/index.js");
   name: 'GalleriesComponent',
   components: {
     GalleryComponent: function GalleryComponent() {
-      return __webpack_require__.e/* import() */(42).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleryComponent.vue"));
+      return __webpack_require__.e/* import() */(43).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/GalleryComponent.vue"));
     },
     Errors: function Errors() {
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));

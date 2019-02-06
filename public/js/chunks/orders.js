@@ -1,4 +1,4 @@
-webpackJsonp([0,49],{
+webpackJsonp([0,50],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"@babel/preset-env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"]},\"forceAllTransforms\":true}]],\"plugins\":[\"@babel/plugin-proposal-object-rest-spread\",[\"@babel/plugin-transform-runtime\",{\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/admin-spa/components/AdditionForm.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -1226,7 +1226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'Payments',
   components: {
     PaymentDetails: function PaymentDetails() {
-      return __webpack_require__.e/* import() */(50).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentDetails.vue"));
+      return __webpack_require__.e/* import() */(51).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentDetails.vue"));
     },
     PaymentForm: function PaymentForm() {
       return __webpack_require__.e/* import() */(38).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PaymentForm.vue"));
