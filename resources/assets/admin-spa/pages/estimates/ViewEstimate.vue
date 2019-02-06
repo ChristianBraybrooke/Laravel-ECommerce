@@ -23,7 +23,7 @@
       :gutter="20"
       style="margin-bottom:20px; margin-top:20px;">
       <el-col :sm="24">
-        <product-form :on-product-add="onProductAdd"/>
+        <new-product-form :on-product-add="onProductAdd"/>
       </el-col>
     </el-row>
 
@@ -34,7 +34,8 @@
         <product-table
           :editable="true"
           :order="estimate"
-          :order-totals="orderTotals"/>
+          :order-totals="orderTotals"
+          :on-product-update="handleProductUpdate"/>
       </el-col>
     </el-row>
 
@@ -64,7 +65,7 @@ export default {
   components: {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
-    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+    NewProductForm: () => import(/* webpackChunkName: "new-product-form" */'components/NewProductForm'),
     PrintDownloadButton: () => import(/* webpackChunkName: "print-download-button" */'components/PrintDownloadButton')
   },
 
@@ -139,6 +140,15 @@ export default {
           this.errors = error
           this.loading = false
         })
+    },
+
+    handleProductUpdate (obj) {
+      var currentProduct = this.estimate.items[obj.index]
+      var product = {
+        ...currentProduct,
+        ...obj.product
+      }
+      this.estimate.items.splice(obj.index, 1, product)
     }
   }
 

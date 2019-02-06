@@ -3,6 +3,10 @@
     :field="field"
     :prop="prop">
     <el-input
+      v-if="propIsObject"
+      v-model="form[prop].value"/>
+    <el-input
+      v-else
       v-model="form[prop]"/>
   </form-item>
 </template>

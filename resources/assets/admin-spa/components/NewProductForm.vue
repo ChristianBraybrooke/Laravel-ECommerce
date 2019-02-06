@@ -256,7 +256,9 @@
           </el-button>
           <el-button
             v-if="editForm"
-            type="primary">Save Changes
+            type="primary"
+            @click="saveProduct()">
+            Save Changes
           </el-button>
         </span>
 
@@ -306,6 +308,16 @@ export default {
       type: Function,
       required: false,
       default: () => {}
+    },
+    onProductUpdate: {
+      type: Function,
+      required: false,
+      default: () => {}
+    },
+    tableIndex: {
+      type: [Number, String],
+      required: false,
+      default: () => { return null }
     },
     editForm: {
       type: Boolean,
@@ -395,7 +407,7 @@ export default {
 
     defaultButton () {
       return {
-        text: 'Add Product (New)',
+        text: 'Add Product',
         loading: 'Loading Products',
         type: 'success',
         size: 'large',
@@ -474,11 +486,17 @@ export default {
       this.resetForm()
     },
     'form.product.id': function (val) {
-      if (this.readyForCustomisationForm) {
-        this.setCustomisationProduct(this.form.product)
+      if (!this.editForm) {
+        if (this.form.product.variants.data.length === 0) {
+          this.setCustomisationProduct(this.form.product)
+        } else {
+          if (this.readyForCustomisationForm) {
+            this.setCustomisationProduct(this.form.product)
+          }
+          this.resetCustomisationForm()
+          this.resetVariant()
+        }
       }
-      this.resetCustomisationForm()
-      this.resetVariant()
     },
     'form.variant.id': function (val) {
       this.resetCustomisationForm()
@@ -491,7 +509,6 @@ export default {
   mounted () {
     if (this.editForm) {
       this.loading = false
-      this.setupEditForm()
     } else {
       this.getData()
     }
@@ -645,6 +662,14 @@ export default {
       }
     },
 
+    saveProduct () {
+      var product = this.mergedProduct
+      this.onProductUpdate({ product: product, index: this.tableIndex })
+      this.$emit('product-update', { product: product, index: this.tableIndex })
+      this.clearAll()
+      this.showModal = false
+    },
+
     openModal () {
       if (this.editForm) {
         this.setupEditForm()
@@ -653,12 +678,10 @@ export default {
     },
 
     setupEditForm () {
-      var product = this.product
-      console.log(product)
-      // this.$set(this.form.product, product)
+      var product = JSON.parse(JSON.stringify(this.product))
+      this.form.product = product
       this.customisationForm.product = product
-
-      this.$set(this.customisationForm.options, product.options)
+      this.customisationForm.options = product.options
       this.customisationForm.quantity = product.quantity
     },
 

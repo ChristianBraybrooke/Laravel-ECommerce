@@ -3,6 +3,11 @@
     :field="field"
     :prop="prop">
     <el-input
+      v-if="propIsObject"
+      v-model="form[prop].value"
+      type="textarea"/>
+    <el-input
+      v-else
       v-model="form[prop]"
       type="textarea"/>
   </form-item>

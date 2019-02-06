@@ -20,7 +20,7 @@
       :gutter="20"
       style="margin-top: 20px; margin-bottom: 20px;">
       <el-col :span="12">
-        <product-form :on-product-add="addProductToTable"/>
+        <new-product-form :on-product-add="addProductToTable"/>
       </el-col>
     </el-row>
 
@@ -31,7 +31,8 @@
         <product-table
           :editable="true"
           :order="order"
-          :order-totals="orderTotals"/>
+          :order-totals="orderTotals"
+          :on-product-update="handleProductUpdate"/>
       </el-col>
     </el-row>
 
@@ -79,7 +80,7 @@ export default {
 
   components: {
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+    NewProductForm: () => import(/* webpackChunkName: "new-product-form" */'components/NewProductForm'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable')
   },
 
@@ -332,7 +333,6 @@ export default {
     },
 
     addProductToTable (product) {
-      console.log(product)
       this.$store.commit('ADD_PRODUCT_TO_ORDER', product)
     },
 
@@ -411,6 +411,15 @@ export default {
         return <div>{this.shopData.currency} <el-select v-model={this.order.shipping_rate} size="mini" style="max-width: 85px;">{options}</el-select></div>
       }
       return this.shopData.currency + cellValue
+    },
+
+    handleProductUpdate (obj) {
+      var currentProduct = this.order.items[obj.index]
+      var product = {
+        ...currentProduct,
+        ...obj.product
+      }
+      this.order.items.splice(obj.index, 1, product)
     }
 
   }

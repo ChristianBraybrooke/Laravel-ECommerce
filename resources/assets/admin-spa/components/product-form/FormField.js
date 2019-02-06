@@ -27,6 +27,12 @@ export default {
 
   components: { FormItem },
 
+  computed: {
+    propIsObject () {
+      return typeof this.form[this.prop] === 'object'
+    }
+  },
+
   methods: {
     optionLabel (option) {
       if (option) {

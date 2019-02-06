@@ -41,8 +41,8 @@
       :gutter="20"
       style="margin-top: 20px; margin-bottom: 20px;">
       <el-col :span="12">
-        <product-form :on-product-add="addProductToTable"/>
-        <new-product-form :on-product-add="addProductToTable"/>
+        <new-product-form
+          :on-product-add="addProductToTable" />
       </el-col>
     </el-row>
 
@@ -53,7 +53,8 @@
         <product-table
           :editable="true"
           :order="order"
-          :order-totals="orderTotals"/>
+          :order-totals="orderTotals"
+          :on-product-update="handleProductUpdate"/>
       </el-col>
     </el-row>
 
@@ -79,7 +80,6 @@ export default {
   name: 'NewEstimate',
 
   components: {
-    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
     NewProductForm: () => import(/* webpackChunkName: "new-product-form" */'components/NewProductForm'),
     ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
     Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
@@ -140,6 +140,12 @@ export default {
       this.order.items.push(product)
     },
 
+    updateProductOnTable (product) {
+      // var oldProduct = this.order.items.indexOf(product)
+      console.log('Old Product')
+      // console.log(oldProduct)
+    },
+
     processSubmit () {
       this.loading = true
       this.errors = {}
@@ -156,6 +162,15 @@ export default {
           this.loading = false
           this.errors = error
         })
+    },
+
+    handleProductUpdate (obj) {
+      var currentProduct = this.order.items[obj.index]
+      var product = {
+        ...currentProduct,
+        ...obj.product
+      }
+      this.order.items.splice(obj.index, 1, product)
     }
   }
 }

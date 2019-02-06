@@ -154,7 +154,7 @@ export default {
         value = {}
       }
 
-      return <addition-form key={this.col.id}
+      return <addition-form key={Math.floor(Math.random() * 101)}
         form-name={addition.form_name}
         amount-prefix={addition.amount_prefix}
         format-amount={addition.format_amount}

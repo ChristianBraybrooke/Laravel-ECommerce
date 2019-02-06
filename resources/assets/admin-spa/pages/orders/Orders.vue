@@ -73,13 +73,14 @@
             </el-button>
           </a>
 
-          <!-- <print-download-button
+          <print-download-button
             :key="props.row.id"
+            :load-on-mount="false"
             :download="false"
             :print-button="{ style: '', class:'action_btn view_btn', size: 'mini', type: '', text: 'Print Delivery Note' }"
             :delivery-note="true"
             :order-id="props.row.id"
-            btn-class="action_btn view_btn"/> -->
+            btn-class="action_btn view_btn"/>
 
           <el-button
             size="mini"
@@ -327,9 +328,9 @@ export default {
     console.log('Orders.vue mounted')
 
     if (this.objectHas(this.ecommerceConfig, 'aditional_cols.orders')) {
-      forEach(this.ecommerceConfig.aditional_cols.orders, col => {
+      forEach(this.ecommerceConfig.aditional_cols.orders, (col, colKey) => {
         var colIndex = findIndex(this.tableOptions.collumns, ['prop', col.prop])
-        col.formatter = function (row) { return <table-collumn col={col} row={row}/> }
+        col.formatter = function (row) { return <table-collumn col={col} row={row} key={Math.floor(Math.random() * 101)}/> }
         if (colIndex === -1) {
           this.tableOptions.collumns.push(col)
         } else {

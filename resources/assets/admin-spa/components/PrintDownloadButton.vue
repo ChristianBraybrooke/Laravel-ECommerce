@@ -21,6 +21,7 @@
     </el-button>
 
     <iframe
+      v-if="displayIframe"
       :id="`printLinkIframe${orderId}`"
       :src="printUrl"
       :name="`printLinkIframe${orderId}`"
@@ -45,6 +46,12 @@ export default {
       required: true
     },
 
+    loadOnMount: {
+      type: Boolean,
+      required: false,
+      default: () => { return true }
+    },
+
     download: {
       type: Boolean,
       required: false,
@@ -67,6 +74,8 @@ export default {
   data () {
     return {
       loading: true,
+      displayIframe: false,
+      iframeLoaded: false,
       defaultPrintButton: {
         class: '',
         type: 'success',
@@ -102,15 +111,33 @@ export default {
   },
 
   watch: {
-
+    'loading': function (val) {
+      if (this.displayIframe && !this.loading && !this.loadOnMount) {
+        this.navigateIframe()
+      }
+    }
   },
 
   mounted () {
-
+    if (this.loadOnMount) {
+      this.displayIframe = true
+    } else {
+      this.loading = false
+    }
   },
 
   methods: {
     printInvoice () {
+      if (!this.loadOnMount && !this.iframeLoaded) {
+        this.loading = true
+        this.displayIframe = true
+      } else {
+        this.navigateIframe()
+      }
+    },
+
+    navigateIframe () {
+      this.iframeLoaded = true
       if (navigator.userAgent.match(/opera/i) || navigator.userAgent.match(/trident/i) || (navigator.userAgent.match(/msie/i) && window.addEventListener)) {
         window.open(
           this.printUrl,

@@ -84,6 +84,11 @@ export default {
       default () {
         return this.defaultOptions
       }
+    },
+    onProductUpdate: {
+      type: Function,
+      required: false,
+      default: () => {}
     }
   },
 
@@ -244,9 +249,13 @@ export default {
 
     itemRowActionsFormatter (row, column, cellValue) {
       return <span>
-        <new-product-form edit-form={true} product={row} button={{ text: 'Edit Product', size: 'mini' }}></new-product-form>
+        <new-product-form edit-form={true} table-index={this.order.items.indexOf(row)} product={row} button={{ text: 'Edit Product', size: 'mini' }} on-product-update={this.handleProductUpdate}></new-product-form>
         <el-button size="mini" type="danger" on-click={ () => this.deleteRow(row) }>Delete</el-button>
       </span>
+    },
+
+    handleProductUpdate (obj) {
+      this.onProductUpdate(obj)
     },
 
     shippingRowFormatter (value) {

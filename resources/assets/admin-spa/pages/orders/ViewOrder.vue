@@ -254,7 +254,8 @@
       :gutter="20"
       style="margin-bottom:20px; margin-top:20px;">
       <el-col :sm="24">
-        <product-form :on-product-add="product => { order.items.push(product) }"/>
+        <new-product-form
+          :on-product-add="product => { order.items.push(product) }" />
       </el-col>
     </el-row>
 
@@ -267,7 +268,8 @@
           <product-table
             :editable="true"
             :order="order"
-            :order-totals="orderTotals"/>
+            :order-totals="orderTotals"
+            :on-product-update="handleProductUpdate"/>
         </el-card>
       </el-col>
     </el-row>
@@ -329,7 +331,7 @@ export default {
     CustomerDetailsForm: () => import(/* webpackChunkName: "customer-details-form" */'components/CustomerDetailsForm'),
     Payments: () => import(/* webpackChunkName: "payments" */'components/Payments'),
     ContentComponent,
-    ProductForm: () => import(/* webpackChunkName: "product-form" */'components/ProductForm'),
+    NewProductForm: () => import(/* webpackChunkName: "new-product-form" */'components/NewProductForm'),
     PrintDownloadButton: () => import(/* webpackChunkName: "print-download-button" */'components/PrintDownloadButton')
   },
 
@@ -499,6 +501,15 @@ export default {
         .catch(function () {
           this.loading = false
         }.bind(this))
+    },
+
+    handleProductUpdate (obj) {
+      var currentProduct = this.order.items[obj.index]
+      var product = {
+        ...currentProduct,
+        ...obj.product
+      }
+      this.order.items.splice(obj.index, 1, product)
     }
   }
 

@@ -3,6 +3,11 @@
     :field="field"
     :prop="prop">
     <el-input-number
+      v-if="propIsObject"
+      v-model="form[prop].value"
+      controls-position="right"/>
+    <el-input-number
+      v-else
       v-model="form[prop]"
       controls-position="right"/>
   </form-item>
