@@ -64,6 +64,8 @@ Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');
 Route::post('imports', 'ApiImportsController@import');
 Route::get('imports', 'ApiImportsController@index');
 
+Route::post('exports', 'ApiExportsController@export');
+
 // Payments
 Route::post('payments', 'ApiPaymentsController@store');
 Route::put('payments/{payment}', 'ApiPaymentsController@update');

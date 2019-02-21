@@ -106,11 +106,57 @@
       </el-tab-pane>
       <el-tab-pane
         label="Export"
-        name="export"/>
+        name="export">
+        <el-form
+          ref="exportForm"
+          :model="exportForm"
+          label-position="left"
+          label-width="120px">
+
+          <el-form-item
+            :rules="[{ required: true, message: 'Export type field is required', trigger: 'blur' }]"
+            label="Export Type"
+            prop="export_type">
+            <el-select
+              v-model="exportForm.export_type"
+              class="config_select"
+              placeholder="Select"
+              size="small">
+              <el-option
+                label="Orders"
+                value="Order"/>
+            </el-select>
+          </el-form-item>
+
+          <el-form-item
+            :rules="[{ required: true, message: 'Export date range field is required', trigger: 'blur' }]"
+            label="Export Date Range"
+            prop="export_date_range"
+            size="small">
+            <el-date-picker
+              v-model="exportForm.export_date_range"
+              :picker-options="dateRangeOptions"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="To"
+              start-placeholder="Start date"
+              end-placeholder="End date"
+              format="dd/MM/yyyy"
+              value-format="dd-MM-yyyy"
+              placeholder="dd/MM/yyyy"/>
+          </el-form-item>
+
+          <el-button
+            :loading="loading"
+            plain
+            type="success"
+            @click="submitForm('exportForm', 'exports')">Export</el-button>
+
+        </el-form>
+      </el-tab-pane>
     </el-tabs>
-
   </div>
-
 </template>
 
 <script>
@@ -134,9 +180,41 @@ export default {
     return {
       loading: false,
       ImportExportErrors: {},
+      exportForm: {},
       currentTab: 'import',
       importForm: {},
-      imports: []
+      imports: [],
+      dateRangeOptions: {
+        shortcuts: [
+          {
+            text: 'Last week',
+            onClick (picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit('pick', [start, end])
+            }
+          },
+          {
+            text: 'Last month',
+            onClick (picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+              picker.$emit('pick', [start, end])
+            }
+          },
+          {
+            text: 'Last 3 months',
+            onClick (picker) {
+              const end = new Date()
+              const start = new Date()
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+              picker.$emit('pick', [start, end])
+            }
+          }
+        ]
+      }
     }
   },
 
@@ -194,12 +272,21 @@ export default {
 
           api.persist('post', {
             path: path,
-            object: this.importForm
+            object: this[ref]
           })
             .then(function (data) {
               this.loading = false
               this.imports.unshift(data.data)
               this.importForm = {}
+
+              if (ref === 'exportForm') {
+                this.$alert('Click below to download the file.', 'Export Completed', {
+                  confirmButtonText: 'Download',
+                  callback: action => {
+                    window.location.replace(data.data.url)
+                  }
+                })
+              }
             }.bind(this))
             .catch(function (error) {
               this.loading = false

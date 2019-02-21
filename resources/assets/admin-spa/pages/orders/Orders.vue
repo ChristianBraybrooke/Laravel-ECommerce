@@ -203,9 +203,12 @@ export default {
               })
               lines.push(<li on-click={() => this.copy(row.customer.email)} style="margin-top: 10px; cursor: copy;"><strong>{row.customer.email}</strong></li>)
               lines.push(<li on-click={() => this.copy(row.customer.phone)} style="cursor: copy;"><strong>{row.customer.phone}</strong></li>)
+              var addressString = address.join(', ')
+              var orderDetails = `Job Number: ${row.ref} - Email: ${row.customer.email} - Phone: ${row.customer.phone} - Address: ${addressString}`
               return <el-popover trigger="click" placement="top">
                 <ul class="order_address_list table_col_list">{lines}</ul>
-                <el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy Address</el-button>
+                <el-button size="mini" plain on-click={() => this.copy(addressString)}>Copy Address</el-button>
+                <el-button size="mini" on-click={() => this.copy(orderDetails)}>Copy Details</el-button>
                 <div slot="reference"><strong>{row.customer.first_name} {row.customer.last_name}</strong></div>
               </el-popover>
               // return <div><ul class="order_address_list table_col_list">{lines}</ul><el-button size="mini" plain on-click={() => this.copy(address.join(', '))}>Copy</el-button></div>

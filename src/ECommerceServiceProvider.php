@@ -30,6 +30,7 @@ use ChrisBraybrooke\ECommerce\Commands\PublishAdminCommand;
 use ChrisBraybrooke\ECommerce\Commands\SetOrderRefsAndInvoicedAtDates;
 use Order;
 use Setting;
+use \Maatwebsite\Excel\Sheet;
 
 class ECommerceServiceProvider extends LaravelServiceProvider
 {
@@ -41,7 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.94';
+    const VERSION = '0.0.95';
 
     /**
      * Bootstrap the application events.
@@ -81,6 +82,33 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 SetOrderRefsAndInvoicedAtDates::class
             ]);
         }
+
+        Sheet::macro('styleCells', function (Sheet $sheet, string $cellRange, array $style) {
+            $sheet->getDelegate()->getStyle($cellRange)->applyFromArray($style);
+        });
+
+        Sheet::macro('setHeaderRow', function (Sheet $sheet, int $row) {
+            $sheet->getDelegate()->freezePane('A2');
+            $sheet->getDelegate()->setAutoFilter('A1:ZZ1');
+            $sheet->getDelegate()->getStyle('A1:ZZ1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+            $sheet->getDelegate()->getRowDimension($row)->setRowHeight(25);
+            $sheet->getDelegate()->getStyle('A1:ZZ1')->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                ],
+                'borders' => [
+                    'bottom' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    ],
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => [
+                        'argb' => 'C1C1C1',
+                    ]
+                ]
+            ]);
+        });
     }
 
     /**
@@ -558,6 +586,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'ecommerce-migrations');
         }
+
+        if (! class_exists('CreateExportsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_exports_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time()).'_create_exports_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
     }
 
     /**
@@ -597,6 +634,14 @@ class ECommerceServiceProvider extends LaravelServiceProvider
             'middleware' => ['web', 'auth']
         ], function () {
             $this->loadRoutesFrom(__DIR__.'/../routes/templates.php');
+        });
+
+        Route::group([
+            'prefix' => 'ecommerce-exports',
+            'namespace' => 'ChrisBraybrooke\ECommerce\Http\Controllers',
+            'middleware' => ['web', 'auth']
+        ], function () {
+            $this->loadRoutesFrom(__DIR__.'/../routes/exports.php');
         });
 
         Route::group([
