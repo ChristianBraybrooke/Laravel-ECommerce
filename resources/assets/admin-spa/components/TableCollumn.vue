@@ -214,6 +214,10 @@ export default {
           })
         }
       }
+      if (action.type === 'url' && this.col.url) {
+        var url = columnUtil.replaceVariables(this.col.url, this.row)
+        window.open(url, '_blank')
+      }
     },
 
     valChange (val) {
