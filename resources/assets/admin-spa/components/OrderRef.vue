@@ -12,6 +12,7 @@
             auto-complete="off"/>
         </el-form-item>
         <small v-if="lastOrder.ref">Last order ref: {{ lastOrder.ref }}</small>
+        <small v-else>Last order ref not known</small>
       </el-col>
     </el-row>
   </div>
@@ -64,7 +65,10 @@ export default {
       })
         .then((data) => {
           this.lastOrder = data.data[0]
-          this.$set(this.form, 'ref', parseInt(this.lastOrder.ref) + 1)
+          var ref = parseInt(this.lastOrder.ref) + 1
+          if (ref && !isNaN(ref)) {
+            this.$set(this.form, 'ref', ref)
+          }
         })
     }
   }

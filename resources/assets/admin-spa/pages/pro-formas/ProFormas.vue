@@ -1,6 +1,6 @@
 <template lang="html">
   <data-table
-    :with-params="{withStatus: ['STATUS_PROFORMA', 'STATUS_DRAFT', 'STATUS_CANCELLED', 'STATUS_AWAITING_PAYMENT', 'STATUS_PAYMENT_FAILED']}"
+    :with-params="{withStatus: ['STATUS_PROFORMA', 'STATUS_DRAFT', 'STATUS_CANCELLED', 'STATUS_PAYMENT_FAILED']}"
     :table-options="tableOptions"
     :request-includes="['created_at']"
     :create-form="{}"
