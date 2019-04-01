@@ -94,6 +94,7 @@ class ApiProductsController extends Controller
             'list_in_shop' => $request->has('list_in_shop') ? $request->list_in_shop : $product->list_in_shop,
             'featured' => $request->has('featured') ? $request->featured : $product->featured,
             'live_at' => $live,
+            'order_options' => $request->has('order_options') ? $request->order_options : $product->order_options,
             'order_form_id' => $request->has('order_form.id') ? $request->input('order_form.id') : $product->order_form_id,
             'frontend_form_id' => $request->has('frontend_form.id') ? $request->input('frontend_form.id') : $product->frontend_form_id,
         ]);

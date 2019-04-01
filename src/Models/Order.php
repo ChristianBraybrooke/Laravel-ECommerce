@@ -354,6 +354,7 @@ class Order extends Model implements OrderContract
                 $items[] = [
                     'id' => $item['id'] ?? null,
                     'name' => $item['name'] ?? null,
+                    'order_options' => $item['order_options'] ?? [],
                     'variant' => $item['variant'] ?? null,
                     'quantity' => $item['qty'] ?? null,
                     'price' => priceFormatter($item['price'] ?? 0),

@@ -65,7 +65,7 @@ export default {
         .then((data) => {
           this.lastOrder = data.data[0]
 
-          this.form.ref = parseInt(this.lastOrder.ref) + 1
+          this.$set(this.form, 'ref', parseInt(this.lastOrder.ref) + 1)
         })
     }
   }

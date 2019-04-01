@@ -132,6 +132,8 @@
 
         </el-form>
 
+        <hr>
+
         <el-form
           ref="productCustomisationForm"
           :model="customisationForm"
@@ -141,7 +143,7 @@
           <div v-show="customisationForm.product.id">
             <template v-if="customisationForm.product.order_form">
               <div
-                v-for="section in customisationForm.product.order_form.sections.data"
+                v-for="section in orderedFormSections"
                 v-show="section.fields.data.length > 0"
                 :key="section.id">
                 <el-row
@@ -156,18 +158,22 @@
                   <el-row
                     :gutter="20">
                     <el-col :md="{span:16, offset: 4}">
-                      <div
-                        v-for="field in section.fields.data"
-                        :key="field.id">
-                        <component
-                          v-if="calculateDynamicVisible(field.rules)"
-                          :is="`${field.type}-form-field`"
-                          :form="customisationForm.options"
-                          :product="customisationForm.product"
-                          :section="section"
-                          :field="field"
-                          :prop="`${field.name}`"/>
-                      </div>
+                      <el-row
+                        :gutter="20"
+                        type="flex">
+                        <el-col
+                          v-for="field in section.fields.data"
+                          :key="field.id">
+                          <component
+                            v-if="calculateDynamicVisible(field.rules)"
+                            :is="`${field.type}-form-field`"
+                            :form="customisationForm.options"
+                            :product="customisationForm.product"
+                            :section="section"
+                            :field="field"
+                            :prop="`${field.name}`"/>
+                        </el-col>
+                      </el-row>
                     </el-col>
                   </el-row>
                 </div>
@@ -277,6 +283,8 @@ import NumberFormField from 'components/product-form/NumberFormField'
 import SelectFormField from 'components/product-form/SelectFormField'
 import TextFormField from 'components/product-form/TextFormField'
 import TextareaFormField from 'components/product-form/TextareaFormField'
+import DynamicFormField from 'components/product-form/DynamicFormField'
+import orderBy from 'lodash.orderby'
 
 import clone from 'lodash.clone'
 import range from 'lodash.range'
@@ -290,7 +298,8 @@ export default {
     NumberFormField,
     SelectFormField,
     TextFormField,
-    TextareaFormField
+    TextareaFormField,
+    DynamicFormField
   },
 
   props: {
@@ -401,6 +410,10 @@ export default {
       'shopData'
     ]),
 
+    orderedFormSections () {
+      return orderBy(this.customisationForm.product.order_form.sections.data, 'order')
+    },
+
     quantityRange () {
       return range(1, 250)
     },
@@ -439,7 +452,7 @@ export default {
     },
 
     defaultIncludes () {
-      return ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description', 'order', 'rules']
+      return ['type', 'options', 'price', 'effects_price', 'no_shop_data', 'description', 'order', 'rules', 'order_options']
     },
 
     mergedIncludes () {
