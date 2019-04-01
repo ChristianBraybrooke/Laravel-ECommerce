@@ -280,7 +280,7 @@ class Order extends Model implements OrderContract
             $start = 'EST';
         }
         $date = optional($this->created_at['carbon'])->format('dmy');
-        $end = $this->id;
+        $end = $this->ref;
 
         return "{$start}-{$date}-{$end}";
     }
@@ -403,7 +403,7 @@ class Order extends Model implements OrderContract
 
         return [
             'name' => $this->invoiceName(),
-            'number' => $prefix . $this->id,
+            'number' => $prefix . $this->ref,
             'issued_at' => $this->created_at['carbon']->toFormattedDateString(),
             'due_by' => $this->created_at['carbon']->addDays(7)->toFormattedDateString(),
         ];

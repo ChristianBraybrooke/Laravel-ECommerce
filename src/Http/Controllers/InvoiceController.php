@@ -54,7 +54,7 @@ class InvoiceController extends Controller
         }
 
         $firstOrder = optional($orders->first());
-        $pdfName = strtolower("order-{$firstOrder->id}-{$firstOrder->status}");
+        $pdfName = strtolower("order-{$firstOrder->ref}-{$firstOrder->status}");
 
         $pdf = PDF::loadView('ecommerce::pdfs.invoice', ['orders' => $orders])
                   ->setPaper('a4')
