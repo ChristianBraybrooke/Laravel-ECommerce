@@ -115,6 +115,21 @@
           </el-form-item>
         </el-col>
         <el-col
+          v-if="model.type === 'dynamic'"
+          :lg="4"
+          :xl="2">
+          <el-form-item
+            label=""
+            size="small"
+            prop="options">
+            <el-button
+              plain
+              size="mini"
+              type="primary"
+              @click="showOptionsModal = true">Show Fields</el-button>
+          </el-form-item>
+        </el-col>
+        <el-col
           :lg="4"
           :xl="2">
           <el-form-item
@@ -210,6 +225,19 @@
         </el-col>
       </el-row>
 
+      <el-row
+        v-if="model.type === 'dynamic'"
+        type="flex">
+        <el-col :span="24">
+          <el-form-item
+            label="Loop Key"
+            prop="loop_key">
+            <el-input
+              v-model="model.rules.loop_key"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
       <span
         slot="footer"
         class="dialog-footer">
@@ -226,86 +254,96 @@
       :visible.sync="showOptionsModal"
       width="70%">
 
-      <el-row
-        v-for="option in model.options"
-        :gutter="20"
-        :key="option.id"
-        class="form_field_row">
-        <el-col
-          v-if="model.options"
-          :lg="12"
-          :xl="4">
-          <el-form-item
-            label="Label"
-            size="small"
-            prop="label">
-            <el-input
-              :autofocus="true"
-              v-model="option.name"/>
-          </el-form-item>
-        </el-col>
-        <el-col
-          :lg="12"
-          :xl="4">
-          <el-form-item
-            label="Value"
-            size="small"
-            prop="value">
-            <el-input
-              :autofocus="true"
-              v-model="option.value"/>
-          </el-form-item>
-        </el-col>
-        <el-col
-          v-if="form.effects_price"
-          :lg="12"
-          :xl="4">
-          <el-form-item
-            label="Price Mutator"
-            size="small"
-            prop="price_mutator">
-            <el-select
-              v-model="option.price_mutator"
-              placeholder="">
-              <el-option value="+"/>
-              <el-option value="-"/>
-            </el-select>
-          </el-form-item>
-        </el-col>
-        <el-col
-          v-if="form.effects_price"
-          :lg="12"
-          :xl="4">
-          <el-form-item
-            label="Price Value"
-            size="small"
-            prop="price_value">
-            <el-input
-              v-model="option.price_value"
-              type="number"/>
-          </el-form-item>
-        </el-col>
-        <el-col
-          :lg="4"
-          :xl="2">
-          <el-form-item
-            label=""
-            size="small"
-            prop="delete">
-            <el-button
-              size="mini"
-              type="danger"
-              @click="deleteOption(option, model.options)">Delete</el-button>
-          </el-form-item>
-        </el-col>
-      </el-row>
+      <template v-if="model.type === 'dynamic'">
+        <form-field-component
+          v-for="(field, key) in model.options"
+          :model="field"
+          :section="section"
+          :form="form"
+          :key="key"/>
+      </template>
+      <template v-else>
+        <el-row
+          v-for="option in model.options"
+          :gutter="20"
+          :key="option.id"
+          class="form_field_row">
+          <el-col
+            v-if="model.options"
+            :lg="12"
+            :xl="4">
+            <el-form-item
+              label="Label"
+              size="small"
+              prop="label">
+              <el-input
+                :autofocus="true"
+                v-model="option.name"/>
+            </el-form-item>
+          </el-col>
+          <el-col
+            :lg="12"
+            :xl="4">
+            <el-form-item
+              label="Value"
+              size="small"
+              prop="value">
+              <el-input
+                :autofocus="true"
+                v-model="option.value"/>
+            </el-form-item>
+          </el-col>
+          <el-col
+            v-if="form.effects_price"
+            :lg="12"
+            :xl="4">
+            <el-form-item
+              label="Price Mutator"
+              size="small"
+              prop="price_mutator">
+              <el-select
+                v-model="option.price_mutator"
+                placeholder="">
+                <el-option value="+"/>
+                <el-option value="-"/>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col
+            v-if="form.effects_price"
+            :lg="12"
+            :xl="4">
+            <el-form-item
+              label="Price Value"
+              size="small"
+              prop="price_value">
+              <el-input
+                v-model="option.price_value"
+                type="number"/>
+            </el-form-item>
+          </el-col>
+          <el-col
+            :lg="4"
+            :xl="2">
+            <el-form-item
+              label=""
+              size="small"
+              prop="delete">
+              <el-button
+                size="mini"
+                type="danger"
+                @click="deleteOption(option, model.options)">Delete</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </template>
 
       <el-button
         type="info"
         size="mini"
         icon="el-icon-plus"
         plain
-        @click="addOption">Add Option</el-button>
+        @click="addOption">{{ model.type === 'dynamic' ? 'Add Field' : 'Add Option' }}</el-button>
 
       <span
         slot="footer"
@@ -328,7 +366,7 @@ export default {
   name: 'FormFieldComponent',
 
   components: {
-
+    // FormFieldComponent: () => import(/* webpackChunkName: "form-field-component" */'components/FormFieldComponent')
   },
 
   props: {
@@ -368,6 +406,10 @@ export default {
         {
           label: 'Select',
           value: 'select'
+        },
+        {
+          label: 'Dynamic Order Data',
+          value: 'dynamic'
         }
       ],
       showRulesModal: false,
@@ -432,9 +474,17 @@ export default {
     },
 
     addOption () {
-      this.model.options.push({
+      if (this.model.type === 'dynamic') {
+        this.model.options.push({
+          options: [],
+          rules: {},
+          type: ''
+        })
+      } else {
+        this.model.options.push({
 
-      })
+        })
+      }
     },
 
     deleteOption (option, options) {

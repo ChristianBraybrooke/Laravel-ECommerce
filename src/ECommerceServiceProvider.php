@@ -42,7 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.0.98';
+    const VERSION = '0.0.99';
 
     /**
      * Bootstrap the application events.
@@ -592,6 +592,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/create_exports_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time()).'_create_exports_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddOrderOptionsFieldToProductsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_order_options_field_to_products_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 3).'_add_order_options_field_to_products_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

@@ -51,6 +51,7 @@ class ProductResource extends Resource
             'live_at' => $this->when(requestIncludes('live_at'), $this->live_at),
             'slug' => $this->when(requestIncludes('slug'), $this->slug),
             'price' => $this->when(requestIncludes('price'), $this->price),
+            'order_options' => $this->when(requestIncludes('order_options'), $this->order_options ?: []),
             'use_variant_customisation' => $this->when(requestIncludes('use_variant_customisation'), $this->use_variant_customisation),
             'can_customise' => $this->when(requestIncludes('can_customise'), getResourceValue($this, 'can_customise')),
             'list_in_shop' => $this->when(requestIncludes('list_in_shop'), $this->list_in_shop),

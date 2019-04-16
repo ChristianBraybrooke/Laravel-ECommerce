@@ -230,6 +230,7 @@ function formatOrderItems($request_items = [], $shipping_rate = 0, $discount_rat
         $items[] = [
             'id' => $item['id'],
             'name' => $item['name'],
+            'order_options' => $item['order_options'] ?? [],
             'variant' => $item['variant'] ?? null,
             'qty' => $quantity,
             'price' => $price,

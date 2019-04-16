@@ -24,7 +24,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use ChrisBraybrooke\ECommerce\Contracts\Product as ProductContract;
 use Carbon\Carbon;
 
-
 class Product extends Model implements ProductContract
 {
     use LogsActivity, ResponsableTrait, FormatDatesTrait, SluggableTrait, SoftDeletes, HasMediaAttached,
@@ -92,7 +91,7 @@ class Product extends Model implements ProductContract
         'name', 'use_variant_data', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
         'measurement_unit', 'width', 'height', 'depth', 'variant_id', 'order_form_id', 'frontend_form_id',
-        'use_variant_order_forms'
+        'use_variant_order_forms', 'order_options'
     ];
 
     /**
@@ -103,7 +102,7 @@ class Product extends Model implements ProductContract
     protected static $logAttributes = [
         'id', 'name', 'live_at', 'slug', 'price', 'use_variant_customisation', 'can_customise',
         'list_in_shop', 'featured', 'can_customise_width', 'can_customise_height', 'can_customise_depth',
-        'measurement_unit', 'width', 'height', 'depth', 'order_form_id', 'frontend_form_id', 'use_variant_order_forms'
+        'measurement_unit', 'width', 'height', 'depth', 'order_form_id', 'frontend_form_id', 'use_variant_order_forms', 'order_options'
     ];
 
     /**
@@ -119,6 +118,7 @@ class Product extends Model implements ProductContract
         'can_customise_width' => 'boolean',
         'can_customise_height' => 'boolean',
         'can_customise_depth' => 'boolean',
+        'order_options' => 'array'
     ];
 
     /**

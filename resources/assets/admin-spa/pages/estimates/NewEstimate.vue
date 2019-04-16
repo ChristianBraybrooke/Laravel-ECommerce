@@ -141,9 +141,7 @@ export default {
     },
 
     updateProductOnTable (product) {
-      // var oldProduct = this.order.items.indexOf(product)
-      console.log('Old Product')
-      // console.log(oldProduct)
+      //
     },
 
     processSubmit () {
