@@ -10,7 +10,7 @@ use ChrisBraybrooke\ECommerce\Http\Resources\OrdersResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\OrderResource;
 use ChrisBraybrooke\ECommerce\Http\Requests\CheckoutRequest;
 use ChrisBraybrooke\ECommerce\Http\Requests\OrderUpdateRequest;
-use ChrisBraybrooke\ECommerce\Http\Requests\OrderRequest;
+use ChrisBraybrooke\ECommerce\Http\Requests\OrderCreateRequest;
 use ChrisBraybrooke\ECommerce\Services\PaymentService;
 use Illuminate\Validation\Rule;
 
@@ -40,110 +40,13 @@ class ApiOrdersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderRequest $request, Order $order)
+    public function store(OrderCreateRequest $request)
     {
-        $use_billing_for_shipping = $request->has('use_billing_for_shipping') && $request->use_billing_for_shipping;
-
-        $cart_data = formatOrderItems(
-            $request->filled('items') ? $request->items : [],
-            $request->input('cart.totals.Shipping'),
-            $request->input('cart.totals.Discount')
-        );
-
-        $this->validate($request, [
-            'ref' => [
-                'required',
-                Rule::unique('orders'),
-            ]
-        ]);
-
-        $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
-
-        $order = $order->create([
-          'user_id' => $request->has('customer.id') ? $request->input('customer.id') : null,
-          'user_first_name' => $request->input('customer.first_name'),
-          'user_last_name' => $request->input('customer.last_name'),
-          'user_email' => $request->input('customer.email'),
-          'user_phone' => $request->input('customer.phone'),
-          'user_company' => $request->input('customer.company'),
-
-          'billing_address_line1' => $request->input('billing_address.line_1'),
-          'billing_address_line2' => $request->input('billing_address.line_2'),
-          'billing_address_town' => $request->input('billing_address.town'),
-          'billing_address_county' => $request->input('billing_address.county'),
-          'billing_address_postcode' => $request->input('billing_address.postcode'),
-          'billing_address_country' => $request->input('billing_address.country'),
-          'billing_address_name' => $request->input('billing_address.name') ?: $customerName,
-          'billing_address_company' => $request->input('billing_address.company') ?: $request->input('customer.company'),
-          'use_billing_for_shipping' => $use_billing_for_shipping,
-
-          'shipping_address_line1' => !$use_billing_for_shipping ? $request->input('shipping_address.line_1') : null,
-          'shipping_address_line2' => !$use_billing_for_shipping ? $request->input('shipping_address.line_2') : null,
-          'shipping_address_town' => !$use_billing_for_shipping ? $request->input('shipping_address.town') : null,
-          'shipping_address_county' => !$use_billing_for_shipping ? $request->input('shipping_address.county') : null,
-          'shipping_address_postcode' => !$use_billing_for_shipping ? $request->input('shipping_address.postcode') : null,
-          'shipping_address_country' => !$use_billing_for_shipping ? $request->input('shipping_address.country') : null,
-          'shipping_address_name' => !$use_billing_for_shipping ? ($request->input('shipping_address.name') ?: $customerName) : null,
-          'shipping_address_company' => !$use_billing_for_shipping ? ($request->input('shipping_address.company') ?: $request->input('customer.company')) : null,
-
-          'status' => $request->filled('status') ? $order->setStatusFromName($request->status) : $order->setStatusFromName('Draft'),
-
-          'cart_data' => $cart_data,
-
-          'ref' => $request->ref
-        ]);
-
-        if (!$request->filled('customer.id') && $request->filled('customer.email')) {
-            $user = User::updateOrCreate(
-                [
-                    'email' => $request->input('customer.email')
-                ],
-                [
-                    'first_name' => $request->input('customer.first_name'),
-                    'last_name' => $request->input('customer.last_name'),
-                    'company' => $request->input('customer.company'),
-                    'phone' => $request->input('customer.phone'),
-                    'password' => bcrypt(str_random(40)),
-                    'billing_address_line1' => $request->input('billing_address.line_1'),
-                    'billing_address_line2' => $request->input('billing_address.line_2'),
-                    'billing_address_town' =>$request->input('billing_address.town') ,
-                    'billing_address_county' => $request->input('billing_address.county'),
-                    'billing_address_postcode' => $request->input('billing_address.postcode'),
-                    'billing_address_country' => $request->input('billing_address.country'),
-                    'shipping_address_line1' => $request->input('shipping_address.line1'),
-                    'shipping_address_line2' => $request->input('shipping_address.line2'),
-                    'shipping_address_town' => $request->input('shipping_address.town'),
-                    'shipping_address_county' => $request->input('shipping_address.county'),
-                    'shipping_address_postcode' => $request->input('shipping_address.postcode'),
-                    'shipping_address_name' => $request->input('shipping_address.name'),
-                    'shipping_address_company' => $request->input('shipping_address.company'),
-                    'shipping_address_name' => $request->input('shipping_address.name'),
-                    'shipping_address_company' => $request->input('shipping_address.company'),
-                ]
-            );
-            $user->assignRole('customer');
-            $order->update(['user_id' => $user->id]);
-        } elseif ($request->filled('customer.id') && $request->input('save_billing_address')) {
-            $user = User::find($request->input('customer.id'));
-
-            if ($user) {
-                $user->update([
-                    'billing_address_line1' => $request->input('billing_address.line_1'),
-                    'billing_address_line2' => $request->input('billing_address.line_2'),
-                    'billing_address_town' =>$request->input('billing_address.town') ,
-                    'billing_address_county' => $request->input('billing_address.county'),
-                    'billing_address_postcode' => $request->input('billing_address.postcode'),
-                    'billing_address_country' => $request->input('billing_address.country')
-                ]);
-            }
-        }
-
-        $order->load($request->with ?: []);
-
-        return new OrderResource($order);
+        $order = Order::create($request->all());
+        $order->addProductsFromRequest($request->input('products'));
+        return new OrderResource($order->load($request->with ?: []));
     }
 
     /**

@@ -604,6 +604,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'ecommerce-migrations');
         }
+
+        if (! class_exists('CreateOrderProductTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_order_product_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 3).'_create_order_product_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
     }
 
     /**

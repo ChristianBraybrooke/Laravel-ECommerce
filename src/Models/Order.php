@@ -2,29 +2,30 @@
 
 namespace ChrisBraybrooke\ECommerce\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
-use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
-use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
-use ChrisBraybrooke\ECommerce\Traits\WatchesOrderStatus;
-use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
-use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
+use Cart;
+use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use ChrisBraybrooke\ECommerce\Events\OrderCreated;
+use ChrisBraybrooke\ECommerce\Events\OrderStatusChanged;
 use ChrisBraybrooke\ECommerce\Events\OrderUpdated;
 use ChrisBraybrooke\ECommerce\Events\OrderUpdating;
-use ChrisBraybrooke\ECommerce\Events\OrderStatusChanged;
-use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
 use ChrisBraybrooke\ECommerce\Jobs\SendOrderNotification;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use ChrisBraybrooke\ECommerce\Notifications\SendOrderCompleteNotification;
-use Cart;
-use Setting;
+use ChrisBraybrooke\ECommerce\Pivots\OrderProduct;
+use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
+use ChrisBraybrooke\ECommerce\Traits\HasContentAttached;
+use ChrisBraybrooke\ECommerce\Traits\HasMediaAttached;
+use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
+use ChrisBraybrooke\ECommerce\Traits\WatchesOrderStatus;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+use Notification;
 use Product;
 use ReflectionClass;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Notification;
+use Setting;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Order extends Model implements OrderContract
 {
@@ -32,15 +33,26 @@ class Order extends Model implements OrderContract
     WatchesOrderStatus;
 
     public static $statuses = [
-      'STATUS_DRAFT' => 'Draft',
-      'STATUS_PROFORMA' => 'Pro-Forma',
-      'STATUS_PROCESSING' => 'Processing',
-      'STATUS_COMPLETED' => 'Completed',
-      'STATUS_CANCELLED' => 'Canceled',
-      'STATUS_REFUNDED' => 'Refunded',
-      'STATUS_AWAITING_PAYMENT' => 'Awaiting Payment',
-      'STATUS_PAYMENT_FAILED' => 'Failed Payment',
-      'STATUS_ESTIMATE' => 'Estimate',
+        'STATUS_DRAFT' => 'Draft',
+        'STATUS_AWAITING_PAYMENT' => 'Awaiting Payment',
+        'STATUS_PAID' => 'Paid',
+        'STATUS_READY_FOR_PRODUCTION' => 'Ready For Production',
+        'STATUS_IN_PRODUCTION' => 'In Production',
+        'STATUS_PACKAGING' => 'Being Packaged',
+        'STATUS_AWAITING_DELIVERY' => 'Awaiting Delivery',
+        'STATUS_OUT_FOR_DELIVERY' => 'Out For Delivery',
+        'STATUS_DELIVERED' => 'Delivered',
+        'STATUS_COMPLETED' => 'Completed',
+        'STATUS_UNABLE_TO_DELIVERY' => 'Unable To Deliver',
+        'STATUS_AWAITING_CUSTOMER_COLLECTION' => 'Awaiting Customer Collection',
+        'STATUS_COLLECTED_BY_CUSTOMER' => 'Collected By Customer',
+        'STATUS_CANCELLED' => 'Canceled',
+        'STATUS_REFUNDED' => 'Refunded',
+        'STATUS_PAYMENT_FAILED' => 'Failed Payment',
+
+        'STATUS_PROFORMA' => 'Legacy Pro Forma',
+        'STATUS_PROCESSING' => 'Legacy Processing',
+        'STATUS_ESTIMATE' => 'Legacy Estimate'
     ];
 
     /**
@@ -95,11 +107,21 @@ class Order extends Model implements OrderContract
     }
 
     /**
-     * Get the order statuses.
+     * Return the statuses that are available for an order.
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return static::$statuses;
+    }
+
+    /**
+     * Get the available order statuses attribute.
      *
      * @var array
      */
-    public function getStatuses()
+    public function getAvailableStatusesAttribute()
     {
         $statuses = static::$statuses;
 
@@ -338,6 +360,58 @@ class Order extends Model implements OrderContract
     public function getShippingAddressAttribute()
     {
         return $this->formatAddress($this->use_billing_for_shipping ? 'billing' : 'shipping');
+    }
+
+    /**
+     * Get the products within this order.
+     *
+     * @return collection
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id')
+                    ->using('ChrisBraybrooke\ECommerce\Pivots\OrderProduct')
+                    ->withPivot(OrderProduct::collumns())
+                    ->withTimestamps();
+    }
+
+    /**
+     * Add a product to this order.
+     *
+     * @param Product $product
+     * @param array $data
+     * @return Order
+     */
+    public function attachProduct(Product $product, array $data)
+    {
+        $this->products()->attach($product->id, $data);
+    }
+
+    /**
+     * Add product to this order from a request.
+     *
+     * @param array $products
+     * @return Order
+     */
+    public function addProductsFromRequest(array $products)
+    {
+        $formattedProducts = [];
+        foreach ($products as $key => $product) {
+            OrderProduct::create([
+                'order_id' => $this->id,
+                'product_id' => $product['product']['id'],
+                'form_id' => $product['form']['id'] ?? null,
+                'order' => $product['order'] ?? $key,
+                'customisation_data' => $product['customisation_data'] ?? [],
+                'unit_price' => $product['totals']['unit_price'],
+                'extras' => $product['totals']['extras'],
+                'qty' => $product['qty'],
+                'status' => $product['status'] ?? '',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        return $this;
     }
 
     /**

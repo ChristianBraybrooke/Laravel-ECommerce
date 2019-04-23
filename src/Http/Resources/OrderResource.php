@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\Resource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ShopResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\ContentsResource;
 use ChrisBraybrooke\ECommerce\Http\Resources\PaymentResource;
+use Order;
 
 class OrderResource extends Resource
 {
@@ -53,11 +54,11 @@ class OrderResource extends Resource
             $shop = new ShopResource($request);
             return [
                 'shop_data' => $shop->toArray($request),
-                'statuses' => $this->getStatuses()
+                'statuses' => Order::getStatuses()
             ];
         }
         return [
-            'statuses' => $this->getStatuses()
+            'statuses' => Order::getStatuses()
         ];
     }
 }

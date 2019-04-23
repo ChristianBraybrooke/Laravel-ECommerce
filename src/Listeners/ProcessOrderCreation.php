@@ -32,7 +32,7 @@ class ProcessOrderCreation implements ShouldQueue
     {
         $order = $event->model;
 
-        if ($order->status === Order::$statuses['STATUS_PROCESSING']) {
+        if ($order->status === Order::$statuses['STATUS_AWAITING_PAYMENT']) {
             $order->createInvoiceAndSend();
         }
 
@@ -40,12 +40,8 @@ class ProcessOrderCreation implements ShouldQueue
             $order->hasBeenInvoiced();
 
             if ($order->isFullyPaid()) {
-                $order->updateStatus('STATUS_PROCESSING');
+                // $order->updateStatus('STATUS_PROCESSING');
             }
-        }
-
-        if (!$order->ref) {
-            $order->update(['ref' => $order->id]);
         }
 
         $admin_ids = Setting::get('Admin Notifications');

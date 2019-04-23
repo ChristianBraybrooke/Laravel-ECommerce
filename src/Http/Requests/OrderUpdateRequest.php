@@ -4,6 +4,7 @@ namespace ChrisBraybrooke\ECommerce\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Order;
 
 class OrderUpdateRequest extends FormRequest
 {
@@ -43,7 +44,7 @@ class OrderUpdateRequest extends FormRequest
 
             'status' => [
                 'required',
-                Rule::in(array_keys($this->order->getStatuses())),
+                Rule::in(array_keys(Order::getStatuses())),
             ],
         ];
     }
