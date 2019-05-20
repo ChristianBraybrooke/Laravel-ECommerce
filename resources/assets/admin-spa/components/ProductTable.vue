@@ -130,7 +130,7 @@ export default {
         {
           prop: 'price',
           label: 'Price',
-          formatter: function (row, column, cellValue) { return this.formatPrice(row.price, this.shopData.currency) }.bind(this)
+          formatter: function (row, column, cellValue) { return this.formatPrice(row.totals.unit_price, this.shopData.currency) }.bind(this)
         },
         {
           prop: 'quantity',
@@ -159,7 +159,7 @@ export default {
           {
             prop: 'actions',
             label: 'Actions',
-            minWidth: 200,
+            minWidth: 250,
             formatter: function (row, column, cellValue) { return this.itemRowActionsFormatter(row, column, cellValue) }.bind(this)
           }
         )
@@ -206,11 +206,13 @@ export default {
           forEach(group, (value, key) => {
             if (this.objectHas(value, 'value')) {
               if (value.value) {
-                groupData.push(<el-tag class="order_item_option" size="mini" type="info"><strong>{value.label}:</strong> {value.value}{value.appends}</el-tag>)
+                groupData.push(<div>{value.label}: <el-tag class="order_item_option" size="mini" type="info">{value.prepends}{value.value}{value.appends}</el-tag></div>)
               }
             }
           })
-          items.push(<li><span class="order_item_options_title">{groupName}</span><span class="order_item_options_content"> {groupData}</span></li>)
+          if (groupData.length !== 0) {
+            items.push(<li><span class="order_item_options_title">{groupName}</span><span class="order_item_options_content"> {groupData}</span></li>)
+          }
         })
 
         return <div>{rowName} <ul class="order_item_options">{items}</ul></div>
@@ -285,5 +287,14 @@ export default {
   }
   span.order_item_options_content {
       display: block;
+  }
+  ul.order_item_options {
+      list-style: none;
+  }
+  span.order_item_options_title {
+      font-weight: bold;
+  }
+  ul.order_item_options li {
+      padding: 10px 0px;
   }
 </style>

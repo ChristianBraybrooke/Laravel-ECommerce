@@ -1176,7 +1176,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.tooltip_wrap[data-v-daa94062] {\n  float: left;\n}\n", ""]);
+exports.push([module.i, "\n.tooltip_wrap[data-v-daa94062] {\n  float: left;\n}\n.new_product_form_wrap[data-v-daa94062] {\n  display: inherit;\n}\n", ""]);
 
 // exports
 
@@ -8736,6 +8736,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "new_product_form_wrap" },
     [
       _c(
         "el-button",

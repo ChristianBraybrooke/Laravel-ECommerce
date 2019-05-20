@@ -1770,7 +1770,7 @@ function fromByteArray (uint8) {
 
 var base64 = __webpack_require__("./node_modules/base64-js/index.js")
 var ieee754 = __webpack_require__("./node_modules/ieee754/index.js")
-var isArray = __webpack_require__("./node_modules/isarray/index.js")
+var isArray = __webpack_require__("./node_modules/buffer/node_modules/isarray/index.js")
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -3552,6 +3552,18 @@ function isnan (val) {
 
 /***/ }),
 
+/***/ "./node_modules/buffer/node_modules/isarray/index.js":
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/library/fn/object/assign.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3659,7 +3671,7 @@ module.exports = function (it) {
 /***/ "./node_modules/core-js/library/modules/_core.js":
 /***/ (function(module, exports) {
 
-var core = module.exports = { version: '2.5.1' };
+var core = module.exports = { version: '2.6.6' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
 
@@ -3769,6 +3781,7 @@ var global = __webpack_require__("./node_modules/core-js/library/modules/_global
 var core = __webpack_require__("./node_modules/core-js/library/modules/_core.js");
 var ctx = __webpack_require__("./node_modules/core-js/library/modules/_ctx.js");
 var hide = __webpack_require__("./node_modules/core-js/library/modules/_hide.js");
+var has = __webpack_require__("./node_modules/core-js/library/modules/_has.js");
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -3786,7 +3799,7 @@ var $export = function (type, name, source) {
   for (key in source) {
     // contains in native
     own = !IS_FORCED && target && target[key] !== undefined;
-    if (own && key in exports) continue;
+    if (own && has(exports, key)) continue;
     // export native or passed
     out = own ? target[key] : source[key];
     // prevent global pollution for namespaces
@@ -3967,7 +3980,6 @@ var LIBRARY = __webpack_require__("./node_modules/core-js/library/modules/_libra
 var $export = __webpack_require__("./node_modules/core-js/library/modules/_export.js");
 var redefine = __webpack_require__("./node_modules/core-js/library/modules/_redefine.js");
 var hide = __webpack_require__("./node_modules/core-js/library/modules/_hide.js");
-var has = __webpack_require__("./node_modules/core-js/library/modules/_has.js");
 var Iterators = __webpack_require__("./node_modules/core-js/library/modules/_iterators.js");
 var $iterCreate = __webpack_require__("./node_modules/core-js/library/modules/_iter-create.js");
 var setToStringTag = __webpack_require__("./node_modules/core-js/library/modules/_set-to-string-tag.js");
@@ -4005,7 +4017,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
       // Set @@toStringTag to native iterators
       setToStringTag(IteratorPrototype, TAG, true);
       // fix for some old engines
-      if (!LIBRARY && !has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
+      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);
     }
   }
   // fix Array#{values, @@iterator}.name in V8 / FF
@@ -4128,6 +4140,7 @@ var meta = module.exports = {
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
+var DESCRIPTORS = __webpack_require__("./node_modules/core-js/library/modules/_descriptors.js");
 var getKeys = __webpack_require__("./node_modules/core-js/library/modules/_object-keys.js");
 var gOPS = __webpack_require__("./node_modules/core-js/library/modules/_object-gops.js");
 var pIE = __webpack_require__("./node_modules/core-js/library/modules/_object-pie.js");
@@ -4157,7 +4170,10 @@ module.exports = !$assign || __webpack_require__("./node_modules/core-js/library
     var length = keys.length;
     var j = 0;
     var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+    while (length > j) {
+      key = keys[j++];
+      if (!DESCRIPTORS || isEnum.call(S, key)) T[key] = S[key];
+    }
   } return T;
 } : $assign;
 
@@ -4444,12 +4460,18 @@ module.exports = function (key) {
 /***/ "./node_modules/core-js/library/modules/_shared.js":
 /***/ (function(module, exports, __webpack_require__) {
 
+var core = __webpack_require__("./node_modules/core-js/library/modules/_core.js");
 var global = __webpack_require__("./node_modules/core-js/library/modules/_global.js");
 var SHARED = '__core-js_shared__';
 var store = global[SHARED] || (global[SHARED] = {});
-module.exports = function (key) {
-  return store[key] || (store[key] = {});
-};
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __webpack_require__("./node_modules/core-js/library/modules/_library.js") ? 'pure' : 'global',
+  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+});
 
 
 /***/ }),
@@ -4723,12 +4745,15 @@ var wksDefine = __webpack_require__("./node_modules/core-js/library/modules/_wks
 var enumKeys = __webpack_require__("./node_modules/core-js/library/modules/_enum-keys.js");
 var isArray = __webpack_require__("./node_modules/core-js/library/modules/_is-array.js");
 var anObject = __webpack_require__("./node_modules/core-js/library/modules/_an-object.js");
+var isObject = __webpack_require__("./node_modules/core-js/library/modules/_is-object.js");
+var toObject = __webpack_require__("./node_modules/core-js/library/modules/_to-object.js");
 var toIObject = __webpack_require__("./node_modules/core-js/library/modules/_to-iobject.js");
 var toPrimitive = __webpack_require__("./node_modules/core-js/library/modules/_to-primitive.js");
 var createDesc = __webpack_require__("./node_modules/core-js/library/modules/_property-desc.js");
 var _create = __webpack_require__("./node_modules/core-js/library/modules/_object-create.js");
 var gOPNExt = __webpack_require__("./node_modules/core-js/library/modules/_object-gopn-ext.js");
 var $GOPD = __webpack_require__("./node_modules/core-js/library/modules/_object-gopd.js");
+var $GOPS = __webpack_require__("./node_modules/core-js/library/modules/_object-gops.js");
 var $DP = __webpack_require__("./node_modules/core-js/library/modules/_object-dp.js");
 var $keys = __webpack_require__("./node_modules/core-js/library/modules/_object-keys.js");
 var gOPD = $GOPD.f;
@@ -4855,7 +4880,7 @@ if (!USE_NATIVE) {
   $DP.f = $defineProperty;
   __webpack_require__("./node_modules/core-js/library/modules/_object-gopn.js").f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__("./node_modules/core-js/library/modules/_object-pie.js").f = $propertyIsEnumerable;
-  __webpack_require__("./node_modules/core-js/library/modules/_object-gops.js").f = $getOwnPropertySymbols;
+  $GOPS.f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__("./node_modules/core-js/library/modules/_library.js")) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -4906,6 +4931,16 @@ $export($export.S + $export.F * !USE_NATIVE, 'Object', {
   getOwnPropertySymbols: $getOwnPropertySymbols
 });
 
+// Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
+// https://bugs.chromium.org/p/v8/issues/detail?id=3443
+var FAILS_ON_PRIMITIVES = $fails(function () { $GOPS.f(1); });
+
+$export($export.S + $export.F * FAILS_ON_PRIMITIVES, 'Object', {
+  getOwnPropertySymbols: function getOwnPropertySymbols(it) {
+    return $GOPS.f(toObject(it));
+  }
+});
+
 // 24.3.2 JSON.stringify(value [, replacer [, space]])
 $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
   var S = $Symbol();
@@ -4915,15 +4950,14 @@ $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function () {
   return _stringify([S]) != '[null]' || _stringify({ a: S }) != '{}' || _stringify(Object(S)) != '{}';
 })), 'JSON', {
   stringify: function stringify(it) {
-    if (it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
     var args = [it];
     var i = 1;
     var replacer, $replacer;
     while (arguments.length > i) args.push(arguments[i++]);
-    replacer = args[1];
-    if (typeof replacer == 'function') $replacer = replacer;
-    if ($replacer || !isArray(replacer)) replacer = function (key, value) {
-      if ($replacer) value = $replacer.call(this, key, value);
+    $replacer = replacer = args[1];
+    if (!isObject(replacer) && it === undefined || isSymbol(it)) return; // IE8 returns string on undefined
+    if (!isArray(replacer)) replacer = function (key, value) {
+      if (typeof $replacer == 'function') value = $replacer.call(this, key, value);
       if (!isSymbol(value)) return value;
     };
     args[1] = replacer;
@@ -54702,18 +54736,6 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 /***/ }),
 
-/***/ "./node_modules/isarray/index.js":
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/normalize-wheel/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -82989,7 +83011,7 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
@@ -82997,7 +83019,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
 /**
- * vuex v3.1.0
+ * vuex v3.1.1
  * (c) 2019 Evan You
  * @license MIT
  */
@@ -83037,9 +83059,12 @@ function applyMixin (Vue) {
   }
 }
 
-var devtoolHook =
-  typeof window !== 'undefined' &&
-  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
 function devtoolPlugin (store) {
   if (!devtoolHook) { return }
@@ -83083,6 +83108,12 @@ function isPromise (val) {
 
 function assert (condition, msg) {
   if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
 }
 
 // Base data struct for store's module, package with some attribute and method
@@ -83546,7 +83577,9 @@ function resetStoreVM (store, state, hot) {
   var computed = {};
   forEachValue(wrappedGetters, function (fn, key) {
     // use computed to leverage its lazy-caching mechanism
-    computed[key] = function () { return fn(store); };
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure enviroment.
+    computed[key] = partial(fn, store);
     Object.defineProperty(store.getters, key, {
       get: function () { return store._vm[key]; },
       enumerable: true // for local getters
@@ -83985,7 +84018,7 @@ function getModuleByNamespace (store, helper, namespace) {
 var index_esm = {
   Store: Store,
   install: install,
-  version: '3.1.0',
+  version: '3.1.1',
   mapState: mapState,
   mapMutations: mapMutations,
   mapGetters: mapGetters,
@@ -83996,6 +84029,7 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["default"] = (index_esm);
 
 
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 

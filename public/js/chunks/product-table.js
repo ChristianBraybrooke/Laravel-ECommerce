@@ -1567,7 +1567,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         prop: 'price',
         label: 'Price',
         formatter: function (row, column, cellValue) {
-          return this.formatPrice(row.price, this.shopData.currency);
+          return this.formatPrice(row.totals.unit_price, this.shopData.currency);
         }.bind(this)
       }, {
         prop: 'quantity',
@@ -1599,7 +1599,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         cols.push({
           prop: 'actions',
           label: 'Actions',
-          minWidth: 200,
+          minWidth: 250,
           formatter: function (row, column, cellValue) {
             return this.itemRowActionsFormatter(row, column, cellValue);
           }.bind(this)
@@ -1648,21 +1648,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           __WEBPACK_IMPORTED_MODULE_5_lodash_foreach___default()(group, function (value, key) {
             if (_this.objectHas(value, 'value')) {
               if (value.value) {
-                groupData.push(h("el-tag", {
+                groupData.push(h("div", [value.label, ": ", h("el-tag", {
                   "class": "order_item_option",
                   "attrs": {
                     "size": "mini",
                     "type": "info"
                   }
-                }, [h("strong", [value.label, ":"]), " ", value.value, value.appends]));
+                }, [value.prepends, value.value, value.appends])]));
               }
             }
           });
-          items.push(h("li", [h("span", {
-            "class": "order_item_options_title"
-          }, [groupName]), h("span", {
-            "class": "order_item_options_content"
-          }, [" ", groupData])]));
+
+          if (groupData.length !== 0) {
+            items.push(h("li", [h("span", {
+              "class": "order_item_options_title"
+            }, [groupName]), h("span", {
+              "class": "order_item_options_content"
+            }, [" ", groupData])]));
+          }
         });
         return h("div", [rowName, " ", h("ul", {
           "class": "order_item_options"
@@ -2188,7 +2191,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.order_item_option {\n    margin-right: 5px;\n}\nspan.order_item_options_content {\n    display: block;\n}\n", ""]);
+exports.push([module.i, "\n.order_item_option {\n    margin-right: 5px;\n}\nspan.order_item_options_content {\n    display: block;\n}\nul.order_item_options {\n    list-style: none;\n}\nspan.order_item_options_title {\n    font-weight: bold;\n}\nul.order_item_options li {\n    padding: 10px 0px;\n}\n", ""]);
 
 // exports
 
@@ -2233,7 +2236,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.tooltip_wrap[data-v-daa94062] {\n  float: left;\n}\n", ""]);
+exports.push([module.i, "\n.tooltip_wrap[data-v-daa94062] {\n  float: left;\n}\n.new_product_form_wrap[data-v-daa94062] {\n  display: inherit;\n}\n", ""]);
 
 // exports
 
@@ -13407,6 +13410,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "new_product_form_wrap" },
     [
       _c(
         "el-button",
