@@ -160,7 +160,7 @@ var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
     console.log('Account.vue mounted');
     this.getUser().then(function () {
       this.loading = false;
-    }.bind(this)).catch(function () {
+    }.bind(this))["catch"](function () {
       this.loading = false;
     }.bind(this));
   },
@@ -186,7 +186,7 @@ var zxcvbn = __webpack_require__("./node_modules/zxcvbn/lib/main.js");
             type: 'success',
             showClose: true
           });
-        }.bind(_this)).catch(function () {
+        }.bind(_this))["catch"](function () {
           this.loading = false;
         }.bind(_this)); // }
 
@@ -272,12 +272,12 @@ var render = function() {
                   nativeOn: {
                     keyup: function($event) {
                       if (
-                        !("button" in $event) &&
+                        !$event.type.indexOf("key") &&
                         _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
                       ) {
                         return null
                       }
-                      _vm.submitForm("userForm")
+                      return _vm.submitForm("userForm")
                     }
                   }
                 },
@@ -446,7 +446,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.submitForm("userForm")
+                                      return _vm.submitForm("userForm")
                                     }
                                   }
                                 },

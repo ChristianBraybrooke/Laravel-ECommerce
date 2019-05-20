@@ -54,28 +54,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadOnMount: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     download: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     printButton: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     deliveryNote: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     }
@@ -86,7 +86,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       displayIframe: false,
       iframeLoaded: false,
       defaultPrintButton: {
-        class: '',
+        "class": '',
         type: 'success',
         size: 'small',
         style: 'float:right; margin-bottom:20px; margin-right:10px;',

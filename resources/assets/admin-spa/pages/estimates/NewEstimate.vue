@@ -46,8 +46,10 @@
       </el-col>
     </el-row>
 
+    {{ order }}
+
     <el-row
-      v-if="order.items"
+      v-if="order.products"
       :gutter="20">
       <el-col :span="24">
         <product-table
@@ -80,11 +82,11 @@ export default {
   name: 'NewEstimate',
 
   components: {
-    NewProductForm: () => import(/* webpackChunkName: "new-product-form" */'components/NewProductForm'),
-    ProductTable: () => import(/* webpackChunkName: "product-table" */'components/ProductTable'),
-    Errors: () => import(/* webpackChunkName: "errors" */'components/Errors'),
-    CustomerInformationForm: () => import(/* webpackChunkName: "customer-information-form" */'components/CustomerInformationForm'),
-    OrderRef: () => import(/* webpackChunkName: "order-ref" */'components/OrderRef')
+    NewProductForm: () => import(/* webpackChunkName: 'new'product-form" */'components/NewProductForm'),
+    ProductTable: () => import(/* webpackChunkName: 'product'table" */'components/ProductTable'),
+    Errors: () => import(/* webpackChunkName: 'errors' */'components/Errors'),
+    CustomerInformationForm: () => import(/* webpackChunkName: 'customer'information-form" */'components/CustomerInformationForm'),
+    OrderRef: () => import(/* webpackChunkName: 'order'ref" */'components/OrderRef')
   },
 
   props: {
@@ -99,29 +101,197 @@ export default {
     return {
       loading: false,
       errors: {},
+      // order: {
+      //   status: null,
+      //   customer: {},
+      //   shipping_rate: 60,
+      //   discount_rate: 0,
+      //   billing_address: {},
+      //   shipping_address: {},
+      //   products: [],
+      //   totals: {
+      //     shipping: 60,
+      //     discount: 0
+      //   },
+      //   use_billing_for_shipping: false,
+      //   needs_address: 'No Address'
+      // }
       order: {
-        status: null,
+        status: 'STATUS_AWAITING_PAYMENT',
         customer: {},
         shipping_rate: 60,
         discount_rate: 0,
-        billing_address: {},
-        shipping_address: {},
-        items: [],
-        cart: {
-          totals: {
-            Shipping: 60,
-            Discount: 0
+        billing_address: {
+          country: 'United Kingdom'
+        },
+        shipping_address: {
+          country: 'United Kingdom'
+        },
+        products: [
+          {
+            product: {
+              id: 221,
+              name: 'Quad Enclosed',
+              variant: {
+                id: 2,
+                name: 'Eco Cubicles'
+              }
+            },
+            totals: {
+              unit_price: '864.00',
+              extras: 0
+            },
+            qty: 1,
+            customisation_data: {
+              length: {
+                group: 'Measurements',
+                value: 2000,
+                name: null,
+                type: 'number',
+                label: 'Length',
+                appends: 'mm'
+              },
+              depth: {
+                group: 'Measurements',
+                value: 100,
+                name: null,
+                type: 'number',
+                label: 'Depth',
+                appends: 'mm'
+              },
+              height: {
+                group: 'Measurements',
+                name: '1850mm Standard',
+                value: '1850mm',
+                type: 'radio',
+                label: 'Height',
+                appends: 'mm'
+              },
+              cubicle_material: {
+                group: 'Materials',
+                name: 'MFC',
+                value: 'MFC',
+                type: 'radio',
+                label: 'Cubicle Material'
+              },
+              pilaster_colour: {
+                group: 'Cubicles',
+                name: 'Birdie Beech Light',
+                value: 'Birdie Beech Light',
+                type: 'select',
+                label: 'Pilaster Colour'
+              },
+              division_colour: {
+                group: 'Cubicles',
+                name: 'Birdie Beech Light',
+                value: 'Birdie Beech Light',
+                type: 'select',
+                label: 'Division Colour'
+              },
+              notes: {
+                group: 'Notes',
+                value: null,
+                name: null,
+                type: 'textarea',
+                label: 'Additional notes'
+              },
+              layout_description: {
+                group: 'Layout',
+                value: null,
+                name: null,
+                type: 'text',
+                label: 'Layout Description'
+              },
+              legs: {
+                group: 'Fixtures',
+                name: '50mm',
+                value: '50',
+                type: 'radio',
+                label: 'Cubicle Legs'
+              },
+              cubicle: {
+                group: 'Cubicles',
+                value: null,
+                name: null,
+                type: 'dynamic',
+                label: 'Cubicle'
+              },
+              cubicle_1_door_function: {
+                group: 'Cubicles',
+                name: 'Inward',
+                value: 'Inward',
+                type: 'radio',
+                label: 'Door Function'
+              },
+              cubicle_1_hinge_side: {
+                group: 'Cubicles',
+                name: 'Left',
+                value: 'Left',
+                type: 'radio',
+                label: 'Hinge Side'
+              },
+              cubicle_2_door_function: {
+                group: 'Cubicles',
+                name: 'Inward',
+                value: 'Inward',
+                type: 'radio',
+                label: 'Door Function'
+              },
+              cubicle_2_hinge_side: {
+                group: 'Cubicles',
+                name: 'Left',
+                value: 'Left',
+                type: 'radio',
+                label: 'Hinge Side'
+              },
+              cubicle_3_hinge_side: {
+                group: 'Cubicles',
+                name: 'Left',
+                value: 'Left',
+                type: 'radio',
+                label: 'Hinge Side'
+              },
+              cubicle_3_door_function: {
+                group: 'Cubicles',
+                name: 'Inward',
+                value: 'Inward',
+                type: 'radio',
+                label: 'Door Function'
+              },
+              cubicle_4_door_function: {
+                group: 'Cubicles',
+                name: 'Inward',
+                value: 'Inward',
+                type: 'radio',
+                label: 'Door Function'
+              },
+              cubicle_4_hinge_side: {
+                group: 'Cubicles',
+                name: 'Left',
+                value: 'Left',
+                type: 'radio',
+                label: 'Hinge Side'
+              }
+            },
+            form: {
+              id: 6
+            }
           }
+        ],
+        totals: {
+          shipping: 60,
+          discount: 0
         },
         use_billing_for_shipping: false,
-        needs_address: 'No Address'
+        needs_address: 'No Address',
+        ref: 42
       }
     }
   },
 
   computed: {
     orderTotals () {
-      return orderUtil.totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount'])
+      return orderUtil.totals(this.order.products, this.order.totals.shipping, this.order.totals.discount)
     },
 
     documentName () {
@@ -132,12 +302,12 @@ export default {
   mounted () {
     console.log('NewEstimate.vue mounted!')
 
-    this.order.status = this.documentName
+    this.order.status = 'STATUS_AWAITING_PAYMENT'
   },
 
   methods: {
     addProductToTable (product) {
-      this.order.items.push(product)
+      this.order.products.push(product)
     },
 
     updateProductOnTable (product) {
@@ -163,12 +333,12 @@ export default {
     },
 
     handleProductUpdate (obj) {
-      var currentProduct = this.order.items[obj.index]
+      var currentProduct = this.order.products[obj.index]
       var product = {
         ...currentProduct,
         ...obj.product
       }
-      this.order.items.splice(obj.index, 1, product)
+      this.order.products.splice(obj.index, 1, product)
     }
   }
 }

@@ -169,7 +169,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (data) {
         this.forms = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.formErrors = error;
       }.bind(this));
     }
@@ -904,7 +904,7 @@ var render = function() {
                   {
                     on: {
                       click: function($event) {
-                        props.productForm.order_options.push({})
+                        return props.productForm.order_options.push({})
                       }
                     }
                   },

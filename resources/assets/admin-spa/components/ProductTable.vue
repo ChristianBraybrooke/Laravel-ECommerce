@@ -2,7 +2,7 @@
   <div v-loading="loading">
 
     <el-table
-      :data="order.items"
+      :data="order.products"
       style="width: 100%">
       <el-table-column
         v-for="(collumn, key) in collumns"
@@ -39,8 +39,9 @@ import ProductForm from 'components/ProductForm'
 import NewProductForm from 'components/NewProductForm'
 import orderUtil from 'utils/order'
 
-var range = require('lodash.range')
-var forEach = require('lodash.foreach')
+import range from 'lodash.range'
+import forEach from 'lodash.foreach'
+import groupBy from 'lodash.groupby'
 
 export default {
 
@@ -109,7 +110,7 @@ export default {
     ]),
 
     totals () {
-      return this.order.totals(this.order.items)
+      return this.order.totals(this.order.products)
     },
 
     totalSpan () {
@@ -123,7 +124,7 @@ export default {
         {
           prop: 'name',
           label: 'Product',
-          minWidth: 350,
+          minWidth: 500,
           formatter: function (row, column, cellValue) { return this.itemRowNameFormatter(row, column, cellValue) }.bind(this)
         },
         {
@@ -173,11 +174,6 @@ export default {
   },
 
   mounted () {
-    console.log('ProductTable.vue Mounted')
-
-    // this.shipping_rate = this.order.cart.totals.Shipping;
-    // this.discount_rate = this.order.discount_rate;
-
     if (this.setCollumns.length === 0) {
       this.collumns = this.defaultCollumns
     } else {
@@ -196,40 +192,25 @@ export default {
   methods: {
     itemRowNameFormatter (row, column, cellValue) {
       var rowName = null
-      if (this.objectHas(row, 'variant.name')) {
-        rowName = <p><strong>{(row.variant.name + ' / ')}</strong>{row.name}</p>
+      if (this.objectHas(row, 'product.variant.name')) {
+        rowName = <p><strong>{(row.product.variant.name + ' / ')}</strong>{row.product.name}</p>
       } else {
-        rowName = <p><strong>{row.name}</strong></p>
+        rowName = <p><strong>{row.product.name}</strong></p>
       }
 
-      if (row.options) {
+      if (row.customisation_data) {
         var items = []
-        forEach(row.options, (value, key) => {
-          var newValue = value
-
-          if (newValue) {
-            if (value.value && typeof value.value === 'object') {
-              newValue = this.loopOverItemOptions(value.value)
-            } else if (typeof value === 'object' && value.value && value.name) {
-              newValue = value.value
-            } else if (value && typeof value === 'object') {
-              newValue = this.loopOverItemOptions(value)
-            } else {
-              newValue = value.name ? value.name : value
+        var formattedCustomisationData = groupBy(row.customisation_data, 'group')
+        forEach(formattedCustomisationData, (group, groupName) => {
+          var groupData = []
+          forEach(group, (value, key) => {
+            if (this.objectHas(value, 'value')) {
+              if (value.value) {
+                groupData.push(<el-tag class="order_item_option" size="mini" type="info"><strong>{value.label}:</strong> {value.value}{value.appends}</el-tag>)
+              }
             }
-          }
-
-          var extra = ''
-          if (value) {
-            var priceMutator = value.priceMutator ? value.priceMutator : ''
-            var priceValue = value.priceValue ? this.formatPrice(value.priceValue, this.shopData.currency) : ''
-            if (priceMutator && priceValue) {
-              extra = <span style="font-size: 11px;">({priceMutator} {priceValue})</span>
-            }
-          }
-          if (newValue) {
-            items.push(<li>{key}: {newValue} {extra}</li>)
-          }
+          })
+          items.push(<li><span class="order_item_options_title">{groupName}</span><span class="order_item_options_content"> {groupData}</span></li>)
         })
 
         return <div>{rowName} <ul class="order_item_options">{items}</ul></div>
@@ -249,8 +230,8 @@ export default {
 
     itemRowActionsFormatter (row, column, cellValue) {
       return <span>
-        <new-product-form edit-form={true} table-index={this.order.items.indexOf(row)} product={row} button={{ text: 'Edit Product', size: 'mini' }} on-product-update={this.handleProductUpdate}></new-product-form>
-        <el-button size="mini" type="danger" on-click={ () => this.deleteRow(row) }>Delete</el-button>
+        <new-product-form edit-form={true} table-index={this.order.products.indexOf(row)} product={row} button={{ icon: 'el-icon-edit', text: '', size: 'mini' }} on-product-update={this.handleProductUpdate}></new-product-form>
+        <el-button size="mini" type="danger" icon="el-icon-delete" on-click={ () => this.deleteRow(row) }></el-button>
       </span>
     },
 
@@ -264,7 +245,7 @@ export default {
         options.push(<el-option key={range} value={range} label={this.formatPrice(range, this.shopData.currency)}></el-option>)
       }.bind(this))
 
-      return this.editable ? <el-select v-model={this.order.cart.totals.Shipping} size="mini" style="max-width: 100px;">{options}</el-select> : this.formatPrice(this.order.cart.totals.Shipping, this.shopData.currency)
+      return this.editable ? <el-select v-model={this.order.totals.shipping} size="mini" style="max-width: 100px;">{options}</el-select> : this.formatPrice(this.order.totals.Shipping, this.shopData.currency)
     },
 
     discountRowFormatter (value) {
@@ -273,11 +254,11 @@ export default {
         options.push(<el-option key={range} value={range} label={range + '%'}></el-option>)
       })
 
-      return this.editable ? <el-select v-model={this.order.cart.totals.Discount} size="mini" style="max-width: 100px;">{options}</el-select> : `${this.order.cart.totals.Discount}%`
+      return this.editable ? <el-select v-model={this.order.totals.discount} size="mini" style="max-width: 100px;">{options}</el-select> : `${this.order.totals.discount}%`
     },
 
     deleteRow (row) {
-      this.order.items.splice(this.order.items.indexOf(row), 1)
+      this.order.products.splice(this.order.products.indexOf(row), 1)
     },
 
     totalValueFormatter (row, col, value) {
@@ -299,4 +280,10 @@ export default {
 </script>
 
 <style lang="css">
+  .order_item_option {
+      margin-right: 5px;
+  }
+  span.order_item_options_content {
+      display: block;
+  }
 </style>

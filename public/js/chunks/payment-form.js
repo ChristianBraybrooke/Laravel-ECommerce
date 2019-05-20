@@ -287,42 +287,42 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     showNoneOption: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     startingAmount: {
       required: false,
       type: [String, Number],
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     },
     disableAmount: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     onPaymentProcessed: {
       required: false,
       type: Function,
-      default: function _default() {
+      "default": function _default() {
         return function (payment) {};
       }
     },
     defaultPaymentDate: {
       required: false,
       type: Date,
-      default: function _default() {
+      "default": function _default() {
         return new Date();
       }
     },
     paymentDateOptions: {
       required: false,
       type: Object,
-      default: function _default() {
+      "default": function _default() {
         return {
           shortcuts: [{
             text: 'Today',
@@ -403,7 +403,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 order: {}
               };
               _this.errors = {};
-            }).catch(function (error) {
+            })["catch"](function (error) {
               _this.errors = error;
               _this.loading = false;
             });

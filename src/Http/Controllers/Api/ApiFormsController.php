@@ -106,6 +106,7 @@ class ApiFormsController extends Controller
                     foreach ($section['fields']['data'] as $key => $field) {
                         $fields[] = [
                             'id' => $field['id'] ?? null,
+                            'key' => $field['key'] ?? null,
                             'name' => $field['name'] ?? null,
                             'order' => $field['order'] ?? null,
                             'description' => $field['description'] ?? null,
@@ -127,6 +128,7 @@ class ApiFormsController extends Controller
             foreach ($section_fields as $key => $field) {
                 if (!is_null($field['id'])) {
                     FormField::where('id', $field['id'])->first()->update([
+                        'key' => $field['key'],
                         'name' => $field['name'],
                         'order' => $field['order'],
                         'description' => $field['description'],
@@ -138,6 +140,7 @@ class ApiFormsController extends Controller
                     ]);
                 } else {
                     $field = FormField::create([
+                        'key' => $field['key'],
                         'form_section_id' => $section_id,
                         'name' => $field['name'],
                         'order' => $field['order'],

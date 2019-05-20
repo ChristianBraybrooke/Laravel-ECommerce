@@ -141,7 +141,9 @@ var render = function() {
                     attrs: { type: "primary", icon: "el-icon-plus", plain: "" },
                     on: {
                       click: function($event) {
-                        props.productForm.variants.data.push({ main_img: {} })
+                        return props.productForm.variants.data.push({
+                          main_img: {}
+                        })
                       }
                     }
                   },

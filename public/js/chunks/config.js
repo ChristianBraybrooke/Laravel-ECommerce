@@ -558,7 +558,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
         }
 
         this.getFeaturedProductCollectionTypes();
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.settingsErrors = error;
       }.bind(this));
@@ -568,7 +568,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
         path: 'collections'
       }).then(function (data) {
         this.collections = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.settingsErrors = error;
       }.bind(this));
     },
@@ -578,7 +578,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
           path: 'collections/' + this.settings['Home Featured Product Collection'] + '/types'
         }).then(function (data) {
           this.featured_product_types = data.data;
-        }.bind(this)).catch(function (error) {
+        }.bind(this))["catch"](function (error) {
           this.settingsErrors = error;
         }.bind(this));
       } else {
@@ -593,7 +593,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
         }
       }).then(function (data) {
         this.users = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.settingsErrors = error;
       }.bind(this));
     },
@@ -608,7 +608,7 @@ var upperFirst = __webpack_require__("./node_modules/lodash.upperfirst/index.js"
       }).then(function (data) {
         this.loading = false;
         this.settings = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.settingsErrors = error;
       }.bind(this));
@@ -1010,12 +1010,12 @@ var render = function() {
                   nativeOn: {
                     keyup: function($event) {
                       if (
-                        !("button" in $event) &&
+                        !$event.type.indexOf("key") &&
                         _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
                       ) {
                         return null
                       }
-                      _vm.submitForm("settingsForm")
+                      return _vm.submitForm("settingsForm")
                     }
                   }
                 },
@@ -2339,7 +2339,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.submitForm("settingsForm")
+                                      return _vm.submitForm("settingsForm")
                                     }
                                   }
                                 },

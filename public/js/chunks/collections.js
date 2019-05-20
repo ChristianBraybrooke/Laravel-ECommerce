@@ -304,7 +304,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         path: 'collections/' + this.collectionId,
         params: {
           include: ['individual_name', 'slug'],
-          with: ['media']
+          "with": ['media']
         }
       }).then(function (data) {
         this.collectionErrors = {};
@@ -315,7 +315,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
 
         this.collectionStore.push(window.Vue.util.extend({}, data));
-      }.bind(this)).catch(function (errors) {
+      }.bind(this))["catch"](function (errors) {
         if (errors.code && errors.code === 404) {
           this.$router.push({
             path: 'not-found'
@@ -330,7 +330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.collectionErrors = {};
       this.loading = true;
-      this.collection.with = ['media'];
+      this.collection["with"] = ['media'];
       this.collection.include = ['individual_name', 'slug'];
       this.$refs[formName].validate(function (valid) {
         if (valid) {
@@ -345,7 +345,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               type: 'success',
               showClose: true
             });
-          }.bind(_this)).catch(function (error) {
+          }.bind(_this))["catch"](function (error) {
             this.collectionErrors = error;
             this.loading = false;
           }.bind(_this));
@@ -507,12 +507,12 @@ var render = function() {
                   nativeOn: {
                     keyup: function($event) {
                       if (
-                        !("button" in $event) &&
+                        !$event.type.indexOf("key") &&
                         _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
                       ) {
                         return null
                       }
-                      _vm.submitForm("collectionForm")
+                      return _vm.submitForm("collectionForm")
                     }
                   }
                 },
@@ -728,7 +728,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.submitForm("collectionForm")
+                                      return _vm.submitForm("collectionForm")
                                     }
                                   }
                                 },

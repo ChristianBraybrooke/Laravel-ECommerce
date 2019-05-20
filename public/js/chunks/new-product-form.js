@@ -316,6 +316,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -343,57 +345,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     button: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     dialog: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     onProductAdd: {
       type: Function,
       required: false,
-      default: function _default() {}
+      "default": function _default() {}
     },
     onProductUpdate: {
       type: Function,
       required: false,
-      default: function _default() {}
+      "default": function _default() {}
     },
     tableIndex: {
       type: [Number, String],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     },
     editForm: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     product: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     onModalClose: {
       type: Function,
       required: false,
-      default: function _default(instance, confirm) {
+      "default": function _default(instance, confirm) {
         if (confirm) {
           instance.$confirm('Are you sure to close the product selector?').then(function (_) {
             instance.clearAll();
             instance.showModal = false;
-          }).catch(function (_) {});
+          })["catch"](function (_) {});
         } else {
           instance.clearAll();
           instance.showModal = false;
@@ -403,14 +405,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     includes: {
       type: Array,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
-    with: {
+    "with": {
       type: Array,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     }
@@ -466,7 +468,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         type: 'success',
         size: 'large',
         plain: false,
-        class: ''
+        "class": '',
+        icon: ''
       };
     },
     mergedButton: function mergedButton() {
@@ -492,7 +495,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return ['types.products.variants.orderForm.sections.fields', 'types.products.variants.variant', 'types.products.orderForm.sections.fields'];
     },
     mergedWith: function mergedWith() {
-      return [].concat(_toConsumableArray(this.defaultWith), _toConsumableArray(this.with));
+      return [].concat(_toConsumableArray(this.defaultWith), _toConsumableArray(this["with"]));
     },
     readyForCustomisationForm: function readyForCustomisationForm() {
       if (this.editForm) {
@@ -508,10 +511,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     mergedProduct: function mergedProduct() {
-      return _objectSpread({}, this.customisationForm.product, {
-        quantity: this.customisationForm.quantity
+      var product = {
+        id: this.customisationForm.product.id,
+        name: this.customisationForm.product.name,
+        variant: {
+          id: this.customisationForm.product.variant.id,
+          name: this.customisationForm.product.variant.name
+        }
+      };
+      var totals = {
+        unit_price: this.customisationForm.product.price,
+        extras: 0
+      };
+      return _objectSpread({}, {
+        product: product
       }, {
-        options: this.customisationForm.options
+        totals: totals
+      }, {
+        qty: this.customisationForm.quantity
+      }, {
+        customisation_data: this.customisationForm.options
+      }, {
+        form: {
+          id: this.customisationForm.product.order_form.id
+        }
       });
     }
   }),
@@ -557,12 +580,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           path: 'collections/' + productCatId,
           params: {
             include: this.mergedIncludes,
-            with: this.mergedWith
+            "with": this.mergedWith
           }
         }).then(function (data) {
           this.productCollection = data.data;
           this.loading = false;
-        }.bind(this)).catch(function (error) {
+        }.bind(this))["catch"](function (error) {
           this.loading = false;
           this.errors = error;
         }.bind(this));
@@ -602,10 +625,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     },
     setCustomisationProduct: function setCustomisationProduct(val) {
+      var _this = this;
+
       var product = _objectSpread({}, {}, val);
 
       this.clonedPrice = __WEBPACK_IMPORTED_MODULE_10_lodash_clone___default()(product.price);
       this.customisationForm.product = product;
+
+      if (this.customisationForm.product.order_form) {
+        this.customisationForm.product.order_form.sections.data.forEach(function (section) {
+          section.fields.data.forEach(function (field) {
+            if (field.key) {
+              _this.$set(_this.customisationForm.options, field.key, {
+                value: null,
+                name: null,
+                group: section.name,
+                type: field.type,
+                appends: field.appends,
+                prepends: field.prepends,
+                label: field.name
+              });
+            }
+          });
+        });
+      }
     },
     calculateDynamicVisible: function calculateDynamicVisible(rules) {
       if (rules.dynamic) {
@@ -865,7 +908,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     size: {
       required: false,
       type: String,
-      default: function _default() {
+      "default": function _default() {
         return 'small';
       }
     }
@@ -8354,7 +8397,7 @@ var render = function() {
         _vm._l(_vm.field.options, function(option) {
           return _c(
             "el-radio-button",
-            { key: option.id, attrs: { label: option } },
+            { key: option.id, attrs: { label: _vm.mergedFieldValue(option) } },
             [_vm._v("\n      " + _vm._s(_vm.optionLabel(option)) + "\n    ")]
           )
         }),
@@ -8496,7 +8539,10 @@ var render = function() {
         _vm._l(_vm.field.options, function(option) {
           return _c("el-option", {
             key: option.id,
-            attrs: { value: option, label: _vm.optionLabel(option) }
+            attrs: {
+              value: _vm.mergedFieldValue(option),
+              label: _vm.optionLabel(option)
+            }
           })
         }),
         1
@@ -8558,7 +8604,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              _vm.copyToAll(dynamicfield, loopKey)
+                              return _vm.copyToAll(dynamicfield, loopKey)
                             }
                           }
                         },
@@ -8573,11 +8619,11 @@ var render = function() {
                           section: _vm.section,
                           field: dynamicfield,
                           prop:
-                            _vm.field.name +
-                            " " +
+                            _vm.field.key +
+                            "_" +
                             (loopKey + 1) +
-                            " " +
-                            dynamicfield.name
+                            "_" +
+                            dynamicfield.key
                         }
                       })
                     ],
@@ -8699,7 +8745,8 @@ var render = function() {
             loading: _vm.loading,
             size: _vm.mergedButton.size,
             plain: _vm.mergedButton.plain,
-            type: _vm.mergedButton.type
+            type: _vm.mergedButton.type,
+            icon: _vm.mergedButton.icon
           },
           on: { click: _vm.openModal }
         },
@@ -9243,6 +9290,13 @@ var render = function() {
                                                         "el-col",
                                                         { key: field.id },
                                                         [
+                                                          _vm._v(
+                                                            "\n                        " +
+                                                              _vm._s(
+                                                                field.key
+                                                              ) +
+                                                              "\n                        "
+                                                          ),
                                                           _vm.calculateDynamicVisible(
                                                             field.rules
                                                           )
@@ -9265,7 +9319,7 @@ var render = function() {
                                                                     field: field,
                                                                     prop:
                                                                       "" +
-                                                                      field.name
+                                                                      field.key
                                                                   }
                                                                 }
                                                               )
@@ -9525,7 +9579,7 @@ var render = function() {
                             {
                               on: {
                                 click: function($event) {
-                                  _vm.closeAndClearModal()
+                                  return _vm.closeAndClearModal()
                                 }
                               }
                             },
@@ -9550,7 +9604,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.addProduct(true)
+                                  return _vm.addProduct(true)
                                 }
                               }
                             },
@@ -9572,7 +9626,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.addProduct()
+                                  return _vm.addProduct()
                                 }
                               }
                             },
@@ -9587,7 +9641,7 @@ var render = function() {
                               attrs: { type: "primary" },
                               on: {
                                 click: function($event) {
-                                  _vm.saveProduct()
+                                  return _vm.saveProduct()
                                 }
                               }
                             },
@@ -9974,6 +10028,10 @@ module.exports = Component.exports
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormItem__ = __webpack_require__("./resources/assets/admin-spa/components/product-form/FormItem.vue");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FormItem__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -9990,7 +10048,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     section: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
@@ -10012,6 +10070,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     }
   },
   methods: {
+    mergedFieldValue: function mergedFieldValue(option) {
+      return _objectSpread({}, option, {
+        group: this.section.name,
+        type: this.field.type,
+        appends: this.field.appends,
+        prepends: this.field.prepends,
+        label: this.field.name
+      });
+    },
     optionLabel: function optionLabel(option) {
       if (option) {
         if (option.price_mutator && option.price_value) {

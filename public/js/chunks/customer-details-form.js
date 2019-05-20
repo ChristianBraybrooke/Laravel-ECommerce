@@ -51,7 +51,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     form: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     }

@@ -122,7 +122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     editable: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     }
@@ -156,7 +156,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           type: 'success',
           message: 'Payment updated successfully.'
         });
-      }).catch(function (error) {
+      })["catch"](function (error) {
         payment.payment_refunded = false;
         _this.errors = error;
 
@@ -250,66 +250,73 @@ var render = function() {
           _vm.editable
             ? _c("el-table-column", {
                 attrs: { prop: "actions", label: "Actions" },
-                scopedSlots: _vm._u([
-                  {
-                    key: "default",
-                    fn: function(props) {
-                      return [
-                        props.row.link
-                          ? _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: props.row.link,
-                                  target: "_blank"
-                                }
-                              },
-                              [
-                                _c(
-                                  "el-button",
-                                  {
-                                    staticClass: "action_btn left",
-                                    attrs: {
-                                      type: "primary",
-                                      size: "mini",
-                                      plain: ""
-                                    },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.markPaymentRefunded(props.row)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("View Details")]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        !props.row.refunded
-                          ? _c(
-                              "el-button",
-                              {
-                                staticClass: "action_btn",
-                                attrs: {
-                                  type: "danger",
-                                  size: "mini",
-                                  plain: ""
-                                },
-                                on: {
-                                  click: function($event) {
-                                    _vm.markPaymentRefunded(props.row)
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "default",
+                      fn: function(props) {
+                        return [
+                          props.row.link
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: props.row.link,
+                                    target: "_blank"
                                   }
-                                }
-                              },
-                              [_vm._v("Mark Refunded")]
-                            )
-                          : _vm._e()
-                      ]
+                                },
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      staticClass: "action_btn left",
+                                      attrs: {
+                                        type: "primary",
+                                        size: "mini",
+                                        plain: ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.markPaymentRefunded(
+                                            props.row
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("View Details")]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !props.row.refunded
+                            ? _c(
+                                "el-button",
+                                {
+                                  staticClass: "action_btn",
+                                  attrs: {
+                                    type: "danger",
+                                    size: "mini",
+                                    plain: ""
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.markPaymentRefunded(props.row)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Mark Refunded")]
+                              )
+                            : _vm._e()
+                        ]
+                      }
                     }
-                  }
-                ])
+                  ],
+                  null,
+                  false,
+                  3435884555
+                )
               })
             : _vm._e()
         ],

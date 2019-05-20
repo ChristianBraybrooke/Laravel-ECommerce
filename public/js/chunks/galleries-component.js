@@ -128,12 +128,12 @@ var head = __webpack_require__("./node_modules/lodash.head/index.js");
     selectable: {
       type: Number,
       required: false,
-      default: function _default() {}
+      "default": function _default() {}
     },
     inModal: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     }
@@ -192,7 +192,7 @@ var head = __webpack_require__("./node_modules/lodash.head/index.js");
         this.galleries = data.data;
         this.loading = false;
         this.setCurrentGallery(true);
-      }.bind(this)).catch(function () {
+      }.bind(this))["catch"](function () {
         this.loading = false;
       }.bind(this));
     },
@@ -225,7 +225,7 @@ var head = __webpack_require__("./node_modules/lodash.head/index.js");
           this.$set(this.showGallery, gallery.id, {
             show: true
           });
-        }.bind(this)).catch(function (error) {
+        }.bind(this))["catch"](function (error) {
           this.errors = error;
           this.loading = false;
         }.bind(this));
@@ -257,7 +257,7 @@ var head = __webpack_require__("./node_modules/lodash.head/index.js");
             this.loading = false;
             this.addGalleryPopoverVisible = false;
             this.$refs.createGalleryName.resetField();
-          }.bind(_this)).catch(function () {
+          }.bind(_this))["catch"](function () {
             this.loading = false;
           }.bind(_this));
         }
@@ -268,12 +268,12 @@ var head = __webpack_require__("./node_modules/lodash.head/index.js");
       var gallery = this.getGalleryFromTabIndex(tabIndex);
 
       if (gallery) {
-        __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].delete({
+        __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */]["delete"]({
           path: 'galleries/' + gallery.id
         }).then(function () {
           this.galleries.splice(this.galleries.indexOf(gallery), 1);
           this.loading = false;
-        }.bind(this)).catch(function () {
+        }.bind(this))["catch"](function () {
           this.loading = false;
         }.bind(this));
       } else {
@@ -2860,7 +2860,7 @@ var render = function() {
                     },
                     keyup: function($event) {
                       if (
-                        !("button" in $event) &&
+                        !$event.type.indexOf("key") &&
                         _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
                       ) {
                         return null

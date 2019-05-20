@@ -8,7 +8,7 @@
       <el-option
         v-for="option in field.options"
         :key="option.id"
-        :value="option"
+        :value="mergedFieldValue(option)"
         :label="optionLabel(option)"/>
     </el-select>
   </form-item>

@@ -180,13 +180,13 @@ var formInclude = ['order', 'rules', 'type', 'options', 'is_order_form', 'effect
       __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].get({
         path: 'forms/' + this.formId,
         params: {
-          with: formWith,
+          "with": formWith,
           include: formInclude
         }
       }).then(function (data) {
         this.loading = false;
         this.form = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.formErrors = error;
       }.bind(this));
@@ -205,7 +205,7 @@ var formInclude = ['order', 'rules', 'type', 'options', 'is_order_form', 'effect
         if (valid) {
           _this.loading = true;
           _this.formErrors = {};
-          _this.form.with = formWith;
+          _this.form["with"] = formWith;
           _this.form.include = formInclude;
           __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].persist('put', {
             path: 'forms/' + _this.formId,
@@ -218,7 +218,7 @@ var formInclude = ['order', 'rules', 'type', 'options', 'is_order_form', 'effect
               type: 'success',
               showClose: true
             });
-          }.bind(_this)).catch(function (error) {
+          }.bind(_this))["catch"](function (error) {
             this.loading = false;
             this.formErrors = error;
           }.bind(_this));
@@ -2984,7 +2984,7 @@ var render = function() {
                             attrs: { type: "primary" },
                             on: {
                               click: function($event) {
-                                _vm.minimiseSectionCard(section)
+                                return _vm.minimiseSectionCard(section)
                               }
                             }
                           },
@@ -3005,7 +3005,7 @@ var render = function() {
                             attrs: { type: "danger" },
                             on: {
                               click: function($event) {
-                                _vm.deleteSection(section)
+                                return _vm.deleteSection(section)
                               }
                             }
                           },
@@ -3051,7 +3051,7 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  _vm.addSection()
+                  return _vm.addSection()
                 }
               }
             },
@@ -3078,7 +3078,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          _vm.submitForm("formForm")
+                          return _vm.submitForm("formForm")
                         }
                       }
                     },

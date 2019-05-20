@@ -287,73 +287,73 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
     typeNamePlural: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return this.typeName + 's';
       }
     },
     requestWith: {
       type: [String, Array],
       required: false,
-      default: function _default() {}
+      "default": function _default() {}
     },
     requestIncludes: {
       type: [String, Array],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     baseUrl: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return this.typeNamePlural;
       }
     },
     bulkUpdateUrl: {
       type: String,
       required: false,
-      default: function _default() {}
+      "default": function _default() {}
     },
     editPath: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     },
     fullModal: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     tableOptions: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     withParams: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     createForm: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     createFormRules: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {
           name: [{
             required: true,
@@ -371,7 +371,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
     basePaginationMeta: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     }
@@ -542,7 +542,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
       this.loading = true;
       this.dataErrors = {};
       var params = Object.assign(this.withParams, {
-        with: this.requestWith,
+        "with": this.requestWith,
         include: this.requestIncludes,
         limit: this.paginationMeta.perPage,
         ascending: this.paginationMeta.ascending,
@@ -563,7 +563,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
           currentPage: data.meta.current_page
         };
         this.loading = false;
-      }.bind(this)).catch(function (errors) {
+      }.bind(this))["catch"](function (errors) {
         this.dataErrors = errors;
         this.loading = false;
       }.bind(this));
@@ -597,7 +597,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
         }
 
         this.loading = false;
-      }.bind(this)).catch(function (errors) {
+      }.bind(this))["catch"](function (errors) {
         this.dataErrors = errors;
         this.loading = false;
       }.bind(this));
@@ -612,7 +612,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
      */
     deleteData: function deleteData(row) {
       this.dataErrors = {};
-      __WEBPACK_IMPORTED_MODULE_1_services_api_service_js__["a" /* default */].delete({
+      __WEBPACK_IMPORTED_MODULE_1_services_api_service_js__["a" /* default */]["delete"]({
         path: (this.baseUrl ? this.baseUrl : this.typeName) + '/' + row.id
       }).then(function () {
         this.Data.splice(this.Data.indexOf(row), 1);
@@ -623,7 +623,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
           type: 'success',
           showClose: true
         });
-      }.bind(this)).catch(function (errors) {
+      }.bind(this))["catch"](function (errors) {
         this.dataErrors = errors;
       }.bind(this));
     },
@@ -649,7 +649,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
 
       this.$refs.createForm.validate(function (valid) {
         if (valid) {
-          _this.createFormData.with = _this.requestWith;
+          _this.createFormData["with"] = _this.requestWith;
           _this.createFormData.include = _this.requestIncludes;
           __WEBPACK_IMPORTED_MODULE_1_services_api_service_js__["a" /* default */].persist('post', {
             path: _this.baseUrl ? _this.baseUrl : _this.typeName,
@@ -663,7 +663,7 @@ var findKey = __webpack_require__("./node_modules/lodash.findkey/index.js");
               type: 'success',
               showClose: true
             });
-          }.bind(_this)).catch(function (errors) {
+          }.bind(_this))["catch"](function (errors) {
             this.createErrors = errors;
           }.bind(_this));
         } else {}
@@ -5850,75 +5850,82 @@ var render = function() {
           _vm._v(" "),
           _c("el-table-column", {
             attrs: { label: "Actions" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(scope) {
-                  return [
-                    _vm._t(
-                      "actionButtons",
-                      [
-                        _vm.mergedTableOptions.viewText
-                          ? _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  to: {
-                                    path:
-                                      _vm.editPathFormated + "/" + scope.row.id
+            scopedSlots: _vm._u(
+              [
+                {
+                  key: "default",
+                  fn: function(scope) {
+                    return [
+                      _vm._t(
+                        "actionButtons",
+                        [
+                          _vm.mergedTableOptions.viewText
+                            ? _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      path:
+                                        _vm.editPathFormated +
+                                        "/" +
+                                        scope.row.id
+                                    }
                                   }
-                                }
-                              },
-                              [
-                                _c(
-                                  "el-button",
-                                  {
-                                    staticClass: "action_btn view_btn",
-                                    attrs: { size: "mini" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(_vm.mergedTableOptions.viewText) +
-                                        "\n            "
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.mergedTableOptions.deleteText
-                          ? _c(
-                              "el-button",
-                              {
-                                staticClass: "action_btn delete_btn",
-                                attrs: { size: "mini", type: "danger" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.deleteData(scope.row)
+                                },
+                                [
+                                  _c(
+                                    "el-button",
+                                    {
+                                      staticClass: "action_btn view_btn",
+                                      attrs: { size: "mini" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.mergedTableOptions.viewText
+                                        ) + "\n            "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.mergedTableOptions.deleteText
+                            ? _c(
+                                "el-button",
+                                {
+                                  staticClass: "action_btn delete_btn",
+                                  attrs: { size: "mini", type: "danger" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteData(scope.row)
+                                    }
                                   }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(_vm.mergedTableOptions.deleteText) +
-                                    "\n          "
-                                )
-                              ]
-                            )
-                          : _vm._e()
-                      ],
-                      {
-                        row: scope.row,
-                        delete: _vm.deleteData,
-                        editPathFormated: _vm.editPathFormated
-                      }
-                    )
-                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(_vm.mergedTableOptions.deleteText) +
+                                      "\n          "
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ],
+                        {
+                          row: scope.row,
+                          delete: _vm.deleteData,
+                          editPathFormated: _vm.editPathFormated
+                        }
+                      )
+                    ]
+                  }
                 }
-              }
-            ])
+              ],
+              null,
+              true
+            )
           })
         ],
         2
@@ -5985,7 +5992,7 @@ var render = function() {
                 },
                 keyup: function($event) {
                   if (
-                    !("button" in $event) &&
+                    !$event.type.indexOf("key") &&
                     _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
                   ) {
                     return null
@@ -6355,7 +6362,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
     var rowColour = '';
     colourRules.forEach(function (rule) {
-      var ifPath = _this3.replaceWhereLookup(rule.if, row);
+      var ifPath = _this3.replaceWhereLookup(rule["if"], row);
 
       var ifValue = _this3.dotToObjectPath(ifPath, row);
 
