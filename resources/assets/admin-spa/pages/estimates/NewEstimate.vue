@@ -102,14 +102,14 @@ export default {
       order: {
         status: null,
         customer: {},
-        shipping_rate: 60,
+        shipping_rate: 80,
         discount_rate: 0,
         billing_address: {},
         shipping_address: {},
         items: [],
         cart: {
           totals: {
-            Shipping: 60,
+            Shipping: 80,
             Discount: 0
           }
         },
