@@ -55,7 +55,7 @@ var replace = __webpack_require__("./node_modules/lodash.replace/index.js");
     fileList: {
       type: Array,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     }

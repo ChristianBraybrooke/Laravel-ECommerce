@@ -6,6 +6,7 @@
       :plain="mergedButton.plain"
       :class="mergedButton.class"
       :type="mergedButton.type"
+      :icon="mergedButton.icon"
       @click="openModal">{{ (loading ? mergedButton.loading : mergedButton.text) }}
     </el-button>
 
@@ -164,6 +165,7 @@
                         <el-col
                           v-for="field in section.fields.data"
                           :key="field.id">
+                          {{ field.key }}
                           <component
                             v-if="calculateDynamicVisible(field.rules)"
                             :is="`${field.type}-form-field`"
@@ -171,7 +173,7 @@
                             :product="customisationForm.product"
                             :section="section"
                             :field="field"
-                            :prop="`${field.name}`"/>
+                            :prop="`${field.key}`"/>
                         </el-col>
                       </el-row>
                     </el-col>
@@ -425,7 +427,8 @@ export default {
         type: 'success',
         size: 'large',
         plain: false,
-        class: ''
+        class: '',
+        icon: ''
       }
     },
 
@@ -486,10 +489,24 @@ export default {
     },
 
     mergedProduct () {
+      var product = {
+        id: this.customisationForm.product.id,
+        name: this.customisationForm.product.name,
+        variant: {
+          id: this.customisationForm.product.variant.id,
+          name: this.customisationForm.product.variant.name
+        }
+      }
+      var totals = {
+        unit_price: this.customisationForm.product.price,
+        extras: 0
+      }
       return {
-        ...this.customisationForm.product,
-        ...{ quantity: this.customisationForm.quantity },
-        ...{ options: this.customisationForm.options }
+        ...{ product: product },
+        ...{ totals: totals },
+        ...{ qty: this.customisationForm.quantity },
+        ...{ customisation_data: this.customisationForm.options },
+        ...{ form: { id: this.customisationForm.product.order_form.id } }
       }
     }
   },
@@ -594,6 +611,24 @@ export default {
       }
       this.clonedPrice = clone(product.price)
       this.customisationForm.product = product
+
+      if (this.customisationForm.product.order_form) {
+        this.customisationForm.product.order_form.sections.data.forEach((section) => {
+          section.fields.data.forEach((field) => {
+            if (field.key) {
+              this.$set(this.customisationForm.options, field.key, {
+                value: null,
+                name: null,
+                group: section.name,
+                type: field.type,
+                appends: field.appends,
+                prepends: field.prepends,
+                label: field.name
+              })
+            }
+          })
+        })
+      }
     },
 
     calculateDynamicVisible (rules) {

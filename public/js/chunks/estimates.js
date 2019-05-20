@@ -256,7 +256,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
             orderId: "".concat(val.id)
           }
         });
-      }).catch(function () {// this.loading = false;
+      })["catch"](function () {// this.loading = false;
         // this.errors = error;
       });
     }
@@ -389,7 +389,7 @@ var render = function() {
                       attrs: { size: "mini", type: "danger" },
                       on: {
                         click: function($event) {
-                          props.delete(props.row)
+                          return props.delete(props.row)
                         }
                       }
                     },

@@ -170,42 +170,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     type: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return '';
       }
     },
     span: {
       type: Number,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return 8;
       }
     },
     offset: {
       type: Number,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return 4;
       }
     },
     required: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     prop: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return '';
       }
     },
     prefixProp: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     }

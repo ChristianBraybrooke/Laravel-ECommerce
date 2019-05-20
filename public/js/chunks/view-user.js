@@ -168,7 +168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (data) {
         _this.user = data.data;
         _this.loading = false;
-      }).catch(function (error) {
+      })["catch"](function (error) {
         _this.errors = error;
         _this.loading = false;
       });
@@ -219,7 +219,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               type: 'success',
               showClose: true
             });
-          }).catch(function (error) {
+          })["catch"](function (error) {
             _this2.loading = false;
             _this2.pageErrors = error;
           });
@@ -502,7 +502,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              _vm.submitForm("userForm")
+                              return _vm.submitForm("userForm")
                             }
                           }
                         },

@@ -7,7 +7,7 @@
       class="product_form_radio">
       <el-radio-button
         v-for="option in field.options"
-        :label="option"
+        :label="mergedFieldValue(option)"
         :key="option.id">
         {{ optionLabel(option) }}
       </el-radio-button>

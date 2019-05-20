@@ -2710,7 +2710,7 @@ var render = function() {
                                     attrs: { type: "primary" },
                                     on: {
                                       click: function($event) {
-                                        _vm.minimiseCustomisationCard(
+                                        return _vm.minimiseCustomisationCard(
                                           customisation,
                                           props.productForm.customisations.data
                                         )
@@ -2739,7 +2739,7 @@ var render = function() {
                                     attrs: { type: "danger" },
                                     on: {
                                       click: function($event) {
-                                        _vm.deleteCustomisation(
+                                        return _vm.deleteCustomisation(
                                           customisation,
                                           props.productForm.customisations.data
                                         )
@@ -2787,7 +2787,7 @@ var render = function() {
                     attrs: { type: "primary", icon: "el-icon-plus", plain: "" },
                     on: {
                       click: function($event) {
-                        _vm.addCustomisation(
+                        return _vm.addCustomisation(
                           props.productForm.customisations.data
                         )
                       }

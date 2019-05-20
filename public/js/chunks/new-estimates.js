@@ -85,32 +85,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'NewEstimate',
   components: {
     NewProductForm: function NewProductForm() {
-      return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
+      return __webpack_require__.e/* import() */(36/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
     },
     ProductTable: function ProductTable() {
-      return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
+      return __webpack_require__.e/* import() */(35/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
     },
     Errors: function Errors() {
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
     CustomerInformationForm: function CustomerInformationForm() {
-      return __webpack_require__.e/* import() */(40).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CustomerInformationForm.vue"));
+      return __webpack_require__.e/* import() */(40/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CustomerInformationForm.vue"));
     },
     OrderRef: function OrderRef() {
-      return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/OrderRef.vue"));
+      return __webpack_require__.e/* import() */(39/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/OrderRef.vue"));
     }
   },
   props: {
     isProForma: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     }
@@ -119,28 +121,194 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       loading: false,
       errors: {},
+      // order: {
+      //   status: null,
+      //   customer: {},
+      //   shipping_rate: 60,
+      //   discount_rate: 0,
+      //   billing_address: {},
+      //   shipping_address: {},
+      //   products: [],
+      //   totals: {
+      //     shipping: 60,
+      //     discount: 0
+      //   },
+      //   use_billing_for_shipping: false,
+      //   needs_address: 'No Address'
+      // }
       order: {
-        status: null,
+        status: 'STATUS_AWAITING_PAYMENT',
         customer: {},
         shipping_rate: 60,
         discount_rate: 0,
-        billing_address: {},
-        shipping_address: {},
-        items: [],
-        cart: {
+        billing_address: {
+          country: 'United Kingdom'
+        },
+        shipping_address: {
+          country: 'United Kingdom'
+        },
+        products: [{
+          product: {
+            id: 221,
+            name: 'Quad Enclosed',
+            variant: {
+              id: 2,
+              name: 'Eco Cubicles'
+            }
+          },
           totals: {
-            Shipping: 60,
-            Discount: 0
+            unit_price: '864.00',
+            extras: 0
+          },
+          qty: 1,
+          customisation_data: {
+            length: {
+              group: 'Measurements',
+              value: 2000,
+              name: null,
+              type: 'number',
+              label: 'Length',
+              appends: 'mm'
+            },
+            depth: {
+              group: 'Measurements',
+              value: 100,
+              name: null,
+              type: 'number',
+              label: 'Depth',
+              appends: 'mm'
+            },
+            height: {
+              group: 'Measurements',
+              name: '1850mm Standard',
+              value: '1850mm',
+              type: 'radio',
+              label: 'Height',
+              appends: 'mm'
+            },
+            cubicle_material: {
+              group: 'Materials',
+              name: 'MFC',
+              value: 'MFC',
+              type: 'radio',
+              label: 'Cubicle Material'
+            },
+            pilaster_colour: {
+              group: 'Cubicles',
+              name: 'Birdie Beech Light',
+              value: 'Birdie Beech Light',
+              type: 'select',
+              label: 'Pilaster Colour'
+            },
+            division_colour: {
+              group: 'Cubicles',
+              name: 'Birdie Beech Light',
+              value: 'Birdie Beech Light',
+              type: 'select',
+              label: 'Division Colour'
+            },
+            notes: {
+              group: 'Notes',
+              value: null,
+              name: null,
+              type: 'textarea',
+              label: 'Additional notes'
+            },
+            layout_description: {
+              group: 'Layout',
+              value: null,
+              name: null,
+              type: 'text',
+              label: 'Layout Description'
+            },
+            legs: {
+              group: 'Fixtures',
+              name: '50mm',
+              value: '50',
+              type: 'radio',
+              label: 'Cubicle Legs'
+            },
+            cubicle: {
+              group: 'Cubicles',
+              value: null,
+              name: null,
+              type: 'dynamic',
+              label: 'Cubicle'
+            },
+            cubicle_1_door_function: {
+              group: 'Cubicles',
+              name: 'Inward',
+              value: 'Inward',
+              type: 'radio',
+              label: 'Door Function'
+            },
+            cubicle_1_hinge_side: {
+              group: 'Cubicles',
+              name: 'Left',
+              value: 'Left',
+              type: 'radio',
+              label: 'Hinge Side'
+            },
+            cubicle_2_door_function: {
+              group: 'Cubicles',
+              name: 'Inward',
+              value: 'Inward',
+              type: 'radio',
+              label: 'Door Function'
+            },
+            cubicle_2_hinge_side: {
+              group: 'Cubicles',
+              name: 'Left',
+              value: 'Left',
+              type: 'radio',
+              label: 'Hinge Side'
+            },
+            cubicle_3_hinge_side: {
+              group: 'Cubicles',
+              name: 'Left',
+              value: 'Left',
+              type: 'radio',
+              label: 'Hinge Side'
+            },
+            cubicle_3_door_function: {
+              group: 'Cubicles',
+              name: 'Inward',
+              value: 'Inward',
+              type: 'radio',
+              label: 'Door Function'
+            },
+            cubicle_4_door_function: {
+              group: 'Cubicles',
+              name: 'Inward',
+              value: 'Inward',
+              type: 'radio',
+              label: 'Door Function'
+            },
+            cubicle_4_hinge_side: {
+              group: 'Cubicles',
+              name: 'Left',
+              value: 'Left',
+              type: 'radio',
+              label: 'Hinge Side'
+            }
+          },
+          form: {
+            id: 6
           }
+        }],
+        totals: {
+          shipping: 60,
+          discount: 0
         },
         use_billing_for_shipping: false,
-        needs_address: 'No Address'
+        needs_address: 'No Address',
+        ref: 42
       }
     };
   },
   computed: {
     orderTotals: function orderTotals() {
-      return __WEBPACK_IMPORTED_MODULE_0_utils_order__["a" /* default */].totals(this.order.items, this.order.cart.totals['Shipping'], this.order.cart.totals['Discount']);
+      return __WEBPACK_IMPORTED_MODULE_0_utils_order__["a" /* default */].totals(this.order.products, this.order.totals.shipping, this.order.totals.discount);
     },
     documentName: function documentName() {
       return this.isProForma ? 'Pro-Forma' : 'Estimate';
@@ -148,11 +316,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     console.log('NewEstimate.vue mounted!');
-    this.order.status = this.documentName;
+    this.order.status = 'STATUS_AWAITING_PAYMENT';
   },
   methods: {
     addProductToTable: function addProductToTable(product) {
-      this.order.items.push(product);
+      this.order.products.push(product);
     },
     updateProductOnTable: function updateProductOnTable(product) {//
     },
@@ -173,17 +341,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             orderId: data.data.id.toString()
           }
         });
-      }).catch(function (error) {
+      })["catch"](function (error) {
         _this.loading = false;
         _this.errors = error;
       });
     },
     handleProductUpdate: function handleProductUpdate(obj) {
-      var currentProduct = this.order.items[obj.index];
+      var currentProduct = this.order.products[obj.index];
 
       var product = _objectSpread({}, currentProduct, obj.product);
 
-      this.order.items.splice(obj.index, 1, product);
+      this.order.products.splice(obj.index, 1, product);
     }
   }
 });
@@ -198,7 +366,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -306,8 +474,8 @@ var render = function() {
         ],
         1
       ),
-      _vm._v(" "),
-      _vm.order.items
+      _vm._v("\n\n  " + _vm._s(_vm.order) + "\n\n  "),
+      _vm.order.products
         ? _c(
             "el-row",
             { attrs: { gutter: 20 } },
@@ -346,7 +514,7 @@ var render = function() {
                   attrs: { type: "primary" },
                   on: {
                     click: function($event) {
-                      _vm.processSubmit()
+                      return _vm.processSubmit()
                     }
                   }
                 },

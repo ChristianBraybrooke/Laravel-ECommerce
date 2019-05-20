@@ -192,35 +192,35 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
     inModal: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     meta: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     getGalleryFiles: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     galleryFiles: {
       type: Array,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     selectable: {
       type: Number,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     }
@@ -332,7 +332,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
           this.files = data.data;
           this.$set(this.galleryMeta, 'search', search);
         }
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         if (load) {
           this.loading = false;
         }
@@ -345,7 +345,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
     deleteFile: function deleteFile(file) {
       this.loading = true;
       this.errors = {};
-      __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].delete({
+      __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */]["delete"]({
         path: 'media/' + file.id
       }).then(function (data) {
         this.loading = false;
@@ -360,7 +360,7 @@ var debounce = __webpack_require__("./node_modules/lodash.debounce/index.js");
           file: file,
           gallery: this.galleryId
         });
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.errors = error;
       }.bind(this));
@@ -7833,7 +7833,7 @@ var render = function() {
                       : "gallery_file_wrap",
                     on: {
                       click: function($event) {
-                        _vm.handleFileClick(file, $event)
+                        return _vm.handleFileClick(file, $event)
                       }
                     }
                   },
@@ -7872,7 +7872,7 @@ var render = function() {
                               attrs: { id: "cancel" },
                               on: {
                                 click: function($event) {
-                                  _vm.handleIconClick("cancel", file)
+                                  return _vm.handleIconClick("cancel", file)
                                 }
                               }
                             },
@@ -7893,7 +7893,7 @@ var render = function() {
                                   attrs: { id: "view" },
                                   on: {
                                     click: function($event) {
-                                      _vm.handleIconClick("view", file)
+                                      return _vm.handleIconClick("view", file)
                                     }
                                   }
                                 })
@@ -7939,7 +7939,9 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                _vm.hideDeletePopover(file)
+                                                return _vm.hideDeletePopover(
+                                                  file
+                                                )
                                               }
                                             }
                                           },
@@ -7955,7 +7957,7 @@ var render = function() {
                                             },
                                             on: {
                                               click: function($event) {
-                                                _vm.deleteFile(file)
+                                                return _vm.deleteFile(file)
                                               }
                                             }
                                           },
@@ -7974,7 +7976,10 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          _vm.handleIconClick("delete", file)
+                                          return _vm.handleIconClick(
+                                            "delete",
+                                            file
+                                          )
                                         }
                                       },
                                       slot: "reference"
@@ -8043,7 +8048,7 @@ var render = function() {
               },
               on: {
                 "update:visible": function($event) {
-                  _vm.$set(_vm.fileDialog, "show", $event)
+                  return _vm.$set(_vm.fileDialog, "show", $event)
                 }
               }
             },

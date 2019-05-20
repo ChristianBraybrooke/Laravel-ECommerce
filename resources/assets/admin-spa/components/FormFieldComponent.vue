@@ -16,6 +16,19 @@
         </el-col>
         <el-col
           :lg="12"
+          :xl="4">
+          <el-form-item
+            label="Key"
+            size="small"
+            prop="key">
+            <el-input
+              v-model="model.key"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col
+          :lg="24"
           :xl="6">
           <el-form-item
             label="Description"

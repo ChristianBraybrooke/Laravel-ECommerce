@@ -134,84 +134,84 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     formName: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return 'Add New';
       }
     },
     individualName: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return 'Item';
       }
     },
     formAddButton: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return 'Add';
       }
     },
     amountPrefix: {
       type: [String, Number],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return '';
       }
     },
     formatAmount: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     additionalFields: {
       type: [Array, Object],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     onAdditionAdded: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function (model, total, additions) {};
       }
     },
     baseAdditions: {
       type: [Object],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     showTotal: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     totalText: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return '';
       }
     },
     totalButton: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     editable: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     }
@@ -249,7 +249,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
       this.$confirm('Are you sure to close?').then(function (_) {
         _this2.showModal = false;
-      }).catch(function (_) {});
+      })["catch"](function (_) {});
     },
     toggleEdit: function toggleEdit() {
       this.inEdit = !this.inEdit;
@@ -489,28 +489,28 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
     editable: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     languageOptions: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     language: {
       required: false,
       type: String,
-      default: function _default() {
+      "default": function _default() {
         return 'en';
       }
     },
     accordian: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     }
@@ -929,28 +929,28 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     editable: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     languageOptions: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     showSectionTitle: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     onDeleteContent: {
       required: false,
       type: Function,
-      default: function _default() {
+      "default": function _default() {
         return function (contentKey) {};
       }
     }
@@ -1114,7 +1114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onNotesSave: {
       required: false,
       type: Function,
-      default: function _default() {
+      "default": function _default() {
         return function (notes) {};
       }
     }
@@ -1244,21 +1244,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onPaymentProcessed: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function (payment) {};
       }
     },
     showPayments: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     formStartingAmount: {
       required: false,
       type: [String, Number],
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     }
@@ -1281,7 +1281,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$confirm('Are you sure to close the payment form?').then(function (_) {
         _this.showModal = false;
-      }).catch(function (_) {});
+      })["catch"](function (_) {});
     },
     clearModal: function clearModal(payment) {
       this.onPaymentProcessed(payment);
@@ -1351,28 +1351,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadOnMount: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     download: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     printButton: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     deliveryNote: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     }
@@ -1383,7 +1383,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       displayIframe: false,
       iframeLoaded: false,
       defaultPrintButton: {
-        class: '',
+        "class": '',
         type: 'success',
         size: 'small',
         style: 'float:right; margin-bottom:20px; margin-right:10px;',
@@ -1792,7 +1792,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
             showClose: true
           });
           this.loading = false;
-        }.bind(this)).catch(function () {
+        }.bind(this))["catch"](function () {
           this.loading = false;
         }.bind(this));
       }
@@ -1898,10 +1898,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
     CustomerInformationForm: function CustomerInformationForm() {
-      return __webpack_require__.e/* import() */(40).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CustomerInformationForm.vue"));
+      return __webpack_require__.e/* import() */(40/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CustomerInformationForm.vue"));
     },
     OrderRef: function OrderRef() {
-      return __webpack_require__.e/* import() */(39).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/OrderRef.vue"));
+      return __webpack_require__.e/* import() */(39/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/OrderRef.vue"));
     }
   },
   props: {},
@@ -1968,7 +1968,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   name: 'orders.step2'
                 });
               }
-            }.bind(_this)).catch(function (error) {
+            }.bind(_this))["catch"](function (error) {
               this.loading = false;
               this.orderErrors = error;
             }.bind(_this));
@@ -1983,7 +1983,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               this.$router.push({
                 name: 'orders.step2'
               });
-            }.bind(_this)).catch(function (error) {
+            }.bind(_this))["catch"](function (error) {
               this.loading = false;
               this.orderErrors = error;
             }.bind(_this));
@@ -2212,10 +2212,10 @@ var productFormTemplate = {
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
     NewProductForm: function NewProductForm() {
-      return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
+      return __webpack_require__.e/* import() */(36/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
     },
     ProductTable: function ProductTable() {
-      return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
+      return __webpack_require__.e/* import() */(35/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
     }
   },
   props: {},
@@ -2320,12 +2320,12 @@ var productFormTemplate = {
           path: 'collections/' + productCatId,
           params: {
             include: ['type', 'options', 'price', 'effects_price', 'no_shop_data'],
-            with: ['types.products.variants.orderForm.sections.fields']
+            "with": ['types.products.variants.orderForm.sections.fields']
           }
         }).then(function (data) {
           this.productTypes = data.data;
           this.loadingProductCategories = false;
-        }.bind(this)).catch(function () {
+        }.bind(this))["catch"](function () {
           this.loadingProductCategories = false; // this.errors = error;
         }.bind(this));
       }
@@ -2370,7 +2370,7 @@ var productFormTemplate = {
         _this.productAddErrors = {};
         _this.addProductForm = productFormTemplate;
         _this.showProductModal = false;
-      }).catch(function (_) {});
+      })["catch"](function (_) {});
     },
 
     /**
@@ -2398,12 +2398,12 @@ var productFormTemplate = {
         path: 'products/' + val + '/variants',
         params: {
           include: ['blank_variants', 'type', 'options', 'price', 'effects_price'],
-          with: ['orderForm.sections.fields']
+          "with": ['orderForm.sections.fields']
         }
       }).then(function (data) {
         this.loading = false;
         this.products[productIndex].variants = data.data;
-      }.bind(this)).catch(function () {
+      }.bind(this))["catch"](function () {
         this.loading = false;
       }.bind(this));
     }, 1000),
@@ -2511,7 +2511,7 @@ var productFormTemplate = {
             name: 'orders.step3'
           });
         }
-      }.bind(this)).catch(function () {
+      }.bind(this))["catch"](function () {
         this.loading = false;
       }.bind(this));
     },
@@ -3124,7 +3124,7 @@ var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
       }).then(function (data) {
         this.products = data.data;
         this.loading = false;
-      }.bind(this)).catch(function (errors) {
+      }.bind(this))["catch"](function (errors) {
         this.loading = false;
       }.bind(this));
     },
@@ -3139,7 +3139,7 @@ var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
           type: 'success',
           showClose: true
         });
-      }.bind(this)).catch(function () {
+      }.bind(this))["catch"](function () {
         this.$message({
           message: 'Error updating status.',
           type: 'error',
@@ -3182,7 +3182,7 @@ var findIndex = __webpack_require__("./node_modules/lodash.findindex/index.js");
           });
 
           _this7.loading = false;
-        }).catch(function () {
+        })["catch"](function () {
           _this7.loading = false;
         });
       }
@@ -3535,7 +3535,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
     ProductTable: function ProductTable() {
-      return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
+      return __webpack_require__.e/* import() */(35/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
     },
     CustomerDetailsForm: function CustomerDetailsForm() {
       return __webpack_require__.e/* import() */(52).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/CustomerDetailsForm.vue"));
@@ -3545,7 +3545,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
     },
     ContentComponent: __WEBPACK_IMPORTED_MODULE_3_components_ContentComponent___default.a,
     NewProductForm: function NewProductForm() {
-      return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
+      return __webpack_require__.e/* import() */(36/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
     },
     PrintDownloadButton: function PrintDownloadButton() {
       return new Promise(function(resolve) { resolve(); }).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PrintDownloadButton.vue"));
@@ -3631,7 +3631,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
       __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].get({
         path: 'orders/' + this.orderId,
         params: {
-          with: ['content', 'payments'],
+          "with": ['content', 'payments'],
           include: ['payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source', 'payment.refunded', 'payment.notes']
         }
       }).then(function (data) {
@@ -3640,7 +3640,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
         this.orderStatuses = data.statuses;
         this.shopData = data.shop_data;
         this.setShopData(data.shop_data);
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.orderErrors = error;
       }.bind(this));
@@ -3654,7 +3654,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
     updateOrder: function updateOrder() {
       this.orderErrors = {};
       this.loading = true;
-      this.order.with = ['content', 'payments'];
+      this.order["with"] = ['content', 'payments'];
       this.order.include = ['payment.reference', 'payment.method', 'payment.currency', 'payment.amount', 'payment.fee', 'payment.source', 'payment.refunded', 'payment.notes'];
       __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].persist('put', {
         path: 'orders/' + this.orderId,
@@ -3667,7 +3667,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
         this.setShopData(data.shop_data);
         this.edit_billing = false;
         this.edit_shipping = false;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.orderErrors = error;
       }.bind(this));
@@ -3680,7 +3680,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
            */
     deleteOrder: function deleteOrder() {
       this.loading = true;
-      __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].delete({
+      __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */]["delete"]({
         path: 'orders/' + this.order.id
       }).then(function () {
         this.loading = false;
@@ -3692,7 +3692,7 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
         this.$router.push({
           name: 'orders'
         });
-      }.bind(this)).catch(function () {
+      }.bind(this))["catch"](function () {
         this.loading = false;
       }.bind(this));
     },
@@ -16630,7 +16630,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -16737,7 +16737,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -16851,7 +16851,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -16964,7 +16964,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -17077,7 +17077,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -17227,7 +17227,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -17276,7 +17276,7 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.addJsonContent()
+                                        return _vm.addJsonContent()
                                       }
                                     },
                                     slot: "reference"
@@ -17329,7 +17329,9 @@ var render = function() {
                           attrs: { size: "mini", type: "text" },
                           on: {
                             click: function($event) {
-                              _vm.$refs["content_delete_confirm"].doClose()
+                              return _vm.$refs[
+                                "content_delete_confirm"
+                              ].doClose()
                             }
                           }
                         },
@@ -17342,7 +17344,7 @@ var render = function() {
                           attrs: { type: "primary", size: "mini" },
                           on: {
                             click: function($event) {
-                              _vm.deleteContent(_vm.contentKey)
+                              return _vm.deleteContent(_vm.contentKey)
                             }
                           }
                         },
@@ -17715,7 +17717,7 @@ var render = function() {
                           attrs: { size: "mini", type: "danger" },
                           on: {
                             click: function($event) {
-                              props.delete(props.row)
+                              return props.delete(props.row)
                             }
                           }
                         },
@@ -17911,7 +17913,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.updateOrder()
+                                  return _vm.updateOrder()
                                 }
                               }
                             },
@@ -18123,7 +18125,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          _vm.updateOrder()
+                                          return _vm.updateOrder()
                                         }
                                       }
                                     },
@@ -18313,7 +18315,7 @@ var render = function() {
                                       },
                                       on: {
                                         click: function($event) {
-                                          _vm.updateOrder()
+                                          return _vm.updateOrder()
                                         }
                                       }
                                     },
@@ -18553,7 +18555,7 @@ var render = function() {
                   attrs: { type: "primary", size: "mini", plain: "" },
                   on: {
                     click: function($event) {
-                      _vm.$refs.deleteOrderPop.doClose()
+                      return _vm.$refs.deleteOrderPop.doClose()
                     }
                   }
                 },
@@ -18566,7 +18568,7 @@ var render = function() {
                   attrs: { type: "danger", size: "mini" },
                   on: {
                     click: function($event) {
-                      _vm.deleteOrder()
+                      return _vm.deleteOrder()
                     }
                   }
                 },
@@ -18746,7 +18748,7 @@ var render = function() {
                           attrs: { type: "primary", plain: "" },
                           on: {
                             click: function($event) {
-                              _vm.processSubmit("orderForm", false)
+                              return _vm.processSubmit("orderForm", false)
                             }
                           }
                         },
@@ -18760,7 +18762,7 @@ var render = function() {
                       attrs: { type: "primary" },
                       on: {
                         click: function($event) {
-                          _vm.processSubmit("orderForm", true)
+                          return _vm.processSubmit("orderForm", true)
                         }
                       }
                     },
@@ -19197,7 +19199,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.addContent(
+                                  return _vm.addContent(
                                     _vm.languageOptions
                                       ? _vm.activeContentTab
                                       : _vm.language
@@ -19356,7 +19358,7 @@ var render = function() {
                   attrs: { type: "primary", plain: "" },
                   on: {
                     click: function($event) {
-                      _vm.processSubmit(false)
+                      return _vm.processSubmit(false)
                     }
                   }
                 },
@@ -19369,7 +19371,7 @@ var render = function() {
                   attrs: { type: "primary" },
                   on: {
                     click: function($event) {
-                      _vm.processSubmit()
+                      return _vm.processSubmit()
                     }
                   }
                 },
@@ -20966,7 +20968,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
 
     var rowColour = '';
     colourRules.forEach(function (rule) {
-      var ifPath = _this3.replaceWhereLookup(rule.if, row);
+      var ifPath = _this3.replaceWhereLookup(rule["if"], row);
 
       var ifValue = _this3.dotToObjectPath(ifPath, row);
 

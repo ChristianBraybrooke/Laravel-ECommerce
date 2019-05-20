@@ -17,6 +17,7 @@ class FormFieldResource extends Resource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'key' => $this->key,
             'order' => $this->when(requestIncludes('order'), $this->order),
             'type' => $this->when(requestIncludes('type'), $this->type),
             'rules' => $this->when(requestIncludes('rules'), $this->rules),

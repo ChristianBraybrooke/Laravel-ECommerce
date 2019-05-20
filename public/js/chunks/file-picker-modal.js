@@ -104,14 +104,14 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     openOnMount: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     selectable: {
       type: Number,
       required: false,
-      default: function _default() {}
+      "default": function _default() {}
     },
     name: {
       type: String,
@@ -120,35 +120,35 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     visible: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     showPreview: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     showBtn: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     currentFiles: {
       type: [Array, Object],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     pickerId: {
       type: [Number, String],
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     }
@@ -894,7 +894,7 @@ var render = function() {
                                     attrs: { type: "primary", size: "mini" },
                                     on: {
                                       click: function($event) {
-                                        _vm.hideDeletePopover(file)
+                                        return _vm.hideDeletePopover(file)
                                       }
                                     }
                                   },
@@ -907,7 +907,7 @@ var render = function() {
                                     attrs: { type: "primary", size: "mini" },
                                     on: {
                                       click: function($event) {
-                                        _vm.deleteFile(file)
+                                        return _vm.deleteFile(file)
                                       }
                                     }
                                   },
@@ -923,7 +923,7 @@ var render = function() {
                               attrs: { slot: "reference", id: "delete" },
                               on: {
                                 click: function($event) {
-                                  _vm.handleIconClick("delete", file)
+                                  return _vm.handleIconClick("delete", file)
                                 }
                               },
                               slot: "reference"

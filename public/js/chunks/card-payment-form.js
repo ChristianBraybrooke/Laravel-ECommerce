@@ -132,21 +132,21 @@ var elements = stripe.elements();
     onTokenCreation: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function (hasError, tokenObject, errorObject) {};
       }
     },
     onFormSubmit: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function () {};
       }
     },
     size: {
       type: String,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return '';
       }
     }

@@ -12431,6 +12431,9 @@ exports.default = {
       filterPlaceholder: 'Enter keyword', // to be translated
       noCheckedFormat: '{total} items', // to be translated
       hasCheckedFormat: '{checked}/{total} checked' // to be translated
+    },
+    image: {
+      error: 'FAILED'
     }
   }
 };
@@ -17299,7 +17302,8 @@ var deepmerge_1 = deepmerge;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill__ = __webpack_require__("./node_modules/babel-polyfill/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_polyfill__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui__ = __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_element_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__router___ = __webpack_require__("./resources/assets/admin-spa/router/index.js");
@@ -17336,17 +17340,17 @@ if (window.bugsnag.active) {
 
   var bugsnagVue = __webpack_require__("./node_modules/bugsnag-vue/dist/bugsnag-vue.js");
 
-  bugsnagClient.use(bugsnagVue(__WEBPACK_IMPORTED_MODULE_1_vue__["default"]));
+  bugsnagClient.use(bugsnagVue(__WEBPACK_IMPORTED_MODULE_1_vue___default.a));
   bugsnagClient.user = window.bugsnag.user;
 }
 
 var token = document.head.querySelector('meta[name="csrf-token"]');
 window.laravel_token = token.content;
-__WEBPACK_IMPORTED_MODULE_1_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, {
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_element_ui___default.a, {
   locale: __WEBPACK_IMPORTED_MODULE_6_element_ui_lib_locale_lang_en___default.a
 });
-__WEBPACK_IMPORTED_MODULE_1_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_7_vue_clipboard2___default.a);
-__WEBPACK_IMPORTED_MODULE_1_vue__["default"].mixin({
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_7_vue_clipboard2___default.a);
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.mixin({
   computed: {
     getSiteBaseURL: function getSiteBaseURL(value) {
       return window.ecommerceConfig.site_url + '/';
@@ -17400,9 +17404,9 @@ __WEBPACK_IMPORTED_MODULE_1_vue__["default"].mixin({
     }
   }
 });
-__WEBPACK_IMPORTED_MODULE_1_vue__["default"].config.productionTip = false; // eslint-disable-next-line no-new
+__WEBPACK_IMPORTED_MODULE_1_vue___default.a.config.productionTip = false; // eslint-disable-next-line no-new
 
-new __WEBPACK_IMPORTED_MODULE_1_vue__["default"]({
+new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
   router: __WEBPACK_IMPORTED_MODULE_3__router___["a" /* default */],
   store: __WEBPACK_IMPORTED_MODULE_4__store_index_js__["a" /* default */],
   render: function render(h) {
@@ -17520,11 +17524,12 @@ module.exports = Component.exports
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]); // Pages
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]); // Pages
 
 var Dashboard = function Dashboard() {
   return __webpack_require__.e/* import() */(28).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/pages/Dashboard.vue"));
@@ -17986,7 +17991,7 @@ var SERVER_UNAUTH_MESSAGE = 'We could not complete the request, because you are 
         params: data.params
       }).then(function (response) {
         resolve(response.data);
-      }).catch(function (error) {
+      })["catch"](function (error) {
         reject(this.errorAdapter(error));
       }.bind(this));
     }.bind(this));
@@ -17999,18 +18004,18 @@ var SERVER_UNAUTH_MESSAGE = 'We could not complete the request, because you are 
    *
    * @return Promise | resolve() or reject()
    */
-  delete: function _delete(data) {
+  "delete": function _delete(data) {
     if (!data.url) {
       data.url = BASE_URL + data.path;
     }
 
     console.log('API Delete: ' + data.url);
     return new Promise(function (resolve, reject) {
-      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete(data.url, window.has(data, 'params') ? {
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a["delete"](data.url, window.has(data, 'params') ? {
         params: data.params
       } : '').then(function (response) {
         resolve(response.data);
-      }).catch(function (error) {
+      })["catch"](function (error) {
         reject(this.errorAdapter(error));
       }.bind(this));
     }.bind(this));
@@ -18037,7 +18042,7 @@ var SERVER_UNAUTH_MESSAGE = 'We could not complete the request, because you are 
     return new Promise(function (resolve, reject) {
       __WEBPACK_IMPORTED_MODULE_0_axios___default.a[method](data.url, data.object, data.params).then(function (response) {
         resolve(response.data);
-      }).catch(function (error) {
+      })["catch"](function (error) {
         reject(this.errorAdapter(error));
       }.bind(this));
     }.bind(this));
@@ -18082,7 +18087,8 @@ var SERVER_UNAUTH_MESSAGE = 'We could not complete the request, because you are 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__("./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex_persistedstate__ = __webpack_require__("./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_collections__ = __webpack_require__("./resources/assets/admin-spa/store/modules/collections.js");
@@ -18096,7 +18102,7 @@ var SERVER_UNAUTH_MESSAGE = 'We could not complete the request, because you are 
 
 
 
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["default"]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["default"]);
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
   modules: {
     collections: __WEBPACK_IMPORTED_MODULE_3__modules_collections__["a" /* default */],
@@ -18158,7 +18164,7 @@ var actions = {
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["c" /* GET_COLLECTIONS */], response.data);
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_COLLECTION_ERRORS */], []);
         resolve(response);
-      }).catch(function (error) {
+      })["catch"](function (error) {
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["d" /* GET_COLLECTION_ERRORS */], error);
         reject(error);
       });
@@ -18346,7 +18352,7 @@ var actions = {
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["e" /* GET_SHOP_DATA */], response.data);
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* GET_SHOP_DATA_ERRORS */], []);
         resolve(response);
-      }).catch(function (error) {
+      })["catch"](function (error) {
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["f" /* GET_SHOP_DATA_ERRORS */], error);
         reject(error);
       });
@@ -18432,7 +18438,7 @@ var actions = {
           commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER */], response.data);
           commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_USER_ERRORS */], []);
           resolve(response.data);
-        }).catch(function (error) {
+        })["catch"](function (error) {
           commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_USER_ERRORS */], error);
           reject(error);
         });
@@ -18463,7 +18469,7 @@ var actions = {
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["i" /* UPDATE_USER */], response.data);
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_USER_ERRORS */], []);
         resolve(response.data);
-      }).catch(function (error) {
+      })["catch"](function (error) {
         commit(__WEBPACK_IMPORTED_MODULE_0__mutation_types__["j" /* UPDATE_USER_ERRORS */], error);
         reject(error);
       });

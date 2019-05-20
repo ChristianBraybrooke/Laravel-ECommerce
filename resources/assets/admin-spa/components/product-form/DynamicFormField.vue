@@ -26,7 +26,7 @@
               :product="product"
               :section="section"
               :field="dynamicfield"
-              :prop="`${field.name} ${loopKey+1} ${dynamicfield.name}`"/>
+              :prop="`${field.key}_${loopKey+1}_${dynamicfield.key}`"/>
           </el-col>
         </el-row>
       </div>

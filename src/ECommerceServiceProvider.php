@@ -613,6 +613,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 ),
             ], 'ecommerce-migrations');
         }
+
+        if (! class_exists('AddKeyColumnToFormFieldsTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_key_column_to_form_fields_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 3).'_add_key_column_to_form_fields_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
     }
 
     /**

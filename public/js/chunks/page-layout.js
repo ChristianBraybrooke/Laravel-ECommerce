@@ -52,7 +52,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     pageErrors: {
       required: false,
       type: Object,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     }

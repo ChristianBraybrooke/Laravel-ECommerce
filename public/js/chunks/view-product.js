@@ -202,28 +202,28 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
     editable: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     languageOptions: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     language: {
       required: false,
       type: String,
-      default: function _default() {
+      "default": function _default() {
         return 'en';
       }
     },
     accordian: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     }
@@ -642,28 +642,28 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     editable: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     languageOptions: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     showSectionTitle: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     onDeleteContent: {
       required: false,
       type: Function,
-      default: function _default() {
+      "default": function _default() {
         return function (contentKey) {};
       }
     }
@@ -941,11 +941,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].get({
         path: 'collections',
         params: {
-          with: 'types'
+          "with": 'types'
         }
       }).then(function (data) {
         this.collections = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.collectionErrors = error;
       }.bind(this));
     }
@@ -8989,7 +8989,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9096,7 +9096,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9210,7 +9210,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9323,7 +9323,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9436,7 +9436,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9586,7 +9586,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9635,7 +9635,7 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.addJsonContent()
+                                        return _vm.addJsonContent()
                                       }
                                     },
                                     slot: "reference"
@@ -9688,7 +9688,9 @@ var render = function() {
                           attrs: { size: "mini", type: "text" },
                           on: {
                             click: function($event) {
-                              _vm.$refs["content_delete_confirm"].doClose()
+                              return _vm.$refs[
+                                "content_delete_confirm"
+                              ].doClose()
                             }
                           }
                         },
@@ -9701,7 +9703,7 @@ var render = function() {
                           attrs: { type: "primary", size: "mini" },
                           on: {
                             click: function($event) {
-                              _vm.deleteContent(_vm.contentKey)
+                              return _vm.deleteContent(_vm.contentKey)
                             }
                           }
                         },
@@ -10152,7 +10154,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.addContent(
+                                  return _vm.addContent(
                                     _vm.languageOptions
                                       ? _vm.activeContentTab
                                       : _vm.language

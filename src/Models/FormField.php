@@ -14,7 +14,8 @@ class FormField extends Model implements FormFieldContract
      * @var array
      */
     protected $fillable = [
-        'name', 'type', 'rules', 'options', 'append', 'prepend', 'form_section_id', 'description', 'order'
+        'name', 'type', 'rules', 'options', 'append', 'prepend',
+        'form_section_id', 'description', 'order', 'key'
     ];
 
     /**

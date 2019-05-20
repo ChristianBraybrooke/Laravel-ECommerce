@@ -34,6 +34,19 @@ export default {
   },
 
   methods: {
+    mergedFieldValue (option) {
+      return {
+        ...option,
+        ...{
+          group: this.section.name,
+          type: this.field.type,
+          appends: this.field.appends,
+          prepends: this.field.prepends,
+          label: this.field.name
+        }
+      }
+    },
+
     optionLabel (option) {
       if (option) {
         if (option.price_mutator && option.price_value) {

@@ -230,7 +230,7 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
         _this3.$router.push({
           name: 'orders'
         });
-      }).catch(function (error) {
+      })["catch"](function (error) {
         _this3.errors = error;
       });
     }
@@ -370,7 +370,7 @@ var render = function() {
                       attrs: { size: "mini", type: "danger" },
                       on: {
                         click: function($event) {
-                          props.delete(props.row)
+                          return props.delete(props.row)
                         }
                       }
                     },

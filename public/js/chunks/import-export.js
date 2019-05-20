@@ -251,7 +251,7 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
       }).then(function (data) {
         this.loading = false;
         this.imports = data.data;
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.ImportExportErrors = error;
       }.bind(this));
@@ -279,7 +279,7 @@ var throttle = __webpack_require__("./node_modules/lodash.throttle/index.js");
                 }
               });
             }
-          }.bind(_this)).catch(function (error) {
+          }.bind(_this))["catch"](function (error) {
             this.loading = false;
             this.ImportExportErrors = error;
           }.bind(_this));
@@ -532,7 +532,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          _vm.submitForm("importForm", "imports")
+                          return _vm.submitForm("importForm", "imports")
                         }
                       }
                     },
@@ -652,7 +652,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          _vm.submitForm("exportForm", "exports")
+                          return _vm.submitForm("exportForm", "exports")
                         }
                       }
                     },

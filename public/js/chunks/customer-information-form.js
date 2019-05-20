@@ -180,7 +180,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       }).then(function (data) {
         callback(data.data);
-      }).catch(function () {//
+      })["catch"](function () {//
       });
     },
     resetCustomer: function resetCustomer() {

@@ -76,10 +76,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return __webpack_require__.e/* import() */(31/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/Errors.vue"));
     },
     ProductTable: function ProductTable() {
-      return __webpack_require__.e/* import() */(35).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
+      return __webpack_require__.e/* import() */(35/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/ProductTable.vue"));
     },
     NewProductForm: function NewProductForm() {
-      return __webpack_require__.e/* import() */(36).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
+      return __webpack_require__.e/* import() */(36/* duplicate */).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/NewProductForm.vue"));
     },
     PrintDownloadButton: function PrintDownloadButton() {
       return __webpack_require__.e/* import() */(49).then(__webpack_require__.bind(null, "./resources/assets/admin-spa/components/PrintDownloadButton.vue"));
@@ -126,7 +126,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (data) {
         _this.loading = false;
         _this.estimate = data.data;
-      }).catch(function (error) {
+      })["catch"](function (error) {
         _this.errors = error;
         _this.loading = false;
       });
@@ -141,7 +141,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (data) {
         _this2.loading = false;
         _this2.estimate = data.data;
-      }).catch(function (error) {
+      })["catch"](function (error) {
         _this2.errors = error;
         _this2.loading = false;
       });
@@ -298,7 +298,7 @@ var render = function() {
                   attrs: { loading: _vm.loading, plain: "", type: "success" },
                   on: {
                     click: function($event) {
-                      _vm.updateEstimate()
+                      return _vm.updateEstimate()
                     }
                   }
                 },

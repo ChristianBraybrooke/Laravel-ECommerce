@@ -202,28 +202,28 @@ var filter = __webpack_require__("./node_modules/lodash.filter/index.js");
     editable: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     languageOptions: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     language: {
       required: false,
       type: String,
-      default: function _default() {
+      "default": function _default() {
         return 'en';
       }
     },
     accordian: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     }
@@ -642,28 +642,28 @@ var forEach = __webpack_require__("./node_modules/lodash.foreach/index.js");
     editable: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return false;
       }
     },
     languageOptions: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     showSectionTitle: {
       required: false,
       type: Boolean,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     onDeleteContent: {
       required: false,
       type: Function,
-      default: function _default() {
+      "default": function _default() {
         return function (contentKey) {};
       }
     }
@@ -1134,7 +1134,7 @@ var has = __webpack_require__("./node_modules/lodash.has/index.js");
       __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].get({
         path: 'collections/' + this.collectionId + '/types/' + this.typeId,
         params: {
-          with: ['collection', 'media', 'content'],
+          "with": ['collection', 'media', 'content'],
           include: ['individual_name', 'slug', 'live_at']
         }
       }).then(function (data) {
@@ -1150,7 +1150,7 @@ var has = __webpack_require__("./node_modules/lodash.has/index.js");
             });
           });
         }
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.collectionTypeErrors = error;
       }.bind(this));
@@ -1159,7 +1159,7 @@ var has = __webpack_require__("./node_modules/lodash.has/index.js");
       var _this = this;
 
       this.collectionTypeErrors = {};
-      this.collectionType.with = ['collection', 'media', 'content'];
+      this.collectionType["with"] = ['collection', 'media', 'content'];
       this.collectionType.include = ['individual_name', 'slug', 'live_at'];
       this.loading = true;
       this.$refs[formName].validate(function (valid) {
@@ -1175,7 +1175,7 @@ var has = __webpack_require__("./node_modules/lodash.has/index.js");
               type: 'success',
               showClose: true
             });
-          }.bind(_this)).catch(function (error) {
+          }.bind(_this))["catch"](function (error) {
             this.collectionTypeErrors = error;
             this.loading = false;
           }.bind(_this));
@@ -9275,7 +9275,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9382,7 +9382,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9496,7 +9496,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9609,7 +9609,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9722,7 +9722,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9872,7 +9872,7 @@ var render = function() {
                                                     },
                                                     on: {
                                                       click: function($event) {
-                                                        _vm.deleteJsonContent(
+                                                        return _vm.deleteJsonContent(
                                                           jsonKey
                                                         )
                                                       }
@@ -9921,7 +9921,7 @@ var render = function() {
                                     },
                                     on: {
                                       click: function($event) {
-                                        _vm.addJsonContent()
+                                        return _vm.addJsonContent()
                                       }
                                     },
                                     slot: "reference"
@@ -9974,7 +9974,9 @@ var render = function() {
                           attrs: { size: "mini", type: "text" },
                           on: {
                             click: function($event) {
-                              _vm.$refs["content_delete_confirm"].doClose()
+                              return _vm.$refs[
+                                "content_delete_confirm"
+                              ].doClose()
                             }
                           }
                         },
@@ -9987,7 +9989,7 @@ var render = function() {
                           attrs: { type: "primary", size: "mini" },
                           on: {
                             click: function($event) {
-                              _vm.deleteContent(_vm.contentKey)
+                              return _vm.deleteContent(_vm.contentKey)
                             }
                           }
                         },
@@ -10438,7 +10440,7 @@ var render = function() {
                               },
                               on: {
                                 click: function($event) {
-                                  _vm.addContent(
+                                  return _vm.addContent(
                                     _vm.languageOptions
                                       ? _vm.activeContentTab
                                       : _vm.language
@@ -10932,7 +10934,7 @@ var render = function() {
                                   attrs: { type: "primary", plain: "" },
                                   on: {
                                     click: function($event) {
-                                      _vm.addSpecificationValue(
+                                      return _vm.addSpecificationValue(
                                         _vm.spec,
                                         "specifications"
                                       )
@@ -10951,7 +10953,7 @@ var render = function() {
                               attrs: { type: "primary", plain: "" },
                               on: {
                                 click: function($event) {
-                                  _vm.addSpecification("specifications")
+                                  return _vm.addSpecification("specifications")
                                 }
                               }
                             },
@@ -11122,7 +11124,7 @@ var render = function() {
                                   attrs: { type: "primary", plain: "" },
                                   on: {
                                     click: function($event) {
-                                      _vm.addSpecificationValue(
+                                      return _vm.addSpecificationValue(
                                         _vm.option,
                                         "options",
                                         { value: { name: "", file: null } }
@@ -11142,7 +11144,7 @@ var render = function() {
                               attrs: { type: "primary", plain: "" },
                               on: {
                                 click: function($event) {
-                                  _vm.addSpecification("options", {
+                                  return _vm.addSpecification("options", {
                                     value: {
                                       name: "",
                                       file: null,
@@ -11226,7 +11228,9 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.submitForm("collectionTypeForm")
+                                      return _vm.submitForm(
+                                        "collectionTypeForm"
+                                      )
                                     }
                                   }
                                 },

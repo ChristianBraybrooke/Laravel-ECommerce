@@ -305,7 +305,9 @@ var render = function() {
                       attrs: { type: "danger", size: "mini" },
                       on: {
                         click: function($event) {
-                          _vm.deleteOption(_vm.productCustomisationOption)
+                          return _vm.deleteOption(
+                            _vm.productCustomisationOption
+                          )
                         }
                       }
                     },

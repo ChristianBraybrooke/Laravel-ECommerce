@@ -5177,7 +5177,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 99);
+/******/ 	return __webpack_require__(__webpack_require__.s = 107);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -5284,7 +5284,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 99:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5444,7 +5444,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 87);
+/******/ 	return __webpack_require__(__webpack_require__.s = 75);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -5551,7 +5551,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 87:
+/***/ 75:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6748,38 +6748,38 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 38);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/dom.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/date-util.js");
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/util.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/dom.js");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/emitter.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/util.js");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/emitter.js");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/vue-popper.js");
+module.exports = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 /***/ }),
 /* 5 */
@@ -6791,25 +6791,25 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/local
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/merge.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/vue-popper.js");
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/input.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/merge.js");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/migrating.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/input.js");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/locale/index.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/migrating.js");
 
 /***/ }),
 /* 10 */
@@ -6839,155 +6839,167 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/resize
 /* 14 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/checkbox.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/button.js");
 
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/button.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/checkbox.js");
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/vdom.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/locale/index.js");
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/transitions/collapse-transition.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/date.js");
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/scrollbar.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/transitions/collapse-transition.js");
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/scrollbar.js");
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/tooltip.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus.js");
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/tag.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/vdom.js");
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/scroll-into-view.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/tooltip.js");
 
 /***/ }),
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/babel-helper-vue-jsx-merge-props/index.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/tag.js");
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/date.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/scroll-into-view.js");
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/shared.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/types.js");
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/scrollbar-width.js");
+module.exports = __webpack_require__("./node_modules/babel-helper-vue-jsx-merge-props/index.js");
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/checkbox-group.js");
+module.exports = __webpack_require__("./node_modules/throttle-debounce/throttle.js");
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/after-leave.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/shared.js");
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/progress.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/scrollbar-width.js");
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/throttle-debounce/throttle.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/checkbox-group.js");
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/select.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/after-leave.js");
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/option.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/progress.js");
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/button-group.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/select.js");
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/normalize-wheel/index.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/option.js");
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/aria-dialog.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/button-group.js");
 
 /***/ }),
 /* 36 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/async-validator/es/index.js");
+module.exports = __webpack_require__("./node_modules/normalize-wheel/index.js");
 
 /***/ }),
 /* 37 */
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/element-ui/lib/input-number.js");
+module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/aria-dialog.js");
 
 /***/ }),
 /* 38 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(39);
-
+module.exports = __webpack_require__("./node_modules/async-validator/es/index.js");
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+module.exports = __webpack_require__("./node_modules/element-ui/lib/input-number.js");
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(41);
+
+
+/***/ }),
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7356,15 +7368,15 @@ if (false) { var api; }
 component.options.__file = "packages/pagination/src/pager.vue"
 /* harmony default export */ var pager = (component.exports);
 // EXTERNAL MODULE: external "element-ui/lib/select"
-var select_ = __webpack_require__(31);
+var select_ = __webpack_require__(33);
 var select_default = /*#__PURE__*/__webpack_require__.n(select_);
 
 // EXTERNAL MODULE: external "element-ui/lib/option"
-var option_ = __webpack_require__(32);
+var option_ = __webpack_require__(34);
 var option_default = /*#__PURE__*/__webpack_require__.n(option_);
 
 // EXTERNAL MODULE: external "element-ui/lib/input"
-var input_ = __webpack_require__(7);
+var input_ = __webpack_require__(8);
 var input_default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "element-ui/lib/mixins/locale"
@@ -7372,7 +7384,7 @@ var locale_ = __webpack_require__(5);
 var locale_default = /*#__PURE__*/__webpack_require__.n(locale_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/util"
-var util_ = __webpack_require__(1);
+var util_ = __webpack_require__(2);
 
 // CONCATENATED MODULE: ./packages/pagination/src/pagination.js
 
@@ -7430,7 +7442,9 @@ var util_ = __webpack_require__(1);
 
     background: Boolean,
 
-    disabled: Boolean
+    disabled: Boolean,
+
+    hideOnSinglePage: Boolean
   },
 
   data: function data() {
@@ -7442,12 +7456,14 @@ var util_ = __webpack_require__(1);
     };
   },
   render: function render(h) {
+    var layout = this.layout;
+    if (!layout) return null;
+    if (this.hideOnSinglePage && (!this.internalPageCount || this.internalPageCount === 1)) return null;
+
     var template = h('div', { 'class': ['el-pagination', {
         'is-background': this.background,
         'el-pagination--small': this.small
       }] });
-    var layout = this.layout || '';
-    if (!layout) return;
     var TEMPLATE_MAP = {
       prev: h('prev'),
       jumper: h('jumper'),
@@ -7461,7 +7477,7 @@ var util_ = __webpack_require__(1);
       sizes: h('sizes', {
         attrs: { pageSizes: this.pageSizes }
       }),
-      slot: h('my-slot'),
+      slot: h('slot', [this.$slots.default ? this.$slots.default : '']),
       total: h('total')
     };
     var components = layout.split(',').map(function (item) {
@@ -7494,11 +7510,6 @@ var util_ = __webpack_require__(1);
 
 
   components: {
-    MySlot: {
-      render: function render(h) {
-        return this.$parent.$slots.default ? this.$parent.$slots.default[0] : '';
-      }
-    },
     Prev: {
       render: function render(h) {
         return h(
@@ -7912,11 +7923,11 @@ var popup_ = __webpack_require__(11);
 var popup_default = /*#__PURE__*/__webpack_require__.n(popup_);
 
 // EXTERNAL MODULE: external "element-ui/lib/mixins/migrating"
-var migrating_ = __webpack_require__(8);
+var migrating_ = __webpack_require__(9);
 var migrating_default = /*#__PURE__*/__webpack_require__.n(migrating_);
 
 // EXTERNAL MODULE: external "element-ui/lib/mixins/emitter"
-var emitter_ = __webpack_require__(2);
+var emitter_ = __webpack_require__(3);
 var emitter_default = /*#__PURE__*/__webpack_require__.n(emitter_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/dialog/src/component.vue?vue&type=script&lang=js&
@@ -8380,11 +8391,11 @@ autocomplete_suggestionsvue_type_template_id_cd10dcf0_render._withStripped = tru
 // CONCATENATED MODULE: ./packages/autocomplete/src/autocomplete-suggestions.vue?vue&type=template&id=cd10dcf0&
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/vue-popper"
-var vue_popper_ = __webpack_require__(4);
+var vue_popper_ = __webpack_require__(6);
 var vue_popper_default = /*#__PURE__*/__webpack_require__.n(vue_popper_);
 
 // EXTERNAL MODULE: external "element-ui/lib/scrollbar"
-var scrollbar_ = __webpack_require__(18);
+var scrollbar_ = __webpack_require__(19);
 var scrollbar_default = /*#__PURE__*/__webpack_require__.n(scrollbar_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/autocomplete/src/autocomplete-suggestions.vue?vue&type=script&lang=js&
@@ -8492,7 +8503,7 @@ if (false) { var autocomplete_suggestions_api; }
 autocomplete_suggestions_component.options.__file = "packages/autocomplete/src/autocomplete-suggestions.vue"
 /* harmony default export */ var autocomplete_suggestions = (autocomplete_suggestions_component.exports);
 // EXTERNAL MODULE: external "element-ui/lib/mixins/focus"
-var focus_ = __webpack_require__(19);
+var focus_ = __webpack_require__(20);
 var focus_default = /*#__PURE__*/__webpack_require__.n(focus_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/autocomplete/src/autocomplete.vue?vue&type=script&lang=js&
@@ -8624,6 +8635,10 @@ var focus_default = /*#__PURE__*/__webpack_require__.n(focus_);
     popperAppendToBody: {
       type: Boolean,
       default: true
+    },
+    highlightFirstItem: {
+      type: Boolean,
+      default: false
     }
   },
   data: function data() {
@@ -8677,6 +8692,7 @@ var focus_default = /*#__PURE__*/__webpack_require__.n(focus_);
         }
         if (Array.isArray(suggestions)) {
           _this.suggestions = suggestions;
+          _this.highlightedIndex = _this.highlightFirstItem ? 0 : -1;
         } else {
           console.error('[Element Error][Autocomplete]autocomplete suggestions must be an array');
         }
@@ -8817,11 +8833,11 @@ autocomplete.install = function (Vue) {
 
 /* harmony default export */ var packages_autocomplete = (autocomplete);
 // EXTERNAL MODULE: external "element-ui/lib/button"
-var button_ = __webpack_require__(15);
+var button_ = __webpack_require__(14);
 var button_default = /*#__PURE__*/__webpack_require__.n(button_);
 
 // EXTERNAL MODULE: external "element-ui/lib/button-group"
-var button_group_ = __webpack_require__(33);
+var button_group_ = __webpack_require__(35);
 var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/dropdown/src/dropdown.vue?vue&type=script&lang=js&
@@ -8883,6 +8899,10 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
     hideTimeout: {
       type: Number,
       default: 150
+    },
+    tabindex: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -8908,8 +8928,6 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
 
   mounted: function mounted() {
     this.$on('menu-item-click', this.handleMenuItemClick);
-    this.initEvent();
-    this.initAria();
   },
 
 
@@ -8953,7 +8971,9 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
 
       if (this.triggerElm.disabled) return;
       this.removeTabindex();
-      this.resetTabindex(this.triggerElm);
+      if (this.tabindex >= 0) {
+        this.resetTabindex(this.triggerElm);
+      }
       clearTimeout(this.timeout);
       this.timeout = setTimeout(function () {
         _this2.visible = false;
@@ -8983,7 +9003,6 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
         // tab || esc
         this.hide();
       }
-      return;
     },
     handleItemKeyDown: function handleItemKeyDown(ev) {
       var keyCode = ev.keyCode;
@@ -9007,7 +9026,7 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
         ev.stopPropagation();
       } else if (keyCode === 13) {
         // enter选中
-        this.triggerElm.focus();
+        this.triggerElmFocus();
         target.click();
         if (this.hideOnClick) {
           // click关闭
@@ -9016,9 +9035,8 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
       } else if ([9, 27].indexOf(keyCode) > -1) {
         // tab // esc
         this.hide();
-        this.triggerElm.focus();
+        this.triggerElmFocus();
       }
-      return;
     },
     resetTabindex: function resetTabindex(ele) {
       // 下次tab时组件聚焦元素
@@ -9035,13 +9053,11 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
       this.dropdownElm.setAttribute('id', this.listId);
       this.triggerElm.setAttribute('aria-haspopup', 'list');
       this.triggerElm.setAttribute('aria-controls', this.listId);
-      this.menuItems = this.dropdownElm.querySelectorAll("[tabindex='-1']");
-      this.menuItemsArray = Array.prototype.slice.call(this.menuItems);
 
       if (!this.splitButton) {
         // 自定义
         this.triggerElm.setAttribute('role', 'button');
-        this.triggerElm.setAttribute('tabindex', '0');
+        this.triggerElm.setAttribute('tabindex', this.tabindex);
         this.triggerElm.setAttribute('class', (this.triggerElm.getAttribute('class') || '') + ' el-dropdown-selfdefine'); // 控制
       }
     },
@@ -9058,7 +9074,7 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
 
       this.triggerElm = splitButton ? this.$refs.trigger.$el : this.$slots.default[0].elm;
 
-      var dropdownElm = this.dropdownElm = this.$slots.dropdown[0].elm;
+      var dropdownElm = this.dropdownElm;
 
       this.triggerElm.addEventListener('keydown', handleTriggerKeyDown); // triggerElm keydown
       dropdownElm.addEventListener('keydown', handleItemKeyDown, true); // item keydown
@@ -9089,8 +9105,16 @@ var button_group_default = /*#__PURE__*/__webpack_require__.n(button_group_);
       }
       this.$emit('command', command, instance);
     },
-    focus: function focus() {
+    triggerElmFocus: function triggerElmFocus() {
       this.triggerElm.focus && this.triggerElm.focus();
+    },
+    initDomOperation: function initDomOperation() {
+      this.dropdownElm = this.popperElm;
+      this.menuItems = this.dropdownElm.querySelectorAll("[tabindex='-1']");
+      this.menuItemsArray = [].slice.call(this.menuItems);
+
+      this.initEvent();
+      this.initAria();
     }
   },
 
@@ -9253,8 +9277,11 @@ dropdown_menuvue_type_template_id_0da6b714_render._withStripped = true
     });
   },
   mounted: function mounted() {
-    this.$parent.popperElm = this.popperElm = this.$el;
-    this.referenceElm = this.$parent.$el;
+    this.dropdown.popperElm = this.popperElm = this.$el;
+    this.referenceElm = this.dropdown.$el;
+    // compatible with 2.6 new v-slot syntax
+    // issue link https://github.com/ElemeFE/element/issues/14345
+    this.dropdown.initDomOperation();
   },
 
 
@@ -9320,7 +9347,7 @@ var dropdown_itemvue_type_template_id_6359102a_render = function() {
       },
       on: { click: _vm.handleClick }
     },
-    [_vm._t("default")],
+    [_vm.icon ? _c("i", { class: _vm.icon }) : _vm._e(), _vm._t("default")],
     2
   )
 }
@@ -9331,6 +9358,7 @@ dropdown_itemvue_type_template_id_6359102a_render._withStripped = true
 // CONCATENATED MODULE: ./packages/dropdown/src/dropdown-item.vue?vue&type=template&id=6359102a&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/dropdown/src/dropdown-item.vue?vue&type=script&lang=js&
+//
 //
 //
 //
@@ -9356,7 +9384,8 @@ dropdown_itemvue_type_template_id_6359102a_render._withStripped = true
   props: {
     command: {},
     disabled: Boolean,
-    divided: Boolean
+    divided: Boolean,
+    icon: String
   },
 
   methods: {
@@ -9654,7 +9683,7 @@ Menu.prototype.init = function () {
 };
 /* harmony default export */ var aria_menubar = (Menu);
 // EXTERNAL MODULE: external "element-ui/lib/utils/dom"
-var dom_ = __webpack_require__(0);
+var dom_ = __webpack_require__(1);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/menu/src/menu.vue?vue&type=script&lang=js&
 
@@ -9795,8 +9824,12 @@ var dom_ = __webpack_require__(0);
     }
   },
   watch: {
-    defaultActive: 'updateActiveIndex',
-
+    defaultActive: function defaultActive(value) {
+      if (!this.items[value]) {
+        this.activeIndex = null;
+      }
+      this.updateActiveIndex(value);
+    },
     defaultOpeneds: function defaultOpeneds(value) {
       if (!this.collapse) {
         this.openedMenus = value;
@@ -9917,15 +9950,19 @@ var dom_ = __webpack_require__(0);
           indexPath = item.indexPath;
 
       var oldActiveIndex = this.activeIndex;
+      var hasIndex = item.index !== null;
 
-      this.activeIndex = item.index;
+      if (hasIndex) {
+        this.activeIndex = item.index;
+      }
+
       this.$emit('select', index, indexPath, item);
 
       if (this.mode === 'horizontal' || this.collapse) {
         this.openedMenus = [];
       }
 
-      if (this.router) {
+      if (this.router && hasIndex) {
         this.routeToItem(item, function (error) {
           _this.activeIndex = oldActiveIndex;
           if (error) console.error(error);
@@ -10017,7 +10054,7 @@ src_menu.install = function (Vue) {
 
 /* harmony default export */ var packages_menu = (src_menu);
 // EXTERNAL MODULE: external "element-ui/lib/transitions/collapse-transition"
-var collapse_transition_ = __webpack_require__(17);
+var collapse_transition_ = __webpack_require__(18);
 var collapse_transition_default = /*#__PURE__*/__webpack_require__.n(collapse_transition_);
 
 // CONCATENATED MODULE: ./packages/menu/src/menu-mixin.js
@@ -10238,9 +10275,15 @@ var poperMixins = {
       }
       this.dispatch('ElMenu', 'submenu-click', this);
     },
-    handleMouseenter: function handleMouseenter() {
+    handleMouseenter: function handleMouseenter(event) {
       var _this2 = this;
 
+      var showTimeout = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.showTimeout;
+
+
+      if (!('ActiveXObject' in window) && event.type === 'focus' && !event.relatedTarget) {
+        return;
+      }
       var rootMenu = this.rootMenu,
           disabled = this.disabled;
 
@@ -10251,7 +10294,7 @@ var poperMixins = {
       clearTimeout(this.timeout);
       this.timeout = setTimeout(function () {
         _this2.rootMenu.openMenu(_this2.index, _this2.indexPath);
-      }, this.showTimeout);
+      }, showTimeout);
     },
     handleMouseleave: function handleMouseleave() {
       var _this3 = this;
@@ -10309,6 +10352,8 @@ var poperMixins = {
     this.rootMenu.removeSubmenu(this);
   },
   render: function render(h) {
+    var _this5 = this;
+
     var active = this.active,
         opened = this.opened,
         paddingStyle = this.paddingStyle,
@@ -10340,9 +10385,13 @@ var poperMixins = {
 
           'class': ['el-menu--' + mode, popperClass],
           on: {
-            'mouseenter': this.handleMouseenter,
+            'mouseenter': function mouseenter($event) {
+              return _this5.handleMouseenter($event, 100);
+            },
             'mouseleave': this.handleMouseleave,
-            'focus': this.handleMouseenter
+            'focus': function focus($event) {
+              return _this5.handleMouseenter($event, 100);
+            }
           }
         },
         [h(
@@ -10515,7 +10564,7 @@ menu_itemvue_type_template_id_2a5dbfea_render._withStripped = true
 // CONCATENATED MODULE: ./packages/menu/src/menu-item.vue?vue&type=template&id=2a5dbfea&
 
 // EXTERNAL MODULE: external "element-ui/lib/tooltip"
-var tooltip_ = __webpack_require__(20);
+var tooltip_ = __webpack_require__(22);
 var tooltip_default = /*#__PURE__*/__webpack_require__.n(tooltip_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/menu/src/menu-item.vue?vue&type=script&lang=js&
@@ -10565,8 +10614,10 @@ var tooltip_default = /*#__PURE__*/__webpack_require__.n(tooltip_);
 
   props: {
     index: {
-      type: String,
-      required: true
+      default: null,
+      validator: function validator(val) {
+        return typeof val === 'string' || val === null;
+      }
     },
     route: [String, Object],
     disabled: Boolean
@@ -10778,12 +10829,16 @@ var inputvue_type_template_id_343dd774_render = function() {
         _vm.inputSize ? "el-input--" + _vm.inputSize : "",
         {
           "is-disabled": _vm.inputDisabled,
+          "is-exceed": _vm.inputExceed,
           "el-input-group": _vm.$slots.prepend || _vm.$slots.append,
           "el-input-group--append": _vm.$slots.append,
           "el-input-group--prepend": _vm.$slots.prepend,
           "el-input--prefix": _vm.$slots.prefix || _vm.prefixIcon,
           "el-input--suffix":
-            _vm.$slots.suffix || _vm.suffixIcon || _vm.clearable
+            _vm.$slots.suffix ||
+            _vm.suffixIcon ||
+            _vm.clearable ||
+            _vm.showPassword
         }
       ],
       on: {
@@ -10815,17 +10870,19 @@ var inputvue_type_template_id_343dd774_render = function() {
                       staticClass: "el-input__inner",
                       attrs: {
                         tabindex: _vm.tabindex,
-                        type: _vm.type,
+                        type: _vm.showPassword
+                          ? _vm.passwordVisible
+                            ? "text"
+                            : "password"
+                          : _vm.type,
                         disabled: _vm.inputDisabled,
                         readonly: _vm.readonly,
                         autocomplete: _vm.autoComplete || _vm.autocomplete,
                         "aria-label": _vm.label
                       },
-                      domProps: { value: _vm.nativeInputValue },
                       on: {
-                        compositionstart: _vm.handleComposition,
-                        compositionupdate: _vm.handleComposition,
-                        compositionend: _vm.handleComposition,
+                        compositionstart: _vm.handleCompositionStart,
+                        compositionend: _vm.handleCompositionEnd,
                         input: _vm.handleInput,
                         focus: _vm.handleFocus,
                         blur: _vm.handleBlur,
@@ -10854,16 +10911,15 @@ var inputvue_type_template_id_343dd774_render = function() {
                   2
                 )
               : _vm._e(),
-            _vm.$slots.suffix ||
-            _vm.suffixIcon ||
-            _vm.showClear ||
-            (_vm.validateState && _vm.needStatusIcon)
+            _vm.getSuffixVisible()
               ? _c("span", { staticClass: "el-input__suffix" }, [
                   _c(
                     "span",
                     { staticClass: "el-input__suffix-inner" },
                     [
-                      !_vm.showClear
+                      !_vm.showClear ||
+                      !_vm.showPwdVisible ||
+                      !_vm.isWordLimitVisible
                         ? [
                             _vm._t("suffix"),
                             _vm.suffixIcon
@@ -10873,11 +10929,38 @@ var inputvue_type_template_id_343dd774_render = function() {
                                 })
                               : _vm._e()
                           ]
-                        : _c("i", {
+                        : _vm._e(),
+                      _vm.showClear
+                        ? _c("i", {
                             staticClass:
                               "el-input__icon el-icon-circle-close el-input__clear",
                             on: { click: _vm.clear }
                           })
+                        : _vm._e(),
+                      _vm.showPwdVisible
+                        ? _c("i", {
+                            staticClass:
+                              "el-input__icon el-icon-view el-input__clear",
+                            on: { click: _vm.handlePasswordVisible }
+                          })
+                        : _vm._e(),
+                      _vm.isWordLimitVisible
+                        ? _c("span", { staticClass: "el-input__count" }, [
+                            _c(
+                              "span",
+                              { staticClass: "el-input__count-inner" },
+                              [
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(_vm.textLength) +
+                                    "/" +
+                                    _vm._s(_vm.upperLimit) +
+                                    "\n          "
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     2
                   ),
@@ -10912,11 +10995,9 @@ var inputvue_type_template_id_343dd774_render = function() {
                   autocomplete: _vm.autoComplete || _vm.autocomplete,
                   "aria-label": _vm.label
                 },
-                domProps: { value: _vm.nativeInputValue },
                 on: {
-                  compositionstart: _vm.handleComposition,
-                  compositionupdate: _vm.handleComposition,
-                  compositionend: _vm.handleComposition,
+                  compositionstart: _vm.handleCompositionStart,
+                  compositionend: _vm.handleCompositionEnd,
                   input: _vm.handleInput,
                   focus: _vm.handleFocus,
                   blur: _vm.handleBlur,
@@ -10927,7 +11008,12 @@ var inputvue_type_template_id_343dd774_render = function() {
               _vm.$attrs,
               false
             )
-          )
+          ),
+      _vm.isWordLimitVisible && _vm.type === "textarea"
+        ? _c("span", { staticClass: "el-input__count" }, [
+            _vm._v(_vm._s(_vm.textLength) + "/" + _vm._s(_vm.upperLimit))
+          ])
+        : _vm._e()
     ],
     2
   )
@@ -11012,10 +11098,17 @@ function calcTextareaHeight(targetElement) {
   return result;
 };
 // EXTERNAL MODULE: external "element-ui/lib/utils/merge"
-var merge_ = __webpack_require__(6);
+var merge_ = __webpack_require__(7);
 var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/input/src/input.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11144,7 +11237,8 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       textareaCalcStyle: {},
       hovering: false,
       focused: false,
-      isOnComposition: false
+      isComposing: false,
+      passwordVisible: false
     };
   },
 
@@ -11187,6 +11281,14 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       type: Boolean,
       default: false
     },
+    showPassword: {
+      type: Boolean,
+      default: false
+    },
+    showWordLimit: {
+      type: Boolean,
+      default: false
+    },
     tabindex: String
   },
 
@@ -11217,10 +11319,30 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       return this.disabled || (this.elForm || {}).disabled;
     },
     nativeInputValue: function nativeInputValue() {
-      return this.value === null || this.value === undefined ? '' : this.value;
+      return this.value === null || this.value === undefined ? '' : String(this.value);
     },
     showClear: function showClear() {
       return this.clearable && !this.inputDisabled && !this.readonly && this.nativeInputValue && (this.focused || this.hovering);
+    },
+    showPwdVisible: function showPwdVisible() {
+      return this.showPassword && !this.inputDisabled && !this.readonly && (!!this.nativeInputValue || this.focused);
+    },
+    isWordLimitVisible: function isWordLimitVisible() {
+      return this.showWordLimit && this.$attrs.maxlength && (this.type === 'text' || this.type === 'textarea') && !this.inputDisabled && !this.readonly && !this.showPassword;
+    },
+    upperLimit: function upperLimit() {
+      return this.$attrs.maxlength;
+    },
+    textLength: function textLength() {
+      if (typeof this.value === 'number') {
+        return String(this.value).length;
+      }
+
+      return (this.value || '').length;
+    },
+    inputExceed: function inputExceed() {
+      // show exceed style if length of initial value greater then maxlength
+      return this.isWordLimitVisible && this.textLength > this.upperLimit;
     }
   },
 
@@ -11230,6 +11352,26 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       if (this.validateEvent) {
         this.dispatch('ElFormItem', 'el.form.change', [val]);
       }
+    },
+
+    // native input value is set explicitly
+    // do not use v-model / :value in template
+    // see: https://github.com/ElemeFE/element/issues/14521
+    nativeInputValue: function nativeInputValue() {
+      this.setNativeInputValue();
+    },
+
+    // when change between <input> and <textarea>,
+    // update DOM dependent value and styles
+    // https://github.com/ElemeFE/element/issues/14857
+    type: function type() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.setNativeInputValue();
+        _this.resizeTextarea();
+        _this.updateIconOffset();
+      });
     }
   },
 
@@ -11278,23 +11420,27 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
 
       this.textareaCalcStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows);
     },
+    setNativeInputValue: function setNativeInputValue() {
+      var input = this.getInput();
+      if (!input) return;
+      if (input.value === this.nativeInputValue) return;
+      input.value = this.nativeInputValue;
+    },
     handleFocus: function handleFocus(event) {
       this.focused = true;
       this.$emit('focus', event);
     },
-    handleComposition: function handleComposition(event) {
-      if (event.type === 'compositionstart') {
-        this.isOnComposition = true;
-      }
-      if (event.type === 'compositionend') {
-        this.isOnComposition = false;
-        this.handleInput(event);
-      }
+    handleCompositionStart: function handleCompositionStart() {
+      this.isComposing = true;
+    },
+    handleCompositionEnd: function handleCompositionEnd(event) {
+      this.isComposing = false;
+      this.handleInput(event);
     },
     handleInput: function handleInput(event) {
-      var _this = this;
-
-      if (this.isOnComposition) return;
+      // should not emit input during composition
+      // see: https://github.com/ElemeFE/element/issues/10516
+      if (this.isComposing) return;
 
       // hack for https://github.com/ElemeFE/element/issues/8548
       // should remove the following line when we don't support IE
@@ -11302,12 +11448,9 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
 
       this.$emit('input', event.target.value);
 
-      // set input's value, in case parent refuses the change
+      // ensure native input value is controlled
       // see: https://github.com/ElemeFE/element/issues/12850
-      this.$nextTick(function () {
-        var input = _this.getInput();
-        input.value = _this.value;
-      });
+      this.$nextTick(this.setNativeInputValue);
     },
     handleChange: function handleChange(event) {
       this.$emit('change', event.target.value);
@@ -11344,8 +11487,15 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       this.$emit('change', '');
       this.$emit('clear');
     },
+    handlePasswordVisible: function handlePasswordVisible() {
+      this.passwordVisible = !this.passwordVisible;
+      this.focus();
+    },
     getInput: function getInput() {
       return this.$refs.input || this.$refs.textarea;
+    },
+    getSuffixVisible: function getSuffixVisible() {
+      return this.$slots.suffix || this.suffixIcon || this.showClear || this.showPassword || this.isWordLimitVisible || this.validateState && this.needStatusIcon;
     }
   },
 
@@ -11353,6 +11503,7 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
     this.$on('inputSelect', this.select);
   },
   mounted: function mounted() {
+    this.setNativeInputValue();
     this.resizeTextarea();
     this.updateIconOffset();
   },
@@ -11552,7 +11703,7 @@ input_numbervue_type_template_id_42f8cf66_render._withStripped = true
       return vnode.context[binding.expression].apply();
     };
     var clear = function clear() {
-      if (new Date() - startTime < 100) {
+      if (Date.now() - startTime < 100) {
         handler();
       }
       clearInterval(interval);
@@ -11561,7 +11712,7 @@ input_numbervue_type_template_id_42f8cf66_render._withStripped = true
 
     Object(dom_["on"])(el, 'mousedown', function (e) {
       if (e.button !== 0) return;
-      startTime = new Date();
+      startTime = Date.now();
       Object(dom_["once"])(document, 'mouseup', clear);
       clearInterval(interval);
       interval = setInterval(handler, 100);
@@ -11643,6 +11794,10 @@ input_numbervue_type_template_id_42f8cf66_render._withStripped = true
       type: Number,
       default: 1
     },
+    stepStrictly: {
+      type: Boolean,
+      default: false
+    },
     max: {
       type: Number,
       default: Infinity
@@ -11688,6 +11843,13 @@ input_numbervue_type_template_id_42f8cf66_render._withStripped = true
           if (isNaN(newVal)) {
             return;
           }
+
+          if (this.stepStrictly) {
+            var stepPrecision = this.getPrecision(this.step);
+            var precisionFactor = Math.pow(10, stepPrecision);
+            newVal = Math.round(newVal / this.step) * precisionFactor * this.step / precisionFactor;
+          }
+
           if (this.precision !== undefined) {
             newVal = this.toPrecision(newVal, this.precision);
           }
@@ -11739,18 +11901,28 @@ input_numbervue_type_template_id_42f8cf66_render._withStripped = true
       if (this.userInput !== null) {
         return this.userInput;
       }
+
       var currentValue = this.currentValue;
-      if (typeof currentValue === 'number' && this.precision !== undefined) {
-        return currentValue.toFixed(this.precision);
-      } else {
-        return currentValue;
+
+      if (typeof currentValue === 'number') {
+        if (this.stepStrictly) {
+          var stepPrecision = this.getPrecision(this.step);
+          var precisionFactor = Math.pow(10, stepPrecision);
+          currentValue = Math.round(currentValue / this.step) * precisionFactor * this.step / precisionFactor;
+        }
+
+        if (this.precision !== undefined) {
+          currentValue = currentValue.toFixed(this.precision);
+        }
       }
+
+      return currentValue;
     }
   },
   methods: {
     toPrecision: function toPrecision(num, precision) {
       if (precision === undefined) precision = this.numPrecision;
-      return parseFloat(parseFloat(Number(num).toFixed(precision)));
+      return parseFloat(Number(num).toFixed(precision));
     },
     getPrecision: function getPrecision(value) {
       if (value === undefined) return 0;
@@ -13557,9 +13729,10 @@ componentvue_type_template_id_2dcd8fbb_render._withStripped = true
 
 
 
+
 /* harmony default export */ var switch_src_componentvue_type_script_lang_js_ = ({
   name: 'ElSwitch',
-  mixins: [focus_default()('input'), migrating_default.a],
+  mixins: [focus_default()('input'), migrating_default.a, emitter_default.a],
   inject: {
     elForm: {
       default: ''
@@ -13608,6 +13781,10 @@ componentvue_type_template_id_2dcd8fbb_render._withStripped = true
       type: String,
       default: ''
     },
+    validateEvent: {
+      type: Boolean,
+      default: true
+    },
     id: String
   },
   data: function data() {
@@ -13635,14 +13812,18 @@ componentvue_type_template_id_2dcd8fbb_render._withStripped = true
       if (this.activeColor || this.inactiveColor) {
         this.setBackgroundColor();
       }
+      if (this.validateEvent) {
+        this.dispatch('ElFormItem', 'el.form.change', [this.value]);
+      }
     }
   },
   methods: {
     handleChange: function handleChange(event) {
       var _this = this;
 
-      this.$emit('input', !this.checked ? this.activeValue : this.inactiveValue);
-      this.$emit('change', !this.checked ? this.activeValue : this.inactiveValue);
+      var val = this.checked ? this.inactiveValue : this.activeValue;
+      this.$emit('input', val);
+      this.$emit('change', val);
       this.$nextTick(function () {
         // set input's checked property
         // in case parent refuses to change component's value
@@ -14154,12 +14335,20 @@ var selectvue_type_template_id_0e4aade6_render = function() {
               (!_vm.allowCreate ||
                 _vm.loading ||
                 (_vm.allowCreate && _vm.options.length === 0))
-                ? _c("p", { staticClass: "el-select-dropdown__empty" }, [
-                    _vm._v("\n        " + _vm._s(_vm.emptyText) + "\n      ")
-                  ])
+                ? [
+                    _vm.$slots.empty
+                      ? _vm._t("empty")
+                      : _c("p", { staticClass: "el-select-dropdown__empty" }, [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(_vm.emptyText) +
+                              "\n        "
+                          )
+                        ])
+                  ]
                 : _vm._e()
             ],
-            1
+            2
           )
         ],
         1
@@ -14452,10 +14641,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       var target = arguments[1];
 
       if (!this.isObject) {
-        return arr.indexOf(target) > -1;
+        return arr && arr.indexOf(target) > -1;
       } else {
         var valueKey = this.select.valueKey;
-        return arr.some(function (item) {
+        return arr && arr.some(function (item) {
           return Object(util_["getValueByPath"])(item, valueKey) === Object(util_["getValueByPath"])(target, valueKey);
         });
       }
@@ -14520,18 +14709,18 @@ if (false) { var option_api; }
 option_component.options.__file = "packages/select/src/option.vue"
 /* harmony default export */ var src_option = (option_component.exports);
 // EXTERNAL MODULE: external "element-ui/lib/tag"
-var tag_ = __webpack_require__(21);
+var tag_ = __webpack_require__(23);
 var tag_default = /*#__PURE__*/__webpack_require__.n(tag_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/resize-event"
 var resize_event_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: external "element-ui/lib/locale"
-var lib_locale_ = __webpack_require__(9);
+var lib_locale_ = __webpack_require__(16);
 var lib_locale_default = /*#__PURE__*/__webpack_require__.n(lib_locale_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/scroll-into-view"
-var scroll_into_view_ = __webpack_require__(22);
+var scroll_into_view_ = __webpack_require__(24);
 var scroll_into_view_default = /*#__PURE__*/__webpack_require__.n(scroll_into_view_);
 
 // CONCATENATED MODULE: ./packages/select/src/navigation-mixin.js
@@ -14599,7 +14788,7 @@ var scroll_into_view_default = /*#__PURE__*/__webpack_require__.n(scroll_into_vi
   }
 });
 // EXTERNAL MODULE: external "element-ui/lib/utils/shared"
-var shared_ = __webpack_require__(25);
+var shared_ = __webpack_require__(28);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/select/src/select.vue?vue&type=script&lang=js&
 //
@@ -14940,7 +15129,7 @@ var shared_ = __webpack_require__(25);
     value: function value(val, oldVal) {
       if (this.multiple) {
         this.resetInputHeight();
-        if (val.length > 0 || this.$refs.input && this.query !== '') {
+        if (val && val.length > 0 || this.$refs.input && this.query !== '') {
           this.currentPlaceholder = '';
         } else {
           this.currentPlaceholder = this.cachedPlaceHolder;
@@ -14986,6 +15175,10 @@ var shared_ = __webpack_require__(25);
             }
             if (this.filterable) this.query = this.selectedLabel;
           }
+
+          if (this.filterable) {
+            this.currentPlaceholder = this.cachedPlaceHolder;
+          }
         }
       } else {
         this.broadcast('ElSelectDropdown', 'updatePopper');
@@ -14999,7 +15192,11 @@ var shared_ = __webpack_require__(25);
               this.broadcast('ElOption', 'queryChange', '');
               this.broadcast('ElOptionGroup', 'queryChange');
             }
-            this.broadcast('ElInput', 'inputSelect');
+
+            if (this.selectedLabel) {
+              this.currentPlaceholder = this.selectedLabel;
+              this.selectedLabel = '';
+            }
           }
         }
       }
@@ -15247,7 +15444,7 @@ var shared_ = __webpack_require__(25);
       var _this11 = this;
 
       if (this.multiple) {
-        var value = this.value.slice();
+        var value = (this.value || []).slice();
         var optionIndex = this.getValueIndex(value, option.value);
         if (optionIndex > -1) {
           value.splice(optionIndex, 1);
@@ -15324,7 +15521,7 @@ var shared_ = __webpack_require__(25);
     },
     deleteSelected: function deleteSelected(event) {
       event.stopPropagation();
-      var value = this.multiple ? [] : '';
+      var value = this.multiple ? [] : null;
       this.$emit('input', value);
       this.emitChange(value);
       this.visible = false;
@@ -16273,11 +16470,11 @@ tablevue_type_template_id_493fe34e_render._withStripped = true
 // CONCATENATED MODULE: ./packages/table/src/table.vue?vue&type=template&id=493fe34e&
 
 // EXTERNAL MODULE: external "element-ui/lib/checkbox"
-var checkbox_ = __webpack_require__(14);
+var checkbox_ = __webpack_require__(15);
 var checkbox_default = /*#__PURE__*/__webpack_require__.n(checkbox_);
 
 // EXTERNAL MODULE: external "normalize-wheel"
-var external_normalize_wheel_ = __webpack_require__(34);
+var external_normalize_wheel_ = __webpack_require__(36);
 var external_normalize_wheel_default = /*#__PURE__*/__webpack_require__.n(external_normalize_wheel_);
 
 // CONCATENATED MODULE: ./src/directives/mousewheel.js
@@ -16300,7 +16497,7 @@ var mousewheel_mousewheel = function mousewheel(element, callback) {
   }
 });
 // EXTERNAL MODULE: external "vue"
-var external_vue_ = __webpack_require__(3);
+var external_vue_ = __webpack_require__(4);
 var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
 
 // CONCATENATED MODULE: ./packages/table/src/util.js
@@ -16436,13 +16633,46 @@ var getRowIdentity = function getRowIdentity(row, rowKey) {
 
 
 
-
 var table_store_sortData = function sortData(data, states) {
   var sortingColumn = states.sortingColumn;
   if (!sortingColumn || typeof sortingColumn.sortable === 'string') {
     return data;
   }
-  return util_orderBy(data, states.sortProp, states.sortOrder, sortingColumn.sortMethod, sortingColumn.sortBy);
+  if (Object.keys(states.treeData).length === 0) {
+    return util_orderBy(data, states.sortProp, states.sortOrder, sortingColumn.sortMethod, sortingColumn.sortBy);
+  }
+  // 存在嵌套类型的数据
+  var rowKey = states.rowKey;
+  var filteredData = [];
+  var treeDataMap = {};
+  var index = 0;
+  while (index < data.length) {
+    var cur = data[index];
+    var key = cur[rowKey];
+    var treeNode = states.treeData[key];
+    filteredData.push(cur);
+    index++;
+    if (!treeNode) {
+      continue;
+    }
+    treeDataMap[key] = [];
+    while (index < data.length) {
+      cur = data[index];
+      treeNode = states.treeData[cur[rowKey]];
+      index++;
+      if (treeNode && treeNode.level !== 0) {
+        treeDataMap[key].push(cur);
+      } else {
+        filteredData.push(cur);
+        break;
+      }
+    }
+  }
+  var sortedData = util_orderBy(filteredData, states.sortProp, states.sortOrder, sortingColumn.sortMethod, sortingColumn.sortBy);
+  return sortedData.reduce(function (prev, current) {
+    var treeNodes = treeDataMap[current[rowKey]] || [];
+    return prev.concat(current, treeNodes);
+  }, []);
 };
 
 var table_store_getKeysMap = function getKeysMap(array, rowKey) {
@@ -16508,7 +16738,7 @@ var toggleRowExpansion = function toggleRowExpansion(states, row, expanded) {
   return changed;
 };
 
-var TableStore = function TableStore(table) {
+var table_store_TableStore = function TableStore(table) {
   var initialState = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   if (!table) {
@@ -16544,8 +16774,39 @@ var TableStore = function TableStore(table) {
     filters: {},
     expandRows: [],
     defaultExpandAll: false,
-    selectOnIndeterminate: false
+    selectOnIndeterminate: false,
+    treeData: {},
+    indent: 16,
+    lazy: false,
+    lazyTreeNodeMap: {}
   };
+
+  this._toggleAllSelection = debounce_default()(10, function (states) {
+    var data = states.data || [];
+    if (data.length === 0) return;
+    var selection = this.states.selection;
+    // when only some rows are selected (but not all), select or deselect all of them
+    // depending on the value of selectOnIndeterminate
+    var value = states.selectOnIndeterminate ? !states.isAllSelected : !(states.isAllSelected || selection.length);
+    var selectionChanged = false;
+    data.forEach(function (item, index) {
+      if (states.selectable) {
+        if (states.selectable.call(null, item, index) && toggleRowSelection(states, item, value)) {
+          selectionChanged = true;
+        }
+      } else {
+        if (toggleRowSelection(states, item, value)) {
+          selectionChanged = true;
+        }
+      }
+    });
+    var table = this.table;
+    if (selectionChanged) {
+      table.$emit('selection-change', selection ? selection.slice() : []);
+    }
+    table.$emit('select-all', selection);
+    states.isAllSelected = value;
+  });
 
   for (var prop in initialState) {
     if (initialState.hasOwnProperty(prop) && this.states.hasOwnProperty(prop)) {
@@ -16554,7 +16815,7 @@ var TableStore = function TableStore(table) {
   }
 };
 
-TableStore.prototype.mutations = {
+table_store_TableStore.prototype.mutations = {
   setData: function setData(states, data) {
     var _this = this;
 
@@ -16648,25 +16909,7 @@ TableStore.prototype.mutations = {
 
     states.data = table_store_sortData(states.filteredData || states._data || [], states);
 
-    var _table = this.table,
-        $el = _table.$el,
-        highlightCurrentRow = _table.highlightCurrentRow;
-
-    if ($el && highlightCurrentRow) {
-      var data = states.data;
-      var tr = $el.querySelector('tbody').children;
-      var rows = [].filter.call(tr, function (row) {
-        return Object(dom_["hasClass"])(row, 'el-table__row');
-      });
-      var row = rows[data.indexOf(states.currentRow)];
-
-      [].forEach.call(rows, function (row) {
-        return Object(dom_["removeClass"])(row, 'current-row');
-      });
-      Object(dom_["addClass"])(row, 'current-row');
-    }
-
-    if (!options || !options.silent) {
+    if (!options || !(options.silent || options.init)) {
       this.table.$emit('sort-change', {
         column: this.states.sortingColumn,
         prop: this.states.sortProp,
@@ -16682,7 +16925,8 @@ TableStore.prototype.mutations = {
     var _this3 = this;
 
     var prop = options.prop,
-        order = options.order;
+        order = options.order,
+        init = options.init;
 
     if (prop) {
       states.sortProp = prop;
@@ -16698,7 +16942,9 @@ TableStore.prototype.mutations = {
         }
 
         if (states.sortingColumn) {
-          _this3.commit('changeSortCondition');
+          _this3.commit('changeSortCondition', {
+            init: init
+          });
         }
       });
     }
@@ -16817,36 +17063,9 @@ TableStore.prototype.mutations = {
 
     this.updateAllSelected();
   },
-
-
-  toggleAllSelection: debounce_default()(10, function (states) {
-    var data = states.data || [];
-    if (data.length === 0) return;
-    var selection = this.states.selection;
-    // when only some rows are selected (but not all), select or deselect all of them
-    // depending on the value of selectOnIndeterminate
-    var value = states.selectOnIndeterminate ? !states.isAllSelected : !(states.isAllSelected || selection.length);
-    var selectionChanged = false;
-
-    data.forEach(function (item, index) {
-      if (states.selectable) {
-        if (states.selectable.call(null, item, index) && toggleRowSelection(states, item, value)) {
-          selectionChanged = true;
-        }
-      } else {
-        if (toggleRowSelection(states, item, value)) {
-          selectionChanged = true;
-        }
-      }
-    });
-
-    var table = this.table;
-    if (selectionChanged) {
-      table.$emit('selection-change', selection ? selection.slice() : []);
-    }
-    table.$emit('select-all', selection);
-    states.isAllSelected = value;
-  })
+  toggleAllSelection: function toggleAllSelection(state) {
+    this._toggleAllSelection(state);
+  }
 };
 
 var doFlattenColumns = function doFlattenColumns(columns) {
@@ -16861,7 +17080,7 @@ var doFlattenColumns = function doFlattenColumns(columns) {
   return result;
 };
 
-TableStore.prototype.updateColumns = function () {
+table_store_TableStore.prototype.updateColumns = function () {
   var states = this.states;
   var _columns = states._columns || [];
   states.fixedColumns = _columns.filter(function (column) {
@@ -16893,11 +17112,11 @@ TableStore.prototype.updateColumns = function () {
   states.isComplex = states.fixedColumns.length > 0 || states.rightFixedColumns.length > 0;
 };
 
-TableStore.prototype.isSelected = function (row) {
+table_store_TableStore.prototype.isSelected = function (row) {
   return (this.states.selection || []).indexOf(row) > -1;
 };
 
-TableStore.prototype.clearSelection = function () {
+table_store_TableStore.prototype.clearSelection = function () {
   var states = this.states;
   states.isAllSelected = false;
   var oldSelection = states.selection;
@@ -16909,7 +17128,7 @@ TableStore.prototype.clearSelection = function () {
   }
 };
 
-TableStore.prototype.setExpandRowKeys = function (rowKeys) {
+table_store_TableStore.prototype.setExpandRowKeys = function (rowKeys) {
   var expandRows = [];
   var data = this.states.data;
   var rowKey = this.states.rowKey;
@@ -16925,14 +17144,14 @@ TableStore.prototype.setExpandRowKeys = function (rowKeys) {
   this.states.expandRows = expandRows;
 };
 
-TableStore.prototype.toggleRowSelection = function (row, selected) {
+table_store_TableStore.prototype.toggleRowSelection = function (row, selected) {
   var changed = toggleRowSelection(this.states, row, selected);
   if (changed) {
     this.table.$emit('selection-change', this.states.selection ? this.states.selection.slice() : []);
   }
 };
 
-TableStore.prototype.toggleRowExpansion = function (row, expanded) {
+table_store_TableStore.prototype.toggleRowExpansion = function (row, expanded) {
   var changed = toggleRowExpansion(this.states, row, expanded);
   if (changed) {
     this.table.$emit('expand-change', row, this.states.expandRows);
@@ -16940,7 +17159,7 @@ TableStore.prototype.toggleRowExpansion = function (row, expanded) {
   }
 };
 
-TableStore.prototype.isRowExpanded = function (row) {
+table_store_TableStore.prototype.isRowExpanded = function (row) {
   var _states = this.states,
       _states$expandRows = _states.expandRows,
       expandRows = _states$expandRows === undefined ? [] : _states$expandRows,
@@ -16953,7 +17172,7 @@ TableStore.prototype.isRowExpanded = function (row) {
   return expandRows.indexOf(row) !== -1;
 };
 
-TableStore.prototype.cleanSelection = function () {
+table_store_TableStore.prototype.cleanSelection = function () {
   var selection = this.states.selection || [];
   var data = this.states.data;
   var rowKey = this.states.rowKey;
@@ -16982,7 +17201,7 @@ TableStore.prototype.cleanSelection = function () {
   }
 };
 
-TableStore.prototype.clearFilter = function (columnKeys) {
+table_store_TableStore.prototype.clearFilter = function (columnKeys) {
   var states = this.states;
   var _table$$refs = this.table.$refs,
       tableHeader = _table$$refs.tableHeader,
@@ -17034,7 +17253,7 @@ TableStore.prototype.clearFilter = function (columnKeys) {
   }
 };
 
-TableStore.prototype.clearSort = function () {
+table_store_TableStore.prototype.clearSort = function () {
   var states = this.states;
   if (!states.sortingColumn) return;
   states.sortingColumn.order = null;
@@ -17046,7 +17265,7 @@ TableStore.prototype.clearSort = function () {
   });
 };
 
-TableStore.prototype.updateAllSelected = function () {
+table_store_TableStore.prototype.updateAllSelected = function () {
   var states = this.states;
   var selection = states.selection,
       rowKey = states.rowKey,
@@ -17091,14 +17310,14 @@ TableStore.prototype.updateAllSelected = function () {
   states.isAllSelected = isAllSelected;
 };
 
-TableStore.prototype.scheduleLayout = function (updateColumns) {
+table_store_TableStore.prototype.scheduleLayout = function (updateColumns) {
   if (updateColumns) {
     this.updateColumns();
   }
   this.table.debouncedUpdateLayout();
 };
 
-TableStore.prototype.setCurrentRowKey = function (key) {
+table_store_TableStore.prototype.setCurrentRowKey = function (key) {
   var states = this.states;
   var rowKey = states.rowKey;
   if (!rowKey) throw new Error('[Table] row-key should not be empty.');
@@ -17108,7 +17327,7 @@ TableStore.prototype.setCurrentRowKey = function (key) {
   states.currentRow = info ? info.row : null;
 };
 
-TableStore.prototype.updateCurrentRow = function () {
+table_store_TableStore.prototype.updateCurrentRow = function () {
   var states = this.states;
   var table = this.table;
   var data = states.data || [];
@@ -17137,7 +17356,7 @@ TableStore.prototype.updateCurrentRow = function () {
   }
 };
 
-TableStore.prototype.commit = function (name) {
+table_store_TableStore.prototype.commit = function (name) {
   var mutations = this.mutations;
   if (mutations[name]) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -17150,9 +17369,78 @@ TableStore.prototype.commit = function (name) {
   }
 };
 
-/* harmony default export */ var table_store = (TableStore);
+table_store_TableStore.prototype.toggleTreeExpansion = function (rowKey) {
+  var treeData = this.states.treeData;
+
+  var node = treeData[rowKey];
+  if (!node) return;
+  if (typeof node.expanded !== 'boolean') {
+    throw new Error('a leaf must have expanded property');
+  }
+  node.expanded = !node.expanded;
+
+  var _traverse = null;
+  if (node.expanded) {
+    _traverse = function traverse(children, parent) {
+      if (children && parent.expanded) {
+        children.forEach(function (key) {
+          treeData[key].display = true;
+          _traverse(treeData[key].children, treeData[key]);
+        });
+      }
+    };
+    node.children.forEach(function (key) {
+      treeData[key].display = true;
+      _traverse(treeData[key].children, treeData[key]);
+    });
+  } else {
+    var traverse = function traverse(children) {
+      if (!children) return;
+      children.forEach(function (key) {
+        treeData[key].display = false;
+        traverse(treeData[key].children);
+      });
+    };
+    traverse(node.children);
+  }
+};
+
+table_store_TableStore.prototype.loadData = function (row, treeNode) {
+  var _this5 = this;
+
+  var table = this.table;
+  var parentRowKey = treeNode.rowKey;
+  if (table.lazy && table.load) {
+    table.load(row, treeNode, function (data) {
+      if (!Array.isArray(data)) {
+        throw new Error('data must be an array');
+      }
+      var treeData = _this5.states.treeData;
+      data.forEach(function (item) {
+        var rowKey = table.getRowKey(item);
+        var parent = treeData[parentRowKey];
+        parent.loaded = true;
+        parent.children.push(rowKey);
+        var child = {
+          display: true,
+          level: parent.level + 1
+        };
+        if (item.hasChildren) {
+          child.expanded = false;
+          child.hasChildren = true;
+          child.children = [];
+        }
+        external_vue_default.a.set(treeData, rowKey, child);
+        external_vue_default.a.set(_this5.states.lazyTreeNodeMap, rowKey, item);
+      });
+      _this5.toggleTreeExpansion(parentRowKey);
+    });
+  }
+};
+
+/* harmony default export */ var table_store = (table_store_TableStore);
 // EXTERNAL MODULE: external "element-ui/lib/utils/scrollbar-width"
-var scrollbar_width_ = __webpack_require__(26);
+var scrollbar_width_ = __webpack_require__(29);
 var scrollbar_width_default = /*#__PURE__*/__webpack_require__.n(scrollbar_width_);
 
 // CONCATENATED MODULE: ./packages/table/src/table-layout.js
@@ -17489,6 +17777,8 @@ var table_layout_TableLayout = function () {
 // CONCATENATED MODULE: ./packages/table/src/table-body.js
 var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
@@ -17524,6 +17814,29 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
     var columnsHidden = this.columns.map(function (column, index) {
       return _this.isColumnHidden(index);
     });
+    var rows = this.data;
+    if (this.store.states.lazy && Object.keys(this.store.states.lazyTreeNodeMap).length) {
+      rows = rows.reduce(function (prev, item) {
+        prev.push(item);
+        var rowKey = _this.store.table.getRowKey(item);
+        var parent = _this.store.states.treeData[rowKey];
+        if (parent && parent.children && parent.hasChildren) {
+          var tmp = [];
+          var traverse = function traverse(children) {
+            if (!children) return;
+            children.forEach(function (key) {
+              tmp.push(_this.store.states.lazyTreeNodeMap[key]);
+              if (_this.store.states.treeData[key]) {
+                traverse(_this.store.states.treeData[key].children);
+              }
+            });
+          };
+          traverse(parent.children);
+          prev = prev.concat(tmp);
+        }
+        return prev;
+      }, []);
+    }
     return h(
       'table',
       {
@@ -17536,12 +17849,23 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
         return h('col', {
           attrs: { name: column.id }
         });
-      })]), h('tbody', [this._l(this.data, function (row, $index) {
-        return [h(
+      })]), h('tbody', [this._l(rows, function (row, $index) {
+        var rowKey = _this.table.rowKey ? _this.getKeyOfRow(row, $index) : $index;
+        var treeNode = _this.treeData[rowKey];
+        var rowClasses = _this.getRowClass(row, $index);
+        if (treeNode) {
+          rowClasses.push('el-table__row--level-' + treeNode.level);
+        }
+        var tr = h(
           'tr',
           {
+            directives: [{
+              name: 'show',
+              value: treeNode ? treeNode.display : true
+            }],
+
             style: _this.rowStyle ? _this.getRowStyle(row, $index) : null,
-            key: _this.table.rowKey ? _this.getKeyOfRow(row, $index) : $index,
+            key: rowKey,
             on: {
               'dblclick': function dblclick($event) {
                 return _this.handleDoubleClick($event, row);
@@ -17560,7 +17884,7 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
               }
             },
 
-            'class': [_this.getRowClass(row, $index)] },
+            'class': rowClasses },
           [_this._l(_this.columns, function (column, cellIndex) {
             var _getSpan = _this.getSpan(row, column, $index, cellIndex),
                 rowspan = _getSpan.rowspan,
@@ -17569,6 +17893,27 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
             if (!rowspan || !colspan) {
               return '';
             } else {
+              var columnData = _extends({}, column);
+              if (colspan !== 1) {
+                columnData.realWidth = columnData.realWidth * colspan;
+              }
+              var data = {
+                store: _this.store,
+                _self: _this.context || _this.table.$vnode.context,
+                column: columnData,
+                row: row,
+                $index: $index
+              };
+              if (cellIndex === _this.firstDefaultColumnIndex && treeNode) {
+                data.treeNode = {
+                  hasChildren: treeNode.hasChildren || treeNode.children && treeNode.children.length,
+                  expanded: treeNode.expanded,
+                  indent: treeNode.level * _this.treeIndent,
+                  level: treeNode.level,
+                  loaded: treeNode.loaded,
+                  rowKey: rowKey
+                };
+              }
               return h(
                 'td',
                 {
@@ -17584,23 +17929,22 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
                     'mouseleave': _this.handleCellMouseLeave
                   }
                 },
-                [column.renderCell.call(_this._renderProxy, h, {
-                  row: row,
-                  column: column,
-                  $index: $index,
-                  store: _this.store,
-                  _self: _this.context || _this.table.$vnode.context
-                }, columnsHidden[cellIndex])]
+                [column.renderCell.call(_this._renderProxy, h, data, columnsHidden[cellIndex])]
               );
             }
           })]
-        ), _this.store.isRowExpanded(row) ? h('tr', [h(
-          'td',
-          {
-            attrs: { colspan: _this.columns.length },
-            'class': 'el-table__expanded-cell' },
-          [_this.table.renderExpanded ? _this.table.renderExpanded(h, { row: row, $index: $index, store: _this.store }) : '']
-        )]) : ''];
+        );
+        if (_this.hasExpandColumn && _this.store.isRowExpanded(row)) {
+          return [tr, h('tr', [h(
+            'td',
+            {
+              attrs: { colspan: _this.columns.length },
+              'class': 'el-table__expanded-cell' },
+            [_this.table.renderExpanded ? _this.table.renderExpanded(h, { row: row, $index: $index, store: _this.store }) : '']
+          )])];
+        } else {
+          return tr;
+        }
       }).concat(h('el-tooltip', {
         attrs: { effect: this.table.tooltipEffect, placement: 'top', content: this.tooltipContent },
         ref: 'tooltip' }))])]
@@ -17608,54 +17952,15 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
   },
 
 
-  watch: {
-    'store.states.hoverRow': function storeStatesHoverRow(newVal, oldVal) {
-      if (!this.store.states.isComplex) return;
-      var el = this.$el;
-      if (!el) return;
-      var tr = el.querySelector('tbody').children;
-      var rows = [].filter.call(tr, function (row) {
-        return Object(dom_["hasClass"])(row, 'el-table__row');
-      });
-      var oldRow = rows[oldVal];
-      var newRow = rows[newVal];
-      if (oldRow) {
-        Object(dom_["removeClass"])(oldRow, 'hover-row');
-      }
-      if (newRow) {
-        Object(dom_["addClass"])(newRow, 'hover-row');
-      }
-    },
-    'store.states.currentRow': function storeStatesCurrentRow(newVal, oldVal) {
-      if (!this.highlight) return;
-      var el = this.$el;
-      if (!el) return;
-      var data = this.store.states.data;
-      var tr = el.querySelector('tbody').children;
-      var rows = [].filter.call(tr, function (row) {
-        return Object(dom_["hasClass"])(row, 'el-table__row');
-      });
-      var oldRow = rows[data.indexOf(oldVal)];
-      var newRow = rows[data.indexOf(newVal)];
-      if (oldRow) {
-        Object(dom_["removeClass"])(oldRow, 'current-row');
-      } else {
-        [].forEach.call(rows, function (row) {
-          return Object(dom_["removeClass"])(row, 'current-row');
-        });
-      }
-      if (newRow) {
-        Object(dom_["addClass"])(newRow, 'current-row');
-      }
-    }
-  },
-
   computed: {
     table: function table() {
       return this.$parent;
     },
     data: function data() {
       return this.store.states.data;
+    },
+    treeData: function treeData() {
+      return this.store.states.treeData;
     },
     columnsCount: function columnsCount() {
       return this.store.states.columns.length;
@@ -17674,6 +17979,40 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
     },
     columns: function columns() {
       return this.store.states.columns;
+    },
+    hasExpandColumn: function hasExpandColumn() {
+      return this.columns.some(function (_ref) {
+        var type = _ref.type;
+        return type === 'expand';
+      });
+    },
+    firstDefaultColumnIndex: function firstDefaultColumnIndex() {
+      for (var index = 0; index < this.columns.length; index++) {
+        if (this.columns[index].type === 'default') {
+          return index;
+        }
+      }
+      return 0;
+    },
+    treeIndent: function treeIndent() {
+      return this.store.states.indent;
+    }
+  },
+
+  watch: {
+    // don't trigger getter of currentRow in getCellClass. see https://jsfiddle.net/oe2b4hqt/
+    // update DOM manually. see https://github.com/ElemeFE/element/pull/13954/files#diff-9b450c00d0a9dec0ffad5a3176972e40
+    'store.states.hoverRow': function storeStatesHoverRow(newVal, oldVal) {
+      if (!this.store.states.isComplex) return;
+      var rows = this.$el.querySelectorAll('.el-table__row');
+      var oldRow = rows[oldVal];
+      var newRow = rows[newVal];
+      if (oldRow) {
+        Object(dom_["removeClass"])(oldRow, 'hover-row');
+      }
+      if (newRow) {
+        Object(dom_["addClass"])(newRow, 'hover-row');
+      }
     }
   },
 
@@ -17766,7 +18105,7 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
         classes.push('expanded');
       }
 
-      return classes.join(' ');
+      return classes;
     },
     getCellStyle: function getCellStyle(rowIndex, columnIndex, row, column) {
       var cellStyle = this.table.cellStyle;
@@ -17872,7 +18211,7 @@ var table_body_typeof = typeof Symbol === "function" && typeof Symbol.iterator =
           table.$emit('cell-' + name, row, column, cell, event);
         }
       }
-      table.$emit('row-' + name, row, event, column);
+      table.$emit('row-' + name, row, column, event);
     },
     handleExpandClick: function handleExpandClick(row, e) {
       e.stopPropagation();
@@ -18058,7 +18397,7 @@ var dropdowns = [];
   }
 });
 // EXTERNAL MODULE: external "element-ui/lib/checkbox-group"
-var checkbox_group_ = __webpack_require__(27);
+var checkbox_group_ = __webpack_require__(30);
 var checkbox_group_default = /*#__PURE__*/__webpack_require__.n(checkbox_group_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/table/src/filter-panel.vue?vue&type=script&lang=js&
@@ -18541,7 +18880,8 @@ var convertToRows = function convertToRows(originColumns) {
         prop = _defaultSort.prop,
         order = _defaultSort.order;
 
-    this.store.commit('sort', { prop: prop, order: order });
+    var init = true;
+    this.store.commit('sort', { prop: prop, order: order, init: init });
   },
   beforeDestroy: function beforeDestroy() {
     var panels = this.filterPanels;
@@ -18920,7 +19260,7 @@ var convertToRows = function convertToRows(originColumns) {
                 colspan: column.colSpan,
                 rowspan: column.rowSpan
               },
-              'class': [column.id, column.headerAlign, column.className || '', _this.isCellHidden(cellIndex, _this.columns, column) ? 'is-hidden' : '', !column.children ? 'is-leaf' : '', column.labelClassName] },
+              'class': _this.getRowClasses(column, cellIndex) },
             [h(
               'div',
               { 'class': ['cell', column.labelClassName] },
@@ -18998,6 +19338,19 @@ var convertToRows = function convertToRows(originColumns) {
       } else {
         return index < this.leftFixedCount || index >= this.columnsCount - this.rightFixedCount;
       }
+    },
+    getRowClasses: function getRowClasses(column, cellIndex) {
+      var classes = [column.id, column.align, column.labelClassName];
+      if (column.className) {
+        classes.push(column.className);
+      }
+      if (this.isCellHidden(cellIndex, this.columns, column)) {
+        classes.push('is-hidden');
+      }
+      if (!column.children) {
+        classes.push('is-leaf');
+      }
+      return classes;
     }
   }
 });
@@ -19229,6 +19582,26 @@ var convertToRows = function convertToRows(originColumns) {
 
 
 
+
+var flattenData = function flattenData(data) {
+  if (!data) return data;
+  var newData = [];
+  var flatten = function flatten(arr) {
+    arr.forEach(function (item) {
+      newData.push(item);
+      if (Array.isArray(item.children)) {
+        flatten(item.children);
+      }
+    });
+  };
+  flatten(data);
+  if (data.length === newData.length) {
+    return data;
+  } else {
+    return newData;
+  }
+};
+
 var tableIdSeed = 1;
 
 /* harmony default export */ var tablevue_type_script_lang_js_ = ({
@@ -19315,7 +19688,16 @@ var tableIdSeed = 1;
     selectOnIndeterminate: {
       type: Boolean,
       default: true
-    }
+    },
+
+    indent: {
+      type: Number,
+      default: 16
+    },
+
+    lazy: Boolean,
+
+    load: Function
   },
 
   components: {
@@ -19448,15 +19830,64 @@ var tableIdSeed = 1;
     },
     toggleAllSelection: function toggleAllSelection() {
       this.store.commit('toggleAllSelection');
+    },
+    getRowKey: function getRowKey(row) {
+      var rowKey = getRowIdentity(row, this.store.states.rowKey);
+      if (!rowKey) {
+        throw new Error('if there\'s nested data, rowKey is required.');
+      }
+      return rowKey;
+    },
+    getTableTreeData: function getTableTreeData(data) {
+      var _this = this;
+
+      var treeData = {};
+      var traverse = function traverse(children, parentData, level) {
+        children.forEach(function (item) {
+          var rowKey = _this.getRowKey(item);
+          treeData[rowKey] = {
+            display: false,
+            level: level
+          };
+          parentData.children.push(rowKey);
+          if (Array.isArray(item.children) && item.children.length) {
+            treeData[rowKey].children = [];
+            treeData[rowKey].expanded = false;
+            traverse(item.children, treeData[rowKey], level + 1);
+          }
+        });
+      };
+      if (data) {
+        data.forEach(function (item) {
+          var containChildren = Array.isArray(item.children) && item.children.length;
+          if (!(containChildren || item.hasChildren)) return;
+          var rowKey = _this.getRowKey(item);
+          var treeNode = {
+            level: 0,
+            expanded: false,
+            display: true,
+            children: []
+          };
+          if (containChildren) {
+            treeData[rowKey] = treeNode;
+            traverse(item.children, treeData[rowKey], 1);
+          } else if (item.hasChildren && _this.lazy) {
+            treeNode.hasChildren = true;
+            treeNode.loaded = false;
+            treeData[rowKey] = treeNode;
+          }
+        });
+      }
+      return treeData;
     }
   },
 
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     this.tableId = 'el-table_' + tableIdSeed++;
     this.debouncedUpdateLayout = debounce_default()(50, function () {
-      return _this.doLayout();
+      return _this2.doLayout();
     });
   },
 
@@ -19501,7 +19932,7 @@ var tableIdSeed = 1;
         };
       } else if (this.maxHeight) {
         return {
-          'max-height': (this.showHeader ? this.maxHeight - this.layout.headerHeight - this.layout.footerHeight : this.maxHeight - this.layout.footerHeight) + 'px'
+          'max-height': this.layout.bodyHeight ? this.layout.bodyHeight + 'px' : ''
         };
       }
       return {};
@@ -19573,12 +20004,14 @@ var tableIdSeed = 1;
     data: {
       immediate: true,
       handler: function handler(value) {
-        var _this2 = this;
+        var _this3 = this;
 
+        this.store.states.treeData = this.getTableTreeData(value);
+        value = flattenData(value);
         this.store.commit('setData', value);
         if (this.$ready) {
           this.$nextTick(function () {
-            _this2.doLayout();
+            _this3.doLayout();
           });
         }
       }
@@ -19598,7 +20031,7 @@ var tableIdSeed = 1;
     if (this.resizeListener) Object(resize_event_["removeResizeListener"])(this.$el, this.resizeListener);
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.bindEvents();
     this.store.updateColumns();
@@ -19612,7 +20045,7 @@ var tableIdSeed = 1;
     // init filters
     this.store.states.columns.forEach(function (column) {
       if (column.filteredValue && column.filteredValue.length) {
-        _this3.store.commit('filterChange', {
+        _this4.store.commit('filterChange', {
           column: column,
           values: column.filteredValue,
           silent: true
@@ -19626,7 +20059,9 @@ var tableIdSeed = 1;
     var store = new table_store(this, {
       rowKey: this.rowKey,
       defaultExpandAll: this.defaultExpandAll,
-      selectOnIndeterminate: this.selectOnIndeterminate
+      selectOnIndeterminate: this.selectOnIndeterminate,
+      indent: this.indent,
+      lazy: this.lazy
     });
     var layout = new table_layout({
       store: store,
@@ -20069,15 +20504,16 @@ var parseMinWidth = function parseMinWidth(minWidth) {
       if (!renderCell) {
         renderCell = table_column_DEFAULT_RENDER_CELL;
       }
+      var children = [_self.renderTreeCell(data), renderCell(h, data)];
 
       return _self.showOverflowTooltip || _self.showTooltipWhenOverflow ? h(
         'div',
         { 'class': 'cell el-tooltip', style: { width: (data.column.realWidth || data.column.width) - 1 + 'px' } },
-        [renderCell(h, data)]
+        [children]
       ) : h(
         'div',
         { 'class': 'cell' },
-        [renderCell(h, data)]
+        [children]
       );
     };
   },
@@ -20173,6 +20609,38 @@ var parseMinWidth = function parseMinWidth(minWidth) {
     }
   },
 
+  methods: {
+    renderTreeCell: function renderTreeCell(data) {
+      var h = this.$createElement;
+
+      if (!data.treeNode) return null;
+      var ele = [];
+      ele.push(h('span', { 'class': 'el-table__indent', style: { 'padding-left': data.treeNode.indent + 'px' } }));
+      if (data.treeNode.hasChildren) {
+        ele.push(h(
+          'div',
+          { 'class': ['el-table__expand-icon', data.treeNode.expanded ? 'el-table__expand-icon--expanded' : ''],
+            on: {
+              'click': this.handleTreeExpandIconClick.bind(this, data)
+            }
+          },
+          [h('i', { 'class': 'el-icon el-icon-arrow-right' })]
+        ));
+      } else {
+        ele.push(h('span', { 'class': 'el-table__placeholder' }));
+      }
+      return ele;
+    },
+    handleTreeExpandIconClick: function handleTreeExpandIconClick(data, e) {
+      e.stopPropagation();
+      if (data.store.states.lazy && !data.treeNode.loaded) {
+        data.store.loadData(data.row, data.treeNode);
+      } else {
+        data.store.toggleTreeExpansion(data.treeNode.rowKey);
+      }
+    }
+  },
+
   mounted: function mounted() {
     var _this2 = this;
 
@@ -20230,7 +20698,11 @@ var pickervue_type_template_id_79ae069f_render = function() {
             staticClass: "el-date-editor",
             class: "el-date-editor--" + _vm.type,
             attrs: {
-              readonly: !_vm.editable || _vm.readonly || _vm.type === "dates",
+              readonly:
+                !_vm.editable ||
+                _vm.readonly ||
+                _vm.type === "dates" ||
+                _vm.type === "week",
               disabled: _vm.pickerDisabled,
               size: _vm.pickerSize,
               name: _vm.name,
@@ -20382,298 +20854,9 @@ pickervue_type_template_id_79ae069f_render._withStripped = true
 
 // CONCATENATED MODULE: ./packages/date-picker/src/picker.vue?vue&type=template&id=79ae069f&
 
-// EXTERNAL MODULE: external "element-ui/lib/utils/date"
-var date_ = __webpack_require__(24);
-var date_default = /*#__PURE__*/__webpack_require__.n(date_);
+// EXTERNAL MODULE: external "element-ui/lib/utils/date-util"
+var date_util_ = __webpack_require__(0);
 
-// CONCATENATED MODULE: ./packages/date-picker/src/util/index.js
-
-
-
-var weeks = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
-var util_getI18nSettings = function getI18nSettings() {
-  return {
-    dayNamesShort: weeks.map(function (week) {
-      return Object(lib_locale_["t"])('el.datepicker.weeks.' + week);
-    }),
-    dayNames: weeks.map(function (week) {
-      return Object(lib_locale_["t"])('el.datepicker.weeks.' + week);
-    }),
-    monthNamesShort: months.map(function (month) {
-      return Object(lib_locale_["t"])('el.datepicker.months.' + month);
-    }),
-    monthNames: months.map(function (month, index) {
-      return Object(lib_locale_["t"])('el.datepicker.month' + (index + 1));
-    }),
-    amPm: ['am', 'pm']
-  };
-};
-
-var newArray = function newArray(start, end) {
-  var result = [];
-  for (var i = start; i <= end; i++) {
-    result.push(i);
-  }
-  return result;
-};
-
-var toDate = function toDate(date) {
-  return isDate(date) ? new Date(date) : null;
-};
-
-var isDate = function isDate(date) {
-  if (date === null || date === undefined) return false;
-  if (isNaN(new Date(date).getTime())) return false;
-  if (Array.isArray(date)) return false; // deal with `new Date([ new Date() ]) -> new Date()`
-  return true;
-};
-
-var isDateObject = function isDateObject(val) {
-  return val instanceof Date;
-};
-
-var util_formatDate = function formatDate(date, format) {
-  date = toDate(date);
-  if (!date) return '';
-  return date_default.a.format(date, format || 'yyyy-MM-dd', util_getI18nSettings());
-};
-
-var util_parseDate = function parseDate(string, format) {
-  return date_default.a.parse(string, format || 'yyyy-MM-dd', util_getI18nSettings());
-};
-
-var getDayCountOfMonth = function getDayCountOfMonth(year, month) {
-  if (month === 3 || month === 5 || month === 8 || month === 10) {
-    return 30;
-  }
-
-  if (month === 1) {
-    if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
-      return 29;
-    } else {
-      return 28;
-    }
-  }
-
-  return 31;
-};
-
-var getDayCountOfYear = function getDayCountOfYear(year) {
-  var isLeapYear = year % 400 === 0 || year % 100 !== 0 && year % 4 === 0;
-  return isLeapYear ? 366 : 365;
-};
-
-var getFirstDayOfMonth = function getFirstDayOfMonth(date) {
-  var temp = new Date(date.getTime());
-  temp.setDate(1);
-  return temp.getDay();
-};
-
-// see: https://stackoverflow.com/questions/3674539/incrementing-a-date-in-javascript
-// {prev, next} Date should work for Daylight Saving Time
-// Adding 24 * 60 * 60 * 1000 does not work in the above scenario
-var prevDate = function prevDate(date) {
-  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - amount);
-};
-
-var nextDate = function nextDate(date) {
-  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + amount);
-};
-
-var getStartDateOfMonth = function getStartDateOfMonth(year, month) {
-  var result = new Date(year, month, 1);
-  var day = result.getDay();
-
-  if (day === 0) {
-    return prevDate(result, 7);
-  } else {
-    return prevDate(result, day);
-  }
-};
-
-var getWeekNumber = function getWeekNumber(src) {
-  if (!isDate(src)) return null;
-  var date = new Date(src.getTime());
-  date.setHours(0, 0, 0, 0);
-  // Thursday in current week decides the year.
-  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
-  // January 4 is always in week 1.
-  var week1 = new Date(date.getFullYear(), 0, 4);
-  // Adjust to Thursday in week 1 and count number of weeks from date to week 1.
-  // Rounding should be fine for Daylight Saving Time. Its shift should never be more than 12 hours.
-  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
-};
-
-var getRangeHours = function getRangeHours(ranges) {
-  var hours = [];
-  var disabledHours = [];
-
-  (ranges || []).forEach(function (range) {
-    var value = range.map(function (date) {
-      return date.getHours();
-    });
-
-    disabledHours = disabledHours.concat(newArray(value[0], value[1]));
-  });
-
-  if (disabledHours.length) {
-    for (var i = 0; i < 24; i++) {
-      hours[i] = disabledHours.indexOf(i) === -1;
-    }
-  } else {
-    for (var _i = 0; _i < 24; _i++) {
-      hours[_i] = false;
-    }
-  }
-
-  return hours;
-};
-
-function setRangeData(arr, start, end, value) {
-  for (var i = start; i < end; i++) {
-    arr[i] = value;
-  }
-}
-
-var getRangeMinutes = function getRangeMinutes(ranges, hour) {
-  var minutes = new Array(60);
-
-  if (ranges.length > 0) {
-    ranges.forEach(function (range) {
-      var start = range[0];
-      var end = range[1];
-      var startHour = start.getHours();
-      var startMinute = start.getMinutes();
-      var endHour = end.getHours();
-      var endMinute = end.getMinutes();
-      if (startHour === hour && endHour !== hour) {
-        setRangeData(minutes, startMinute, 60, true);
-      } else if (startHour === hour && endHour === hour) {
-        setRangeData(minutes, startMinute, endMinute + 1, true);
-      } else if (startHour !== hour && endHour === hour) {
-        setRangeData(minutes, 0, endMinute + 1, true);
-      } else if (startHour < hour && endHour > hour) {
-        setRangeData(minutes, 0, 60, true);
-      }
-    });
-  } else {
-    setRangeData(minutes, 0, 60, true);
-  }
-  return minutes;
-};
-
-var util_range = function range(n) {
-  // see https://stackoverflow.com/questions/3746725/create-a-javascript-array-containing-1-n
-  return Array.apply(null, { length: n }).map(function (_, n) {
-    return n;
-  });
-};
-
-var modifyDate = function modifyDate(date, y, m, d) {
-  return new Date(y, m, d, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
-};
-
-var modifyTime = function modifyTime(date, h, m, s) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate(), h, m, s, date.getMilliseconds());
-};
-
-var modifyWithTimeString = function modifyWithTimeString(date, time) {
-  if (date == null || !time) {
-    return date;
-  }
-  time = util_parseDate(time, 'HH:mm:ss');
-  return modifyTime(date, time.getHours(), time.getMinutes(), time.getSeconds());
-};
-
-var clearTime = function clearTime(date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-};
-
-var clearMilliseconds = function clearMilliseconds(date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), 0);
-};
-
-var util_limitTimeRange = function limitTimeRange(date, ranges) {
-  var format = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'HH:mm:ss';
-
-  // TODO: refactory a more elegant solution
-  if (ranges.length === 0) return date;
-  var normalizeDate = function normalizeDate(date) {
-    return date_default.a.parse(date_default.a.format(date, format), format);
-  };
-  var ndate = normalizeDate(date);
-  var nranges = ranges.map(function (range) {
-    return range.map(normalizeDate);
-  });
-  if (nranges.some(function (nrange) {
-    return ndate >= nrange[0] && ndate <= nrange[1];
-  })) return date;
-
-  var minDate = nranges[0][0];
-  var maxDate = nranges[0][0];
-
-  nranges.forEach(function (nrange) {
-    minDate = new Date(Math.min(nrange[0], minDate));
-    maxDate = new Date(Math.max(nrange[1], minDate));
-  });
-
-  var ret = ndate < minDate ? minDate : maxDate;
-  // preserve Year/Month/Date
-  return modifyDate(ret, date.getFullYear(), date.getMonth(), date.getDate());
-};
-
-var timeWithinRange = function timeWithinRange(date, selectableRange, format) {
-  var limitedDate = util_limitTimeRange(date, selectableRange, format);
-  return limitedDate.getTime() === date.getTime();
-};
-
-var changeYearMonthAndClampDate = function changeYearMonthAndClampDate(date, year, month) {
-  // clamp date to the number of days in `year`, `month`
-  // eg: (2010-1-31, 2010, 2) => 2010-2-28
-  var monthDate = Math.min(date.getDate(), getDayCountOfMonth(year, month));
-  return modifyDate(date, year, month, monthDate);
-};
-
-var util_prevMonth = function prevMonth(date) {
-  var year = date.getFullYear();
-  var month = date.getMonth();
-  return month === 0 ? changeYearMonthAndClampDate(date, year - 1, 11) : changeYearMonthAndClampDate(date, year, month - 1);
-};
-
-var util_nextMonth = function nextMonth(date) {
-  var year = date.getFullYear();
-  var month = date.getMonth();
-  return month === 11 ? changeYearMonthAndClampDate(date, year + 1, 0) : changeYearMonthAndClampDate(date, year, month + 1);
-};
-
-var util_prevYear = function prevYear(date) {
-  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-  var year = date.getFullYear();
-  var month = date.getMonth();
-  return changeYearMonthAndClampDate(date, year - amount, month);
-};
-
-var util_nextYear = function nextYear(date) {
-  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-
-  var year = date.getFullYear();
-  var month = date.getMonth();
-  return changeYearMonthAndClampDate(date, year + amount, month);
-};
-
-var extractDateFormat = function extractDateFormat(format) {
-  return format.replace(/\W?m{1,2}|\W?ZZ/g, '').replace(/\W?h{1,2}|\W?s{1,3}|\W?a/gi, '').trim();
-};
-
-var extractTimeFormat = function extractTimeFormat(format) {
-  return format.replace(/\W?D{1,2}|\W?Do|\W?d{1,4}|\W?M{1,4}|\W?y{2,4}/g, '').trim();
-};
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/date-picker/src/picker.vue?vue&type=script&lang=js&
 //
 //
@@ -20792,17 +20975,18 @@ var DEFAULT_FORMATS = {
   week: 'yyyywWW',
   timerange: 'HH:mm:ss',
   daterange: 'yyyy-MM-dd',
+  monthrange: 'yyyy-MM',
   datetimerange: 'yyyy-MM-dd HH:mm:ss',
   year: 'yyyy'
 };
-var HAVE_TRIGGER_TYPES = ['date', 'datetime', 'time', 'time-select', 'week', 'month', 'year', 'daterange', 'timerange', 'datetimerange', 'dates'];
+var HAVE_TRIGGER_TYPES = ['date', 'datetime', 'time', 'time-select', 'week', 'month', 'year', 'daterange', 'monthrange', 'timerange', 'datetimerange', 'dates'];
 var pickervue_type_script_lang_js_DATE_FORMATTER = function DATE_FORMATTER(value, format) {
   if (format === 'timestamp') return value.getTime();
-  return util_formatDate(value, format);
+  return Object(date_util_["formatDate"])(value, format);
 };
 var pickervue_type_script_lang_js_DATE_PARSER = function DATE_PARSER(text, format) {
   if (format === 'timestamp') return new Date(Number(text));
-  return util_parseDate(text, format);
+  return Object(date_util_["parseDate"])(text, format);
 };
 var RANGE_FORMATTER = function RANGE_FORMATTER(value, format) {
   if (Array.isArray(value) && value.length === 2) {
@@ -20840,29 +21024,21 @@ var TYPE_VALUE_RESOLVER_MAP = {
   },
   week: {
     formatter: function formatter(value, format) {
-      var week = getWeekNumber(value);
+      var week = Object(date_util_["getWeekNumber"])(value);
       var month = value.getMonth();
       var trueDate = new Date(value);
       if (week === 1 && month === 11) {
         trueDate.setHours(0, 0, 0, 0);
         trueDate.setDate(trueDate.getDate() + 3 - (trueDate.getDay() + 6) % 7);
       }
-      var date = util_formatDate(trueDate, format);
+      var date = Object(date_util_["formatDate"])(trueDate, format);
 
       date = /WW/.test(date) ? date.replace(/WW/, week < 10 ? '0' + week : week) : date.replace(/W/, week);
       return date;
     },
-    parser: function parser(text) {
-      var array = (text || '').split('w');
-      if (array.length === 2) {
-        var year = Number(array[0]);
-        var month = Number(array[1]);
-
-        if (!isNaN(year) && !isNaN(month) && month < 54) {
-          return text;
-        }
-      }
-      return null;
+    parser: function parser(text, format) {
+      // parse as if a normal date
+      return TYPE_VALUE_RESOLVER_MAP.date.parser(text, format);
     }
   },
   date: {
@@ -20874,6 +21050,10 @@ var TYPE_VALUE_RESOLVER_MAP = {
     parser: pickervue_type_script_lang_js_DATE_PARSER
   },
   daterange: {
+    formatter: RANGE_FORMATTER,
+    parser: RANGE_PARSER
+  },
+  monthrange: {
     formatter: RANGE_FORMATTER,
     parser: RANGE_PARSER
   },
@@ -21174,7 +21354,7 @@ var pickervue_type_script_lang_js_validator = function validator(val) {
       if (!this.value) return this.value; // component value is not set
       if (this.type === 'time-select') return this.value; // time-select does not require parsing, this might change in next major version
 
-      var valueIsDateObject = isDateObject(this.value) || Array.isArray(this.value) && this.value.every(isDateObject);
+      var valueIsDateObject = Object(date_util_["isDateObject"])(this.value) || Array.isArray(this.value) && this.value.every(date_util_["isDateObject"]);
       if (valueIsDateObject) {
         return this.value;
       }
@@ -21249,7 +21429,7 @@ var pickervue_type_script_lang_js_validator = function validator(val) {
 
     // {parse, formatTo} Value deals maps component value with internal Date
     parseValue: function parseValue(value) {
-      var isParsed = isDateObject(value) || Array.isArray(value) && value.every(isDateObject);
+      var isParsed = Object(date_util_["isDateObject"])(value) || Array.isArray(value) && value.every(date_util_["isDateObject"]);
       if (this.valueFormat && !isParsed) {
         return parseAsFormatAndType(value, this.valueFormat, this.type, this.rangeSeparator) || value;
       } else {
@@ -21257,7 +21437,7 @@ var pickervue_type_script_lang_js_validator = function validator(val) {
       }
     },
     formatToValue: function formatToValue(date) {
-      var isFormattable = isDateObject(date) || Array.isArray(date) && date.every(isDateObject);
+      var isFormattable = Object(date_util_["isDateObject"])(date) || Array.isArray(date) && date.every(date_util_["isDateObject"]);
       if (this.valueFormat && isFormattable) {
         return formatAsFormatAndType(date, this.valueFormat, this.type, this.rangeSeparator);
       } else {
@@ -22553,10 +22733,10 @@ time_spinnervue_type_template_id_1facadeb_render._withStripped = true
       return this.date.getSeconds();
     },
     hoursList: function hoursList() {
-      return getRangeHours(this.selectableRange);
+      return Object(date_util_["getRangeHours"])(this.selectableRange);
     },
     minutesList: function minutesList() {
-      return getRangeMinutes(this.selectableRange, this.hours);
+      return Object(date_util_["getRangeMinutes"])(this.selectableRange, this.hours);
     },
     arrowHourList: function arrowHourList() {
       var hours = this.hours;
@@ -22597,11 +22777,11 @@ time_spinnervue_type_template_id_1facadeb_render._withStripped = true
     modifyDateField: function modifyDateField(type, value) {
       switch (type) {
         case 'hours':
-          this.$emit('change', modifyTime(this.date, value, this.minutes, this.seconds));break;
+          this.$emit('change', Object(date_util_["modifyTime"])(this.date, value, this.minutes, this.seconds));break;
         case 'minutes':
-          this.$emit('change', modifyTime(this.date, this.hours, value, this.seconds));break;
+          this.$emit('change', Object(date_util_["modifyTime"])(this.date, this.hours, value, this.seconds));break;
         case 'seconds':
-          this.$emit('change', modifyTime(this.date, this.hours, this.minutes, value));break;
+          this.$emit('change', Object(date_util_["modifyTime"])(this.date, this.hours, this.minutes, value));break;
       }
     },
     handleClick: function handleClick(type, _ref) {
@@ -22799,7 +22979,7 @@ time_spinner_component.options.__file = "packages/date-picker/src/basic/time-spi
 
       var date = void 0;
       if (newVal instanceof Date) {
-        date = util_limitTimeRange(newVal, this.selectableRange, this.format);
+        date = Object(date_util_["limitTimeRange"])(newVal, this.selectableRange, this.format);
       } else if (!newVal) {
         date = this.defaultValue ? new Date(this.defaultValue) : new Date();
       }
@@ -22816,7 +22996,7 @@ time_spinner_component.options.__file = "packages/date-picker/src/basic/time-spi
       this.$refs.spinner.selectableRange = val;
     },
     defaultValue: function defaultValue(val) {
-      if (!isDate(this.value)) {
+      if (!Object(date_util_["isDate"])(this.value)) {
         this.date = val ? new Date(val) : new Date();
       }
     }
@@ -22860,7 +23040,7 @@ time_spinner_component.options.__file = "packages/date-picker/src/basic/time-spi
     handleChange: function handleChange(date) {
       // this.visible avoids edge cases, when use scrolls during panel closing animation
       if (this.visible) {
-        this.date = clearMilliseconds(date);
+        this.date = Object(date_util_["clearMilliseconds"])(date);
         // if date is out of range, do not emit
         if (this.isValidValue(this.date)) {
           this.$emit('pick', this.date, true);
@@ -22876,7 +23056,7 @@ time_spinner_component.options.__file = "packages/date-picker/src/basic/time-spi
       var first = arguments[1];
 
       if (first) return;
-      var date = clearMilliseconds(util_limitTimeRange(this.date, this.selectableRange, this.format));
+      var date = Object(date_util_["clearMilliseconds"])(Object(date_util_["limitTimeRange"])(this.date, this.selectableRange, this.format));
       this.$emit('pick', date, visible, first);
     },
     handleKeydown: function handleKeydown(event) {
@@ -22900,7 +23080,7 @@ time_spinner_component.options.__file = "packages/date-picker/src/basic/time-spi
       }
     },
     isValidValue: function isValidValue(date) {
-      return timeWithinRange(date, this.selectableRange, this.format);
+      return Object(date_util_["timeWithinRange"])(date, this.selectableRange, this.format);
     },
     adjustSpinners: function adjustSpinners() {
       return this.$refs.spinner.adjustSpinners();
@@ -23144,10 +23324,10 @@ year_tablevue_type_template_id_c86ab5e0_render._withStripped = true
 
 
 var year_tablevue_type_script_lang_js_datesInYear = function datesInYear(year) {
-  var numOfDays = getDayCountOfYear(year);
+  var numOfDays = Object(date_util_["getDayCountOfYear"])(year);
   var firstDay = new Date(year, 0, 1);
-  return util_range(numOfDays).map(function (n) {
-    return nextDate(firstDay, n);
+  return Object(date_util_["range"])(numOfDays).map(function (n) {
+    return Object(date_util_["nextDate"])(firstDay, n);
   });
 };
 
@@ -23158,7 +23338,7 @@ var year_tablevue_type_script_lang_js_datesInYear = function datesInYear(year) {
     defaultValue: {
       validator: function validator(val) {
         // null or valid Date Object
-        return val === null || val instanceof Date && isDate(val);
+        return val === null || val instanceof Date && Object(date_util_["isDate"])(val);
       }
     },
     date: {}
@@ -23226,76 +23406,35 @@ var month_tablevue_type_template_id_654d4f42_render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "table",
-    { staticClass: "el-month-table", on: { click: _vm.handleMonthTableClick } },
+    {
+      staticClass: "el-month-table",
+      on: { click: _vm.handleMonthTableClick, mousemove: _vm.handleMouseMove }
+    },
     [
-      _c("tbody", [
-        _c("tr", [
-          _c("td", { class: _vm.getCellStyle(0) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.jan")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(1) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.feb")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(2) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.mar")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(3) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.apr")))
-            ])
-          ])
-        ]),
-        _c("tr", [
-          _c("td", { class: _vm.getCellStyle(4) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.may")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(5) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.jun")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(6) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.jul")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(7) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.aug")))
-            ])
-          ])
-        ]),
-        _c("tr", [
-          _c("td", { class: _vm.getCellStyle(8) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.sep")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(9) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.oct")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(10) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.nov")))
-            ])
-          ]),
-          _c("td", { class: _vm.getCellStyle(11) }, [
-            _c("a", { staticClass: "cell" }, [
-              _vm._v(_vm._s(_vm.t("el.datepicker.months.dec")))
-            ])
-          ])
-        ])
-      ])
+      _c(
+        "tbody",
+        _vm._l(_vm.rows, function(row, key) {
+          return _c(
+            "tr",
+            { key: key },
+            _vm._l(row, function(cell, key) {
+              return _c("td", { key: key, class: _vm.getCellStyle(cell) }, [
+                _c("div", [
+                  _c("a", { staticClass: "cell" }, [
+                    _vm._v(
+                      _vm._s(
+                        _vm.t("el.datepicker.months." + _vm.months[cell.text])
+                      )
+                    )
+                  ])
+                ])
+              ])
+            }),
+            0
+          )
+        }),
+        0
+      )
     ]
   )
 }
@@ -23320,41 +23459,6 @@ month_tablevue_type_template_id_654d4f42_render._withStripped = true
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -23362,50 +23466,252 @@ month_tablevue_type_template_id_654d4f42_render._withStripped = true
 
 
 var month_tablevue_type_script_lang_js_datesInMonth = function datesInMonth(year, month) {
-  var numOfDays = getDayCountOfMonth(year, month);
+  var numOfDays = Object(date_util_["getDayCountOfMonth"])(year, month);
   var firstDay = new Date(year, month, 1);
-  return util_range(numOfDays).map(function (n) {
-    return nextDate(firstDay, n);
+  return Object(date_util_["range"])(numOfDays).map(function (n) {
+    return Object(date_util_["nextDate"])(firstDay, n);
   });
 };
 
+var clearDate = function clearDate(date) {
+  return new Date(date.getFullYear(), date.getMonth());
+};
+
+var getMonthTimestamp = function getMonthTimestamp(time) {
+  if (typeof time === 'number' || typeof time === 'string') {
+    return clearDate(new Date(time)).getTime();
+  } else if (time instanceof Date) {
+    return clearDate(time).getTime();
+  } else {
+    return NaN;
+  }
+};
 /* harmony default export */ var month_tablevue_type_script_lang_js_ = ({
   props: {
     disabledDate: {},
     value: {},
+    selectionMode: {
+      default: 'month'
+    },
+    minDate: {},
+
+    maxDate: {},
     defaultValue: {
       validator: function validator(val) {
         // null or valid Date Object
-        return val === null || val instanceof Date && isDate(val);
+        return val === null || Object(date_util_["isDate"])(val) || Array.isArray(val) && val.every(date_util_["isDate"]);
       }
     },
-    date: {}
+    date: {},
+    rangeState: {
+      default: function _default() {
+        return {
+          endDate: null,
+          selecting: false
+        };
+      }
+    }
   },
+
   mixins: [locale_default.a],
+
+  watch: {
+    'rangeState.endDate': function rangeStateEndDate(newVal) {
+      this.markRange(this.minDate, newVal);
+    },
+    minDate: function minDate(newVal, oldVal) {
+      if (getMonthTimestamp(newVal) !== getMonthTimestamp(oldVal)) {
+        this.markRange(this.minDate, this.maxDate);
+      }
+    },
+    maxDate: function maxDate(newVal, oldVal) {
+      if (getMonthTimestamp(newVal) !== getMonthTimestamp(oldVal)) {
+        this.markRange(this.minDate, this.maxDate);
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      months: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+      tableRows: [[], [], []],
+      lastRow: null,
+      lastColumn: null
+    };
+  },
+
+
   methods: {
-    getCellStyle: function getCellStyle(month) {
+    cellMatchesDate: function cellMatchesDate(cell, date) {
+      var value = new Date(date);
+      return this.date.getFullYear() === value.getFullYear() && Number(cell.text) === value.getMonth();
+    },
+    getCellStyle: function getCellStyle(cell) {
+      var _this = this;
+
       var style = {};
       var year = this.date.getFullYear();
       var today = new Date();
-
+      var month = cell.text;
+      var defaultValue = this.defaultValue ? Array.isArray(this.defaultValue) ? this.defaultValue : [this.defaultValue] : [];
       style.disabled = typeof this.disabledDate === 'function' ? month_tablevue_type_script_lang_js_datesInMonth(year, month).every(this.disabledDate) : false;
       style.current = Object(util_["arrayFindIndex"])(Object(util_["coerceTruthyValueToArray"])(this.value), function (date) {
         return date.getFullYear() === year && date.getMonth() === month;
       }) >= 0;
       style.today = today.getFullYear() === year && today.getMonth() === month;
-      style.default = this.defaultValue && this.defaultValue.getFullYear() === year && this.defaultValue.getMonth() === month;
+      style.default = defaultValue.some(function (date) {
+        return _this.cellMatchesDate(cell, date);
+      });
 
+      if (cell.inRange) {
+        style['in-range'] = true;
+
+        if (cell.start) {
+          style['start-date'] = true;
+        }
+
+        if (cell.end) {
+          style['end-date'] = true;
+        }
+      }
       return style;
+    },
+    getMonthOfCell: function getMonthOfCell(month) {
+      var year = this.date.getFullYear();
+      return new Date(year, month, 1);
+    },
+    markRange: function markRange(minDate, maxDate) {
+      minDate = getMonthTimestamp(minDate);
+      maxDate = getMonthTimestamp(maxDate) || minDate;
+      var _ref = [Math.min(minDate, maxDate), Math.max(minDate, maxDate)];
+      minDate = _ref[0];
+      maxDate = _ref[1];
+
+      var rows = this.rows;
+      for (var i = 0, k = rows.length; i < k; i++) {
+        var row = rows[i];
+        for (var j = 0, l = row.length; j < l; j++) {
+
+          var cell = row[j];
+          var index = i * 4 + j;
+          var time = new Date(this.date.getFullYear(), index).getTime();
+
+          cell.inRange = minDate && time >= minDate && time <= maxDate;
+          cell.start = minDate && time === minDate;
+          cell.end = maxDate && time === maxDate;
+        }
+      }
+    },
+    handleMouseMove: function handleMouseMove(event) {
+      if (!this.rangeState.selecting) return;
+
+      var target = event.target;
+      if (target.tagName === 'A') {
+        target = target.parentNode.parentNode;
+      }
+      if (target.tagName === 'DIV') {
+        target = target.parentNode;
+      }
+      if (target.tagName !== 'TD') return;
+
+      var row = target.parentNode.rowIndex;
+      var column = target.cellIndex;
+      // can not select disabled date
+      if (this.rows[row][column].disabled) return;
+
+      // only update rangeState when mouse moves to a new cell
+      // this avoids frequent Date object creation and improves performance
+      if (row !== this.lastRow || column !== this.lastColumn) {
+        this.lastRow = row;
+        this.lastColumn = column;
+        this.$emit('changerange', {
+          minDate: this.minDate,
+          maxDate: this.maxDate,
+          rangeState: {
+            selecting: true,
+            endDate: this.getMonthOfCell(row * 4 + column)
+          }
+        });
+      }
     },
     handleMonthTableClick: function handleMonthTableClick(event) {
       var target = event.target;
-      if (target.tagName !== 'A') return;
-      if (Object(dom_["hasClass"])(target.parentNode, 'disabled')) return;
-      var column = target.parentNode.cellIndex;
-      var row = target.parentNode.parentNode.rowIndex;
+      if (target.tagName === 'A') {
+        target = target.parentNode.parentNode;
+      }
+      if (target.tagName === 'DIV') {
+        target = target.parentNode;
+      }
+      if (target.tagName !== 'TD') return;
+      if (Object(dom_["hasClass"])(target, 'disabled')) return;
+      var column = target.cellIndex;
+      var row = target.parentNode.rowIndex;
       var month = row * 4 + column;
+      var newDate = this.getMonthOfCell(month);
+      if (this.selectionMode === 'range') {
+        if (!this.rangeState.selecting) {
+          this.$emit('pick', { minDate: newDate, maxDate: null });
+          this.rangeState.selecting = true;
+        } else {
+          if (newDate >= this.minDate) {
+            this.$emit('pick', { minDate: this.minDate, maxDate: newDate });
+          } else {
+            this.$emit('pick', { minDate: newDate, maxDate: this.minDate });
+          }
+          this.rangeState.selecting = false;
+        }
+      } else {
+        this.$emit('pick', month);
+      }
+    }
+  },
 
-      this.$emit('pick', month);
+  computed: {
+    rows: function rows() {
+      var _this2 = this;
+
+      // TODO: refactory rows / getCellClasses
+      var rows = this.tableRows;
+      var disabledDate = this.disabledDate;
+      var selectedDate = [];
+      var now = getMonthTimestamp(new Date());
+
+      for (var i = 0; i < 3; i++) {
+        var row = rows[i];
+
+        var _loop = function _loop(j) {
+          var cell = row[j];
+          if (!cell) {
+            cell = { row: i, column: j, type: 'normal', inRange: false, start: false, end: false };
+          }
+
+          cell.type = 'normal';
+
+          var index = i * 4 + j;
+          var time = new Date(_this2.date.getFullYear(), index).getTime();
+          cell.inRange = time >= getMonthTimestamp(_this2.minDate) && time <= getMonthTimestamp(_this2.maxDate);
+          cell.start = _this2.minDate && time === getMonthTimestamp(_this2.minDate);
+          cell.end = _this2.maxDate && time === getMonthTimestamp(_this2.maxDate);
+          var isToday = time === now;
+
+          if (isToday) {
+            cell.type = 'today';
+          }
+          cell.text = index;
+          var cellDate = new Date(time);
+          cell.disabled = typeof disabledDate === 'function' && disabledDate(cellDate);
+          cell.selected = Object(util_["arrayFind"])(selectedDate, function (date) {
+            return date.getTime() === cellDate.getTime();
+          });
+
+          _this2.$set(row, j, cell);
+        };
+
+        for (var j = 0; j < 4; j++) {
+          _loop(j);
+        }
+      }
+      return rows;
     }
   }
 });
@@ -23539,9 +23845,9 @@ date_tablevue_type_template_id_5d1f3341_render._withStripped = true
 var _WEEKS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 var date_tablevue_type_script_lang_js_getDateTimestamp = function getDateTimestamp(time) {
   if (typeof time === 'number' || typeof time === 'string') {
-    return clearTime(new Date(time)).getTime();
+    return Object(date_util_["clearTime"])(new Date(time)).getTime();
   } else if (time instanceof Date) {
-    return clearTime(time).getTime();
+    return Object(date_util_["clearTime"])(time).getTime();
   } else {
     return NaN;
   }
@@ -23572,7 +23878,7 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
     defaultValue: {
       validator: function validator(val) {
         // either: null, valid Date object, Array of valid Date objects
-        return val === null || isDate(val) || Array.isArray(val) && val.every(isDate);
+        return val === null || Object(date_util_["isDate"])(val) || Array.isArray(val) && val.every(date_util_["isDate"]);
       }
     },
 
@@ -23620,23 +23926,22 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
       return this.date.getMonth();
     },
     startDate: function startDate() {
-      return getStartDateOfMonth(this.year, this.month);
+      return Object(date_util_["getStartDateOfMonth"])(this.year, this.month);
     },
     rows: function rows() {
       var _this = this;
 
       // TODO: refactory rows / getCellClasses
       var date = new Date(this.year, this.month, 1);
-      var day = getFirstDayOfMonth(date); // day of first day
-      var dateCountOfMonth = getDayCountOfMonth(date.getFullYear(), date.getMonth());
-      var dateCountOfLastMonth = getDayCountOfMonth(date.getFullYear(), date.getMonth() === 0 ? 11 : date.getMonth() - 1);
+      var day = Object(date_util_["getFirstDayOfMonth"])(date); // day of first day
+      var dateCountOfMonth = Object(date_util_["getDayCountOfMonth"])(date.getFullYear(), date.getMonth());
+      var dateCountOfLastMonth = Object(date_util_["getDayCountOfMonth"])(date.getFullYear(), date.getMonth() === 0 ? 11 : date.getMonth() - 1);
 
       day = day === 0 ? 7 : day;
 
       var offset = this.offsetDay;
       var rows = this.tableRows;
       var count = 1;
-      var firstDayPosition = void 0;
 
       var startDate = this.startDate;
       var disabledDate = this.disabledDate;
@@ -23648,7 +23953,7 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
 
         if (this.showWeekNumber) {
           if (!row[0]) {
-            row[0] = { type: 'week', text: getWeekNumber(nextDate(startDate, i * 7 + 1)) };
+            row[0] = { type: 'week', text: Object(date_util_["getWeekNumber"])(Object(date_util_["nextDate"])(startDate, i * 7 + 1)) };
           }
         }
 
@@ -23661,7 +23966,7 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
           cell.type = 'normal';
 
           var index = i * 7 + j;
-          var time = nextDate(startDate, index - offset).getTime();
+          var time = Object(date_util_["nextDate"])(startDate, index - offset).getTime();
           cell.inRange = time >= date_tablevue_type_script_lang_js_getDateTimestamp(_this.minDate) && time <= date_tablevue_type_script_lang_js_getDateTimestamp(_this.maxDate);
           cell.start = _this.minDate && time === date_tablevue_type_script_lang_js_getDateTimestamp(_this.minDate);
           cell.end = _this.maxDate && time === date_tablevue_type_script_lang_js_getDateTimestamp(_this.maxDate);
@@ -23672,21 +23977,17 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
           }
 
           if (i >= 0 && i <= 1) {
-            if (j + i * 7 >= day + offset) {
+            var numberOfDaysFromPreviousMonth = day + offset < 0 ? 7 + day + offset : day + offset;
+
+            if (j + i * 7 >= numberOfDaysFromPreviousMonth) {
               cell.text = count++;
-              if (count === 2) {
-                firstDayPosition = i * 7 + j;
-              }
             } else {
-              cell.text = dateCountOfLastMonth - (day + offset - j % 7) + 1 + i * 7;
+              cell.text = dateCountOfLastMonth - (numberOfDaysFromPreviousMonth - j % 7) + 1 + i * 7;
               cell.type = 'prev-month';
             }
           } else {
             if (count <= dateCountOfMonth) {
               cell.text = count++;
-              if (count === 2) {
-                firstDayPosition = i * 7 + j;
-              }
             } else {
               cell.text = count++ - dateCountOfMonth;
               cell.type = 'next-month';
@@ -23717,8 +24018,6 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
           row[end].end = isWeekActive;
         }
       }
-
-      rows.firstDayPosition = firstDayPosition;
 
       return rows;
     }
@@ -23804,7 +24103,7 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
     },
     getDateOfCell: function getDateOfCell(row, column) {
       var offsetFromStart = row * 7 + (column - (this.showWeekNumber ? 1 : 0)) - this.offsetDay;
-      return nextDate(this.startDate, offsetFromStart);
+      return Object(date_util_["nextDate"])(this.startDate, offsetFromStart);
     },
     isWeekActive: function isWeekActive(cell) {
       if (this.selectionMode !== 'week') return false;
@@ -23824,9 +24123,9 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
 
       newDate.setDate(parseInt(cell.text, 10));
 
-      if (isDate(this.value)) {
+      if (Object(date_util_["isDate"])(this.value)) {
         var dayOffset = (this.value.getDay() - this.firstDayOfWeek + 7) % 7 - 1;
-        var weekDate = prevDate(this.value, dayOffset);
+        var weekDate = Object(date_util_["prevDate"])(this.value, dayOffset);
         return weekDate.getTime() === newDate.getTime();
       }
       return false;
@@ -23848,7 +24147,7 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
 
           var _cell = row[j];
           var index = i * 7 + j + (this.showWeekNumber ? -1 : 0);
-          var time = nextDate(startDate, index - this.offsetDay).getTime();
+          var time = Object(date_util_["nextDate"])(startDate, index - this.offsetDay).getTime();
 
           _cell.inRange = minDate && time >= minDate && time <= maxDate;
           _cell.start = minDate && time === minDate;
@@ -23923,7 +24222,7 @@ var date_tablevue_type_script_lang_js_removeFromArray = function removeFromArray
       } else if (this.selectionMode === 'day') {
         this.$emit('pick', newDate);
       } else if (this.selectionMode === 'week') {
-        var weekNumber = getWeekNumber(newDate);
+        var weekNumber = Object(date_util_["getWeekNumber"])(newDate);
         var value = newDate.getFullYear() + 'w' + weekNumber;
         this.$emit('pick', {
           year: newDate.getFullYear(),
@@ -24141,14 +24440,14 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
     },
     value: function value(val) {
       if (this.selectionMode === 'dates' && this.value) return;
-      if (isDate(val)) {
+      if (Object(date_util_["isDate"])(val)) {
         this.date = new Date(val);
       } else {
         this.date = this.getDefaultValue();
       }
     },
     defaultValue: function defaultValue(val) {
-      if (!isDate(this.value)) {
+      if (!Object(date_util_["isDate"])(this.value)) {
         this.date = val ? new Date(val) : new Date();
       }
     },
@@ -24212,11 +24511,11 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
         this.$emit.apply(this, ['pick', value].concat(args));
       } else if (Array.isArray(value)) {
         var dates = value.map(function (date) {
-          return _this4.showTime ? clearMilliseconds(date) : clearTime(date);
+          return _this4.showTime ? Object(date_util_["clearMilliseconds"])(date) : Object(date_util_["clearTime"])(date);
         });
         this.$emit.apply(this, ['pick', dates].concat(args));
       } else {
-        this.$emit.apply(this, ['pick', this.showTime ? clearMilliseconds(value) : clearTime(value)].concat(args));
+        this.$emit.apply(this, ['pick', this.showTime ? Object(date_util_["clearMilliseconds"])(value) : Object(date_util_["clearTime"])(value)].concat(args));
       }
       this.userInputDate = null;
       this.userInputTime = null;
@@ -24245,23 +24544,23 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
     // },
 
     prevMonth: function prevMonth() {
-      this.date = util_prevMonth(this.date);
+      this.date = Object(date_util_["prevMonth"])(this.date);
     },
     nextMonth: function nextMonth() {
-      this.date = util_nextMonth(this.date);
+      this.date = Object(date_util_["nextMonth"])(this.date);
     },
     prevYear: function prevYear() {
       if (this.currentView === 'year') {
-        this.date = util_prevYear(this.date, 10);
+        this.date = Object(date_util_["prevYear"])(this.date, 10);
       } else {
-        this.date = util_prevYear(this.date);
+        this.date = Object(date_util_["prevYear"])(this.date);
       }
     },
     nextYear: function nextYear() {
       if (this.currentView === 'year') {
-        this.date = util_nextYear(this.date, 10);
+        this.date = Object(date_util_["nextYear"])(this.date, 10);
       } else {
-        this.date = util_nextYear(this.date);
+        this.date = Object(date_util_["nextYear"])(this.date);
       }
     },
     handleShortcutClick: function handleShortcutClick(shortcut) {
@@ -24270,8 +24569,8 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       }
     },
     handleTimePick: function handleTimePick(value, visible, first) {
-      if (isDate(value)) {
-        var newDate = this.value ? modifyTime(this.value, value.getHours(), value.getMinutes(), value.getSeconds()) : modifyWithTimeString(this.getDefaultValue(), this.defaultTime);
+      if (Object(date_util_["isDate"])(value)) {
+        var newDate = this.value ? Object(date_util_["modifyTime"])(this.value, value.getHours(), value.getMinutes(), value.getSeconds()) : Object(date_util_["modifyWithTimeString"])(this.getDefaultValue(), this.defaultTime);
         this.date = newDate;
         this.emit(this.date, true);
       } else {
@@ -24286,10 +24585,10 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
     },
     handleMonthPick: function handleMonthPick(month) {
       if (this.selectionMode === 'month') {
-        this.date = modifyDate(this.date, this.year, month, 1);
+        this.date = Object(date_util_["modifyDate"])(this.date, this.year, month, 1);
         this.emit(this.date);
       } else {
-        this.date = changeYearMonthAndClampDate(this.date, this.year, month);
+        this.date = Object(date_util_["changeYearMonthAndClampDate"])(this.date, this.year, month);
         // TODO: should emit intermediate value ??
         // this.emit(this.date);
         this.currentView = 'date';
@@ -24297,10 +24596,10 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
     },
     handleDatePick: function handleDatePick(value) {
       if (this.selectionMode === 'day') {
-        var newDate = this.value ? modifyDate(this.value, value.getFullYear(), value.getMonth(), value.getDate()) : modifyWithTimeString(value, this.defaultTime);
+        var newDate = this.value ? Object(date_util_["modifyDate"])(this.value, value.getFullYear(), value.getMonth(), value.getDate()) : Object(date_util_["modifyWithTimeString"])(value, this.defaultTime);
         // change default time while out of selectableRange
         if (!this.checkDateWithinRange(newDate)) {
-          newDate = modifyDate(this.selectableRange[0][0], value.getFullYear(), value.getMonth(), value.getDate());
+          newDate = Object(date_util_["modifyDate"])(this.selectableRange[0][0], value.getFullYear(), value.getMonth(), value.getDate());
         }
         this.date = newDate;
         this.emit(this.date, this.showTime);
@@ -24312,10 +24611,10 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
     },
     handleYearPick: function handleYearPick(year) {
       if (this.selectionMode === 'year') {
-        this.date = modifyDate(this.date, year, 0, 1);
+        this.date = Object(date_util_["modifyDate"])(this.date, year, 0, 1);
         this.emit(this.date);
       } else {
-        this.date = changeYearMonthAndClampDate(this.date, year, this.month);
+        this.date = Object(date_util_["changeYearMonthAndClampDate"])(this.date, year, this.month);
         // TODO: should emit intermediate value ??
         // this.emit(this.date, true);
         this.currentView = 'month';
@@ -24335,7 +24634,7 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       } else {
         // value were emitted in handle{Date,Time}Pick, nothing to update here
         // deal with the scenario where: user opens the picker, then confirm without doing anything
-        var value = this.value ? this.value : modifyWithTimeString(this.getDefaultValue(), this.defaultTime);
+        var value = this.value ? this.value : Object(date_util_["modifyWithTimeString"])(this.getDefaultValue(), this.defaultTime);
         this.date = new Date(value); // refresh date
         this.emit(value);
       }
@@ -24410,9 +24709,9 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       }
     },
     handleVisibleTimeChange: function handleVisibleTimeChange(value) {
-      var time = util_parseDate(value, this.timeFormat);
+      var time = Object(date_util_["parseDate"])(value, this.timeFormat);
       if (time && this.checkDateWithinRange(time)) {
-        this.date = modifyDate(time, this.year, this.month, this.monthDate);
+        this.date = Object(date_util_["modifyDate"])(time, this.year, this.month, this.monthDate);
         this.userInputTime = null;
         this.$refs.timepicker.value = this.date;
         this.timePickerVisible = false;
@@ -24420,12 +24719,12 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       }
     },
     handleVisibleDateChange: function handleVisibleDateChange(value) {
-      var date = util_parseDate(value, this.dateFormat);
+      var date = Object(date_util_["parseDate"])(value, this.dateFormat);
       if (date) {
         if (typeof this.disabledDate === 'function' && this.disabledDate(date)) {
           return;
         }
-        this.date = modifyTime(date, this.date.getHours(), this.date.getMinutes(), this.date.getSeconds());
+        this.date = Object(date_util_["modifyTime"])(date, this.date.getHours(), this.date.getMinutes(), this.date.getSeconds());
         this.userInputDate = null;
         this.resetView();
         this.emit(this.date, true);
@@ -24440,7 +24739,7 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       return this.defaultValue ? new Date(this.defaultValue) : new Date();
     },
     checkDateWithinRange: function checkDateWithinRange(date) {
-      return this.selectableRange.length > 0 ? timeWithinRange(date, this.selectableRange, this.format || 'HH:mm:ss') : true;
+      return this.selectableRange.length > 0 ? Object(date_util_["timeWithinRange"])(date, this.selectableRange, this.format || 'HH:mm:ss') : true;
     }
   },
 
@@ -24481,7 +24780,7 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       return this.date.getMonth();
     },
     week: function week() {
-      return getWeekNumber(this.date);
+      return Object(date_util_["getWeekNumber"])(this.date);
     },
     monthDate: function monthDate() {
       return this.date.getDate();
@@ -24493,14 +24792,14 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
       if (this.userInputTime !== null) {
         return this.userInputTime;
       } else {
-        return util_formatDate(this.value || this.defaultValue, this.timeFormat);
+        return Object(date_util_["formatDate"])(this.value || this.defaultValue, this.timeFormat);
       }
     },
     visibleDate: function visibleDate() {
       if (this.userInputDate !== null) {
         return this.userInputDate;
       } else {
-        return util_formatDate(this.value || this.defaultValue, this.dateFormat);
+        return Object(date_util_["formatDate"])(this.value || this.defaultValue, this.dateFormat);
       }
     },
     yearLabel: function yearLabel() {
@@ -24516,14 +24815,14 @@ date_table_component.options.__file = "packages/date-picker/src/basic/date-table
     },
     timeFormat: function timeFormat() {
       if (this.format) {
-        return extractTimeFormat(this.format);
+        return Object(date_util_["extractTimeFormat"])(this.format);
       } else {
         return 'HH:mm:ss';
       }
     },
     dateFormat: function dateFormat() {
       if (this.format) {
-        return extractDateFormat(this.format);
+        return Object(date_util_["extractDateFormat"])(this.format);
       } else {
         return 'yyyy-MM-dd';
       }
@@ -25200,17 +25499,13 @@ date_rangevue_type_template_id_2652849a_render._withStripped = true
 
 
 
-var advanceDate = function advanceDate(date, amount) {
-  return new Date(new Date(date).getTime() + amount);
-};
-
-var calcDefaultValue = function calcDefaultValue(defaultValue) {
+var date_rangevue_type_script_lang_js_calcDefaultValue = function calcDefaultValue(defaultValue) {
   if (Array.isArray(defaultValue)) {
     return [new Date(defaultValue[0]), new Date(defaultValue[1])];
   } else if (defaultValue) {
-    return [new Date(defaultValue), advanceDate(defaultValue, 24 * 60 * 60 * 1000)];
+    return [new Date(defaultValue), Object(date_util_["nextDate"])(new Date(defaultValue), 1)];
   } else {
-    return [new Date(), advanceDate(Date.now(), 24 * 60 * 60 * 1000)];
+    return [new Date(), Object(date_util_["nextDate"])(new Date(), 1)];
   }
 };
 
@@ -25249,34 +25544,34 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
     },
     minVisibleDate: function minVisibleDate() {
       if (this.dateUserInput.min !== null) return this.dateUserInput.min;
-      if (this.minDate) return util_formatDate(this.minDate, this.dateFormat);
+      if (this.minDate) return Object(date_util_["formatDate"])(this.minDate, this.dateFormat);
       return '';
     },
     maxVisibleDate: function maxVisibleDate() {
       if (this.dateUserInput.max !== null) return this.dateUserInput.max;
-      if (this.maxDate || this.minDate) return util_formatDate(this.maxDate || this.minDate, this.dateFormat);
+      if (this.maxDate || this.minDate) return Object(date_util_["formatDate"])(this.maxDate || this.minDate, this.dateFormat);
       return '';
     },
     minVisibleTime: function minVisibleTime() {
       if (this.timeUserInput.min !== null) return this.timeUserInput.min;
-      if (this.minDate) return util_formatDate(this.minDate, this.timeFormat);
+      if (this.minDate) return Object(date_util_["formatDate"])(this.minDate, this.timeFormat);
       return '';
     },
     maxVisibleTime: function maxVisibleTime() {
       if (this.timeUserInput.max !== null) return this.timeUserInput.max;
-      if (this.maxDate || this.minDate) return util_formatDate(this.maxDate || this.minDate, this.timeFormat);
+      if (this.maxDate || this.minDate) return Object(date_util_["formatDate"])(this.maxDate || this.minDate, this.timeFormat);
       return '';
     },
     timeFormat: function timeFormat() {
       if (this.format) {
-        return extractTimeFormat(this.format);
+        return Object(date_util_["extractTimeFormat"])(this.format);
       } else {
         return 'HH:mm:ss';
       }
     },
     dateFormat: function dateFormat() {
       if (this.format) {
-        return extractDateFormat(this.format);
+        return Object(date_util_["extractDateFormat"])(this.format);
       } else {
         return 'yyyy-MM-dd';
       }
@@ -25300,7 +25595,7 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
       minDate: '',
       maxDate: '',
       leftDate: new Date(),
-      rightDate: util_nextMonth(new Date()),
+      rightDate: Object(date_util_["nextMonth"])(new Date()),
       rangeState: {
         endDate: null,
         selecting: false,
@@ -25338,7 +25633,7 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
       this.$nextTick(function () {
         if (_this.$refs.maxTimePicker && _this.maxDate && _this.maxDate < _this.minDate) {
           var format = 'HH:mm:ss';
-          _this.$refs.maxTimePicker.selectableRange = [[util_parseDate(util_formatDate(_this.minDate, format), format), util_parseDate('23:59:59', format)]];
+          _this.$refs.maxTimePicker.selectableRange = [[Object(date_util_["parseDate"])(Object(date_util_["formatDate"])(_this.minDate, format), format), Object(date_util_["parseDate"])('23:59:59', format)]];
         }
       });
       if (val && this.$refs.minTimePicker) {
@@ -25381,8 +25676,8 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
         this.minDate = null;
         this.maxDate = null;
       } else if (Array.isArray(newVal)) {
-        this.minDate = isDate(newVal[0]) ? new Date(newVal[0]) : null;
-        this.maxDate = isDate(newVal[1]) ? new Date(newVal[1]) : null;
+        this.minDate = Object(date_util_["isDate"])(newVal[0]) ? new Date(newVal[0]) : null;
+        this.maxDate = Object(date_util_["isDate"])(newVal[1]) ? new Date(newVal[1]) : null;
         if (this.minDate) {
           this.leftDate = this.minDate;
           if (this.unlinkPanels && this.maxDate) {
@@ -25390,24 +25685,24 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
             var minDateMonth = this.minDate.getMonth();
             var maxDateYear = this.maxDate.getFullYear();
             var maxDateMonth = this.maxDate.getMonth();
-            this.rightDate = minDateYear === maxDateYear && minDateMonth === maxDateMonth ? util_nextMonth(this.maxDate) : this.maxDate;
+            this.rightDate = minDateYear === maxDateYear && minDateMonth === maxDateMonth ? Object(date_util_["nextMonth"])(this.maxDate) : this.maxDate;
           } else {
-            this.rightDate = util_nextMonth(this.leftDate);
+            this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
           }
         } else {
-          this.leftDate = calcDefaultValue(this.defaultValue)[0];
-          this.rightDate = util_nextMonth(this.leftDate);
+          this.leftDate = date_rangevue_type_script_lang_js_calcDefaultValue(this.defaultValue)[0];
+          this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
         }
       }
     },
     defaultValue: function defaultValue(val) {
       if (!Array.isArray(this.value)) {
-        var _calcDefaultValue = calcDefaultValue(val),
+        var _calcDefaultValue = date_rangevue_type_script_lang_js_calcDefaultValue(val),
             left = _calcDefaultValue[0],
             right = _calcDefaultValue[1];
 
         this.leftDate = left;
-        this.rightDate = val && val[1] && this.unlinkPanels ? right : util_nextMonth(this.leftDate);
+        this.rightDate = val && val[1] && this.unlinkPanels ? right : Object(date_util_["nextMonth"])(this.leftDate);
       }
     }
   },
@@ -25416,8 +25711,8 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
     handleClear: function handleClear() {
       this.minDate = null;
       this.maxDate = null;
-      this.leftDate = calcDefaultValue(this.defaultValue)[0];
-      this.rightDate = util_nextMonth(this.leftDate);
+      this.leftDate = date_rangevue_type_script_lang_js_calcDefaultValue(this.defaultValue)[0];
+      this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
       this.$emit('pick', null);
     },
     handleChangeRange: function handleChangeRange(val) {
@@ -25428,37 +25723,37 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
     handleDateInput: function handleDateInput(value, type) {
       this.dateUserInput[type] = value;
       if (value.length !== this.dateFormat.length) return;
-      var parsedValue = util_parseDate(value, this.dateFormat);
+      var parsedValue = Object(date_util_["parseDate"])(value, this.dateFormat);
 
       if (parsedValue) {
         if (typeof this.disabledDate === 'function' && this.disabledDate(new Date(parsedValue))) {
           return;
         }
         if (type === 'min') {
-          this.minDate = modifyDate(this.minDate || new Date(), parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
+          this.minDate = Object(date_util_["modifyDate"])(this.minDate || new Date(), parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
           this.leftDate = new Date(parsedValue);
           if (!this.unlinkPanels) {
-            this.rightDate = util_nextMonth(this.leftDate);
+            this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
           }
         } else {
-          this.maxDate = modifyDate(this.maxDate || new Date(), parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
+          this.maxDate = Object(date_util_["modifyDate"])(this.maxDate || new Date(), parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
           this.rightDate = new Date(parsedValue);
           if (!this.unlinkPanels) {
-            this.leftDate = util_prevMonth(parsedValue);
+            this.leftDate = Object(date_util_["prevMonth"])(parsedValue);
           }
         }
       }
     },
     handleDateChange: function handleDateChange(value, type) {
-      var parsedValue = util_parseDate(value, this.dateFormat);
+      var parsedValue = Object(date_util_["parseDate"])(value, this.dateFormat);
       if (parsedValue) {
         if (type === 'min') {
-          this.minDate = modifyDate(this.minDate, parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
+          this.minDate = Object(date_util_["modifyDate"])(this.minDate, parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
           if (this.minDate > this.maxDate) {
             this.maxDate = this.minDate;
           }
         } else {
-          this.maxDate = modifyDate(this.maxDate, parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
+          this.maxDate = Object(date_util_["modifyDate"])(this.maxDate, parsedValue.getFullYear(), parsedValue.getMonth(), parsedValue.getDate());
           if (this.maxDate < this.minDate) {
             this.minDate = this.maxDate;
           }
@@ -25470,16 +25765,16 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
 
       this.timeUserInput[type] = value;
       if (value.length !== this.timeFormat.length) return;
-      var parsedValue = util_parseDate(value, this.timeFormat);
+      var parsedValue = Object(date_util_["parseDate"])(value, this.timeFormat);
 
       if (parsedValue) {
         if (type === 'min') {
-          this.minDate = modifyTime(this.minDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
+          this.minDate = Object(date_util_["modifyTime"])(this.minDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
           this.$nextTick(function (_) {
             return _this4.$refs.minTimePicker.adjustSpinners();
           });
         } else {
-          this.maxDate = modifyTime(this.maxDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
+          this.maxDate = Object(date_util_["modifyTime"])(this.maxDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
           this.$nextTick(function (_) {
             return _this4.$refs.maxTimePicker.adjustSpinners();
           });
@@ -25487,17 +25782,17 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
       }
     },
     handleTimeChange: function handleTimeChange(value, type) {
-      var parsedValue = util_parseDate(value, this.timeFormat);
+      var parsedValue = Object(date_util_["parseDate"])(value, this.timeFormat);
       if (parsedValue) {
         if (type === 'min') {
-          this.minDate = modifyTime(this.minDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
+          this.minDate = Object(date_util_["modifyTime"])(this.minDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
           if (this.minDate > this.maxDate) {
             this.maxDate = this.minDate;
           }
           this.$refs.minTimePicker.value = this.minDate;
           this.minTimePickerVisible = false;
         } else {
-          this.maxDate = modifyTime(this.maxDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
+          this.maxDate = Object(date_util_["modifyTime"])(this.maxDate, parsedValue.getHours(), parsedValue.getMinutes(), parsedValue.getSeconds());
           if (this.maxDate < this.minDate) {
             this.minDate = this.maxDate;
           }
@@ -25512,8 +25807,8 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
       var close = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
       var defaultTime = this.defaultTime || [];
-      var minDate = modifyWithTimeString(val.minDate, defaultTime[0]);
-      var maxDate = modifyWithTimeString(val.maxDate, defaultTime[1]);
+      var minDate = Object(date_util_["modifyWithTimeString"])(val.minDate, defaultTime[0]);
+      var maxDate = Object(date_util_["modifyWithTimeString"])(val.maxDate, defaultTime[1]);
 
       if (this.maxDate === maxDate && this.minDate === minDate) {
         return;
@@ -25538,7 +25833,7 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
     handleMinTimePick: function handleMinTimePick(value, visible, first) {
       this.minDate = this.minDate || new Date();
       if (value) {
-        this.minDate = modifyTime(this.minDate, value.getHours(), value.getMinutes(), value.getSeconds());
+        this.minDate = Object(date_util_["modifyTime"])(this.minDate, value.getHours(), value.getMinutes(), value.getSeconds());
       }
 
       if (!first) {
@@ -25554,7 +25849,7 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
     },
     handleMaxTimePick: function handleMaxTimePick(value, visible, first) {
       if (this.maxDate && value) {
-        this.maxDate = modifyTime(this.maxDate, value.getHours(), value.getMinutes(), value.getSeconds());
+        this.maxDate = Object(date_util_["modifyTime"])(this.maxDate, value.getHours(), value.getMinutes(), value.getSeconds());
       }
 
       if (!first) {
@@ -25572,47 +25867,47 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
 
     // leftPrev*, rightNext* need to take care of `unlinkPanels`
     leftPrevYear: function leftPrevYear() {
-      this.leftDate = util_prevYear(this.leftDate);
+      this.leftDate = Object(date_util_["prevYear"])(this.leftDate);
       if (!this.unlinkPanels) {
-        this.rightDate = util_nextMonth(this.leftDate);
+        this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
       }
     },
     leftPrevMonth: function leftPrevMonth() {
-      this.leftDate = util_prevMonth(this.leftDate);
+      this.leftDate = Object(date_util_["prevMonth"])(this.leftDate);
       if (!this.unlinkPanels) {
-        this.rightDate = util_nextMonth(this.leftDate);
+        this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
       }
     },
     rightNextYear: function rightNextYear() {
       if (!this.unlinkPanels) {
-        this.leftDate = util_nextYear(this.leftDate);
-        this.rightDate = util_nextMonth(this.leftDate);
+        this.leftDate = Object(date_util_["nextYear"])(this.leftDate);
+        this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
       } else {
-        this.rightDate = util_nextYear(this.rightDate);
+        this.rightDate = Object(date_util_["nextYear"])(this.rightDate);
       }
     },
     rightNextMonth: function rightNextMonth() {
       if (!this.unlinkPanels) {
-        this.leftDate = util_nextMonth(this.leftDate);
-        this.rightDate = util_nextMonth(this.leftDate);
+        this.leftDate = Object(date_util_["nextMonth"])(this.leftDate);
+        this.rightDate = Object(date_util_["nextMonth"])(this.leftDate);
       } else {
-        this.rightDate = util_nextMonth(this.rightDate);
+        this.rightDate = Object(date_util_["nextMonth"])(this.rightDate);
       }
     },
 
 
     // leftNext*, rightPrev* are called when `unlinkPanels` is true
     leftNextYear: function leftNextYear() {
-      this.leftDate = util_nextYear(this.leftDate);
+      this.leftDate = Object(date_util_["nextYear"])(this.leftDate);
     },
     leftNextMonth: function leftNextMonth() {
-      this.leftDate = util_nextMonth(this.leftDate);
+      this.leftDate = Object(date_util_["nextMonth"])(this.leftDate);
     },
     rightPrevYear: function rightPrevYear() {
-      this.rightDate = util_prevYear(this.rightDate);
+      this.rightDate = Object(date_util_["prevYear"])(this.rightDate);
     },
     rightPrevMonth: function rightPrevMonth() {
-      this.rightDate = util_prevMonth(this.rightDate);
+      this.rightDate = Object(date_util_["prevMonth"])(this.rightDate);
     },
     handleConfirm: function handleConfirm() {
       var visible = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -25622,14 +25917,14 @@ var calcDefaultValue = function calcDefaultValue(defaultValue) {
       }
     },
     isValidValue: function isValidValue(value) {
-      return Array.isArray(value) && value && value[0] && value[1] && isDate(value[0]) && isDate(value[1]) && value[0].getTime() <= value[1].getTime() && (typeof this.disabledDate === 'function' ? !this.disabledDate(value[0]) && !this.disabledDate(value[1]) : true);
+      return Array.isArray(value) && value && value[0] && value[1] && Object(date_util_["isDate"])(value[0]) && Object(date_util_["isDate"])(value[1]) && value[0].getTime() <= value[1].getTime() && (typeof this.disabledDate === 'function' ? !this.disabledDate(value[0]) && !this.disabledDate(value[1]) : true);
     },
     resetView: function resetView() {
       // NOTE: this is a hack to reset {min, max}Date on picker open.
       // TODO: correct way of doing so is to refactor {min, max}Date to be dependent on value and internal selection state
       //       an alternative would be resetView whenever picker becomes visible, should also investigate date-panel's resetView
-      this.minDate = this.value && isDate(this.value[0]) ? new Date(this.value[0]) : null;
-      this.maxDate = this.value && isDate(this.value[0]) ? new Date(this.value[1]) : null;
+      this.minDate = this.value && Object(date_util_["isDate"])(this.value[0]) ? new Date(this.value[0]) : null;
+      this.maxDate = this.value && Object(date_util_["isDate"])(this.value[0]) ? new Date(this.value[1]) : null;
     }
   },
 
@@ -25660,7 +25955,475 @@ var date_range_component = normalizeComponent(
 if (false) { var date_range_api; }
 date_range_component.options.__file = "packages/date-picker/src/panel/date-range.vue"
 /* harmony default export */ var date_range = (date_range_component.exports);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/date-picker/src/panel/month-range.vue?vue&type=template&id=f2645fb8&
+var month_rangevue_type_template_id_f2645fb8_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "transition",
+    {
+      attrs: { name: "el-zoom-in-top" },
+      on: {
+        "after-leave": function($event) {
+          _vm.$emit("dodestroy")
+        }
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.visible,
+              expression: "visible"
+            }
+          ],
+          staticClass: "el-picker-panel el-date-range-picker el-popper",
+          class: [
+            {
+              "has-sidebar": _vm.$slots.sidebar || _vm.shortcuts
+            },
+            _vm.popperClass
+          ]
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "el-picker-panel__body-wrapper" },
+            [
+              _vm._t("sidebar"),
+              _vm.shortcuts
+                ? _c(
+                    "div",
+                    { staticClass: "el-picker-panel__sidebar" },
+                    _vm._l(_vm.shortcuts, function(shortcut, key) {
+                      return _c(
+                        "button",
+                        {
+                          key: key,
+                          staticClass: "el-picker-panel__shortcut",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              _vm.handleShortcutClick(shortcut)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(shortcut.text))]
+                      )
+                    }),
+                    0
+                  )
+                : _vm._e(),
+              _c("div", { staticClass: "el-picker-panel__body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "el-picker-panel__content el-date-range-picker__content is-left"
+                  },
+                  [
+                    _c("div", { staticClass: "el-date-range-picker__header" }, [
+                      _c("button", {
+                        staticClass:
+                          "el-picker-panel__icon-btn el-icon-d-arrow-left",
+                        attrs: { type: "button" },
+                        on: { click: _vm.leftPrevYear }
+                      }),
+                      _vm.unlinkPanels
+                        ? _c("button", {
+                            staticClass:
+                              "el-picker-panel__icon-btn el-icon-d-arrow-right",
+                            class: { "is-disabled": !_vm.enableYearArrow },
+                            attrs: {
+                              type: "button",
+                              disabled: !_vm.enableYearArrow
+                            },
+                            on: { click: _vm.leftNextYear }
+                          })
+                        : _vm._e(),
+                      _c("div", [_vm._v(_vm._s(_vm.leftLabel))])
+                    ]),
+                    _c("month-table", {
+                      attrs: {
+                        "selection-mode": "range",
+                        date: _vm.leftDate,
+                        "default-value": _vm.defaultValue,
+                        "min-date": _vm.minDate,
+                        "max-date": _vm.maxDate,
+                        "range-state": _vm.rangeState,
+                        "disabled-date": _vm.disabledDate
+                      },
+                      on: {
+                        changerange: _vm.handleChangeRange,
+                        pick: _vm.handleRangePick
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "el-picker-panel__content el-date-range-picker__content is-right"
+                  },
+                  [
+                    _c("div", { staticClass: "el-date-range-picker__header" }, [
+                      _vm.unlinkPanels
+                        ? _c("button", {
+                            staticClass:
+                              "el-picker-panel__icon-btn el-icon-d-arrow-left",
+                            class: { "is-disabled": !_vm.enableYearArrow },
+                            attrs: {
+                              type: "button",
+                              disabled: !_vm.enableYearArrow
+                            },
+                            on: { click: _vm.rightPrevYear }
+                          })
+                        : _vm._e(),
+                      _c("button", {
+                        staticClass:
+                          "el-picker-panel__icon-btn el-icon-d-arrow-right",
+                        attrs: { type: "button" },
+                        on: { click: _vm.rightNextYear }
+                      }),
+                      _c("div", [_vm._v(_vm._s(_vm.rightLabel))])
+                    ]),
+                    _c("month-table", {
+                      attrs: {
+                        "selection-mode": "range",
+                        date: _vm.rightDate,
+                        "default-value": _vm.defaultValue,
+                        "min-date": _vm.minDate,
+                        "max-date": _vm.maxDate,
+                        "range-state": _vm.rangeState,
+                        "disabled-date": _vm.disabledDate
+                      },
+                      on: {
+                        changerange: _vm.handleChangeRange,
+                        pick: _vm.handleRangePick
+                      }
+                    })
+                  ],
+                  1
+                )
+              ])
+            ],
+            2
+          )
+        ]
+      )
+    ]
+  )
+}
+var month_rangevue_type_template_id_f2645fb8_staticRenderFns = []
+month_rangevue_type_template_id_f2645fb8_render._withStripped = true
+
+
+// CONCATENATED MODULE: ./packages/date-picker/src/panel/month-range.vue?vue&type=template&id=f2645fb8&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/date-picker/src/panel/month-range.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+var month_rangevue_type_script_lang_js_calcDefaultValue = function calcDefaultValue(defaultValue) {
+  if (Array.isArray(defaultValue)) {
+    return [new Date(defaultValue[0]), new Date(defaultValue[1])];
+  } else if (defaultValue) {
+    return [new Date(defaultValue), Object(date_util_["nextMonth"])(new Date(defaultValue))];
+  } else {
+    return [new Date(), Object(date_util_["nextMonth"])(new Date())];
+  }
+};
+/* harmony default export */ var month_rangevue_type_script_lang_js_ = ({
+  mixins: [locale_default.a],
+
+  directives: { Clickoutside: clickoutside_default.a },
+
+  computed: {
+    btnDisabled: function btnDisabled() {
+      return !(this.minDate && this.maxDate && !this.selecting && this.isValidValue([this.minDate, this.maxDate]));
+    },
+    leftLabel: function leftLabel() {
+      return this.leftDate.getFullYear() + ' ' + this.t('el.datepicker.year');
+    },
+    rightLabel: function rightLabel() {
+      return this.rightDate.getFullYear() + ' ' + this.t('el.datepicker.year');
+    },
+    leftYear: function leftYear() {
+      return this.leftDate.getFullYear();
+    },
+    rightYear: function rightYear() {
+      return this.rightDate.getFullYear() === this.leftDate.getFullYear() ? this.leftDate.getFullYear() + 1 : this.rightDate.getFullYear();
+    },
+    enableYearArrow: function enableYearArrow() {
+      return this.unlinkPanels && this.rightYear > this.leftYear + 1;
+    }
+  },
+
+  data: function data() {
+    return {
+      popperClass: '',
+      value: [],
+      defaultValue: null,
+      defaultTime: null,
+      minDate: '',
+      maxDate: '',
+      leftDate: new Date(),
+      rightDate: Object(date_util_["nextYear"])(new Date()),
+      rangeState: {
+        endDate: null,
+        selecting: false,
+        row: null,
+        column: null
+      },
+      shortcuts: '',
+      visible: '',
+      disabledDate: '',
+      format: '',
+      arrowControl: false,
+      unlinkPanels: false
+    };
+  },
+
+
+  watch: {
+    value: function value(newVal) {
+      if (!newVal) {
+        this.minDate = null;
+        this.maxDate = null;
+      } else if (Array.isArray(newVal)) {
+        this.minDate = Object(date_util_["isDate"])(newVal[0]) ? new Date(newVal[0]) : null;
+        this.maxDate = Object(date_util_["isDate"])(newVal[1]) ? new Date(newVal[1]) : null;
+        if (this.minDate) {
+          this.leftDate = this.minDate;
+          if (this.unlinkPanels && this.maxDate) {
+            var minDateYear = this.minDate.getFullYear();
+            var maxDateYear = this.maxDate.getFullYear();
+            this.rightDate = minDateYear === maxDateYear ? Object(date_util_["nextYear"])(this.maxDate) : this.maxDate;
+          } else {
+            this.rightDate = Object(date_util_["nextYear"])(this.leftDate);
+          }
+        } else {
+          this.leftDate = month_rangevue_type_script_lang_js_calcDefaultValue(this.defaultValue)[0];
+          this.rightDate = Object(date_util_["nextYear"])(this.leftDate);
+        }
+      }
+    },
+    defaultValue: function defaultValue(val) {
+      if (!Array.isArray(this.value)) {
+        var _calcDefaultValue = month_rangevue_type_script_lang_js_calcDefaultValue(val),
+            left = _calcDefaultValue[0],
+            right = _calcDefaultValue[1];
+
+        this.leftDate = left;
+        this.rightDate = val && val[1] && left.getFullYear() !== right.getFullYear() && this.unlinkPanels ? right : Object(date_util_["nextYear"])(this.leftDate);
+      }
+    }
+  },
+
+  methods: {
+    handleClear: function handleClear() {
+      this.minDate = null;
+      this.maxDate = null;
+      this.leftDate = month_rangevue_type_script_lang_js_calcDefaultValue(this.defaultValue)[0];
+      this.rightDate = Object(date_util_["nextYear"])(this.leftDate);
+      this.$emit('pick', null);
+    },
+    handleChangeRange: function handleChangeRange(val) {
+      this.minDate = val.minDate;
+      this.maxDate = val.maxDate;
+      this.rangeState = val.rangeState;
+    },
+    handleRangePick: function handleRangePick(val) {
+      var _this = this;
+
+      var close = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      var defaultTime = this.defaultTime || [];
+      var minDate = Object(date_util_["modifyWithTimeString"])(val.minDate, defaultTime[0]);
+      var maxDate = Object(date_util_["modifyWithTimeString"])(val.maxDate, defaultTime[1]);
+      if (this.maxDate === maxDate && this.minDate === minDate) {
+        return;
+      }
+      this.onPick && this.onPick(val);
+      this.maxDate = maxDate;
+      this.minDate = minDate;
+
+      // workaround for https://github.com/ElemeFE/element/issues/7539, should remove this block when we don't have to care about Chromium 55 - 57
+      setTimeout(function () {
+        _this.maxDate = maxDate;
+        _this.minDate = minDate;
+      }, 10);
+      if (!close) return;
+      this.handleConfirm();
+    },
+    handleShortcutClick: function handleShortcutClick(shortcut) {
+      if (shortcut.onClick) {
+        shortcut.onClick(this);
+      }
+    },
+
+
+    // leftPrev*, rightNext* need to take care of `unlinkPanels`
+    leftPrevYear: function leftPrevYear() {
+      this.leftDate = Object(date_util_["prevYear"])(this.leftDate);
+      if (!this.unlinkPanels) {
+        this.rightDate = Object(date_util_["prevYear"])(this.rightDate);
+      }
+    },
+    rightNextYear: function rightNextYear() {
+      if (!this.unlinkPanels) {
+        this.leftDate = Object(date_util_["nextYear"])(this.leftDate);
+      }
+      this.rightDate = Object(date_util_["nextYear"])(this.rightDate);
+    },
+
+
+    // leftNext*, rightPrev* are called when `unlinkPanels` is true
+    leftNextYear: function leftNextYear() {
+      this.leftDate = Object(date_util_["nextYear"])(this.leftDate);
+    },
+    rightPrevYear: function rightPrevYear() {
+      this.rightDate = Object(date_util_["prevYear"])(this.rightDate);
+    },
+    handleConfirm: function handleConfirm() {
+      var visible = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (this.isValidValue([this.minDate, this.maxDate])) {
+        this.$emit('pick', [this.minDate, this.maxDate], visible);
+      }
+    },
+    isValidValue: function isValidValue(value) {
+      return Array.isArray(value) && value && value[0] && value[1] && Object(date_util_["isDate"])(value[0]) && Object(date_util_["isDate"])(value[1]) && value[0].getTime() <= value[1].getTime() && (typeof this.disabledDate === 'function' ? !this.disabledDate(value[0]) && !this.disabledDate(value[1]) : true);
+    },
+    resetView: function resetView() {
+      // NOTE: this is a hack to reset {min, max}Date on picker open.
+      // TODO: correct way of doing so is to refactor {min, max}Date to be dependent on value and internal selection state
+      //       an alternative would be resetView whenever picker becomes visible, should also investigate date-panel's resetView
+      this.minDate = this.value && Object(date_util_["isDate"])(this.value[0]) ? new Date(this.value[0]) : null;
+      this.maxDate = this.value && Object(date_util_["isDate"])(this.value[0]) ? new Date(this.value[1]) : null;
+    }
+  },
+
+  components: { MonthTable: month_table, ElInput: input_default.a, ElButton: button_default.a }
+});
+// CONCATENATED MODULE: ./packages/date-picker/src/panel/month-range.vue?vue&type=script&lang=js&
+ /* harmony default export */ var panel_month_rangevue_type_script_lang_js_ = (month_rangevue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/date-picker/src/panel/month-range.vue
+
+
+
+
+
+/* normalize component */
+
+var month_range_component = normalizeComponent(
+  panel_month_rangevue_type_script_lang_js_,
+  month_rangevue_type_template_id_f2645fb8_render,
+  month_rangevue_type_template_id_f2645fb8_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var month_range_api; }
+month_range_component.options.__file = "packages/date-picker/src/panel/month-range.vue"
+/* harmony default export */ var month_range = (month_range_component.exports);
 // CONCATENATED MODULE: ./packages/date-picker/src/picker/date-picker.js
+
 
 
 
@@ -25668,6 +26431,8 @@ date_range_component.options.__file = "packages/date-picker/src/panel/date-range
 var date_picker_getPanel = function getPanel(type) {
   if (type === 'daterange' || type === 'datetimerange') {
     return date_range;
+  } else if (type === 'monthrange') {
+    return month_range;
   }
   return panel_date;
 };
@@ -26231,15 +26996,15 @@ time_rangevue_type_template_id_fb28660e_render._withStripped = true
 
 
 
-var MIN_TIME = util_parseDate('00:00:00', 'HH:mm:ss');
-var MAX_TIME = util_parseDate('23:59:59', 'HH:mm:ss');
+var MIN_TIME = Object(date_util_["parseDate"])('00:00:00', 'HH:mm:ss');
+var MAX_TIME = Object(date_util_["parseDate"])('23:59:59', 'HH:mm:ss');
 
 var time_rangevue_type_script_lang_js_minTimeOfDay = function minTimeOfDay(date) {
-  return modifyDate(MIN_TIME, date.getFullYear(), date.getMonth(), date.getDate());
+  return Object(date_util_["modifyDate"])(MIN_TIME, date.getFullYear(), date.getMonth(), date.getDate());
 };
 
 var time_rangevue_type_script_lang_js_maxTimeOfDay = function maxTimeOfDay(date) {
-  return modifyDate(MAX_TIME, date.getFullYear(), date.getMonth(), date.getDate());
+  return Object(date_util_["modifyDate"])(MAX_TIME, date.getFullYear(), date.getMonth(), date.getDate());
 };
 
 // increase time by amount of milliseconds, but within the range of day
@@ -26326,11 +27091,11 @@ var advanceTime = function advanceTime(date, amount) {
       this.$emit('pick', this.oldValue);
     },
     handleMinChange: function handleMinChange(date) {
-      this.minDate = clearMilliseconds(date);
+      this.minDate = Object(date_util_["clearMilliseconds"])(date);
       this.handleChange();
     },
     handleMaxChange: function handleMaxChange(date) {
-      this.maxDate = clearMilliseconds(date);
+      this.maxDate = Object(date_util_["clearMilliseconds"])(date);
       this.handleChange();
     },
     handleChange: function handleChange() {
@@ -26354,8 +27119,8 @@ var advanceTime = function advanceTime(date, amount) {
       var minSelectableRange = this.$refs.minSpinner.selectableRange;
       var maxSelectableRange = this.$refs.maxSpinner.selectableRange;
 
-      this.minDate = util_limitTimeRange(this.minDate, minSelectableRange, this.format);
-      this.maxDate = util_limitTimeRange(this.maxDate, maxSelectableRange, this.format);
+      this.minDate = Object(date_util_["limitTimeRange"])(this.minDate, minSelectableRange, this.format);
+      this.maxDate = Object(date_util_["limitTimeRange"])(this.maxDate, maxSelectableRange, this.format);
 
       this.$emit('pick', [this.minDate, this.maxDate], visible);
     },
@@ -26376,7 +27141,7 @@ var advanceTime = function advanceTime(date, amount) {
       }
     },
     isValidValue: function isValidValue(date) {
-      return Array.isArray(date) && timeWithinRange(this.minDate, this.$refs.minSpinner.selectableRange) && timeWithinRange(this.maxDate, this.$refs.maxSpinner.selectableRange);
+      return Array.isArray(date) && Object(date_util_["timeWithinRange"])(this.minDate, this.$refs.minSpinner.selectableRange) && Object(date_util_["timeWithinRange"])(this.maxDate, this.$refs.maxSpinner.selectableRange);
     },
     handleKeydown: function handleKeydown(event) {
       var keyCode = event.keyCode;
@@ -26602,6 +27367,10 @@ mainvue_type_template_id_52060272_render._withStripped = true
     transition: {
       type: String,
       default: 'fade-in-linear'
+    },
+    tabindex: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -26632,7 +27401,7 @@ mainvue_type_template_id_52060272_render._withStripped = true
     if (reference) {
       Object(dom_["addClass"])(reference, 'el-popover__reference');
       reference.setAttribute('aria-describedby', this.tooltipId);
-      reference.setAttribute('tabindex', 0); // tab序列
+      reference.setAttribute('tabindex', this.tabindex); // tab序列
       popper.setAttribute('tabindex', 0);
 
       if (this.trigger !== 'click') {
@@ -26659,6 +27428,9 @@ mainvue_type_template_id_52060272_render._withStripped = true
       Object(dom_["on"])(reference, 'mouseleave', this.handleMouseLeave);
       Object(dom_["on"])(popper, 'mouseleave', this.handleMouseLeave);
     } else if (this.trigger === 'focus') {
+      if (this.tabindex < 0) {
+        console.warn('[Element Warn][Popover]a negative taindex means that the element cannot be focused by tab key');
+      }
       if (reference.querySelector('input, textarea')) {
         Object(dom_["on"])(reference, 'focusin', this.doShow);
         Object(dom_["on"])(reference, 'focusout', this.doClose);
@@ -26823,11 +27595,7 @@ main.install = function (Vue) {
 main.directive = directive;
 
 /* harmony default export */ var popover = (main);
-// EXTERNAL MODULE: external "element-ui/lib/utils/vdom"
-var vdom_ = __webpack_require__(16);
-
 // CONCATENATED MODULE: ./packages/tooltip/src/main.js
-
 
 
 
@@ -26878,20 +27646,19 @@ var vdom_ = __webpack_require__(16);
     hideAfter: {
       type: Number,
       default: 0
+    },
+    tabindex: {
+      type: Number,
+      default: 0
     }
   },
 
   data: function data() {
     return {
+      tooltipId: 'el-tooltip-' + Object(util_["generateId"])(),
       timeoutPending: null,
       focusing: false
     };
-  },
-
-  computed: {
-    tooltipId: function tooltipId() {
-      return 'el-tooltip-' + Object(util_["generateId"])();
-    }
   },
   beforeCreate: function beforeCreate() {
     var _this = this;
@@ -26951,16 +27718,13 @@ var vdom_ = __webpack_require__(16);
       );
     }
 
-    if (!this.$slots.default || !this.$slots.default.length) return this.$slots.default;
+    var firstElement = this.getFirstElement();
+    if (!firstElement) return null;
 
-    var vnode = Object(vdom_["getFirstComponentChild"])(this.$slots.default);
+    var data = firstElement.data = firstElement.data || {};
+    data.staticClass = this.addTooltipClass(data.staticClass);
 
-    if (!vnode) return vnode;
-
-    var data = vnode.data = vnode.data || {};
-    data.staticClass = this.concatClass(data.staticClass, 'el-tooltip');
-
-    return vnode;
+    return firstElement;
   },
   mounted: function mounted() {
     var _this3 = this;
@@ -26985,6 +27749,14 @@ var vdom_ = __webpack_require__(16);
       });
       Object(dom_["on"])(this.referenceElm, 'blur', this.handleBlur);
       Object(dom_["on"])(this.referenceElm, 'click', this.removeFocusing);
+    }
+    // fix issue https://github.com/ElemeFE/element/issues/14424
+    if (this.value && this.popperVM) {
+      this.popperVM.$nextTick(function () {
+        if (_this3.value) {
+          _this3.updatePopper();
+        }
+      });
     }
   },
 
@@ -27017,9 +27789,12 @@ var vdom_ = __webpack_require__(16);
     removeFocusing: function removeFocusing() {
       this.focusing = false;
     },
-    concatClass: function concatClass(a, b) {
-      if (a && a.indexOf(b) > -1) return a;
-      return a ? b ? a + ' ' + b : a : b || '';
+    addTooltipClass: function addTooltipClass(prev) {
+      if (!prev) {
+        return 'el-tooltip';
+      } else {
+        return 'el-tooltip ' + prev.replace('el-tooltip', '');
+      }
     },
     handleShowPopper: function handleShowPopper() {
       var _this4 = this;
@@ -27054,6 +27829,17 @@ var vdom_ = __webpack_require__(16);
         clearTimeout(this.timeoutPending);
       }
       this.expectedState = expectedState;
+    },
+    getFirstElement: function getFirstElement() {
+      var slots = this.$slots.default;
+      if (!Array.isArray(slots)) return null;
+      var element = null;
+      for (var index = 0; index < slots.length; index++) {
+        if (slots[index] && slots[index].tag) {
+          element = slots[index];
+        };
+      }
+      return element;
     }
   },
 
@@ -27062,11 +27848,13 @@ var vdom_ = __webpack_require__(16);
   },
   destroyed: function destroyed() {
     var reference = this.referenceElm;
-    Object(dom_["off"])(reference, 'mouseenter', this.show);
-    Object(dom_["off"])(reference, 'mouseleave', this.hide);
-    Object(dom_["off"])(reference, 'focus', this.handleFocus);
-    Object(dom_["off"])(reference, 'blur', this.handleBlur);
-    Object(dom_["off"])(reference, 'click', this.removeFocusing);
+    if (reference.nodeType === 1) {
+      Object(dom_["off"])(reference, 'mouseenter', this.show);
+      Object(dom_["off"])(reference, 'mouseleave', this.hide);
+      Object(dom_["off"])(reference, 'focus', this.handleFocus);
+      Object(dom_["off"])(reference, 'blur', this.handleBlur);
+      Object(dom_["off"])(reference, 'click', this.removeFocusing);
+    }
   }
 });
 // CONCATENATED MODULE: ./packages/tooltip/index.js
@@ -27371,7 +28159,7 @@ mainvue_type_template_id_6b29b012_render._withStripped = true
 // CONCATENATED MODULE: ./packages/message-box/src/main.vue?vue&type=template&id=6b29b012&
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/aria-dialog"
-var aria_dialog_ = __webpack_require__(35);
+var aria_dialog_ = __webpack_require__(37);
 var aria_dialog_default = /*#__PURE__*/__webpack_require__.n(aria_dialog_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/message-box/src/main.vue?vue&type=script&lang=js&
@@ -27731,6 +28519,9 @@ var src_main_component = normalizeComponent(
 if (false) { var src_main_api; }
 src_main_component.options.__file = "packages/message-box/src/main.vue"
 /* harmony default export */ var message_box_src_main = (src_main_component.exports);
+// EXTERNAL MODULE: external "element-ui/lib/utils/vdom"
+var vdom_ = __webpack_require__(21);
+
 // CONCATENATED MODULE: ./packages/message-box/src/main.js
 var main_typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -28237,14 +29028,28 @@ formvue_type_template_id_a1b5ff34_render._withStripped = true
   },
   watch: {
     rules: function rules() {
+      // remove then add event listeners on form-item after form rules change
+      this.fields.forEach(function (field) {
+        field.removeValidateEvents();
+        field.addValidateEvents();
+      });
+
       if (this.validateOnRuleChange) {
         this.validate(function () {});
       }
     }
   },
+  computed: {
+    autoLabelWidth: function autoLabelWidth() {
+      if (!this.potentialLabelWidthArr.length) return 0;
+      var max = Math.max.apply(Math, this.potentialLabelWidthArr);
+      return max ? max + 'px' : '';
+    }
+  },
   data: function data() {
     return {
-      fields: []
+      fields: [],
+      potentialLabelWidthArr: [] // use this array to calculate auto width
     };
   },
   created: function created() {
@@ -28339,6 +29144,26 @@ formvue_type_template_id_a1b5ff34_render._withStripped = true
       fields.forEach(function (field) {
         field.validate('', cb);
       });
+    },
+    getLabelWidthIndex: function getLabelWidthIndex(width) {
+      var index = this.potentialLabelWidthArr.indexOf(width);
+      // it's impossible
+      if (index === -1) {
+        throw new Error('[ElementForm]unpected width ', width);
+      }
+      return index;
+    },
+    registerLabelWidth: function registerLabelWidth(val, oldVal) {
+      if (val && oldVal) {
+        var index = this.getLabelWidthIndex(oldVal);
+        this.potentialLabelWidthArr.splice(index, 1, val);
+      } else if (val) {
+        this.potentialLabelWidthArr.push(val);
+      }
+    },
+    deregisterLabelWidth: function deregisterLabelWidth(val) {
+      var index = this.getLabelWidthIndex(val);
+      this.potentialLabelWidthArr.splice(index, 1);
     }
   }
 });
@@ -28398,22 +29223,33 @@ var form_itemvue_type_template_id_b6f3db6c_render = function() {
       ]
     },
     [
-      _vm.label || _vm.$slots.label
-        ? _c(
-            "label",
-            {
-              staticClass: "el-form-item__label",
-              style: _vm.labelStyle,
-              attrs: { for: _vm.labelFor }
-            },
-            [
-              _vm._t("label", [
-                _vm._v(_vm._s(_vm.label + _vm.form.labelSuffix))
-              ])
-            ],
-            2
-          )
-        : _vm._e(),
+      _c(
+        "label-wrap",
+        {
+          attrs: {
+            "is-auto-width": _vm.labelStyle && _vm.labelStyle.width === "auto",
+            "update-all": _vm.form.labelWidth === "auto"
+          }
+        },
+        [
+          _vm.label || _vm.$slots.label
+            ? _c(
+                "label",
+                {
+                  staticClass: "el-form-item__label",
+                  style: _vm.labelStyle,
+                  attrs: { for: _vm.labelFor }
+                },
+                [
+                  _vm._t("label", [
+                    _vm._v(_vm._s(_vm.label + _vm.form.labelSuffix))
+                  ])
+                ],
+                2
+              )
+            : _vm._e()
+        ]
+      ),
       _c(
         "div",
         { staticClass: "el-form-item__content", style: _vm.contentStyle },
@@ -28459,7 +29295,8 @@ var form_itemvue_type_template_id_b6f3db6c_render = function() {
         ],
         2
       )
-    ]
+    ],
+    1
   )
 }
 var form_itemvue_type_template_id_b6f3db6c_staticRenderFns = []
@@ -28469,10 +29306,121 @@ form_itemvue_type_template_id_b6f3db6c_render._withStripped = true
 // CONCATENATED MODULE: ./packages/form/src/form-item.vue?vue&type=template&id=b6f3db6c&
 
 // EXTERNAL MODULE: external "async-validator"
-var external_async_validator_ = __webpack_require__(36);
+var external_async_validator_ = __webpack_require__(38);
 var external_async_validator_default = /*#__PURE__*/__webpack_require__.n(external_async_validator_);
 
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/form/src/label-wrap.vue?vue&type=script&lang=js&
+
+
+/* harmony default export */ var label_wrapvue_type_script_lang_js_ = ({
+  props: {
+    isAutoWidth: Boolean,
+    updateAll: Boolean
+  },
+
+  inject: ['elForm', 'elFormItem'],
+
+  render: function render() {
+    var h = arguments[0];
+
+    var slots = this.$slots.default;
+    if (!slots) return null;
+    if (this.isAutoWidth) {
+      var autoLabelWidth = this.elForm.autoLabelWidth;
+      var style = {};
+      if (autoLabelWidth && autoLabelWidth !== 'auto') {
+        var marginLeft = parseInt(autoLabelWidth, 10) - this.computedWidth;
+        if (marginLeft) {
+          style.marginLeft = marginLeft + 'px';
+        }
+      }
+      return h(
+        'div',
+        { 'class': 'el-form-item__label-wrap', style: style },
+        [slots]
+      );
+    } else {
+      return slots[0];
+    }
+  },
+
+
+  methods: {
+    getLabelWidth: function getLabelWidth() {
+      if (this.$el && this.$el.firstElementChild) {
+        var computedWidth = window.getComputedStyle(this.$el.firstElementChild).width;
+        return Math.ceil(parseFloat(computedWidth));
+      } else {
+        return 0;
+      }
+    },
+    updateLabelWidth: function updateLabelWidth() {
+      var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'update';
+
+      if (this.$slots.default && this.isAutoWidth && this.$el.firstElementChild) {
+        if (action === 'update') {
+          this.computedWidth = this.getLabelWidth();
+        } else if (action === 'remove') {
+          this.elForm.deregisterLabelWidth(this.computedWidth);
+        }
+      }
+    }
+  },
+
+  watch: {
+    computedWidth: function computedWidth(val, oldVal) {
+      if (this.updateAll) {
+        this.elForm.registerLabelWidth(val, oldVal);
+        this.elFormItem.updateComputedLabelWidth(val);
+      }
+    }
+  },
+
+  data: function data() {
+    return {
+      computedWidth: 0
+    };
+  },
+  mounted: function mounted() {
+    this.updateLabelWidth('update');
+  },
+  updated: function updated() {
+    this.updateLabelWidth('update');
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.updateLabelWidth('remove');
+  }
+});
+// CONCATENATED MODULE: ./packages/form/src/label-wrap.vue?vue&type=script&lang=js&
+ /* harmony default export */ var src_label_wrapvue_type_script_lang_js_ = (label_wrapvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/form/src/label-wrap.vue
+var label_wrap_render, label_wrap_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var label_wrap_component = normalizeComponent(
+  src_label_wrapvue_type_script_lang_js_,
+  label_wrap_render,
+  label_wrap_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var label_wrap_api; }
+label_wrap_component.options.__file = "packages/form/src/label-wrap.vue"
+/* harmony default export */ var label_wrap = (label_wrap_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/form/src/form-item.vue?vue&type=script&lang=js&
+//
+//
+//
+//
 //
 //
 //
@@ -28553,6 +29501,10 @@ var external_async_validator_default = /*#__PURE__*/__webpack_require__.n(extern
     },
     size: String
   },
+  components: {
+    // use this component to calculate auto width
+    LabelWrap: label_wrap
+  },
   watch: {
     error: {
       immediate: true,
@@ -28584,7 +29536,13 @@ var external_async_validator_default = /*#__PURE__*/__webpack_require__.n(extern
       if (this.form.labelPosition === 'top' || this.form.inline) return ret;
       if (!label && !this.labelWidth && this.isNested) return ret;
       var labelWidth = this.labelWidth || this.form.labelWidth;
-      if (labelWidth) {
+      if (labelWidth === 'auto') {
+        if (this.labelWidth === 'auto') {
+          ret.marginLeft = this.computedLabelWidth;
+        } else if (this.form.labelWidth === 'auto') {
+          ret.marginLeft = this.elForm.autoLabelWidth;
+        }
+      } else {
         ret.marginLeft = labelWidth;
       }
       return ret;
@@ -28645,7 +29603,8 @@ var external_async_validator_default = /*#__PURE__*/__webpack_require__.n(extern
       validateMessage: '',
       validateDisabled: false,
       validator: {},
-      isNested: false
+      isNested: false,
+      computedLabelWidth: ''
     };
   },
 
@@ -28746,6 +29705,20 @@ var external_async_validator_default = /*#__PURE__*/__webpack_require__.n(extern
       }
 
       this.validate('change');
+    },
+    updateComputedLabelWidth: function updateComputedLabelWidth(width) {
+      this.computedLabelWidth = width ? width + 'px' : '';
+    },
+    addValidateEvents: function addValidateEvents() {
+      var rules = this.getRules();
+
+      if (rules.length || this.required !== undefined) {
+        this.$on('el.form.blur', this.onFieldBlur);
+        this.$on('el.form.change', this.onFieldChange);
+      }
+    },
+    removeValidateEvents: function removeValidateEvents() {
+      this.$off();
     }
   },
   mounted: function mounted() {
@@ -28760,12 +29733,7 @@ var external_async_validator_default = /*#__PURE__*/__webpack_require__.n(extern
         value: initialValue
       });
 
-      var rules = this.getRules();
-
-      if (rules.length || this.required !== undefined) {
-        this.$on('el.form.blur', this.onFieldBlur);
-        this.$on('el.form.change', this.onFieldChange);
-      }
+      this.addValidateEvents();
     }
   },
   beforeDestroy: function beforeDestroy() {
@@ -29321,6 +30289,8 @@ tab_nav_component.options.__file = "packages/tabs/src/tab-nav.vue"
     calcPaneInstances: function calcPaneInstances() {
       var _this2 = this;
 
+      var isForceUpdate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
       if (this.$slots.default) {
         var paneSlots = this.$slots.default.filter(function (vnode) {
           return vnode.tag && vnode.componentOptions && vnode.componentOptions.Ctor.options.name === 'ElTabPane';
@@ -29330,9 +30300,10 @@ tab_nav_component.options.__file = "packages/tabs/src/tab-nav.vue"
           var componentInstance = _ref.componentInstance;
           return componentInstance;
         });
-        if (!(panes.length === this.panes.length && panes.every(function (pane, index) {
+        var panesChanged = !(panes.length === this.panes.length && panes.every(function (pane, index) {
           return pane === _this2.panes[index];
-        }))) {
+        }));
+        if (isForceUpdate || panesChanged) {
           this.panes = panes;
         }
       } else if (this.panes.length !== 0) {
@@ -29366,8 +30337,10 @@ tab_nav_component.options.__file = "packages/tabs/src/tab-nav.vue"
         if (before && before.then) {
           before.then(function () {
             changeCurrentName();
-
             _this3.$refs.nav && _this3.$refs.nav.removeFocus();
+          }, function () {
+            // https://github.com/ElemeFE/element/pull/14816
+            // ignore promise rejection in `before-leave` hook
           });
         } else if (before !== false) {
           changeCurrentName();
@@ -29448,6 +30421,8 @@ tab_nav_component.options.__file = "packages/tabs/src/tab-nav.vue"
     if (!this.currentName) {
       this.setCurrentName('0');
     }
+
+    this.$on('tab-nav-update', this.calcPaneInstances.bind(null, true));
   },
   mounted: function mounted() {
     this.calcPaneInstances();
@@ -29579,10 +30554,8 @@ tab_panevue_type_template_id_9145a070_render._withStripped = true
     }
   },
 
-  watch: {
-    label: function label() {
-      this.$parent.$forceUpdate();
-    }
+  updated: function updated() {
+    this.$parent.$emit('tab-nav-update');
   }
 });
 // CONCATENATED MODULE: ./packages/tabs/src/tab-pane.vue?vue&type=script&lang=js&
@@ -29876,6 +30849,7 @@ var node_Node = function () {
     this.expanded = false;
     this.parent = null;
     this.visible = true;
+    this.isCurrent = false;
 
     for (var name in options) {
       if (options.hasOwnProperty(name)) {
@@ -29928,6 +30902,7 @@ var node_Node = function () {
 
     if (key && store.currentNodeKey !== undefined && this.key === store.currentNodeKey) {
       store.currentNode = this;
+      store.currentNode.isCurrent = true;
     }
 
     if (store.lazy) {
@@ -30263,7 +31238,6 @@ var node_Node = function () {
         _this5.doCreateChildren(children, defaultProps);
 
         _this5.updateLeafState();
-        reInitChecked(_this5);
         if (callback) {
           callback.call(_this5, children);
         }
@@ -30426,7 +31400,11 @@ var tree_store_TreeStore = function () {
 
   TreeStore.prototype.remove = function remove(data) {
     var node = this.getNode(data);
+
     if (node && node.parent) {
+      if (node === this.currentNode) {
+        this.currentNode = null;
+      }
       node.parent.removeChild(node);
     }
   };
@@ -30677,8 +31655,13 @@ var tree_store_TreeStore = function () {
     return this.currentNode;
   };
 
-  TreeStore.prototype.setCurrentNode = function setCurrentNode(node) {
-    this.currentNode = node;
+  TreeStore.prototype.setCurrentNode = function setCurrentNode(currentNode) {
+    var prevCurrentNode = this.currentNode;
+    if (prevCurrentNode) {
+      prevCurrentNode.isCurrent = false;
+    }
+    this.currentNode = currentNode;
+    this.currentNode.isCurrent = true;
   };
 
   TreeStore.prototype.setUserCurrentNode = function setUserCurrentNode(node) {
@@ -30694,7 +31677,7 @@ var tree_store_TreeStore = function () {
     }
     var node = this.getNode(key);
     if (node) {
-      this.currentNode = node;
+      this.setCurrentNode(node);
     }
   };
 
@@ -30724,7 +31707,7 @@ var tree_nodevue_type_template_id_3ba3ef0e_render = function() {
       staticClass: "el-tree-node",
       class: {
         "is-expanded": _vm.expanded,
-        "is-current": _vm.tree.store.currentNode === _vm.node,
+        "is-current": _vm.node.isCurrent,
         "is-hidden": !_vm.node.visible,
         "is-focusable": !_vm.node.disabled,
         "is-checked": !_vm.node.disabled && _vm.node.checked
@@ -31695,7 +32678,11 @@ var mainvue_type_template_id_6e53341b_render = function() {
           }
         ],
         staticClass: "el-alert",
-        class: [_vm.typeClass, _vm.center ? "is-center" : ""],
+        class: [
+          _vm.typeClass,
+          _vm.center ? "is-center" : "",
+          "is-" + _vm.effect
+        ],
         attrs: { role: "alert" }
       },
       [
@@ -31705,52 +32692,53 @@ var mainvue_type_template_id_6e53341b_render = function() {
               class: [_vm.iconClass, _vm.isBigIcon]
             })
           : _vm._e(),
-        _c(
-          "div",
-          { staticClass: "el-alert__content" },
-          [
-            _vm.title || _vm.$slots.title
-              ? _c(
-                  "span",
-                  { staticClass: "el-alert__title", class: [_vm.isBoldTitle] },
-                  [_vm._t("title", [_vm._v(_vm._s(_vm.title))])],
-                  2
-                )
-              : _vm._e(),
-            _vm._t("default", [
-              _vm.description
-                ? _c("p", { staticClass: "el-alert__description" }, [
-                    _vm._v(_vm._s(_vm.description))
-                  ])
-                : _vm._e()
-            ]),
-            _c(
-              "i",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.closable,
-                    expression: "closable"
-                  }
-                ],
-                staticClass: "el-alert__closebtn",
-                class: {
-                  "is-customed": _vm.closeText !== "",
-                  "el-icon-close": _vm.closeText === ""
-                },
-                on: {
-                  click: function($event) {
-                    _vm.close()
-                  }
+        _c("div", { staticClass: "el-alert__content" }, [
+          _vm.title || _vm.$slots.title
+            ? _c(
+                "span",
+                { staticClass: "el-alert__title", class: [_vm.isBoldTitle] },
+                [_vm._t("title", [_vm._v(_vm._s(_vm.title))])],
+                2
+              )
+            : _vm._e(),
+          _vm.$slots.default && !_vm.description
+            ? _c(
+                "p",
+                { staticClass: "el-alert__description" },
+                [_vm._t("default")],
+                2
+              )
+            : _vm._e(),
+          _vm.description && !_vm.$slots.default
+            ? _c("p", { staticClass: "el-alert__description" }, [
+                _vm._v(_vm._s(_vm.description))
+              ])
+            : _vm._e(),
+          _c(
+            "i",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.closable,
+                  expression: "closable"
                 }
+              ],
+              staticClass: "el-alert__closebtn",
+              class: {
+                "is-customed": _vm.closeText !== "",
+                "el-icon-close": _vm.closeText === ""
               },
-              [_vm._v(_vm._s(_vm.closeText))]
-            )
-          ],
-          2
-        )
+              on: {
+                click: function($event) {
+                  _vm.close()
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.closeText))]
+          )
+        ])
       ]
     )
   ])
@@ -31762,7 +32750,6 @@ mainvue_type_template_id_6e53341b_render._withStripped = true
 // CONCATENATED MODULE: ./packages/alert/src/main.vue?vue&type=template&id=6e53341b&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/alert/src/main.vue?vue&type=script&lang=js&
-//
 //
 //
 //
@@ -31815,7 +32802,14 @@ var TYPE_CLASSES_MAP = {
       default: ''
     },
     showIcon: Boolean,
-    center: Boolean
+    center: Boolean,
+    effect: {
+      type: String,
+      default: 'light',
+      validator: function validator(value) {
+        return ['light', 'dark'].indexOf(value) !== -1;
+      }
+    }
   },
 
   data: function data() {
@@ -32343,12 +33337,37 @@ var mainvue_type_template_id_32708644_render = function() {
               ? _c("div", {
                   key: key,
                   staticClass: "el-slider__stop",
-                  style: _vm.vertical
-                    ? { bottom: item + "%" }
-                    : { left: item + "%" }
+                  style: _vm.getStopStyle(item)
                 })
               : _vm._e()
-          })
+          }),
+          _vm.markList.length > 0
+            ? [
+                _c(
+                  "div",
+                  _vm._l(_vm.markList, function(item, key) {
+                    return _c("div", {
+                      key: key,
+                      staticClass: "el-slider__stop el-slider__marks-stop",
+                      style: _vm.getStopStyle(item.position)
+                    })
+                  }),
+                  0
+                ),
+                _c(
+                  "div",
+                  { staticClass: "el-slider__marks" },
+                  _vm._l(_vm.markList, function(item, key) {
+                    return _c("slider-marker", {
+                      key: key,
+                      style: _vm.getStopStyle(item.position),
+                      attrs: { mark: item.mark }
+                    })
+                  }),
+                  1
+                )
+              ]
+            : _vm._e()
         ],
         2
       )
@@ -32363,7 +33382,7 @@ mainvue_type_template_id_32708644_render._withStripped = true
 // CONCATENATED MODULE: ./packages/slider/src/main.vue?vue&type=template&id=32708644&
 
 // EXTERNAL MODULE: external "element-ui/lib/input-number"
-var input_number_ = __webpack_require__(37);
+var input_number_ = __webpack_require__(39);
 var input_number_default = /*#__PURE__*/__webpack_require__.n(input_number_);
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/slider/src/button.vue?vue&type=template&id=e72d2ad2&
@@ -32610,11 +33629,13 @@ buttonvue_type_template_id_e72d2ad2_render._withStripped = true
       if (this.disabled) return;
       this.newPosition = parseFloat(this.currentPosition) - this.step / (this.max - this.min) * 100;
       this.setPosition(this.newPosition);
+      this.$parent.emitChange();
     },
     onRightKeyDown: function onRightKeyDown() {
       if (this.disabled) return;
       this.newPosition = parseFloat(this.currentPosition) + this.step / (this.max - this.min) * 100;
       this.setPosition(this.newPosition);
+      this.$parent.emitChange();
     },
     onDragStart: function onDragStart(event) {
       this.dragging = true;
@@ -32723,6 +33744,27 @@ var src_button_component = normalizeComponent(
 if (false) { var src_button_api; }
 src_button_component.options.__file = "packages/slider/src/button.vue"
 /* harmony default export */ var slider_src_button = (src_button_component.exports);
+// CONCATENATED MODULE: ./packages/slider/src/marker.js
+/* harmony default export */ var marker = ({
+  name: 'ElMarker',
+
+  props: {
+    mark: {
+      type: [String, Object]
+    }
+  },
+  render: function render() {
+    var h = arguments[0];
+
+    var label = typeof this.mark === 'string' ? this.mark : this.mark.label;
+
+    return h(
+      'div',
+      { 'class': 'el-slider__marks-text', style: this.mark.style || {} },
+      [label]
+    );
+  }
+});
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/slider/src/main.vue?vue&type=script&lang=js&
 //
 //
@@ -32782,6 +33824,24 @@ src_button_component.options.__file = "packages/slider/src/button.vue"
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -32858,12 +33918,14 @@ src_button_component.options.__file = "packages/slider/src/button.vue"
     label: {
       type: String
     },
-    tooltipClass: String
+    tooltipClass: String,
+    marks: Object
   },
 
   components: {
     ElInputNumber: input_number_default.a,
-    SliderButton: slider_src_button
+    SliderButton: slider_src_button,
+    SliderMarker: marker
   },
 
   data: function data() {
@@ -32997,6 +34059,9 @@ src_button_component.options.__file = "packages/slider/src/button.vue"
       this.$nextTick(function () {
         _this2.$emit('change', _this2.range ? [_this2.minValue, _this2.maxValue] : _this2.value);
       });
+    },
+    getStopStyle: function getStopStyle(position) {
+      return this.vertical ? { 'bottom': position + '%' } : { 'left': position + '%' };
     }
   },
 
@@ -33024,6 +34089,26 @@ src_button_component.options.__file = "packages/slider/src/button.vue"
           return step > 100 * (_this3.firstValue - _this3.min) / (_this3.max - _this3.min);
         });
       }
+    },
+    markList: function markList() {
+      var _this4 = this;
+
+      if (!this.marks) {
+        return [];
+      }
+
+      var marksKeys = Object.keys(this.marks);
+      return marksKeys.map(parseFloat).sort(function (a, b) {
+        return a - b;
+      }).filter(function (point) {
+        return point <= _this4.max && point >= _this4.min;
+      }).map(function (point) {
+        return {
+          point: point,
+          position: (point - _this4.min) * 100 / (_this4.max - _this4.min),
+          mark: _this4.marks[point]
+        };
+      });
     },
     minValue: function minValue() {
       return Math.min(this.firstValue, this.secondValue);
@@ -33257,7 +34342,7 @@ if (false) { var loading_api; }
 loading_component.options.__file = "packages/loading/src/loading.vue"
 /* harmony default export */ var loading = (loading_component.exports);
 // EXTERNAL MODULE: external "element-ui/lib/utils/after-leave"
-var after_leave_ = __webpack_require__(28);
+var after_leave_ = __webpack_require__(31);
 var after_leave_default = /*#__PURE__*/__webpack_require__.n(after_leave_);
 
 // CONCATENATED MODULE: ./packages/loading/src/directive.js
@@ -33844,7 +34929,7 @@ upload_listvue_type_template_id_173fedf5_render._withStripped = true
 // CONCATENATED MODULE: ./packages/upload/src/upload-list.vue?vue&type=template&id=173fedf5&
 
 // EXTERNAL MODULE: external "element-ui/lib/progress"
-var progress_ = __webpack_require__(29);
+var progress_ = __webpack_require__(32);
 var progress_default = /*#__PURE__*/__webpack_require__.n(progress_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/upload/src/upload-list.vue?vue&type=script&lang=js&
@@ -33977,7 +35062,7 @@ if (false) { var upload_list_api; }
 upload_list_component.options.__file = "packages/upload/src/upload-list.vue"
 /* harmony default export */ var upload_list = (upload_list_component.exports);
 // EXTERNAL MODULE: external "babel-helper-vue-jsx-merge-props"
-var external_babel_helper_vue_jsx_merge_props_ = __webpack_require__(23);
+var external_babel_helper_vue_jsx_merge_props_ = __webpack_require__(26);
 var external_babel_helper_vue_jsx_merge_props_default = /*#__PURE__*/__webpack_require__.n(external_babel_helper_vue_jsx_merge_props_);
 
 // CONCATENATED MODULE: ./packages/upload/src/ajax.js
@@ -34587,15 +35672,15 @@ function srcvue_type_script_lang_js_noop() {}
   watch: {
     listType: function listType(type) {
       if (type === 'picture-card' || type === 'picture') {
-        this.uploadFiles.forEach(function (file) {
+        this.uploadFiles = this.uploadFiles.map(function (file) {
           if (!file.url && file.raw) {
             try {
               file.url = URL.createObjectURL(file.raw);
             } catch (err) {
               console.error('[Element Error][Upload]', err);
-              return;
             }
           }
+          return file;
         });
       }
     },
@@ -35782,6 +36867,9 @@ mainvue_type_template_id_ada57782_render._withStripped = true
 
 // CONCATENATED MODULE: ./packages/rate/src/main.vue?vue&type=template&id=ada57782&
 
+// EXTERNAL MODULE: external "element-ui/lib/utils/types"
+var types_ = __webpack_require__(25);
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/rate/src/main.vue?vue&type=script&lang=js&
 //
 //
@@ -35817,6 +36905,7 @@ mainvue_type_template_id_ada57782_render._withStripped = true
 //
 //
 //
+
 
 
 
@@ -35859,7 +36948,7 @@ mainvue_type_template_id_ada57782_render._withStripped = true
       default: 5
     },
     colors: {
-      type: Array,
+      type: [Array, Object],
       default: function _default() {
         return ['#F7BA2A', '#F7BA2A', '#F7BA2A'];
       }
@@ -35873,7 +36962,7 @@ mainvue_type_template_id_ada57782_render._withStripped = true
       default: '#EFF2F7'
     },
     iconClasses: {
-      type: Array,
+      type: [Array, Object],
       default: function _default() {
         return ['el-icon-star-on', 'el-icon-star-on', 'el-icon-star-on'];
       }
@@ -35931,9 +37020,8 @@ mainvue_type_template_id_ada57782_render._withStripped = true
     decimalStyle: function decimalStyle() {
       var width = '';
       if (this.rateDisabled) {
-        width = (this.valueDecimal < 50 ? 0 : 50) + '%';
-      }
-      if (this.allowHalf) {
+        width = this.valueDecimal + '%';
+      } else if (this.allowHalf) {
         width = '50%';
       }
       return {
@@ -35944,23 +37032,24 @@ mainvue_type_template_id_ada57782_render._withStripped = true
     valueDecimal: function valueDecimal() {
       return this.value * 100 - Math.floor(this.value) * 100;
     },
+    classMap: function classMap() {
+      var _ref;
+
+      return Array.isArray(this.iconClasses) ? (_ref = {}, _ref[this.lowThreshold] = this.iconClasses[0], _ref[this.highThreshold] = { value: this.iconClasses[1], excluded: true }, _ref[this.max] = this.iconClasses[2], _ref) : this.iconClasses;
+    },
     decimalIconClass: function decimalIconClass() {
       return this.getValueFromMap(this.value, this.classMap);
     },
     voidClass: function voidClass() {
-      return this.rateDisabled ? this.classMap.disabledVoidClass : this.classMap.voidClass;
+      return this.rateDisabled ? this.disabledVoidIconClass : this.voidIconClass;
     },
     activeClass: function activeClass() {
       return this.getValueFromMap(this.currentValue, this.classMap);
     },
     colorMap: function colorMap() {
-      return {
-        lowColor: this.colors[0],
-        mediumColor: this.colors[1],
-        highColor: this.colors[2],
-        voidColor: this.voidColor,
-        disabledVoidColor: this.disabledVoidColor
-      };
+      var _ref2;
+
+      return Array.isArray(this.colors) ? (_ref2 = {}, _ref2[this.lowThreshold] = this.colors[0], _ref2[this.highThreshold] = { value: this.colors[1], excluded: true }, _ref2[this.max] = this.colors[2], _ref2) : this.colors;
     },
     activeColor: function activeColor() {
       return this.getValueFromMap(this.currentValue, this.colorMap);
@@ -35979,15 +37068,6 @@ mainvue_type_template_id_ada57782_render._withStripped = true
         result.push(this.voidClass);
       }
       return result;
-    },
-    classMap: function classMap() {
-      return {
-        lowClass: this.iconClasses[0],
-        mediumClass: this.iconClasses[1],
-        highClass: this.iconClasses[2],
-        voidClass: this.voidIconClass,
-        disabledVoidClass: this.disabledVoidIconClass
-      };
     },
     rateDisabled: function rateDisabled() {
       return this.disabled || (this.elForm || {}).disabled;
@@ -36010,15 +37090,15 @@ mainvue_type_template_id_ada57782_render._withStripped = true
       };
     },
     getValueFromMap: function getValueFromMap(value, map) {
-      var result = '';
-      if (value <= this.lowThreshold) {
-        result = map.lowColor || map.lowClass;
-      } else if (value >= this.highThreshold) {
-        result = map.highColor || map.highClass;
-      } else {
-        result = map.mediumColor || map.mediumClass;
-      }
-      return result;
+      var matchedKeys = Object.keys(map).filter(function (key) {
+        var val = map[key];
+        var excluded = Object(types_["isObject"])(val) ? val.excluded : false;
+        return excluded ? value < key : value <= key;
+      }).sort(function (a, b) {
+        return a - b;
+      });
+      var matchedValue = map[matchedKeys[0]];
+      return Object(types_["isObject"])(matchedValue) ? matchedValue.value : matchedValue || '';
     },
     showDecimalIcon: function showDecimalIcon(item) {
       var showWhenDisabled = this.rateDisabled && this.valueDecimal > 0 && item - 1 < this.value && item > this.value;
@@ -36027,7 +37107,7 @@ mainvue_type_template_id_ada57782_render._withStripped = true
       return showWhenDisabled || showWhenAllowHalf;
     },
     getIconStyle: function getIconStyle(item) {
-      var voidColor = this.rateDisabled ? this.colorMap.disabledVoidColor : this.colorMap.voidColor;
+      var voidColor = this.rateDisabled ? this.disabledVoidColor : this.voidColor;
       return {
         color: item <= this.currentValue ? this.activeColor : voidColor
       };
@@ -36535,7 +37615,7 @@ stepvue_type_template_id_f414a87a_render._withStripped = true
         style.transitionDelay = -150 * this.index + 'ms';
       }
 
-      style.borderWidth = step ? '1px' : 0;
+      style.borderWidth = step && !this.isSimple ? '1px' : 0;
       this.$parent.direction === 'vertical' ? style.height = step + '%' : style.width = step + '%';
 
       this.lineStyle = style;
@@ -36547,6 +37627,10 @@ stepvue_type_template_id_f414a87a_render._withStripped = true
 
     var unwatch = this.$watch('index', function (val) {
       _this.$watch('$parent.active', _this.updateStatus, { immediate: true });
+      _this.$watch('$parent.processStatus', function () {
+        var activeIndex = _this.$parent.active;
+        _this.updateStatus(activeIndex);
+      }, { immediate: true });
       unwatch();
     });
   }
@@ -36593,8 +37677,7 @@ var mainvue_type_template_id_5d5d1482_render = function() {
   return _c(
     "div",
     {
-      staticClass: "el-carousel",
-      class: { "el-carousel--card": _vm.type === "card" },
+      class: _vm.carouselClasses,
       on: {
         mouseenter: function($event) {
           $event.stopPropagation()
@@ -36614,9 +37697,9 @@ var mainvue_type_template_id_5d5d1482_render = function() {
           style: { height: _vm.height }
         },
         [
-          _c("transition", { attrs: { name: "carousel-arrow-left" } }, [
-            _vm.arrow !== "never"
-              ? _c(
+          _vm.arrowDisplay
+            ? _c("transition", { attrs: { name: "carousel-arrow-left" } }, [
+                _c(
                   "button",
                   {
                     directives: [
@@ -36645,11 +37728,11 @@ var mainvue_type_template_id_5d5d1482_render = function() {
                   },
                   [_c("i", { staticClass: "el-icon-arrow-left" })]
                 )
-              : _vm._e()
-          ]),
-          _c("transition", { attrs: { name: "carousel-arrow-right" } }, [
-            _vm.arrow !== "never"
-              ? _c(
+              ])
+            : _vm._e(),
+          _vm.arrowDisplay
+            ? _c("transition", { attrs: { name: "carousel-arrow-right" } }, [
+                _c(
                   "button",
                   {
                     directives: [
@@ -36678,8 +37761,8 @@ var mainvue_type_template_id_5d5d1482_render = function() {
                   },
                   [_c("i", { staticClass: "el-icon-arrow-right" })]
                 )
-              : _vm._e()
-          ]),
+              ])
+            : _vm._e(),
           _vm._t("default")
         ],
         2
@@ -36687,20 +37770,17 @@ var mainvue_type_template_id_5d5d1482_render = function() {
       _vm.indicatorPosition !== "none"
         ? _c(
             "ul",
-            {
-              staticClass: "el-carousel__indicators",
-              class: {
-                "el-carousel__indicators--labels": _vm.hasLabel,
-                "el-carousel__indicators--outside":
-                  _vm.indicatorPosition === "outside" || _vm.type === "card"
-              }
-            },
+            { class: _vm.indicatorsClasses },
             _vm._l(_vm.items, function(item, index) {
               return _c(
                 "li",
                 {
-                  staticClass: "el-carousel__indicator",
-                  class: { "is-active": index === _vm.activeIndex },
+                  key: index,
+                  class: [
+                    "el-carousel__indicator",
+                    "el-carousel__indicator--" + _vm.direction,
+                    { "is-active": index === _vm.activeIndex }
+                  ],
                   on: {
                     mouseenter: function($event) {
                       _vm.throttledIndicatorHover(index)
@@ -36733,10 +37813,15 @@ mainvue_type_template_id_5d5d1482_render._withStripped = true
 // CONCATENATED MODULE: ./packages/carousel/src/main.vue?vue&type=template&id=5d5d1482&
 
 // EXTERNAL MODULE: external "throttle-debounce/throttle"
-var throttle_ = __webpack_require__(30);
+var throttle_ = __webpack_require__(27);
 var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/carousel/src/main.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
 //
 //
 //
@@ -36826,6 +37911,13 @@ var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle_);
     loop: {
       type: Boolean,
       default: true
+    },
+    direction: {
+      type: String,
+      default: 'horizontal',
+      validator: function validator(val) {
+        return ['horizontal', 'vertical'].indexOf(val) !== -1;
+      }
     }
   },
 
@@ -36841,10 +37933,30 @@ var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle_);
 
 
   computed: {
+    arrowDisplay: function arrowDisplay() {
+      return this.arrow !== 'never' && this.direction !== 'vertical';
+    },
     hasLabel: function hasLabel() {
       return this.items.some(function (item) {
         return item.label.toString().length > 0;
       });
+    },
+    carouselClasses: function carouselClasses() {
+      var classes = ['el-carousel', 'el-carousel--' + this.direction];
+      if (this.type === 'card') {
+        classes.push('el-carousel--card');
+      }
+      return classes;
+    },
+    indicatorsClasses: function indicatorsClasses() {
+      var classes = ['el-carousel__indicators', 'el-carousel__indicators--' + this.direction];
+      if (this.hasLabel) {
+        classes.push('el-carousel__indicators--labels');
+      }
+      if (this.indicatorPosition === 'outside' || this.type === 'card') {
+        classes.push('el-carousel__indicators--outside');
+      }
+      return classes;
     }
   },
 
@@ -36885,6 +37997,7 @@ var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle_);
     handleButtonEnter: function handleButtonEnter(arrow) {
       var _this = this;
 
+      if (this.direction === 'vertical') return;
       this.items.forEach(function (item, index) {
         if (arrow === _this.itemInStage(item, index)) {
           item.hover = true;
@@ -36892,6 +38005,7 @@ var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle_);
       });
     },
     handleButtonLeave: function handleButtonLeave() {
+      if (this.direction === 'vertical') return;
       this.items.forEach(function (item) {
         item.hover = false;
       });
@@ -36936,7 +38050,7 @@ var throttle_default = /*#__PURE__*/__webpack_require__.n(throttle_);
       }
       index = Number(index);
       if (isNaN(index) || index !== Math.floor(index)) {
-         false && false;
+        console.warn('[Element Warn][Carousel]index must be an integer.');
         return;
       }
       var length = this.items.length;
@@ -37119,6 +38233,10 @@ function renderThumbStyle(_ref) {
 
   methods: {
     clickThumbHandler: function clickThumbHandler(e) {
+      // prevent click event of right button
+      if (e.ctrlKey || e.button === 2) {
+        return;
+      }
       this.startDrag(e);
       this[this.bar.axis] = e.currentTarget[this.bar.offset] - (e[this.bar.client] - e.currentTarget.getBoundingClientRect()[this.bar.direction]);
     },
@@ -37331,14 +38449,7 @@ var itemvue_type_template_id_1801ae19_render = function() {
         "is-hover": _vm.hover,
         "is-animating": _vm.animating
       },
-      style: {
-        msTransform:
-          "translateX(" + _vm.translate + "px) scale(" + _vm.scale + ")",
-        webkitTransform:
-          "translateX(" + _vm.translate + "px) scale(" + _vm.scale + ")",
-        transform:
-          "translateX(" + _vm.translate + "px) scale(" + _vm.scale + ")"
-      },
+      style: _vm.itemStyle,
       on: { click: _vm.handleItemClick }
     },
     [
@@ -37389,10 +38500,7 @@ itemvue_type_template_id_1801ae19_render._withStripped = true
 //
 //
 //
-//
-//
-//
-//
+
 
 var CARD_SCALE = 0.83;
 /* harmony default export */ var itemvue_type_script_lang_js_ = ({
@@ -37432,7 +38540,8 @@ var CARD_SCALE = 0.83;
       }
       return index;
     },
-    calculateTranslate: function calculateTranslate(index, activeIndex, parentWidth) {
+    calcCardTranslate: function calcCardTranslate(index, activeIndex) {
+      var parentWidth = this.$parent.$el.offsetWidth;
       if (this.inStage) {
         return parentWidth * ((2 - CARD_SCALE) * (index - activeIndex) + 1) / 4;
       } else if (index < activeIndex) {
@@ -37441,23 +38550,32 @@ var CARD_SCALE = 0.83;
         return (3 + CARD_SCALE) * parentWidth / 4;
       }
     },
+    calcTranslate: function calcTranslate(index, activeIndex, isVertical) {
+      var distance = this.$parent.$el[isVertical ? 'offsetHeight' : 'offsetWidth'];
+      return distance * (index - activeIndex);
+    },
     translateItem: function translateItem(index, activeIndex, oldIndex) {
-      var parentWidth = this.$parent.$el.offsetWidth;
+      var parentType = this.$parent.type;
+      var parentDirection = this.parentDirection;
       var length = this.$parent.items.length;
-      if (this.$parent.type !== 'card' && oldIndex !== undefined) {
+      if (parentType !== 'card' && oldIndex !== undefined) {
         this.animating = index === activeIndex || index === oldIndex;
       }
       if (index !== activeIndex && length > 2 && this.$parent.loop) {
         index = this.processIndex(index, activeIndex, length);
       }
-      if (this.$parent.type === 'card') {
+      if (parentType === 'card') {
+        if (parentDirection === 'vertical') {
+          console.warn('[Element Warn][Carousel]vertical directionis not supported in card mode');
+        }
         this.inStage = Math.round(Math.abs(index - activeIndex)) <= 1;
         this.active = index === activeIndex;
-        this.translate = this.calculateTranslate(index, activeIndex, parentWidth);
+        this.translate = this.calcCardTranslate(index, activeIndex);
         this.scale = this.active ? 1 : CARD_SCALE;
       } else {
         this.active = index === activeIndex;
-        this.translate = parentWidth * (index - activeIndex);
+        var isVertical = parentDirection === 'vertical';
+        this.translate = this.calcTranslate(index, activeIndex, isVertical);
       }
       this.ready = true;
     },
@@ -37467,6 +38585,20 @@ var CARD_SCALE = 0.83;
         var index = parent.items.indexOf(this);
         parent.setActiveItem(index);
       }
+    }
+  },
+
+  computed: {
+    parentDirection: function parentDirection() {
+      return this.$parent.direction;
+    },
+    itemStyle: function itemStyle() {
+      var translateType = this.parentDirection === 'vertical' ? 'translateY' : 'translateX';
+      var value = translateType + '(' + this.translate + 'px) scale(' + this.scale + ')';
+      var style = {
+        transform: value
+      };
+      return Object(util_["autoprefixer"])(style);
     }
   },
 
@@ -37642,7 +38774,10 @@ var collapse_itemvue_type_template_id_2d05faac_render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "el-collapse-item", class: { "is-active": _vm.isActive } },
+    {
+      staticClass: "el-collapse-item",
+      class: { "is-active": _vm.isActive, "is-disabled": _vm.disabled }
+    },
     [
       _c(
         "div",
@@ -37666,7 +38801,7 @@ var collapse_itemvue_type_template_id_2d05faac_render = function() {
               attrs: {
                 role: "button",
                 id: "el-collapse-head-" + _vm.id,
-                tabindex: "0"
+                tabindex: _vm.disabled ? undefined : 0
               },
               on: {
                 click: _vm.handleHeaderClick,
@@ -37787,6 +38922,7 @@ collapse_itemvue_type_template_id_2d05faac_render._withStripped = true
 //
 //
 //
+//
 
 
 
@@ -37809,7 +38945,8 @@ collapse_itemvue_type_template_id_2d05faac_render._withStripped = true
       },
       contentHeight: 0,
       focusing: false,
-      isClick: false
+      isClick: false,
+      id: Object(util_["generateId"])()
     };
   },
 
@@ -37823,15 +38960,13 @@ collapse_itemvue_type_template_id_2d05faac_render._withStripped = true
       default: function _default() {
         return this._uid;
       }
-    }
+    },
+    disabled: Boolean
   },
 
   computed: {
     isActive: function isActive() {
       return this.collapse.activeNames.indexOf(this.name) > -1;
-    },
-    id: function id() {
-      return Object(util_["generateId"])();
     }
   },
 
@@ -37848,6 +38983,7 @@ collapse_itemvue_type_template_id_2d05faac_render._withStripped = true
       }, 50);
     },
     handleHeaderClick: function handleHeaderClick() {
+      if (this.disabled) return;
       this.dispatch('ElCollapse', 'item-click', this);
       this.focusing = false;
       this.isClick = true;
@@ -38717,10 +39853,6 @@ var popperMixin = {
     currentValue: function currentValue(value) {
       this.dispatch('ElFormItem', 'el.form.change', [value]);
     },
-    currentLabels: function currentLabels(value) {
-      var inputLabel = this.showAllLevels ? value.join('/') : value[value.length - 1];
-      this.$refs.input.$refs.input.setAttribute('value', inputLabel);
-    },
 
     options: {
       deep: true,
@@ -39362,6 +40494,7 @@ var Color = function () {
       }
     } else if (value.indexOf('#') !== -1) {
       var hex = value.replace('#', '').trim();
+      if (!/^(?:[0-9a-fA-F]{3}){1,2}$/.test(hex)) return;
       var r = void 0,
           g = void 0,
           b = void 0;
@@ -41847,6 +42980,1277 @@ footer_src_main.install = function (Vue) {
 };
 
 /* harmony default export */ var footer = (footer_src_main);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/timeline/src/main.vue?vue&type=template&id=ef070f04&
+var mainvue_type_template_id_ef070f04_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "ul",
+    {
+      staticClass: "el-timeline",
+      class: {
+        "is-reverse": _vm.reverse
+      }
+    },
+    [_vm._t("default")],
+    2
+  )
+}
+var mainvue_type_template_id_ef070f04_staticRenderFns = []
+mainvue_type_template_id_ef070f04_render._withStripped = true
+
+
+// CONCATENATED MODULE: ./packages/timeline/src/main.vue?vue&type=template&id=ef070f04&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/timeline/src/main.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var timeline_src_mainvue_type_script_lang_js_ = ({
+  name: 'ElTimeline',
+
+  props: {
+    reverse: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  provide: function provide() {
+    return {
+      timeline: this
+    };
+  },
+
+
+  watch: {
+    reverse: {
+      handler: function handler(newVal) {
+        if (newVal) {
+          this.$slots.default = [].concat(this.$slots.default).reverse();
+        }
+      },
+
+      immediate: true
+    }
+  }
+});
+// CONCATENATED MODULE: ./packages/timeline/src/main.vue?vue&type=script&lang=js&
+ /* harmony default export */ var packages_timeline_src_mainvue_type_script_lang_js_ = (timeline_src_mainvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/timeline/src/main.vue
+
+
+
+
+
+/* normalize component */
+
+var timeline_src_main_component = normalizeComponent(
+  packages_timeline_src_mainvue_type_script_lang_js_,
+  mainvue_type_template_id_ef070f04_render,
+  mainvue_type_template_id_ef070f04_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var timeline_src_main_api; }
+timeline_src_main_component.options.__file = "packages/timeline/src/main.vue"
+/* harmony default export */ var timeline_src_main = (timeline_src_main_component.exports);
+// CONCATENATED MODULE: ./packages/timeline/index.js
+
+
+/* istanbul ignore next */
+timeline_src_main.install = function (Vue) {
+  Vue.component(timeline_src_main.name, timeline_src_main);
+};
+
+/* harmony default export */ var timeline = (timeline_src_main);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/timeline/src/item.vue?vue&type=template&id=61a69e50&
+var itemvue_type_template_id_61a69e50_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("li", { staticClass: "el-timeline-item" }, [
+    _c("div", { staticClass: "el-timeline-item__tail" }),
+    !_vm.$slots.dot
+      ? _c(
+          "div",
+          {
+            staticClass: "el-timeline-item__node",
+            class: [
+              "el-timeline-item__node--" + (_vm.size || ""),
+              "el-timeline-item__node--" + (_vm.type || "")
+            ],
+            style: {
+              backgroundColor: _vm.color
+            }
+          },
+          [
+            _vm.icon
+              ? _c("i", {
+                  staticClass: "el-timeline-item__icon",
+                  class: _vm.icon
+                })
+              : _vm._e()
+          ]
+        )
+      : _vm._e(),
+    _vm.$slots.dot
+      ? _c("div", { staticClass: "el-timeline-item__dot" }, [_vm._t("dot")], 2)
+      : _vm._e(),
+    _c("div", { staticClass: "el-timeline-item__wrapper" }, [
+      !_vm.hideTimestamp && _vm.placement === "top"
+        ? _c("div", { staticClass: "el-timeline-item__timestamp is-top" }, [
+            _vm._v("\n      " + _vm._s(_vm.timestamp) + "\n    ")
+          ])
+        : _vm._e(),
+      _c(
+        "div",
+        { staticClass: "el-timeline-item__content" },
+        [_vm._t("default")],
+        2
+      ),
+      !_vm.hideTimestamp && _vm.placement === "bottom"
+        ? _c("div", { staticClass: "el-timeline-item__timestamp is-bottom" }, [
+            _vm._v("\n      " + _vm._s(_vm.timestamp) + "\n    ")
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var itemvue_type_template_id_61a69e50_staticRenderFns = []
+itemvue_type_template_id_61a69e50_render._withStripped = true
+
+
+// CONCATENATED MODULE: ./packages/timeline/src/item.vue?vue&type=template&id=61a69e50&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/timeline/src/item.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var timeline_src_itemvue_type_script_lang_js_ = ({
+  name: 'ElTimelineItem',
+
+  inject: ['timeline'],
+
+  props: {
+    timestamp: String,
+
+    hideTimestamp: {
+      type: Boolean,
+      default: false
+    },
+
+    placement: {
+      type: String,
+      default: 'bottom'
+    },
+
+    type: String,
+
+    color: String,
+
+    size: {
+      type: String,
+      default: 'normal'
+    },
+
+    icon: String
+  }
+});
+// CONCATENATED MODULE: ./packages/timeline/src/item.vue?vue&type=script&lang=js&
+ /* harmony default export */ var packages_timeline_src_itemvue_type_script_lang_js_ = (timeline_src_itemvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/timeline/src/item.vue
+
+
+
+
+
+/* normalize component */
+
+var src_item_component = normalizeComponent(
+  packages_timeline_src_itemvue_type_script_lang_js_,
+  itemvue_type_template_id_61a69e50_render,
+  itemvue_type_template_id_61a69e50_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var src_item_api; }
+src_item_component.options.__file = "packages/timeline/src/item.vue"
+/* harmony default export */ var timeline_src_item = (src_item_component.exports);
+// CONCATENATED MODULE: ./packages/timeline-item/index.js
+
+
+/* istanbul ignore next */
+timeline_src_item.install = function (Vue) {
+  Vue.component(timeline_src_item.name, timeline_src_item);
+};
+
+/* harmony default export */ var timeline_item = (timeline_src_item);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/link/src/main.vue?vue&type=template&id=01cf3b65&
+var mainvue_type_template_id_01cf3b65_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    _vm._b(
+      {
+        class: [
+          "el-link",
+          _vm.type ? "el-link--" + _vm.type : "",
+          _vm.disabled && "is-disabled",
+          _vm.underline && !_vm.disabled && "is-underline"
+        ],
+        attrs: { href: _vm.href },
+        on: { click: _vm.handleClick }
+      },
+      "a",
+      _vm.$attrs,
+      false
+    ),
+    [
+      _vm.icon ? _c("el-icon", { class: _vm.icon }) : _vm._e(),
+      _vm.$slots.default
+        ? _c("span", { staticClass: "el-link--inner" }, [_vm._t("default")], 2)
+        : _vm._e(),
+      _vm.$slots.icon ? [_vm.$slots.icon ? _vm._t("icon") : _vm._e()] : _vm._e()
+    ],
+    2
+  )
+}
+var mainvue_type_template_id_01cf3b65_staticRenderFns = []
+mainvue_type_template_id_01cf3b65_render._withStripped = true
+
+
+// CONCATENATED MODULE: ./packages/link/src/main.vue?vue&type=template&id=01cf3b65&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/link/src/main.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ var link_src_mainvue_type_script_lang_js_ = ({
+  name: 'ElLink',
+
+  props: {
+    type: {
+      type: String,
+      default: 'default'
+    },
+    underline: {
+      type: Boolean,
+      default: true
+    },
+    disabled: Boolean,
+    href: String,
+    icon: String
+  },
+
+  methods: {
+    handleClick: function handleClick(event) {
+      if (!this.disabled) {
+        if (!this.href) {
+          this.$emit('click', event);
+        }
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./packages/link/src/main.vue?vue&type=script&lang=js&
+ /* harmony default export */ var packages_link_src_mainvue_type_script_lang_js_ = (link_src_mainvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/link/src/main.vue
+
+
+
+
+
+/* normalize component */
+
+var link_src_main_component = normalizeComponent(
+  packages_link_src_mainvue_type_script_lang_js_,
+  mainvue_type_template_id_01cf3b65_render,
+  mainvue_type_template_id_01cf3b65_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var link_src_main_api; }
+link_src_main_component.options.__file = "packages/link/src/main.vue"
+/* harmony default export */ var link_src_main = (link_src_main_component.exports);
+// CONCATENATED MODULE: ./packages/link/index.js
+
+
+/* istanbul ignore next */
+link_src_main.install = function (Vue) {
+  Vue.component(link_src_main.name, link_src_main);
+};
+
+/* harmony default export */ var packages_link = (link_src_main);
+// CONCATENATED MODULE: ./packages/divider/src/main.js
+/* harmony default export */ var divider_src_main = ({
+  functional: true,
+
+  name: 'ElDivider',
+
+  props: {
+    direction: {
+      type: String,
+      default: 'horizontal',
+      validator: function validator(val) {
+        return ['horizontal', 'vertical'].indexOf(val) !== -1;
+      }
+    },
+
+    contentPosition: {
+      type: String,
+      default: 'center',
+      validator: function validator(val) {
+        return ['left', 'center', 'right'].indexOf(val) !== -1;
+      }
+    }
+  },
+
+  render: function render(h, context) {
+    var $slots = context.slots();
+    var _context$props = context.props,
+        direction = _context$props.direction,
+        contentPosition = _context$props.contentPosition;
+
+    return h(
+      'div',
+      { 'class': ['el-divider', 'el-divider--' + direction] },
+      [$slots.default && direction !== 'vertical' ? h(
+        'div',
+        { 'class': ['el-divider__text', 'is-' + contentPosition] },
+        [$slots.default]
+      ) : null]
+    );
+  }
+});
+// CONCATENATED MODULE: ./packages/divider/index.js
+
+
+/* istanbul ignore next */
+divider_src_main.install = function (Vue) {
+  Vue.component(divider_src_main.name, divider_src_main);
+};
+
+/* harmony default export */ var divider = (divider_src_main);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/image/src/main.vue?vue&type=template&id=44d84a7c&
+var mainvue_type_template_id_44d84a7c_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "el-image" },
+    [
+      _vm.loading
+        ? _vm._t("placeholder", [
+            _c("div", { staticClass: "el-image__placeholder" })
+          ])
+        : _vm.error
+          ? _vm._t("error", [
+              _c("div", { staticClass: "el-image__error" }, [
+                _vm._v(_vm._s(_vm.t("el.image.error")))
+              ])
+            ])
+          : _c("img", {
+              staticClass: "el-image__inner",
+              style: { "object-fit": _vm.fit },
+              attrs: { src: _vm.src, alt: _vm.alt }
+            })
+    ],
+    2
+  )
+}
+var mainvue_type_template_id_44d84a7c_staticRenderFns = []
+mainvue_type_template_id_44d84a7c_render._withStripped = true
+
+
+// CONCATENATED MODULE: ./packages/image/src/main.vue?vue&type=template&id=44d84a7c&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/image/src/main.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+/* harmony default export */ var image_src_mainvue_type_script_lang_js_ = ({
+  name: 'ElImage',
+
+  mixins: [locale_default.a],
+
+  props: {
+    src: String,
+    fit: String,
+    lazy: Boolean,
+    scrollContainer: [String, HTMLElement],
+    alt: String
+  },
+
+  data: function data() {
+    return {
+      loading: true,
+      error: false,
+      show: !this.lazy
+    };
+  },
+
+
+  watch: {
+    src: {
+      handler: function handler(val) {
+        this.show && this.loadImage(val);
+      },
+
+      immediate: true
+    },
+    show: function show(val) {
+      val && this.loadImage(this.src);
+    }
+  },
+
+  mounted: function mounted() {
+    this.lazy && this.addLazyLoadListener();
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.lazy && this.removeLazyLoadListener();
+  },
+
+
+  methods: {
+    loadImage: function loadImage(val) {
+      // reset status
+      this.loading = true;
+      this.error = false;
+
+      var img = new Image();
+      img.onload = this.handleLoad.bind(this);
+      img.onerror = this.handleError.bind(this);
+      img.src = val;
+    },
+    handleLoad: function handleLoad(e) {
+      this.loading = false;
+      this.$emit('load', e);
+    },
+    handleError: function handleError(e) {
+      this.loading = false;
+      this.error = true;
+      this.$emit('error', e);
+    },
+    handleLazyLoad: function handleLazyLoad() {
+      if (Object(dom_["isInContainer"])(this.$el, this._scrollContainer)) {
+        this.show = true;
+        this.removeLazyLoadListener();
+      }
+    },
+    addLazyLoadListener: function addLazyLoadListener() {
+      if (this.$isServer) return;
+
+      var scrollContainer = this.scrollContainer;
+
+      var _scrollContainer = null;
+
+      if (Object(types_["isHtmlElement"])(scrollContainer)) {
+        _scrollContainer = scrollContainer;
+      } else if (Object(types_["isString"])(scrollContainer)) {
+        _scrollContainer = document.querySelector(scrollContainer);
+      } else {
+        _scrollContainer = Object(dom_["getScrollContainer"])(this.$el);
+      }
+
+      if (_scrollContainer) {
+        this._scrollContainer = _scrollContainer;
+        this._lazyLoadHandler = throttle_default()(200, this.handleLazyLoad);
+        Object(dom_["on"])(_scrollContainer, 'scroll', this._lazyLoadHandler);
+        this.handleLazyLoad();
+      }
+    },
+    removeLazyLoadListener: function removeLazyLoadListener() {
+      var _scrollContainer = this._scrollContainer,
+          _lazyLoadHandler = this._lazyLoadHandler;
+
+
+      if (this.$isServer || !_scrollContainer || !_lazyLoadHandler) return;
+
+      Object(dom_["off"])(_scrollContainer, 'scroll', _lazyLoadHandler);
+      this._scrollContainer = null;
+      this._lazyLoadHandler = null;
+    }
+  }
+});
+// CONCATENATED MODULE: ./packages/image/src/main.vue?vue&type=script&lang=js&
+ /* harmony default export */ var packages_image_src_mainvue_type_script_lang_js_ = (image_src_mainvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/image/src/main.vue
+
+
+
+
+
+/* normalize component */
+
+var image_src_main_component = normalizeComponent(
+  packages_image_src_mainvue_type_script_lang_js_,
+  mainvue_type_template_id_44d84a7c_render,
+  mainvue_type_template_id_44d84a7c_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var image_src_main_api; }
+image_src_main_component.options.__file = "packages/image/src/main.vue"
+/* harmony default export */ var image_src_main = (image_src_main_component.exports);
+// CONCATENATED MODULE: ./packages/image/index.js
+
+
+/* istanbul ignore next */
+image_src_main.install = function (Vue) {
+  Vue.component(image_src_main.name, image_src_main);
+};
+
+/* harmony default export */ var packages_image = (image_src_main);
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./packages/calendar/src/main.vue?vue&type=template&id=6d9756be&
+var mainvue_type_template_id_6d9756be_render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "el-calendar" }, [
+    _c("div", { staticClass: "el-calendar__header" }, [
+      _c("div", { staticClass: "el-calendar__title" }, [
+        _vm._v("\n      " + _vm._s(_vm.i18nDate) + "\n    ")
+      ]),
+      _vm.validatedRange.length === 0
+        ? _c(
+            "div",
+            { staticClass: "el-calendar__button-group" },
+            [
+              _c(
+                "el-button-group",
+                [
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "plain", size: "mini" },
+                      on: {
+                        click: function($event) {
+                          _vm.selectDate("prev-month")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.t("el.datepicker.prevMonth")) +
+                          "\n        "
+                      )
+                    ]
+                  ),
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "plain", size: "mini" },
+                      on: {
+                        click: function($event) {
+                          _vm.selectDate("today")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.t("el.datepicker.today")) +
+                          "\n        "
+                      )
+                    ]
+                  ),
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "plain", size: "mini" },
+                      on: {
+                        click: function($event) {
+                          _vm.selectDate("next-month")
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.t("el.datepicker.nextMonth")) +
+                          "\n        "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e()
+    ]),
+    _vm.validatedRange.length === 0
+      ? _c(
+          "div",
+          { key: "no-range", staticClass: "el-calendar__body" },
+          [
+            _c("date-table", {
+              attrs: { date: _vm.date, "selected-day": _vm.realSelectedDay },
+              on: { pick: _vm.pickDay }
+            })
+          ],
+          1
+        )
+      : _c(
+          "div",
+          { key: "has-range", staticClass: "el-calendar__body" },
+          _vm._l(_vm.validatedRange, function(range, index) {
+            return _c("date-table", {
+              key: index,
+              attrs: {
+                date: range[0],
+                "selected-day": _vm.realSelectedDay,
+                range: range,
+                "hide-header": index !== 0
+              },
+              on: { pick: _vm.pickDay }
+            })
+          }),
+          1
+        )
+  ])
+}
+var mainvue_type_template_id_6d9756be_staticRenderFns = []
+mainvue_type_template_id_6d9756be_render._withStripped = true
+
+
+// CONCATENATED MODULE: ./packages/calendar/src/main.vue?vue&type=template&id=6d9756be&
+
+// EXTERNAL MODULE: external "element-ui/lib/utils/date"
+var date_ = __webpack_require__(17);
+var date_default = /*#__PURE__*/__webpack_require__.n(date_);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/calendar/src/date-table.vue?vue&type=script&lang=js&
+
+
+
+/* harmony default export */ var src_date_tablevue_type_script_lang_js_ = ({
+
+  props: {
+    selectedDay: String, // formated date yyyy-MM-dd
+    range: {
+      type: Array,
+      validator: function validator(val) {
+        if (!(val && val.length)) return true;
+        var start = val[0],
+            end = val[1];
+
+        return Object(date_util_["validateRangeInOneMonth"])(start, end);
+      }
+    },
+    date: Date,
+    hideHeader: Boolean
+  },
+
+  inject: ['elCalendar'],
+
+  methods: {
+    toNestedArr: function toNestedArr(days) {
+      return Object(date_util_["range"])(days.length / 7).map(function (_, index) {
+        var start = index * 7;
+        return days.slice(start, start + 7);
+      });
+    },
+    getFormateDate: function getFormateDate(day, type) {
+      if (!day || ['prev', 'current', 'next'].indexOf(type) === -1) {
+        throw new Error('invalid day or type');
+      }
+      var prefix = this.curMonthDatePrefix;
+      if (type === 'prev') {
+        prefix = this.prevMonthDatePrefix;
+      } else if (type === 'next') {
+        prefix = this.nextMonthDatePrefix;
+      }
+      day = ('00' + day).slice(-2);
+      return prefix + '-' + day;
+    },
+    getCellClass: function getCellClass(_ref) {
+      var text = _ref.text,
+          type = _ref.type;
+
+      var classes = [type];
+      if (type === 'current') {
+        var date = this.getFormateDate(text, type);
+        if (date === this.selectedDay) {
+          classes.push('is-selected');
+        }
+        if (date === this.formatedToday) {
+          classes.push('is-today');
+        }
+      }
+      return classes;
+    },
+    pickDay: function pickDay(_ref2) {
+      var text = _ref2.text,
+          type = _ref2.type;
+
+      var date = this.getFormateDate(text, type);
+      this.$emit('pick', date);
+    },
+    cellRenderProxy: function cellRenderProxy(_ref3) {
+      var text = _ref3.text,
+          type = _ref3.type;
+      var h = this.$createElement;
+
+      var render = this.elCalendar.$scopedSlots.dateCell;
+      if (!render) return h('span', [text]);
+
+      var day = this.getFormateDate(text, type);
+      var date = new Date(day);
+      var data = {
+        isSelected: this.selectedDay === day,
+        type: type + '-month',
+        day: day
+      };
+      return render({ date: date, data: data });
+    }
+  },
+
+  computed: {
+    prevMonthDatePrefix: function prevMonthDatePrefix() {
+      var temp = new Date(this.date.getTime());
+      temp.setDate(0);
+      return date_default.a.format(temp, 'yyyy-MM');
+    },
+    curMonthDatePrefix: function curMonthDatePrefix() {
+      return date_default.a.format(this.date, 'yyyy-MM');
+    },
+    nextMonthDatePrefix: function nextMonthDatePrefix() {
+      var temp = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 1);
+      return date_default.a.format(temp, 'yyyy-MM');
+    },
+    formatedToday: function formatedToday() {
+      return this.elCalendar.formatedToday;
+    },
+    isInRange: function isInRange() {
+      return this.range && this.range.length;
+    },
+    rows: function rows() {
+      var days = [];
+      // if range exists, should render days in range.
+      if (this.isInRange) {
+        var _range = this.range,
+            start = _range[0],
+            end = _range[1];
+
+        var currentMonthRange = Object(date_util_["range"])(end.getDate() - start.getDate() + 1).map(function (_, index) {
+          return {
+            text: start.getDate() + index,
+            type: 'current'
+          };
+        });
+        var remaining = currentMonthRange.length % 7;
+        remaining = remaining === 0 ? 0 : 7 - remaining;
+        var nextMonthRange = Object(date_util_["range"])(remaining).map(function (_, index) {
+          return {
+            text: index + 1,
+            type: 'next'
+          };
+        });
+        days = currentMonthRange.concat(nextMonthRange);
+      } else {
+        var date = this.date;
+        var firstDay = Object(date_util_["getFirstDayOfMonth"])(date);
+        var prevMonthDays = Object(date_util_["getPrevMonthLastDays"])(date, firstDay - 1).map(function (day) {
+          return {
+            text: day,
+            type: 'prev'
+          };
+        });
+        var currentMonthDays = Object(date_util_["getMonthDays"])(date).map(function (day) {
+          return {
+            text: day,
+            type: 'current'
+          };
+        });
+        days = [].concat(prevMonthDays, currentMonthDays);
+        var nextMonthDays = Object(date_util_["range"])(42 - days.length).map(function (_, index) {
+          return {
+            text: index + 1,
+            type: 'next'
+          };
+        });
+        days = days.concat(nextMonthDays);
+      }
+      return this.toNestedArr(days);
+    }
+  },
+
+  data: function data() {
+    var dayNames = Object(date_util_["getI18nSettings"])().dayNames;
+    return {
+      DAYS: dayNames.slice(1).concat(dayNames[0])
+    };
+  },
+  render: function render() {
+    var _this = this;
+
+    var h = arguments[0];
+
+    var thead = this.hideHeader ? null : h('thead', [this.DAYS.map(function (day) {
+      return h(
+        'th',
+        { key: day },
+        [day]
+      );
+    })]);
+    return h(
+      'table',
+      {
+        'class': {
+          'el-calendar-table': true,
+          'is-range': this.isInRange
+        },
+        attrs: { cellspacing: '0',
+          cellpadding: '0' }
+      },
+      [thead, h('tbody', [this.rows.map(function (row, index) {
+        return h(
+          'tr',
+          {
+            'class': {
+              'el-calendar-table__row': true,
+              'el-calendar-table__row--hide-border': index === 0 && _this.hideHeader
+            },
+            key: index },
+          [row.map(function (cell, key) {
+            return h(
+              'td',
+              { key: key,
+                'class': _this.getCellClass(cell),
+                on: {
+                  'click': _this.pickDay.bind(_this, cell)
+                }
+              },
+              [h(
+                'div',
+                { 'class': 'el-calendar-day' },
+                [_this.cellRenderProxy(cell)]
+              )]
+            );
+          })]
+        );
+      })])]
+    );
+  }
+});
+// CONCATENATED MODULE: ./packages/calendar/src/date-table.vue?vue&type=script&lang=js&
+ /* harmony default export */ var calendar_src_date_tablevue_type_script_lang_js_ = (src_date_tablevue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/calendar/src/date-table.vue
+var date_table_render, date_table_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var src_date_table_component = normalizeComponent(
+  calendar_src_date_tablevue_type_script_lang_js_,
+  date_table_render,
+  date_table_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var src_date_table_api; }
+src_date_table_component.options.__file = "packages/calendar/src/date-table.vue"
+/* harmony default export */ var src_date_table = (src_date_table_component.exports);
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/calendar/src/main.vue?vue&type=script&lang=js&
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+var validTypes = ['prev-month', 'today', 'next-month'];
+var oneDay = 86400000;
+
+/* harmony default export */ var calendar_src_mainvue_type_script_lang_js_ = ({
+  name: 'ElCalendar',
+
+  mixins: [locale_default.a],
+
+  components: {
+    DateTable: src_date_table
+  },
+
+  props: {
+    value: [Date, String, Number],
+    range: {
+      type: Array,
+      validator: function validator(range) {
+        if (Array.isArray(range)) {
+          return range.length === 2 && range.every(function (item) {
+            return typeof item === 'string' || typeof item === 'number' || item instanceof Date;
+          });
+        } else {
+          return true;
+        }
+      }
+    }
+  },
+
+  provide: function provide() {
+    return {
+      elCalendar: this
+    };
+  },
+
+
+  methods: {
+    pickDay: function pickDay(day) {
+      this.realSelectedDay = day;
+    },
+    selectDate: function selectDate(type) {
+      if (validTypes.indexOf(type) === -1) {
+        throw new Error('invalid type ' + type);
+      }
+      var day = '';
+      if (type === 'prev-month') {
+        day = this.prevMonthDatePrefix + '-01';
+      } else if (type === 'next-month') {
+        day = this.nextMonthDatePrefix + '-01';
+      } else {
+        day = this.formatedToday;
+      }
+
+      if (day === this.formatedDate) return;
+      this.pickDay(day);
+    },
+    toDate: function toDate(val) {
+      if (!val) {
+        throw new Error('invalid val');
+      }
+      return val instanceof Date ? val : new Date(val);
+    }
+  },
+
+  computed: {
+    prevMonthDatePrefix: function prevMonthDatePrefix() {
+      var temp = new Date(this.date.getTime());
+      temp.setDate(0);
+      return date_default.a.format(temp, 'yyyy-MM');
+    },
+    curMonthDatePrefix: function curMonthDatePrefix() {
+      return date_default.a.format(this.date, 'yyyy-MM');
+    },
+    nextMonthDatePrefix: function nextMonthDatePrefix() {
+      var temp = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 1);
+      return date_default.a.format(temp, 'yyyy-MM');
+    },
+    formatedDate: function formatedDate() {
+      return date_default.a.format(this.date, 'yyyy-MM-dd');
+    },
+    i18nDate: function i18nDate() {
+      var year = this.formatedDate.slice(0, 4);
+      var month = this.formatedDate.slice(5, 7).replace('0', '');
+      return year + ' ' + this.t('el.datepicker.year') + ' ' + this.t('el.datepicker.month' + month);
+    },
+    formatedToday: function formatedToday() {
+      return date_default.a.format(this.now, 'yyyy-MM-dd');
+    },
+
+
+    realSelectedDay: {
+      get: function get() {
+        if (!this.value) return this.selectedDay;
+        return this.formatedDate;
+      },
+      set: function set(val) {
+        this.selectedDay = val;
+        var date = new Date(val);
+        this.$emit('input', date);
+      }
+    },
+
+    date: function date() {
+      if (!this.value) {
+        if (this.realSelectedDay) {
+          return new Date(this.selectedDay);
+        } else if (this.validatedRange.length) {
+          return this.validatedRange[0][0];
+        }
+        return this.now;
+      } else {
+        return this.toDate(this.value);
+      }
+    },
+
+
+    // if range is valid, we get a two-digit array
+    validatedRange: function validatedRange() {
+      var _this = this;
+
+      var range = this.range;
+      if (!range) return [];
+      var expetedMap = {
+        0: {
+          value: 1,
+          message: 'start of range should be Monday.'
+        },
+        1: {
+          value: 0,
+          message: 'end of range should be Sunday.'
+        }
+      };
+      range = range.reduce(function (prev, val, index) {
+        var date = _this.toDate(val);
+        if (date.getDay() !== expetedMap[index].value) {
+          console.warn('[ElementCalendar]', expetedMap[index].message, ' invalid range will be ignored');
+        } else {
+          prev = prev.concat(date);
+        }
+        return prev;
+      }, []);
+      if (range.length === 2) {
+        var _range = range,
+            start = _range[0],
+            end = _range[1];
+
+        if (start > end) {
+          console.warn('[ElementCalendar]end time should be greater than start time');
+          return [];
+        }
+        // start time and end time in one month
+        if (Object(date_util_["validateRangeInOneMonth"])(start, end)) {
+          return [[start, end]];
+        }
+        var data = [];
+        var startDay = new Date(start.getFullYear(), start.getMonth() + 1, 1);
+        var lastDay = this.toDate(startDay.getTime() - oneDay);
+        if (!Object(date_util_["validateRangeInOneMonth"])(startDay, end)) {
+          console.warn('[ElementCalendar]start time and end time interval must not exceed two months');
+          return [];
+        }
+        data.push([start, lastDay]);
+        var interval = startDay.getDay();
+        interval = interval <= 1 ? Math.abs(interval - 1) : 8 - interval;
+        startDay = this.toDate(startDay.getTime() + interval * oneDay);
+        if (startDay.getDate() < end.getDate()) {
+          data.push([startDay, end]);
+        }
+        return data;
+      }
+      return [];
+    }
+  },
+
+  data: function data() {
+    return {
+      selectedDay: '',
+      now: new Date()
+    };
+  }
+});
+// CONCATENATED MODULE: ./packages/calendar/src/main.vue?vue&type=script&lang=js&
+ /* harmony default export */ var packages_calendar_src_mainvue_type_script_lang_js_ = (calendar_src_mainvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./packages/calendar/src/main.vue
+
+
+
+
+
+/* normalize component */
+
+var calendar_src_main_component = normalizeComponent(
+  packages_calendar_src_mainvue_type_script_lang_js_,
+  mainvue_type_template_id_6d9756be_render,
+  mainvue_type_template_id_6d9756be_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var calendar_src_main_api; }
+calendar_src_main_component.options.__file = "packages/calendar/src/main.vue"
+/* harmony default export */ var calendar_src_main = (calendar_src_main_component.exports);
+// CONCATENATED MODULE: ./packages/calendar/index.js
+
+
+/* istanbul ignore next */
+calendar_src_main.install = function (Vue) {
+  Vue.component(calendar_src_main.name, calendar_src_main);
+};
+
+/* harmony default export */ var calendar = (calendar_src_main);
 // CONCATENATED MODULE: ./src/index.js
 /* Automatically generated by './build/bin/build-entry.js' */
 
@@ -41922,7 +44326,13 @@ footer_src_main.install = function (Vue) {
 
 
 
-var components = [packages_pagination, dialog, packages_autocomplete, packages_dropdown, packages_dropdown_menu, packages_dropdown_item, packages_menu, packages_submenu, packages_menu_item, packages_menu_item_group, packages_input, packages_input_number, packages_radio, packages_radio_group, packages_radio_button, packages_checkbox, packages_checkbox_button, packages_checkbox_group, packages_switch, packages_select, packages_option, packages_option_group, packages_button, packages_button_group, packages_table, packages_table_column, packages_date_picker, packages_time_select, packages_time_picker, popover, packages_tooltip, packages_breadcrumb, packages_breadcrumb_item, packages_form, packages_form_item, packages_tabs, packages_tab_pane, packages_tag, packages_tree, packages_alert, slider, packages_icon, packages_row, packages_col, packages_upload, packages_progress, packages_spinner, badge, card, rate, packages_steps, packages_step, carousel, scrollbar, carousel_item, packages_collapse, packages_collapse_item, cascader, color_picker, transfer, container, header, aside, packages_main, footer, collapse_transition_default.a];
+
+
+
+
+
+
+var components = [packages_pagination, dialog, packages_autocomplete, packages_dropdown, packages_dropdown_menu, packages_dropdown_item, packages_menu, packages_submenu, packages_menu_item, packages_menu_item_group, packages_input, packages_input_number, packages_radio, packages_radio_group, packages_radio_button, packages_checkbox, packages_checkbox_button, packages_checkbox_group, packages_switch, packages_select, packages_option, packages_option_group, packages_button, packages_button_group, packages_table, packages_table_column, packages_date_picker, packages_time_select, packages_time_picker, popover, packages_tooltip, packages_breadcrumb, packages_breadcrumb_item, packages_form, packages_form_item, packages_tabs, packages_tab_pane, packages_tag, packages_tree, packages_alert, slider, packages_icon, packages_row, packages_col, packages_upload, packages_progress, packages_spinner, badge, card, rate, packages_steps, packages_step, carousel, scrollbar, carousel_item, packages_collapse, packages_collapse_item, cascader, color_picker, transfer, container, header, aside, packages_main, footer, timeline, timeline_item, packages_link, divider, packages_image, calendar, collapse_transition_default.a];
 
 var src_install = function install(Vue) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -41956,7 +44366,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 /* harmony default export */ var src_0 = __webpack_exports__["default"] = ({
-  version: '2.5.4',
+  version: '2.8.2',
   locale: lib_locale_default.a.use,
   i18n: lib_locale_default.a.i18n,
   install: src_install,
@@ -42029,7 +44439,13 @@ if (typeof window !== 'undefined' && window.Vue) {
   Header: header,
   Aside: aside,
   Main: packages_main,
-  Footer: footer
+  Footer: footer,
+  Timeline: timeline,
+  TimelineItem: timeline_item,
+  Link: packages_link,
+  Divider: divider,
+  Image: packages_image,
+  Calendar: calendar
 });
 
 /***/ })
@@ -42124,7 +44540,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 69);
+/******/ 	return __webpack_require__(__webpack_require__.s = 78);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -42231,17 +44647,17 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ 19:
+/***/ (function(module, exports) {
+
+module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus.js");
+
+/***/ }),
+
 /***/ 2:
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/dom.js");
-
-/***/ }),
-
-/***/ 21:
-/***/ (function(module, exports) {
-
-module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus.js");
 
 /***/ }),
 
@@ -42261,7 +44677,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus
       return vnode.context[binding.expression].apply();
     };
     var clear = function clear() {
-      if (new Date() - startTime < 100) {
+      if (Date.now() - startTime < 100) {
         handler();
       }
       clearInterval(interval);
@@ -42270,7 +44686,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus
 
     Object(element_ui_src_utils_dom__WEBPACK_IMPORTED_MODULE_0__["on"])(el, 'mousedown', function (e) {
       if (e.button !== 0) return;
-      startTime = new Date();
+      startTime = Date.now();
       Object(element_ui_src_utils_dom__WEBPACK_IMPORTED_MODULE_0__["once"])(document, 'mouseup', clear);
       clearInterval(interval);
       interval = setInterval(handler, 100);
@@ -42280,7 +44696,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus
 
 /***/ }),
 
-/***/ 69:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42438,7 +44854,7 @@ var input_ = __webpack_require__(9);
 var input_default = /*#__PURE__*/__webpack_require__.n(input_);
 
 // EXTERNAL MODULE: external "element-ui/lib/mixins/focus"
-var focus_ = __webpack_require__(21);
+var focus_ = __webpack_require__(19);
 var focus_default = /*#__PURE__*/__webpack_require__.n(focus_);
 
 // EXTERNAL MODULE: ./src/directives/repeat-click.js
@@ -42519,6 +44935,10 @@ var repeat_click = __webpack_require__(25);
       type: Number,
       default: 1
     },
+    stepStrictly: {
+      type: Boolean,
+      default: false
+    },
     max: {
       type: Number,
       default: Infinity
@@ -42564,6 +44984,13 @@ var repeat_click = __webpack_require__(25);
           if (isNaN(newVal)) {
             return;
           }
+
+          if (this.stepStrictly) {
+            var stepPrecision = this.getPrecision(this.step);
+            var precisionFactor = Math.pow(10, stepPrecision);
+            newVal = Math.round(newVal / this.step) * precisionFactor * this.step / precisionFactor;
+          }
+
           if (this.precision !== undefined) {
             newVal = this.toPrecision(newVal, this.precision);
           }
@@ -42615,18 +45042,28 @@ var repeat_click = __webpack_require__(25);
       if (this.userInput !== null) {
         return this.userInput;
       }
+
       var currentValue = this.currentValue;
-      if (typeof currentValue === 'number' && this.precision !== undefined) {
-        return currentValue.toFixed(this.precision);
-      } else {
-        return currentValue;
+
+      if (typeof currentValue === 'number') {
+        if (this.stepStrictly) {
+          var stepPrecision = this.getPrecision(this.step);
+          var precisionFactor = Math.pow(10, stepPrecision);
+          currentValue = Math.round(currentValue / this.step) * precisionFactor * this.step / precisionFactor;
+        }
+
+        if (this.precision !== undefined) {
+          currentValue = currentValue.toFixed(this.precision);
+        }
       }
+
+      return currentValue;
     }
   },
   methods: {
     toPrecision: function toPrecision(num, precision) {
       if (precision === undefined) precision = this.numPrecision;
-      return parseFloat(parseFloat(Number(num).toFixed(precision)));
+      return parseFloat(Number(num).toFixed(precision));
     },
     getPrecision: function getPrecision(value) {
       if (value === undefined) return 0;
@@ -42849,7 +45286,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 68);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -42970,7 +45407,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/emitt
 
 /***/ }),
 
-/***/ 61:
+/***/ 68:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42989,12 +45426,16 @@ var render = function() {
         _vm.inputSize ? "el-input--" + _vm.inputSize : "",
         {
           "is-disabled": _vm.inputDisabled,
+          "is-exceed": _vm.inputExceed,
           "el-input-group": _vm.$slots.prepend || _vm.$slots.append,
           "el-input-group--append": _vm.$slots.append,
           "el-input-group--prepend": _vm.$slots.prepend,
           "el-input--prefix": _vm.$slots.prefix || _vm.prefixIcon,
           "el-input--suffix":
-            _vm.$slots.suffix || _vm.suffixIcon || _vm.clearable
+            _vm.$slots.suffix ||
+            _vm.suffixIcon ||
+            _vm.clearable ||
+            _vm.showPassword
         }
       ],
       on: {
@@ -43026,17 +45467,19 @@ var render = function() {
                       staticClass: "el-input__inner",
                       attrs: {
                         tabindex: _vm.tabindex,
-                        type: _vm.type,
+                        type: _vm.showPassword
+                          ? _vm.passwordVisible
+                            ? "text"
+                            : "password"
+                          : _vm.type,
                         disabled: _vm.inputDisabled,
                         readonly: _vm.readonly,
                         autocomplete: _vm.autoComplete || _vm.autocomplete,
                         "aria-label": _vm.label
                       },
-                      domProps: { value: _vm.nativeInputValue },
                       on: {
-                        compositionstart: _vm.handleComposition,
-                        compositionupdate: _vm.handleComposition,
-                        compositionend: _vm.handleComposition,
+                        compositionstart: _vm.handleCompositionStart,
+                        compositionend: _vm.handleCompositionEnd,
                         input: _vm.handleInput,
                         focus: _vm.handleFocus,
                         blur: _vm.handleBlur,
@@ -43065,16 +45508,15 @@ var render = function() {
                   2
                 )
               : _vm._e(),
-            _vm.$slots.suffix ||
-            _vm.suffixIcon ||
-            _vm.showClear ||
-            (_vm.validateState && _vm.needStatusIcon)
+            _vm.getSuffixVisible()
               ? _c("span", { staticClass: "el-input__suffix" }, [
                   _c(
                     "span",
                     { staticClass: "el-input__suffix-inner" },
                     [
-                      !_vm.showClear
+                      !_vm.showClear ||
+                      !_vm.showPwdVisible ||
+                      !_vm.isWordLimitVisible
                         ? [
                             _vm._t("suffix"),
                             _vm.suffixIcon
@@ -43084,11 +45526,38 @@ var render = function() {
                                 })
                               : _vm._e()
                           ]
-                        : _c("i", {
+                        : _vm._e(),
+                      _vm.showClear
+                        ? _c("i", {
                             staticClass:
                               "el-input__icon el-icon-circle-close el-input__clear",
                             on: { click: _vm.clear }
                           })
+                        : _vm._e(),
+                      _vm.showPwdVisible
+                        ? _c("i", {
+                            staticClass:
+                              "el-input__icon el-icon-view el-input__clear",
+                            on: { click: _vm.handlePasswordVisible }
+                          })
+                        : _vm._e(),
+                      _vm.isWordLimitVisible
+                        ? _c("span", { staticClass: "el-input__count" }, [
+                            _c(
+                              "span",
+                              { staticClass: "el-input__count-inner" },
+                              [
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(_vm.textLength) +
+                                    "/" +
+                                    _vm._s(_vm.upperLimit) +
+                                    "\n          "
+                                )
+                              ]
+                            )
+                          ])
+                        : _vm._e()
                     ],
                     2
                   ),
@@ -43123,11 +45592,9 @@ var render = function() {
                   autocomplete: _vm.autoComplete || _vm.autocomplete,
                   "aria-label": _vm.label
                 },
-                domProps: { value: _vm.nativeInputValue },
                 on: {
-                  compositionstart: _vm.handleComposition,
-                  compositionupdate: _vm.handleComposition,
-                  compositionend: _vm.handleComposition,
+                  compositionstart: _vm.handleCompositionStart,
+                  compositionend: _vm.handleCompositionEnd,
                   input: _vm.handleInput,
                   focus: _vm.handleFocus,
                   blur: _vm.handleBlur,
@@ -43138,7 +45605,12 @@ var render = function() {
               _vm.$attrs,
               false
             )
-          )
+          ),
+      _vm.isWordLimitVisible && _vm.type === "textarea"
+        ? _c("span", { staticClass: "el-input__count" }, [
+            _vm._v(_vm._s(_vm.textLength) + "/" + _vm._s(_vm.upperLimit))
+          ])
+        : _vm._e()
     ],
     2
   )
@@ -43334,6 +45806,13 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43363,7 +45842,8 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       textareaCalcStyle: {},
       hovering: false,
       focused: false,
-      isOnComposition: false
+      isComposing: false,
+      passwordVisible: false
     };
   },
 
@@ -43406,6 +45886,14 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       type: Boolean,
       default: false
     },
+    showPassword: {
+      type: Boolean,
+      default: false
+    },
+    showWordLimit: {
+      type: Boolean,
+      default: false
+    },
     tabindex: String
   },
 
@@ -43436,10 +45924,30 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       return this.disabled || (this.elForm || {}).disabled;
     },
     nativeInputValue: function nativeInputValue() {
-      return this.value === null || this.value === undefined ? '' : this.value;
+      return this.value === null || this.value === undefined ? '' : String(this.value);
     },
     showClear: function showClear() {
       return this.clearable && !this.inputDisabled && !this.readonly && this.nativeInputValue && (this.focused || this.hovering);
+    },
+    showPwdVisible: function showPwdVisible() {
+      return this.showPassword && !this.inputDisabled && !this.readonly && (!!this.nativeInputValue || this.focused);
+    },
+    isWordLimitVisible: function isWordLimitVisible() {
+      return this.showWordLimit && this.$attrs.maxlength && (this.type === 'text' || this.type === 'textarea') && !this.inputDisabled && !this.readonly && !this.showPassword;
+    },
+    upperLimit: function upperLimit() {
+      return this.$attrs.maxlength;
+    },
+    textLength: function textLength() {
+      if (typeof this.value === 'number') {
+        return String(this.value).length;
+      }
+
+      return (this.value || '').length;
+    },
+    inputExceed: function inputExceed() {
+      // show exceed style if length of initial value greater then maxlength
+      return this.isWordLimitVisible && this.textLength > this.upperLimit;
     }
   },
 
@@ -43449,6 +45957,26 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       if (this.validateEvent) {
         this.dispatch('ElFormItem', 'el.form.change', [val]);
       }
+    },
+
+    // native input value is set explicitly
+    // do not use v-model / :value in template
+    // see: https://github.com/ElemeFE/element/issues/14521
+    nativeInputValue: function nativeInputValue() {
+      this.setNativeInputValue();
+    },
+
+    // when change between <input> and <textarea>,
+    // update DOM dependent value and styles
+    // https://github.com/ElemeFE/element/issues/14857
+    type: function type() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.setNativeInputValue();
+        _this.resizeTextarea();
+        _this.updateIconOffset();
+      });
     }
   },
 
@@ -43497,23 +46025,27 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
 
       this.textareaCalcStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows);
     },
+    setNativeInputValue: function setNativeInputValue() {
+      var input = this.getInput();
+      if (!input) return;
+      if (input.value === this.nativeInputValue) return;
+      input.value = this.nativeInputValue;
+    },
     handleFocus: function handleFocus(event) {
       this.focused = true;
       this.$emit('focus', event);
     },
-    handleComposition: function handleComposition(event) {
-      if (event.type === 'compositionstart') {
-        this.isOnComposition = true;
-      }
-      if (event.type === 'compositionend') {
-        this.isOnComposition = false;
-        this.handleInput(event);
-      }
+    handleCompositionStart: function handleCompositionStart() {
+      this.isComposing = true;
+    },
+    handleCompositionEnd: function handleCompositionEnd(event) {
+      this.isComposing = false;
+      this.handleInput(event);
     },
     handleInput: function handleInput(event) {
-      var _this = this;
-
-      if (this.isOnComposition) return;
+      // should not emit input during composition
+      // see: https://github.com/ElemeFE/element/issues/10516
+      if (this.isComposing) return;
 
       // hack for https://github.com/ElemeFE/element/issues/8548
       // should remove the following line when we don't support IE
@@ -43521,12 +46053,9 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
 
       this.$emit('input', event.target.value);
 
-      // set input's value, in case parent refuses the change
+      // ensure native input value is controlled
       // see: https://github.com/ElemeFE/element/issues/12850
-      this.$nextTick(function () {
-        var input = _this.getInput();
-        input.value = _this.value;
-      });
+      this.$nextTick(this.setNativeInputValue);
     },
     handleChange: function handleChange(event) {
       this.$emit('change', event.target.value);
@@ -43563,8 +46092,15 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
       this.$emit('change', '');
       this.$emit('clear');
     },
+    handlePasswordVisible: function handlePasswordVisible() {
+      this.passwordVisible = !this.passwordVisible;
+      this.focus();
+    },
     getInput: function getInput() {
       return this.$refs.input || this.$refs.textarea;
+    },
+    getSuffixVisible: function getSuffixVisible() {
+      return this.$slots.suffix || this.suffixIcon || this.showClear || this.showPassword || this.isWordLimitVisible || this.validateState && this.needStatusIcon;
     }
   },
 
@@ -43572,6 +46108,7 @@ var merge_default = /*#__PURE__*/__webpack_require__.n(merge_);
     this.$on('inputSelect', this.select);
   },
   mounted: function mounted() {
+    this.setNativeInputValue();
     this.resizeTextarea();
     this.updateIconOffset();
   },
@@ -43706,7 +46243,7 @@ var _zhCN = __webpack_require__("./node_modules/element-ui/lib/locale/lang/zh-CN
 
 var _zhCN2 = _interopRequireDefault(_zhCN);
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -43876,6 +46413,9 @@ exports.default = {
       filterPlaceholder: '请输入搜索内容',
       noCheckedFormat: '共 {total} 项',
       hasCheckedFormat: '已选 {checked}/{total} 项'
+    },
+    image: {
+      error: '加载失败'
     }
   }
 };
@@ -43978,6 +46518,9 @@ exports.default = {
 
 
 exports.__esModule = true;
+
+var _util = __webpack_require__("./node_modules/element-ui/lib/utils/util.js");
+
 /**
  * Show migrating guide in browser console.
  *
@@ -44018,13 +46561,15 @@ exports.default = {
     var definedEvents = componentOptions.listeners || {};
 
     for (var propName in definedProps) {
-      if (definedProps.hasOwnProperty(propName) && props[propName]) {
+      propName = (0, _util.kebabCase)(propName); // compatible with camel case
+      if (props[propName]) {
         console.warn('[Element Migrating][' + this.$options.name + '][Attribute]: ' + props[propName]);
       }
     }
 
     for (var eventName in definedEvents) {
-      if (definedEvents.hasOwnProperty(eventName) && events[eventName]) {
+      eventName = (0, _util.kebabCase)(eventName); // compatible with camel case
+      if (events[eventName]) {
         console.warn('[Element Migrating][' + this.$options.name + '][Event]: ' + events[eventName]);
       }
     }
@@ -44129,7 +46674,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 46);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -44402,10 +46947,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       var target = arguments[1];
 
       if (!this.isObject) {
-        return arr.indexOf(target) > -1;
+        return arr && arr.indexOf(target) > -1;
       } else {
         var valueKey = this.select.valueKey;
-        return arr.some(function (item) {
+        return arr && arr.some(function (item) {
           return Object(util_["getValueByPath"])(item, valueKey) === Object(util_["getValueByPath"])(target, valueKey);
         });
       }
@@ -44489,7 +47034,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/util.j
 
 /***/ }),
 
-/***/ 46:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44597,7 +47142,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 72);
+/******/ 	return __webpack_require__(__webpack_require__.s = 100);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -44704,7 +47249,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 72:
+/***/ 100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45095,22 +47640,22 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 109);
+/******/ 	return __webpack_require__(__webpack_require__.s = 113);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 109:
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/resize-event"
-var resize_event_ = __webpack_require__(15);
+var resize_event_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/scrollbar-width"
-var scrollbar_width_ = __webpack_require__(34);
+var scrollbar_width_ = __webpack_require__(36);
 var scrollbar_width_default = /*#__PURE__*/__webpack_require__.n(scrollbar_width_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/util"
@@ -45209,6 +47754,10 @@ function renderThumbStyle(_ref) {
 
   methods: {
     clickThumbHandler: function clickThumbHandler(e) {
+      // prevent click event of right button
+      if (e.ctrlKey || e.button === 2) {
+        return;
+      }
       this.startDrag(e);
       this[this.bar.axis] = e.currentTarget[this.bar.offset] - (e[this.bar.client] - e.currentTarget.getBoundingClientRect()[this.bar.direction]);
     },
@@ -45400,7 +47949,7 @@ main.install = function (Vue) {
 
 /***/ }),
 
-/***/ 15:
+/***/ 14:
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/resize-event.js");
@@ -45414,7 +47963,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/dom.js
 
 /***/ }),
 
-/***/ 34:
+/***/ 36:
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/scrollbar-width.js");
@@ -45519,7 +48068,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 52);
+/******/ 	return __webpack_require__(__webpack_require__.s = 53);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -45665,41 +48214,41 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/input.js");
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/clickoutside.js");
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = __webpack_require__("./node_modules/element-ui/lib/locale/index.js");
-
-/***/ }),
-/* 13 */,
-/* 14 */
+/* 12 */,
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/throttle-debounce/debounce.js");
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/resize-event.js");
 
 /***/ }),
+/* 15 */,
 /* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/scrollbar.js");
 
 /***/ }),
-/* 20 */,
-/* 21 */
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = __webpack_require__("./node_modules/element-ui/lib/locale/index.js");
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/mixins/focus.js");
 
 /***/ }),
+/* 20 */,
+/* 21 */,
 /* 22 */,
 /* 23 */,
 /* 24 */,
@@ -45883,10 +48432,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       var target = arguments[1];
 
       if (!this.isObject) {
-        return arr.indexOf(target) > -1;
+        return arr && arr.indexOf(target) > -1;
       } else {
         var valueKey = this.select.valueKey;
-        return arr.some(function (item) {
+        return arr && arr.some(function (item) {
           return Object(util_["getValueByPath"])(item, valueKey) === Object(util_["getValueByPath"])(target, valueKey);
         });
       }
@@ -45958,14 +48507,14 @@ component.options.__file = "packages/select/src/option.vue"
 /* 30 */,
 /* 31 */,
 /* 32 */,
-/* 33 */
+/* 33 */,
+/* 34 */,
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/shared.js");
 
 /***/ }),
-/* 34 */,
-/* 35 */,
 /* 36 */,
 /* 37 */,
 /* 38 */,
@@ -45982,7 +48531,8 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/shared
 /* 49 */,
 /* 50 */,
 /* 51 */,
-/* 52 */
+/* 52 */,
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46427,12 +48977,20 @@ var render = function() {
               (!_vm.allowCreate ||
                 _vm.loading ||
                 (_vm.allowCreate && _vm.options.length === 0))
-                ? _c("p", { staticClass: "el-select-dropdown__empty" }, [
-                    _vm._v("\n        " + _vm._s(_vm.emptyText) + "\n      ")
-                  ])
+                ? [
+                    _vm.$slots.empty
+                      ? _vm._t("empty")
+                      : _c("p", { staticClass: "el-select-dropdown__empty" }, [
+                          _vm._v(
+                            "\n          " +
+                              _vm._s(_vm.emptyText) +
+                              "\n        "
+                          )
+                        ])
+                  ]
                 : _vm._e()
             ],
-            1
+            2
           )
         ],
         1
@@ -46452,7 +49010,7 @@ var emitter_ = __webpack_require__(3);
 var emitter_default = /*#__PURE__*/__webpack_require__.n(emitter_);
 
 // EXTERNAL MODULE: external "element-ui/lib/mixins/focus"
-var focus_ = __webpack_require__(21);
+var focus_ = __webpack_require__(19);
 var focus_default = /*#__PURE__*/__webpack_require__.n(focus_);
 
 // EXTERNAL MODULE: external "element-ui/lib/mixins/locale"
@@ -46602,11 +49160,11 @@ var tag_ = __webpack_require__(26);
 var tag_default = /*#__PURE__*/__webpack_require__.n(tag_);
 
 // EXTERNAL MODULE: external "element-ui/lib/scrollbar"
-var scrollbar_ = __webpack_require__(19);
+var scrollbar_ = __webpack_require__(17);
 var scrollbar_default = /*#__PURE__*/__webpack_require__.n(scrollbar_);
 
 // EXTERNAL MODULE: external "throttle-debounce/debounce"
-var debounce_ = __webpack_require__(14);
+var debounce_ = __webpack_require__(13);
 var debounce_default = /*#__PURE__*/__webpack_require__.n(debounce_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/clickoutside"
@@ -46614,10 +49172,10 @@ var clickoutside_ = __webpack_require__(11);
 var clickoutside_default = /*#__PURE__*/__webpack_require__.n(clickoutside_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/resize-event"
-var resize_event_ = __webpack_require__(15);
+var resize_event_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: external "element-ui/lib/locale"
-var lib_locale_ = __webpack_require__(12);
+var lib_locale_ = __webpack_require__(18);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/scroll-into-view"
 var scroll_into_view_ = __webpack_require__(27);
@@ -46691,7 +49249,7 @@ var util_ = __webpack_require__(4);
   }
 });
 // EXTERNAL MODULE: external "element-ui/lib/utils/shared"
-var shared_ = __webpack_require__(33);
+var shared_ = __webpack_require__(35);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./packages/select/src/select.vue?vue&type=script&lang=js&
 //
@@ -47032,7 +49590,7 @@ var shared_ = __webpack_require__(33);
     value: function value(val, oldVal) {
       if (this.multiple) {
         this.resetInputHeight();
-        if (val.length > 0 || this.$refs.input && this.query !== '') {
+        if (val && val.length > 0 || this.$refs.input && this.query !== '') {
           this.currentPlaceholder = '';
         } else {
           this.currentPlaceholder = this.cachedPlaceHolder;
@@ -47078,6 +49636,10 @@ var shared_ = __webpack_require__(33);
             }
             if (this.filterable) this.query = this.selectedLabel;
           }
+
+          if (this.filterable) {
+            this.currentPlaceholder = this.cachedPlaceHolder;
+          }
         }
       } else {
         this.broadcast('ElSelectDropdown', 'updatePopper');
@@ -47091,7 +49653,11 @@ var shared_ = __webpack_require__(33);
               this.broadcast('ElOption', 'queryChange', '');
               this.broadcast('ElOptionGroup', 'queryChange');
             }
-            this.broadcast('ElInput', 'inputSelect');
+
+            if (this.selectedLabel) {
+              this.currentPlaceholder = this.selectedLabel;
+              this.selectedLabel = '';
+            }
           }
         }
       }
@@ -47339,7 +49905,7 @@ var shared_ = __webpack_require__(33);
       var _this11 = this;
 
       if (this.multiple) {
-        var value = this.value.slice();
+        var value = (this.value || []).slice();
         var optionIndex = this.getValueIndex(value, option.value);
         if (optionIndex > -1) {
           value.splice(optionIndex, 1);
@@ -47416,7 +49982,7 @@ var shared_ = __webpack_require__(33);
     },
     deleteSelected: function deleteSelected(event) {
       event.stopPropagation();
-      var value = this.multiple ? [] : '';
+      var value = this.multiple ? [] : null;
       this.$emit('input', value);
       this.emitChange(value);
       this.visible = false;
@@ -47671,7 +50237,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 107);
+/******/ 	return __webpack_require__(__webpack_require__.s = 116);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -47778,7 +50344,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 107:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47966,12 +50532,12 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 112);
+/******/ 	return __webpack_require__(__webpack_require__.s = 120);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 112:
+/***/ 120:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47982,14 +50548,11 @@ var vue_popper_ = __webpack_require__(5);
 var vue_popper_default = /*#__PURE__*/__webpack_require__.n(vue_popper_);
 
 // EXTERNAL MODULE: external "throttle-debounce/debounce"
-var debounce_ = __webpack_require__(14);
+var debounce_ = __webpack_require__(13);
 var debounce_default = /*#__PURE__*/__webpack_require__.n(debounce_);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/dom"
 var dom_ = __webpack_require__(2);
-
-// EXTERNAL MODULE: external "element-ui/lib/utils/vdom"
-var vdom_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: external "element-ui/lib/utils/util"
 var util_ = __webpack_require__(4);
@@ -47999,7 +50562,6 @@ var external_vue_ = __webpack_require__(6);
 var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
 
 // CONCATENATED MODULE: ./packages/tooltip/src/main.js
-
 
 
 
@@ -48050,20 +50612,19 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
     hideAfter: {
       type: Number,
       default: 0
+    },
+    tabindex: {
+      type: Number,
+      default: 0
     }
   },
 
   data: function data() {
     return {
+      tooltipId: 'el-tooltip-' + Object(util_["generateId"])(),
       timeoutPending: null,
       focusing: false
     };
-  },
-
-  computed: {
-    tooltipId: function tooltipId() {
-      return 'el-tooltip-' + Object(util_["generateId"])();
-    }
   },
   beforeCreate: function beforeCreate() {
     var _this = this;
@@ -48123,16 +50684,13 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
       );
     }
 
-    if (!this.$slots.default || !this.$slots.default.length) return this.$slots.default;
+    var firstElement = this.getFirstElement();
+    if (!firstElement) return null;
 
-    var vnode = Object(vdom_["getFirstComponentChild"])(this.$slots.default);
+    var data = firstElement.data = firstElement.data || {};
+    data.staticClass = this.addTooltipClass(data.staticClass);
 
-    if (!vnode) return vnode;
-
-    var data = vnode.data = vnode.data || {};
-    data.staticClass = this.concatClass(data.staticClass, 'el-tooltip');
-
-    return vnode;
+    return firstElement;
   },
   mounted: function mounted() {
     var _this3 = this;
@@ -48157,6 +50715,14 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
       });
       Object(dom_["on"])(this.referenceElm, 'blur', this.handleBlur);
       Object(dom_["on"])(this.referenceElm, 'click', this.removeFocusing);
+    }
+    // fix issue https://github.com/ElemeFE/element/issues/14424
+    if (this.value && this.popperVM) {
+      this.popperVM.$nextTick(function () {
+        if (_this3.value) {
+          _this3.updatePopper();
+        }
+      });
     }
   },
 
@@ -48189,9 +50755,12 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
     removeFocusing: function removeFocusing() {
       this.focusing = false;
     },
-    concatClass: function concatClass(a, b) {
-      if (a && a.indexOf(b) > -1) return a;
-      return a ? b ? a + ' ' + b : a : b || '';
+    addTooltipClass: function addTooltipClass(prev) {
+      if (!prev) {
+        return 'el-tooltip';
+      } else {
+        return 'el-tooltip ' + prev.replace('el-tooltip', '');
+      }
     },
     handleShowPopper: function handleShowPopper() {
       var _this4 = this;
@@ -48226,6 +50795,17 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
         clearTimeout(this.timeoutPending);
       }
       this.expectedState = expectedState;
+    },
+    getFirstElement: function getFirstElement() {
+      var slots = this.$slots.default;
+      if (!Array.isArray(slots)) return null;
+      var element = null;
+      for (var index = 0; index < slots.length; index++) {
+        if (slots[index] && slots[index].tag) {
+          element = slots[index];
+        };
+      }
+      return element;
     }
   },
 
@@ -48234,11 +50814,13 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
   },
   destroyed: function destroyed() {
     var reference = this.referenceElm;
-    Object(dom_["off"])(reference, 'mouseenter', this.show);
-    Object(dom_["off"])(reference, 'mouseleave', this.hide);
-    Object(dom_["off"])(reference, 'focus', this.handleFocus);
-    Object(dom_["off"])(reference, 'blur', this.handleBlur);
-    Object(dom_["off"])(reference, 'click', this.removeFocusing);
+    if (reference.nodeType === 1) {
+      Object(dom_["off"])(reference, 'mouseenter', this.show);
+      Object(dom_["off"])(reference, 'mouseleave', this.hide);
+      Object(dom_["off"])(reference, 'focus', this.handleFocus);
+      Object(dom_["off"])(reference, 'blur', this.handleBlur);
+      Object(dom_["off"])(reference, 'click', this.removeFocusing);
+    }
   }
 });
 // CONCATENATED MODULE: ./packages/tooltip/index.js
@@ -48253,7 +50835,7 @@ main.install = function (Vue) {
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/throttle-debounce/debounce.js");
@@ -48264,13 +50846,6 @@ module.exports = __webpack_require__("./node_modules/throttle-debounce/debounce.
 /***/ (function(module, exports) {
 
 module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/dom.js");
-
-/***/ }),
-
-/***/ 20:
-/***/ (function(module, exports) {
-
-module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/vdom.js");
 
 /***/ }),
 
@@ -48291,7 +50866,7 @@ module.exports = __webpack_require__("./node_modules/element-ui/lib/utils/vue-po
 /***/ 6:
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+module.exports = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 /***/ })
 
@@ -48690,7 +51265,7 @@ exports.default = aria.Utils;
 
 exports.__esModule = true;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -48764,6 +51339,333 @@ exports.default = {
     }
     delete el[ctx];
   }
+};
+
+/***/ }),
+
+/***/ "./node_modules/element-ui/lib/utils/date-util.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.validateRangeInOneMonth = exports.extractTimeFormat = exports.extractDateFormat = exports.nextYear = exports.prevYear = exports.nextMonth = exports.prevMonth = exports.changeYearMonthAndClampDate = exports.timeWithinRange = exports.limitTimeRange = exports.clearMilliseconds = exports.clearTime = exports.modifyWithTimeString = exports.modifyTime = exports.modifyDate = exports.range = exports.getRangeMinutes = exports.getMonthDays = exports.getPrevMonthLastDays = exports.getRangeHours = exports.getWeekNumber = exports.getStartDateOfMonth = exports.nextDate = exports.prevDate = exports.getFirstDayOfMonth = exports.getDayCountOfYear = exports.getDayCountOfMonth = exports.parseDate = exports.formatDate = exports.isDateObject = exports.isDate = exports.toDate = exports.getI18nSettings = undefined;
+
+var _date = __webpack_require__("./node_modules/element-ui/lib/utils/date.js");
+
+var _date2 = _interopRequireDefault(_date);
+
+var _locale = __webpack_require__("./node_modules/element-ui/lib/locale/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var weeks = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+var newArray = function newArray(start, end) {
+  var result = [];
+  for (var i = start; i <= end; i++) {
+    result.push(i);
+  }
+  return result;
+};
+
+var getI18nSettings = exports.getI18nSettings = function getI18nSettings() {
+  return {
+    dayNamesShort: weeks.map(function (week) {
+      return (0, _locale.t)('el.datepicker.weeks.' + week);
+    }),
+    dayNames: weeks.map(function (week) {
+      return (0, _locale.t)('el.datepicker.weeks.' + week);
+    }),
+    monthNamesShort: months.map(function (month) {
+      return (0, _locale.t)('el.datepicker.months.' + month);
+    }),
+    monthNames: months.map(function (month, index) {
+      return (0, _locale.t)('el.datepicker.month' + (index + 1));
+    }),
+    amPm: ['am', 'pm']
+  };
+};
+
+var toDate = exports.toDate = function toDate(date) {
+  return isDate(date) ? new Date(date) : null;
+};
+
+var isDate = exports.isDate = function isDate(date) {
+  if (date === null || date === undefined) return false;
+  if (isNaN(new Date(date).getTime())) return false;
+  if (Array.isArray(date)) return false; // deal with `new Date([ new Date() ]) -> new Date()`
+  return true;
+};
+
+var isDateObject = exports.isDateObject = function isDateObject(val) {
+  return val instanceof Date;
+};
+
+var formatDate = exports.formatDate = function formatDate(date, format) {
+  date = toDate(date);
+  if (!date) return '';
+  return _date2.default.format(date, format || 'yyyy-MM-dd', getI18nSettings());
+};
+
+var parseDate = exports.parseDate = function parseDate(string, format) {
+  return _date2.default.parse(string, format || 'yyyy-MM-dd', getI18nSettings());
+};
+
+var getDayCountOfMonth = exports.getDayCountOfMonth = function getDayCountOfMonth(year, month) {
+  if (month === 3 || month === 5 || month === 8 || month === 10) {
+    return 30;
+  }
+
+  if (month === 1) {
+    if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+      return 29;
+    } else {
+      return 28;
+    }
+  }
+
+  return 31;
+};
+
+var getDayCountOfYear = exports.getDayCountOfYear = function getDayCountOfYear(year) {
+  var isLeapYear = year % 400 === 0 || year % 100 !== 0 && year % 4 === 0;
+  return isLeapYear ? 366 : 365;
+};
+
+var getFirstDayOfMonth = exports.getFirstDayOfMonth = function getFirstDayOfMonth(date) {
+  var temp = new Date(date.getTime());
+  temp.setDate(1);
+  return temp.getDay();
+};
+
+// see: https://stackoverflow.com/questions/3674539/incrementing-a-date-in-javascript
+// {prev, next} Date should work for Daylight Saving Time
+// Adding 24 * 60 * 60 * 1000 does not work in the above scenario
+var prevDate = exports.prevDate = function prevDate(date) {
+  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() - amount);
+};
+
+var nextDate = exports.nextDate = function nextDate(date) {
+  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate() + amount);
+};
+
+var getStartDateOfMonth = exports.getStartDateOfMonth = function getStartDateOfMonth(year, month) {
+  var result = new Date(year, month, 1);
+  var day = result.getDay();
+
+  if (day === 0) {
+    return prevDate(result, 7);
+  } else {
+    return prevDate(result, day);
+  }
+};
+
+var getWeekNumber = exports.getWeekNumber = function getWeekNumber(src) {
+  if (!isDate(src)) return null;
+  var date = new Date(src.getTime());
+  date.setHours(0, 0, 0, 0);
+  // Thursday in current week decides the year.
+  date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+  // January 4 is always in week 1.
+  var week1 = new Date(date.getFullYear(), 0, 4);
+  // Adjust to Thursday in week 1 and count number of weeks from date to week 1.
+  // Rounding should be fine for Daylight Saving Time. Its shift should never be more than 12 hours.
+  return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+};
+
+var getRangeHours = exports.getRangeHours = function getRangeHours(ranges) {
+  var hours = [];
+  var disabledHours = [];
+
+  (ranges || []).forEach(function (range) {
+    var value = range.map(function (date) {
+      return date.getHours();
+    });
+
+    disabledHours = disabledHours.concat(newArray(value[0], value[1]));
+  });
+
+  if (disabledHours.length) {
+    for (var i = 0; i < 24; i++) {
+      hours[i] = disabledHours.indexOf(i) === -1;
+    }
+  } else {
+    for (var _i = 0; _i < 24; _i++) {
+      hours[_i] = false;
+    }
+  }
+
+  return hours;
+};
+
+var getPrevMonthLastDays = exports.getPrevMonthLastDays = function getPrevMonthLastDays(date, amount) {
+  if (amount <= 0) return [];
+  var temp = new Date(date.getTime());
+  temp.setDate(0);
+  var lastDay = temp.getDate();
+  return range(amount).map(function (_, index) {
+    return lastDay - (amount - index - 1);
+  });
+};
+
+var getMonthDays = exports.getMonthDays = function getMonthDays(date) {
+  var temp = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  var days = temp.getDate();
+  return range(days).map(function (_, index) {
+    return index + 1;
+  });
+};
+
+function setRangeData(arr, start, end, value) {
+  for (var i = start; i < end; i++) {
+    arr[i] = value;
+  }
+}
+
+var getRangeMinutes = exports.getRangeMinutes = function getRangeMinutes(ranges, hour) {
+  var minutes = new Array(60);
+
+  if (ranges.length > 0) {
+    ranges.forEach(function (range) {
+      var start = range[0];
+      var end = range[1];
+      var startHour = start.getHours();
+      var startMinute = start.getMinutes();
+      var endHour = end.getHours();
+      var endMinute = end.getMinutes();
+      if (startHour === hour && endHour !== hour) {
+        setRangeData(minutes, startMinute, 60, true);
+      } else if (startHour === hour && endHour === hour) {
+        setRangeData(minutes, startMinute, endMinute + 1, true);
+      } else if (startHour !== hour && endHour === hour) {
+        setRangeData(minutes, 0, endMinute + 1, true);
+      } else if (startHour < hour && endHour > hour) {
+        setRangeData(minutes, 0, 60, true);
+      }
+    });
+  } else {
+    setRangeData(minutes, 0, 60, true);
+  }
+  return minutes;
+};
+
+var range = exports.range = function range(n) {
+  // see https://stackoverflow.com/questions/3746725/create-a-javascript-array-containing-1-n
+  return Array.apply(null, { length: n }).map(function (_, n) {
+    return n;
+  });
+};
+
+var modifyDate = exports.modifyDate = function modifyDate(date, y, m, d) {
+  return new Date(y, m, d, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+};
+
+var modifyTime = exports.modifyTime = function modifyTime(date, h, m, s) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate(), h, m, s, date.getMilliseconds());
+};
+
+var modifyWithTimeString = exports.modifyWithTimeString = function modifyWithTimeString(date, time) {
+  if (date == null || !time) {
+    return date;
+  }
+  time = parseDate(time, 'HH:mm:ss');
+  return modifyTime(date, time.getHours(), time.getMinutes(), time.getSeconds());
+};
+
+var clearTime = exports.clearTime = function clearTime(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+};
+
+var clearMilliseconds = exports.clearMilliseconds = function clearMilliseconds(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), 0);
+};
+
+var limitTimeRange = exports.limitTimeRange = function limitTimeRange(date, ranges) {
+  var format = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'HH:mm:ss';
+
+  // TODO: refactory a more elegant solution
+  if (ranges.length === 0) return date;
+  var normalizeDate = function normalizeDate(date) {
+    return _date2.default.parse(_date2.default.format(date, format), format);
+  };
+  var ndate = normalizeDate(date);
+  var nranges = ranges.map(function (range) {
+    return range.map(normalizeDate);
+  });
+  if (nranges.some(function (nrange) {
+    return ndate >= nrange[0] && ndate <= nrange[1];
+  })) return date;
+
+  var minDate = nranges[0][0];
+  var maxDate = nranges[0][0];
+
+  nranges.forEach(function (nrange) {
+    minDate = new Date(Math.min(nrange[0], minDate));
+    maxDate = new Date(Math.max(nrange[1], minDate));
+  });
+
+  var ret = ndate < minDate ? minDate : maxDate;
+  // preserve Year/Month/Date
+  return modifyDate(ret, date.getFullYear(), date.getMonth(), date.getDate());
+};
+
+var timeWithinRange = exports.timeWithinRange = function timeWithinRange(date, selectableRange, format) {
+  var limitedDate = limitTimeRange(date, selectableRange, format);
+  return limitedDate.getTime() === date.getTime();
+};
+
+var changeYearMonthAndClampDate = exports.changeYearMonthAndClampDate = function changeYearMonthAndClampDate(date, year, month) {
+  // clamp date to the number of days in `year`, `month`
+  // eg: (2010-1-31, 2010, 2) => 2010-2-28
+  var monthDate = Math.min(date.getDate(), getDayCountOfMonth(year, month));
+  return modifyDate(date, year, month, monthDate);
+};
+
+var prevMonth = exports.prevMonth = function prevMonth(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  return month === 0 ? changeYearMonthAndClampDate(date, year - 1, 11) : changeYearMonthAndClampDate(date, year, month - 1);
+};
+
+var nextMonth = exports.nextMonth = function nextMonth(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  return month === 11 ? changeYearMonthAndClampDate(date, year + 1, 0) : changeYearMonthAndClampDate(date, year, month + 1);
+};
+
+var prevYear = exports.prevYear = function prevYear(date) {
+  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  return changeYearMonthAndClampDate(date, year - amount, month);
+};
+
+var nextYear = exports.nextYear = function nextYear(date) {
+  var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  return changeYearMonthAndClampDate(date, year + amount, month);
+};
+
+var extractDateFormat = exports.extractDateFormat = function extractDateFormat(format) {
+  return format.replace(/\W?m{1,2}|\W?ZZ/g, '').replace(/\W?h{1,2}|\W?s{1,3}|\W?a/gi, '').trim();
+};
+
+var extractTimeFormat = exports.extractTimeFormat = function extractTimeFormat(format) {
+  return format.replace(/\W?D{1,2}|\W?Do|\W?d{1,4}|\W?M{1,4}|\W?y{2,4}/g, '').trim();
+};
+
+var validateRangeInOneMonth = exports.validateRangeInOneMonth = function validateRangeInOneMonth(start, end) {
+  return start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
 };
 
 /***/ }),
@@ -49128,7 +52030,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 
 
 exports.__esModule = true;
-exports.getStyle = exports.once = exports.off = exports.on = undefined;
+exports.isInContainer = exports.getScrollContainer = exports.isScroll = exports.getStyle = exports.once = exports.off = exports.on = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; /* istanbul ignore next */
 
@@ -49137,7 +52039,7 @@ exports.addClass = addClass;
 exports.removeClass = removeClass;
 exports.setStyle = setStyle;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -49312,6 +52214,52 @@ function setStyle(element, styleName, value) {
       element.style[styleName] = value;
     }
   }
+};
+
+var isScroll = exports.isScroll = function isScroll(el, vertical) {
+  if (isServer) return;
+
+  var determinedDirection = vertical !== null || vertical !== undefined;
+  var overflow = determinedDirection ? vertical ? getStyle(el, 'overflow-y') : getStyle(el, 'overflow-x') : getStyle(el, 'overflow');
+
+  return overflow.match(/(scroll|auto)/);
+};
+
+var getScrollContainer = exports.getScrollContainer = function getScrollContainer(el, vertical) {
+  if (isServer) return;
+
+  var parent = el;
+  while (parent) {
+    if ([window, document, document.documentElement].includes(parent)) {
+      return window;
+    }
+    if (isScroll(parent, vertical)) {
+      return parent;
+    }
+    parent = parent.parentNode;
+  }
+
+  return parent;
+};
+
+var isInContainer = exports.isInContainer = function isInContainer(el, container) {
+  if (isServer || !el || !container) return false;
+
+  var elRect = el.getBoundingClientRect();
+  var containerRect = void 0;
+
+  if ([window, document, document.documentElement, null, undefined].includes(container)) {
+    containerRect = {
+      top: 0,
+      right: window.innerWidth,
+      bottom: window.innerHeight,
+      left: 0
+    };
+  } else {
+    containerRect = container.getBoundingClientRect();
+  }
+
+  return elRect.top < containerRect.bottom && elRect.bottom > containerRect.top && elRect.right > containerRect.left && elRect.left < containerRect.right;
 };
 
 /***/ }),
@@ -50625,7 +53573,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.__esModule = true;
 exports.PopupManager = undefined;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -50648,14 +53596,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var idSeed = 1;
 
 var scrollBarWidth = void 0;
-
-var getDOM = function getDOM(dom) {
-  if (dom.nodeType === 3) {
-    dom = dom.nextElementSibling || dom.nextSibling;
-    getDOM(dom);
-  }
-  return dom;
-};
 
 exports.default = {
   props: {
@@ -50767,7 +53707,7 @@ exports.default = {
 
       this._opening = true;
 
-      var dom = getDOM(this.$el);
+      var dom = this.$el;
 
       var modal = props.modal;
 
@@ -50872,7 +53812,7 @@ exports.PopupManager = _popupManager2.default;
 
 exports.__esModule = true;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -51149,7 +54089,7 @@ var removeResizeListener = exports.removeResizeListener = function removeResizeL
 exports.__esModule = true;
 exports.default = scrollIntoView;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -51219,7 +54159,7 @@ exports.default = function () {
   return scrollBarWidth;
 };
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -51250,6 +54190,30 @@ function isKorean(text) {
 
 /***/ }),
 
+/***/ "./node_modules/element-ui/lib/utils/types.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+exports.isString = isString;
+exports.isObject = isObject;
+exports.isHtmlElement = isHtmlElement;
+function isString(obj) {
+  return Object.prototype.toString.call(obj) === '[object String]';
+}
+
+function isObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
+
+function isHtmlElement(node) {
+  return node && node.nodeType === Node.ELEMENT_NODE;
+}
+
+/***/ }),
+
 /***/ "./node_modules/element-ui/lib/utils/util.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -51257,13 +54221,16 @@ function isKorean(text) {
 
 
 exports.__esModule = true;
-exports.isEdge = exports.isIE = exports.coerceTruthyValueToArray = exports.arrayFind = exports.arrayFindIndex = exports.escapeRegexpString = exports.valueEquals = exports.generateId = exports.getValueByPath = undefined;
+exports.kebabCase = exports.autoprefixer = exports.isEdge = exports.isIE = exports.coerceTruthyValueToArray = exports.arrayFind = exports.arrayFindIndex = exports.escapeRegexpString = exports.valueEquals = exports.generateId = exports.getValueByPath = undefined;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 exports.noop = noop;
 exports.hasOwn = hasOwn;
 exports.toObject = toObject;
 exports.getPropByPath = getPropByPath;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -51393,6 +54360,26 @@ var isEdge = exports.isEdge = function isEdge() {
   return !_vue2.default.prototype.$isServer && navigator.userAgent.indexOf('Edge') > -1;
 };
 
+var autoprefixer = exports.autoprefixer = function autoprefixer(style) {
+  if ((typeof style === 'undefined' ? 'undefined' : _typeof(style)) !== 'object') return style;
+  var rules = ['transform', 'transition', 'animation'];
+  var prefixes = ['ms-', 'webkit-'];
+  rules.forEach(function (rule) {
+    var value = style[rule];
+    if (rule && value) {
+      prefixes.forEach(function (prefix) {
+        style[prefix + rule] = value;
+      });
+    }
+  });
+  return style;
+};
+
+var kebabCase = exports.kebabCase = function kebabCase(str) {
+  var hyphenateRE = /([^-])([A-Z])/g;
+  return str.replace(hyphenateRE, '$1-$2').replace(hyphenateRE, '$1-$2').toLowerCase();
+};
+
 /***/ }),
 
 /***/ "./node_modules/element-ui/lib/utils/vdom.js":
@@ -51406,18 +54393,11 @@ exports.__esModule = true;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 exports.isVNode = isVNode;
-exports.getFirstComponentChild = getFirstComponentChild;
 
 var _util = __webpack_require__("./node_modules/element-ui/lib/utils/util.js");
 
 function isVNode(node) {
   return node !== null && (typeof node === 'undefined' ? 'undefined' : _typeof(node)) === 'object' && (0, _util.hasOwn)(node, 'componentOptions');
-};
-
-function getFirstComponentChild(children) {
-  return children && children.filter(function (c) {
-    return c && c.tag;
-  })[0];
 };
 
 /***/ }),
@@ -51430,7 +54410,7 @@ function getFirstComponentChild(children) {
 
 exports.__esModule = true;
 
-var _vue = __webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+var _vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -51508,9 +54488,7 @@ exports.default = {
     },
 
     showPopper: function showPopper(val) {
-      if (this.disabled) {
-        return;
-      }
+      if (this.disabled) return;
       val ? this.updatePopper() : this.destroyPopper();
       this.$emit('input', val);
     }
@@ -65373,8 +68351,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /*!
-  * vue-router v3.0.2
-  * (c) 2018 Evan You
+  * vue-router v3.0.6
+  * (c) 2019 Evan You
   * @license MIT
   */
 /*  */
@@ -65432,11 +68410,14 @@ var View = {
     var depth = 0;
     var inactive = false;
     while (parent && parent._routerRoot !== parent) {
-      if (parent.$vnode && parent.$vnode.data.routerView) {
-        depth++;
-      }
-      if (parent._inactive) {
-        inactive = true;
+      var vnodeData = parent.$vnode && parent.$vnode.data;
+      if (vnodeData) {
+        if (vnodeData.routerView) {
+          depth++;
+        }
+        if (vnodeData.keepAlive && parent._inactive) {
+          inactive = true;
+        }
       }
       parent = parent.$parent;
     }
@@ -65473,6 +68454,17 @@ var View = {
     // in case the same component instance is reused across different routes
     ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
       matched.instances[name] = vnode.componentInstance;
+    };
+
+    // register instance in init hook
+    // in case kept-alive component be actived when routes changed
+    data.hook.init = function (vnode) {
+      if (vnode.data.keepAlive &&
+        vnode.componentInstance &&
+        vnode.componentInstance !== matched.instances[name]
+      ) {
+        matched.instances[name] = vnode.componentInstance;
+      }
     };
 
     // resolve props
@@ -66456,16 +69448,24 @@ function fillParams (
   params,
   routeMsg
 ) {
+  params = params || {};
   try {
     var filler =
       regexpCompileCache[path] ||
       (regexpCompileCache[path] = pathToRegexp_1.compile(path));
-    return filler(params || {}, { pretty: true })
+
+    // Fix #2505 resolving asterisk routes { name: 'not-found', params: { pathMatch: '/not-found' }}
+    if (params.pathMatch) { params[0] = params.pathMatch; }
+
+    return filler(params, { pretty: true })
   } catch (e) {
     if (true) {
       warn(false, ("missing param for " + routeMsg + ": " + (e.message)));
     }
     return ''
+  } finally {
+    // delete the 0 if it was added
+    delete params[0];
   }
 }
 
@@ -66644,8 +69644,10 @@ function normalizeLocation (
 ) {
   var next = typeof raw === 'string' ? { path: raw } : raw;
   // named target
-  if (next.name || next._normalized) {
+  if (next._normalized) {
     return next
+  } else if (next.name) {
+    return extend({}, raw)
   }
 
   // relative params
@@ -67502,7 +70504,7 @@ function poll (
 
 /*  */
 
-var HTML5History = (function (History$$1) {
+var HTML5History = /*@__PURE__*/(function (History$$1) {
   function HTML5History (router, base) {
     var this$1 = this;
 
@@ -67590,7 +70592,7 @@ function getLocation (base) {
 
 /*  */
 
-var HashHistory = (function (History$$1) {
+var HashHistory = /*@__PURE__*/(function (History$$1) {
   function HashHistory (router, base, fallback) {
     History$$1.call(this, router, base);
     // check history fallback deeplinking
@@ -67699,7 +70701,23 @@ function getHash () {
   // consistent across browsers - Firefox will pre-decode it!
   var href = window.location.href;
   var index = href.indexOf('#');
-  return index === -1 ? '' : decodeURI(href.slice(index + 1))
+  // empty path
+  if (index < 0) { return '' }
+
+  href = href.slice(index + 1);
+  // decode the hash but not the search or hash
+  // as search(query) is already decoded
+  // https://github.com/vuejs/vue-router/issues/2708
+  var searchIndex = href.indexOf('?');
+  if (searchIndex < 0) {
+    var hashIndex = href.indexOf('#');
+    if (hashIndex > -1) { href = decodeURI(href.slice(0, hashIndex)) + href.slice(hashIndex); }
+    else { href = decodeURI(href); }
+  } else {
+    if (searchIndex > -1) { href = decodeURI(href.slice(0, searchIndex)) + href.slice(searchIndex); }
+  }
+
+  return href
 }
 
 function getUrl (path) {
@@ -67727,7 +70745,7 @@ function replaceHash (path) {
 
 /*  */
 
-var AbstractHistory = (function (History$$1) {
+var AbstractHistory = /*@__PURE__*/(function (History$$1) {
   function AbstractHistory (router, base) {
     History$$1.call(this, router, base);
     this.stack = [];
@@ -67850,7 +70868,19 @@ VueRouter.prototype.init = function init (app /* Vue component instance */) {
 
   this.apps.push(app);
 
-  // main app already initialized.
+  // set up app destroyed handler
+  // https://github.com/vuejs/vue-router/issues/2639
+  app.$once('hook:destroyed', function () {
+    // clean out app from this.apps array once destroyed
+    var index = this$1.apps.indexOf(app);
+    if (index > -1) { this$1.apps.splice(index, 1); }
+    // ensure we still have a main app or null if no apps
+    // we do not release the router so it can be reused
+    if (this$1.app === app) { this$1.app = this$1.apps[0] || null; }
+  });
+
+  // main app previously initialized
+  // return as we don't need to set up new history listener
   if (this.app) {
     return
   }
@@ -67940,9 +70970,10 @@ VueRouter.prototype.resolve = function resolve (
   current,
   append
 ) {
+  current = current || this.history.current;
   var location = normalizeLocation(
     to,
-    current || this.history.current,
+    current,
     append,
     this
   );
@@ -67983,7 +71014,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.0.2';
+VueRouter.version = '3.0.6';
 
 if (inBrowser && window.Vue) {
   window.Vue.use(VueRouter);
@@ -67994,16 +71025,17 @@ if (inBrowser && window.Vue) {
 
 /***/ }),
 
-/***/ "./node_modules/vue/dist/vue.runtime.esm.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/vue/dist/vue.common.dev.js":
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.5.22
+ * Vue.js v2.6.10
  * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
+
+
 /*  */
 
 var emptyObject = Object.freeze({});
@@ -68077,13 +71109,21 @@ function isValidArrayIndex (val) {
   return n >= 0 && Math.floor(n) === n && isFinite(val)
 }
 
+function isPromise (val) {
+  return (
+    isDef(val) &&
+    typeof val.then === 'function' &&
+    typeof val.catch === 'function'
+  )
+}
+
 /**
  * Convert a value to a string that is actually rendered.
  */
 function toString (val) {
   return val == null
     ? ''
-    : typeof val === 'object'
+    : Array.isArray(val) || (isPlainObject(val) && val.toString === _toString)
       ? JSON.stringify(val, null, 2)
       : String(val)
 }
@@ -68268,6 +71308,15 @@ var no = function (a, b, c) { return false; };
 var identity = function (_) { return _; };
 
 /**
+ * Generate a string containing static keys from compiler modules.
+ */
+function genStaticKeys (modules) {
+  return modules.reduce(function (keys, m) {
+    return keys.concat(m.staticKeys || [])
+  }, []).join(',')
+}
+
+/**
  * Check if two values are loosely equal - that is,
  * if they are plain objects, do they have the same shape?
  */
@@ -68350,7 +71399,8 @@ var LIFECYCLE_HOOKS = [
   'destroyed',
   'activated',
   'deactivated',
-  'errorCaptured'
+  'errorCaptured',
+  'serverPrefetch'
 ];
 
 /*  */
@@ -68454,6 +71504,13 @@ var config = ({
 /*  */
 
 /**
+ * unicode letters used for parsing html tags, component names and property paths.
+ * using https://www.w3.org/TR/html53/semantics-scripting.html#potentialcustomelementname
+ * skipping \u10000-\uEFFFF due to it freezing up PhantomJS
+ */
+var unicodeRegExp = /a-zA-Z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F-\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD/;
+
+/**
  * Check if a string starts with $ or _
  */
 function isReserved (str) {
@@ -68476,7 +71533,7 @@ function def (obj, key, val, enumerable) {
 /**
  * Parse simple path.
  */
-var bailRE = /[^\w.$]/;
+var bailRE = new RegExp(("[^" + (unicodeRegExp.source) + ".$_\\d]"));
 function parsePath (path) {
   if (bailRE.test(path)) {
     return
@@ -68507,6 +71564,8 @@ var isEdge = UA && UA.indexOf('edge/') > 0;
 var isAndroid = (UA && UA.indexOf('android') > 0) || (weexPlatform === 'android');
 var isIOS = (UA && /iphone|ipad|ipod|ios/.test(UA)) || (weexPlatform === 'ios');
 var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
+var isPhantomJS = UA && /phantomjs/.test(UA);
+var isFF = UA && UA.match(/firefox\/(\d+)/);
 
 // Firefox has a "watch" function on Object.prototype...
 var nativeWatch = ({}).watch;
@@ -68586,7 +71645,7 @@ var tip = noop;
 var generateComponentTrace = (noop); // work around flow check
 var formatComponentName = (noop);
 
-if (true) {
+{
   var hasConsole = typeof console !== 'undefined';
   var classifyRE = /(?:^|[-_])(\w)/g;
   var classify = function (str) { return str
@@ -68703,7 +71762,7 @@ Dep.prototype.depend = function depend () {
 Dep.prototype.notify = function notify () {
   // stabilize the subscriber list first
   var subs = this.subs.slice();
-  if ("development" !== 'production' && !config.async) {
+  if (!config.async) {
     // subs aren't sorted in scheduler if not running async
     // we need to sort them now to make sure they fire in correct
     // order
@@ -69024,7 +72083,7 @@ function defineReactive$$1 (
         return
       }
       /* eslint-enable no-self-compare */
-      if ("development" !== 'production' && customSetter) {
+      if (customSetter) {
         customSetter();
       }
       // #7981: for accessor properties without setter
@@ -69046,8 +72105,7 @@ function defineReactive$$1 (
  * already exist.
  */
 function set (target, key, val) {
-  if ("development" !== 'production' &&
-    (isUndef(target) || isPrimitive(target))
+  if (isUndef(target) || isPrimitive(target)
   ) {
     warn(("Cannot set reactive property on undefined, null, or primitive value: " + ((target))));
   }
@@ -69062,7 +72120,7 @@ function set (target, key, val) {
   }
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    "development" !== 'production' && warn(
+    warn(
       'Avoid adding reactive properties to a Vue instance or its root $data ' +
       'at runtime - declare it upfront in the data option.'
     );
@@ -69081,8 +72139,7 @@ function set (target, key, val) {
  * Delete a property and trigger change if necessary.
  */
 function del (target, key) {
-  if ("development" !== 'production' &&
-    (isUndef(target) || isPrimitive(target))
+  if (isUndef(target) || isPrimitive(target)
   ) {
     warn(("Cannot delete reactive property on undefined, null, or primitive value: " + ((target))));
   }
@@ -69092,7 +72149,7 @@ function del (target, key) {
   }
   var ob = (target).__ob__;
   if (target._isVue || (ob && ob.vmCount)) {
-    "development" !== 'production' && warn(
+    warn(
       'Avoid deleting properties on a Vue instance or its root $data ' +
       '- just set it to null.'
     );
@@ -69134,7 +72191,7 @@ var strats = config.optionMergeStrategies;
 /**
  * Options with restrictions
  */
-if (true) {
+{
   strats.el = strats.propsData = function (parent, child, vm, key) {
     if (!vm) {
       warn(
@@ -69152,9 +72209,15 @@ if (true) {
 function mergeData (to, from) {
   if (!from) { return to }
   var key, toVal, fromVal;
-  var keys = Object.keys(from);
+
+  var keys = hasSymbol
+    ? Reflect.ownKeys(from)
+    : Object.keys(from);
+
   for (var i = 0; i < keys.length; i++) {
     key = keys[i];
+    // in case the object is already observed...
+    if (key === '__ob__') { continue }
     toVal = to[key];
     fromVal = from[key];
     if (!hasOwn(to, key)) {
@@ -69222,7 +72285,7 @@ strats.data = function (
 ) {
   if (!vm) {
     if (childVal && typeof childVal !== 'function') {
-      "development" !== 'production' && warn(
+      warn(
         'The "data" option should be a function ' +
         'that returns a per-instance value in component ' +
         'definitions.',
@@ -69285,7 +72348,7 @@ function mergeAssets (
 ) {
   var res = Object.create(parentVal || null);
   if (childVal) {
-    "development" !== 'production' && assertObjectType(key, childVal, vm);
+    assertObjectType(key, childVal, vm);
     return extend(res, childVal)
   } else {
     return res
@@ -69313,7 +72376,7 @@ strats.watch = function (
   if (childVal === nativeWatch) { childVal = undefined; }
   /* istanbul ignore if */
   if (!childVal) { return Object.create(parentVal || null) }
-  if (true) {
+  {
     assertObjectType(key, childVal, vm);
   }
   if (!parentVal) { return childVal }
@@ -69374,11 +72437,10 @@ function checkComponents (options) {
 }
 
 function validateComponentName (name) {
-  if (!/^[a-zA-Z][\w-]*$/.test(name)) {
+  if (!new RegExp(("^[a-zA-Z][\\-\\.0-9_" + (unicodeRegExp.source) + "]*$")).test(name)) {
     warn(
       'Invalid component name: "' + name + '". Component names ' +
-      'can only contain alphanumeric characters and the hyphen, ' +
-      'and must start with a letter.'
+      'should conform to valid custom element name in html5 specification.'
     );
   }
   if (isBuiltInTag(name) || config.isReservedTag(name)) {
@@ -69405,7 +72467,7 @@ function normalizeProps (options, vm) {
       if (typeof val === 'string') {
         name = camelize(val);
         res[name] = { type: null };
-      } else if (true) {
+      } else {
         warn('props must be strings when using array syntax.');
       }
     }
@@ -69417,7 +72479,7 @@ function normalizeProps (options, vm) {
         ? val
         : { type: val };
     }
-  } else if (true) {
+  } else {
     warn(
       "Invalid value for option \"props\": expected an Array or an Object, " +
       "but got " + (toRawType(props)) + ".",
@@ -69445,7 +72507,7 @@ function normalizeInject (options, vm) {
         ? extend({ from: key }, val)
         : { from: val };
     }
-  } else if (true) {
+  } else {
     warn(
       "Invalid value for option \"inject\": expected an Array or an Object, " +
       "but got " + (toRawType(inject)) + ".",
@@ -69461,9 +72523,9 @@ function normalizeDirectives (options) {
   var dirs = options.directives;
   if (dirs) {
     for (var key in dirs) {
-      var def = dirs[key];
-      if (typeof def === 'function') {
-        dirs[key] = { bind: def, update: def };
+      var def$$1 = dirs[key];
+      if (typeof def$$1 === 'function') {
+        dirs[key] = { bind: def$$1, update: def$$1 };
       }
     }
   }
@@ -69488,7 +72550,7 @@ function mergeOptions (
   child,
   vm
 ) {
-  if (true) {
+  {
     checkComponents(child);
   }
 
@@ -69556,7 +72618,7 @@ function resolveAsset (
   if (hasOwn(assets, PascalCaseId)) { return assets[PascalCaseId] }
   // fallback to prototype chain
   var res = assets[id] || assets[camelizedId] || assets[PascalCaseId];
-  if ("development" !== 'production' && warnMissing && !res) {
+  if (warnMissing && !res) {
     warn(
       'Failed to resolve ' + type.slice(0, -1) + ': ' + id,
       options
@@ -69602,9 +72664,7 @@ function validateProp (
     observe(value);
     toggleObserving(prevShouldObserve);
   }
-  if (
-    true
-  ) {
+  {
     assertProp(prop, key, value, vm, absent);
   }
   return value
@@ -69620,7 +72680,7 @@ function getPropDefaultValue (vm, prop, key) {
   }
   var def = prop.default;
   // warn against non-factory defaults for Object & Array
-  if ("development" !== 'production' && isObject(def)) {
+  if (isObject(def)) {
     warn(
       'Invalid default value for prop "' + key + '": ' +
       'Props with type Object/Array must use a factory function ' +
@@ -69792,23 +72852,52 @@ function isBoolean () {
 /*  */
 
 function handleError (err, vm, info) {
-  if (vm) {
-    var cur = vm;
-    while ((cur = cur.$parent)) {
-      var hooks = cur.$options.errorCaptured;
-      if (hooks) {
-        for (var i = 0; i < hooks.length; i++) {
-          try {
-            var capture = hooks[i].call(cur, err, vm, info) === false;
-            if (capture) { return }
-          } catch (e) {
-            globalHandleError(e, cur, 'errorCaptured hook');
+  // Deactivate deps tracking while processing error handler to avoid possible infinite rendering.
+  // See: https://github.com/vuejs/vuex/issues/1505
+  pushTarget();
+  try {
+    if (vm) {
+      var cur = vm;
+      while ((cur = cur.$parent)) {
+        var hooks = cur.$options.errorCaptured;
+        if (hooks) {
+          for (var i = 0; i < hooks.length; i++) {
+            try {
+              var capture = hooks[i].call(cur, err, vm, info) === false;
+              if (capture) { return }
+            } catch (e) {
+              globalHandleError(e, cur, 'errorCaptured hook');
+            }
           }
         }
       }
     }
+    globalHandleError(err, vm, info);
+  } finally {
+    popTarget();
   }
-  globalHandleError(err, vm, info);
+}
+
+function invokeWithErrorHandling (
+  handler,
+  context,
+  args,
+  vm,
+  info
+) {
+  var res;
+  try {
+    res = args ? handler.apply(context, args) : handler.call(context);
+    if (res && !res._isVue && isPromise(res) && !res._handled) {
+      res.catch(function (e) { return handleError(e, vm, info + " (Promise/async)"); });
+      // issue #9511
+      // avoid catch triggering multiple times when nested calls
+      res._handled = true;
+    }
+  } catch (e) {
+    handleError(e, vm, info);
+  }
+  return res
 }
 
 function globalHandleError (err, vm, info) {
@@ -69816,14 +72905,18 @@ function globalHandleError (err, vm, info) {
     try {
       return config.errorHandler.call(null, err, vm, info)
     } catch (e) {
-      logError(e, null, 'config.errorHandler');
+      // if the user intentionally throws the original error in the handler,
+      // do not log it twice
+      if (e !== err) {
+        logError(e, null, 'config.errorHandler');
+      }
     }
   }
   logError(err, vm, info);
 }
 
 function logError (err, vm, info) {
-  if (true) {
+  {
     warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
   }
   /* istanbul ignore else */
@@ -69835,6 +72928,8 @@ function logError (err, vm, info) {
 }
 
 /*  */
+
+var isUsingMicroTask = false;
 
 var callbacks = [];
 var pending = false;
@@ -69848,76 +72943,69 @@ function flushCallbacks () {
   }
 }
 
-// Here we have async deferring wrappers using both microtasks and (macro) tasks.
-// In < 2.4 we used microtasks everywhere, but there are some scenarios where
-// microtasks have too high a priority and fire in between supposedly
-// sequential events (e.g. #4521, #6690) or even between bubbling of the same
-// event (#6566). However, using (macro) tasks everywhere also has subtle problems
-// when state is changed right before repaint (e.g. #6813, out-in transitions).
-// Here we use microtask by default, but expose a way to force (macro) task when
-// needed (e.g. in event handlers attached by v-on).
-var microTimerFunc;
-var macroTimerFunc;
-var useMacroTask = false;
+// Here we have async deferring wrappers using microtasks.
+// In 2.5 we used (macro) tasks (in combination with microtasks).
+// However, it has subtle problems when state is changed right before repaint
+// (e.g. #6813, out-in transitions).
+// Also, using (macro) tasks in event handler would cause some weird behaviors
+// that cannot be circumvented (e.g. #7109, #7153, #7546, #7834, #8109).
+// So we now use microtasks everywhere, again.
+// A major drawback of this tradeoff is that there are some scenarios
+// where microtasks have too high a priority and fire in between supposedly
+// sequential events (e.g. #4521, #6690, which have workarounds)
+// or even between bubbling of the same event (#6566).
+var timerFunc;
 
-// Determine (macro) task defer implementation.
-// Technically setImmediate should be the ideal choice, but it's only available
-// in IE. The only polyfill that consistently queues the callback after all DOM
-// events triggered in the same loop is by using MessageChannel.
-/* istanbul ignore if */
-if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
-  macroTimerFunc = function () {
-    setImmediate(flushCallbacks);
-  };
-} else if (typeof MessageChannel !== 'undefined' && (
-  isNative(MessageChannel) ||
-  // PhantomJS
-  MessageChannel.toString() === '[object MessageChannelConstructor]'
-)) {
-  var channel = new MessageChannel();
-  var port = channel.port2;
-  channel.port1.onmessage = flushCallbacks;
-  macroTimerFunc = function () {
-    port.postMessage(1);
-  };
-} else {
-  /* istanbul ignore next */
-  macroTimerFunc = function () {
-    setTimeout(flushCallbacks, 0);
-  };
-}
-
-// Determine microtask defer implementation.
+// The nextTick behavior leverages the microtask queue, which can be accessed
+// via either native Promise.then or MutationObserver.
+// MutationObserver has wider support, however it is seriously bugged in
+// UIWebView in iOS >= 9.3.3 when triggered in touch event handlers. It
+// completely stops working after triggering a few times... so, if native
+// Promise is available, we will use it:
 /* istanbul ignore next, $flow-disable-line */
 if (typeof Promise !== 'undefined' && isNative(Promise)) {
   var p = Promise.resolve();
-  microTimerFunc = function () {
+  timerFunc = function () {
     p.then(flushCallbacks);
-    // in problematic UIWebViews, Promise.then doesn't completely break, but
+    // In problematic UIWebViews, Promise.then doesn't completely break, but
     // it can get stuck in a weird state where callbacks are pushed into the
     // microtask queue but the queue isn't being flushed, until the browser
     // needs to do some other work, e.g. handle a timer. Therefore we can
     // "force" the microtask queue to be flushed by adding an empty timer.
     if (isIOS) { setTimeout(noop); }
   };
+  isUsingMicroTask = true;
+} else if (!isIE && typeof MutationObserver !== 'undefined' && (
+  isNative(MutationObserver) ||
+  // PhantomJS and iOS 7.x
+  MutationObserver.toString() === '[object MutationObserverConstructor]'
+)) {
+  // Use MutationObserver where native Promise is not available,
+  // e.g. PhantomJS, iOS7, Android 4.4
+  // (#6466 MutationObserver is unreliable in IE11)
+  var counter = 1;
+  var observer = new MutationObserver(flushCallbacks);
+  var textNode = document.createTextNode(String(counter));
+  observer.observe(textNode, {
+    characterData: true
+  });
+  timerFunc = function () {
+    counter = (counter + 1) % 2;
+    textNode.data = String(counter);
+  };
+  isUsingMicroTask = true;
+} else if (typeof setImmediate !== 'undefined' && isNative(setImmediate)) {
+  // Fallback to setImmediate.
+  // Techinically it leverages the (macro) task queue,
+  // but it is still a better choice than setTimeout.
+  timerFunc = function () {
+    setImmediate(flushCallbacks);
+  };
 } else {
-  // fallback to macro
-  microTimerFunc = macroTimerFunc;
-}
-
-/**
- * Wrap a function so that if any code inside triggers state change,
- * the changes are queued using a (macro) task instead of a microtask.
- */
-function withMacroTask (fn) {
-  return fn._withTask || (fn._withTask = function () {
-    useMacroTask = true;
-    try {
-      return fn.apply(null, arguments)
-    } finally {
-      useMacroTask = false;    
-    }
-  })
+  // Fallback to setTimeout.
+  timerFunc = function () {
+    setTimeout(flushCallbacks, 0);
+  };
 }
 
 function nextTick (cb, ctx) {
@@ -69935,11 +73023,7 @@ function nextTick (cb, ctx) {
   });
   if (!pending) {
     pending = true;
-    if (useMacroTask) {
-      macroTimerFunc();
-    } else {
-      microTimerFunc();
-    }
+    timerFunc();
   }
   // $flow-disable-line
   if (!cb && typeof Promise !== 'undefined') {
@@ -69951,11 +73035,34 @@ function nextTick (cb, ctx) {
 
 /*  */
 
+var mark;
+var measure;
+
+{
+  var perf = inBrowser && window.performance;
+  /* istanbul ignore if */
+  if (
+    perf &&
+    perf.mark &&
+    perf.measure &&
+    perf.clearMarks &&
+    perf.clearMeasures
+  ) {
+    mark = function (tag) { return perf.mark(tag); };
+    measure = function (name, startTag, endTag) {
+      perf.measure(name, startTag, endTag);
+      perf.clearMarks(startTag);
+      perf.clearMarks(endTag);
+      // perf.clearMeasures(name)
+    };
+  }
+}
+
 /* not type checking this file because flow doesn't play well with Proxy */
 
 var initProxy;
 
-if (true) {
+{
   var allowedGlobals = makeMap(
     'Infinity,undefined,NaN,isFinite,isNaN,' +
     'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
@@ -70076,29 +73183,6 @@ function _traverse (val, seen) {
   }
 }
 
-var mark;
-var measure;
-
-if (true) {
-  var perf = inBrowser && window.performance;
-  /* istanbul ignore if */
-  if (
-    perf &&
-    perf.mark &&
-    perf.measure &&
-    perf.clearMarks &&
-    perf.clearMeasures
-  ) {
-    mark = function (tag) { return perf.mark(tag); };
-    measure = function (name, startTag, endTag) {
-      perf.measure(name, startTag, endTag);
-      perf.clearMarks(startTag);
-      perf.clearMarks(endTag);
-      perf.clearMeasures(name);
-    };
-  }
-}
-
 /*  */
 
 var normalizeEvent = cached(function (name) {
@@ -70116,7 +73200,7 @@ var normalizeEvent = cached(function (name) {
   }
 });
 
-function createFnInvoker (fns) {
+function createFnInvoker (fns, vm) {
   function invoker () {
     var arguments$1 = arguments;
 
@@ -70124,11 +73208,11 @@ function createFnInvoker (fns) {
     if (Array.isArray(fns)) {
       var cloned = fns.slice();
       for (var i = 0; i < cloned.length; i++) {
-        cloned[i].apply(null, arguments$1);
+        invokeWithErrorHandling(cloned[i], null, arguments$1, vm, "v-on handler");
       }
     } else {
       // return handler return value for single handlers
-      return fns.apply(null, arguments)
+      return invokeWithErrorHandling(fns, null, arguments, vm, "v-on handler")
     }
   }
   invoker.fns = fns;
@@ -70149,13 +73233,13 @@ function updateListeners (
     old = oldOn[name];
     event = normalizeEvent(name);
     if (isUndef(cur)) {
-      "development" !== 'production' && warn(
+      warn(
         "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
         vm
       );
     } else if (isUndef(old)) {
       if (isUndef(cur.fns)) {
-        cur = on[name] = createFnInvoker(cur);
+        cur = on[name] = createFnInvoker(cur, vm);
       }
       if (isTrue(event.once)) {
         cur = on[name] = createOnceHandler(event.name, cur, event.capture);
@@ -70229,7 +73313,7 @@ function extractPropsFromVNodeData (
   if (isDef(attrs) || isDef(props)) {
     for (var key in propOptions) {
       var altKey = hyphenate(key);
-      if (true) {
+      {
         var keyInLowerCase = key.toLowerCase();
         if (
           key !== keyInLowerCase &&
@@ -70366,6 +73450,1167 @@ function normalizeArrayChildren (children, nestedIndex) {
 
 /*  */
 
+function initProvide (vm) {
+  var provide = vm.$options.provide;
+  if (provide) {
+    vm._provided = typeof provide === 'function'
+      ? provide.call(vm)
+      : provide;
+  }
+}
+
+function initInjections (vm) {
+  var result = resolveInject(vm.$options.inject, vm);
+  if (result) {
+    toggleObserving(false);
+    Object.keys(result).forEach(function (key) {
+      /* istanbul ignore else */
+      {
+        defineReactive$$1(vm, key, result[key], function () {
+          warn(
+            "Avoid mutating an injected value directly since the changes will be " +
+            "overwritten whenever the provided component re-renders. " +
+            "injection being mutated: \"" + key + "\"",
+            vm
+          );
+        });
+      }
+    });
+    toggleObserving(true);
+  }
+}
+
+function resolveInject (inject, vm) {
+  if (inject) {
+    // inject is :any because flow is not smart enough to figure out cached
+    var result = Object.create(null);
+    var keys = hasSymbol
+      ? Reflect.ownKeys(inject)
+      : Object.keys(inject);
+
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+      // #6574 in case the inject object is observed...
+      if (key === '__ob__') { continue }
+      var provideKey = inject[key].from;
+      var source = vm;
+      while (source) {
+        if (source._provided && hasOwn(source._provided, provideKey)) {
+          result[key] = source._provided[provideKey];
+          break
+        }
+        source = source.$parent;
+      }
+      if (!source) {
+        if ('default' in inject[key]) {
+          var provideDefault = inject[key].default;
+          result[key] = typeof provideDefault === 'function'
+            ? provideDefault.call(vm)
+            : provideDefault;
+        } else {
+          warn(("Injection \"" + key + "\" not found"), vm);
+        }
+      }
+    }
+    return result
+  }
+}
+
+/*  */
+
+
+
+/**
+ * Runtime helper for resolving raw children VNodes into a slot object.
+ */
+function resolveSlots (
+  children,
+  context
+) {
+  if (!children || !children.length) {
+    return {}
+  }
+  var slots = {};
+  for (var i = 0, l = children.length; i < l; i++) {
+    var child = children[i];
+    var data = child.data;
+    // remove slot attribute if the node is resolved as a Vue slot node
+    if (data && data.attrs && data.attrs.slot) {
+      delete data.attrs.slot;
+    }
+    // named slots should only be respected if the vnode was rendered in the
+    // same context.
+    if ((child.context === context || child.fnContext === context) &&
+      data && data.slot != null
+    ) {
+      var name = data.slot;
+      var slot = (slots[name] || (slots[name] = []));
+      if (child.tag === 'template') {
+        slot.push.apply(slot, child.children || []);
+      } else {
+        slot.push(child);
+      }
+    } else {
+      (slots.default || (slots.default = [])).push(child);
+    }
+  }
+  // ignore slots that contains only whitespace
+  for (var name$1 in slots) {
+    if (slots[name$1].every(isWhitespace)) {
+      delete slots[name$1];
+    }
+  }
+  return slots
+}
+
+function isWhitespace (node) {
+  return (node.isComment && !node.asyncFactory) || node.text === ' '
+}
+
+/*  */
+
+function normalizeScopedSlots (
+  slots,
+  normalSlots,
+  prevSlots
+) {
+  var res;
+  var hasNormalSlots = Object.keys(normalSlots).length > 0;
+  var isStable = slots ? !!slots.$stable : !hasNormalSlots;
+  var key = slots && slots.$key;
+  if (!slots) {
+    res = {};
+  } else if (slots._normalized) {
+    // fast path 1: child component re-render only, parent did not change
+    return slots._normalized
+  } else if (
+    isStable &&
+    prevSlots &&
+    prevSlots !== emptyObject &&
+    key === prevSlots.$key &&
+    !hasNormalSlots &&
+    !prevSlots.$hasNormal
+  ) {
+    // fast path 2: stable scoped slots w/ no normal slots to proxy,
+    // only need to normalize once
+    return prevSlots
+  } else {
+    res = {};
+    for (var key$1 in slots) {
+      if (slots[key$1] && key$1[0] !== '$') {
+        res[key$1] = normalizeScopedSlot(normalSlots, key$1, slots[key$1]);
+      }
+    }
+  }
+  // expose normal slots on scopedSlots
+  for (var key$2 in normalSlots) {
+    if (!(key$2 in res)) {
+      res[key$2] = proxyNormalSlot(normalSlots, key$2);
+    }
+  }
+  // avoriaz seems to mock a non-extensible $scopedSlots object
+  // and when that is passed down this would cause an error
+  if (slots && Object.isExtensible(slots)) {
+    (slots)._normalized = res;
+  }
+  def(res, '$stable', isStable);
+  def(res, '$key', key);
+  def(res, '$hasNormal', hasNormalSlots);
+  return res
+}
+
+function normalizeScopedSlot(normalSlots, key, fn) {
+  var normalized = function () {
+    var res = arguments.length ? fn.apply(null, arguments) : fn({});
+    res = res && typeof res === 'object' && !Array.isArray(res)
+      ? [res] // single vnode
+      : normalizeChildren(res);
+    return res && (
+      res.length === 0 ||
+      (res.length === 1 && res[0].isComment) // #9658
+    ) ? undefined
+      : res
+  };
+  // this is a slot using the new v-slot syntax without scope. although it is
+  // compiled as a scoped slot, render fn users would expect it to be present
+  // on this.$slots because the usage is semantically a normal slot.
+  if (fn.proxy) {
+    Object.defineProperty(normalSlots, key, {
+      get: normalized,
+      enumerable: true,
+      configurable: true
+    });
+  }
+  return normalized
+}
+
+function proxyNormalSlot(slots, key) {
+  return function () { return slots[key]; }
+}
+
+/*  */
+
+/**
+ * Runtime helper for rendering v-for lists.
+ */
+function renderList (
+  val,
+  render
+) {
+  var ret, i, l, keys, key;
+  if (Array.isArray(val) || typeof val === 'string') {
+    ret = new Array(val.length);
+    for (i = 0, l = val.length; i < l; i++) {
+      ret[i] = render(val[i], i);
+    }
+  } else if (typeof val === 'number') {
+    ret = new Array(val);
+    for (i = 0; i < val; i++) {
+      ret[i] = render(i + 1, i);
+    }
+  } else if (isObject(val)) {
+    if (hasSymbol && val[Symbol.iterator]) {
+      ret = [];
+      var iterator = val[Symbol.iterator]();
+      var result = iterator.next();
+      while (!result.done) {
+        ret.push(render(result.value, ret.length));
+        result = iterator.next();
+      }
+    } else {
+      keys = Object.keys(val);
+      ret = new Array(keys.length);
+      for (i = 0, l = keys.length; i < l; i++) {
+        key = keys[i];
+        ret[i] = render(val[key], key, i);
+      }
+    }
+  }
+  if (!isDef(ret)) {
+    ret = [];
+  }
+  (ret)._isVList = true;
+  return ret
+}
+
+/*  */
+
+/**
+ * Runtime helper for rendering <slot>
+ */
+function renderSlot (
+  name,
+  fallback,
+  props,
+  bindObject
+) {
+  var scopedSlotFn = this.$scopedSlots[name];
+  var nodes;
+  if (scopedSlotFn) { // scoped slot
+    props = props || {};
+    if (bindObject) {
+      if (!isObject(bindObject)) {
+        warn(
+          'slot v-bind without argument expects an Object',
+          this
+        );
+      }
+      props = extend(extend({}, bindObject), props);
+    }
+    nodes = scopedSlotFn(props) || fallback;
+  } else {
+    nodes = this.$slots[name] || fallback;
+  }
+
+  var target = props && props.slot;
+  if (target) {
+    return this.$createElement('template', { slot: target }, nodes)
+  } else {
+    return nodes
+  }
+}
+
+/*  */
+
+/**
+ * Runtime helper for resolving filters
+ */
+function resolveFilter (id) {
+  return resolveAsset(this.$options, 'filters', id, true) || identity
+}
+
+/*  */
+
+function isKeyNotMatch (expect, actual) {
+  if (Array.isArray(expect)) {
+    return expect.indexOf(actual) === -1
+  } else {
+    return expect !== actual
+  }
+}
+
+/**
+ * Runtime helper for checking keyCodes from config.
+ * exposed as Vue.prototype._k
+ * passing in eventKeyName as last argument separately for backwards compat
+ */
+function checkKeyCodes (
+  eventKeyCode,
+  key,
+  builtInKeyCode,
+  eventKeyName,
+  builtInKeyName
+) {
+  var mappedKeyCode = config.keyCodes[key] || builtInKeyCode;
+  if (builtInKeyName && eventKeyName && !config.keyCodes[key]) {
+    return isKeyNotMatch(builtInKeyName, eventKeyName)
+  } else if (mappedKeyCode) {
+    return isKeyNotMatch(mappedKeyCode, eventKeyCode)
+  } else if (eventKeyName) {
+    return hyphenate(eventKeyName) !== key
+  }
+}
+
+/*  */
+
+/**
+ * Runtime helper for merging v-bind="object" into a VNode's data.
+ */
+function bindObjectProps (
+  data,
+  tag,
+  value,
+  asProp,
+  isSync
+) {
+  if (value) {
+    if (!isObject(value)) {
+      warn(
+        'v-bind without argument expects an Object or Array value',
+        this
+      );
+    } else {
+      if (Array.isArray(value)) {
+        value = toObject(value);
+      }
+      var hash;
+      var loop = function ( key ) {
+        if (
+          key === 'class' ||
+          key === 'style' ||
+          isReservedAttribute(key)
+        ) {
+          hash = data;
+        } else {
+          var type = data.attrs && data.attrs.type;
+          hash = asProp || config.mustUseProp(tag, type, key)
+            ? data.domProps || (data.domProps = {})
+            : data.attrs || (data.attrs = {});
+        }
+        var camelizedKey = camelize(key);
+        var hyphenatedKey = hyphenate(key);
+        if (!(camelizedKey in hash) && !(hyphenatedKey in hash)) {
+          hash[key] = value[key];
+
+          if (isSync) {
+            var on = data.on || (data.on = {});
+            on[("update:" + key)] = function ($event) {
+              value[key] = $event;
+            };
+          }
+        }
+      };
+
+      for (var key in value) loop( key );
+    }
+  }
+  return data
+}
+
+/*  */
+
+/**
+ * Runtime helper for rendering static trees.
+ */
+function renderStatic (
+  index,
+  isInFor
+) {
+  var cached = this._staticTrees || (this._staticTrees = []);
+  var tree = cached[index];
+  // if has already-rendered static tree and not inside v-for,
+  // we can reuse the same tree.
+  if (tree && !isInFor) {
+    return tree
+  }
+  // otherwise, render a fresh tree.
+  tree = cached[index] = this.$options.staticRenderFns[index].call(
+    this._renderProxy,
+    null,
+    this // for render fns generated for functional component templates
+  );
+  markStatic(tree, ("__static__" + index), false);
+  return tree
+}
+
+/**
+ * Runtime helper for v-once.
+ * Effectively it means marking the node as static with a unique key.
+ */
+function markOnce (
+  tree,
+  index,
+  key
+) {
+  markStatic(tree, ("__once__" + index + (key ? ("_" + key) : "")), true);
+  return tree
+}
+
+function markStatic (
+  tree,
+  key,
+  isOnce
+) {
+  if (Array.isArray(tree)) {
+    for (var i = 0; i < tree.length; i++) {
+      if (tree[i] && typeof tree[i] !== 'string') {
+        markStaticNode(tree[i], (key + "_" + i), isOnce);
+      }
+    }
+  } else {
+    markStaticNode(tree, key, isOnce);
+  }
+}
+
+function markStaticNode (node, key, isOnce) {
+  node.isStatic = true;
+  node.key = key;
+  node.isOnce = isOnce;
+}
+
+/*  */
+
+function bindObjectListeners (data, value) {
+  if (value) {
+    if (!isPlainObject(value)) {
+      warn(
+        'v-on without argument expects an Object value',
+        this
+      );
+    } else {
+      var on = data.on = data.on ? extend({}, data.on) : {};
+      for (var key in value) {
+        var existing = on[key];
+        var ours = value[key];
+        on[key] = existing ? [].concat(existing, ours) : ours;
+      }
+    }
+  }
+  return data
+}
+
+/*  */
+
+function resolveScopedSlots (
+  fns, // see flow/vnode
+  res,
+  // the following are added in 2.6
+  hasDynamicKeys,
+  contentHashKey
+) {
+  res = res || { $stable: !hasDynamicKeys };
+  for (var i = 0; i < fns.length; i++) {
+    var slot = fns[i];
+    if (Array.isArray(slot)) {
+      resolveScopedSlots(slot, res, hasDynamicKeys);
+    } else if (slot) {
+      // marker for reverse proxying v-slot without scope on this.$slots
+      if (slot.proxy) {
+        slot.fn.proxy = true;
+      }
+      res[slot.key] = slot.fn;
+    }
+  }
+  if (contentHashKey) {
+    (res).$key = contentHashKey;
+  }
+  return res
+}
+
+/*  */
+
+function bindDynamicKeys (baseObj, values) {
+  for (var i = 0; i < values.length; i += 2) {
+    var key = values[i];
+    if (typeof key === 'string' && key) {
+      baseObj[values[i]] = values[i + 1];
+    } else if (key !== '' && key !== null) {
+      // null is a speical value for explicitly removing a binding
+      warn(
+        ("Invalid value for dynamic directive argument (expected string or null): " + key),
+        this
+      );
+    }
+  }
+  return baseObj
+}
+
+// helper to dynamically append modifier runtime markers to event names.
+// ensure only append when value is already string, otherwise it will be cast
+// to string and cause the type check to miss.
+function prependModifier (value, symbol) {
+  return typeof value === 'string' ? symbol + value : value
+}
+
+/*  */
+
+function installRenderHelpers (target) {
+  target._o = markOnce;
+  target._n = toNumber;
+  target._s = toString;
+  target._l = renderList;
+  target._t = renderSlot;
+  target._q = looseEqual;
+  target._i = looseIndexOf;
+  target._m = renderStatic;
+  target._f = resolveFilter;
+  target._k = checkKeyCodes;
+  target._b = bindObjectProps;
+  target._v = createTextVNode;
+  target._e = createEmptyVNode;
+  target._u = resolveScopedSlots;
+  target._g = bindObjectListeners;
+  target._d = bindDynamicKeys;
+  target._p = prependModifier;
+}
+
+/*  */
+
+function FunctionalRenderContext (
+  data,
+  props,
+  children,
+  parent,
+  Ctor
+) {
+  var this$1 = this;
+
+  var options = Ctor.options;
+  // ensure the createElement function in functional components
+  // gets a unique context - this is necessary for correct named slot check
+  var contextVm;
+  if (hasOwn(parent, '_uid')) {
+    contextVm = Object.create(parent);
+    // $flow-disable-line
+    contextVm._original = parent;
+  } else {
+    // the context vm passed in is a functional context as well.
+    // in this case we want to make sure we are able to get a hold to the
+    // real context instance.
+    contextVm = parent;
+    // $flow-disable-line
+    parent = parent._original;
+  }
+  var isCompiled = isTrue(options._compiled);
+  var needNormalization = !isCompiled;
+
+  this.data = data;
+  this.props = props;
+  this.children = children;
+  this.parent = parent;
+  this.listeners = data.on || emptyObject;
+  this.injections = resolveInject(options.inject, parent);
+  this.slots = function () {
+    if (!this$1.$slots) {
+      normalizeScopedSlots(
+        data.scopedSlots,
+        this$1.$slots = resolveSlots(children, parent)
+      );
+    }
+    return this$1.$slots
+  };
+
+  Object.defineProperty(this, 'scopedSlots', ({
+    enumerable: true,
+    get: function get () {
+      return normalizeScopedSlots(data.scopedSlots, this.slots())
+    }
+  }));
+
+  // support for compiled functional template
+  if (isCompiled) {
+    // exposing $options for renderStatic()
+    this.$options = options;
+    // pre-resolve slots for renderSlot()
+    this.$slots = this.slots();
+    this.$scopedSlots = normalizeScopedSlots(data.scopedSlots, this.$slots);
+  }
+
+  if (options._scopeId) {
+    this._c = function (a, b, c, d) {
+      var vnode = createElement(contextVm, a, b, c, d, needNormalization);
+      if (vnode && !Array.isArray(vnode)) {
+        vnode.fnScopeId = options._scopeId;
+        vnode.fnContext = parent;
+      }
+      return vnode
+    };
+  } else {
+    this._c = function (a, b, c, d) { return createElement(contextVm, a, b, c, d, needNormalization); };
+  }
+}
+
+installRenderHelpers(FunctionalRenderContext.prototype);
+
+function createFunctionalComponent (
+  Ctor,
+  propsData,
+  data,
+  contextVm,
+  children
+) {
+  var options = Ctor.options;
+  var props = {};
+  var propOptions = options.props;
+  if (isDef(propOptions)) {
+    for (var key in propOptions) {
+      props[key] = validateProp(key, propOptions, propsData || emptyObject);
+    }
+  } else {
+    if (isDef(data.attrs)) { mergeProps(props, data.attrs); }
+    if (isDef(data.props)) { mergeProps(props, data.props); }
+  }
+
+  var renderContext = new FunctionalRenderContext(
+    data,
+    props,
+    children,
+    contextVm,
+    Ctor
+  );
+
+  var vnode = options.render.call(null, renderContext._c, renderContext);
+
+  if (vnode instanceof VNode) {
+    return cloneAndMarkFunctionalResult(vnode, data, renderContext.parent, options, renderContext)
+  } else if (Array.isArray(vnode)) {
+    var vnodes = normalizeChildren(vnode) || [];
+    var res = new Array(vnodes.length);
+    for (var i = 0; i < vnodes.length; i++) {
+      res[i] = cloneAndMarkFunctionalResult(vnodes[i], data, renderContext.parent, options, renderContext);
+    }
+    return res
+  }
+}
+
+function cloneAndMarkFunctionalResult (vnode, data, contextVm, options, renderContext) {
+  // #7817 clone node before setting fnContext, otherwise if the node is reused
+  // (e.g. it was from a cached normal slot) the fnContext causes named slots
+  // that should not be matched to match.
+  var clone = cloneVNode(vnode);
+  clone.fnContext = contextVm;
+  clone.fnOptions = options;
+  {
+    (clone.devtoolsMeta = clone.devtoolsMeta || {}).renderContext = renderContext;
+  }
+  if (data.slot) {
+    (clone.data || (clone.data = {})).slot = data.slot;
+  }
+  return clone
+}
+
+function mergeProps (to, from) {
+  for (var key in from) {
+    to[camelize(key)] = from[key];
+  }
+}
+
+/*  */
+
+/*  */
+
+/*  */
+
+/*  */
+
+// inline hooks to be invoked on component VNodes during patch
+var componentVNodeHooks = {
+  init: function init (vnode, hydrating) {
+    if (
+      vnode.componentInstance &&
+      !vnode.componentInstance._isDestroyed &&
+      vnode.data.keepAlive
+    ) {
+      // kept-alive components, treat as a patch
+      var mountedNode = vnode; // work around flow
+      componentVNodeHooks.prepatch(mountedNode, mountedNode);
+    } else {
+      var child = vnode.componentInstance = createComponentInstanceForVnode(
+        vnode,
+        activeInstance
+      );
+      child.$mount(hydrating ? vnode.elm : undefined, hydrating);
+    }
+  },
+
+  prepatch: function prepatch (oldVnode, vnode) {
+    var options = vnode.componentOptions;
+    var child = vnode.componentInstance = oldVnode.componentInstance;
+    updateChildComponent(
+      child,
+      options.propsData, // updated props
+      options.listeners, // updated listeners
+      vnode, // new parent vnode
+      options.children // new children
+    );
+  },
+
+  insert: function insert (vnode) {
+    var context = vnode.context;
+    var componentInstance = vnode.componentInstance;
+    if (!componentInstance._isMounted) {
+      componentInstance._isMounted = true;
+      callHook(componentInstance, 'mounted');
+    }
+    if (vnode.data.keepAlive) {
+      if (context._isMounted) {
+        // vue-router#1212
+        // During updates, a kept-alive component's child components may
+        // change, so directly walking the tree here may call activated hooks
+        // on incorrect children. Instead we push them into a queue which will
+        // be processed after the whole patch process ended.
+        queueActivatedComponent(componentInstance);
+      } else {
+        activateChildComponent(componentInstance, true /* direct */);
+      }
+    }
+  },
+
+  destroy: function destroy (vnode) {
+    var componentInstance = vnode.componentInstance;
+    if (!componentInstance._isDestroyed) {
+      if (!vnode.data.keepAlive) {
+        componentInstance.$destroy();
+      } else {
+        deactivateChildComponent(componentInstance, true /* direct */);
+      }
+    }
+  }
+};
+
+var hooksToMerge = Object.keys(componentVNodeHooks);
+
+function createComponent (
+  Ctor,
+  data,
+  context,
+  children,
+  tag
+) {
+  if (isUndef(Ctor)) {
+    return
+  }
+
+  var baseCtor = context.$options._base;
+
+  // plain options object: turn it into a constructor
+  if (isObject(Ctor)) {
+    Ctor = baseCtor.extend(Ctor);
+  }
+
+  // if at this stage it's not a constructor or an async component factory,
+  // reject.
+  if (typeof Ctor !== 'function') {
+    {
+      warn(("Invalid Component definition: " + (String(Ctor))), context);
+    }
+    return
+  }
+
+  // async component
+  var asyncFactory;
+  if (isUndef(Ctor.cid)) {
+    asyncFactory = Ctor;
+    Ctor = resolveAsyncComponent(asyncFactory, baseCtor);
+    if (Ctor === undefined) {
+      // return a placeholder node for async component, which is rendered
+      // as a comment node but preserves all the raw information for the node.
+      // the information will be used for async server-rendering and hydration.
+      return createAsyncPlaceholder(
+        asyncFactory,
+        data,
+        context,
+        children,
+        tag
+      )
+    }
+  }
+
+  data = data || {};
+
+  // resolve constructor options in case global mixins are applied after
+  // component constructor creation
+  resolveConstructorOptions(Ctor);
+
+  // transform component v-model data into props & events
+  if (isDef(data.model)) {
+    transformModel(Ctor.options, data);
+  }
+
+  // extract props
+  var propsData = extractPropsFromVNodeData(data, Ctor, tag);
+
+  // functional component
+  if (isTrue(Ctor.options.functional)) {
+    return createFunctionalComponent(Ctor, propsData, data, context, children)
+  }
+
+  // extract listeners, since these needs to be treated as
+  // child component listeners instead of DOM listeners
+  var listeners = data.on;
+  // replace with listeners with .native modifier
+  // so it gets processed during parent component patch.
+  data.on = data.nativeOn;
+
+  if (isTrue(Ctor.options.abstract)) {
+    // abstract components do not keep anything
+    // other than props & listeners & slot
+
+    // work around flow
+    var slot = data.slot;
+    data = {};
+    if (slot) {
+      data.slot = slot;
+    }
+  }
+
+  // install component management hooks onto the placeholder node
+  installComponentHooks(data);
+
+  // return a placeholder vnode
+  var name = Ctor.options.name || tag;
+  var vnode = new VNode(
+    ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
+    data, undefined, undefined, undefined, context,
+    { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children },
+    asyncFactory
+  );
+
+  return vnode
+}
+
+function createComponentInstanceForVnode (
+  vnode, // we know it's MountedComponentVNode but flow doesn't
+  parent // activeInstance in lifecycle state
+) {
+  var options = {
+    _isComponent: true,
+    _parentVnode: vnode,
+    parent: parent
+  };
+  // check inline-template render functions
+  var inlineTemplate = vnode.data.inlineTemplate;
+  if (isDef(inlineTemplate)) {
+    options.render = inlineTemplate.render;
+    options.staticRenderFns = inlineTemplate.staticRenderFns;
+  }
+  return new vnode.componentOptions.Ctor(options)
+}
+
+function installComponentHooks (data) {
+  var hooks = data.hook || (data.hook = {});
+  for (var i = 0; i < hooksToMerge.length; i++) {
+    var key = hooksToMerge[i];
+    var existing = hooks[key];
+    var toMerge = componentVNodeHooks[key];
+    if (existing !== toMerge && !(existing && existing._merged)) {
+      hooks[key] = existing ? mergeHook$1(toMerge, existing) : toMerge;
+    }
+  }
+}
+
+function mergeHook$1 (f1, f2) {
+  var merged = function (a, b) {
+    // flow complains about extra args which is why we use any
+    f1(a, b);
+    f2(a, b);
+  };
+  merged._merged = true;
+  return merged
+}
+
+// transform component v-model info (value and callback) into
+// prop and event handler respectively.
+function transformModel (options, data) {
+  var prop = (options.model && options.model.prop) || 'value';
+  var event = (options.model && options.model.event) || 'input'
+  ;(data.attrs || (data.attrs = {}))[prop] = data.model.value;
+  var on = data.on || (data.on = {});
+  var existing = on[event];
+  var callback = data.model.callback;
+  if (isDef(existing)) {
+    if (
+      Array.isArray(existing)
+        ? existing.indexOf(callback) === -1
+        : existing !== callback
+    ) {
+      on[event] = [callback].concat(existing);
+    }
+  } else {
+    on[event] = callback;
+  }
+}
+
+/*  */
+
+var SIMPLE_NORMALIZE = 1;
+var ALWAYS_NORMALIZE = 2;
+
+// wrapper function for providing a more flexible interface
+// without getting yelled at by flow
+function createElement (
+  context,
+  tag,
+  data,
+  children,
+  normalizationType,
+  alwaysNormalize
+) {
+  if (Array.isArray(data) || isPrimitive(data)) {
+    normalizationType = children;
+    children = data;
+    data = undefined;
+  }
+  if (isTrue(alwaysNormalize)) {
+    normalizationType = ALWAYS_NORMALIZE;
+  }
+  return _createElement(context, tag, data, children, normalizationType)
+}
+
+function _createElement (
+  context,
+  tag,
+  data,
+  children,
+  normalizationType
+) {
+  if (isDef(data) && isDef((data).__ob__)) {
+    warn(
+      "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
+      'Always create fresh vnode data objects in each render!',
+      context
+    );
+    return createEmptyVNode()
+  }
+  // object syntax in v-bind
+  if (isDef(data) && isDef(data.is)) {
+    tag = data.is;
+  }
+  if (!tag) {
+    // in case of component :is set to falsy value
+    return createEmptyVNode()
+  }
+  // warn against non-primitive key
+  if (isDef(data) && isDef(data.key) && !isPrimitive(data.key)
+  ) {
+    {
+      warn(
+        'Avoid using non-primitive value as key, ' +
+        'use string/number value instead.',
+        context
+      );
+    }
+  }
+  // support single function children as default scoped slot
+  if (Array.isArray(children) &&
+    typeof children[0] === 'function'
+  ) {
+    data = data || {};
+    data.scopedSlots = { default: children[0] };
+    children.length = 0;
+  }
+  if (normalizationType === ALWAYS_NORMALIZE) {
+    children = normalizeChildren(children);
+  } else if (normalizationType === SIMPLE_NORMALIZE) {
+    children = simpleNormalizeChildren(children);
+  }
+  var vnode, ns;
+  if (typeof tag === 'string') {
+    var Ctor;
+    ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
+    if (config.isReservedTag(tag)) {
+      // platform built-in elements
+      vnode = new VNode(
+        config.parsePlatformTagName(tag), data, children,
+        undefined, undefined, context
+      );
+    } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
+      // component
+      vnode = createComponent(Ctor, data, context, children, tag);
+    } else {
+      // unknown or unlisted namespaced elements
+      // check at runtime because it may get assigned a namespace when its
+      // parent normalizes children
+      vnode = new VNode(
+        tag, data, children,
+        undefined, undefined, context
+      );
+    }
+  } else {
+    // direct component options / constructor
+    vnode = createComponent(tag, data, context, children);
+  }
+  if (Array.isArray(vnode)) {
+    return vnode
+  } else if (isDef(vnode)) {
+    if (isDef(ns)) { applyNS(vnode, ns); }
+    if (isDef(data)) { registerDeepBindings(data); }
+    return vnode
+  } else {
+    return createEmptyVNode()
+  }
+}
+
+function applyNS (vnode, ns, force) {
+  vnode.ns = ns;
+  if (vnode.tag === 'foreignObject') {
+    // use default namespace inside foreignObject
+    ns = undefined;
+    force = true;
+  }
+  if (isDef(vnode.children)) {
+    for (var i = 0, l = vnode.children.length; i < l; i++) {
+      var child = vnode.children[i];
+      if (isDef(child.tag) && (
+        isUndef(child.ns) || (isTrue(force) && child.tag !== 'svg'))) {
+        applyNS(child, ns, force);
+      }
+    }
+  }
+}
+
+// ref #5318
+// necessary to ensure parent re-render when deep bindings like :style and
+// :class are used on slot nodes
+function registerDeepBindings (data) {
+  if (isObject(data.style)) {
+    traverse(data.style);
+  }
+  if (isObject(data.class)) {
+    traverse(data.class);
+  }
+}
+
+/*  */
+
+function initRender (vm) {
+  vm._vnode = null; // the root of the child tree
+  vm._staticTrees = null; // v-once cached trees
+  var options = vm.$options;
+  var parentVnode = vm.$vnode = options._parentVnode; // the placeholder node in parent tree
+  var renderContext = parentVnode && parentVnode.context;
+  vm.$slots = resolveSlots(options._renderChildren, renderContext);
+  vm.$scopedSlots = emptyObject;
+  // bind the createElement fn to this instance
+  // so that we get proper render context inside it.
+  // args order: tag, data, children, normalizationType, alwaysNormalize
+  // internal version is used by render functions compiled from templates
+  vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
+  // normalization is always applied for the public version, used in
+  // user-written render functions.
+  vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
+
+  // $attrs & $listeners are exposed for easier HOC creation.
+  // they need to be reactive so that HOCs using them are always updated
+  var parentData = parentVnode && parentVnode.data;
+
+  /* istanbul ignore else */
+  {
+    defineReactive$$1(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
+      !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
+    }, true);
+    defineReactive$$1(vm, '$listeners', options._parentListeners || emptyObject, function () {
+      !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
+    }, true);
+  }
+}
+
+var currentRenderingInstance = null;
+
+function renderMixin (Vue) {
+  // install runtime convenience helpers
+  installRenderHelpers(Vue.prototype);
+
+  Vue.prototype.$nextTick = function (fn) {
+    return nextTick(fn, this)
+  };
+
+  Vue.prototype._render = function () {
+    var vm = this;
+    var ref = vm.$options;
+    var render = ref.render;
+    var _parentVnode = ref._parentVnode;
+
+    if (_parentVnode) {
+      vm.$scopedSlots = normalizeScopedSlots(
+        _parentVnode.data.scopedSlots,
+        vm.$slots,
+        vm.$scopedSlots
+      );
+    }
+
+    // set parent vnode. this allows render functions to have access
+    // to the data on the placeholder node.
+    vm.$vnode = _parentVnode;
+    // render self
+    var vnode;
+    try {
+      // There's no need to maintain a stack becaues all render fns are called
+      // separately from one another. Nested component's render fns are called
+      // when parent component is patched.
+      currentRenderingInstance = vm;
+      vnode = render.call(vm._renderProxy, vm.$createElement);
+    } catch (e) {
+      handleError(e, vm, "render");
+      // return error render result,
+      // or previous vnode to prevent render error causing blank component
+      /* istanbul ignore else */
+      if (vm.$options.renderError) {
+        try {
+          vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e);
+        } catch (e) {
+          handleError(e, vm, "renderError");
+          vnode = vm._vnode;
+        }
+      } else {
+        vnode = vm._vnode;
+      }
+    } finally {
+      currentRenderingInstance = null;
+    }
+    // if the returned array contains only a single node, allow it
+    if (Array.isArray(vnode) && vnode.length === 1) {
+      vnode = vnode[0];
+    }
+    // return empty vnode in case the render function errored out
+    if (!(vnode instanceof VNode)) {
+      if (Array.isArray(vnode)) {
+        warn(
+          'Multiple root nodes returned from render function. Render function ' +
+          'should return a single root node.',
+          vm
+        );
+      }
+      vnode = createEmptyVNode();
+    }
+    // set parent
+    vnode.parent = _parentVnode;
+    return vnode
+  };
+}
+
+/*  */
+
 function ensureCtor (comp, base) {
   if (
     comp.__esModule ||
@@ -70393,8 +74638,7 @@ function createAsyncPlaceholder (
 
 function resolveAsyncComponent (
   factory,
-  baseCtor,
-  context
+  baseCtor
 ) {
   if (isTrue(factory.error) && isDef(factory.errorComp)) {
     return factory.errorComp
@@ -70404,24 +74648,39 @@ function resolveAsyncComponent (
     return factory.resolved
   }
 
+  var owner = currentRenderingInstance;
+  if (owner && isDef(factory.owners) && factory.owners.indexOf(owner) === -1) {
+    // already pending
+    factory.owners.push(owner);
+  }
+
   if (isTrue(factory.loading) && isDef(factory.loadingComp)) {
     return factory.loadingComp
   }
 
-  if (isDef(factory.contexts)) {
-    // already pending
-    factory.contexts.push(context);
-  } else {
-    var contexts = factory.contexts = [context];
+  if (owner && !isDef(factory.owners)) {
+    var owners = factory.owners = [owner];
     var sync = true;
+    var timerLoading = null;
+    var timerTimeout = null
+
+    ;(owner).$on('hook:destroyed', function () { return remove(owners, owner); });
 
     var forceRender = function (renderCompleted) {
-      for (var i = 0, l = contexts.length; i < l; i++) {
-        contexts[i].$forceUpdate();
+      for (var i = 0, l = owners.length; i < l; i++) {
+        (owners[i]).$forceUpdate();
       }
 
       if (renderCompleted) {
-        contexts.length = 0;
+        owners.length = 0;
+        if (timerLoading !== null) {
+          clearTimeout(timerLoading);
+          timerLoading = null;
+        }
+        if (timerTimeout !== null) {
+          clearTimeout(timerTimeout);
+          timerTimeout = null;
+        }
       }
     };
 
@@ -70433,12 +74692,12 @@ function resolveAsyncComponent (
       if (!sync) {
         forceRender(true);
       } else {
-        contexts.length = 0;
+        owners.length = 0;
       }
     });
 
     var reject = once(function (reason) {
-      "development" !== 'production' && warn(
+      warn(
         "Failed to resolve async component: " + (String(factory)) +
         (reason ? ("\nReason: " + reason) : '')
       );
@@ -70451,12 +74710,12 @@ function resolveAsyncComponent (
     var res = factory(resolve, reject);
 
     if (isObject(res)) {
-      if (typeof res.then === 'function') {
+      if (isPromise(res)) {
         // () => Promise
         if (isUndef(factory.resolved)) {
           res.then(resolve, reject);
         }
-      } else if (isDef(res.component) && typeof res.component.then === 'function') {
+      } else if (isPromise(res.component)) {
         res.component.then(resolve, reject);
 
         if (isDef(res.error)) {
@@ -70468,7 +74727,8 @@ function resolveAsyncComponent (
           if (res.delay === 0) {
             factory.loading = true;
           } else {
-            setTimeout(function () {
+            timerLoading = setTimeout(function () {
+              timerLoading = null;
               if (isUndef(factory.resolved) && isUndef(factory.error)) {
                 factory.loading = true;
                 forceRender(false);
@@ -70478,12 +74738,11 @@ function resolveAsyncComponent (
         }
 
         if (isDef(res.timeout)) {
-          setTimeout(function () {
+          timerTimeout = setTimeout(function () {
+            timerTimeout = null;
             if (isUndef(factory.resolved)) {
               reject(
-                 true
-                  ? ("timeout (" + (res.timeout) + "ms)")
-                  : null
+                "timeout (" + (res.timeout) + "ms)"
               );
             }
           }, res.timeout);
@@ -70630,7 +74889,7 @@ function eventsMixin (Vue) {
 
   Vue.prototype.$emit = function (event) {
     var vm = this;
-    if (true) {
+    {
       var lowerCaseEvent = event.toLowerCase();
       if (lowerCaseEvent !== event && vm._events[lowerCaseEvent]) {
         tip(
@@ -70646,82 +74905,13 @@ function eventsMixin (Vue) {
     if (cbs) {
       cbs = cbs.length > 1 ? toArray(cbs) : cbs;
       var args = toArray(arguments, 1);
+      var info = "event handler for \"" + event + "\"";
       for (var i = 0, l = cbs.length; i < l; i++) {
-        try {
-          cbs[i].apply(vm, args);
-        } catch (e) {
-          handleError(e, vm, ("event handler for \"" + event + "\""));
-        }
+        invokeWithErrorHandling(cbs[i], vm, args, vm, info);
       }
     }
     return vm
   };
-}
-
-/*  */
-
-
-
-/**
- * Runtime helper for resolving raw children VNodes into a slot object.
- */
-function resolveSlots (
-  children,
-  context
-) {
-  var slots = {};
-  if (!children) {
-    return slots
-  }
-  for (var i = 0, l = children.length; i < l; i++) {
-    var child = children[i];
-    var data = child.data;
-    // remove slot attribute if the node is resolved as a Vue slot node
-    if (data && data.attrs && data.attrs.slot) {
-      delete data.attrs.slot;
-    }
-    // named slots should only be respected if the vnode was rendered in the
-    // same context.
-    if ((child.context === context || child.fnContext === context) &&
-      data && data.slot != null
-    ) {
-      var name = data.slot;
-      var slot = (slots[name] || (slots[name] = []));
-      if (child.tag === 'template') {
-        slot.push.apply(slot, child.children || []);
-      } else {
-        slot.push(child);
-      }
-    } else {
-      (slots.default || (slots.default = [])).push(child);
-    }
-  }
-  // ignore slots that contains only whitespace
-  for (var name$1 in slots) {
-    if (slots[name$1].every(isWhitespace)) {
-      delete slots[name$1];
-    }
-  }
-  return slots
-}
-
-function isWhitespace (node) {
-  return (node.isComment && !node.asyncFactory) || node.text === ' '
-}
-
-function resolveScopedSlots (
-  fns, // see flow/vnode
-  res
-) {
-  res = res || {};
-  for (var i = 0; i < fns.length; i++) {
-    if (Array.isArray(fns[i])) {
-      resolveScopedSlots(fns[i], res);
-    } else {
-      res[fns[i].key] = fns[i].fn;
-    }
-  }
-  return res
 }
 
 /*  */
@@ -70854,7 +75044,7 @@ function mountComponent (
   vm.$el = el;
   if (!vm.$options.render) {
     vm.$options.render = createEmptyVNode;
-    if (true) {
+    {
       /* istanbul ignore if */
       if ((vm.$options.template && vm.$options.template.charAt(0) !== '#') ||
         vm.$options.el || el) {
@@ -70876,7 +75066,7 @@ function mountComponent (
 
   var updateComponent;
   /* istanbul ignore if */
-  if ("development" !== 'production' && config.performance && mark) {
+  if (config.performance && mark) {
     updateComponent = function () {
       var name = vm._name;
       var id = vm._uid;
@@ -70927,17 +75117,31 @@ function updateChildComponent (
   parentVnode,
   renderChildren
 ) {
-  if (true) {
+  {
     isUpdatingChildComponent = true;
   }
 
   // determine whether component has slot children
-  // we need to do this before overwriting $options._renderChildren
-  var hasChildren = !!(
+  // we need to do this before overwriting $options._renderChildren.
+
+  // check if there are dynamic scopedSlots (hand-written or compiled but with
+  // dynamic slot names). Static scoped slots compiled from template has the
+  // "$stable" marker.
+  var newScopedSlots = parentVnode.data.scopedSlots;
+  var oldScopedSlots = vm.$scopedSlots;
+  var hasDynamicScopedSlot = !!(
+    (newScopedSlots && !newScopedSlots.$stable) ||
+    (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
+    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
+  );
+
+  // Any static slot children from the parent may have changed during parent's
+  // update. Dynamic scoped slots may also have changed. In such cases, a forced
+  // update is necessary to ensure correctness.
+  var needsForceUpdate = !!(
     renderChildren ||               // has new static slots
     vm.$options._renderChildren ||  // has old static slots
-    parentVnode.data.scopedSlots || // has new scoped slots
-    vm.$scopedSlots !== emptyObject // has old scoped slots
+    hasDynamicScopedSlot
   );
 
   vm.$options._parentVnode = parentVnode;
@@ -70976,12 +75180,12 @@ function updateChildComponent (
   updateComponentListeners(vm, listeners, oldListeners);
 
   // resolve slots + force update if has children
-  if (hasChildren) {
+  if (needsForceUpdate) {
     vm.$slots = resolveSlots(renderChildren, parentVnode.context);
     vm.$forceUpdate();
   }
 
-  if (true) {
+  {
     isUpdatingChildComponent = false;
   }
 }
@@ -71031,13 +75235,10 @@ function callHook (vm, hook) {
   // #7573 disable dep collection when invoking lifecycle hooks
   pushTarget();
   var handlers = vm.$options[hook];
+  var info = hook + " hook";
   if (handlers) {
     for (var i = 0, j = handlers.length; i < j; i++) {
-      try {
-        handlers[i].call(vm);
-      } catch (e) {
-        handleError(e, vm, (hook + " hook"));
-      }
+      invokeWithErrorHandling(handlers[i], vm, null, vm, info);
     }
   }
   if (vm._hasHookEvent) {
@@ -71064,16 +75265,48 @@ var index = 0;
 function resetSchedulerState () {
   index = queue.length = activatedChildren.length = 0;
   has = {};
-  if (true) {
+  {
     circular = {};
   }
   waiting = flushing = false;
+}
+
+// Async edge case #6566 requires saving the timestamp when event listeners are
+// attached. However, calling performance.now() has a perf overhead especially
+// if the page has thousands of event listeners. Instead, we take a timestamp
+// every time the scheduler flushes and use that for all event listeners
+// attached during that flush.
+var currentFlushTimestamp = 0;
+
+// Async edge case fix requires storing an event listener's attach timestamp.
+var getNow = Date.now;
+
+// Determine what event timestamp the browser is using. Annoyingly, the
+// timestamp can either be hi-res (relative to page load) or low-res
+// (relative to UNIX epoch), so in order to compare time we have to use the
+// same timestamp type when saving the flush timestamp.
+// All IE versions use low-res event timestamps, and have problematic clock
+// implementations (#9632)
+if (inBrowser && !isIE) {
+  var performance = window.performance;
+  if (
+    performance &&
+    typeof performance.now === 'function' &&
+    getNow() > document.createEvent('Event').timeStamp
+  ) {
+    // if the event timestamp, although evaluated AFTER the Date.now(), is
+    // smaller than it, it means the event is using a hi-res timestamp,
+    // and we need to use the hi-res version for event listener timestamps as
+    // well.
+    getNow = function () { return performance.now(); };
+  }
 }
 
 /**
  * Flush both queues and run the watchers.
  */
 function flushSchedulerQueue () {
+  currentFlushTimestamp = getNow();
   flushing = true;
   var watcher, id;
 
@@ -71098,7 +75331,7 @@ function flushSchedulerQueue () {
     has[id] = null;
     watcher.run();
     // in dev build, check and stop circular updates.
-    if ("development" !== 'production' && has[id] != null) {
+    if (has[id] != null) {
       circular[id] = (circular[id] || 0) + 1;
       if (circular[id] > MAX_UPDATE_COUNT) {
         warn(
@@ -71184,7 +75417,7 @@ function queueWatcher (watcher) {
     if (!waiting) {
       waiting = true;
 
-      if ("development" !== 'production' && !config.async) {
+      if (!config.async) {
         flushSchedulerQueue();
         return
       }
@@ -71197,7 +75430,7 @@ function queueWatcher (watcher) {
 
 
 
-var uid$1 = 0;
+var uid$2 = 0;
 
 /**
  * A watcher parses an expression, collects dependencies,
@@ -71227,16 +75460,14 @@ var Watcher = function Watcher (
     this.deep = this.user = this.lazy = this.sync = false;
   }
   this.cb = cb;
-  this.id = ++uid$1; // uid for batching
+  this.id = ++uid$2; // uid for batching
   this.active = true;
   this.dirty = this.lazy; // for lazy watchers
   this.deps = [];
   this.newDeps = [];
   this.depIds = new _Set();
   this.newDepIds = new _Set();
-  this.expression =  true
-    ? expOrFn.toString()
-    : '';
+  this.expression = expOrFn.toString();
   // parse expression for getter
   if (typeof expOrFn === 'function') {
     this.getter = expOrFn;
@@ -71244,7 +75475,7 @@ var Watcher = function Watcher (
     this.getter = parsePath(expOrFn);
     if (!this.getter) {
       this.getter = noop;
-      "development" !== 'production' && warn(
+      warn(
         "Failed watching path: \"" + expOrFn + "\" " +
         'Watcher only accepts simple dot-delimited paths. ' +
         'For full control, use a function instead.',
@@ -71453,7 +75684,7 @@ function initProps (vm, propsOptions) {
     keys.push(key);
     var value = validateProp(key, propsOptions, propsData, vm);
     /* istanbul ignore else */
-    if (true) {
+    {
       var hyphenatedKey = hyphenate(key);
       if (isReservedAttribute(hyphenatedKey) ||
           config.isReservedAttr(hyphenatedKey)) {
@@ -71473,8 +75704,6 @@ function initProps (vm, propsOptions) {
           );
         }
       });
-    } else {
-      defineReactive$$1(props, key, value);
     }
     // static props are already proxied on the component's prototype
     // during Vue.extend(). We only need to proxy props defined at
@@ -71495,7 +75724,7 @@ function initData (vm) {
     : data || {};
   if (!isPlainObject(data)) {
     data = {};
-    "development" !== 'production' && warn(
+    warn(
       'data functions should return an object:\n' +
       'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
       vm
@@ -71508,7 +75737,7 @@ function initData (vm) {
   var i = keys.length;
   while (i--) {
     var key = keys[i];
-    if (true) {
+    {
       if (methods && hasOwn(methods, key)) {
         warn(
           ("Method \"" + key + "\" has already been defined as a data property."),
@@ -71517,7 +75746,7 @@ function initData (vm) {
       }
     }
     if (props && hasOwn(props, key)) {
-      "development" !== 'production' && warn(
+      warn(
         "The data property \"" + key + "\" is already declared as a prop. " +
         "Use prop default value instead.",
         vm
@@ -71554,7 +75783,7 @@ function initComputed (vm, computed) {
   for (var key in computed) {
     var userDef = computed[key];
     var getter = typeof userDef === 'function' ? userDef : userDef.get;
-    if ("development" !== 'production' && getter == null) {
+    if (getter == null) {
       warn(
         ("Getter is missing for computed property \"" + key + "\"."),
         vm
@@ -71576,7 +75805,7 @@ function initComputed (vm, computed) {
     // at instantiation here.
     if (!(key in vm)) {
       defineComputed(vm, key, userDef);
-    } else if (true) {
+    } else {
       if (key in vm.$data) {
         warn(("The computed property \"" + key + "\" is already defined in data."), vm);
       } else if (vm.$options.props && key in vm.$options.props) {
@@ -71605,8 +75834,7 @@ function defineComputed (
       : noop;
     sharedPropertyDefinition.set = userDef.set || noop;
   }
-  if ("development" !== 'production' &&
-      sharedPropertyDefinition.set === noop) {
+  if (sharedPropertyDefinition.set === noop) {
     sharedPropertyDefinition.set = function () {
       warn(
         ("Computed property \"" + key + "\" was assigned to but it has no setter."),
@@ -71641,7 +75869,7 @@ function createGetterInvoker(fn) {
 function initMethods (vm, methods) {
   var props = vm.$options.props;
   for (var key in methods) {
-    if (true) {
+    {
       if (typeof methods[key] !== 'function') {
         warn(
           "Method \"" + key + "\" has type \"" + (typeof methods[key]) + "\" in the component definition. " +
@@ -71703,7 +75931,7 @@ function stateMixin (Vue) {
   dataDef.get = function () { return this._data };
   var propsDef = {};
   propsDef.get = function () { return this._props };
-  if (true) {
+  {
     dataDef.set = function () {
       warn(
         'Avoid replacing instance root $data. ' +
@@ -71748,943 +75976,6 @@ function stateMixin (Vue) {
 
 /*  */
 
-function initProvide (vm) {
-  var provide = vm.$options.provide;
-  if (provide) {
-    vm._provided = typeof provide === 'function'
-      ? provide.call(vm)
-      : provide;
-  }
-}
-
-function initInjections (vm) {
-  var result = resolveInject(vm.$options.inject, vm);
-  if (result) {
-    toggleObserving(false);
-    Object.keys(result).forEach(function (key) {
-      /* istanbul ignore else */
-      if (true) {
-        defineReactive$$1(vm, key, result[key], function () {
-          warn(
-            "Avoid mutating an injected value directly since the changes will be " +
-            "overwritten whenever the provided component re-renders. " +
-            "injection being mutated: \"" + key + "\"",
-            vm
-          );
-        });
-      } else {
-        defineReactive$$1(vm, key, result[key]);
-      }
-    });
-    toggleObserving(true);
-  }
-}
-
-function resolveInject (inject, vm) {
-  if (inject) {
-    // inject is :any because flow is not smart enough to figure out cached
-    var result = Object.create(null);
-    var keys = hasSymbol
-      ? Reflect.ownKeys(inject).filter(function (key) {
-        /* istanbul ignore next */
-        return Object.getOwnPropertyDescriptor(inject, key).enumerable
-      })
-      : Object.keys(inject);
-
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
-      var provideKey = inject[key].from;
-      var source = vm;
-      while (source) {
-        if (source._provided && hasOwn(source._provided, provideKey)) {
-          result[key] = source._provided[provideKey];
-          break
-        }
-        source = source.$parent;
-      }
-      if (!source) {
-        if ('default' in inject[key]) {
-          var provideDefault = inject[key].default;
-          result[key] = typeof provideDefault === 'function'
-            ? provideDefault.call(vm)
-            : provideDefault;
-        } else if (true) {
-          warn(("Injection \"" + key + "\" not found"), vm);
-        }
-      }
-    }
-    return result
-  }
-}
-
-/*  */
-
-/**
- * Runtime helper for rendering v-for lists.
- */
-function renderList (
-  val,
-  render
-) {
-  var ret, i, l, keys, key;
-  if (Array.isArray(val) || typeof val === 'string') {
-    ret = new Array(val.length);
-    for (i = 0, l = val.length; i < l; i++) {
-      ret[i] = render(val[i], i);
-    }
-  } else if (typeof val === 'number') {
-    ret = new Array(val);
-    for (i = 0; i < val; i++) {
-      ret[i] = render(i + 1, i);
-    }
-  } else if (isObject(val)) {
-    keys = Object.keys(val);
-    ret = new Array(keys.length);
-    for (i = 0, l = keys.length; i < l; i++) {
-      key = keys[i];
-      ret[i] = render(val[key], key, i);
-    }
-  }
-  if (!isDef(ret)) {
-    ret = [];
-  }
-  (ret)._isVList = true;
-  return ret
-}
-
-/*  */
-
-/**
- * Runtime helper for rendering <slot>
- */
-function renderSlot (
-  name,
-  fallback,
-  props,
-  bindObject
-) {
-  var scopedSlotFn = this.$scopedSlots[name];
-  var nodes;
-  if (scopedSlotFn) { // scoped slot
-    props = props || {};
-    if (bindObject) {
-      if ("development" !== 'production' && !isObject(bindObject)) {
-        warn(
-          'slot v-bind without argument expects an Object',
-          this
-        );
-      }
-      props = extend(extend({}, bindObject), props);
-    }
-    nodes = scopedSlotFn(props) || fallback;
-  } else {
-    nodes = this.$slots[name] || fallback;
-  }
-
-  var target = props && props.slot;
-  if (target) {
-    return this.$createElement('template', { slot: target }, nodes)
-  } else {
-    return nodes
-  }
-}
-
-/*  */
-
-/**
- * Runtime helper for resolving filters
- */
-function resolveFilter (id) {
-  return resolveAsset(this.$options, 'filters', id, true) || identity
-}
-
-/*  */
-
-function isKeyNotMatch (expect, actual) {
-  if (Array.isArray(expect)) {
-    return expect.indexOf(actual) === -1
-  } else {
-    return expect !== actual
-  }
-}
-
-/**
- * Runtime helper for checking keyCodes from config.
- * exposed as Vue.prototype._k
- * passing in eventKeyName as last argument separately for backwards compat
- */
-function checkKeyCodes (
-  eventKeyCode,
-  key,
-  builtInKeyCode,
-  eventKeyName,
-  builtInKeyName
-) {
-  var mappedKeyCode = config.keyCodes[key] || builtInKeyCode;
-  if (builtInKeyName && eventKeyName && !config.keyCodes[key]) {
-    return isKeyNotMatch(builtInKeyName, eventKeyName)
-  } else if (mappedKeyCode) {
-    return isKeyNotMatch(mappedKeyCode, eventKeyCode)
-  } else if (eventKeyName) {
-    return hyphenate(eventKeyName) !== key
-  }
-}
-
-/*  */
-
-/**
- * Runtime helper for merging v-bind="object" into a VNode's data.
- */
-function bindObjectProps (
-  data,
-  tag,
-  value,
-  asProp,
-  isSync
-) {
-  if (value) {
-    if (!isObject(value)) {
-      "development" !== 'production' && warn(
-        'v-bind without argument expects an Object or Array value',
-        this
-      );
-    } else {
-      if (Array.isArray(value)) {
-        value = toObject(value);
-      }
-      var hash;
-      var loop = function ( key ) {
-        if (
-          key === 'class' ||
-          key === 'style' ||
-          isReservedAttribute(key)
-        ) {
-          hash = data;
-        } else {
-          var type = data.attrs && data.attrs.type;
-          hash = asProp || config.mustUseProp(tag, type, key)
-            ? data.domProps || (data.domProps = {})
-            : data.attrs || (data.attrs = {});
-        }
-        var camelizedKey = camelize(key);
-        if (!(key in hash) && !(camelizedKey in hash)) {
-          hash[key] = value[key];
-
-          if (isSync) {
-            var on = data.on || (data.on = {});
-            on[("update:" + camelizedKey)] = function ($event) {
-              value[key] = $event;
-            };
-          }
-        }
-      };
-
-      for (var key in value) loop( key );
-    }
-  }
-  return data
-}
-
-/*  */
-
-/**
- * Runtime helper for rendering static trees.
- */
-function renderStatic (
-  index,
-  isInFor
-) {
-  var cached = this._staticTrees || (this._staticTrees = []);
-  var tree = cached[index];
-  // if has already-rendered static tree and not inside v-for,
-  // we can reuse the same tree.
-  if (tree && !isInFor) {
-    return tree
-  }
-  // otherwise, render a fresh tree.
-  tree = cached[index] = this.$options.staticRenderFns[index].call(
-    this._renderProxy,
-    null,
-    this // for render fns generated for functional component templates
-  );
-  markStatic(tree, ("__static__" + index), false);
-  return tree
-}
-
-/**
- * Runtime helper for v-once.
- * Effectively it means marking the node as static with a unique key.
- */
-function markOnce (
-  tree,
-  index,
-  key
-) {
-  markStatic(tree, ("__once__" + index + (key ? ("_" + key) : "")), true);
-  return tree
-}
-
-function markStatic (
-  tree,
-  key,
-  isOnce
-) {
-  if (Array.isArray(tree)) {
-    for (var i = 0; i < tree.length; i++) {
-      if (tree[i] && typeof tree[i] !== 'string') {
-        markStaticNode(tree[i], (key + "_" + i), isOnce);
-      }
-    }
-  } else {
-    markStaticNode(tree, key, isOnce);
-  }
-}
-
-function markStaticNode (node, key, isOnce) {
-  node.isStatic = true;
-  node.key = key;
-  node.isOnce = isOnce;
-}
-
-/*  */
-
-function bindObjectListeners (data, value) {
-  if (value) {
-    if (!isPlainObject(value)) {
-      "development" !== 'production' && warn(
-        'v-on without argument expects an Object value',
-        this
-      );
-    } else {
-      var on = data.on = data.on ? extend({}, data.on) : {};
-      for (var key in value) {
-        var existing = on[key];
-        var ours = value[key];
-        on[key] = existing ? [].concat(existing, ours) : ours;
-      }
-    }
-  }
-  return data
-}
-
-/*  */
-
-function installRenderHelpers (target) {
-  target._o = markOnce;
-  target._n = toNumber;
-  target._s = toString;
-  target._l = renderList;
-  target._t = renderSlot;
-  target._q = looseEqual;
-  target._i = looseIndexOf;
-  target._m = renderStatic;
-  target._f = resolveFilter;
-  target._k = checkKeyCodes;
-  target._b = bindObjectProps;
-  target._v = createTextVNode;
-  target._e = createEmptyVNode;
-  target._u = resolveScopedSlots;
-  target._g = bindObjectListeners;
-}
-
-/*  */
-
-function FunctionalRenderContext (
-  data,
-  props,
-  children,
-  parent,
-  Ctor
-) {
-  var options = Ctor.options;
-  // ensure the createElement function in functional components
-  // gets a unique context - this is necessary for correct named slot check
-  var contextVm;
-  if (hasOwn(parent, '_uid')) {
-    contextVm = Object.create(parent);
-    // $flow-disable-line
-    contextVm._original = parent;
-  } else {
-    // the context vm passed in is a functional context as well.
-    // in this case we want to make sure we are able to get a hold to the
-    // real context instance.
-    contextVm = parent;
-    // $flow-disable-line
-    parent = parent._original;
-  }
-  var isCompiled = isTrue(options._compiled);
-  var needNormalization = !isCompiled;
-
-  this.data = data;
-  this.props = props;
-  this.children = children;
-  this.parent = parent;
-  this.listeners = data.on || emptyObject;
-  this.injections = resolveInject(options.inject, parent);
-  this.slots = function () { return resolveSlots(children, parent); };
-
-  // support for compiled functional template
-  if (isCompiled) {
-    // exposing $options for renderStatic()
-    this.$options = options;
-    // pre-resolve slots for renderSlot()
-    this.$slots = this.slots();
-    this.$scopedSlots = data.scopedSlots || emptyObject;
-  }
-
-  if (options._scopeId) {
-    this._c = function (a, b, c, d) {
-      var vnode = createElement(contextVm, a, b, c, d, needNormalization);
-      if (vnode && !Array.isArray(vnode)) {
-        vnode.fnScopeId = options._scopeId;
-        vnode.fnContext = parent;
-      }
-      return vnode
-    };
-  } else {
-    this._c = function (a, b, c, d) { return createElement(contextVm, a, b, c, d, needNormalization); };
-  }
-}
-
-installRenderHelpers(FunctionalRenderContext.prototype);
-
-function createFunctionalComponent (
-  Ctor,
-  propsData,
-  data,
-  contextVm,
-  children
-) {
-  var options = Ctor.options;
-  var props = {};
-  var propOptions = options.props;
-  if (isDef(propOptions)) {
-    for (var key in propOptions) {
-      props[key] = validateProp(key, propOptions, propsData || emptyObject);
-    }
-  } else {
-    if (isDef(data.attrs)) { mergeProps(props, data.attrs); }
-    if (isDef(data.props)) { mergeProps(props, data.props); }
-  }
-
-  var renderContext = new FunctionalRenderContext(
-    data,
-    props,
-    children,
-    contextVm,
-    Ctor
-  );
-
-  var vnode = options.render.call(null, renderContext._c, renderContext);
-
-  if (vnode instanceof VNode) {
-    return cloneAndMarkFunctionalResult(vnode, data, renderContext.parent, options, renderContext)
-  } else if (Array.isArray(vnode)) {
-    var vnodes = normalizeChildren(vnode) || [];
-    var res = new Array(vnodes.length);
-    for (var i = 0; i < vnodes.length; i++) {
-      res[i] = cloneAndMarkFunctionalResult(vnodes[i], data, renderContext.parent, options, renderContext);
-    }
-    return res
-  }
-}
-
-function cloneAndMarkFunctionalResult (vnode, data, contextVm, options, renderContext) {
-  // #7817 clone node before setting fnContext, otherwise if the node is reused
-  // (e.g. it was from a cached normal slot) the fnContext causes named slots
-  // that should not be matched to match.
-  var clone = cloneVNode(vnode);
-  clone.fnContext = contextVm;
-  clone.fnOptions = options;
-  if (true) {
-    (clone.devtoolsMeta = clone.devtoolsMeta || {}).renderContext = renderContext;
-  }
-  if (data.slot) {
-    (clone.data || (clone.data = {})).slot = data.slot;
-  }
-  return clone
-}
-
-function mergeProps (to, from) {
-  for (var key in from) {
-    to[camelize(key)] = from[key];
-  }
-}
-
-/*  */
-
-/*  */
-
-/*  */
-
-/*  */
-
-// inline hooks to be invoked on component VNodes during patch
-var componentVNodeHooks = {
-  init: function init (vnode, hydrating) {
-    if (
-      vnode.componentInstance &&
-      !vnode.componentInstance._isDestroyed &&
-      vnode.data.keepAlive
-    ) {
-      // kept-alive components, treat as a patch
-      var mountedNode = vnode; // work around flow
-      componentVNodeHooks.prepatch(mountedNode, mountedNode);
-    } else {
-      var child = vnode.componentInstance = createComponentInstanceForVnode(
-        vnode,
-        activeInstance
-      );
-      child.$mount(hydrating ? vnode.elm : undefined, hydrating);
-    }
-  },
-
-  prepatch: function prepatch (oldVnode, vnode) {
-    var options = vnode.componentOptions;
-    var child = vnode.componentInstance = oldVnode.componentInstance;
-    updateChildComponent(
-      child,
-      options.propsData, // updated props
-      options.listeners, // updated listeners
-      vnode, // new parent vnode
-      options.children // new children
-    );
-  },
-
-  insert: function insert (vnode) {
-    var context = vnode.context;
-    var componentInstance = vnode.componentInstance;
-    if (!componentInstance._isMounted) {
-      componentInstance._isMounted = true;
-      callHook(componentInstance, 'mounted');
-    }
-    if (vnode.data.keepAlive) {
-      if (context._isMounted) {
-        // vue-router#1212
-        // During updates, a kept-alive component's child components may
-        // change, so directly walking the tree here may call activated hooks
-        // on incorrect children. Instead we push them into a queue which will
-        // be processed after the whole patch process ended.
-        queueActivatedComponent(componentInstance);
-      } else {
-        activateChildComponent(componentInstance, true /* direct */);
-      }
-    }
-  },
-
-  destroy: function destroy (vnode) {
-    var componentInstance = vnode.componentInstance;
-    if (!componentInstance._isDestroyed) {
-      if (!vnode.data.keepAlive) {
-        componentInstance.$destroy();
-      } else {
-        deactivateChildComponent(componentInstance, true /* direct */);
-      }
-    }
-  }
-};
-
-var hooksToMerge = Object.keys(componentVNodeHooks);
-
-function createComponent (
-  Ctor,
-  data,
-  context,
-  children,
-  tag
-) {
-  if (isUndef(Ctor)) {
-    return
-  }
-
-  var baseCtor = context.$options._base;
-
-  // plain options object: turn it into a constructor
-  if (isObject(Ctor)) {
-    Ctor = baseCtor.extend(Ctor);
-  }
-
-  // if at this stage it's not a constructor or an async component factory,
-  // reject.
-  if (typeof Ctor !== 'function') {
-    if (true) {
-      warn(("Invalid Component definition: " + (String(Ctor))), context);
-    }
-    return
-  }
-
-  // async component
-  var asyncFactory;
-  if (isUndef(Ctor.cid)) {
-    asyncFactory = Ctor;
-    Ctor = resolveAsyncComponent(asyncFactory, baseCtor, context);
-    if (Ctor === undefined) {
-      // return a placeholder node for async component, which is rendered
-      // as a comment node but preserves all the raw information for the node.
-      // the information will be used for async server-rendering and hydration.
-      return createAsyncPlaceholder(
-        asyncFactory,
-        data,
-        context,
-        children,
-        tag
-      )
-    }
-  }
-
-  data = data || {};
-
-  // resolve constructor options in case global mixins are applied after
-  // component constructor creation
-  resolveConstructorOptions(Ctor);
-
-  // transform component v-model data into props & events
-  if (isDef(data.model)) {
-    transformModel(Ctor.options, data);
-  }
-
-  // extract props
-  var propsData = extractPropsFromVNodeData(data, Ctor, tag);
-
-  // functional component
-  if (isTrue(Ctor.options.functional)) {
-    return createFunctionalComponent(Ctor, propsData, data, context, children)
-  }
-
-  // extract listeners, since these needs to be treated as
-  // child component listeners instead of DOM listeners
-  var listeners = data.on;
-  // replace with listeners with .native modifier
-  // so it gets processed during parent component patch.
-  data.on = data.nativeOn;
-
-  if (isTrue(Ctor.options.abstract)) {
-    // abstract components do not keep anything
-    // other than props & listeners & slot
-
-    // work around flow
-    var slot = data.slot;
-    data = {};
-    if (slot) {
-      data.slot = slot;
-    }
-  }
-
-  // install component management hooks onto the placeholder node
-  installComponentHooks(data);
-
-  // return a placeholder vnode
-  var name = Ctor.options.name || tag;
-  var vnode = new VNode(
-    ("vue-component-" + (Ctor.cid) + (name ? ("-" + name) : '')),
-    data, undefined, undefined, undefined, context,
-    { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children },
-    asyncFactory
-  );
-
-  return vnode
-}
-
-function createComponentInstanceForVnode (
-  vnode, // we know it's MountedComponentVNode but flow doesn't
-  parent // activeInstance in lifecycle state
-) {
-  var options = {
-    _isComponent: true,
-    _parentVnode: vnode,
-    parent: parent
-  };
-  // check inline-template render functions
-  var inlineTemplate = vnode.data.inlineTemplate;
-  if (isDef(inlineTemplate)) {
-    options.render = inlineTemplate.render;
-    options.staticRenderFns = inlineTemplate.staticRenderFns;
-  }
-  return new vnode.componentOptions.Ctor(options)
-}
-
-function installComponentHooks (data) {
-  var hooks = data.hook || (data.hook = {});
-  for (var i = 0; i < hooksToMerge.length; i++) {
-    var key = hooksToMerge[i];
-    var existing = hooks[key];
-    var toMerge = componentVNodeHooks[key];
-    if (existing !== toMerge && !(existing && existing._merged)) {
-      hooks[key] = existing ? mergeHook$1(toMerge, existing) : toMerge;
-    }
-  }
-}
-
-function mergeHook$1 (f1, f2) {
-  var merged = function (a, b) {
-    // flow complains about extra args which is why we use any
-    f1(a, b);
-    f2(a, b);
-  };
-  merged._merged = true;
-  return merged
-}
-
-// transform component v-model info (value and callback) into
-// prop and event handler respectively.
-function transformModel (options, data) {
-  var prop = (options.model && options.model.prop) || 'value';
-  var event = (options.model && options.model.event) || 'input'
-  ;(data.props || (data.props = {}))[prop] = data.model.value;
-  var on = data.on || (data.on = {});
-  var existing = on[event];
-  var callback = data.model.callback;
-  if (isDef(existing)) {
-    if (
-      Array.isArray(existing)
-        ? existing.indexOf(callback) === -1
-        : existing !== callback
-    ) {
-      on[event] = [callback].concat(existing);
-    }
-  } else {
-    on[event] = callback;
-  }
-}
-
-/*  */
-
-var SIMPLE_NORMALIZE = 1;
-var ALWAYS_NORMALIZE = 2;
-
-// wrapper function for providing a more flexible interface
-// without getting yelled at by flow
-function createElement (
-  context,
-  tag,
-  data,
-  children,
-  normalizationType,
-  alwaysNormalize
-) {
-  if (Array.isArray(data) || isPrimitive(data)) {
-    normalizationType = children;
-    children = data;
-    data = undefined;
-  }
-  if (isTrue(alwaysNormalize)) {
-    normalizationType = ALWAYS_NORMALIZE;
-  }
-  return _createElement(context, tag, data, children, normalizationType)
-}
-
-function _createElement (
-  context,
-  tag,
-  data,
-  children,
-  normalizationType
-) {
-  if (isDef(data) && isDef((data).__ob__)) {
-    "development" !== 'production' && warn(
-      "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
-      'Always create fresh vnode data objects in each render!',
-      context
-    );
-    return createEmptyVNode()
-  }
-  // object syntax in v-bind
-  if (isDef(data) && isDef(data.is)) {
-    tag = data.is;
-  }
-  if (!tag) {
-    // in case of component :is set to falsy value
-    return createEmptyVNode()
-  }
-  // warn against non-primitive key
-  if ("development" !== 'production' &&
-    isDef(data) && isDef(data.key) && !isPrimitive(data.key)
-  ) {
-    {
-      warn(
-        'Avoid using non-primitive value as key, ' +
-        'use string/number value instead.',
-        context
-      );
-    }
-  }
-  // support single function children as default scoped slot
-  if (Array.isArray(children) &&
-    typeof children[0] === 'function'
-  ) {
-    data = data || {};
-    data.scopedSlots = { default: children[0] };
-    children.length = 0;
-  }
-  if (normalizationType === ALWAYS_NORMALIZE) {
-    children = normalizeChildren(children);
-  } else if (normalizationType === SIMPLE_NORMALIZE) {
-    children = simpleNormalizeChildren(children);
-  }
-  var vnode, ns;
-  if (typeof tag === 'string') {
-    var Ctor;
-    ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
-    if (config.isReservedTag(tag)) {
-      // platform built-in elements
-      vnode = new VNode(
-        config.parsePlatformTagName(tag), data, children,
-        undefined, undefined, context
-      );
-    } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
-      // component
-      vnode = createComponent(Ctor, data, context, children, tag);
-    } else {
-      // unknown or unlisted namespaced elements
-      // check at runtime because it may get assigned a namespace when its
-      // parent normalizes children
-      vnode = new VNode(
-        tag, data, children,
-        undefined, undefined, context
-      );
-    }
-  } else {
-    // direct component options / constructor
-    vnode = createComponent(tag, data, context, children);
-  }
-  if (Array.isArray(vnode)) {
-    return vnode
-  } else if (isDef(vnode)) {
-    if (isDef(ns)) { applyNS(vnode, ns); }
-    if (isDef(data)) { registerDeepBindings(data); }
-    return vnode
-  } else {
-    return createEmptyVNode()
-  }
-}
-
-function applyNS (vnode, ns, force) {
-  vnode.ns = ns;
-  if (vnode.tag === 'foreignObject') {
-    // use default namespace inside foreignObject
-    ns = undefined;
-    force = true;
-  }
-  if (isDef(vnode.children)) {
-    for (var i = 0, l = vnode.children.length; i < l; i++) {
-      var child = vnode.children[i];
-      if (isDef(child.tag) && (
-        isUndef(child.ns) || (isTrue(force) && child.tag !== 'svg'))) {
-        applyNS(child, ns, force);
-      }
-    }
-  }
-}
-
-// ref #5318
-// necessary to ensure parent re-render when deep bindings like :style and
-// :class are used on slot nodes
-function registerDeepBindings (data) {
-  if (isObject(data.style)) {
-    traverse(data.style);
-  }
-  if (isObject(data.class)) {
-    traverse(data.class);
-  }
-}
-
-/*  */
-
-function initRender (vm) {
-  vm._vnode = null; // the root of the child tree
-  vm._staticTrees = null; // v-once cached trees
-  var options = vm.$options;
-  var parentVnode = vm.$vnode = options._parentVnode; // the placeholder node in parent tree
-  var renderContext = parentVnode && parentVnode.context;
-  vm.$slots = resolveSlots(options._renderChildren, renderContext);
-  vm.$scopedSlots = emptyObject;
-  // bind the createElement fn to this instance
-  // so that we get proper render context inside it.
-  // args order: tag, data, children, normalizationType, alwaysNormalize
-  // internal version is used by render functions compiled from templates
-  vm._c = function (a, b, c, d) { return createElement(vm, a, b, c, d, false); };
-  // normalization is always applied for the public version, used in
-  // user-written render functions.
-  vm.$createElement = function (a, b, c, d) { return createElement(vm, a, b, c, d, true); };
-
-  // $attrs & $listeners are exposed for easier HOC creation.
-  // they need to be reactive so that HOCs using them are always updated
-  var parentData = parentVnode && parentVnode.data;
-
-  /* istanbul ignore else */
-  if (true) {
-    defineReactive$$1(vm, '$attrs', parentData && parentData.attrs || emptyObject, function () {
-      !isUpdatingChildComponent && warn("$attrs is readonly.", vm);
-    }, true);
-    defineReactive$$1(vm, '$listeners', options._parentListeners || emptyObject, function () {
-      !isUpdatingChildComponent && warn("$listeners is readonly.", vm);
-    }, true);
-  } else {
-    defineReactive$$1(vm, '$attrs', parentData && parentData.attrs || emptyObject, null, true);
-    defineReactive$$1(vm, '$listeners', options._parentListeners || emptyObject, null, true);
-  }
-}
-
-function renderMixin (Vue) {
-  // install runtime convenience helpers
-  installRenderHelpers(Vue.prototype);
-
-  Vue.prototype.$nextTick = function (fn) {
-    return nextTick(fn, this)
-  };
-
-  Vue.prototype._render = function () {
-    var vm = this;
-    var ref = vm.$options;
-    var render = ref.render;
-    var _parentVnode = ref._parentVnode;
-
-    if (_parentVnode) {
-      vm.$scopedSlots = _parentVnode.data.scopedSlots || emptyObject;
-    }
-
-    // set parent vnode. this allows render functions to have access
-    // to the data on the placeholder node.
-    vm.$vnode = _parentVnode;
-    // render self
-    var vnode;
-    try {
-      vnode = render.call(vm._renderProxy, vm.$createElement);
-    } catch (e) {
-      handleError(e, vm, "render");
-      // return error render result,
-      // or previous vnode to prevent render error causing blank component
-      /* istanbul ignore else */
-      if ("development" !== 'production' && vm.$options.renderError) {
-        try {
-          vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e);
-        } catch (e) {
-          handleError(e, vm, "renderError");
-          vnode = vm._vnode;
-        }
-      } else {
-        vnode = vm._vnode;
-      }
-    }
-    // return empty vnode in case the render function errored out
-    if (!(vnode instanceof VNode)) {
-      if ("development" !== 'production' && Array.isArray(vnode)) {
-        warn(
-          'Multiple root nodes returned from render function. Render function ' +
-          'should return a single root node.',
-          vm
-        );
-      }
-      vnode = createEmptyVNode();
-    }
-    // set parent
-    vnode.parent = _parentVnode;
-    return vnode
-  };
-}
-
-/*  */
-
 var uid$3 = 0;
 
 function initMixin (Vue) {
@@ -72695,7 +75986,7 @@ function initMixin (Vue) {
 
     var startTag, endTag;
     /* istanbul ignore if */
-    if ("development" !== 'production' && config.performance && mark) {
+    if (config.performance && mark) {
       startTag = "vue-perf-start:" + (vm._uid);
       endTag = "vue-perf-end:" + (vm._uid);
       mark(startTag);
@@ -72717,10 +76008,8 @@ function initMixin (Vue) {
       );
     }
     /* istanbul ignore else */
-    if (true) {
+    {
       initProxy(vm);
-    } else {
-      vm._renderProxy = vm;
     }
     // expose real self
     vm._self = vm;
@@ -72734,7 +76023,7 @@ function initMixin (Vue) {
     callHook(vm, 'created');
 
     /* istanbul ignore if */
-    if ("development" !== 'production' && config.performance && mark) {
+    if (config.performance && mark) {
       vm._name = formatComponentName(vm, false);
       mark(endTag);
       measure(("vue " + (vm._name) + " init"), startTag, endTag);
@@ -72803,8 +76092,7 @@ function resolveModifiedOptions (Ctor) {
 }
 
 function Vue (options) {
-  if ("development" !== 'production' &&
-    !(this instanceof Vue)
+  if (!(this instanceof Vue)
   ) {
     warn('Vue is a constructor and should be called with the `new` keyword');
   }
@@ -72872,7 +76160,7 @@ function initExtend (Vue) {
     }
 
     var name = extendOptions.name || Super.options.name;
-    if ("development" !== 'production' && name) {
+    if (name) {
       validateComponentName(name);
     }
 
@@ -72955,7 +76243,7 @@ function initAssetRegisters (Vue) {
         return this.options[type + 's'][id]
       } else {
         /* istanbul ignore if */
-        if ("development" !== 'production' && type === 'component') {
+        if (type === 'component') {
           validateComponentName(id);
         }
         if (type === 'component' && isPlainObject(definition)) {
@@ -73112,7 +76400,7 @@ function initGlobalAPI (Vue) {
   // config
   var configDef = {};
   configDef.get = function () { return config; };
-  if (true) {
+  {
     configDef.set = function () {
       warn(
         'Do not replace the Vue.config object, set individual fields instead.'
@@ -73134,6 +76422,12 @@ function initGlobalAPI (Vue) {
   Vue.set = set;
   Vue.delete = del;
   Vue.nextTick = nextTick;
+
+  // 2.6 explicit observable API
+  Vue.observable = function (obj) {
+    observe(obj);
+    return obj
+  };
 
   Vue.options = Object.create(null);
   ASSET_TYPES.forEach(function (type) {
@@ -73170,7 +76464,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.5.22';
+Vue.version = '2.6.10';
 
 /*  */
 
@@ -73190,6 +76484,17 @@ var mustUseProp = function (tag, type, attr) {
 };
 
 var isEnumeratedAttr = makeMap('contenteditable,draggable,spellcheck');
+
+var isValidContentEditableValue = makeMap('events,caret,typing,plaintext-only');
+
+var convertEnumeratedValue = function (key, value) {
+  return isFalsyAttrValue(value) || value === 'false'
+    ? 'false'
+    // allow arbitrary string value for contenteditable
+    : key === 'contenteditable' && isValidContentEditableValue(value)
+      ? value
+      : 'true'
+};
 
 var isBooleanAttr = makeMap(
   'allowfullscreen,async,autofocus,autoplay,checked,compact,controls,declare,' +
@@ -73325,6 +76630,8 @@ var isSVG = makeMap(
   true
 );
 
+var isPreTag = function (tag) { return tag === 'pre'; };
+
 var isReservedTag = function (tag) {
   return isHTMLTag(tag) || isSVG(tag)
 };
@@ -73377,7 +76684,7 @@ function query (el) {
   if (typeof el === 'string') {
     var selected = document.querySelector(el);
     if (!selected) {
-      "development" !== 'production' && warn(
+      warn(
         'Cannot find element: ' + el
       );
       return document.createElement('div')
@@ -73639,7 +76946,7 @@ function createPatchFunction (backend) {
     var children = vnode.children;
     var tag = vnode.tag;
     if (isDef(tag)) {
-      if (true) {
+      {
         if (data && data.pre) {
           creatingElmInVPre++;
         }
@@ -73667,7 +76974,7 @@ function createPatchFunction (backend) {
         insert(parentElm, vnode.elm, refElm);
       }
 
-      if ("development" !== 'production' && data && data.pre) {
+      if (data && data.pre) {
         creatingElmInVPre--;
       }
     } else if (isTrue(vnode.isComment)) {
@@ -73755,7 +77062,7 @@ function createPatchFunction (backend) {
 
   function createChildren (vnode, children, insertedVnodeQueue) {
     if (Array.isArray(children)) {
-      if (true) {
+      {
         checkDuplicateKeys(children);
       }
       for (var i = 0; i < children.length; ++i) {
@@ -73889,7 +77196,7 @@ function createPatchFunction (backend) {
     // during leaving transitions
     var canMove = !removeOnly;
 
-    if (true) {
+    {
       checkDuplicateKeys(newCh);
     }
 
@@ -74027,7 +77334,7 @@ function createPatchFunction (backend) {
       if (isDef(oldCh) && isDef(ch)) {
         if (oldCh !== ch) { updateChildren(elm, oldCh, ch, insertedVnodeQueue, removeOnly); }
       } else if (isDef(ch)) {
-        if (true) {
+        {
           checkDuplicateKeys(ch);
         }
         if (isDef(oldVnode.text)) { nodeOps.setTextContent(elm, ''); }
@@ -74078,7 +77385,7 @@ function createPatchFunction (backend) {
       return true
     }
     // assert node match
-    if (true) {
+    {
       if (!assertNodeMatch(elm, vnode, inVPre)) {
         return false
       }
@@ -74101,8 +77408,7 @@ function createPatchFunction (backend) {
           if (isDef(i = data) && isDef(i = i.domProps) && isDef(i = i.innerHTML)) {
             if (i !== elm.innerHTML) {
               /* istanbul ignore if */
-              if ("development" !== 'production' &&
-                typeof console !== 'undefined' &&
+              if (typeof console !== 'undefined' &&
                 !hydrationBailed
               ) {
                 hydrationBailed = true;
@@ -74127,8 +77433,7 @@ function createPatchFunction (backend) {
             // longer than the virtual children list.
             if (!childrenMatch || childNode) {
               /* istanbul ignore if */
-              if ("development" !== 'production' &&
-                typeof console !== 'undefined' &&
+              if (typeof console !== 'undefined' &&
                 !hydrationBailed
               ) {
                 hydrationBailed = true;
@@ -74202,7 +77507,7 @@ function createPatchFunction (backend) {
             if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
               invokeInsertHook(vnode, insertedVnodeQueue, true);
               return oldVnode
-            } else if (true) {
+            } else {
               warn(
                 'The client-side rendered virtual DOM tree is not matching ' +
                 'server-rendered content. This is likely caused by incorrect ' +
@@ -74314,6 +77619,7 @@ function _update (oldVnode, vnode) {
     } else {
       // existing directive, update
       dir.oldValue = oldDir.value;
+      dir.oldArg = oldDir.arg;
       callHook$1(dir, 'update', vnode, oldVnode);
       if (dir.def && dir.def.componentUpdated) {
         dirsWithPostpatch.push(dir);
@@ -74457,7 +77763,7 @@ function setAttr (el, key, value) {
       el.setAttribute(key, value);
     }
   } else if (isEnumeratedAttr(key)) {
-    el.setAttribute(key, isFalsyAttrValue(value) || value === 'false' ? 'false' : 'true');
+    el.setAttribute(key, convertEnumeratedValue(key, value));
   } else if (isXlink(key)) {
     if (isFalsyAttrValue(value)) {
       el.removeAttributeNS(xlinkNS, getXlinkProp(key));
@@ -74479,8 +77785,8 @@ function baseSetAttr (el, key, value) {
     /* istanbul ignore if */
     if (
       isIE && !isIE9 &&
-      (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT') &&
-      key === 'placeholder' && !el.__ieph
+      el.tagName === 'TEXTAREA' &&
+      key === 'placeholder' && value !== '' && !el.__ieph
     ) {
       var blocker = function (e) {
         e.stopImmediatePropagation();
@@ -74539,16 +77845,653 @@ var klass = {
 
 /*  */
 
-/*  */
+var validDivisionCharRE = /[\w).+\-_$\]]/;
+
+function parseFilters (exp) {
+  var inSingle = false;
+  var inDouble = false;
+  var inTemplateString = false;
+  var inRegex = false;
+  var curly = 0;
+  var square = 0;
+  var paren = 0;
+  var lastFilterIndex = 0;
+  var c, prev, i, expression, filters;
+
+  for (i = 0; i < exp.length; i++) {
+    prev = c;
+    c = exp.charCodeAt(i);
+    if (inSingle) {
+      if (c === 0x27 && prev !== 0x5C) { inSingle = false; }
+    } else if (inDouble) {
+      if (c === 0x22 && prev !== 0x5C) { inDouble = false; }
+    } else if (inTemplateString) {
+      if (c === 0x60 && prev !== 0x5C) { inTemplateString = false; }
+    } else if (inRegex) {
+      if (c === 0x2f && prev !== 0x5C) { inRegex = false; }
+    } else if (
+      c === 0x7C && // pipe
+      exp.charCodeAt(i + 1) !== 0x7C &&
+      exp.charCodeAt(i - 1) !== 0x7C &&
+      !curly && !square && !paren
+    ) {
+      if (expression === undefined) {
+        // first filter, end of expression
+        lastFilterIndex = i + 1;
+        expression = exp.slice(0, i).trim();
+      } else {
+        pushFilter();
+      }
+    } else {
+      switch (c) {
+        case 0x22: inDouble = true; break         // "
+        case 0x27: inSingle = true; break         // '
+        case 0x60: inTemplateString = true; break // `
+        case 0x28: paren++; break                 // (
+        case 0x29: paren--; break                 // )
+        case 0x5B: square++; break                // [
+        case 0x5D: square--; break                // ]
+        case 0x7B: curly++; break                 // {
+        case 0x7D: curly--; break                 // }
+      }
+      if (c === 0x2f) { // /
+        var j = i - 1;
+        var p = (void 0);
+        // find first non-whitespace prev char
+        for (; j >= 0; j--) {
+          p = exp.charAt(j);
+          if (p !== ' ') { break }
+        }
+        if (!p || !validDivisionCharRE.test(p)) {
+          inRegex = true;
+        }
+      }
+    }
+  }
+
+  if (expression === undefined) {
+    expression = exp.slice(0, i).trim();
+  } else if (lastFilterIndex !== 0) {
+    pushFilter();
+  }
+
+  function pushFilter () {
+    (filters || (filters = [])).push(exp.slice(lastFilterIndex, i).trim());
+    lastFilterIndex = i + 1;
+  }
+
+  if (filters) {
+    for (i = 0; i < filters.length; i++) {
+      expression = wrapFilter(expression, filters[i]);
+    }
+  }
+
+  return expression
+}
+
+function wrapFilter (exp, filter) {
+  var i = filter.indexOf('(');
+  if (i < 0) {
+    // _f: resolveFilter
+    return ("_f(\"" + filter + "\")(" + exp + ")")
+  } else {
+    var name = filter.slice(0, i);
+    var args = filter.slice(i + 1);
+    return ("_f(\"" + name + "\")(" + exp + (args !== ')' ? ',' + args : args))
+  }
+}
 
 /*  */
 
+
+
+/* eslint-disable no-unused-vars */
+function baseWarn (msg, range) {
+  console.error(("[Vue compiler]: " + msg));
+}
+/* eslint-enable no-unused-vars */
+
+function pluckModuleFunction (
+  modules,
+  key
+) {
+  return modules
+    ? modules.map(function (m) { return m[key]; }).filter(function (_) { return _; })
+    : []
+}
+
+function addProp (el, name, value, range, dynamic) {
+  (el.props || (el.props = [])).push(rangeSetItem({ name: name, value: value, dynamic: dynamic }, range));
+  el.plain = false;
+}
+
+function addAttr (el, name, value, range, dynamic) {
+  var attrs = dynamic
+    ? (el.dynamicAttrs || (el.dynamicAttrs = []))
+    : (el.attrs || (el.attrs = []));
+  attrs.push(rangeSetItem({ name: name, value: value, dynamic: dynamic }, range));
+  el.plain = false;
+}
+
+// add a raw attr (use this in preTransforms)
+function addRawAttr (el, name, value, range) {
+  el.attrsMap[name] = value;
+  el.attrsList.push(rangeSetItem({ name: name, value: value }, range));
+}
+
+function addDirective (
+  el,
+  name,
+  rawName,
+  value,
+  arg,
+  isDynamicArg,
+  modifiers,
+  range
+) {
+  (el.directives || (el.directives = [])).push(rangeSetItem({
+    name: name,
+    rawName: rawName,
+    value: value,
+    arg: arg,
+    isDynamicArg: isDynamicArg,
+    modifiers: modifiers
+  }, range));
+  el.plain = false;
+}
+
+function prependModifierMarker (symbol, name, dynamic) {
+  return dynamic
+    ? ("_p(" + name + ",\"" + symbol + "\")")
+    : symbol + name // mark the event as captured
+}
+
+function addHandler (
+  el,
+  name,
+  value,
+  modifiers,
+  important,
+  warn,
+  range,
+  dynamic
+) {
+  modifiers = modifiers || emptyObject;
+  // warn prevent and passive modifier
+  /* istanbul ignore if */
+  if (
+    warn &&
+    modifiers.prevent && modifiers.passive
+  ) {
+    warn(
+      'passive and prevent can\'t be used together. ' +
+      'Passive handler can\'t prevent default event.',
+      range
+    );
+  }
+
+  // normalize click.right and click.middle since they don't actually fire
+  // this is technically browser-specific, but at least for now browsers are
+  // the only target envs that have right/middle clicks.
+  if (modifiers.right) {
+    if (dynamic) {
+      name = "(" + name + ")==='click'?'contextmenu':(" + name + ")";
+    } else if (name === 'click') {
+      name = 'contextmenu';
+      delete modifiers.right;
+    }
+  } else if (modifiers.middle) {
+    if (dynamic) {
+      name = "(" + name + ")==='click'?'mouseup':(" + name + ")";
+    } else if (name === 'click') {
+      name = 'mouseup';
+    }
+  }
+
+  // check capture modifier
+  if (modifiers.capture) {
+    delete modifiers.capture;
+    name = prependModifierMarker('!', name, dynamic);
+  }
+  if (modifiers.once) {
+    delete modifiers.once;
+    name = prependModifierMarker('~', name, dynamic);
+  }
+  /* istanbul ignore if */
+  if (modifiers.passive) {
+    delete modifiers.passive;
+    name = prependModifierMarker('&', name, dynamic);
+  }
+
+  var events;
+  if (modifiers.native) {
+    delete modifiers.native;
+    events = el.nativeEvents || (el.nativeEvents = {});
+  } else {
+    events = el.events || (el.events = {});
+  }
+
+  var newHandler = rangeSetItem({ value: value.trim(), dynamic: dynamic }, range);
+  if (modifiers !== emptyObject) {
+    newHandler.modifiers = modifiers;
+  }
+
+  var handlers = events[name];
+  /* istanbul ignore if */
+  if (Array.isArray(handlers)) {
+    important ? handlers.unshift(newHandler) : handlers.push(newHandler);
+  } else if (handlers) {
+    events[name] = important ? [newHandler, handlers] : [handlers, newHandler];
+  } else {
+    events[name] = newHandler;
+  }
+
+  el.plain = false;
+}
+
+function getRawBindingAttr (
+  el,
+  name
+) {
+  return el.rawAttrsMap[':' + name] ||
+    el.rawAttrsMap['v-bind:' + name] ||
+    el.rawAttrsMap[name]
+}
+
+function getBindingAttr (
+  el,
+  name,
+  getStatic
+) {
+  var dynamicValue =
+    getAndRemoveAttr(el, ':' + name) ||
+    getAndRemoveAttr(el, 'v-bind:' + name);
+  if (dynamicValue != null) {
+    return parseFilters(dynamicValue)
+  } else if (getStatic !== false) {
+    var staticValue = getAndRemoveAttr(el, name);
+    if (staticValue != null) {
+      return JSON.stringify(staticValue)
+    }
+  }
+}
+
+// note: this only removes the attr from the Array (attrsList) so that it
+// doesn't get processed by processAttrs.
+// By default it does NOT remove it from the map (attrsMap) because the map is
+// needed during codegen.
+function getAndRemoveAttr (
+  el,
+  name,
+  removeFromMap
+) {
+  var val;
+  if ((val = el.attrsMap[name]) != null) {
+    var list = el.attrsList;
+    for (var i = 0, l = list.length; i < l; i++) {
+      if (list[i].name === name) {
+        list.splice(i, 1);
+        break
+      }
+    }
+  }
+  if (removeFromMap) {
+    delete el.attrsMap[name];
+  }
+  return val
+}
+
+function getAndRemoveAttrByRegex (
+  el,
+  name
+) {
+  var list = el.attrsList;
+  for (var i = 0, l = list.length; i < l; i++) {
+    var attr = list[i];
+    if (name.test(attr.name)) {
+      list.splice(i, 1);
+      return attr
+    }
+  }
+}
+
+function rangeSetItem (
+  item,
+  range
+) {
+  if (range) {
+    if (range.start != null) {
+      item.start = range.start;
+    }
+    if (range.end != null) {
+      item.end = range.end;
+    }
+  }
+  return item
+}
+
 /*  */
+
+/**
+ * Cross-platform code generation for component v-model
+ */
+function genComponentModel (
+  el,
+  value,
+  modifiers
+) {
+  var ref = modifiers || {};
+  var number = ref.number;
+  var trim = ref.trim;
+
+  var baseValueExpression = '$$v';
+  var valueExpression = baseValueExpression;
+  if (trim) {
+    valueExpression =
+      "(typeof " + baseValueExpression + " === 'string'" +
+      "? " + baseValueExpression + ".trim()" +
+      ": " + baseValueExpression + ")";
+  }
+  if (number) {
+    valueExpression = "_n(" + valueExpression + ")";
+  }
+  var assignment = genAssignmentCode(value, valueExpression);
+
+  el.model = {
+    value: ("(" + value + ")"),
+    expression: JSON.stringify(value),
+    callback: ("function (" + baseValueExpression + ") {" + assignment + "}")
+  };
+}
+
+/**
+ * Cross-platform codegen helper for generating v-model value assignment code.
+ */
+function genAssignmentCode (
+  value,
+  assignment
+) {
+  var res = parseModel(value);
+  if (res.key === null) {
+    return (value + "=" + assignment)
+  } else {
+    return ("$set(" + (res.exp) + ", " + (res.key) + ", " + assignment + ")")
+  }
+}
+
+/**
+ * Parse a v-model expression into a base path and a final key segment.
+ * Handles both dot-path and possible square brackets.
+ *
+ * Possible cases:
+ *
+ * - test
+ * - test[key]
+ * - test[test1[key]]
+ * - test["a"][key]
+ * - xxx.test[a[a].test1[key]]
+ * - test.xxx.a["asa"][test1[key]]
+ *
+ */
+
+var len, str, chr, index$1, expressionPos, expressionEndPos;
+
+
+
+function parseModel (val) {
+  // Fix https://github.com/vuejs/vue/pull/7730
+  // allow v-model="obj.val " (trailing whitespace)
+  val = val.trim();
+  len = val.length;
+
+  if (val.indexOf('[') < 0 || val.lastIndexOf(']') < len - 1) {
+    index$1 = val.lastIndexOf('.');
+    if (index$1 > -1) {
+      return {
+        exp: val.slice(0, index$1),
+        key: '"' + val.slice(index$1 + 1) + '"'
+      }
+    } else {
+      return {
+        exp: val,
+        key: null
+      }
+    }
+  }
+
+  str = val;
+  index$1 = expressionPos = expressionEndPos = 0;
+
+  while (!eof()) {
+    chr = next();
+    /* istanbul ignore if */
+    if (isStringStart(chr)) {
+      parseString(chr);
+    } else if (chr === 0x5B) {
+      parseBracket(chr);
+    }
+  }
+
+  return {
+    exp: val.slice(0, expressionPos),
+    key: val.slice(expressionPos + 1, expressionEndPos)
+  }
+}
+
+function next () {
+  return str.charCodeAt(++index$1)
+}
+
+function eof () {
+  return index$1 >= len
+}
+
+function isStringStart (chr) {
+  return chr === 0x22 || chr === 0x27
+}
+
+function parseBracket (chr) {
+  var inBracket = 1;
+  expressionPos = index$1;
+  while (!eof()) {
+    chr = next();
+    if (isStringStart(chr)) {
+      parseString(chr);
+      continue
+    }
+    if (chr === 0x5B) { inBracket++; }
+    if (chr === 0x5D) { inBracket--; }
+    if (inBracket === 0) {
+      expressionEndPos = index$1;
+      break
+    }
+  }
+}
+
+function parseString (chr) {
+  var stringQuote = chr;
+  while (!eof()) {
+    chr = next();
+    if (chr === stringQuote) {
+      break
+    }
+  }
+}
+
+/*  */
+
+var warn$1;
 
 // in some cases, the event used has to be determined at runtime
 // so we used some reserved tokens during compile.
 var RANGE_TOKEN = '__r';
 var CHECKBOX_RADIO_TOKEN = '__c';
+
+function model (
+  el,
+  dir,
+  _warn
+) {
+  warn$1 = _warn;
+  var value = dir.value;
+  var modifiers = dir.modifiers;
+  var tag = el.tag;
+  var type = el.attrsMap.type;
+
+  {
+    // inputs with type="file" are read only and setting the input's
+    // value will throw an error.
+    if (tag === 'input' && type === 'file') {
+      warn$1(
+        "<" + (el.tag) + " v-model=\"" + value + "\" type=\"file\">:\n" +
+        "File inputs are read only. Use a v-on:change listener instead.",
+        el.rawAttrsMap['v-model']
+      );
+    }
+  }
+
+  if (el.component) {
+    genComponentModel(el, value, modifiers);
+    // component v-model doesn't need extra runtime
+    return false
+  } else if (tag === 'select') {
+    genSelect(el, value, modifiers);
+  } else if (tag === 'input' && type === 'checkbox') {
+    genCheckboxModel(el, value, modifiers);
+  } else if (tag === 'input' && type === 'radio') {
+    genRadioModel(el, value, modifiers);
+  } else if (tag === 'input' || tag === 'textarea') {
+    genDefaultModel(el, value, modifiers);
+  } else if (!config.isReservedTag(tag)) {
+    genComponentModel(el, value, modifiers);
+    // component v-model doesn't need extra runtime
+    return false
+  } else {
+    warn$1(
+      "<" + (el.tag) + " v-model=\"" + value + "\">: " +
+      "v-model is not supported on this element type. " +
+      'If you are working with contenteditable, it\'s recommended to ' +
+      'wrap a library dedicated for that purpose inside a custom component.',
+      el.rawAttrsMap['v-model']
+    );
+  }
+
+  // ensure runtime directive metadata
+  return true
+}
+
+function genCheckboxModel (
+  el,
+  value,
+  modifiers
+) {
+  var number = modifiers && modifiers.number;
+  var valueBinding = getBindingAttr(el, 'value') || 'null';
+  var trueValueBinding = getBindingAttr(el, 'true-value') || 'true';
+  var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
+  addProp(el, 'checked',
+    "Array.isArray(" + value + ")" +
+    "?_i(" + value + "," + valueBinding + ")>-1" + (
+      trueValueBinding === 'true'
+        ? (":(" + value + ")")
+        : (":_q(" + value + "," + trueValueBinding + ")")
+    )
+  );
+  addHandler(el, 'change',
+    "var $$a=" + value + "," +
+        '$$el=$event.target,' +
+        "$$c=$$el.checked?(" + trueValueBinding + "):(" + falseValueBinding + ");" +
+    'if(Array.isArray($$a)){' +
+      "var $$v=" + (number ? '_n(' + valueBinding + ')' : valueBinding) + "," +
+          '$$i=_i($$a,$$v);' +
+      "if($$el.checked){$$i<0&&(" + (genAssignmentCode(value, '$$a.concat([$$v])')) + ")}" +
+      "else{$$i>-1&&(" + (genAssignmentCode(value, '$$a.slice(0,$$i).concat($$a.slice($$i+1))')) + ")}" +
+    "}else{" + (genAssignmentCode(value, '$$c')) + "}",
+    null, true
+  );
+}
+
+function genRadioModel (
+  el,
+  value,
+  modifiers
+) {
+  var number = modifiers && modifiers.number;
+  var valueBinding = getBindingAttr(el, 'value') || 'null';
+  valueBinding = number ? ("_n(" + valueBinding + ")") : valueBinding;
+  addProp(el, 'checked', ("_q(" + value + "," + valueBinding + ")"));
+  addHandler(el, 'change', genAssignmentCode(value, valueBinding), null, true);
+}
+
+function genSelect (
+  el,
+  value,
+  modifiers
+) {
+  var number = modifiers && modifiers.number;
+  var selectedVal = "Array.prototype.filter" +
+    ".call($event.target.options,function(o){return o.selected})" +
+    ".map(function(o){var val = \"_value\" in o ? o._value : o.value;" +
+    "return " + (number ? '_n(val)' : 'val') + "})";
+
+  var assignment = '$event.target.multiple ? $$selectedVal : $$selectedVal[0]';
+  var code = "var $$selectedVal = " + selectedVal + ";";
+  code = code + " " + (genAssignmentCode(value, assignment));
+  addHandler(el, 'change', code, null, true);
+}
+
+function genDefaultModel (
+  el,
+  value,
+  modifiers
+) {
+  var type = el.attrsMap.type;
+
+  // warn if v-bind:value conflicts with v-model
+  // except for inputs with v-bind:type
+  {
+    var value$1 = el.attrsMap['v-bind:value'] || el.attrsMap[':value'];
+    var typeBinding = el.attrsMap['v-bind:type'] || el.attrsMap[':type'];
+    if (value$1 && !typeBinding) {
+      var binding = el.attrsMap['v-bind:value'] ? 'v-bind:value' : ':value';
+      warn$1(
+        binding + "=\"" + value$1 + "\" conflicts with v-model on the same element " +
+        'because the latter already expands to a value binding internally',
+        el.rawAttrsMap[binding]
+      );
+    }
+  }
+
+  var ref = modifiers || {};
+  var lazy = ref.lazy;
+  var number = ref.number;
+  var trim = ref.trim;
+  var needCompositionGuard = !lazy && type !== 'range';
+  var event = lazy
+    ? 'change'
+    : type === 'range'
+      ? RANGE_TOKEN
+      : 'input';
+
+  var valueExpression = '$event.target.value';
+  if (trim) {
+    valueExpression = "$event.target.value.trim()";
+  }
+  if (number) {
+    valueExpression = "_n(" + valueExpression + ")";
+  }
+
+  var code = genAssignmentCode(value, valueExpression);
+  if (needCompositionGuard) {
+    code = "if($event.target.composing)return;" + code;
+  }
+
+  addProp(el, 'value', ("(" + value + ")"));
+  addHandler(el, event, code, null, true);
+  if (trim || number) {
+    addHandler(el, 'blur', '$forceUpdate()');
+  }
+}
 
 /*  */
 
@@ -74585,15 +78528,49 @@ function createOnceHandler$1 (event, handler, capture) {
   }
 }
 
+// #9446: Firefox <= 53 (in particular, ESR 52) has incorrect Event.timeStamp
+// implementation and does not fire microtasks in between event propagation, so
+// safe to exclude.
+var useMicrotaskFix = isUsingMicroTask && !(isFF && Number(isFF[1]) <= 53);
+
 function add$1 (
-  event,
+  name,
   handler,
   capture,
   passive
 ) {
-  handler = withMacroTask(handler);
+  // async edge case #6566: inner click event triggers patch, event handler
+  // attached to outer element during patch, and triggered again. This
+  // happens because browsers fire microtask ticks between event propagation.
+  // the solution is simple: we save the timestamp when a handler is attached,
+  // and the handler would only fire if the event passed to it was fired
+  // AFTER it was attached.
+  if (useMicrotaskFix) {
+    var attachedTimestamp = currentFlushTimestamp;
+    var original = handler;
+    handler = original._wrapper = function (e) {
+      if (
+        // no bubbling, should always fire.
+        // this is just a safety net in case event.timeStamp is unreliable in
+        // certain weird environments...
+        e.target === e.currentTarget ||
+        // event is fired after handler attachment
+        e.timeStamp >= attachedTimestamp ||
+        // bail for environments that have buggy event.timeStamp implementations
+        // #9462 iOS 9 bug: event.timeStamp is 0 after history.pushState
+        // #9681 QtWebEngine event.timeStamp is negative value
+        e.timeStamp <= 0 ||
+        // #9448 bail if event is fired in another document in a multi-page
+        // electron/nw.js app, since event.timeStamp will be using a different
+        // starting reference
+        e.target.ownerDocument !== document
+      ) {
+        return original.apply(this, arguments)
+      }
+    };
+  }
   target$1.addEventListener(
-    event,
+    name,
     handler,
     supportsPassive
       ? { capture: capture, passive: passive }
@@ -74602,14 +78579,14 @@ function add$1 (
 }
 
 function remove$2 (
-  event,
+  name,
   handler,
   capture,
   _target
 ) {
   (_target || target$1).removeEventListener(
-    event,
-    handler._withTask || handler,
+    name,
+    handler._wrapper || handler,
     capture
   );
 }
@@ -74633,6 +78610,8 @@ var events = {
 
 /*  */
 
+var svgContainer;
+
 function updateDOMProps (oldVnode, vnode) {
   if (isUndef(oldVnode.data.domProps) && isUndef(vnode.data.domProps)) {
     return
@@ -74647,10 +78626,11 @@ function updateDOMProps (oldVnode, vnode) {
   }
 
   for (key in oldProps) {
-    if (isUndef(props[key])) {
+    if (!(key in props)) {
       elm[key] = '';
     }
   }
+
   for (key in props) {
     cur = props[key];
     // ignore children if the node has textContent or innerHTML,
@@ -74666,7 +78646,7 @@ function updateDOMProps (oldVnode, vnode) {
       }
     }
 
-    if (key === 'value') {
+    if (key === 'value' && elm.tagName !== 'PROGRESS') {
       // store value as _value as well since
       // non-string values will be stringified
       elm._value = cur;
@@ -74675,8 +78655,29 @@ function updateDOMProps (oldVnode, vnode) {
       if (shouldUpdateValue(elm, strCur)) {
         elm.value = strCur;
       }
-    } else {
-      elm[key] = cur;
+    } else if (key === 'innerHTML' && isSVG(elm.tagName) && isUndef(elm.innerHTML)) {
+      // IE doesn't support innerHTML for SVG elements
+      svgContainer = svgContainer || document.createElement('div');
+      svgContainer.innerHTML = "<svg>" + cur + "</svg>";
+      var svg = svgContainer.firstChild;
+      while (elm.firstChild) {
+        elm.removeChild(elm.firstChild);
+      }
+      while (svg.firstChild) {
+        elm.appendChild(svg.firstChild);
+      }
+    } else if (
+      // skip the update if old and new VDOM state is the same.
+      // `value` is handled separately because the DOM value may be temporarily
+      // out of sync with VDOM state due to focus, composition and modifiers.
+      // This  #4521 by skipping the unnecesarry `checked` update.
+      cur !== oldProps[key]
+    ) {
+      // some property updates can throw
+      // e.g. `value` on <progress> w/ non-finite value
+      try {
+        elm[key] = cur;
+      } catch (e) {}
     }
   }
 }
@@ -74706,10 +78707,6 @@ function isDirtyWithModifiers (elm, newVal) {
   var value = elm.value;
   var modifiers = elm._vModifiers; // injected by v-model runtime
   if (isDef(modifiers)) {
-    if (modifiers.lazy) {
-      // inputs with lazy should only be updated when not in focus
-      return false
-    }
     if (modifiers.number) {
       return toNumber(value) !== toNumber(newVal)
     }
@@ -74804,7 +78801,7 @@ var setProp = function (el, name, val) {
   if (cssVarRE.test(name)) {
     el.style.setProperty(name, val);
   } else if (importantRE.test(val)) {
-    el.style.setProperty(name, val.replace(importantRE, ''), 'important');
+    el.style.setProperty(hyphenate(name), val.replace(importantRE, ''), 'important');
   } else {
     var normalizedName = normalize(name);
     if (Array.isArray(val)) {
@@ -75181,8 +79178,8 @@ function enter (vnode, toggleDisplay) {
   var context = activeInstance;
   var transitionNode = activeInstance.$vnode;
   while (transitionNode && transitionNode.parent) {
-    transitionNode = transitionNode.parent;
     context = transitionNode.context;
+    transitionNode = transitionNode.parent;
   }
 
   var isAppear = !context._isMounted || !vnode.isRootInsert;
@@ -75220,7 +79217,7 @@ function enter (vnode, toggleDisplay) {
       : duration
   );
 
-  if ("development" !== 'production' && explicitEnterDuration != null) {
+  if (explicitEnterDuration != null) {
     checkDuration(explicitEnterDuration, 'enter', vnode);
   }
 
@@ -75328,7 +79325,7 @@ function leave (vnode, rm) {
       : duration
   );
 
-  if ("development" !== 'production' && isDef(explicitLeaveDuration)) {
+  if (isDef(explicitLeaveDuration)) {
     checkDuration(explicitLeaveDuration, 'leave', vnode);
   }
 
@@ -75555,7 +79552,7 @@ function actuallySetSelected (el, binding, vm) {
   var value = binding.value;
   var isMultiple = el.multiple;
   if (isMultiple && !Array.isArray(value)) {
-    "development" !== 'production' && warn(
+    warn(
       "<select multiple v-model=\"" + (binding.expression) + "\"> " +
       "expects an Array value for its binding, but got " + (Object.prototype.toString.call(value).slice(8, -1)),
       vm
@@ -75772,7 +79769,7 @@ var Transition = {
     }
 
     // warn multiple elements
-    if ("development" !== 'production' && children.length > 1) {
+    if (children.length > 1) {
       warn(
         '<transition> can only be used on a single element. Use ' +
         '<transition-group> for lists.',
@@ -75783,8 +79780,7 @@ var Transition = {
     var mode = this.mode;
 
     // warn invalid mode
-    if ("development" !== 'production' &&
-      mode && mode !== 'in-out' && mode !== 'out-in'
+    if (mode && mode !== 'in-out' && mode !== 'out-in'
     ) {
       warn(
         'invalid <transition> mode: ' + mode,
@@ -75916,7 +79912,7 @@ var TransitionGroup = {
           children.push(c);
           map[c.key] = c
           ;(c.data || (c.data = {})).transition = transitionData;
-        } else if (true) {
+        } else {
           var opts = c.componentOptions;
           var name = opts ? (opts.Ctor.options.name || opts.tag || '') : c.tag;
           warn(("<transition-group> children must be keyed: <" + name + ">"));
@@ -76076,20 +80072,14 @@ if (inBrowser) {
     if (config.devtools) {
       if (devtools) {
         devtools.emit('init', Vue);
-      } else if (
-        "development" !== 'production' &&
-        "development" !== 'test' &&
-        isChrome
-      ) {
+      } else {
         console[console.info ? 'info' : 'log'](
           'Download the Vue Devtools extension for a better development experience:\n' +
           'https://github.com/vuejs/vue-devtools'
         );
       }
     }
-    if ("development" !== 'production' &&
-      "development" !== 'test' &&
-      config.productionTip !== false &&
+    if (config.productionTip !== false &&
       typeof console !== 'undefined'
     ) {
       console[console.info ? 'info' : 'log'](
@@ -76103,9 +80093,2894 @@ if (inBrowser) {
 
 /*  */
 
-/* harmony default export */ __webpack_exports__["default"] = (Vue);
+var defaultTagRE = /\{\{((?:.|\r?\n)+?)\}\}/g;
+var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/timers-browserify/main.js").setImmediate))
+var buildRegex = cached(function (delimiters) {
+  var open = delimiters[0].replace(regexEscapeRE, '\\$&');
+  var close = delimiters[1].replace(regexEscapeRE, '\\$&');
+  return new RegExp(open + '((?:.|\\n)+?)' + close, 'g')
+});
+
+
+
+function parseText (
+  text,
+  delimiters
+) {
+  var tagRE = delimiters ? buildRegex(delimiters) : defaultTagRE;
+  if (!tagRE.test(text)) {
+    return
+  }
+  var tokens = [];
+  var rawTokens = [];
+  var lastIndex = tagRE.lastIndex = 0;
+  var match, index, tokenValue;
+  while ((match = tagRE.exec(text))) {
+    index = match.index;
+    // push text token
+    if (index > lastIndex) {
+      rawTokens.push(tokenValue = text.slice(lastIndex, index));
+      tokens.push(JSON.stringify(tokenValue));
+    }
+    // tag token
+    var exp = parseFilters(match[1].trim());
+    tokens.push(("_s(" + exp + ")"));
+    rawTokens.push({ '@binding': exp });
+    lastIndex = index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    rawTokens.push(tokenValue = text.slice(lastIndex));
+    tokens.push(JSON.stringify(tokenValue));
+  }
+  return {
+    expression: tokens.join('+'),
+    tokens: rawTokens
+  }
+}
+
+/*  */
+
+function transformNode (el, options) {
+  var warn = options.warn || baseWarn;
+  var staticClass = getAndRemoveAttr(el, 'class');
+  if (staticClass) {
+    var res = parseText(staticClass, options.delimiters);
+    if (res) {
+      warn(
+        "class=\"" + staticClass + "\": " +
+        'Interpolation inside attributes has been removed. ' +
+        'Use v-bind or the colon shorthand instead. For example, ' +
+        'instead of <div class="{{ val }}">, use <div :class="val">.',
+        el.rawAttrsMap['class']
+      );
+    }
+  }
+  if (staticClass) {
+    el.staticClass = JSON.stringify(staticClass);
+  }
+  var classBinding = getBindingAttr(el, 'class', false /* getStatic */);
+  if (classBinding) {
+    el.classBinding = classBinding;
+  }
+}
+
+function genData (el) {
+  var data = '';
+  if (el.staticClass) {
+    data += "staticClass:" + (el.staticClass) + ",";
+  }
+  if (el.classBinding) {
+    data += "class:" + (el.classBinding) + ",";
+  }
+  return data
+}
+
+var klass$1 = {
+  staticKeys: ['staticClass'],
+  transformNode: transformNode,
+  genData: genData
+};
+
+/*  */
+
+function transformNode$1 (el, options) {
+  var warn = options.warn || baseWarn;
+  var staticStyle = getAndRemoveAttr(el, 'style');
+  if (staticStyle) {
+    /* istanbul ignore if */
+    {
+      var res = parseText(staticStyle, options.delimiters);
+      if (res) {
+        warn(
+          "style=\"" + staticStyle + "\": " +
+          'Interpolation inside attributes has been removed. ' +
+          'Use v-bind or the colon shorthand instead. For example, ' +
+          'instead of <div style="{{ val }}">, use <div :style="val">.',
+          el.rawAttrsMap['style']
+        );
+      }
+    }
+    el.staticStyle = JSON.stringify(parseStyleText(staticStyle));
+  }
+
+  var styleBinding = getBindingAttr(el, 'style', false /* getStatic */);
+  if (styleBinding) {
+    el.styleBinding = styleBinding;
+  }
+}
+
+function genData$1 (el) {
+  var data = '';
+  if (el.staticStyle) {
+    data += "staticStyle:" + (el.staticStyle) + ",";
+  }
+  if (el.styleBinding) {
+    data += "style:(" + (el.styleBinding) + "),";
+  }
+  return data
+}
+
+var style$1 = {
+  staticKeys: ['staticStyle'],
+  transformNode: transformNode$1,
+  genData: genData$1
+};
+
+/*  */
+
+var decoder;
+
+var he = {
+  decode: function decode (html) {
+    decoder = decoder || document.createElement('div');
+    decoder.innerHTML = html;
+    return decoder.textContent
+  }
+};
+
+/*  */
+
+var isUnaryTag = makeMap(
+  'area,base,br,col,embed,frame,hr,img,input,isindex,keygen,' +
+  'link,meta,param,source,track,wbr'
+);
+
+// Elements that you can, intentionally, leave open
+// (and which close themselves)
+var canBeLeftOpenTag = makeMap(
+  'colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr,source'
+);
+
+// HTML5 tags https://html.spec.whatwg.org/multipage/indices.html#elements-3
+// Phrasing Content https://html.spec.whatwg.org/multipage/dom.html#phrasing-content
+var isNonPhrasingTag = makeMap(
+  'address,article,aside,base,blockquote,body,caption,col,colgroup,dd,' +
+  'details,dialog,div,dl,dt,fieldset,figcaption,figure,footer,form,' +
+  'h1,h2,h3,h4,h5,h6,head,header,hgroup,hr,html,legend,li,menuitem,meta,' +
+  'optgroup,option,param,rp,rt,source,style,summary,tbody,td,tfoot,th,thead,' +
+  'title,tr,track'
+);
+
+/**
+ * Not type-checking this file because it's mostly vendor code.
+ */
+
+// Regular Expressions for parsing tags and attributes
+var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
+var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
+var startTagOpen = new RegExp(("^<" + qnameCapture));
+var startTagClose = /^\s*(\/?)>/;
+var endTag = new RegExp(("^<\\/" + qnameCapture + "[^>]*>"));
+var doctype = /^<!DOCTYPE [^>]+>/i;
+// #7298: escape - to avoid being pased as HTML comment when inlined in page
+var comment = /^<!\--/;
+var conditionalComment = /^<!\[/;
+
+// Special Elements (can contain anything)
+var isPlainTextElement = makeMap('script,style,textarea', true);
+var reCache = {};
+
+var decodingMap = {
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&amp;': '&',
+  '&#10;': '\n',
+  '&#9;': '\t',
+  '&#39;': "'"
+};
+var encodedAttr = /&(?:lt|gt|quot|amp|#39);/g;
+var encodedAttrWithNewLines = /&(?:lt|gt|quot|amp|#39|#10|#9);/g;
+
+// #5992
+var isIgnoreNewlineTag = makeMap('pre,textarea', true);
+var shouldIgnoreFirstNewline = function (tag, html) { return tag && isIgnoreNewlineTag(tag) && html[0] === '\n'; };
+
+function decodeAttr (value, shouldDecodeNewlines) {
+  var re = shouldDecodeNewlines ? encodedAttrWithNewLines : encodedAttr;
+  return value.replace(re, function (match) { return decodingMap[match]; })
+}
+
+function parseHTML (html, options) {
+  var stack = [];
+  var expectHTML = options.expectHTML;
+  var isUnaryTag$$1 = options.isUnaryTag || no;
+  var canBeLeftOpenTag$$1 = options.canBeLeftOpenTag || no;
+  var index = 0;
+  var last, lastTag;
+  while (html) {
+    last = html;
+    // Make sure we're not in a plaintext content element like script/style
+    if (!lastTag || !isPlainTextElement(lastTag)) {
+      var textEnd = html.indexOf('<');
+      if (textEnd === 0) {
+        // Comment:
+        if (comment.test(html)) {
+          var commentEnd = html.indexOf('-->');
+
+          if (commentEnd >= 0) {
+            if (options.shouldKeepComment) {
+              options.comment(html.substring(4, commentEnd), index, index + commentEnd + 3);
+            }
+            advance(commentEnd + 3);
+            continue
+          }
+        }
+
+        // http://en.wikipedia.org/wiki/Conditional_comment#Downlevel-revealed_conditional_comment
+        if (conditionalComment.test(html)) {
+          var conditionalEnd = html.indexOf(']>');
+
+          if (conditionalEnd >= 0) {
+            advance(conditionalEnd + 2);
+            continue
+          }
+        }
+
+        // Doctype:
+        var doctypeMatch = html.match(doctype);
+        if (doctypeMatch) {
+          advance(doctypeMatch[0].length);
+          continue
+        }
+
+        // End tag:
+        var endTagMatch = html.match(endTag);
+        if (endTagMatch) {
+          var curIndex = index;
+          advance(endTagMatch[0].length);
+          parseEndTag(endTagMatch[1], curIndex, index);
+          continue
+        }
+
+        // Start tag:
+        var startTagMatch = parseStartTag();
+        if (startTagMatch) {
+          handleStartTag(startTagMatch);
+          if (shouldIgnoreFirstNewline(startTagMatch.tagName, html)) {
+            advance(1);
+          }
+          continue
+        }
+      }
+
+      var text = (void 0), rest = (void 0), next = (void 0);
+      if (textEnd >= 0) {
+        rest = html.slice(textEnd);
+        while (
+          !endTag.test(rest) &&
+          !startTagOpen.test(rest) &&
+          !comment.test(rest) &&
+          !conditionalComment.test(rest)
+        ) {
+          // < in plain text, be forgiving and treat it as text
+          next = rest.indexOf('<', 1);
+          if (next < 0) { break }
+          textEnd += next;
+          rest = html.slice(textEnd);
+        }
+        text = html.substring(0, textEnd);
+      }
+
+      if (textEnd < 0) {
+        text = html;
+      }
+
+      if (text) {
+        advance(text.length);
+      }
+
+      if (options.chars && text) {
+        options.chars(text, index - text.length, index);
+      }
+    } else {
+      var endTagLength = 0;
+      var stackedTag = lastTag.toLowerCase();
+      var reStackedTag = reCache[stackedTag] || (reCache[stackedTag] = new RegExp('([\\s\\S]*?)(</' + stackedTag + '[^>]*>)', 'i'));
+      var rest$1 = html.replace(reStackedTag, function (all, text, endTag) {
+        endTagLength = endTag.length;
+        if (!isPlainTextElement(stackedTag) && stackedTag !== 'noscript') {
+          text = text
+            .replace(/<!\--([\s\S]*?)-->/g, '$1') // #7298
+            .replace(/<!\[CDATA\[([\s\S]*?)]]>/g, '$1');
+        }
+        if (shouldIgnoreFirstNewline(stackedTag, text)) {
+          text = text.slice(1);
+        }
+        if (options.chars) {
+          options.chars(text);
+        }
+        return ''
+      });
+      index += html.length - rest$1.length;
+      html = rest$1;
+      parseEndTag(stackedTag, index - endTagLength, index);
+    }
+
+    if (html === last) {
+      options.chars && options.chars(html);
+      if (!stack.length && options.warn) {
+        options.warn(("Mal-formatted tag at end of template: \"" + html + "\""), { start: index + html.length });
+      }
+      break
+    }
+  }
+
+  // Clean up any remaining tags
+  parseEndTag();
+
+  function advance (n) {
+    index += n;
+    html = html.substring(n);
+  }
+
+  function parseStartTag () {
+    var start = html.match(startTagOpen);
+    if (start) {
+      var match = {
+        tagName: start[1],
+        attrs: [],
+        start: index
+      };
+      advance(start[0].length);
+      var end, attr;
+      while (!(end = html.match(startTagClose)) && (attr = html.match(dynamicArgAttribute) || html.match(attribute))) {
+        attr.start = index;
+        advance(attr[0].length);
+        attr.end = index;
+        match.attrs.push(attr);
+      }
+      if (end) {
+        match.unarySlash = end[1];
+        advance(end[0].length);
+        match.end = index;
+        return match
+      }
+    }
+  }
+
+  function handleStartTag (match) {
+    var tagName = match.tagName;
+    var unarySlash = match.unarySlash;
+
+    if (expectHTML) {
+      if (lastTag === 'p' && isNonPhrasingTag(tagName)) {
+        parseEndTag(lastTag);
+      }
+      if (canBeLeftOpenTag$$1(tagName) && lastTag === tagName) {
+        parseEndTag(tagName);
+      }
+    }
+
+    var unary = isUnaryTag$$1(tagName) || !!unarySlash;
+
+    var l = match.attrs.length;
+    var attrs = new Array(l);
+    for (var i = 0; i < l; i++) {
+      var args = match.attrs[i];
+      var value = args[3] || args[4] || args[5] || '';
+      var shouldDecodeNewlines = tagName === 'a' && args[1] === 'href'
+        ? options.shouldDecodeNewlinesForHref
+        : options.shouldDecodeNewlines;
+      attrs[i] = {
+        name: args[1],
+        value: decodeAttr(value, shouldDecodeNewlines)
+      };
+      if (options.outputSourceRange) {
+        attrs[i].start = args.start + args[0].match(/^\s*/).length;
+        attrs[i].end = args.end;
+      }
+    }
+
+    if (!unary) {
+      stack.push({ tag: tagName, lowerCasedTag: tagName.toLowerCase(), attrs: attrs, start: match.start, end: match.end });
+      lastTag = tagName;
+    }
+
+    if (options.start) {
+      options.start(tagName, attrs, unary, match.start, match.end);
+    }
+  }
+
+  function parseEndTag (tagName, start, end) {
+    var pos, lowerCasedTagName;
+    if (start == null) { start = index; }
+    if (end == null) { end = index; }
+
+    // Find the closest opened tag of the same type
+    if (tagName) {
+      lowerCasedTagName = tagName.toLowerCase();
+      for (pos = stack.length - 1; pos >= 0; pos--) {
+        if (stack[pos].lowerCasedTag === lowerCasedTagName) {
+          break
+        }
+      }
+    } else {
+      // If no tag name is provided, clean shop
+      pos = 0;
+    }
+
+    if (pos >= 0) {
+      // Close all the open elements, up the stack
+      for (var i = stack.length - 1; i >= pos; i--) {
+        if (i > pos || !tagName &&
+          options.warn
+        ) {
+          options.warn(
+            ("tag <" + (stack[i].tag) + "> has no matching end tag."),
+            { start: stack[i].start, end: stack[i].end }
+          );
+        }
+        if (options.end) {
+          options.end(stack[i].tag, start, end);
+        }
+      }
+
+      // Remove the open elements from the stack
+      stack.length = pos;
+      lastTag = pos && stack[pos - 1].tag;
+    } else if (lowerCasedTagName === 'br') {
+      if (options.start) {
+        options.start(tagName, [], true, start, end);
+      }
+    } else if (lowerCasedTagName === 'p') {
+      if (options.start) {
+        options.start(tagName, [], false, start, end);
+      }
+      if (options.end) {
+        options.end(tagName, start, end);
+      }
+    }
+  }
+}
+
+/*  */
+
+var onRE = /^@|^v-on:/;
+var dirRE = /^v-|^@|^:/;
+var forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
+var forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
+var stripParensRE = /^\(|\)$/g;
+var dynamicArgRE = /^\[.*\]$/;
+
+var argRE = /:(.*)$/;
+var bindRE = /^:|^\.|^v-bind:/;
+var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
+
+var slotRE = /^v-slot(:|$)|^#/;
+
+var lineBreakRE = /[\r\n]/;
+var whitespaceRE$1 = /\s+/g;
+
+var invalidAttributeRE = /[\s"'<>\/=]/;
+
+var decodeHTMLCached = cached(he.decode);
+
+var emptySlotScopeToken = "_empty_";
+
+// configurable state
+var warn$2;
+var delimiters;
+var transforms;
+var preTransforms;
+var postTransforms;
+var platformIsPreTag;
+var platformMustUseProp;
+var platformGetTagNamespace;
+var maybeComponent;
+
+function createASTElement (
+  tag,
+  attrs,
+  parent
+) {
+  return {
+    type: 1,
+    tag: tag,
+    attrsList: attrs,
+    attrsMap: makeAttrsMap(attrs),
+    rawAttrsMap: {},
+    parent: parent,
+    children: []
+  }
+}
+
+/**
+ * Convert HTML string to AST.
+ */
+function parse (
+  template,
+  options
+) {
+  warn$2 = options.warn || baseWarn;
+
+  platformIsPreTag = options.isPreTag || no;
+  platformMustUseProp = options.mustUseProp || no;
+  platformGetTagNamespace = options.getTagNamespace || no;
+  var isReservedTag = options.isReservedTag || no;
+  maybeComponent = function (el) { return !!el.component || !isReservedTag(el.tag); };
+
+  transforms = pluckModuleFunction(options.modules, 'transformNode');
+  preTransforms = pluckModuleFunction(options.modules, 'preTransformNode');
+  postTransforms = pluckModuleFunction(options.modules, 'postTransformNode');
+
+  delimiters = options.delimiters;
+
+  var stack = [];
+  var preserveWhitespace = options.preserveWhitespace !== false;
+  var whitespaceOption = options.whitespace;
+  var root;
+  var currentParent;
+  var inVPre = false;
+  var inPre = false;
+  var warned = false;
+
+  function warnOnce (msg, range) {
+    if (!warned) {
+      warned = true;
+      warn$2(msg, range);
+    }
+  }
+
+  function closeElement (element) {
+    trimEndingWhitespace(element);
+    if (!inVPre && !element.processed) {
+      element = processElement(element, options);
+    }
+    // tree management
+    if (!stack.length && element !== root) {
+      // allow root elements with v-if, v-else-if and v-else
+      if (root.if && (element.elseif || element.else)) {
+        {
+          checkRootConstraints(element);
+        }
+        addIfCondition(root, {
+          exp: element.elseif,
+          block: element
+        });
+      } else {
+        warnOnce(
+          "Component template should contain exactly one root element. " +
+          "If you are using v-if on multiple elements, " +
+          "use v-else-if to chain them instead.",
+          { start: element.start }
+        );
+      }
+    }
+    if (currentParent && !element.forbidden) {
+      if (element.elseif || element.else) {
+        processIfConditions(element, currentParent);
+      } else {
+        if (element.slotScope) {
+          // scoped slot
+          // keep it in the children list so that v-else(-if) conditions can
+          // find it as the prev node.
+          var name = element.slotTarget || '"default"'
+          ;(currentParent.scopedSlots || (currentParent.scopedSlots = {}))[name] = element;
+        }
+        currentParent.children.push(element);
+        element.parent = currentParent;
+      }
+    }
+
+    // final children cleanup
+    // filter out scoped slots
+    element.children = element.children.filter(function (c) { return !(c).slotScope; });
+    // remove trailing whitespace node again
+    trimEndingWhitespace(element);
+
+    // check pre state
+    if (element.pre) {
+      inVPre = false;
+    }
+    if (platformIsPreTag(element.tag)) {
+      inPre = false;
+    }
+    // apply post-transforms
+    for (var i = 0; i < postTransforms.length; i++) {
+      postTransforms[i](element, options);
+    }
+  }
+
+  function trimEndingWhitespace (el) {
+    // remove trailing whitespace node
+    if (!inPre) {
+      var lastNode;
+      while (
+        (lastNode = el.children[el.children.length - 1]) &&
+        lastNode.type === 3 &&
+        lastNode.text === ' '
+      ) {
+        el.children.pop();
+      }
+    }
+  }
+
+  function checkRootConstraints (el) {
+    if (el.tag === 'slot' || el.tag === 'template') {
+      warnOnce(
+        "Cannot use <" + (el.tag) + "> as component root element because it may " +
+        'contain multiple nodes.',
+        { start: el.start }
+      );
+    }
+    if (el.attrsMap.hasOwnProperty('v-for')) {
+      warnOnce(
+        'Cannot use v-for on stateful component root element because ' +
+        'it renders multiple elements.',
+        el.rawAttrsMap['v-for']
+      );
+    }
+  }
+
+  parseHTML(template, {
+    warn: warn$2,
+    expectHTML: options.expectHTML,
+    isUnaryTag: options.isUnaryTag,
+    canBeLeftOpenTag: options.canBeLeftOpenTag,
+    shouldDecodeNewlines: options.shouldDecodeNewlines,
+    shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
+    shouldKeepComment: options.comments,
+    outputSourceRange: options.outputSourceRange,
+    start: function start (tag, attrs, unary, start$1, end) {
+      // check namespace.
+      // inherit parent ns if there is one
+      var ns = (currentParent && currentParent.ns) || platformGetTagNamespace(tag);
+
+      // handle IE svg bug
+      /* istanbul ignore if */
+      if (isIE && ns === 'svg') {
+        attrs = guardIESVGBug(attrs);
+      }
+
+      var element = createASTElement(tag, attrs, currentParent);
+      if (ns) {
+        element.ns = ns;
+      }
+
+      {
+        if (options.outputSourceRange) {
+          element.start = start$1;
+          element.end = end;
+          element.rawAttrsMap = element.attrsList.reduce(function (cumulated, attr) {
+            cumulated[attr.name] = attr;
+            return cumulated
+          }, {});
+        }
+        attrs.forEach(function (attr) {
+          if (invalidAttributeRE.test(attr.name)) {
+            warn$2(
+              "Invalid dynamic argument expression: attribute names cannot contain " +
+              "spaces, quotes, <, >, / or =.",
+              {
+                start: attr.start + attr.name.indexOf("["),
+                end: attr.start + attr.name.length
+              }
+            );
+          }
+        });
+      }
+
+      if (isForbiddenTag(element) && !isServerRendering()) {
+        element.forbidden = true;
+        warn$2(
+          'Templates should only be responsible for mapping the state to the ' +
+          'UI. Avoid placing tags with side-effects in your templates, such as ' +
+          "<" + tag + ">" + ', as they will not be parsed.',
+          { start: element.start }
+        );
+      }
+
+      // apply pre-transforms
+      for (var i = 0; i < preTransforms.length; i++) {
+        element = preTransforms[i](element, options) || element;
+      }
+
+      if (!inVPre) {
+        processPre(element);
+        if (element.pre) {
+          inVPre = true;
+        }
+      }
+      if (platformIsPreTag(element.tag)) {
+        inPre = true;
+      }
+      if (inVPre) {
+        processRawAttrs(element);
+      } else if (!element.processed) {
+        // structural directives
+        processFor(element);
+        processIf(element);
+        processOnce(element);
+      }
+
+      if (!root) {
+        root = element;
+        {
+          checkRootConstraints(root);
+        }
+      }
+
+      if (!unary) {
+        currentParent = element;
+        stack.push(element);
+      } else {
+        closeElement(element);
+      }
+    },
+
+    end: function end (tag, start, end$1) {
+      var element = stack[stack.length - 1];
+      // pop stack
+      stack.length -= 1;
+      currentParent = stack[stack.length - 1];
+      if (options.outputSourceRange) {
+        element.end = end$1;
+      }
+      closeElement(element);
+    },
+
+    chars: function chars (text, start, end) {
+      if (!currentParent) {
+        {
+          if (text === template) {
+            warnOnce(
+              'Component template requires a root element, rather than just text.',
+              { start: start }
+            );
+          } else if ((text = text.trim())) {
+            warnOnce(
+              ("text \"" + text + "\" outside root element will be ignored."),
+              { start: start }
+            );
+          }
+        }
+        return
+      }
+      // IE textarea placeholder bug
+      /* istanbul ignore if */
+      if (isIE &&
+        currentParent.tag === 'textarea' &&
+        currentParent.attrsMap.placeholder === text
+      ) {
+        return
+      }
+      var children = currentParent.children;
+      if (inPre || text.trim()) {
+        text = isTextTag(currentParent) ? text : decodeHTMLCached(text);
+      } else if (!children.length) {
+        // remove the whitespace-only node right after an opening tag
+        text = '';
+      } else if (whitespaceOption) {
+        if (whitespaceOption === 'condense') {
+          // in condense mode, remove the whitespace node if it contains
+          // line break, otherwise condense to a single space
+          text = lineBreakRE.test(text) ? '' : ' ';
+        } else {
+          text = ' ';
+        }
+      } else {
+        text = preserveWhitespace ? ' ' : '';
+      }
+      if (text) {
+        if (!inPre && whitespaceOption === 'condense') {
+          // condense consecutive whitespaces into single space
+          text = text.replace(whitespaceRE$1, ' ');
+        }
+        var res;
+        var child;
+        if (!inVPre && text !== ' ' && (res = parseText(text, delimiters))) {
+          child = {
+            type: 2,
+            expression: res.expression,
+            tokens: res.tokens,
+            text: text
+          };
+        } else if (text !== ' ' || !children.length || children[children.length - 1].text !== ' ') {
+          child = {
+            type: 3,
+            text: text
+          };
+        }
+        if (child) {
+          if (options.outputSourceRange) {
+            child.start = start;
+            child.end = end;
+          }
+          children.push(child);
+        }
+      }
+    },
+    comment: function comment (text, start, end) {
+      // adding anyting as a sibling to the root node is forbidden
+      // comments should still be allowed, but ignored
+      if (currentParent) {
+        var child = {
+          type: 3,
+          text: text,
+          isComment: true
+        };
+        if (options.outputSourceRange) {
+          child.start = start;
+          child.end = end;
+        }
+        currentParent.children.push(child);
+      }
+    }
+  });
+  return root
+}
+
+function processPre (el) {
+  if (getAndRemoveAttr(el, 'v-pre') != null) {
+    el.pre = true;
+  }
+}
+
+function processRawAttrs (el) {
+  var list = el.attrsList;
+  var len = list.length;
+  if (len) {
+    var attrs = el.attrs = new Array(len);
+    for (var i = 0; i < len; i++) {
+      attrs[i] = {
+        name: list[i].name,
+        value: JSON.stringify(list[i].value)
+      };
+      if (list[i].start != null) {
+        attrs[i].start = list[i].start;
+        attrs[i].end = list[i].end;
+      }
+    }
+  } else if (!el.pre) {
+    // non root node in pre blocks with no attributes
+    el.plain = true;
+  }
+}
+
+function processElement (
+  element,
+  options
+) {
+  processKey(element);
+
+  // determine whether this is a plain element after
+  // removing structural attributes
+  element.plain = (
+    !element.key &&
+    !element.scopedSlots &&
+    !element.attrsList.length
+  );
+
+  processRef(element);
+  processSlotContent(element);
+  processSlotOutlet(element);
+  processComponent(element);
+  for (var i = 0; i < transforms.length; i++) {
+    element = transforms[i](element, options) || element;
+  }
+  processAttrs(element);
+  return element
+}
+
+function processKey (el) {
+  var exp = getBindingAttr(el, 'key');
+  if (exp) {
+    {
+      if (el.tag === 'template') {
+        warn$2(
+          "<template> cannot be keyed. Place the key on real elements instead.",
+          getRawBindingAttr(el, 'key')
+        );
+      }
+      if (el.for) {
+        var iterator = el.iterator2 || el.iterator1;
+        var parent = el.parent;
+        if (iterator && iterator === exp && parent && parent.tag === 'transition-group') {
+          warn$2(
+            "Do not use v-for index as key on <transition-group> children, " +
+            "this is the same as not using keys.",
+            getRawBindingAttr(el, 'key'),
+            true /* tip */
+          );
+        }
+      }
+    }
+    el.key = exp;
+  }
+}
+
+function processRef (el) {
+  var ref = getBindingAttr(el, 'ref');
+  if (ref) {
+    el.ref = ref;
+    el.refInFor = checkInFor(el);
+  }
+}
+
+function processFor (el) {
+  var exp;
+  if ((exp = getAndRemoveAttr(el, 'v-for'))) {
+    var res = parseFor(exp);
+    if (res) {
+      extend(el, res);
+    } else {
+      warn$2(
+        ("Invalid v-for expression: " + exp),
+        el.rawAttrsMap['v-for']
+      );
+    }
+  }
+}
+
+
+
+function parseFor (exp) {
+  var inMatch = exp.match(forAliasRE);
+  if (!inMatch) { return }
+  var res = {};
+  res.for = inMatch[2].trim();
+  var alias = inMatch[1].trim().replace(stripParensRE, '');
+  var iteratorMatch = alias.match(forIteratorRE);
+  if (iteratorMatch) {
+    res.alias = alias.replace(forIteratorRE, '').trim();
+    res.iterator1 = iteratorMatch[1].trim();
+    if (iteratorMatch[2]) {
+      res.iterator2 = iteratorMatch[2].trim();
+    }
+  } else {
+    res.alias = alias;
+  }
+  return res
+}
+
+function processIf (el) {
+  var exp = getAndRemoveAttr(el, 'v-if');
+  if (exp) {
+    el.if = exp;
+    addIfCondition(el, {
+      exp: exp,
+      block: el
+    });
+  } else {
+    if (getAndRemoveAttr(el, 'v-else') != null) {
+      el.else = true;
+    }
+    var elseif = getAndRemoveAttr(el, 'v-else-if');
+    if (elseif) {
+      el.elseif = elseif;
+    }
+  }
+}
+
+function processIfConditions (el, parent) {
+  var prev = findPrevElement(parent.children);
+  if (prev && prev.if) {
+    addIfCondition(prev, {
+      exp: el.elseif,
+      block: el
+    });
+  } else {
+    warn$2(
+      "v-" + (el.elseif ? ('else-if="' + el.elseif + '"') : 'else') + " " +
+      "used on element <" + (el.tag) + "> without corresponding v-if.",
+      el.rawAttrsMap[el.elseif ? 'v-else-if' : 'v-else']
+    );
+  }
+}
+
+function findPrevElement (children) {
+  var i = children.length;
+  while (i--) {
+    if (children[i].type === 1) {
+      return children[i]
+    } else {
+      if (children[i].text !== ' ') {
+        warn$2(
+          "text \"" + (children[i].text.trim()) + "\" between v-if and v-else(-if) " +
+          "will be ignored.",
+          children[i]
+        );
+      }
+      children.pop();
+    }
+  }
+}
+
+function addIfCondition (el, condition) {
+  if (!el.ifConditions) {
+    el.ifConditions = [];
+  }
+  el.ifConditions.push(condition);
+}
+
+function processOnce (el) {
+  var once$$1 = getAndRemoveAttr(el, 'v-once');
+  if (once$$1 != null) {
+    el.once = true;
+  }
+}
+
+// handle content being passed to a component as slot,
+// e.g. <template slot="xxx">, <div slot-scope="xxx">
+function processSlotContent (el) {
+  var slotScope;
+  if (el.tag === 'template') {
+    slotScope = getAndRemoveAttr(el, 'scope');
+    /* istanbul ignore if */
+    if (slotScope) {
+      warn$2(
+        "the \"scope\" attribute for scoped slots have been deprecated and " +
+        "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attribute " +
+        "can also be used on plain elements in addition to <template> to " +
+        "denote scoped slots.",
+        el.rawAttrsMap['scope'],
+        true
+      );
+    }
+    el.slotScope = slotScope || getAndRemoveAttr(el, 'slot-scope');
+  } else if ((slotScope = getAndRemoveAttr(el, 'slot-scope'))) {
+    /* istanbul ignore if */
+    if (el.attrsMap['v-for']) {
+      warn$2(
+        "Ambiguous combined usage of slot-scope and v-for on <" + (el.tag) + "> " +
+        "(v-for takes higher priority). Use a wrapper <template> for the " +
+        "scoped slot to make it clearer.",
+        el.rawAttrsMap['slot-scope'],
+        true
+      );
+    }
+    el.slotScope = slotScope;
+  }
+
+  // slot="xxx"
+  var slotTarget = getBindingAttr(el, 'slot');
+  if (slotTarget) {
+    el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget;
+    el.slotTargetDynamic = !!(el.attrsMap[':slot'] || el.attrsMap['v-bind:slot']);
+    // preserve slot as an attribute for native shadow DOM compat
+    // only for non-scoped slots.
+    if (el.tag !== 'template' && !el.slotScope) {
+      addAttr(el, 'slot', slotTarget, getRawBindingAttr(el, 'slot'));
+    }
+  }
+
+  // 2.6 v-slot syntax
+  {
+    if (el.tag === 'template') {
+      // v-slot on <template>
+      var slotBinding = getAndRemoveAttrByRegex(el, slotRE);
+      if (slotBinding) {
+        {
+          if (el.slotTarget || el.slotScope) {
+            warn$2(
+              "Unexpected mixed usage of different slot syntaxes.",
+              el
+            );
+          }
+          if (el.parent && !maybeComponent(el.parent)) {
+            warn$2(
+              "<template v-slot> can only appear at the root level inside " +
+              "the receiving the component",
+              el
+            );
+          }
+        }
+        var ref = getSlotName(slotBinding);
+        var name = ref.name;
+        var dynamic = ref.dynamic;
+        el.slotTarget = name;
+        el.slotTargetDynamic = dynamic;
+        el.slotScope = slotBinding.value || emptySlotScopeToken; // force it into a scoped slot for perf
+      }
+    } else {
+      // v-slot on component, denotes default slot
+      var slotBinding$1 = getAndRemoveAttrByRegex(el, slotRE);
+      if (slotBinding$1) {
+        {
+          if (!maybeComponent(el)) {
+            warn$2(
+              "v-slot can only be used on components or <template>.",
+              slotBinding$1
+            );
+          }
+          if (el.slotScope || el.slotTarget) {
+            warn$2(
+              "Unexpected mixed usage of different slot syntaxes.",
+              el
+            );
+          }
+          if (el.scopedSlots) {
+            warn$2(
+              "To avoid scope ambiguity, the default slot should also use " +
+              "<template> syntax when there are other named slots.",
+              slotBinding$1
+            );
+          }
+        }
+        // add the component's children to its default slot
+        var slots = el.scopedSlots || (el.scopedSlots = {});
+        var ref$1 = getSlotName(slotBinding$1);
+        var name$1 = ref$1.name;
+        var dynamic$1 = ref$1.dynamic;
+        var slotContainer = slots[name$1] = createASTElement('template', [], el);
+        slotContainer.slotTarget = name$1;
+        slotContainer.slotTargetDynamic = dynamic$1;
+        slotContainer.children = el.children.filter(function (c) {
+          if (!c.slotScope) {
+            c.parent = slotContainer;
+            return true
+          }
+        });
+        slotContainer.slotScope = slotBinding$1.value || emptySlotScopeToken;
+        // remove children as they are returned from scopedSlots now
+        el.children = [];
+        // mark el non-plain so data gets generated
+        el.plain = false;
+      }
+    }
+  }
+}
+
+function getSlotName (binding) {
+  var name = binding.name.replace(slotRE, '');
+  if (!name) {
+    if (binding.name[0] !== '#') {
+      name = 'default';
+    } else {
+      warn$2(
+        "v-slot shorthand syntax requires a slot name.",
+        binding
+      );
+    }
+  }
+  return dynamicArgRE.test(name)
+    // dynamic [name]
+    ? { name: name.slice(1, -1), dynamic: true }
+    // static name
+    : { name: ("\"" + name + "\""), dynamic: false }
+}
+
+// handle <slot/> outlets
+function processSlotOutlet (el) {
+  if (el.tag === 'slot') {
+    el.slotName = getBindingAttr(el, 'name');
+    if (el.key) {
+      warn$2(
+        "`key` does not work on <slot> because slots are abstract outlets " +
+        "and can possibly expand into multiple elements. " +
+        "Use the key on a wrapping element instead.",
+        getRawBindingAttr(el, 'key')
+      );
+    }
+  }
+}
+
+function processComponent (el) {
+  var binding;
+  if ((binding = getBindingAttr(el, 'is'))) {
+    el.component = binding;
+  }
+  if (getAndRemoveAttr(el, 'inline-template') != null) {
+    el.inlineTemplate = true;
+  }
+}
+
+function processAttrs (el) {
+  var list = el.attrsList;
+  var i, l, name, rawName, value, modifiers, syncGen, isDynamic;
+  for (i = 0, l = list.length; i < l; i++) {
+    name = rawName = list[i].name;
+    value = list[i].value;
+    if (dirRE.test(name)) {
+      // mark element as dynamic
+      el.hasBindings = true;
+      // modifiers
+      modifiers = parseModifiers(name.replace(dirRE, ''));
+      // support .foo shorthand syntax for the .prop modifier
+      if (modifiers) {
+        name = name.replace(modifierRE, '');
+      }
+      if (bindRE.test(name)) { // v-bind
+        name = name.replace(bindRE, '');
+        value = parseFilters(value);
+        isDynamic = dynamicArgRE.test(name);
+        if (isDynamic) {
+          name = name.slice(1, -1);
+        }
+        if (
+          value.trim().length === 0
+        ) {
+          warn$2(
+            ("The value for a v-bind expression cannot be empty. Found in \"v-bind:" + name + "\"")
+          );
+        }
+        if (modifiers) {
+          if (modifiers.prop && !isDynamic) {
+            name = camelize(name);
+            if (name === 'innerHtml') { name = 'innerHTML'; }
+          }
+          if (modifiers.camel && !isDynamic) {
+            name = camelize(name);
+          }
+          if (modifiers.sync) {
+            syncGen = genAssignmentCode(value, "$event");
+            if (!isDynamic) {
+              addHandler(
+                el,
+                ("update:" + (camelize(name))),
+                syncGen,
+                null,
+                false,
+                warn$2,
+                list[i]
+              );
+              if (hyphenate(name) !== camelize(name)) {
+                addHandler(
+                  el,
+                  ("update:" + (hyphenate(name))),
+                  syncGen,
+                  null,
+                  false,
+                  warn$2,
+                  list[i]
+                );
+              }
+            } else {
+              // handler w/ dynamic event name
+              addHandler(
+                el,
+                ("\"update:\"+(" + name + ")"),
+                syncGen,
+                null,
+                false,
+                warn$2,
+                list[i],
+                true // dynamic
+              );
+            }
+          }
+        }
+        if ((modifiers && modifiers.prop) || (
+          !el.component && platformMustUseProp(el.tag, el.attrsMap.type, name)
+        )) {
+          addProp(el, name, value, list[i], isDynamic);
+        } else {
+          addAttr(el, name, value, list[i], isDynamic);
+        }
+      } else if (onRE.test(name)) { // v-on
+        name = name.replace(onRE, '');
+        isDynamic = dynamicArgRE.test(name);
+        if (isDynamic) {
+          name = name.slice(1, -1);
+        }
+        addHandler(el, name, value, modifiers, false, warn$2, list[i], isDynamic);
+      } else { // normal directives
+        name = name.replace(dirRE, '');
+        // parse arg
+        var argMatch = name.match(argRE);
+        var arg = argMatch && argMatch[1];
+        isDynamic = false;
+        if (arg) {
+          name = name.slice(0, -(arg.length + 1));
+          if (dynamicArgRE.test(arg)) {
+            arg = arg.slice(1, -1);
+            isDynamic = true;
+          }
+        }
+        addDirective(el, name, rawName, value, arg, isDynamic, modifiers, list[i]);
+        if (name === 'model') {
+          checkForAliasModel(el, value);
+        }
+      }
+    } else {
+      // literal attribute
+      {
+        var res = parseText(value, delimiters);
+        if (res) {
+          warn$2(
+            name + "=\"" + value + "\": " +
+            'Interpolation inside attributes has been removed. ' +
+            'Use v-bind or the colon shorthand instead. For example, ' +
+            'instead of <div id="{{ val }}">, use <div :id="val">.',
+            list[i]
+          );
+        }
+      }
+      addAttr(el, name, JSON.stringify(value), list[i]);
+      // #6887 firefox doesn't update muted state if set via attribute
+      // even immediately after element creation
+      if (!el.component &&
+          name === 'muted' &&
+          platformMustUseProp(el.tag, el.attrsMap.type, name)) {
+        addProp(el, name, 'true', list[i]);
+      }
+    }
+  }
+}
+
+function checkInFor (el) {
+  var parent = el;
+  while (parent) {
+    if (parent.for !== undefined) {
+      return true
+    }
+    parent = parent.parent;
+  }
+  return false
+}
+
+function parseModifiers (name) {
+  var match = name.match(modifierRE);
+  if (match) {
+    var ret = {};
+    match.forEach(function (m) { ret[m.slice(1)] = true; });
+    return ret
+  }
+}
+
+function makeAttrsMap (attrs) {
+  var map = {};
+  for (var i = 0, l = attrs.length; i < l; i++) {
+    if (
+      map[attrs[i].name] && !isIE && !isEdge
+    ) {
+      warn$2('duplicate attribute: ' + attrs[i].name, attrs[i]);
+    }
+    map[attrs[i].name] = attrs[i].value;
+  }
+  return map
+}
+
+// for script (e.g. type="x/template") or style, do not decode content
+function isTextTag (el) {
+  return el.tag === 'script' || el.tag === 'style'
+}
+
+function isForbiddenTag (el) {
+  return (
+    el.tag === 'style' ||
+    (el.tag === 'script' && (
+      !el.attrsMap.type ||
+      el.attrsMap.type === 'text/javascript'
+    ))
+  )
+}
+
+var ieNSBug = /^xmlns:NS\d+/;
+var ieNSPrefix = /^NS\d+:/;
+
+/* istanbul ignore next */
+function guardIESVGBug (attrs) {
+  var res = [];
+  for (var i = 0; i < attrs.length; i++) {
+    var attr = attrs[i];
+    if (!ieNSBug.test(attr.name)) {
+      attr.name = attr.name.replace(ieNSPrefix, '');
+      res.push(attr);
+    }
+  }
+  return res
+}
+
+function checkForAliasModel (el, value) {
+  var _el = el;
+  while (_el) {
+    if (_el.for && _el.alias === value) {
+      warn$2(
+        "<" + (el.tag) + " v-model=\"" + value + "\">: " +
+        "You are binding v-model directly to a v-for iteration alias. " +
+        "This will not be able to modify the v-for source array because " +
+        "writing to the alias is like modifying a function local variable. " +
+        "Consider using an array of objects and use v-model on an object property instead.",
+        el.rawAttrsMap['v-model']
+      );
+    }
+    _el = _el.parent;
+  }
+}
+
+/*  */
+
+function preTransformNode (el, options) {
+  if (el.tag === 'input') {
+    var map = el.attrsMap;
+    if (!map['v-model']) {
+      return
+    }
+
+    var typeBinding;
+    if (map[':type'] || map['v-bind:type']) {
+      typeBinding = getBindingAttr(el, 'type');
+    }
+    if (!map.type && !typeBinding && map['v-bind']) {
+      typeBinding = "(" + (map['v-bind']) + ").type";
+    }
+
+    if (typeBinding) {
+      var ifCondition = getAndRemoveAttr(el, 'v-if', true);
+      var ifConditionExtra = ifCondition ? ("&&(" + ifCondition + ")") : "";
+      var hasElse = getAndRemoveAttr(el, 'v-else', true) != null;
+      var elseIfCondition = getAndRemoveAttr(el, 'v-else-if', true);
+      // 1. checkbox
+      var branch0 = cloneASTElement(el);
+      // process for on the main node
+      processFor(branch0);
+      addRawAttr(branch0, 'type', 'checkbox');
+      processElement(branch0, options);
+      branch0.processed = true; // prevent it from double-processed
+      branch0.if = "(" + typeBinding + ")==='checkbox'" + ifConditionExtra;
+      addIfCondition(branch0, {
+        exp: branch0.if,
+        block: branch0
+      });
+      // 2. add radio else-if condition
+      var branch1 = cloneASTElement(el);
+      getAndRemoveAttr(branch1, 'v-for', true);
+      addRawAttr(branch1, 'type', 'radio');
+      processElement(branch1, options);
+      addIfCondition(branch0, {
+        exp: "(" + typeBinding + ")==='radio'" + ifConditionExtra,
+        block: branch1
+      });
+      // 3. other
+      var branch2 = cloneASTElement(el);
+      getAndRemoveAttr(branch2, 'v-for', true);
+      addRawAttr(branch2, ':type', typeBinding);
+      processElement(branch2, options);
+      addIfCondition(branch0, {
+        exp: ifCondition,
+        block: branch2
+      });
+
+      if (hasElse) {
+        branch0.else = true;
+      } else if (elseIfCondition) {
+        branch0.elseif = elseIfCondition;
+      }
+
+      return branch0
+    }
+  }
+}
+
+function cloneASTElement (el) {
+  return createASTElement(el.tag, el.attrsList.slice(), el.parent)
+}
+
+var model$1 = {
+  preTransformNode: preTransformNode
+};
+
+var modules$1 = [
+  klass$1,
+  style$1,
+  model$1
+];
+
+/*  */
+
+function text (el, dir) {
+  if (dir.value) {
+    addProp(el, 'textContent', ("_s(" + (dir.value) + ")"), dir);
+  }
+}
+
+/*  */
+
+function html (el, dir) {
+  if (dir.value) {
+    addProp(el, 'innerHTML', ("_s(" + (dir.value) + ")"), dir);
+  }
+}
+
+var directives$1 = {
+  model: model,
+  text: text,
+  html: html
+};
+
+/*  */
+
+var baseOptions = {
+  expectHTML: true,
+  modules: modules$1,
+  directives: directives$1,
+  isPreTag: isPreTag,
+  isUnaryTag: isUnaryTag,
+  mustUseProp: mustUseProp,
+  canBeLeftOpenTag: canBeLeftOpenTag,
+  isReservedTag: isReservedTag,
+  getTagNamespace: getTagNamespace,
+  staticKeys: genStaticKeys(modules$1)
+};
+
+/*  */
+
+var isStaticKey;
+var isPlatformReservedTag;
+
+var genStaticKeysCached = cached(genStaticKeys$1);
+
+/**
+ * Goal of the optimizer: walk the generated template AST tree
+ * and detect sub-trees that are purely static, i.e. parts of
+ * the DOM that never needs to change.
+ *
+ * Once we detect these sub-trees, we can:
+ *
+ * 1. Hoist them into constants, so that we no longer need to
+ *    create fresh nodes for them on each re-render;
+ * 2. Completely skip them in the patching process.
+ */
+function optimize (root, options) {
+  if (!root) { return }
+  isStaticKey = genStaticKeysCached(options.staticKeys || '');
+  isPlatformReservedTag = options.isReservedTag || no;
+  // first pass: mark all non-static nodes.
+  markStatic$1(root);
+  // second pass: mark static roots.
+  markStaticRoots(root, false);
+}
+
+function genStaticKeys$1 (keys) {
+  return makeMap(
+    'type,tag,attrsList,attrsMap,plain,parent,children,attrs,start,end,rawAttrsMap' +
+    (keys ? ',' + keys : '')
+  )
+}
+
+function markStatic$1 (node) {
+  node.static = isStatic(node);
+  if (node.type === 1) {
+    // do not make component slot content static. this avoids
+    // 1. components not able to mutate slot nodes
+    // 2. static slot content fails for hot-reloading
+    if (
+      !isPlatformReservedTag(node.tag) &&
+      node.tag !== 'slot' &&
+      node.attrsMap['inline-template'] == null
+    ) {
+      return
+    }
+    for (var i = 0, l = node.children.length; i < l; i++) {
+      var child = node.children[i];
+      markStatic$1(child);
+      if (!child.static) {
+        node.static = false;
+      }
+    }
+    if (node.ifConditions) {
+      for (var i$1 = 1, l$1 = node.ifConditions.length; i$1 < l$1; i$1++) {
+        var block = node.ifConditions[i$1].block;
+        markStatic$1(block);
+        if (!block.static) {
+          node.static = false;
+        }
+      }
+    }
+  }
+}
+
+function markStaticRoots (node, isInFor) {
+  if (node.type === 1) {
+    if (node.static || node.once) {
+      node.staticInFor = isInFor;
+    }
+    // For a node to qualify as a static root, it should have children that
+    // are not just static text. Otherwise the cost of hoisting out will
+    // outweigh the benefits and it's better off to just always render it fresh.
+    if (node.static && node.children.length && !(
+      node.children.length === 1 &&
+      node.children[0].type === 3
+    )) {
+      node.staticRoot = true;
+      return
+    } else {
+      node.staticRoot = false;
+    }
+    if (node.children) {
+      for (var i = 0, l = node.children.length; i < l; i++) {
+        markStaticRoots(node.children[i], isInFor || !!node.for);
+      }
+    }
+    if (node.ifConditions) {
+      for (var i$1 = 1, l$1 = node.ifConditions.length; i$1 < l$1; i$1++) {
+        markStaticRoots(node.ifConditions[i$1].block, isInFor);
+      }
+    }
+  }
+}
+
+function isStatic (node) {
+  if (node.type === 2) { // expression
+    return false
+  }
+  if (node.type === 3) { // text
+    return true
+  }
+  return !!(node.pre || (
+    !node.hasBindings && // no dynamic bindings
+    !node.if && !node.for && // not v-if or v-for or v-else
+    !isBuiltInTag(node.tag) && // not a built-in
+    isPlatformReservedTag(node.tag) && // not a component
+    !isDirectChildOfTemplateFor(node) &&
+    Object.keys(node).every(isStaticKey)
+  ))
+}
+
+function isDirectChildOfTemplateFor (node) {
+  while (node.parent) {
+    node = node.parent;
+    if (node.tag !== 'template') {
+      return false
+    }
+    if (node.for) {
+      return true
+    }
+  }
+  return false
+}
+
+/*  */
+
+var fnExpRE = /^([\w$_]+|\([^)]*?\))\s*=>|^function\s*(?:[\w$]+)?\s*\(/;
+var fnInvokeRE = /\([^)]*?\);*$/;
+var simplePathRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['[^']*?']|\["[^"]*?"]|\[\d+]|\[[A-Za-z_$][\w$]*])*$/;
+
+// KeyboardEvent.keyCode aliases
+var keyCodes = {
+  esc: 27,
+  tab: 9,
+  enter: 13,
+  space: 32,
+  up: 38,
+  left: 37,
+  right: 39,
+  down: 40,
+  'delete': [8, 46]
+};
+
+// KeyboardEvent.key aliases
+var keyNames = {
+  // #7880: IE11 and Edge use `Esc` for Escape key name.
+  esc: ['Esc', 'Escape'],
+  tab: 'Tab',
+  enter: 'Enter',
+  // #9112: IE11 uses `Spacebar` for Space key name.
+  space: [' ', 'Spacebar'],
+  // #7806: IE11 uses key names without `Arrow` prefix for arrow keys.
+  up: ['Up', 'ArrowUp'],
+  left: ['Left', 'ArrowLeft'],
+  right: ['Right', 'ArrowRight'],
+  down: ['Down', 'ArrowDown'],
+  // #9112: IE11 uses `Del` for Delete key name.
+  'delete': ['Backspace', 'Delete', 'Del']
+};
+
+// #4868: modifiers that prevent the execution of the listener
+// need to explicitly return null so that we can determine whether to remove
+// the listener for .once
+var genGuard = function (condition) { return ("if(" + condition + ")return null;"); };
+
+var modifierCode = {
+  stop: '$event.stopPropagation();',
+  prevent: '$event.preventDefault();',
+  self: genGuard("$event.target !== $event.currentTarget"),
+  ctrl: genGuard("!$event.ctrlKey"),
+  shift: genGuard("!$event.shiftKey"),
+  alt: genGuard("!$event.altKey"),
+  meta: genGuard("!$event.metaKey"),
+  left: genGuard("'button' in $event && $event.button !== 0"),
+  middle: genGuard("'button' in $event && $event.button !== 1"),
+  right: genGuard("'button' in $event && $event.button !== 2")
+};
+
+function genHandlers (
+  events,
+  isNative
+) {
+  var prefix = isNative ? 'nativeOn:' : 'on:';
+  var staticHandlers = "";
+  var dynamicHandlers = "";
+  for (var name in events) {
+    var handlerCode = genHandler(events[name]);
+    if (events[name] && events[name].dynamic) {
+      dynamicHandlers += name + "," + handlerCode + ",";
+    } else {
+      staticHandlers += "\"" + name + "\":" + handlerCode + ",";
+    }
+  }
+  staticHandlers = "{" + (staticHandlers.slice(0, -1)) + "}";
+  if (dynamicHandlers) {
+    return prefix + "_d(" + staticHandlers + ",[" + (dynamicHandlers.slice(0, -1)) + "])"
+  } else {
+    return prefix + staticHandlers
+  }
+}
+
+function genHandler (handler) {
+  if (!handler) {
+    return 'function(){}'
+  }
+
+  if (Array.isArray(handler)) {
+    return ("[" + (handler.map(function (handler) { return genHandler(handler); }).join(',')) + "]")
+  }
+
+  var isMethodPath = simplePathRE.test(handler.value);
+  var isFunctionExpression = fnExpRE.test(handler.value);
+  var isFunctionInvocation = simplePathRE.test(handler.value.replace(fnInvokeRE, ''));
+
+  if (!handler.modifiers) {
+    if (isMethodPath || isFunctionExpression) {
+      return handler.value
+    }
+    return ("function($event){" + (isFunctionInvocation ? ("return " + (handler.value)) : handler.value) + "}") // inline statement
+  } else {
+    var code = '';
+    var genModifierCode = '';
+    var keys = [];
+    for (var key in handler.modifiers) {
+      if (modifierCode[key]) {
+        genModifierCode += modifierCode[key];
+        // left/right
+        if (keyCodes[key]) {
+          keys.push(key);
+        }
+      } else if (key === 'exact') {
+        var modifiers = (handler.modifiers);
+        genModifierCode += genGuard(
+          ['ctrl', 'shift', 'alt', 'meta']
+            .filter(function (keyModifier) { return !modifiers[keyModifier]; })
+            .map(function (keyModifier) { return ("$event." + keyModifier + "Key"); })
+            .join('||')
+        );
+      } else {
+        keys.push(key);
+      }
+    }
+    if (keys.length) {
+      code += genKeyFilter(keys);
+    }
+    // Make sure modifiers like prevent and stop get executed after key filtering
+    if (genModifierCode) {
+      code += genModifierCode;
+    }
+    var handlerCode = isMethodPath
+      ? ("return " + (handler.value) + "($event)")
+      : isFunctionExpression
+        ? ("return (" + (handler.value) + ")($event)")
+        : isFunctionInvocation
+          ? ("return " + (handler.value))
+          : handler.value;
+    return ("function($event){" + code + handlerCode + "}")
+  }
+}
+
+function genKeyFilter (keys) {
+  return (
+    // make sure the key filters only apply to KeyboardEvents
+    // #9441: can't use 'keyCode' in $event because Chrome autofill fires fake
+    // key events that do not have keyCode property...
+    "if(!$event.type.indexOf('key')&&" +
+    (keys.map(genFilterCode).join('&&')) + ")return null;"
+  )
+}
+
+function genFilterCode (key) {
+  var keyVal = parseInt(key, 10);
+  if (keyVal) {
+    return ("$event.keyCode!==" + keyVal)
+  }
+  var keyCode = keyCodes[key];
+  var keyName = keyNames[key];
+  return (
+    "_k($event.keyCode," +
+    (JSON.stringify(key)) + "," +
+    (JSON.stringify(keyCode)) + "," +
+    "$event.key," +
+    "" + (JSON.stringify(keyName)) +
+    ")"
+  )
+}
+
+/*  */
+
+function on (el, dir) {
+  if (dir.modifiers) {
+    warn("v-on without argument does not support modifiers.");
+  }
+  el.wrapListeners = function (code) { return ("_g(" + code + "," + (dir.value) + ")"); };
+}
+
+/*  */
+
+function bind$1 (el, dir) {
+  el.wrapData = function (code) {
+    return ("_b(" + code + ",'" + (el.tag) + "'," + (dir.value) + "," + (dir.modifiers && dir.modifiers.prop ? 'true' : 'false') + (dir.modifiers && dir.modifiers.sync ? ',true' : '') + ")")
+  };
+}
+
+/*  */
+
+var baseDirectives = {
+  on: on,
+  bind: bind$1,
+  cloak: noop
+};
+
+/*  */
+
+
+
+
+
+var CodegenState = function CodegenState (options) {
+  this.options = options;
+  this.warn = options.warn || baseWarn;
+  this.transforms = pluckModuleFunction(options.modules, 'transformCode');
+  this.dataGenFns = pluckModuleFunction(options.modules, 'genData');
+  this.directives = extend(extend({}, baseDirectives), options.directives);
+  var isReservedTag = options.isReservedTag || no;
+  this.maybeComponent = function (el) { return !!el.component || !isReservedTag(el.tag); };
+  this.onceId = 0;
+  this.staticRenderFns = [];
+  this.pre = false;
+};
+
+
+
+function generate (
+  ast,
+  options
+) {
+  var state = new CodegenState(options);
+  var code = ast ? genElement(ast, state) : '_c("div")';
+  return {
+    render: ("with(this){return " + code + "}"),
+    staticRenderFns: state.staticRenderFns
+  }
+}
+
+function genElement (el, state) {
+  if (el.parent) {
+    el.pre = el.pre || el.parent.pre;
+  }
+
+  if (el.staticRoot && !el.staticProcessed) {
+    return genStatic(el, state)
+  } else if (el.once && !el.onceProcessed) {
+    return genOnce(el, state)
+  } else if (el.for && !el.forProcessed) {
+    return genFor(el, state)
+  } else if (el.if && !el.ifProcessed) {
+    return genIf(el, state)
+  } else if (el.tag === 'template' && !el.slotTarget && !state.pre) {
+    return genChildren(el, state) || 'void 0'
+  } else if (el.tag === 'slot') {
+    return genSlot(el, state)
+  } else {
+    // component or element
+    var code;
+    if (el.component) {
+      code = genComponent(el.component, el, state);
+    } else {
+      var data;
+      if (!el.plain || (el.pre && state.maybeComponent(el))) {
+        data = genData$2(el, state);
+      }
+
+      var children = el.inlineTemplate ? null : genChildren(el, state, true);
+      code = "_c('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
+    }
+    // module transforms
+    for (var i = 0; i < state.transforms.length; i++) {
+      code = state.transforms[i](el, code);
+    }
+    return code
+  }
+}
+
+// hoist static sub-trees out
+function genStatic (el, state) {
+  el.staticProcessed = true;
+  // Some elements (templates) need to behave differently inside of a v-pre
+  // node.  All pre nodes are static roots, so we can use this as a location to
+  // wrap a state change and reset it upon exiting the pre node.
+  var originalPreState = state.pre;
+  if (el.pre) {
+    state.pre = el.pre;
+  }
+  state.staticRenderFns.push(("with(this){return " + (genElement(el, state)) + "}"));
+  state.pre = originalPreState;
+  return ("_m(" + (state.staticRenderFns.length - 1) + (el.staticInFor ? ',true' : '') + ")")
+}
+
+// v-once
+function genOnce (el, state) {
+  el.onceProcessed = true;
+  if (el.if && !el.ifProcessed) {
+    return genIf(el, state)
+  } else if (el.staticInFor) {
+    var key = '';
+    var parent = el.parent;
+    while (parent) {
+      if (parent.for) {
+        key = parent.key;
+        break
+      }
+      parent = parent.parent;
+    }
+    if (!key) {
+      state.warn(
+        "v-once can only be used inside v-for that is keyed. ",
+        el.rawAttrsMap['v-once']
+      );
+      return genElement(el, state)
+    }
+    return ("_o(" + (genElement(el, state)) + "," + (state.onceId++) + "," + key + ")")
+  } else {
+    return genStatic(el, state)
+  }
+}
+
+function genIf (
+  el,
+  state,
+  altGen,
+  altEmpty
+) {
+  el.ifProcessed = true; // avoid recursion
+  return genIfConditions(el.ifConditions.slice(), state, altGen, altEmpty)
+}
+
+function genIfConditions (
+  conditions,
+  state,
+  altGen,
+  altEmpty
+) {
+  if (!conditions.length) {
+    return altEmpty || '_e()'
+  }
+
+  var condition = conditions.shift();
+  if (condition.exp) {
+    return ("(" + (condition.exp) + ")?" + (genTernaryExp(condition.block)) + ":" + (genIfConditions(conditions, state, altGen, altEmpty)))
+  } else {
+    return ("" + (genTernaryExp(condition.block)))
+  }
+
+  // v-if with v-once should generate code like (a)?_m(0):_m(1)
+  function genTernaryExp (el) {
+    return altGen
+      ? altGen(el, state)
+      : el.once
+        ? genOnce(el, state)
+        : genElement(el, state)
+  }
+}
+
+function genFor (
+  el,
+  state,
+  altGen,
+  altHelper
+) {
+  var exp = el.for;
+  var alias = el.alias;
+  var iterator1 = el.iterator1 ? ("," + (el.iterator1)) : '';
+  var iterator2 = el.iterator2 ? ("," + (el.iterator2)) : '';
+
+  if (state.maybeComponent(el) &&
+    el.tag !== 'slot' &&
+    el.tag !== 'template' &&
+    !el.key
+  ) {
+    state.warn(
+      "<" + (el.tag) + " v-for=\"" + alias + " in " + exp + "\">: component lists rendered with " +
+      "v-for should have explicit keys. " +
+      "See https://vuejs.org/guide/list.html#key for more info.",
+      el.rawAttrsMap['v-for'],
+      true /* tip */
+    );
+  }
+
+  el.forProcessed = true; // avoid recursion
+  return (altHelper || '_l') + "((" + exp + ")," +
+    "function(" + alias + iterator1 + iterator2 + "){" +
+      "return " + ((altGen || genElement)(el, state)) +
+    '})'
+}
+
+function genData$2 (el, state) {
+  var data = '{';
+
+  // directives first.
+  // directives may mutate the el's other properties before they are generated.
+  var dirs = genDirectives(el, state);
+  if (dirs) { data += dirs + ','; }
+
+  // key
+  if (el.key) {
+    data += "key:" + (el.key) + ",";
+  }
+  // ref
+  if (el.ref) {
+    data += "ref:" + (el.ref) + ",";
+  }
+  if (el.refInFor) {
+    data += "refInFor:true,";
+  }
+  // pre
+  if (el.pre) {
+    data += "pre:true,";
+  }
+  // record original tag name for components using "is" attribute
+  if (el.component) {
+    data += "tag:\"" + (el.tag) + "\",";
+  }
+  // module data generation functions
+  for (var i = 0; i < state.dataGenFns.length; i++) {
+    data += state.dataGenFns[i](el);
+  }
+  // attributes
+  if (el.attrs) {
+    data += "attrs:" + (genProps(el.attrs)) + ",";
+  }
+  // DOM props
+  if (el.props) {
+    data += "domProps:" + (genProps(el.props)) + ",";
+  }
+  // event handlers
+  if (el.events) {
+    data += (genHandlers(el.events, false)) + ",";
+  }
+  if (el.nativeEvents) {
+    data += (genHandlers(el.nativeEvents, true)) + ",";
+  }
+  // slot target
+  // only for non-scoped slots
+  if (el.slotTarget && !el.slotScope) {
+    data += "slot:" + (el.slotTarget) + ",";
+  }
+  // scoped slots
+  if (el.scopedSlots) {
+    data += (genScopedSlots(el, el.scopedSlots, state)) + ",";
+  }
+  // component v-model
+  if (el.model) {
+    data += "model:{value:" + (el.model.value) + ",callback:" + (el.model.callback) + ",expression:" + (el.model.expression) + "},";
+  }
+  // inline-template
+  if (el.inlineTemplate) {
+    var inlineTemplate = genInlineTemplate(el, state);
+    if (inlineTemplate) {
+      data += inlineTemplate + ",";
+    }
+  }
+  data = data.replace(/,$/, '') + '}';
+  // v-bind dynamic argument wrap
+  // v-bind with dynamic arguments must be applied using the same v-bind object
+  // merge helper so that class/style/mustUseProp attrs are handled correctly.
+  if (el.dynamicAttrs) {
+    data = "_b(" + data + ",\"" + (el.tag) + "\"," + (genProps(el.dynamicAttrs)) + ")";
+  }
+  // v-bind data wrap
+  if (el.wrapData) {
+    data = el.wrapData(data);
+  }
+  // v-on data wrap
+  if (el.wrapListeners) {
+    data = el.wrapListeners(data);
+  }
+  return data
+}
+
+function genDirectives (el, state) {
+  var dirs = el.directives;
+  if (!dirs) { return }
+  var res = 'directives:[';
+  var hasRuntime = false;
+  var i, l, dir, needRuntime;
+  for (i = 0, l = dirs.length; i < l; i++) {
+    dir = dirs[i];
+    needRuntime = true;
+    var gen = state.directives[dir.name];
+    if (gen) {
+      // compile-time directive that manipulates AST.
+      // returns true if it also needs a runtime counterpart.
+      needRuntime = !!gen(el, dir, state.warn);
+    }
+    if (needRuntime) {
+      hasRuntime = true;
+      res += "{name:\"" + (dir.name) + "\",rawName:\"" + (dir.rawName) + "\"" + (dir.value ? (",value:(" + (dir.value) + "),expression:" + (JSON.stringify(dir.value))) : '') + (dir.arg ? (",arg:" + (dir.isDynamicArg ? dir.arg : ("\"" + (dir.arg) + "\""))) : '') + (dir.modifiers ? (",modifiers:" + (JSON.stringify(dir.modifiers))) : '') + "},";
+    }
+  }
+  if (hasRuntime) {
+    return res.slice(0, -1) + ']'
+  }
+}
+
+function genInlineTemplate (el, state) {
+  var ast = el.children[0];
+  if (el.children.length !== 1 || ast.type !== 1) {
+    state.warn(
+      'Inline-template components must have exactly one child element.',
+      { start: el.start }
+    );
+  }
+  if (ast && ast.type === 1) {
+    var inlineRenderFns = generate(ast, state.options);
+    return ("inlineTemplate:{render:function(){" + (inlineRenderFns.render) + "},staticRenderFns:[" + (inlineRenderFns.staticRenderFns.map(function (code) { return ("function(){" + code + "}"); }).join(',')) + "]}")
+  }
+}
+
+function genScopedSlots (
+  el,
+  slots,
+  state
+) {
+  // by default scoped slots are considered "stable", this allows child
+  // components with only scoped slots to skip forced updates from parent.
+  // but in some cases we have to bail-out of this optimization
+  // for example if the slot contains dynamic names, has v-if or v-for on them...
+  var needsForceUpdate = el.for || Object.keys(slots).some(function (key) {
+    var slot = slots[key];
+    return (
+      slot.slotTargetDynamic ||
+      slot.if ||
+      slot.for ||
+      containsSlotChild(slot) // is passing down slot from parent which may be dynamic
+    )
+  });
+
+  // #9534: if a component with scoped slots is inside a conditional branch,
+  // it's possible for the same component to be reused but with different
+  // compiled slot content. To avoid that, we generate a unique key based on
+  // the generated code of all the slot contents.
+  var needsKey = !!el.if;
+
+  // OR when it is inside another scoped slot or v-for (the reactivity may be
+  // disconnected due to the intermediate scope variable)
+  // #9438, #9506
+  // TODO: this can be further optimized by properly analyzing in-scope bindings
+  // and skip force updating ones that do not actually use scope variables.
+  if (!needsForceUpdate) {
+    var parent = el.parent;
+    while (parent) {
+      if (
+        (parent.slotScope && parent.slotScope !== emptySlotScopeToken) ||
+        parent.for
+      ) {
+        needsForceUpdate = true;
+        break
+      }
+      if (parent.if) {
+        needsKey = true;
+      }
+      parent = parent.parent;
+    }
+  }
+
+  var generatedSlots = Object.keys(slots)
+    .map(function (key) { return genScopedSlot(slots[key], state); })
+    .join(',');
+
+  return ("scopedSlots:_u([" + generatedSlots + "]" + (needsForceUpdate ? ",null,true" : "") + (!needsForceUpdate && needsKey ? (",null,false," + (hash(generatedSlots))) : "") + ")")
+}
+
+function hash(str) {
+  var hash = 5381;
+  var i = str.length;
+  while(i) {
+    hash = (hash * 33) ^ str.charCodeAt(--i);
+  }
+  return hash >>> 0
+}
+
+function containsSlotChild (el) {
+  if (el.type === 1) {
+    if (el.tag === 'slot') {
+      return true
+    }
+    return el.children.some(containsSlotChild)
+  }
+  return false
+}
+
+function genScopedSlot (
+  el,
+  state
+) {
+  var isLegacySyntax = el.attrsMap['slot-scope'];
+  if (el.if && !el.ifProcessed && !isLegacySyntax) {
+    return genIf(el, state, genScopedSlot, "null")
+  }
+  if (el.for && !el.forProcessed) {
+    return genFor(el, state, genScopedSlot)
+  }
+  var slotScope = el.slotScope === emptySlotScopeToken
+    ? ""
+    : String(el.slotScope);
+  var fn = "function(" + slotScope + "){" +
+    "return " + (el.tag === 'template'
+      ? el.if && isLegacySyntax
+        ? ("(" + (el.if) + ")?" + (genChildren(el, state) || 'undefined') + ":undefined")
+        : genChildren(el, state) || 'undefined'
+      : genElement(el, state)) + "}";
+  // reverse proxy v-slot without scope on this.$slots
+  var reverseProxy = slotScope ? "" : ",proxy:true";
+  return ("{key:" + (el.slotTarget || "\"default\"") + ",fn:" + fn + reverseProxy + "}")
+}
+
+function genChildren (
+  el,
+  state,
+  checkSkip,
+  altGenElement,
+  altGenNode
+) {
+  var children = el.children;
+  if (children.length) {
+    var el$1 = children[0];
+    // optimize single v-for
+    if (children.length === 1 &&
+      el$1.for &&
+      el$1.tag !== 'template' &&
+      el$1.tag !== 'slot'
+    ) {
+      var normalizationType = checkSkip
+        ? state.maybeComponent(el$1) ? ",1" : ",0"
+        : "";
+      return ("" + ((altGenElement || genElement)(el$1, state)) + normalizationType)
+    }
+    var normalizationType$1 = checkSkip
+      ? getNormalizationType(children, state.maybeComponent)
+      : 0;
+    var gen = altGenNode || genNode;
+    return ("[" + (children.map(function (c) { return gen(c, state); }).join(',')) + "]" + (normalizationType$1 ? ("," + normalizationType$1) : ''))
+  }
+}
+
+// determine the normalization needed for the children array.
+// 0: no normalization needed
+// 1: simple normalization needed (possible 1-level deep nested array)
+// 2: full normalization needed
+function getNormalizationType (
+  children,
+  maybeComponent
+) {
+  var res = 0;
+  for (var i = 0; i < children.length; i++) {
+    var el = children[i];
+    if (el.type !== 1) {
+      continue
+    }
+    if (needsNormalization(el) ||
+        (el.ifConditions && el.ifConditions.some(function (c) { return needsNormalization(c.block); }))) {
+      res = 2;
+      break
+    }
+    if (maybeComponent(el) ||
+        (el.ifConditions && el.ifConditions.some(function (c) { return maybeComponent(c.block); }))) {
+      res = 1;
+    }
+  }
+  return res
+}
+
+function needsNormalization (el) {
+  return el.for !== undefined || el.tag === 'template' || el.tag === 'slot'
+}
+
+function genNode (node, state) {
+  if (node.type === 1) {
+    return genElement(node, state)
+  } else if (node.type === 3 && node.isComment) {
+    return genComment(node)
+  } else {
+    return genText(node)
+  }
+}
+
+function genText (text) {
+  return ("_v(" + (text.type === 2
+    ? text.expression // no need for () because already wrapped in _s()
+    : transformSpecialNewlines(JSON.stringify(text.text))) + ")")
+}
+
+function genComment (comment) {
+  return ("_e(" + (JSON.stringify(comment.text)) + ")")
+}
+
+function genSlot (el, state) {
+  var slotName = el.slotName || '"default"';
+  var children = genChildren(el, state);
+  var res = "_t(" + slotName + (children ? ("," + children) : '');
+  var attrs = el.attrs || el.dynamicAttrs
+    ? genProps((el.attrs || []).concat(el.dynamicAttrs || []).map(function (attr) { return ({
+        // slot props are camelized
+        name: camelize(attr.name),
+        value: attr.value,
+        dynamic: attr.dynamic
+      }); }))
+    : null;
+  var bind$$1 = el.attrsMap['v-bind'];
+  if ((attrs || bind$$1) && !children) {
+    res += ",null";
+  }
+  if (attrs) {
+    res += "," + attrs;
+  }
+  if (bind$$1) {
+    res += (attrs ? '' : ',null') + "," + bind$$1;
+  }
+  return res + ')'
+}
+
+// componentName is el.component, take it as argument to shun flow's pessimistic refinement
+function genComponent (
+  componentName,
+  el,
+  state
+) {
+  var children = el.inlineTemplate ? null : genChildren(el, state, true);
+  return ("_c(" + componentName + "," + (genData$2(el, state)) + (children ? ("," + children) : '') + ")")
+}
+
+function genProps (props) {
+  var staticProps = "";
+  var dynamicProps = "";
+  for (var i = 0; i < props.length; i++) {
+    var prop = props[i];
+    var value = transformSpecialNewlines(prop.value);
+    if (prop.dynamic) {
+      dynamicProps += (prop.name) + "," + value + ",";
+    } else {
+      staticProps += "\"" + (prop.name) + "\":" + value + ",";
+    }
+  }
+  staticProps = "{" + (staticProps.slice(0, -1)) + "}";
+  if (dynamicProps) {
+    return ("_d(" + staticProps + ",[" + (dynamicProps.slice(0, -1)) + "])")
+  } else {
+    return staticProps
+  }
+}
+
+// #3895, #4268
+function transformSpecialNewlines (text) {
+  return text
+    .replace(/\u2028/g, '\\u2028')
+    .replace(/\u2029/g, '\\u2029')
+}
+
+/*  */
+
+
+
+// these keywords should not appear inside expressions, but operators like
+// typeof, instanceof and in are allowed
+var prohibitedKeywordRE = new RegExp('\\b' + (
+  'do,if,for,let,new,try,var,case,else,with,await,break,catch,class,const,' +
+  'super,throw,while,yield,delete,export,import,return,switch,default,' +
+  'extends,finally,continue,debugger,function,arguments'
+).split(',').join('\\b|\\b') + '\\b');
+
+// these unary operators should not be used as property/method names
+var unaryOperatorsRE = new RegExp('\\b' + (
+  'delete,typeof,void'
+).split(',').join('\\s*\\([^\\)]*\\)|\\b') + '\\s*\\([^\\)]*\\)');
+
+// strip strings in expressions
+var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
+
+// detect problematic expressions in a template
+function detectErrors (ast, warn) {
+  if (ast) {
+    checkNode(ast, warn);
+  }
+}
+
+function checkNode (node, warn) {
+  if (node.type === 1) {
+    for (var name in node.attrsMap) {
+      if (dirRE.test(name)) {
+        var value = node.attrsMap[name];
+        if (value) {
+          var range = node.rawAttrsMap[name];
+          if (name === 'v-for') {
+            checkFor(node, ("v-for=\"" + value + "\""), warn, range);
+          } else if (onRE.test(name)) {
+            checkEvent(value, (name + "=\"" + value + "\""), warn, range);
+          } else {
+            checkExpression(value, (name + "=\"" + value + "\""), warn, range);
+          }
+        }
+      }
+    }
+    if (node.children) {
+      for (var i = 0; i < node.children.length; i++) {
+        checkNode(node.children[i], warn);
+      }
+    }
+  } else if (node.type === 2) {
+    checkExpression(node.expression, node.text, warn, node);
+  }
+}
+
+function checkEvent (exp, text, warn, range) {
+  var stipped = exp.replace(stripStringRE, '');
+  var keywordMatch = stipped.match(unaryOperatorsRE);
+  if (keywordMatch && stipped.charAt(keywordMatch.index - 1) !== '$') {
+    warn(
+      "avoid using JavaScript unary operator as property name: " +
+      "\"" + (keywordMatch[0]) + "\" in expression " + (text.trim()),
+      range
+    );
+  }
+  checkExpression(exp, text, warn, range);
+}
+
+function checkFor (node, text, warn, range) {
+  checkExpression(node.for || '', text, warn, range);
+  checkIdentifier(node.alias, 'v-for alias', text, warn, range);
+  checkIdentifier(node.iterator1, 'v-for iterator', text, warn, range);
+  checkIdentifier(node.iterator2, 'v-for iterator', text, warn, range);
+}
+
+function checkIdentifier (
+  ident,
+  type,
+  text,
+  warn,
+  range
+) {
+  if (typeof ident === 'string') {
+    try {
+      new Function(("var " + ident + "=_"));
+    } catch (e) {
+      warn(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())), range);
+    }
+  }
+}
+
+function checkExpression (exp, text, warn, range) {
+  try {
+    new Function(("return " + exp));
+  } catch (e) {
+    var keywordMatch = exp.replace(stripStringRE, '').match(prohibitedKeywordRE);
+    if (keywordMatch) {
+      warn(
+        "avoid using JavaScript keyword as property name: " +
+        "\"" + (keywordMatch[0]) + "\"\n  Raw expression: " + (text.trim()),
+        range
+      );
+    } else {
+      warn(
+        "invalid expression: " + (e.message) + " in\n\n" +
+        "    " + exp + "\n\n" +
+        "  Raw expression: " + (text.trim()) + "\n",
+        range
+      );
+    }
+  }
+}
+
+/*  */
+
+var range = 2;
+
+function generateCodeFrame (
+  source,
+  start,
+  end
+) {
+  if ( start === void 0 ) start = 0;
+  if ( end === void 0 ) end = source.length;
+
+  var lines = source.split(/\r?\n/);
+  var count = 0;
+  var res = [];
+  for (var i = 0; i < lines.length; i++) {
+    count += lines[i].length + 1;
+    if (count >= start) {
+      for (var j = i - range; j <= i + range || end > count; j++) {
+        if (j < 0 || j >= lines.length) { continue }
+        res.push(("" + (j + 1) + (repeat$1(" ", 3 - String(j + 1).length)) + "|  " + (lines[j])));
+        var lineLength = lines[j].length;
+        if (j === i) {
+          // push underline
+          var pad = start - (count - lineLength) + 1;
+          var length = end > count ? lineLength - pad : end - start;
+          res.push("   |  " + repeat$1(" ", pad) + repeat$1("^", length));
+        } else if (j > i) {
+          if (end > count) {
+            var length$1 = Math.min(end - count, lineLength);
+            res.push("   |  " + repeat$1("^", length$1));
+          }
+          count += lineLength + 1;
+        }
+      }
+      break
+    }
+  }
+  return res.join('\n')
+}
+
+function repeat$1 (str, n) {
+  var result = '';
+  if (n > 0) {
+    while (true) { // eslint-disable-line
+      if (n & 1) { result += str; }
+      n >>>= 1;
+      if (n <= 0) { break }
+      str += str;
+    }
+  }
+  return result
+}
+
+/*  */
+
+
+
+function createFunction (code, errors) {
+  try {
+    return new Function(code)
+  } catch (err) {
+    errors.push({ err: err, code: code });
+    return noop
+  }
+}
+
+function createCompileToFunctionFn (compile) {
+  var cache = Object.create(null);
+
+  return function compileToFunctions (
+    template,
+    options,
+    vm
+  ) {
+    options = extend({}, options);
+    var warn$$1 = options.warn || warn;
+    delete options.warn;
+
+    /* istanbul ignore if */
+    {
+      // detect possible CSP restriction
+      try {
+        new Function('return 1');
+      } catch (e) {
+        if (e.toString().match(/unsafe-eval|CSP/)) {
+          warn$$1(
+            'It seems you are using the standalone build of Vue.js in an ' +
+            'environment with Content Security Policy that prohibits unsafe-eval. ' +
+            'The template compiler cannot work in this environment. Consider ' +
+            'relaxing the policy to allow unsafe-eval or pre-compiling your ' +
+            'templates into render functions.'
+          );
+        }
+      }
+    }
+
+    // check cache
+    var key = options.delimiters
+      ? String(options.delimiters) + template
+      : template;
+    if (cache[key]) {
+      return cache[key]
+    }
+
+    // compile
+    var compiled = compile(template, options);
+
+    // check compilation errors/tips
+    {
+      if (compiled.errors && compiled.errors.length) {
+        if (options.outputSourceRange) {
+          compiled.errors.forEach(function (e) {
+            warn$$1(
+              "Error compiling template:\n\n" + (e.msg) + "\n\n" +
+              generateCodeFrame(template, e.start, e.end),
+              vm
+            );
+          });
+        } else {
+          warn$$1(
+            "Error compiling template:\n\n" + template + "\n\n" +
+            compiled.errors.map(function (e) { return ("- " + e); }).join('\n') + '\n',
+            vm
+          );
+        }
+      }
+      if (compiled.tips && compiled.tips.length) {
+        if (options.outputSourceRange) {
+          compiled.tips.forEach(function (e) { return tip(e.msg, vm); });
+        } else {
+          compiled.tips.forEach(function (msg) { return tip(msg, vm); });
+        }
+      }
+    }
+
+    // turn code into functions
+    var res = {};
+    var fnGenErrors = [];
+    res.render = createFunction(compiled.render, fnGenErrors);
+    res.staticRenderFns = compiled.staticRenderFns.map(function (code) {
+      return createFunction(code, fnGenErrors)
+    });
+
+    // check function generation errors.
+    // this should only happen if there is a bug in the compiler itself.
+    // mostly for codegen development use
+    /* istanbul ignore if */
+    {
+      if ((!compiled.errors || !compiled.errors.length) && fnGenErrors.length) {
+        warn$$1(
+          "Failed to generate render function:\n\n" +
+          fnGenErrors.map(function (ref) {
+            var err = ref.err;
+            var code = ref.code;
+
+            return ((err.toString()) + " in\n\n" + code + "\n");
+        }).join('\n'),
+          vm
+        );
+      }
+    }
+
+    return (cache[key] = res)
+  }
+}
+
+/*  */
+
+function createCompilerCreator (baseCompile) {
+  return function createCompiler (baseOptions) {
+    function compile (
+      template,
+      options
+    ) {
+      var finalOptions = Object.create(baseOptions);
+      var errors = [];
+      var tips = [];
+
+      var warn = function (msg, range, tip) {
+        (tip ? tips : errors).push(msg);
+      };
+
+      if (options) {
+        if (options.outputSourceRange) {
+          // $flow-disable-line
+          var leadingSpaceLength = template.match(/^\s*/)[0].length;
+
+          warn = function (msg, range, tip) {
+            var data = { msg: msg };
+            if (range) {
+              if (range.start != null) {
+                data.start = range.start + leadingSpaceLength;
+              }
+              if (range.end != null) {
+                data.end = range.end + leadingSpaceLength;
+              }
+            }
+            (tip ? tips : errors).push(data);
+          };
+        }
+        // merge custom modules
+        if (options.modules) {
+          finalOptions.modules =
+            (baseOptions.modules || []).concat(options.modules);
+        }
+        // merge custom directives
+        if (options.directives) {
+          finalOptions.directives = extend(
+            Object.create(baseOptions.directives || null),
+            options.directives
+          );
+        }
+        // copy other options
+        for (var key in options) {
+          if (key !== 'modules' && key !== 'directives') {
+            finalOptions[key] = options[key];
+          }
+        }
+      }
+
+      finalOptions.warn = warn;
+
+      var compiled = baseCompile(template.trim(), finalOptions);
+      {
+        detectErrors(compiled.ast, warn);
+      }
+      compiled.errors = errors;
+      compiled.tips = tips;
+      return compiled
+    }
+
+    return {
+      compile: compile,
+      compileToFunctions: createCompileToFunctionFn(compile)
+    }
+  }
+}
+
+/*  */
+
+// `createCompilerCreator` allows creating compilers that use alternative
+// parser/optimizer/codegen, e.g the SSR optimizing compiler.
+// Here we just export a default compiler using the default parts.
+var createCompiler = createCompilerCreator(function baseCompile (
+  template,
+  options
+) {
+  var ast = parse(template.trim(), options);
+  if (options.optimize !== false) {
+    optimize(ast, options);
+  }
+  var code = generate(ast, options);
+  return {
+    ast: ast,
+    render: code.render,
+    staticRenderFns: code.staticRenderFns
+  }
+});
+
+/*  */
+
+var ref$1 = createCompiler(baseOptions);
+var compile = ref$1.compile;
+var compileToFunctions = ref$1.compileToFunctions;
+
+/*  */
+
+// check whether current browser encodes a char inside attribute values
+var div;
+function getShouldDecode (href) {
+  div = div || document.createElement('div');
+  div.innerHTML = href ? "<a href=\"\n\"/>" : "<div a=\"\n\"/>";
+  return div.innerHTML.indexOf('&#10;') > 0
+}
+
+// #3663: IE encodes newlines inside attribute values while other browsers don't
+var shouldDecodeNewlines = inBrowser ? getShouldDecode(false) : false;
+// #6828: chrome encodes content in a[href]
+var shouldDecodeNewlinesForHref = inBrowser ? getShouldDecode(true) : false;
+
+/*  */
+
+var idToTemplate = cached(function (id) {
+  var el = query(id);
+  return el && el.innerHTML
+});
+
+var mount = Vue.prototype.$mount;
+Vue.prototype.$mount = function (
+  el,
+  hydrating
+) {
+  el = el && query(el);
+
+  /* istanbul ignore if */
+  if (el === document.body || el === document.documentElement) {
+    warn(
+      "Do not mount Vue to <html> or <body> - mount to normal elements instead."
+    );
+    return this
+  }
+
+  var options = this.$options;
+  // resolve template/el and convert to render function
+  if (!options.render) {
+    var template = options.template;
+    if (template) {
+      if (typeof template === 'string') {
+        if (template.charAt(0) === '#') {
+          template = idToTemplate(template);
+          /* istanbul ignore if */
+          if (!template) {
+            warn(
+              ("Template element not found or is empty: " + (options.template)),
+              this
+            );
+          }
+        }
+      } else if (template.nodeType) {
+        template = template.innerHTML;
+      } else {
+        {
+          warn('invalid template option:' + template, this);
+        }
+        return this
+      }
+    } else if (el) {
+      template = getOuterHTML(el);
+    }
+    if (template) {
+      /* istanbul ignore if */
+      if (config.performance && mark) {
+        mark('compile');
+      }
+
+      var ref = compileToFunctions(template, {
+        outputSourceRange: "development" !== 'production',
+        shouldDecodeNewlines: shouldDecodeNewlines,
+        shouldDecodeNewlinesForHref: shouldDecodeNewlinesForHref,
+        delimiters: options.delimiters,
+        comments: options.comments
+      }, this);
+      var render = ref.render;
+      var staticRenderFns = ref.staticRenderFns;
+      options.render = render;
+      options.staticRenderFns = staticRenderFns;
+
+      /* istanbul ignore if */
+      if (config.performance && mark) {
+        mark('compile end');
+        measure(("vue " + (this._name) + " compile"), 'compile', 'compile end');
+      }
+    }
+  }
+  return mount.call(this, el, hydrating)
+};
+
+/**
+ * Get outerHTML of elements, taking care
+ * of SVG elements in IE as well.
+ */
+function getOuterHTML (el) {
+  if (el.outerHTML) {
+    return el.outerHTML
+  } else {
+    var container = document.createElement('div');
+    container.appendChild(el.cloneNode(true));
+    return container.innerHTML
+  }
+}
+
+Vue.compile = compileToFunctions;
+
+module.exports = Vue;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/timers-browserify/main.js").setImmediate))
+
+/***/ }),
+
+/***/ "./node_modules/vue/dist/vue.common.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+if (false) {
+  module.exports = require('./vue.common.prod.js')
+} else {
+  module.exports = __webpack_require__("./node_modules/vue/dist/vue.common.dev.js")
+}
+
 
 /***/ }),
 
@@ -77155,7 +84030,7 @@ module.exports = g;
 /***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./node_modules/vue/dist/vue.runtime.esm.js");
+__webpack_require__("./node_modules/vue/dist/vue.common.js");
 __webpack_require__("./node_modules/element-ui/lib/element-ui.common.js");
 __webpack_require__("./node_modules/vue-router/dist/vue-router.esm.js");
 __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");

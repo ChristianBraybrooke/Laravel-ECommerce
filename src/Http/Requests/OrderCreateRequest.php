@@ -89,6 +89,7 @@ class OrderCreateRequest extends FormRequest
             'products.*.customisation_data' => 'array',
             'products.*.customisation_data.*.name' => 'required|string',
             'products.*.customisation_data.*.value' => 'present',
+            'products.*.customisation_data.*.label' => 'present',
             'products.*.customisation_data.*.order' => 'numeric',
             'products.*.customisation_data.*.group' => 'string',
             'products.*.customisation_data.*.type' => ['required', 'string', Rule::in(['integer', 'string'])],

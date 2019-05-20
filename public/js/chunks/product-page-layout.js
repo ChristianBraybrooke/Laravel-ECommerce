@@ -109,35 +109,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     form: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     formLoaded: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function (data) {};
       }
     },
     formRules: {
       type: Object,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     requestWith: {
       type: Array,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     requestIncludes: {
       type: Array,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     }
@@ -169,14 +169,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       __WEBPACK_IMPORTED_MODULE_0_services_api_service__["a" /* default */].get({
         path: 'products/' + this.productId,
         params: {
-          with: this.requestWith.concat(['variant']),
+          "with": this.requestWith.concat(['variant']),
           include: this.requestIncludes
         }
       }).then(function (data) {
         this.loading = false;
         this.productForm = data.data;
         this.formLoaded(data.data);
-      }.bind(this)).catch(function (error) {
+      }.bind(this))["catch"](function (error) {
         this.loading = false;
         this.productErrors = error;
       }.bind(this));
@@ -192,7 +192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.productErrors = {};
       this.loading = true;
-      this.productForm.with = this.requestWith.concat(['variant']);
+      this.productForm["with"] = this.requestWith.concat(['variant']);
       this.productForm.include = this.requestIncludes;
       this.$refs[formName].validate(function (valid) {
         if (valid) {
@@ -207,7 +207,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
               type: 'success',
               showClose: true
             });
-          }.bind(_this)).catch(function (error) {
+          }.bind(_this))["catch"](function (error) {
             this.loading = false;
             this.productErrors = error;
           }.bind(_this));
@@ -382,7 +382,7 @@ var render = function() {
                                   },
                                   on: {
                                     click: function($event) {
-                                      _vm.submitForm("productForm")
+                                      return _vm.submitForm("productForm")
                                     }
                                   }
                                 },

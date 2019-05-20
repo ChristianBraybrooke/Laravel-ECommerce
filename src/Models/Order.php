@@ -32,6 +32,8 @@ class Order extends Model implements OrderContract
     use  LogsActivity, ResponsableTrait, FormatDatesTrait, HasMediaAttached, HasContentAttached, SoftDeletes,
     WatchesOrderStatus;
 
+    protected $with = ['products'];
+
     public static $statuses = [
         'STATUS_DRAFT' => 'Draft',
         'STATUS_AWAITING_PAYMENT' => 'Awaiting Payment',
@@ -412,6 +414,87 @@ class Order extends Model implements OrderContract
             ]);
         }
         return $this;
+    }
+
+    /**
+     * Calculate the subtotal value from the products on this order.
+     *
+     * @return float
+     */
+    public function getSubtotalAmountAttribute()
+    {
+        return $this->calculateTotalAmount('sub_total');
+    }
+
+    /**
+     * Calculate the extras value from the products on this order.
+     *
+     * @return float
+     */
+    public function getExtrasAmountAttribute()
+    {
+        return $this->calculateTotalAmount('extras');
+    }
+
+    /**
+     * Calculate a total for all products for a particular attribute.
+     *
+     * @return float
+     */
+    public function calculateTotalAmount($attribute)
+    {
+        $runningTotal = 0;
+        $this->products->each(function ($product) use (&$runningTotal, $attribute) {
+            $runningTotal = $runningTotal + $product->pivot->getOriginal($attribute);
+        });
+        return $runningTotal / 100;
+    }
+
+    /**
+     * Calculate the various totals for this order.
+     *
+     * @return array
+     */
+    public function getTotalsAttribute()
+    {
+        return [
+            'sub_total' => [
+                'name' => 'Sub Total',
+                'value' => $this->subtotal_amount,
+                'formatted' => priceFormatter($this->subtotal_amount),
+                'hide_if_null' => false
+            ],
+            'extras' => [
+                'name' => 'Extras',
+                'value' => $this->extras_amount,
+                'formatted' => priceFormatter($this->extras_amount),
+                'hide_if_null' => false
+            ],
+            'shipping' => [
+                'name' => 'Shipping',
+                'value' => $this->shipping_amount,
+                'formatted' => priceFormatter($this->shipping_amount),
+                'hide_if_null' => true
+            ],
+            'discount' => [
+                'name' => 'Discount',
+                'value' => $this->discount_amount,
+                'formatted' => priceFormatter($this->discount_amount),
+                'hide_if_null' => true
+            ],
+            'vat' => [
+                'name' => 'VAT',
+                'value' => $this->vat_amount,
+                'formatted' => priceFormatter($this->vat_amount),
+                'hide_if_null' => false
+            ],
+            'total' => [
+                'name' => 'Total',
+                'value' => $this->total_amount,
+                'formatted' => priceFormatter($this->total_amount),
+                'hide_if_null' => true
+            ]
+        ];
     }
 
     /**

@@ -86,14 +86,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     variants: {
       type: Array,
       required: true,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     },
     onRemoveProduct: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function (product) {};
       }
     }
