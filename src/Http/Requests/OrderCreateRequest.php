@@ -128,6 +128,7 @@ class OrderCreateRequest extends FormRequest
     protected function getValidatorInstance()
     {
         return parent::getValidatorInstance()->after(function ($validator) {
+            dd($validator->failed());
             $this->after($validator);
         });
     }
@@ -140,6 +141,7 @@ class OrderCreateRequest extends FormRequest
      */
     protected function after($validator)
     {
+        dd('meant to be after');
         $this->merge([
             'user_id' => $this->resolveUserId()
         ]);
