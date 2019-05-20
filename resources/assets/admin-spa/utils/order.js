@@ -8,7 +8,7 @@ var vatAmount = window.ecommerceConfig.vat_amount
 export default {
 
   productSubTotal (product) {
-    return priceUtil.normalise(product.price) * parseInt(product.quantity)
+    return priceUtil.normalise(product.totals.unit_price) * parseInt(product.qty)
   },
 
   productExtras (product) {
@@ -22,7 +22,7 @@ export default {
         }
       })
     }
-    return extras * product.quantity
+    return extras * product.qty
   },
 
   productTotal (product) {
@@ -45,13 +45,13 @@ export default {
     var subTotal = 0
     var extras = 0
     forEach(products, function (product, key) {
-      var quantity = product.quantity ? product.quantity : 1
-      subTotal = subTotal + (priceUtil.normalise(product.price) * parseInt(quantity))
+      var qty = product.qty ? product.qty : 1
+      subTotal = subTotal + (priceUtil.normalise(product.price) * parseInt(qty))
 
       forEach((product.options ? product.options : []), function (option) {
         if (option) {
           if (option.price_mutator && option.price_value) {
-            extras = extras + (operators[option.price_mutator](0, option.price_value) * parseInt(quantity))
+            extras = extras + (operators[option.price_mutator](0, option.price_value) * parseInt(qty))
           }
         }
       })

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="new_product_form_wrap">
     <el-button
       :loading="loading"
       :size="mergedButton.size"
@@ -743,5 +743,8 @@ export default {
 <style lang="css" scoped>
 .tooltip_wrap {
   float: left;
+}
+.new_product_form_wrap {
+  display: inherit;
 }
 </style>

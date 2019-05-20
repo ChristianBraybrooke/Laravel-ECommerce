@@ -3829,6 +3829,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -3863,6 +3867,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -3972,6 +3980,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -4050,6 +4062,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -7925,6 +7941,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -7959,6 +7979,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -8068,6 +8092,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -8146,6 +8174,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -12861,6 +12893,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -12895,6 +12931,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -13004,6 +13044,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -13082,6 +13126,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -14002,6 +14050,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -14036,6 +14088,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -14145,6 +14201,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -14223,6 +14283,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -19364,6 +19428,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -19398,6 +19466,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -19507,6 +19579,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -19585,6 +19661,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -29575,6 +29655,10 @@
   color: #c0c4cc;
 }
 
+.el-date-editor .el-range-input::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-date-editor .el-range-input::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -29699,6 +29783,10 @@
 }
 
 .el-range-editor.is-disabled input::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-range-editor.is-disabled input::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -31592,6 +31680,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -31626,6 +31718,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -31735,6 +31831,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -31813,6 +31913,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -33777,6 +33881,10 @@
   color: #c0c4cc;
 }
 
+.el-date-editor .el-range-input::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-date-editor .el-range-input::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -33901,6 +34009,10 @@
 }
 
 .el-range-editor.is-disabled input::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-range-editor.is-disabled input::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -36317,6 +36429,10 @@
   color: #c0c4cc;
 }
 
+.el-date-editor .el-range-input::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-date-editor .el-range-input::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -36441,6 +36557,10 @@
 }
 
 .el-range-editor.is-disabled input::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-range-editor.is-disabled input::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -37882,6 +38002,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -37916,6 +38040,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -38025,6 +38153,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -38103,6 +38235,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -42696,6 +42832,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -42730,6 +42870,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -42839,6 +42983,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -42917,6 +43065,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -49616,6 +49768,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -49650,6 +49806,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -49759,6 +49919,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -49837,6 +50001,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -62901,6 +63069,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -62935,6 +63107,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -63044,6 +63220,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -63122,6 +63302,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -65453,6 +65637,10 @@
   color: #c0c4cc;
 }
 
+.el-textarea__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-textarea__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -65487,6 +65675,10 @@
 }
 
 .el-textarea.is-disabled .el-textarea__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-textarea.is-disabled .el-textarea__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
@@ -65596,6 +65788,10 @@
   color: #c0c4cc;
 }
 
+.el-input__inner::-moz-placeholder {
+  color: #c0c4cc;
+}
+
 .el-input__inner::-ms-input-placeholder {
   color: #c0c4cc;
 }
@@ -65674,6 +65870,10 @@
 }
 
 .el-input.is-disabled .el-input__inner::-webkit-input-placeholder {
+  color: #c0c4cc;
+}
+
+.el-input.is-disabled .el-input__inner::-moz-placeholder {
   color: #c0c4cc;
 }
 
