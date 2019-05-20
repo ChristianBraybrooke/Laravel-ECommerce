@@ -196,10 +196,10 @@
                 <el-form-item
                   label="Quantity"
                   size="small"
-                  prop="quantity">
-                  <el-select v-model="customisationForm.quantity">
+                  prop="qty">
+                  <el-select v-model="customisationForm.qty">
                     <el-option
-                      v-for="range in quantityRange"
+                      v-for="range in qtyRange"
                       :key="range"
                       :value="range">
                       {{ range }}
@@ -373,7 +373,7 @@ export default {
     return {
       loading: true,
       customisationForm: {
-        quantity: 1,
+        qty: 1,
         options: {},
         product: {
           order_form: {
@@ -416,7 +416,7 @@ export default {
       return orderBy(this.customisationForm.product.order_form.sections.data, 'order')
     },
 
-    quantityRange () {
+    qtyRange () {
       return range(1, 250)
     },
 
@@ -504,7 +504,7 @@ export default {
       return {
         ...{ product: product },
         ...{ totals: totals },
-        ...{ qty: this.customisationForm.quantity },
+        ...{ qty: this.customisationForm.qty },
         ...{ customisation_data: this.customisationForm.options },
         ...{ form: { id: this.customisationForm.product.order_form.id } }
       }
@@ -539,6 +539,7 @@ export default {
   mounted () {
     if (this.editForm) {
       this.loading = false
+      this.getEditForm()
     } else {
       this.getData()
     }
@@ -567,6 +568,24 @@ export default {
       }
     },
 
+    getEditForm () {
+      var formId = this.product.form.id
+      api.get({
+        path: 'forms/' + formId,
+        params: {
+          with: 'sections.fields'
+        }
+      })
+        .then((data) => {
+          this.customisationForm = {
+            qty: 1,
+            options: {},
+            product: this.product
+          }
+          this.customisationForm.product.order_form = data.data
+        })
+    },
+
     resetForm () {
       this.form.product = {
         variants: {
@@ -592,7 +611,7 @@ export default {
 
     resetCustomisationForm () {
       this.customisationForm = {
-        quantity: 1,
+        qty: 1,
         options: {},
         product: {
           order_form: {
@@ -678,19 +697,19 @@ export default {
         })
       }
 
-      var quantity = this.customisationForm.quantity
-      var total = baseWithExtras * quantity
-      extras = extras * quantity
+      var qty = this.customisationForm.qty
+      var total = baseWithExtras * qty
+      extras = extras * qty
       return {
         'Base Price': this.formatPrice(basePrice),
-        'Sub-Total': this.formatPrice(basePrice * quantity),
+        'Sub-Total': this.formatPrice(basePrice * qty),
         'Extras': this.formatPrice(extras),
         'Total': this.formatPrice(total)
       }
     },
 
     addProduct (addAnother = false) {
-      if (this.customisationForm.quantity >= 1) {
+      if (this.customisationForm.qty >= 1) {
         var product = this.mergedProduct
         this.onProductAdd(product)
 
@@ -730,7 +749,7 @@ export default {
       this.form.product = product
       this.customisationForm.product = product
       this.customisationForm.options = product.options
-      this.customisationForm.quantity = product.quantity
+      this.customisationForm.qty = product.qty
     },
 
     closeAndClearModal (confirm = true) {

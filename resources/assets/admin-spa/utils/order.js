@@ -46,7 +46,7 @@ export default {
     var extras = 0
     forEach(products, function (product, key) {
       var qty = product.qty ? product.qty : 1
-      subTotal = subTotal + (priceUtil.normalise(product.price) * parseInt(qty))
+      subTotal = subTotal + (priceUtil.normalise(product.totals.unit_price) * parseInt(qty))
 
       forEach((product.options ? product.options : []), function (option) {
         if (option) {

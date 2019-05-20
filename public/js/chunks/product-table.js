@@ -421,7 +421,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       loading: true,
       customisationForm: {
-        quantity: 1,
+        qty: 1,
         options: {},
         product: {
           order_form: {
@@ -458,7 +458,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     orderedFormSections: function orderedFormSections() {
       return __WEBPACK_IMPORTED_MODULE_9_lodash_orderby___default()(this.customisationForm.product.order_form.sections.data, 'order');
     },
-    quantityRange: function quantityRange() {
+    qtyRange: function qtyRange() {
       return __WEBPACK_IMPORTED_MODULE_11_lodash_range___default()(1, 250);
     },
     defaultButton: function defaultButton() {
@@ -528,7 +528,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, {
         totals: totals
       }, {
-        qty: this.customisationForm.quantity
+        qty: this.customisationForm.qty
       }, {
         customisation_data: this.customisationForm.options
       }, {
@@ -567,6 +567,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     if (this.editForm) {
       this.loading = false;
+      this.getEditForm();
     } else {
       this.getData();
     }
@@ -591,6 +592,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }.bind(this));
       }
     },
+    getEditForm: function getEditForm() {
+      var _this = this;
+
+      var formId = this.product.form.id;
+      __WEBPACK_IMPORTED_MODULE_2_services_api_service__["a" /* default */].get({
+        path: 'forms/' + formId,
+        params: {
+          "with": 'sections.fields'
+        }
+      }).then(function (data) {
+        _this.customisationForm = {
+          qty: 1,
+          options: {},
+          product: _this.product
+        };
+        _this.customisationForm.product.order_form = data.data;
+      });
+    },
     resetForm: function resetForm() {
       this.form.product = {
         variants: {
@@ -613,7 +632,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     resetCustomisationForm: function resetCustomisationForm() {
       this.customisationForm = {
-        quantity: 1,
+        qty: 1,
         options: {},
         product: {
           order_form: {
@@ -625,7 +644,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       };
     },
     setCustomisationProduct: function setCustomisationProduct(val) {
-      var _this = this;
+      var _this2 = this;
 
       var product = _objectSpread({}, {}, val);
 
@@ -636,7 +655,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.customisationForm.product.order_form.sections.data.forEach(function (section) {
           section.fields.data.forEach(function (field) {
             if (field.key) {
-              _this.$set(_this.customisationForm.options, field.key, {
+              _this2.$set(_this2.customisationForm.options, field.key, {
                 value: null,
                 name: null,
                 group: section.name,
@@ -700,12 +719,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       }
 
-      var quantity = this.customisationForm.quantity;
-      var total = baseWithExtras * quantity;
-      extras = extras * quantity;
+      var qty = this.customisationForm.qty;
+      var total = baseWithExtras * qty;
+      extras = extras * qty;
       return {
         'Base Price': this.formatPrice(basePrice),
-        'Sub-Total': this.formatPrice(basePrice * quantity),
+        'Sub-Total': this.formatPrice(basePrice * qty),
         'Extras': this.formatPrice(extras),
         'Total': this.formatPrice(total)
       };
@@ -713,7 +732,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addProduct: function addProduct() {
       var addAnother = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-      if (this.customisationForm.quantity >= 1) {
+      if (this.customisationForm.qty >= 1) {
         var product = this.mergedProduct;
         this.onProductAdd(product);
 
@@ -757,7 +776,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.product = product;
       this.customisationForm.product = product;
       this.customisationForm.options = product.options;
-      this.customisationForm.quantity = product.quantity;
+      this.customisationForm.qty = product.qty;
     },
     closeAndClearModal: function closeAndClearModal() {
       var confirm = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
@@ -14053,7 +14072,7 @@ var render = function() {
                                         attrs: {
                                           label: "Quantity",
                                           size: "small",
-                                          prop: "quantity"
+                                          prop: "qty"
                                         }
                                       },
                                       [
@@ -14061,22 +14080,19 @@ var render = function() {
                                           "el-select",
                                           {
                                             model: {
-                                              value:
-                                                _vm.customisationForm.quantity,
+                                              value: _vm.customisationForm.qty,
                                               callback: function($$v) {
                                                 _vm.$set(
                                                   _vm.customisationForm,
-                                                  "quantity",
+                                                  "qty",
                                                   $$v
                                                 )
                                               },
                                               expression:
-                                                "customisationForm.quantity"
+                                                "customisationForm.qty"
                                             }
                                           },
-                                          _vm._l(_vm.quantityRange, function(
-                                            range
-                                          ) {
+                                          _vm._l(_vm.qtyRange, function(range) {
                                             return _c(
                                               "el-option",
                                               {
