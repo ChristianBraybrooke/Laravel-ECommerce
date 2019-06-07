@@ -19,11 +19,32 @@ class Content extends Model
         'content_name', 'content', 'lang', 'type', 'order'
     ];
 
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'updated' => ContentUpdated::class,
+    ];
+
+    /**
+     * Get and format the content attribute.
+     *
+     * @param  string $value
+     * @return mixed
+     */
     public function getContentAttribute($value)
     {
-      return $this->type === 'json' ? json_decode($value) : $value;
+        return $this->type === 'json' ? json_decode($value) : $value;
     }
 
+    /**
+     * Set and format the content attribute.
+     *
+     * @param  string $value
+     * @return void
+     */
     public function setContentAttribute($value)
     {
         $this->attributes['content'] = ($this->type === 'json' ? json_encode($value) : $value);

@@ -17,7 +17,7 @@ use ChrisBraybrooke\ECommerce\Contracts\Order as OrderContract;
 use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
 use ChrisBraybrooke\ECommerce\Jobs\SendOrderNotification;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use ChrisBraybrooke\ECommerce\Notifications\SendOrderCompleteNotification;
+use ChrisBraybrooke\ECommerce\Notifications\OrderCompleteNotification;
 use Cart;
 use Setting;
 use Product;
@@ -410,6 +410,16 @@ class Order extends Model implements OrderContract
     }
 
     /**
+     * Retrieve the invoice pdf
+     *
+     * @return mixed
+     */
+    public function getInvoicePdfAttribute()
+    {
+        return $this->mediaByLocation('invoice')->first();
+    }
+
+    /**
      * Format the customer attribute
      *
      * @return array
@@ -575,7 +585,7 @@ class Order extends Model implements OrderContract
     public function sendCompleteNotification()
     {
         Notification::route('mail', $this->user_email)
-            ->notify(new SendOrderCompleteNotification($this));
+            ->notify(new OrderCompleteNotification($this));
 
         activity()
             ->performedOn($this)
@@ -591,5 +601,40 @@ class Order extends Model implements OrderContract
     public function getInvoicedAtAttribute($value)
     {
         return $value ? $this->dateAdapter($value) : $this->created_at;
+    }
+
+    /**
+     * Put together the mail message for a new order.
+     *
+     * @param  \Illuminate\Notifications\Messages\MailMessage $mailMessage
+     * @param  \App\User $notifiable  [description]
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function newOrderMailMessage($mailMessage, $notifiable)
+    {
+        return $mailMessage->subject(config('app.name', 'TCO') . ' Order Confirmation - ' . $this->ref)
+            ->greeting("Order #{$this->ref} Confirmed!")
+            ->line('Thank you for placing an order with '  . config('app.name', 'TCO'))
+            ->line("Please find your invoice for {$this->cart['currency']}{$this->cart['totals']['Total']} attached below.")
+            ->action('View Invoice', optional($this->invoicePdf)->getFullUrl())
+            ->line('Thank you for shoping with us!');
+    }
+
+    /**
+     * Put together the mail message for when an order is completed and ready for delivery.
+     *
+     * @param  \Illuminate\Notifications\Messages\MailMessage $mailMessage
+     * @param  \App\User $notifiable  [description]
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function orderCompleteMailMessage($mailMessage, $notifiable)
+    {
+        return $mailMessage->subject(config('app.name', 'TCO') . ' Order Complete - ' . $this->ref)
+            ->greeting("Order {$this->invoice['number']} Completed!")
+            ->line('Your ' . config('app.name', 'TCO') . ' order has been marked as complete.')
+            ->line('This means that your order is almost with you, and somebody will be in touch about delivery.')
+            ->line("Please find your invoice for {$this->cart['currency']}{$this->cart['totals']['Total']} attached below.")
+            ->action('View Invoice', optional($this->invoicePdf)->getFullUrl())
+            ->line('Thank you for shoping with us!');
     }
 }

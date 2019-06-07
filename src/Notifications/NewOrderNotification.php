@@ -42,15 +42,7 @@ class NewOrderNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $invoice = $this->order->mediaByLocation('invoice')->first();
-
-        return (new MailMessage)
-                    ->subject(config('app.name', 'TCO') . ' Order Confirmation - ' . $this->order->invoice['number'])
-                    ->greeting("Order {$this->order->invoice['number']} Confirmed!")
-                    ->line('Thank you for placing an order with '  . config('app.name', 'TCO'))
-                    ->line("Please find your invoice for {$this->order->cart['currency']}{$this->order->cart['totals']['Total']} attached below.")
-                    ->action('View Invoice', $invoice->getFullUrl())
-                    ->line('Thank you for shoping with us!');
+        return $this->order->newOrderMailMessage((new MailMessage), $notifiable);
     }
 
     /**
