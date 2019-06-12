@@ -6,7 +6,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use ChrisBraybrooke\ECommerce\Jobs\CreateOrderInvoicePdf;
 use ChrisBraybrooke\ECommerce\Jobs\SendOrderNotification;
-use ChrisBraybrooke\ECommerce\Notifications\SendOrderCompleteNotification;
 use Notification;
 use Order;
 

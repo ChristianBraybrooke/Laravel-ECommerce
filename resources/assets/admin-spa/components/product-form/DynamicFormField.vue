@@ -8,11 +8,12 @@
         class="form_option_section">
         <h4>{{ field.name }} {{ loopKey+1 }}</h4>
         <el-row
-          :gutter="20"
-          type="flex">
+          :gutter="20">
           <el-col
             v-for="(dynamicfield, key) in field.options"
-            :key="key">
+            :key="key"
+            :md="8"
+            :sm="24">
             <el-button
               class="copy_to_btn"
               size="mini"

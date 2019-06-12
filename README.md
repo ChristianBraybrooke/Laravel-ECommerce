@@ -126,3 +126,10 @@ Finally in your `config/auth.php` config file, you should set the API driver to 
     ],
 ],
 ```
+
+## Updating the version
+
+It's a good idea to keep the version numbering up-to-date with any minor and major changes that are made to avoid conflicts with older code. This package uses seperate version numbers for its API and SPA functions.
+
+The API version number can be found and changed under ```src/ECommerceServiceProvider.php```
+And the SPA version number can be found and changed under ```resources/assets/admin-spa/admin.js``` (this one will require compiling).
