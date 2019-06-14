@@ -2,9 +2,10 @@
 
 namespace ChrisBraybrooke\ECommerce\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use ChrisBraybrooke\ECommerce\Events\ContentUpdated;
 use ChrisBraybrooke\ECommerce\Traits\FormatDatesTrait;
 use ChrisBraybrooke\ECommerce\Traits\ResponsableTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
