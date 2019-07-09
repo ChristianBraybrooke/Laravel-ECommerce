@@ -28,9 +28,15 @@
     "/js/chunks/customers.js": "/js/chunks/customers.js?id=94e534372c2734807595",
     "/js/chunks/not-found.js": "/js/chunks/not-found.js?id=6ab9123236305a6e86d4",
     "/js/chunks/dashboard.js": "/js/chunks/dashboard.js?id=7ae74e50306b1b5a1593",
+<<<<<<< HEAD
     "/js/admin.js": "/js/admin.js?id=73a9eabebb7663ccbdf7",
     "/css/admin.css": "/css/admin.css?id=41160dc65d4ed0600683",
     "/js/vendor.js": "/js/vendor.js?id=6dcc24c04346f0042c44",
+=======
+    "/js/admin.js": "/js/admin.js?id=29465268658bcc15607d",
+    "/css/admin.css": "/css/admin.css?id=9b56e36f132f23a18401",
+    "/js/vendor.js": "/js/vendor.js?id=7d056623fbcd021a09f0",
+>>>>>>> master
     "/js/chunks/errors.js": "/js/chunks/errors.js?id=9e6957fc39f3daf1317c",
     "/js/chunks/data-table.js": "/js/chunks/data-table.js?id=f8962efb71975482f432",
     "/js/chunks/file-picker-modal.js": "/js/chunks/file-picker-modal.js?id=4ff8ac982167aa23ec09",
