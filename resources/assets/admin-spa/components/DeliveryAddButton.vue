@@ -20,6 +20,7 @@
 
       <div slot="reference">
         <el-button
+          :type="deliveries.length > 0 ? 'success' : ''"
           size="mini"
           plain>Deliveries</el-button>
       </div>
@@ -69,9 +70,95 @@
         </el-row>
 
         <el-row :gutter="20">
+          <el-col :md="{span:8, offset: 4}">
+            <el-form-item
+              :rules="[{required: true, message: 'Courrier company is required.', trigger: 'blur,change'}]"
+              label="Courrier Company"
+              size="small"
+              prop="courrier_company">
+              <el-input v-model="form.courrier_company" />
+            </el-form-item>
+          </el-col>
+          <el-col :md="{span:8}">
+            <el-form-item
+              :rules="[{required: true, message: 'Courrier name is required.', trigger: 'blur,change'}]"
+              label="Courrier Name"
+              size="small"
+              prop="courrier_name">
+              <el-input v-model="form.courrier_name" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :md="{span:8, offset: 4}">
+            <el-form-item
+              :rules="[{required: true, message: 'Courrier phone is required.', trigger: 'blur,change'}]"
+              label="Courrier Phone"
+              size="small"
+              prop="courrier_phone">
+              <el-input v-model="form.courrier_phone" />
+            </el-form-item>
+          </el-col>
+          <el-col :md="{span:8}">
+            <el-form-item
+              :rules="[{required: true, message: 'Courrier email is required.', trigger: 'blur,change'}]"
+              label="Courrier Email"
+              size="small"
+              prop="courrier_email">
+              <el-input v-model="form.courrier_email" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :md="{span:8, offset: 4}">
+            <el-form-item
+              label="Courrier Cost"
+              size="small"
+              prop="cost">
+              <div class="price_changer">
+                <span class="currency --small">£</span><el-input-number
+                  v-model="form.cost"
+                  :autofocus="true"
+                  :controls="false"
+                  :min="1"
+                  :precision="2"
+                  size="small"
+                  controls-position="right"/>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :md="{span:8, offset: 4}">
+            <el-form-item
+              label="Courrier Notes"
+              size="small"
+              prop="courrier_notes">
+              <el-input
+                :rows="2"
+                v-model="form.courrier_notes"
+                type="textarea" />
+            </el-form-item>
+          </el-col>
+          <el-col :md="{span:8}">
+            <el-form-item
+              label="Customer Notes"
+              size="small"
+              prop="notes">
+              <el-input
+                :rows="2"
+                v-model="form.notes"
+                type="textarea" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
           <el-col :md="{span:16, offset: 4}">
             <el-button
-              :loading="loading"
               type="success"
               @click="addDelivery">Add Delivery</el-button>
           </el-col>
