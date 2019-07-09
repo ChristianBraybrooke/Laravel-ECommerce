@@ -63,21 +63,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onPaymentProcessed: {
       type: Function,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return function (payment) {};
       }
     },
     showPayments: {
       type: Boolean,
       required: false,
-      default: function _default() {
+      "default": function _default() {
         return true;
       }
     },
     formStartingAmount: {
       required: false,
       type: [String, Number],
-      default: function _default() {
+      "default": function _default() {
         return null;
       }
     }
@@ -100,7 +100,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       this.$confirm('Are you sure to close the payment form?').then(function (_) {
         _this.showModal = false;
-      }).catch(function (_) {});
+      })["catch"](function (_) {});
     },
     clearModal: function clearModal(payment) {
       this.onPaymentProcessed(payment);

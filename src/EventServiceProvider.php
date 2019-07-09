@@ -13,6 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'ChrisBraybrooke\ECommerce\Events\DeliveryCreated' => [
+            'ChrisBraybrooke\ECommerce\Listeners\SendNewDeliveryConfirmation'
+        ],
         'ChrisBraybrooke\ECommerce\Events\CollectionTypeCreated' => [
             'ChrisBraybrooke\ECommerce\Listeners\CreateContentOnCreation',
             'ChrisBraybrooke\ECommerce\Listeners\CreateMetaOnCreation',

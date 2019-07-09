@@ -34,6 +34,7 @@ class OrderResource extends Resource
             'thank_you_email_sent' => $this->thank_you_email_sent,
             'shipping_email_sent' => $this->shipping_email_sent,
             'payments' => new PaymentsResource($this->whenLoaded('payments')),
+            'deliveries' => new DeliveriesResource($this->whenLoaded('deliveries')),
             'content' => new ContentsResource($this->whenLoaded('content')),
             'invoiced_at' => $this->invoiced_at,
             'created_at' => $this->created_at,

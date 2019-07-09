@@ -78,6 +78,9 @@ return [
 
       //
       'price' => ChrisBraybrooke\ECommerce\Models\Price::class,
+
+      //
+      'delivery' => ChrisBraybrooke\ECommerce\Models\Delivery::class,
   ],
 
   'shop_data' => [

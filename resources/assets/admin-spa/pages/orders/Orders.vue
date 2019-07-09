@@ -11,7 +11,7 @@
 
     <data-table
       :full-modal="true"
-      :request-with="['content', 'payments']"
+      :request-with="['content', 'payments', 'deliveries']"
       :request-includes="['payment.amount', 'payment.method', 'payment.refunded', 'no_shop_data']"
       :with-params="{withOutStatuses: ['STATUS_ESTIMATE', 'STATUS_DRAFT', 'STATUS_PROFORMA', 'STATUS_PAYMENT_FAILED', 'STATUS_CANCELLED']}"
       :base-pagination-meta="{ orderBy: 'invoiced_at' }"
@@ -103,6 +103,7 @@
 import api from 'services/api-service'
 import TableCollumn from 'components/TableCollumn'
 import Payments from 'components/Payments'
+import DeliveryAddButton from 'components/DeliveryAddButton'
 import OrderNotes from 'components/OrderNotes'
 import orderUtil from 'utils/order'
 import PrintDownloadButton from 'components/PrintDownloadButton'
@@ -118,7 +119,8 @@ export default {
     OrderNotes,
     Payments,
     TableCollumn,
-    PrintDownloadButton
+    PrintDownloadButton,
+    DeliveryAddButton
   },
 
   data () {
@@ -341,6 +343,20 @@ export default {
         }
       })
     }
+    this.tableOptions.collumns.push(
+      {
+        prop: 'deliveries',
+        sortable: false,
+        label: 'Deliveries',
+        width: '120px',
+        formatter: (row, column, cellValue) => {
+          return <delivery-add-button order={row}></delivery-add-button>
+        },
+        align: 'left',
+        resizable: false
+      }
+    )
+
     this.tableOptions.collumns.push(
       {
         prop: 'status',

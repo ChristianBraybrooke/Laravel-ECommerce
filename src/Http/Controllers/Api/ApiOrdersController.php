@@ -2,17 +2,19 @@
 
 namespace ChrisBraybrooke\ECommerce\Http\Controllers\Api;
 
-use Order;
 use App\User;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use ChrisBraybrooke\ECommerce\Http\Controllers\Controller;
-use ChrisBraybrooke\ECommerce\Http\Resources\OrdersResource;
-use ChrisBraybrooke\ECommerce\Http\Resources\OrderResource;
 use ChrisBraybrooke\ECommerce\Http\Requests\CheckoutRequest;
-use ChrisBraybrooke\ECommerce\Http\Requests\OrderUpdateRequest;
 use ChrisBraybrooke\ECommerce\Http\Requests\OrderRequest;
+use ChrisBraybrooke\ECommerce\Http\Requests\OrderUpdateRequest;
+use ChrisBraybrooke\ECommerce\Http\Resources\DeliveryResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\OrderResource;
+use ChrisBraybrooke\ECommerce\Http\Resources\OrdersResource;
 use ChrisBraybrooke\ECommerce\Services\PaymentService;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Order;
 
 class ApiOrdersController extends Controller
 {
@@ -265,6 +267,35 @@ class ApiOrdersController extends Controller
         $order->payments()->associate($request->input('payment.id'));
 
         return ['success' => true];
+    }
+
+    /**
+     * Create a delivery for the order.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function delivery(Request $request, Order $order)
+    {
+        $this->validate($request, [
+            'collection_date' => 'required',
+            'planned_delivery_date' => 'required'
+        ]);
+
+        $delivery = $order->deliveries()->create([
+          'notification_name' => $order->user_first_name,
+          'notification_email' => $order->user_last_name,
+          'notification_phone' => $order->user_email,
+          'cost' => $request->cost ?: 0,
+          'amount' => $request->amount ?: 0,
+          'courrier_name' => $request->courrier_name,
+          'collection_date' => Carbon::parse($request->collection_date),
+          'planned_delivery_date' => Carbon::parse($request->planned_delivery_date),
+          'notes' => $request->notes
+        ]);
+
+        return new DeliveryResource($delivery);
     }
 
     /**

@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateDeliveriesTable extends Migration
+{
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+      DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+          Schema::create('deliveries', function (Blueprint $table) {
+              $table->increments('id');
+              $table->integer('order_id')->unsigned();
+              $table->integer('batch_id')->nullable()->unsigned();
+              $table->text('notification_name')->nullable()->default(null);
+              $table->text('notification_email')->nullable()->default(null);
+              $table->text('notification_phone')->nullable()->default(null);
+              $table->integer('cost')->default(0);
+              $table->integer('amount')->default(0);
+              $table->string('courrier_name')->nullable()->default(null);
+              $table->date('collection_date')->nullable()->default(null);
+              $table->date('planned_delivery_date')->nullable()->default(null);
+              $table->date('delivery_date')->nullable()->default(null);
+              $table->dateTime('confirmation_notification_sent_at')->nullable()->default(null);
+              $table->dateTime('delivery_notification_sent_at')->nullable()->default(null);
+              $table->dateTime('delivered_notification_sent_at')->nullable()->default(null);
+              $table->text('notes')->nullable()->default(null);
+              $table->softDeletes();
+              $table->timestamps();
+          });
+
+      DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+  }
+
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+      Schema::dropIfExists('deliveries');
+  }
+}

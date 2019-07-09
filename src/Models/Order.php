@@ -28,7 +28,7 @@ use Notification;
 
 class Order extends Model implements OrderContract
 {
-    use  LogsActivity, ResponsableTrait, FormatDatesTrait, HasMediaAttached, HasContentAttached, SoftDeletes,
+    use LogsActivity, ResponsableTrait, FormatDatesTrait, HasMediaAttached, HasContentAttached, SoftDeletes,
     WatchesOrderStatus;
 
     public static $statuses = [
@@ -298,6 +298,11 @@ class Order extends Model implements OrderContract
     public function payments(): HasMany
     {
         return $this->HasMany(config('ecommerce.models.payment'));
+    }
+
+    public function deliveries(): HasMany
+    {
+        return $this->hasMany(config('ecommerce.models.delivery'));
     }
 
     /**

@@ -186,6 +186,9 @@ class ECommerceServiceProvider extends LaravelServiceProvider
         // Price
         $this->app->bind(PriceContract::class, $config['price']);
         $loader->alias('Price', $config['price']);
+
+        // Delivery
+        $loader->alias('Delivery', $config['delivery']);
     }
 
     /**
@@ -601,6 +604,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/add_order_options_field_to_products_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 3).'_add_order_options_field_to_products_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('CreateDeliveriesTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/create_deliveries_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 3).'_create_deliveries_table.php'
                 ),
             ], 'ecommerce-migrations');
         }
