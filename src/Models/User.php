@@ -145,7 +145,7 @@ class User extends Authenticatable
             })
             ->leftJoin('roles', 'model_has_roles.role_id', '=', 'roles.id');
         }
-        return $query;
+        return $query->withRole($request->withRole);
     }
 
     /**

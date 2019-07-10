@@ -76,7 +76,16 @@
               label="Courrier Company"
               size="small"
               prop="courrier_company">
-              <el-input v-model="form.courrier_company" />
+              <el-autocomplete
+                v-model="form.courrier_company"
+                :fetch-suggestions="getCourriers"
+                value-key="company"
+                style="width: 100%;"
+                @select="handleCourrierSelect">
+                <template slot-scope="{ item }">
+                  <span>{{ item.company }} - {{ item.name.full }}</span>
+                </template>
+              </el-autocomplete>
             </el-form-item>
           </el-col>
           <el-col :md="{span:8}">
@@ -212,6 +221,28 @@ export default {
             })
         }
       })
+    },
+
+    getCourriers (queryString, callback) {
+      api.get({
+        path: 'users',
+        params: {
+          search: queryString,
+          withRole: 'courrier'
+        }
+      })
+        .then((data) => {
+          callback(data.data)
+        })
+        .catch(() => {
+          //
+        })
+    },
+
+    handleCourrierSelect (courrier) {
+      this.$set(this.form, 'courrier_email', courrier.email)
+      this.$set(this.form, 'courrier_name', courrier.name.full)
+      this.$set(this.form, 'courrier_phone', courrier.phone)
     }
   }
 }

@@ -51,12 +51,12 @@ class Order extends Model implements OrderContract
     private function responsableSearch()
     {
         return [
+            'ref',
             'id',
             'user_first_name',
             'user_last_name',
             'user_email',
             'user_phone',
-            'ref'
         ];
     }
 
