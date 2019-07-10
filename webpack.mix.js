@@ -84,5 +84,15 @@ mix.setPublicPath('public')
    .version();
 
 if (!mix.inProduction()) {
+     mix.browserSync({
+         open: 'external',
+         host: 'laravel-package-development.test',
+         proxy: 'http://laravel-package-development.test/admin',
+         browser: "google chrome",
+         files: [
+            'resources/assets/admin-spa/**/*.js',
+            'resources/assets/admin-spa/**/*.vue',
+         ]
+     });
     mix.copy('public', '../../public/vendor/ecommerce');
 }

@@ -42,7 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.1.07';
+    const VERSION = '0.1.1';
 
     /**
      * Bootstrap the application events.
@@ -613,6 +613,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/create_deliveries_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 3).'_create_deliveries_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddCommunicationFieldsToDeliveriesTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_communication_fields_to_deliveries_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 4).'_add_communication_fields_to_deliveries_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

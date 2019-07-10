@@ -18,6 +18,9 @@ class AddAddressInformationToOrdersTable extends Migration
             $table->string('billing_address_company')->nullable();
             $table->string('shipping_address_name')->nullable();
             $table->string('shipping_address_company')->nullable();
+            $table->boolean('send_email_notifications')->default('true');
+            $table->boolean('send_phone_notifications')->default('false');
+            $table->dateTime('delivered_at')->nullable()->default(null);
         });
     }
 
@@ -33,6 +36,9 @@ class AddAddressInformationToOrdersTable extends Migration
             $table->dropColumn('billing_address_company');
             $table->dropColumn('shipping_address_name');
             $table->dropColumn('shipping_address_company');
+            $table->dropColumn('send_email_notifications');
+            $table->dropColumn('send_phone_notifications');
+            $table->dropColumn('delivered_at');
         });
     }
 }

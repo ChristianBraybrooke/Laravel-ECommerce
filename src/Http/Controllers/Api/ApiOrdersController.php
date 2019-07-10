@@ -289,10 +289,15 @@ class ApiOrdersController extends Controller
           'notification_phone' => $order->user_email,
           'cost' => $request->cost ?: 0,
           'amount' => $request->amount ?: 0,
+          'courrier_company' => $request->courrier_company,
           'courrier_name' => $request->courrier_name,
+          'courrier_email' => $request->courrier_email,
+          'courrier_phone' => $request->courrier_phone,
           'collection_date' => Carbon::parse($request->collection_date),
           'planned_delivery_date' => Carbon::parse($request->planned_delivery_date),
-          'notes' => $request->notes
+          'notes' => $request->notes,
+          'courrier_notes' => $request->courrier_notes,
+          'courrier_invoice_received_at' => $request->courrier_invoice_received_at ? Carbon::parse($request->courrier_invoice_received_at) : null,
         ]);
 
         return new DeliveryResource($delivery);

@@ -90,7 +90,6 @@
           </el-col>
           <el-col :md="{span:8}">
             <el-form-item
-              :rules="[{required: true, message: 'Courrier name is required.', trigger: 'blur,change'}]"
               label="Courrier Name"
               size="small"
               prop="courrier_name">
@@ -102,7 +101,6 @@
         <el-row :gutter="20">
           <el-col :md="{span:8, offset: 4}">
             <el-form-item
-              :rules="[{required: true, message: 'Courrier phone is required.', trigger: 'blur,change'}]"
               label="Courrier Phone"
               size="small"
               prop="courrier_phone">
@@ -111,7 +109,6 @@
           </el-col>
           <el-col :md="{span:8}">
             <el-form-item
-              :rules="[{required: true, message: 'Courrier email is required.', trigger: 'blur,change'}]"
               label="Courrier Email"
               size="small"
               prop="courrier_email">
@@ -136,6 +133,19 @@
                   size="small"
                   controls-position="right"/>
               </div>
+            </el-form-item>
+          </el-col>
+          <el-col :md="{span:8}">
+            <el-form-item
+              label="Courier Invoice Received"
+              size="small"
+              prop="courrier_invoice_received_at">
+              <el-date-picker
+                v-model="form.courrier_invoice_received_at"
+                type="date"
+                format="dd/MM/yyyy"
+                value-format="dd-MM-yyyy"
+                placeholder="DD/MM/YYYY" />
             </el-form-item>
           </el-col>
         </el-row>

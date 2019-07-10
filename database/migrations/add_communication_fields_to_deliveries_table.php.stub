@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddCommunicationFieldsToDeliveriesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('deliveries', function (Blueprint $table) {
+            $table->string('courrier_company')->nullable();
+            $table->string('courrier_email')->nullable();
+            $table->string('courrier_phone')->nullable();
+            $table->text('courrier_notes')->nullable();
+            $table->dateTime('courrier_invoice_received_at')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('deliveries', function (Blueprint $table) {
+            $table->dropColumn('courrier_company');
+            $table->dropColumn('courrier_email');
+            $table->dropColumn('courrier_phone');
+            $table->dropColumn('courrier_notes');
+            $table->dropColumn('courrier_invoice_received_at');
+        });
+    }
+}

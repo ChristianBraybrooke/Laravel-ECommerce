@@ -22,8 +22,9 @@ class Delivery extends Model
      */
     protected $fillable = [
         'id', 'order_id', 'batch_id', 'notification_name', 'notification_email', 'notification_phone',
-        'cost', 'amount', 'courrier_name', 'collection_date', 'planned_delivery_date', 'delivery_date',
-        'confirmation_notification_sent_at', 'delivery_notification_sent_at', 'notes'
+        'cost', 'amount', 'courrier_company', 'courrier_name', 'courrier_email', 'courrier_phone', 'collection_date',
+        'planned_delivery_date', 'delivery_date', 'confirmation_notification_sent_at', 'delivery_notification_sent_at', 'notes',
+        'courrier_notes', 'courrier_invoice_received_at', 'send_email_notifications', 'send_phone_notifications', 'delivered_at'
     ];
 
     /**
@@ -31,7 +32,10 @@ class Delivery extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'planned_delivery_date', 'delivery_date', 'confirmation_notification_sent_at', 'delivery_notification_sent_at', 'collection_date'];
+    protected $dates = [
+        'deleted_at', 'planned_delivery_date', 'delivery_date', 'confirmation_notification_sent_at',
+        'delivery_notification_sent_at', 'collection_date', 'courrier_invoice_received_at', 'delivered_at'
+    ];
 
     /**
      * The event map for the model.
