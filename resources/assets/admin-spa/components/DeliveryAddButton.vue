@@ -1,26 +1,37 @@
 <template>
-  <div>
+  <div :class="{'deliveries_col': true, 'danger': deliveries.length == 0, 'success': deliveries.length > 0}">
     <el-popover
       trigger="click"
       placement="top">
-      <ul>
-        <li
-          v-for="delivery in deliveries"
-          :key="delivery.id">
-          <strong>Collection Date</strong>: {{ delivery.collection_date }} <br>
-          <strong>Delivery Date</strong>: {{ delivery.planned_delivery_date }}
-        </li>
-      </ul>
+      <el-card
+        v-for="(delivery, key) in deliveries"
+        :key="delivery.id"
+        class="box-card"
+        style="margin-bottom: 5px; margin-top: 5px;">
+        <p><strong>Courier</strong>: {{ delivery.courrier_company }} - {{ delivery.courrier_name }}</p>
+        <p><strong>Courier Cost</strong>: {{ formatPrice(delivery.cost, '£') }} - {{ delivery.courrier_invoice_received_at }}</p>
+        <p><strong>Collection Date</strong>: {{ delivery.collection_date }}</p>
+        <p><strong>Delivery Date</strong>: {{ delivery.planned_delivery_date }}</p>
+
+        <div>
+          <el-button
+            size="mini"
+            @click="showEditForm(delivery, key)">Edit Delivery
+          </el-button>
+        </div>
+      </el-card>
 
       <el-button
         type="sucess"
         size="mini"
         plain
-        @click="showModal = true">Add Delivery</el-button>
+        @click="showModal = true">Add Delivery
+      </el-button>
 
       <div slot="reference">
         <el-button
-          :type="deliveries.length > 0 ? 'success' : ''"
+          :type="deliveries.length > 0 ? 'success' : 'danger'"
+          class="add_button"
           size="mini"
           plain>Deliveries</el-button>
       </div>
@@ -178,8 +189,15 @@
         <el-row :gutter="20">
           <el-col :md="{span:16, offset: 4}">
             <el-button
+              v-if="isEdit"
               type="success"
-              @click="addDelivery">Add Delivery</el-button>
+              @click="EditDelivery">Save Delivery
+            </el-button>
+            <el-button
+              v-else
+              type="success"
+              @click="addDelivery">Add Delivery
+            </el-button>
           </el-col>
         </el-row>
 
@@ -205,7 +223,9 @@ export default {
       showModal: false,
       deliveries: [],
       errors: {},
-      form: {}
+      form: {},
+      isEdit: false,
+      editKey: null
     }
   },
 
@@ -249,6 +269,42 @@ export default {
         })
     },
 
+    showEditForm (delivery, key) {
+      this.editKey = key
+      this.showModal = true
+      this.isEdit = true
+      this.form = {
+        ...this.form,
+        ...delivery
+      }
+    },
+
+    EditDelivery () {
+      this.$refs['form'].validate((valid, errors) => {
+        if (valid) {
+          api.persist('put', {
+            path: `deliveries/${this.form.id}`,
+            object: this.form
+          })
+            .then(data => {
+              this.$set(this.deliveries, this.editKey, data.data)
+              this.editKey = null
+              this.showModal = false
+              this.isEdit = false
+              this.form = {}
+              this.$message({
+                message: 'Delivery updated successfully!',
+                type: 'success'
+              })
+            })
+            .catch(error => {
+              this.errors = error
+              this.$message.error('There was a problem updating the delivery.')
+            })
+        }
+      })
+    },
+
     handleCourrierSelect (courrier) {
       this.$set(this.form, 'courrier_email', courrier.email)
       this.$set(this.form, 'courrier_name', courrier.name.full)
@@ -257,3 +313,23 @@ export default {
   }
 }
 </script>
+
+<style lang="css">
+.deliveries_col {
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  padding: 12px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.deliveries_col.danger {
+  background: red!important;
+}
+.deliveries_col.success {
+  background: rgb(169, 209, 0)!important;
+}
+</style>

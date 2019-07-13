@@ -61,6 +61,9 @@ Route::put('orders/{order}/payment', 'ApiOrdersController@payment');
 Route::post('orders/{order}/delivery', 'ApiOrdersController@delivery');
 Route::post('orders/{order}/invoice', 'ApiOrdersController@invoice');
 
+// Deliveries
+Route::put('deliveries/{delivery}', 'ApiDeliveriesController@update');
+
 // Import / Export
 Route::post('imports', 'ApiImportsController@import');
 Route::get('imports', 'ApiImportsController@index');

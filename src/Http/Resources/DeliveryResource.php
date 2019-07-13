@@ -17,8 +17,8 @@ class DeliveryResource extends Resource
         return [
             'id' => $this->id,
             'batch_id' => $this->batch_id,
-            'planned_delivery_date' => $this->planned_delivery_date->format('d/m/Y'),
-            'collection_date' => $this->collection_date->format('d/m/Y'),
+            'planned_delivery_date' => optional($this->planned_delivery_date)->format('d-m-Y'),
+            'collection_date' => optional($this->collection_date)->format('d-m-Y'),
 
             'notification_name' => $this->notification_name,
             'notification_email' => $this->notification_email,
@@ -30,6 +30,7 @@ class DeliveryResource extends Resource
             'courrier_email' => $this->courrier_email,
             'courrier_phone' => $this->courrier_phone,
             'courrier_notes' => $this->courrier_notes,
+            'courrier_invoice_received_at' => optional($this->courrier_invoice_received_at)->format('d-m-Y'),
 
             'cost' => $this->cost,
             'amount' => $this->amount,
