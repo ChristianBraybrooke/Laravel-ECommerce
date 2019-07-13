@@ -285,8 +285,8 @@ class ApiOrdersController extends Controller
 
         $delivery = $order->deliveries()->create([
           'notification_name' => $order->user_first_name,
-          'notification_email' => $order->user_last_name,
-          'notification_phone' => $order->user_email,
+          'notification_email' => $order->user_email,
+          'notification_phone' => $order->user_phone,
           'cost' => $request->cost ?: 0,
           'amount' => $request->amount ?: 0,
           'courrier_company' => $request->courrier_company,

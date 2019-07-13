@@ -31,7 +31,7 @@ class SendNewDeliveryConfirmation
 
         $event->delivery->update(['confirmation_notification_sent_at' => now()]);
 
-        Notification::route('mail', $order->user_email)
+        Notification::route('mail', $event->delivery->notification_email)
                     ->notify(new NewDeliveryNotification($event->delivery));
     }
 }
