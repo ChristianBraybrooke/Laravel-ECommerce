@@ -52,11 +52,14 @@ class Order extends Model implements OrderContract
     {
         return [
             'ref',
-            'id',
             'user_first_name',
             'user_last_name',
             'user_email',
             'user_phone',
+            'billing_address_postcode',
+            'billing_address_company',
+            'shipping_address_postcode',
+            'shipping_address_company'
         ];
     }
 
