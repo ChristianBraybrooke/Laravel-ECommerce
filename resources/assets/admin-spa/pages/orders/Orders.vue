@@ -350,7 +350,7 @@ export default {
         label: 'Deliveries',
         width: '120px',
         formatter: (row, column, cellValue) => {
-          return <delivery-add-button order={row}></delivery-add-button>
+          return <delivery-add-button order={row} key={Math.floor(Math.random() * 101)}></delivery-add-button>
         },
         align: 'left',
         resizable: false
