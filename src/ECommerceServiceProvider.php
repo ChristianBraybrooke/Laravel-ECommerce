@@ -42,7 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.1.16';
+    const VERSION = '0.1.17';
 
     /**
      * Bootstrap the application events.
