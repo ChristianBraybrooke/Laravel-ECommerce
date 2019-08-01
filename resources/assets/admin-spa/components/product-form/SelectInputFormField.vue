@@ -12,16 +12,6 @@
         :value="option"
         :label="optionLabel(option)"/>
     </el-select>
-    <small
-      v-if="form[prop].name"
-      class="input-placeholder-tag">
-      <em>Currently set as {{ form[prop].name }}</em>
-    </small>
-    <small
-      v-else
-      class="input-placeholder-tag">
-      <em>Currently updating as custom value</em>
-    </small>
   </form-item>
 </template>
 
