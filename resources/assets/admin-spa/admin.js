@@ -8,7 +8,7 @@ import locale from 'element-ui/lib/locale/lang/en'
 import VueClipboard from 'vue-clipboard2'
 import { codeConverter } from 'utils/currency'
 
-window.ecommerceConfig.web_version = '0.1.14'
+window.ecommerceConfig.web_version = '0.1.15'
 
 window.has = require('lodash.has')
 var numeral = require('numeral')
