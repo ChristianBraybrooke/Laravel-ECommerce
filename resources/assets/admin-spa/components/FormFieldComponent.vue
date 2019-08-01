@@ -408,6 +408,10 @@ export default {
           value: 'select'
         },
         {
+          label: 'Select with Input',
+          value: 'select-input'
+        },
+        {
           label: 'Dynamic Order Data',
           value: 'dynamic'
         }
@@ -424,6 +428,9 @@ export default {
         return true
       }
       if (this.model.type === 'select') {
+        return true
+      }
+      if (this.model.type === 'select-input') {
         return true
       }
       return false

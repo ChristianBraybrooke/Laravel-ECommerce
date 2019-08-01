@@ -42,6 +42,7 @@ import range from 'lodash.range'
 import RadioFormField from 'components/product-form/RadioFormField'
 import NumberFormField from 'components/product-form/NumberFormField'
 import SelectFormField from 'components/product-form/SelectFormField'
+import SelectInputFormField from 'components/product-form/SelectInputFormField'
 import TextFormField from 'components/product-form/TextFormField'
 import TextareaFormField from 'components/product-form/TextareaFormField'
 import DynamicFormField from 'components/product-form/DynamicFormField'
@@ -53,6 +54,7 @@ export default {
     RadioFormField,
     NumberFormField,
     SelectFormField,
+    SelectInputFormField,
     TextFormField,
     TextareaFormField,
     DynamicFormField
