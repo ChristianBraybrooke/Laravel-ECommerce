@@ -53,7 +53,8 @@ class ProcessOrderCreation implements ShouldQueue
         }
 
         // If there are admin notifications and the order is a web order.
-        if ($admin_ids = Setting::get('Admin Notifications') && $order->channel = 'Web') {
+        $admin_ids = Setting::get('Admin Notifications');
+        if ($admin_ids && $order->channel === 'Web') {
             $admins = User::whereIn('id', $admin_ids)->get();
 
             Notification::route('mail', $admins)
