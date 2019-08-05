@@ -241,14 +241,12 @@ export default {
                 realQty.forEach(() => {
                   total.push(item.name)
                 })
-                items.push(<li>{item.quantity + ' * ' + item.name}</li>)
+                var variantName = item.variant ? item.variant.name : null
+                var productListName = variantName ? item.name + ' - ' + variantName : item.name
+                items.push(<p style="margin: 0; padding: 0; margin-block-start: 0; margin-block-end: 0;"><el-tag type={item.quantity > 1 ? 'danger' : ''} size="mini">{productListName}{item.quantity > 1 ? ' x ' + item.quantity : ''}</el-tag></p>)
               })
 
-              return <ul class="order_items_list inline_col_list table_col_list">{items}</ul>
-              // return <el-popover trigger="hover" placement="top">
-              //   <ul class="order_items_list table_col_list">{items}</ul>
-              //   <div slot="reference"><strong>{total.length} items</strong></div>
-              // </el-popover>
+              return items
             }
           },
           {
