@@ -32,25 +32,28 @@ class ProcessOrderCreation implements ShouldQueue
     {
         $order = $event->model;
 
+        // If order was created and immedietly paid for / marked as processing.
         if ($order->status === Order::$statuses['STATUS_PROCESSING']) {
             $order->createInvoiceAndSend();
         }
 
+        // If order was created but still needs paying for (most orders)
         if ($order->status === Order::$statuses['STATUS_AWAITING_PAYMENT']) {
             $order->hasBeenInvoiced();
 
+            // If there is a full payment then updated the status.
             if ($order->isFullyPaid()) {
                 $order->updateStatus('STATUS_PROCESSING');
             }
         }
 
+        // If for some reason there is no ref, create one!
         if (!$order->ref) {
             $order->update(['ref' => $order->id]);
         }
 
-        $admin_ids = Setting::get('Admin Notifications');
-        $cart_id = $event->model->cart_data['id'] ?? false;
-        if ($admin_ids && $cart_id) {
+        // If there are admin notifications and the order is a web order.
+        if ($admin_ids = Setting::get('Admin Notifications') && $order->channel = 'Web') {
             $admins = User::whereIn('id', $admin_ids)->get();
 
             Notification::route('mail', $admins)

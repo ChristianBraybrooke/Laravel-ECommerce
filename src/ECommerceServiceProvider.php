@@ -42,7 +42,7 @@ class ECommerceServiceProvider extends LaravelServiceProvider
      */
     protected $defer = false;
 
-    const VERSION = '0.1.18';
+    const VERSION = '0.1.19';
 
     /**
      * Bootstrap the application events.
@@ -622,6 +622,15 @@ class ECommerceServiceProvider extends LaravelServiceProvider
                 __DIR__.'/../database/migrations/add_communication_fields_to_deliveries_table.php.stub' =>
                 database_path(
                     'migrations/'.date('Y_m_d_His', time() + 4).'_add_communication_fields_to_deliveries_table.php'
+                ),
+            ], 'ecommerce-migrations');
+        }
+
+        if (! class_exists('AddChannelColumnToOrdersTable')) {
+            $this->publishes([
+                __DIR__.'/../database/migrations/add_channel_column_to_orders_table.php.stub' =>
+                database_path(
+                    'migrations/'.date('Y_m_d_His', time() + 5).'_add_channel_column_to_orders_table.php'
                 ),
             ], 'ecommerce-migrations');
         }

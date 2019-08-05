@@ -44,6 +44,42 @@ class Order extends Model implements OrderContract
     ];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id', 'user_id', 'user_first_name', 'user_last_name', 'user_email', 'user_phone', 'billing_address_line1',
+        'billing_address_line2', 'billing_address_town', 'billing_address_county', 'billing_address_postcode',
+        'billing_address_country', 'use_billing_for_shipping', 'shipping_address_line1', 'shipping_address_line2',
+        'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'shipping_address_country',
+        'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
+        'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
+        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company', 'ref', 'invoiced_at',
+        'deleted_at', 'channel'
+    ];
+
+    /**
+     * The attributes to log when changes are made.
+     *
+     * @var array
+     */
+    protected static $logAttributes = [
+        'id', 'user_id', 'user_first_name', 'user_last_name', 'user_email', 'user_phone', 'billing_address_line1',
+        'billing_address_line2', 'billing_address_town', 'billing_address_county', 'billing_address_postcode',
+        'billing_address_country', 'use_billing_for_shipping', 'shipping_address_line1', 'shipping_address_line2',
+        'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'shipping_address_country',
+        'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
+        'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
+        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
+        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
+        'billing_address_company', 'shipping_address_name', 'shipping_address_company', 'ref', 'invoiced_at',
+        'deleted_at', 'channel'
+    ];
+
+    /**
      * Which collumns to use for search.
      *
      * @return array
@@ -211,42 +247,6 @@ class Order extends Model implements OrderContract
      */
     public $defaultContent = [
         //
-    ];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'id', 'user_id', 'user_first_name', 'user_last_name', 'user_email', 'user_phone', 'billing_address_line1',
-        'billing_address_line2', 'billing_address_town', 'billing_address_county', 'billing_address_postcode',
-        'billing_address_country', 'use_billing_for_shipping', 'shipping_address_line1', 'shipping_address_line2',
-        'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'shipping_address_country',
-        'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
-        'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
-        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
-        'billing_address_company', 'shipping_address_name', 'shipping_address_company', 'ref', 'invoiced_at',
-        'deleted_at'
-    ];
-
-    /**
-     * The attributes to log when changes are made.
-     *
-     * @var array
-     */
-    protected static $logAttributes = [
-        'id', 'user_id', 'user_first_name', 'user_last_name', 'user_email', 'user_phone', 'billing_address_line1',
-        'billing_address_line2', 'billing_address_town', 'billing_address_county', 'billing_address_postcode',
-        'billing_address_country', 'use_billing_for_shipping', 'shipping_address_line1', 'shipping_address_line2',
-        'shipping_address_town', 'shipping_address_county', 'shipping_address_postcode', 'shipping_address_country',
-        'cart_id', 'payment_method', 'payment_id', 'payment_currency', 'payment_amount', 'payment_fee',
-        'payment_source_id', 'payment_source_brand', 'payment_source_country', 'payment_source_last4',
-        'payment_source_exp_month', 'payment_source_exp_year', 'status', 'cart_data', 'send_auto_emails', 'amount_paid',
-        'delivery_cost', 'delivery_date', 'thank_you_email_sent', 'shipping_email_sent', 'billing_address_name',
-        'billing_address_company', 'shipping_address_name', 'shipping_address_company', 'ref', 'invoiced_at',
-        'deleted_at'
     ];
 
     /**
