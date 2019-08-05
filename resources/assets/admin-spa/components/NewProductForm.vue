@@ -159,11 +159,12 @@
                     :gutter="20">
                     <el-col :md="{span:16, offset: 4}">
                       <el-row
-                        :gutter="20"
-                        type="flex">
+                        :gutter="20">
                         <el-col
                           v-for="field in section.fields.data"
-                          :key="field.id">
+                          :key="field.id"
+                          :md="(field.type === 'dynamic' ? 24 : 8)"
+                          :sm="24">
                           <component
                             v-if="calculateDynamicVisible(field.rules)"
                             :is="`${field.type}-form-field`"
