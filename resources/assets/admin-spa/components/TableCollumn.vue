@@ -2,6 +2,7 @@
 import api from 'services/api-service'
 import columnUtil from 'utils/collumn'
 import AdditionForm from 'components/AdditionForm'
+import moment from 'moment'
 
 export default {
   name: 'TableCollumn',
@@ -194,17 +195,21 @@ export default {
   methods: {
 
     /**
-         * Handle the on click event and establish if there's an action to be taken.
-         *
-         * @return Void
-         */
+     * Handle the on click event and establish if there's an action to be taken.
+     *
+     * @return Void
+     */
     handleClick () {
       var action = this.col.action ? this.col.action : {}
       if (action.type === 'api' && this.col.api) {
         var dots = columnUtil.replaceWhereLookup(this.col.action.set, this.row)
 
-        if (dots !== null) {
-          columnUtil.setRowValue(this.row, dots, this.col.action.value)
+        if (dots == null) {
+          var value = this.col.action.value
+          if (value === 'nowDate') {
+            value = moment().format('D-M-Y')
+          }
+          columnUtil.setRowValue(this.row, dots, value)
           this.apiAction()
         } else {
           this.$message({
