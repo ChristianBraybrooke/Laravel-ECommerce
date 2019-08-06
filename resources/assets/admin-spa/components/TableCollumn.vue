@@ -204,10 +204,10 @@ export default {
       if (action.type === 'api' && this.col.api) {
         var dots = columnUtil.replaceWhereLookup(this.col.action.set, this.row)
 
-        if (dots !== null) {
+        if (dots == null) {
           var value = this.col.action.value
-          if (value === 'nowDate') {
-            value = moment().format('D-M-Y')
+          if (value !== 'nowDate') {
+            value = moment().format('DD-MM-Y')
           }
           columnUtil.setRowValue(this.row, dots, value)
           this.apiAction()
