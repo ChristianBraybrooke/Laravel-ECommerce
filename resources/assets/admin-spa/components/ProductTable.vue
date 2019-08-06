@@ -228,11 +228,11 @@ export default {
             }
           }
           if (newValue) {
-            items.push(<li>{key}: {newValue} {extra}</li>)
+            items.push(<tr><td class="key">{key}:</td><td class="value"><el-tag color="white" size="medium">{newValue} {extra}</el-tag></td></tr>)
           }
         })
 
-        return <div>{rowName} <ul class="order_item_options">{items}</ul></div>
+        return <div>{rowName} <table class="order_item_options">{items}</table></div>
       }
       return <div>{rowName}</div>
     },
@@ -299,4 +299,27 @@ export default {
 </script>
 
 <style lang="css">
+  table.order_item_options {
+    margin-left: 20px;
+  }
+  table.order_item_options tr {
+    background-color: transparent;
+  }
+  table.order_item_options td {
+    border-bottom: 0;
+  }
+  table.order_item_options td.key {
+    padding: 0 20px 0 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: flex-start;
+  }
+  table.order_item_options td.value {
+    padding: 0;
+  }
+  table.order_item_options .el-tag {
+    height: 100%;
+    white-space: normal;
+    word-break: break-word;
+  }
 </style>
