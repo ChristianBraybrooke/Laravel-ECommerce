@@ -16,7 +16,12 @@ class FormFieldResource extends Resource
     {
         return [
             'id' => $this->id,
+            'key' => $this->key,
             'name' => $this->name,
+            'hidden_from_frontend' => $this->when(requestIncludes('hidden'), $this->hidden_from_frontend),
+            'hidden_from_pdfs' => $this->when(requestIncludes('hidden'), $this->hidden_from_pdfs),
+            'hidden_from_pdfs_detail' => $this->when(requestIncludes('hidden'), $this->hidden_from_pdfs_detail),
+            'hidden_from_pdfs_admin' => $this->when(requestIncludes('hidden'), $this->hidden_from_pdfs_admin),
             'order' => $this->when(requestIncludes('order'), $this->order),
             'type' => $this->when(requestIncludes('type'), $this->type),
             'rules' => $this->when(requestIncludes('rules'), $this->rules),

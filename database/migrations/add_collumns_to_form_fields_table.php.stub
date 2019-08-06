@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddCollumnsToFormFieldsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('form_fields', function (Blueprint $table) {
+            $table->string('key')->nullable()->default(null);
+            $table->boolean('hidden_from_frontend')->default(false);
+            $table->boolean('hidden_from_pdfs')->default(false);
+            $table->boolean('hidden_from_pdfs_detail')->default(false);
+            $table->boolean('hidden_from_pdfs_admin')->default(false);
+        });
+
+        Schema::table('form_sections', function (Blueprint $table) {
+            $table->string('key')->nullable()->default(null);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('form_fields', function (Blueprint $table) {
+            $table->dropColumn('key');
+            $table->dropColumn('hidden_from_frontend');
+            $table->dropColumn('hidden_from_pdfs');
+            $table->dropColumn('hidden_from_pdfs_detail');
+            $table->dropColumn('hidden_from_pdfs_admin');
+        });
+
+        Schema::table('form_sections', function (Blueprint $table) {
+            $table->dropColumn('key');
+        });
+    }
+}

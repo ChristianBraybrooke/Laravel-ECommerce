@@ -16,6 +16,7 @@ class FormSectionResource extends Resource
     {
         return [
             'id' => $this->id,
+            'key' => $this->key,
             'name' => $this->name,
             $this->mergeWhen($this->relationLoaded('fields'), [
                 'fields' => new FormFieldsResource($this->fields)

@@ -79,6 +79,10 @@
               v-model="section.name"
               size="mini"
               style="width: 200px;"/>
+            <el-input
+              v-model="section.key"
+              size="mini"
+              style="width: 200px;"/>
             <el-button
               style="float: right; padding: 4px 8px; margin-left: 5px;"
               type="primary"
@@ -130,7 +134,7 @@ import api from 'services/api-service'
 var orderBy = require('lodash.orderby')
 
 var formWith = ['sections.fields']
-var formInclude = ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price', 'description', 'append', 'prepend']
+var formInclude = ['order', 'rules', 'type', 'options', 'is_order_form', 'effects_price', 'description', 'append', 'prepend', 'hidden']
 
 export default {
 

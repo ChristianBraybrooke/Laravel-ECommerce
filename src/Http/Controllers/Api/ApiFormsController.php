@@ -91,12 +91,14 @@ class ApiFormsController extends Controller
                 if (!isset($section['id'])) {
                     $update_section = $form->sections()->create([
                         'name' => isset($section['name']) ? $section['name'] : null,
+                        'key' => isset($section['key']) ? $section['key'] : null,
                         'order' => isset($section['order']) ? $section['order'] : null,
                     ]);
                 } elseif (!empty($section['id'])) {
                     $update_section = $sections->where('id', $section['id'])->first();
                     $update_section->update([
                         'name' => isset($section['name']) ? $section['name'] : null,
+                        'key' => isset($section['name']) ? $section['key'] : null,
                         'order' => isset($section['order']) ? $section['order'] : null,
                     ]);
                 }
@@ -106,6 +108,11 @@ class ApiFormsController extends Controller
                     foreach ($section['fields']['data'] as $key => $field) {
                         $fields[] = [
                             'id' => $field['id'] ?? null,
+                            'key' => $field['key'] ?? null,
+                            'hidden_from_frontend' => $field['hidden_from_frontend'] ?? false,
+                            'hidden_from_pdfs' => $field['hidden_from_pdfs'] ?? false,
+                            'hidden_from_pdfs_detail' => $field['hidden_from_pdfs_detail'] ?? false,
+                            'hidden_from_pdfs_admin' => $field['hidden_from_pdfs_admin'] ?? false,
                             'name' => $field['name'] ?? null,
                             'order' => $field['order'] ?? null,
                             'description' => $field['description'] ?? null,
@@ -127,6 +134,11 @@ class ApiFormsController extends Controller
             foreach ($section_fields as $key => $field) {
                 if (!is_null($field['id'])) {
                     FormField::where('id', $field['id'])->first()->update([
+                        'key' => $field['key'],
+                        'hidden_from_frontend' => $field['hidden_from_frontend'],
+                        'hidden_from_pdfs' => $field['hidden_from_pdfs'],
+                        'hidden_from_pdfs_detail' => $field['hidden_from_pdfs_detail'],
+                        'hidden_from_pdfs_admin' => $field['hidden_from_pdfs_admin'],
                         'name' => $field['name'],
                         'order' => $field['order'],
                         'description' => $field['description'],
@@ -139,6 +151,11 @@ class ApiFormsController extends Controller
                 } else {
                     $field = FormField::create([
                         'form_section_id' => $section_id,
+                        'key' => $field['key'],
+                        'hidden_from_frontend' => $field['hidden_from_frontend'],
+                        'hidden_from_pdfs' => $field['hidden_from_pdfs'],
+                        'hidden_from_pdfs_detail' => $field['hidden_from_pdfs_detail'],
+                        'hidden_from_pdfs_admin' => $field['hidden_from_pdfs_admin'],
                         'name' => $field['name'],
                         'order' => $field['order'],
                         'description' => $field['description'],

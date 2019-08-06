@@ -16,7 +16,7 @@ class FormSection extends Model implements FormSectionContract
      * @var array
      */
     protected $fillable = [
-        'name', 'order', 'editable'
+        'name', 'order', 'editable', 'key'
     ];
 
     /**

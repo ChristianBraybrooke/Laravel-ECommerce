@@ -2,9 +2,10 @@
   <div>
     <div :class="'form_field_row ' + (model.rules.required ? 'required' : '')">
       <el-row :gutter="20">
+
         <el-col
           :lg="12"
-          :xl="4">
+          :xl="6">
           <el-form-item
             label="Name"
             size="small"
@@ -14,28 +15,42 @@
               v-model="model.name"/>
           </el-form-item>
         </el-col>
+
         <el-col
           :lg="12"
           :xl="6">
+          <el-form-item
+            label="Key"
+            size="small"
+            prop="name">
+            <el-input
+              v-model="model.key"/>
+          </el-form-item>
+        </el-col>
+
+        <el-col
+          :lg="12"
+          :xl="12">
           <el-form-item
             label="Description"
             size="small"
             prop="description">
             <el-input
-              :autofocus="true"
               v-model="model.description"/>
           </el-form-item>
         </el-col>
+
         <el-col
           :lg="10"
-          :xl="4">
+          :xl="6">
           <el-form-item
             label="Type"
             size="small"
             prop="type">
             <el-select
               v-model="model.type"
-              placeholder="Type">
+              placeholder="Type"
+              style="width: 100%;">
               <el-option
                 v-for="option in fieldOptions"
                 :key="option.value"
@@ -47,7 +62,7 @@
 
         <el-col
           :lg="6"
-          :xl="2">
+          :xl="4">
           <el-form-item
             label="Prepends"
             size="small"
@@ -57,9 +72,10 @@
               v-model="model.prepend"/>
           </el-form-item>
         </el-col>
+
         <el-col
           :lg="6"
-          :xl="2">
+          :xl="4">
           <el-form-item
             label="Appends"
             size="small"
@@ -86,6 +102,52 @@
 
       <el-row :gutter="20">
         <el-col
+          :lg="10"
+          :xl="4">
+          <el-form-item
+            label=""
+            prop="hidden_from_frontend"
+            size="small">
+            <el-checkbox v-model="model.hidden_from_frontend">Hidden From Frontend</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col
+          :lg="10"
+          :xl="4">
+          <el-form-item
+            label=""
+            prop="hidden_from_pdfs"
+            size="small">
+            <el-checkbox v-model="model.hidden_from_pdfs">Hidden From PDFs</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col
+          :lg="10"
+          :xl="4">
+          <el-form-item
+            label=""
+            prop="hidden_from_pdfs_detail"
+            size="small">
+            <el-checkbox v-model="model.hidden_from_pdfs_detail">Hidden From Detail</el-checkbox>
+          </el-form-item>
+        </el-col>
+
+        <el-col
+          :lg="10"
+          :xl="4">
+          <el-form-item
+            label=""
+            prop="hidden_from_pdfs_admin"
+            size="small">
+            <el-checkbox v-model="model.hidden_from_pdfs_admin">Hidden From Admin</el-checkbox>
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col
           :lg="4"
           :xl="2">
           <el-form-item
@@ -99,6 +161,7 @@
               @click="showRulesModal = true">Show Rules</el-button>
           </el-form-item>
         </el-col>
+
         <el-col
           v-if="needsOptions"
           :lg="4"
@@ -114,6 +177,7 @@
               @click="showOptionsModal = true">Show Options</el-button>
           </el-form-item>
         </el-col>
+
         <el-col
           v-if="model.type === 'dynamic'"
           :lg="4"
@@ -129,6 +193,7 @@
               @click="showOptionsModal = true">Show Fields</el-button>
           </el-form-item>
         </el-col>
+
         <el-col
           :lg="4"
           :xl="2">
@@ -142,6 +207,7 @@
               @click="deleteField(model)">Delete</el-button>
           </el-form-item>
         </el-col>
+
       </el-row>
 
     </div>
