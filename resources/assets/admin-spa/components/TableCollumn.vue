@@ -206,7 +206,7 @@ export default {
 
         if (dots == null) {
           var value = this.col.action.value
-          if (value !== 'nowDate') {
+          if (value === 'nowDate') {
             value = moment().format('DD-MM-Y')
           }
           columnUtil.setRowValue(this.row, dots, value)
