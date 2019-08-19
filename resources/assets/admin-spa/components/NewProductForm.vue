@@ -172,7 +172,7 @@
                             :product="customisationForm.product"
                             :section="section"
                             :field="field"
-                            :prop="`${field.key}`"/>
+                            :prop="`${field.name}`"/>
                         </el-col>
                       </el-row>
                     </el-col>
@@ -605,7 +605,7 @@ export default {
         this.customisationForm.product.order_form.sections.data.forEach((section) => {
           section.fields.data.forEach((field) => {
             if (field.id === rules.show_if_att) {
-              optionKey = field.key
+              optionKey = field.name
             }
           })
         })
