@@ -180,8 +180,10 @@ class ApiOrdersController extends Controller
         $this->validate($request, [
             'ref' => [
                 'required',
-                Rule::unique('orders')->ignore($order->id),
-            ]
+                Rule::unique('orders')->ignore($order->id)->where(function ($query) {
+                    return $query->where('deleted_at', '!==', null);
+                }),
+              ]
         ]);
 
         $customerName = "{$request->input('customer.first_name')} {$request->input('customer.last_name')}";
