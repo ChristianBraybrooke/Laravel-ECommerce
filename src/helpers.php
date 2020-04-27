@@ -43,7 +43,7 @@ function getMediaFromSetting($settingKey)
     $setting = Setting::get($settingKey) ?: null;
 
     if ($setting) {
-        $mediaResource = isset($setting[0]['response']['data']) ? $setting[0]['response']['data'] : isset($setting[0]) ? $setting[0] : null;
+        $mediaResource = isset($setting[0]['response']['data']) ? $setting[0]['response']['data'] : ( isset($setting[0]) ? $setting[0] : null );
 
         if ($mediaResource) {
             return instantiateMediaFromResource($mediaResource);
