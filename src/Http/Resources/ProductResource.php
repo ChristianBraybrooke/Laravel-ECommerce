@@ -65,6 +65,7 @@ class ProductResource extends Resource
             'width' => $this->when(requestIncludes('width'), $this->width),
             'height' => $this->when(requestIncludes('height'), $this->height),
             'depth' => $this->when(requestIncludes('depth'), $this->depth),
+            'sku' => $this->when(requestIncludes('sku'), $this->sku),
         ];
     }
 

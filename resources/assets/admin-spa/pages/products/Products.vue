@@ -1,7 +1,7 @@
 <template lang="html">
   <data-table
     :table-options="tableOptions"
-    :request-includes="['live_at', 'created_at', 'price', 'can_customise', 'list_in_shop', 'featured']"
+    :request-includes="['live_at', 'created_at', 'price', 'can_customise', 'list_in_shop', 'featured', 'width', 'height', 'depth', 'sku']"
     :create-form="productsCreateForm"
     type-name="product"
     bulk-update-url="products/bulk"
@@ -69,6 +69,23 @@ export default {
               }
             },
             resizable: true
+          },
+          {
+            prop: 'sku',
+            sortable: true,
+            label: 'SKU',
+            align: 'left',
+            resizable: true
+          },
+          {
+            prop: 'width',
+            sortable: false,
+            label: 'Measurements',
+            align: 'left',
+            resizable: true,
+            formatter: (row, collumn, cellValue) => {
+              return `W:${row.width} * H:${row.height} * D:${row.depth}`
+            }
           },
           {
             prop: 'price',
