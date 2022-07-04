@@ -46,6 +46,20 @@ class Product extends Model implements ProductContract
      *
      * @return array
      */
+    private function responsableSearch()
+    {
+        return [
+          'id',
+          'name',
+          'sku'
+        ];
+    }
+    
+    /**
+     * Which collumns to use for search.
+     *
+     * @return array
+     */
     private function responsableOrderByAlias()
     {
         return [
