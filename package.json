@@ -41,7 +41,7 @@
         "eslint-plugin-vue": "^4.7.1",
         "html-loader": "^0.5.5",
         "html-webpack-plugin": "^2.30.1",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "laravel-mix": "^3.0.0",
         "lodash": "^4.17.15",
         "preload-webpack-plugin": "^2.3.0",
