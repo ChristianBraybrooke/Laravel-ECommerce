@@ -27,9 +27,7 @@ class ApiImportsController extends Controller
      */
     public function import(Request $request, Import $import)
     {
-        if (isset($request->import_files[0]['file_type']) && $request->import_files[0]['file_type'] !== 'text/plain') {
-            throw ValidationException::withMessages(['Invalid file type.']);
-        } elseif (!isset($request->import_files[0]['file_type'])) {
+        if (!isset($request->import_files[0]['file_type'])) {
             throw ValidationException::withMessages(['No file.']);
         }
         $import = $import->create([

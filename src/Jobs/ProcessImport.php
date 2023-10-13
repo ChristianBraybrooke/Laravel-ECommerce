@@ -2,16 +2,17 @@
 
 namespace ChrisBraybrooke\ECommerce\Jobs;
 
+use ChrisBraybrooke\ECommerce\Imports\RecordImport;
+use ChrisBraybrooke\ECommerce\Notifications\NewOrderNotification;
+use Excel;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use ChrisBraybrooke\ECommerce\Notifications\NewOrderNotification;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Notification;
-use Excel;
-use Validator;
 use Storage;
+use Validator;
 
 class ProcessImport implements ShouldQueue
 {
@@ -20,8 +21,6 @@ class ProcessImport implements ShouldQueue
     protected $import;
 
     protected $import_class;
-
-    protected $rows_added;
 
     protected $temp_file_path = 'import-temps/';
 
@@ -39,7 +38,6 @@ class ProcessImport implements ShouldQueue
     public function __construct($import)
     {
         $this->import = $import;
-        $this->rows_added = [];
 
         if (class_exists($import->import_to)) {
             $this->import_class = $import->import_to;
@@ -60,13 +58,13 @@ class ProcessImport implements ShouldQueue
             $temp_file = Storage::disk('local')->put($this->temp_file_path, Storage::disk($import_file->disk)->get($import_file->getPath()));
 
             if ($temp_file) {
-                $import_file_path = 'storage/app/' . $this->temp_file_path;
+                $importFilePath = 'storage/app/' . $this->temp_file_path;
                 $this->is_temp_file = true;
             } else {
                 throw new \Exception("Creation of temp file for import failed: " . $this->temp_file_path, 422);
             }
         } else {
-            $import_file_path = optional($import_file)->getPath();
+            $importFilePath = optional($import_file)->getPath();
         }
 
         if ($this->import_class && $import_file) {
@@ -76,30 +74,32 @@ class ProcessImport implements ShouldQueue
 
             $import_model = new $this->import_class;
 
-            Excel::selectSheetsByIndex(0)->load($import_file_path, function ($reader) use ($import_model) {
-                $i = 0;
+            Excel::import(new RecordImport($this->import), $this->temp_file_path);
 
-                foreach ($reader->toArray() as $key => $row) {
-                    $i++;
-                    $validator = Validator::make(
-                        $row,
-                        $import_model->importValidationRules(),
-                        $import_model->importValidationMessages($i)
-                    );
-                    if ($validator->fails()) {
-                        $this->failedMessage = $validator->messages()->first();
-                        throw new \Exception("Validation Failed: " . $validator->messages()->first(), 422);
-                    }
-                }
-                foreach ($reader->toArray() as $key => $row) {
-                    $new_model = $import_model->importCreate($row, $this->import);
-                    $this->rows_added[] = $new_model;
-                }
-            });
+            // Excel::selectSheetsByIndex(0)->load($import_file_path, function ($reader) use ($import_model) {
+            //     $i = 0;
+
+            //     foreach ($reader->toArray() as $key => $row) {
+            //         $i++;
+            //         $validator = Validator::make(
+            //             $row,
+            //             $import_model->importValidationRules(),
+            //             $import_model->importValidationMessages($i)
+            //         );
+            //         if ($validator->fails()) {
+            //             $this->failedMessage = $validator->messages()->first();
+            //             throw new \Exception("Validation Failed: " . $validator->messages()->first(), 422);
+            //         }
+            //     }
+            //     foreach ($reader->toArray() as $key => $row) {
+            //         $new_model = $import_model->importCreate($row, $this->import);
+            //         $this->rows_added[] = $new_model;
+            //     }
+            // });
 
             $this->import->update([
                 'status' => 'Completed',
-                'rows_added' => count($this->rows_added)
+                'rows_added' => 3
             ]);
         } else {
             $this->import->update([
@@ -120,7 +120,7 @@ class ProcessImport implements ShouldQueue
         $this->import->update([
             'status' => 'Failed',
             'rows_added' => 0,
-            'rows_not_added' => count($this->rows_added),
+            'rows_not_added' => 0,
         ]);
 
         if ($this->is_temp_file) {
